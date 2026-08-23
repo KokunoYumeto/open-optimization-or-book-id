@@ -1,0 +1,72 @@
+{
+  "schema_version": "release-package-browser-qa-v1",
+  "observed_date": "2026-08-22",
+  "status": "passed",
+  "inputs": [
+    {
+      "path": "docs/index.html",
+      "bytes": 8184,
+      "sha256": "69f434663726dfcda90043e92ac6df5eb495c4226d71abf860389f6bd5535651"
+    },
+    {
+      "path": "docs/assets/site.css",
+      "bytes": 7653,
+      "sha256": "e5876de03898e7cf4ac59c4889b4bf98c7c445d910954644cb6f2fc606a08efa"
+    }
+  ],
+  "desktop": {
+    "viewport_css_pixels": {
+      "width": 1265,
+      "height": 720
+    },
+    "document_scroll_width": 1265,
+    "horizontal_overflow": false,
+    "pdf_iframe_width": 1243.111083984375,
+    "pdf_iframe_height": 608,
+    "visual_review": "passed"
+  },
+  "mobile": {
+    "requested_viewport_css_pixels": {
+      "width": 390,
+      "height": 844
+    },
+    "document_client_width": 375,
+    "document_scroll_width": 375,
+    "horizontal_overflow": false,
+    "hero_grid_columns": "343.111px",
+    "navigation_display": "none",
+    "pdf_iframe_width": 353.3333435058594,
+    "pdf_iframe_height": 607.6736450195312,
+    "dark_mode_eyebrow_color": "rgb(143, 224, 185)",
+    "visual_review": "passed"
+  },
+  "semantics": {
+    "document_language": "id-ID",
+    "skip_link": true,
+    "named_primary_navigation": true,
+    "main_landmark": true,
+    "contentinfo_landmark": true,
+    "pdf_iframe_has_title": true,
+    "heading_levels_present": [
+      1,
+      2,
+      3
+    ]
+  },
+  "dependencies": {
+    "remote_runtime_dependency_count": 0,
+    "javascript_dependency_count": 0,
+    "stylesheet_count": 1,
+    "stylesheet_local": true
+  },
+  "links": {
+    "static_validator_internal_count": 15,
+    "static_validator_external_count": 3,
+    "missing_authored_local_targets": 0,
+    "generated_download_targets_pending": false
+  },
+  "notes": [
+    "Desktop and mobile visual review binds the unchanged authored HTML and CSS inputs listed above.",
+    "The final PDF and ZIP link inventory is a fail-closed post-assembly gate in assemble_release.py; no missing generated target is admitted to release/out or docs/downloads."
+  ]
+}

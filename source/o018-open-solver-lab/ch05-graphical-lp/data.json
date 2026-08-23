@@ -1,0 +1,1711 @@
+{
+  "authority_facts": [
+    {
+      "id": "fact.ch05.ex05-10-pinned-rhs-repair",
+      "description_id": "Authority tersemat sudah memakai ruas kanan 0,40 untuk zat gizi M dan 0,30 untuk zat gizi N. Laboratorium mempertahankannya sebagai fakta authority, bukan koreksi baru.",
+      "status": "present_in_pinned_authority"
+    },
+    {
+      "id": "fact.ch05.ex05-16-pinned-direction-repair",
+      "description_id": "Authority tersemat sudah memakai arah (2,1) dari titik (0,6). Laboratorium mempertahankannya sebagai fakta authority, bukan koreksi baru.",
+      "status": "present_in_pinned_authority"
+    }
+  ],
+  "content_license": "CC-BY-SA-4.0",
+  "divergences": [
+    {
+      "id": "div.ch05.furniture-inactive-bound",
+      "authority_behavior": "Uraian contoh bengkel menyebut batas tak aktif x1 <= 35, sedangkan model dan geometri contoh asal memakai x1 <= 32.",
+      "target_resolution": "Edisi Indonesia menyelaraskan uraian contoh asal dengan batas x1 <= 32; laboratorium tidak mengubah koefisien model latihan mana pun.",
+      "status": "target_corrected"
+    },
+    {
+      "id": "div.ch05.furniture-alt-bound-change",
+      "authority_behavior": "Contoh tujuan alternatif menyatakan kendala tidak berubah, tetapi modelnya menaikkan batas x1 dari 32 menjadi 35 dan geometri optimalnya bergantung pada kenaikan itu.",
+      "target_resolution": "Edisi Indonesia menyatakan perubahan batas 32 menjadi 35 secara eksplisit.",
+      "status": "target_corrected"
+    },
+    {
+      "id": "div.ch05.gradient-versus-level-curve",
+      "authority_behavior": "Authority menyebut gradien (2,1) sejajar dengan garis kendala 2x1+x2=80; gradien sebenarnya normal terhadap garis itu, sedangkan kurva arasnya sejajar.",
+      "target_resolution": "Edisi Indonesia menyebut gradien sebagai vektor normal dan kurva aras sebagai garis yang sejajar dengan batas kendala.",
+      "status": "target_corrected"
+    },
+    {
+      "id": "div.ch05.unbounded-example-ray-start",
+      "authority_behavior": "Authority mengklaim (n,0) layak untuk semua bilangan bulat n mulai dari 1, padahal x1+3x2>=6 mensyaratkan n>=6.",
+      "target_resolution": "Edisi Indonesia dan sertifikat laboratorium memakai n>=6.",
+      "status": "target_corrected"
+    },
+    {
+      "id": "div.ch05.ex05-07-selected-solution-envelope",
+      "authority_behavior": "Solusi terpilih menulis min{2+y/2, 1-2y}, walaupun kedua pertidaksamaan mewajibkan z berada di atas keduanya sehingga selubung yang diminimumkan ialah max{2+y/2, 1-2y}.",
+      "target_resolution": "Edisi Indonesia memakai min_y max{2+y/2, 1-2y}; optimum 9/5 tidak berubah.",
+      "status": "target_corrected"
+    },
+    {
+      "id": "div.ch05.ex05-08-manual-constraint",
+      "authority_behavior": "Latihan 5.8 menetapkan x+3y>=3, sementara perhitungan prosa manual menuliskan t+0=t>=3 pada sinar y=0 dan dengan demikian tidak memperlihatkan faktor 3.",
+      "target_resolution": "Model laboratorium terikat pada pertidaksamaan latihan x+3y>=3. Sinar (t,0), t>=3 tetap sah untuk model itu; tidak ada koefisien yang diganti diam-diam.",
+      "status": "preserved_and_disclosed"
+    },
+    {
+      "id": "div.ch05.ex05-09-title-objective",
+      "authority_behavior": "Judul latihan mengisyaratkan solusi berhingga pada daerah tak berbatas, tetapi objektif max(-2x1+x2) tak berbatas di sepanjang (0,2)+t(0,1).",
+      "target_resolution": "Edisi Indonesia memakai judul netral 'Berhingga atau Tak Berbatas?' sambil mempertahankan objektif; hasil laboratorium secara eksplisit mengklasifikasikan model sebagaimana tertulis sebagai tak berbatas.",
+      "status": "target_corrected_and_disclosed"
+    },
+    {
+      "id": "div.ch05.closing-figure-accessibility",
+      "authority_behavior": "Lima keterangan gambar kerucut/arah ekstrem pada baris authority 1194, 1220, 1256, 1274, dan 1296 terpotong; salah satunya juga memakai istilah warna yang tidak sesuai isi gambar.",
+      "target_resolution": "Edisi Indonesia melengkapi keterangan hanya dari geometri TikZ yang dipertahankan dan memakai deskripsi biru-sian yang sesuai; plot SVG laboratorium memiliki title, desc, dan uraian terstruktur sendiri.",
+      "status": "target_accessibility_corrected"
+    }
+  ],
+  "exercise_order": [
+    "5.1",
+    "5.2",
+    "5.3",
+    "5.4",
+    "5.5",
+    "5.6",
+    "5.7",
+    "5.8",
+    "5.9",
+    "5.10",
+    "5.11",
+    "5.12",
+    "5.13",
+    "5.14",
+    "5.15",
+    "5.16",
+    "5.17"
+  ],
+  "exercises": {
+    "5.1": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 1
+          },
+          "id": "c1",
+          "rhs": 5,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          0
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Setengah bidang kuadran pertama pada atau di atas garis x+y=5. Daerah layak tidak kosong dan menerus tanpa batas ke kanan serta ke atas.",
+        "enabled": true,
+        "window": [
+          -1,
+          9,
+          -1,
+          9
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            2.5,
+            2.5
+          ],
+          "direction": [
+            1,
+            1
+          ],
+          "id": "ray-region"
+        }
+      ],
+      "scenarios": {
+        "region": {
+          "expected": {
+            "classification": "feasible_region_unbounded"
+          },
+          "objective": {
+            "coefficients": {
+              "x": 0,
+              "y": 0
+            },
+            "sense": "minimize"
+          },
+          "purpose": "feasibility_only",
+          "title_id": "Analisis daerah layak"
+        }
+      },
+      "source_anchor": "Section2.tex:770-786",
+      "title_id": "Analisis Daerah Layak",
+      "variables": [
+        {
+          "id": "x",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.2": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": 1,
+            "y": -2
+          },
+          "id": "c1",
+          "rhs": 2,
+          "sense": "<="
+        }
+      ],
+      "expected_vertices": [],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Setengah bidang tertutup pada atau di atas garis y=x/2-1. Titik asal termasuk daerah layak; tidak ada batas nonnegativitas.",
+        "enabled": true,
+        "window": [
+          -3,
+          6,
+          -3,
+          5
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            1
+          ],
+          "id": "ray-up"
+        }
+      ],
+      "scenarios": {
+        "region": {
+          "expected": {
+            "classification": "feasible_region_unbounded"
+          },
+          "objective": {
+            "coefficients": {
+              "x": 0,
+              "y": 0
+            },
+            "sense": "minimize"
+          },
+          "purpose": "feasibility_only",
+          "title_id": "Sketsa setengah bidang"
+        }
+      },
+      "source_anchor": "Section2.tex:788-795",
+      "title_id": "Sketsa Daerah Layak",
+      "variables": [
+        {
+          "id": "x",
+          "lower": null,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": null,
+          "upper": null
+        }
+      ]
+    },
+    "5.3": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 1
+          },
+          "id": "c1",
+          "rhs": 4,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 0
+          },
+          "id": "c2",
+          "rhs": 3,
+          "sense": "<="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Segi empat layak dengan titik ekstrem (0,0), (3,0), (3,1), dan (0,4). Titik optimum tunggal untuk 3x+2y adalah (3,1).",
+        "enabled": true,
+        "window": [
+          -1,
+          5,
+          -1,
+          5
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [],
+      "scenarios": {
+        "original": {
+          "expected": {
+            "classification": "optimal_unique",
+            "objective": 11,
+            "point": [
+              3,
+              1
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x": 3,
+              "y": 2
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Maksimalkan 3x+2y"
+        }
+      },
+      "source_anchor": "Section2.tex:797-807",
+      "title_id": "Latihan Metode Grafis 1",
+      "variables": [
+        {
+          "id": "x",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.4": {
+      "authority_kind": "direct_numeric_reference",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 3
+          },
+          "id": "lemon",
+          "rhs": 6,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x": 2,
+            "y": 1
+          },
+          "id": "water",
+          "rhs": 4,
+          "sense": "<="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1.2,
+          1.6
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah layak Penjual Limun dengan titik optimum tunggal (1,2; 1,6) untuk laba 3x+2y. Koma pada uraian ini adalah tanda desimal Indonesia.",
+        "enabled": true,
+        "window": [
+          -1,
+          4,
+          -1,
+          4
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [],
+      "scenarios": {
+        "original": {
+          "expected": {
+            "classification": "optimal_unique",
+            "objective": 6.8,
+            "point": [
+              1.2,
+              1.6
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x": 3,
+              "y": 2
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Penjual Limun"
+        }
+      },
+      "source_anchor": "Section2.tex:809-812 and example exa:lemonadevendor",
+      "title_id": "Metode Grafis untuk Penjual Limun",
+      "variables": [
+        {
+          "id": "x",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.5": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x1": 3,
+            "x2": 2
+          },
+          "id": "c1",
+          "rhs": 36,
+          "sense": ">="
+        },
+        {
+          "coefficients": {
+            "x1": 6,
+            "x2": 10
+          },
+          "id": "c2",
+          "rhs": 90,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          18
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          15,
+          0
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah layak tak berbatas di atas dua garis. Seluruh ruas dari (10,3) sampai (15,0) optimal dengan nilai 45.",
+        "enabled": true,
+        "window": [
+          -2,
+          22,
+          -2,
+          22
+        ],
+        "x_label": "x1",
+        "y_label": "x2"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            10,
+            3
+          ],
+          "direction": [
+            1,
+            1
+          ],
+          "id": "ray-region"
+        }
+      ],
+      "scenarios": {
+        "original": {
+          "expected": {
+            "classification": "optimal_nonunique",
+            "objective": 45,
+            "segment": [
+              [
+                10,
+                3
+              ],
+              [
+                15,
+                0
+              ]
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x1": 3,
+              "x2": 5
+            },
+            "sense": "minimize"
+          },
+          "purpose": "optimization",
+          "title_id": "Optimum jamak"
+        }
+      },
+      "source_anchor": "Section2.tex:816-825",
+      "title_id": "Metode Grafis",
+      "variables": [
+        {
+          "id": "x1",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "x2",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.6": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x1": 1,
+            "x2": 1
+          },
+          "id": "c1",
+          "rhs": 6,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x1": 1,
+            "x2": -1
+          },
+          "id": "c2",
+          "rhs": 1,
+          "sense": ">="
+        },
+        {
+          "coefficients": {
+            "x1": -1,
+            "x2": 1
+          },
+          "id": "c3",
+          "rhs": 3,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Tiga batas kendala tanpa irisan bersama. Dua pertidaksamaan selisih menjumlah menjadi kontradiksi 0>=4, sehingga daerah layak kosong.",
+        "enabled": true,
+        "window": [
+          -1,
+          9,
+          -1,
+          9
+        ],
+        "x_label": "x1",
+        "y_label": "x2"
+      },
+      "recession_certificates": [],
+      "scenarios": {
+        "original": {
+          "expected": {
+            "classification": "infeasible"
+          },
+          "objective": {
+            "coefficients": {
+              "x1": 1,
+              "x2": -1
+            },
+            "sense": "minimize"
+          },
+          "purpose": "optimization",
+          "title_id": "Daerah tak layak"
+        }
+      },
+      "source_anchor": "Section2.tex:827-838",
+      "title_id": "Grafik Daerah Tak Layak",
+      "variables": [
+        {
+          "id": "x1",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "x2",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.7": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": 2,
+            "y": 1
+          },
+          "id": "c1",
+          "rhs": 4,
+          "sense": ">="
+        },
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 3
+          },
+          "id": "c2",
+          "rhs": 1,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [
+        [
+          2.2,
+          -0.4
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Baji tak berbatas tanpa kendala nonnegativitas. Kedua garis batas bertemu di (11/5,-2/5), titik optimum tunggal untuk meminimumkan x+y.",
+        "enabled": true,
+        "window": [
+          -2,
+          7,
+          -3,
+          6
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            2.2,
+            -0.4
+          ],
+          "direction": [
+            1,
+            0
+          ],
+          "id": "ray-region"
+        }
+      ],
+      "scenarios": {
+        "original": {
+          "expected": {
+            "classification": "optimal_unique",
+            "objective": 1.8,
+            "point": [
+              2.2,
+              -0.4
+            ],
+            "point_exact": [
+              "11/5",
+              "-2/5"
+            ],
+            "objective_exact": "9/5"
+          },
+          "objective": {
+            "coefficients": {
+              "x": 1,
+              "y": 1
+            },
+            "sense": "minimize"
+          },
+          "purpose": "optimization",
+          "title_id": "Nilai optimal pada baji bebas"
+        }
+      },
+      "source_anchor": "Section2.tex:840-850",
+      "title_id": "Menentukan Nilai Optimal",
+      "variables": [
+        {
+          "id": "x",
+          "lower": null,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": null,
+          "upper": null
+        }
+      ]
+    },
+    "5.8": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": 2,
+            "y": -1
+          },
+          "id": "c1",
+          "rhs": 0,
+          "sense": ">="
+        },
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 3
+          },
+          "id": "c2",
+          "rhs": 3,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0.4285714286,
+          0.8571428571
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Irisan dua setengah bidang tanpa batas tanda variabel. Sinar (3,0)+t(1,0) layak dan menurunkan -x+y tanpa batas.",
+        "enabled": true,
+        "window": [
+          -2,
+          9,
+          -4,
+          9
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            3,
+            0
+          ],
+          "direction": [
+            1,
+            0
+          ],
+          "id": "ray-unbounded"
+        }
+      ],
+      "scenarios": {
+        "original": {
+          "expected": {
+            "classification": "unbounded"
+          },
+          "objective": {
+            "coefficients": {
+              "x": -1,
+              "y": 1
+            },
+            "sense": "minimize"
+          },
+          "purpose": "optimization",
+          "title_id": "Masalah tak berbatas"
+        }
+      },
+      "source_anchor": "Section2.tex:852-863",
+      "title_id": "Menunjukkan Masalah Tak Berbatas",
+      "variables": [
+        {
+          "id": "x",
+          "lower": null,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": null,
+          "upper": null
+        }
+      ]
+    },
+    "5.9": {
+      "authority_kind": "direct_numeric_reference",
+      "constraints": [
+        {
+          "coefficients": {
+            "x1": 1,
+            "x2": -1
+          },
+          "id": "c1",
+          "rhs": 3,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x1": 1,
+            "x2": 2
+          },
+          "id": "c2",
+          "rhs": 4,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          2
+        ],
+        [
+          3.3333333333,
+          0.3333333333
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah layak tak berbatas dari contoh rujukan. Walaupun judul latihan mengisyaratkan solusi berhingga, sinar vertikal dari (0,2) menaikkan -2x1+x2 tanpa batas.",
+        "enabled": true,
+        "window": [
+          -1,
+          9,
+          -1,
+          9
+        ],
+        "x_label": "x1",
+        "y_label": "x2"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            0,
+            2
+          ],
+          "direction": [
+            0,
+            1
+          ],
+          "id": "ray-unbounded"
+        }
+      ],
+      "scenarios": {
+        "as_written": {
+          "expected": {
+            "classification": "unbounded"
+          },
+          "objective": {
+            "coefficients": {
+              "x1": -2,
+              "x2": 1
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Objektif sebagaimana tertulis"
+        }
+      },
+      "source_anchor": "Section2.tex:865-868",
+      "title_id": "Berhingga atau Tak Berbatas?",
+      "variables": [
+        {
+          "id": "x1",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "x2",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.10": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x1": 0.16,
+            "x2": 0.21,
+            "x3": 0.11
+          },
+          "id": "nutrient_M",
+          "rhs": 0.4,
+          "sense": ">="
+        },
+        {
+          "coefficients": {
+            "x1": 0.19,
+            "x2": 0.13,
+            "x3": 0.15
+          },
+          "id": "nutrient_N",
+          "rhs": 0.3,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Model diet memiliki tiga variabel keputusan; renderer grafis dua dimensi tidak boleh memproyeksikannya secara sembarang.",
+        "enabled": false,
+        "reason": "not_applicable_dimension_3"
+      },
+      "recession_certificates": [],
+      "scenarios": {
+        "fractional_lp": {
+          "expected": {
+            "classification": "optimal_unique",
+            "objective": 60.9947643979,
+            "objective_exact": "11650/191",
+            "point": [
+              0.5759162304,
+              1.4659685864,
+              0
+            ],
+            "point_exact": [
+              "110/191",
+              "280/191",
+              "0"
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x1": 27,
+              "x2": 31,
+              "x3": 24
+            },
+            "sense": "minimize"
+          },
+          "purpose": "optimization",
+          "title_id": "Program linier diet pecahan"
+        }
+      },
+      "source_anchor": "Section2.tex:870-895",
+      "title_id": "Masalah Diet",
+      "variables": [
+        {
+          "id": "x1",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "x2",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "x3",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.11": {
+      "authority_kind": "conceptual",
+      "constraints": [],
+      "expected_vertices": [],
+      "model_status": "parameter_required",
+      "plot": {
+        "description_id": "Latihan meminta argumen umum, bukan satu instans numerik. Tidak ada plot yang dapat dibuat tanpa memilih koefisien baru.",
+        "enabled": false,
+        "reason": "parameter_required"
+      },
+      "recession_certificates": [],
+      "required_parameters": [
+        "koefisien fungsi tujuan c",
+        "matriks kendala A",
+        "ruas kanan b",
+        "arah tiap pertidaksamaan",
+        "batas variabel"
+      ],
+      "scenarios": {},
+      "source_anchor": "Section2.tex:899-906",
+      "title_id": "Mengapa Optimum Harus Berada di Titik Ekstrem?",
+      "variables": []
+    },
+    "5.12": {
+      "authority_kind": "manual_resolved_construction",
+      "constraints": [
+        {
+          "coefficients": {
+            "x1": 1,
+            "x2": -1
+          },
+          "id": "c1",
+          "rhs": 3,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x1": 1,
+            "x2": 2
+          },
+          "id": "c2",
+          "rhs": 4,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          2
+        ],
+        [
+          3.3333333333,
+          0.3333333333
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah contoh tak berbatas dengan kurva aras x1+2x2=4 berhimpit dengan rusuk dari (0,2) sampai (10/3,1/3). Seluruh rusuk itu optimal.",
+        "enabled": true,
+        "window": [
+          -1,
+          9,
+          -1,
+          9
+        ],
+        "x_label": "x1",
+        "y_label": "x2"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            0,
+            2
+          ],
+          "direction": [
+            0,
+            1
+          ],
+          "id": "ray-region"
+        }
+      ],
+      "scenarios": {
+        "manual_construction": {
+          "expected": {
+            "classification": "optimal_nonunique",
+            "objective": 4,
+            "segment": [
+              [
+                0,
+                2
+              ],
+              [
+                3.3333333333,
+                0.3333333333
+              ]
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x1": 1,
+              "x2": 2
+            },
+            "sense": "minimize"
+          },
+          "purpose": "optimization",
+          "title_id": "Konstruksi manual x1+2x2"
+        }
+      },
+      "source_anchor": "Section2.tex:908-911; solutions-manual/ch05.tex:133-142",
+      "title_id": "Tak Hingga Banyak Solusi Optimal",
+      "variables": [
+        {
+          "id": "x1",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "x2",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.13": {
+      "authority_kind": "manual_resolved_construction",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 3
+          },
+          "id": "lemon",
+          "rhs": 6,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x": 2,
+            "y": 1
+          },
+          "id": "water",
+          "rhs": 4,
+          "sense": "<="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1.2,
+          1.6
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah Penjual Limun dengan dua pilihan fungsi tujuan manual. Masing-masing pilihan membuat salah satu rusuk sumber daya menjadi himpunan optimum.",
+        "enabled": true,
+        "window": [
+          -1,
+          4,
+          -1,
+          4
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [],
+      "scenarios": {
+        "lemon_edge": {
+          "expected": {
+            "classification": "optimal_nonunique",
+            "objective": 6,
+            "segment": [
+              [
+                0,
+                2
+              ],
+              [
+                1.2,
+                1.6
+              ]
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x": 1,
+              "y": 3
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Rusuk bahan lemon"
+        },
+        "water_edge": {
+          "expected": {
+            "classification": "optimal_nonunique",
+            "objective": 4,
+            "segment": [
+              [
+                1.2,
+                1.6
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x": 2,
+              "y": 1
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Rusuk air"
+        }
+      },
+      "source_anchor": "Section2.tex:913-916; solutions-manual/ch05.tex:144-155",
+      "title_id": "Tak Hingga Banyak Solusi Optimal",
+      "variables": [
+        {
+          "id": "x",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.14": {
+      "authority_kind": "manual_resolved_construction",
+      "constraints": [
+        {
+          "coefficients": {
+            "x1": -1,
+            "x2": 1
+          },
+          "id": "c1",
+          "rhs": 5,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x1": 1,
+            "x2": 1
+          },
+          "id": "c2",
+          "rhs": 2,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah layak tak berbatas dengan titik ekstrem (0,5), (0,2), dan (2,0). Objektif manual -2x1-x2 memiliki maksimum berhingga tunggal di (0,2).",
+        "enabled": true,
+        "window": [
+          -1,
+          9,
+          -1,
+          9
+        ],
+        "x_label": "x1",
+        "y_label": "x2"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            2,
+            0
+          ],
+          "direction": [
+            1,
+            0
+          ],
+          "id": "ray-region"
+        }
+      ],
+      "scenarios": {
+        "manual_construction": {
+          "expected": {
+            "classification": "optimal_unique",
+            "objective": -2,
+            "point": [
+              0,
+              2
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x1": -2,
+              "x2": -1
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Maksimum berhingga pada daerah tak berbatas"
+        }
+      },
+      "source_anchor": "Section2.tex:918-923; solutions-manual/ch05.tex:157-170",
+      "title_id": "Optimum Berhingga pada Daerah Tak Berbatas",
+      "variables": [
+        {
+          "id": "x1",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "x2",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.15": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x1": -1,
+            "x2": 1
+          },
+          "id": "c1",
+          "rhs": 3,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x1": 1,
+            "x2": -2
+          },
+          "id": "c2",
+          "rhs": 2,
+          "sense": "<="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah layak tak berbatas dengan dua sertifikat sinar: (t,t) dan (2t+2,t). Pada keduanya, objektif -2x1+x2 turun tanpa batas.",
+        "enabled": true,
+        "window": [
+          -1,
+          9,
+          -1,
+          9
+        ],
+        "x_label": "x1",
+        "y_label": "x2"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            0,
+            0
+          ],
+          "direction": [
+            1,
+            1
+          ],
+          "id": "ray-diagonal"
+        },
+        {
+          "base": [
+            2,
+            0
+          ],
+          "direction": [
+            2,
+            1
+          ],
+          "id": "ray-boundary"
+        }
+      ],
+      "scenarios": {
+        "original": {
+          "expected": {
+            "classification": "unbounded"
+          },
+          "objective": {
+            "coefficients": {
+              "x1": -2,
+              "x2": 1
+            },
+            "sense": "minimize"
+          },
+          "purpose": "optimization",
+          "title_id": "Dua arah ketakberbatasan"
+        }
+      },
+      "source_anchor": "Section2.tex:927-952",
+      "title_id": "Arah Fungsi Tujuan Tak Berbatas",
+      "variables": [
+        {
+          "id": "x1",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "x2",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.16": {
+      "authority_kind": "direct_numeric",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": -1,
+            "y": 2
+          },
+          "id": "c1",
+          "rhs": 12,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x": 2,
+            "y": 1
+          },
+          "id": "c2",
+          "rhs": 4,
+          "sense": ">="
+        },
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 2
+          },
+          "id": "c3",
+          "rhs": 5,
+          "sense": ">="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          5,
+          0
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah tak berbatas dengan titik ekstrem (0,6), (0,4), (1,2), dan (5,0). Minimum 2x+2y berada di (1,2), sedangkan maksimumnya tak berbatas pada dua sinar yang diberikan.",
+        "enabled": true,
+        "window": [
+          -1,
+          12,
+          -1,
+          12
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [
+        {
+          "base": [
+            5,
+            0
+          ],
+          "direction": [
+            1,
+            0
+          ],
+          "id": "ray-horizontal"
+        },
+        {
+          "base": [
+            0,
+            6
+          ],
+          "direction": [
+            2,
+            1
+          ],
+          "id": "ray-pinned-direction"
+        }
+      ],
+      "scenarios": {
+        "maximum": {
+          "expected": {
+            "classification": "unbounded"
+          },
+          "objective": {
+            "coefficients": {
+              "x": 2,
+              "y": 2
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Maksimum tak berbatas"
+        },
+        "minimum": {
+          "expected": {
+            "classification": "optimal_unique",
+            "objective": 6,
+            "point": [
+              1,
+              2
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x": 2,
+              "y": 2
+            },
+            "sense": "minimize"
+          },
+          "purpose": "optimization",
+          "title_id": "Minimum berhingga"
+        }
+      },
+      "source_anchor": "Section2.tex:954-986",
+      "title_id": "Optimisasi Terbatas dan Tak Berbatas",
+      "variables": [
+        {
+          "id": "x",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    },
+    "5.17": {
+      "authority_kind": "manual_resolved_construction",
+      "constraints": [
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 1
+          },
+          "id": "c1",
+          "rhs": 4,
+          "sense": "<="
+        },
+        {
+          "coefficients": {
+            "x": 1,
+            "y": 0
+          },
+          "id": "c2",
+          "rhs": 3,
+          "sense": "<="
+        }
+      ],
+      "expected_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "model_status": "executable",
+      "plot": {
+        "description_id": "Daerah layak Latihan 5.3. Objektif pertama x+y optimal di seluruh rusuk dari (0,4) sampai (3,1); setelah koefisien y diubah menjadi 2, optimum tunggal berpindah ke (0,4).",
+        "enabled": true,
+        "window": [
+          -1,
+          5,
+          -1,
+          5
+        ],
+        "x_label": "x",
+        "y_label": "y"
+      },
+      "recession_certificates": [],
+      "scenarios": {
+        "edge_tie": {
+          "expected": {
+            "classification": "optimal_nonunique",
+            "objective": 4,
+            "segment": [
+              [
+                0,
+                4
+              ],
+              [
+                3,
+                1
+              ]
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x": 1,
+              "y": 1
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Rusuk optimum"
+        },
+        "unique_after_change": {
+          "expected": {
+            "classification": "optimal_unique",
+            "objective": 8,
+            "point": [
+              0,
+              4
+            ]
+          },
+          "objective": {
+            "coefficients": {
+              "x": 1,
+              "y": 2
+            },
+            "sense": "maximize"
+          },
+          "purpose": "optimization",
+          "title_id": "Optimum tunggal setelah satu koefisien berubah"
+        }
+      },
+      "source_anchor": "Section2.tex:988-995; solutions-manual/ch05.tex:222-235",
+      "title_id": "Dari Rusuk Optimal ke Optimum Tunggal",
+      "variables": [
+        {
+          "id": "x",
+          "lower": 0,
+          "upper": null
+        },
+        {
+          "id": "y",
+          "lower": 0,
+          "upper": null
+        }
+      ]
+    }
+  },
+  "lab_id": "o018.ch05.graphical-lp",
+  "plot_contract": {
+    "format": "SVG 1.1",
+    "locale": "id-ID",
+    "renderer": "deterministic-stdlib-svg",
+    "renderer_license": "MIT",
+    "structured_alternatives_in": "data.json and results.json",
+    "viewport_clipping_disclosed": true
+  },
+  "provenance": {
+    "authority_branch": "master",
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "source_files": [
+      {
+        "bytes": 62475,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch02-modeling/Section2.tex",
+        "role": "authority_chapter",
+        "sha256": "9a095760e4983e71bc2cf840142aea3f1121f2236ff45f0248d3ca13970281d1"
+      },
+      {
+        "bytes": 21346,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch05.tex",
+        "role": "authority_manual",
+        "sha256": "e58a3b4fca24c1bc765b22c2db18b125e92731dd759bfd706d4028dd8d2eadaa"
+      },
+      {
+        "bytes": 65226,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch02-modeling/Section2.tex",
+        "role": "translated_chapter",
+        "sha256": "35c058e6af26b699a1cca70906f9ac41da804940b668101613f6994b9d8b00ff"
+      },
+      {
+        "bytes": 22684,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch05.tex",
+        "role": "translated_manual",
+        "sha256": "ee6db2bb15936c83159d0e97eafb19dc34e4914dd379bd774cf681fb961e640c"
+      }
+    ]
+  },
+  "runtime_components": [
+    {
+      "license_expression": "BSD-3-Clause",
+      "name": "Pyomo",
+      "role": "pemodelan aljabar",
+      "version": "6.10.1"
+    },
+    {
+      "license_expression": "MIT",
+      "name": "HiGHS/highspy",
+      "role": "pemecah LP terbuka",
+      "version": "1.15.1"
+    },
+    {
+      "license_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+      "name": "NumPy",
+      "role": "dependensi runtime highspy; versi dilaporkan dan closure lisensinya dibekukan",
+      "version": "2.5.2"
+    },
+    {
+      "license_expression": "MIT",
+      "name": "renderer SVG lokal",
+      "role": "plot deterministik tanpa Matplotlib atau pustaka jaringan",
+      "version": "1.0.0"
+    }
+  ],
+  "schema_version": "1.0.0"
+}

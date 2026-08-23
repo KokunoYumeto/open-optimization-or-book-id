@@ -1,0 +1,197 @@
+{
+  "artifacts": [
+    {
+      "bytes": 3071,
+      "path": "ATTRIBUTION.md",
+      "sha256": "cc0104b88ed7d8b5cc2ec1558a7f46b4f61f7e8163ec995c7a58e9a5e148007a"
+    },
+    {
+      "bytes": 1091,
+      "path": "LICENSE-CODE.txt",
+      "sha256": "3af65c07da546f32647333f84eb682f040ed45cabfa14ce5e1650f6a67f00ceb"
+    },
+    {
+      "bytes": 2851,
+      "path": "README.md",
+      "sha256": "cb13ff5fa40da1ebf7dfbc943719d514cd33965725b8022b201f99e8130dd192"
+    },
+    {
+      "bytes": 8450,
+      "path": "data.json",
+      "sha256": "babdbd49360e483ad72273719f44aa78d20cc04fcc47884fc5ae1836559f3680"
+    },
+    {
+      "bytes": 4708,
+      "path": "expected-results.json",
+      "sha256": "802f8ac9efcfb183735d1e9c5c40705051d3f2450ee0cb49da0bd6e140944170"
+    },
+    {
+      "bytes": 31526,
+      "path": "model.py",
+      "sha256": "efe3c53c998d863635065041de2301b68e735f64f2bedacc085b1f4977b46b53"
+    },
+    {
+      "bytes": 15466,
+      "path": "plot_svg.py",
+      "sha256": "a4772a9b081104b909b89880f6f354b6b2b48892b7e37e8bec87529f008d65b0"
+    },
+    {
+      "bytes": 15146,
+      "path": "results.json",
+      "sha256": "c2559401de6e5206c7590b02abfc433d80391103c1cadf36dfbd9b345f121f71"
+    },
+    {
+      "bytes": 4185,
+      "path": "run_lab.py",
+      "sha256": "4492c3638c31492baa3d74a29b07dbd724f6f9f426ab1361cf20ea3e8d63c03b"
+    },
+    {
+      "bytes": 15695,
+      "path": "test_models.py",
+      "sha256": "7b79e035f23d8b2d1bb287298eaf0b8276d6d399f94b2cec734c8e1f7fd3ee11"
+    },
+    {
+      "bytes": 1905,
+      "path": "verification.log",
+      "sha256": "b9ec9c8cde93bcbacb9bbe94865bb58dce92ff08cb0468113184a551dea1ed0d"
+    },
+    {
+      "bytes": 8308,
+      "path": "verify_receipt.py",
+      "sha256": "a63a79c1cfae105db7ad6fb3086e98c08d492fccad9bf090ad1d233248b433f4"
+    },
+    {
+      "bytes": 4148,
+      "path": "plots/ex06-06.svg",
+      "sha256": "b2071410e2e935f7faa05618692db0854ba77c7a4dbf133724a4b4846b5a1b54"
+    },
+    {
+      "bytes": 4612,
+      "path": "plots/ex06-07.svg",
+      "sha256": "1402a5d33dd742caad94dcb971637d496973ee622f0d99e0afafdf1313868c9a"
+    },
+    {
+      "bytes": 4427,
+      "path": "plots/ex06-08.svg",
+      "sha256": "c6f110aa285a49e89083d97cefef1d74943a68ec8b83e274eeeab0efc865bed9"
+    },
+    {
+      "bytes": 4160,
+      "path": "plots/ex06-10.svg",
+      "sha256": "ddc16774a5fcd6bbb74af7887bd9a3c3bf507fdff9cce9aef0aacf0e7903e07d"
+    },
+    {
+      "bytes": 4077,
+      "path": "plots/ex06-11.svg",
+      "sha256": "9a1dfd914357581ff776de3eb1cf42e7d9421e98a6c39f819ce653837d2ae6e8"
+    }
+  ],
+  "content_license": "CC-BY-SA-4.0",
+  "lab_id": "o018.ch06.formal-mathematics",
+  "provenance": {
+    "authority_branch": "master",
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "source_files": [
+      {
+        "bytes": 50024,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch05-lp-theory/formalize-LP.tex",
+        "role": "authority_chapter",
+        "sha256": "26c5a18526e75e869fea5e18591f095bbb642659d6c7df04bbb45564e5861803"
+      },
+      {
+        "bytes": 14069,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch06.tex",
+        "role": "authority_manual",
+        "sha256": "81f818aa9630e4f421171f745a5b31084f509465efcd9eb754e7545c9e1694e1"
+      },
+      {
+        "bytes": 52190,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch05-lp-theory/formalize-LP.tex",
+        "role": "translated_chapter",
+        "sha256": "4e08b0c7d3b5e89a868800569eeb57b9128d6b1b009301ce0cd2fcae9c2e75ca"
+      },
+      {
+        "bytes": 15677,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch06.tex",
+        "role": "translated_manual",
+        "sha256": "3f54164435b4fe489e907b8ebfc71c862ff09a73af288d427830db84feefd344"
+      }
+    ]
+  },
+  "runtime": {
+    "closure_files": [
+      {
+        "bytes": 2313,
+        "path": "authority/runtime-licenses/MANIFEST.csv",
+        "sha256": "71451702ae6d014eb1e59fbd8ac950fa9f26b0bab47661817b5fe65daf41b329"
+      },
+      {
+        "bytes": 407,
+        "path": "authority/runtime-wheels/MANIFEST.csv",
+        "sha256": "326fc250a9b3b17f523a67672f1f38eae48d4f868239c5eaa273644ab0ec6e04"
+      },
+      {
+        "bytes": 602,
+        "path": "source/o018-open-solver-lab/requirements.lock",
+        "sha256": "2172e05818e66089772851294c4143497616b17bbe449e1a38f5aeb7a54418a0"
+      },
+      {
+        "bytes": 1952,
+        "path": "source/o018-open-solver-lab/runtime-receipt.json",
+        "sha256": "627cc1a3cbeec61635f61adff047478616e8d1de59161d632acf15372467fe7d"
+      }
+    ],
+    "highspy": "1.15.1",
+    "numpy": "2.5.2",
+    "pyomo": "6.10.1",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13",
+    "solver_interface": "appsi_highs"
+  },
+  "schema_version": "1.0.0",
+  "verification": {
+    "artifact_count_excluding_receipt": 17,
+    "correction_count": 0,
+    "exercise_count": 12,
+    "implementation_visual_corrections": [
+      "uniform_coordinate_aspect_ratio_for_all_five_svgs",
+      "relocated_three_annotations_after_readable_raster_review"
+    ],
+    "maximum_solver_violation": 0.0,
+    "method_counts": {
+      "direct_convexity_certificates": 1,
+      "direct_union_certificate": 1,
+      "direct_universal_proof_certificate": 1,
+      "exact_active_set_and_numpy_rank": 1,
+      "exact_barycentric_and_pyomo_highs": 2,
+      "exact_gaussian_and_numpy": 1,
+      "exact_halfspace_certificate": 1,
+      "exact_lineality_and_pyomo_highs": 1,
+      "exact_matrix_and_pyomo_highs": 1,
+      "exact_rational": 2
+    },
+    "plot_accessibility_contract": {
+      "generated_svg_count": 5,
+      "language": "id-ID",
+      "required_svg_elements": [
+        "title",
+        "desc",
+        "metadata"
+      ],
+      "structured_alternatives": true,
+      "uniform_coordinate_aspect_ratio": true
+    },
+    "plots_combined_sha256": "7530aa9e0b3c5529423c1886de8de6116d07514f0817f38260a01dcec369cc33",
+    "results_bytes": 15146,
+    "results_regeneration_runs": 2,
+    "results_sha256": "c2559401de6e5206c7590b02abfc433d80391103c1cadf36dfbd9b345f121f71",
+    "solver_call_count_per_run": 5,
+    "tests_failed_per_run": 0,
+    "tests_passed_per_run": 21,
+    "underdetermined_count": 0,
+    "unittest_runs": 2,
+    "verification_date": "2026-08-22",
+    "verified_count": 12,
+    "visual_qa_svg_count": 5
+  }
+}

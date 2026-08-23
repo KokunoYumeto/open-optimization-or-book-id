@@ -1,0 +1,31 @@
+% Copyright 2026 by Robert Hildebrand
+% Karya ini dilisensikan berdasarkan CC BY-SA 4.0.
+% Batas terjemahan: jawaban Cek Pemahaman yang muncul sampai akhir Bab 4.
+
+\chapter{Jawaban Cek Pemahaman}
+\label{ch:checkpoint-answers}
+
+Kotak Cek Pemahaman di dalam buku dimaksudkan untuk dikerjakan sebelum Anda
+melanjutkan membaca, dan tentu saja sebelum membaca lampiran ini. Cobalah
+menuliskan jawaban Anda terlebih dahulu; proses belajar terjadi ketika Anda
+membandingkan kata-kata Anda sendiri dengan jawaban yang tersedia.
+
+\bigskip
+
+\noindent\textbf{\Cref{lc:lp-assumptions}} (halaman~\pageref{lc:lp-assumptions}).
+Proporsionalitas, aditivitas, dan kepastian merupakan asumsi yang wajar di sini:
+laba dan penggunaan sumber daya meningkat sebanding dengan produksi, dan data
+dianggap telah diketahui. Namun, keterbagian dilanggar: Anda tidak dapat
+mencetak $\tfrac23$ kaus. Relaksasi program linear tetap berguna sebagai batas
+dan panduan, tetapi setiap rencana yang dibulatkan harus diperiksa kembali
+kelayakannya; ketika jawaban bilangan bulat benar-benar penting,
+\OOIntegerProgrammingReference{} menambahkan persyaratan itu secara eksplisit.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:missing-index}} (halaman~\pageref{lc:missing-index}).
+Indeks $j$ muncul dalam $y_{ij}$ tetapi tidak pernah didefinisikan: penjumlahan
+berjalan atas $i$, sehingga $j$ dibiarkan bebas. Pernyataan tersebut memerlukan
+kuantor, misalnya
+\(\sum_{i \in I} y_{ij}=1 \quad \text{untuk setiap } j \in J.\)
+Jadi, ini bukan satu kendala, melainkan satu kendala untuk setiap elemen $J$.

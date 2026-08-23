@@ -1,0 +1,314 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "cases": {
+    "big_m_activation": {
+      "inactive_rhs": 40,
+      "upper_bounds": [30, 30, 30]
+    },
+    "capital_budgeting": {
+      "budgets": [20, 20],
+      "cash_outlays": [[5, 4, 3, 7, 8], [1, 7, 9, 4, 6]],
+      "dependencies": [[3, 1]],
+      "exclusive_pairs": [[2, 5]],
+      "npv": [20, 40, 20, 15, 30],
+      "projects": [1, 2, 3, 4, 5]
+    },
+    "either_or": {
+      "constraints": [
+        {"coefficients": [2, 1], "name": "A", "rhs": 10},
+        {"coefficients": [1, 3], "name": "B", "rhs": 12}
+      ],
+      "objective": [5, 4],
+      "tested_big_m": [20, 1000000],
+      "tight_big_m": [14, 18]
+    },
+    "facility": {
+      "capacities": [40, 25],
+      "demands": [10, 12, 15],
+      "fixed_costs": [80, 60],
+      "service_costs": [[2, 3, 1], [4, 1, 2]]
+    },
+    "fixed_charge": {
+      "capacity": 200,
+      "fixed_cost": 500,
+      "price": 15,
+      "variable_cost": 8
+    },
+    "flowshop": {
+      "big_m": 18,
+      "jobs": ["Pekerjaan 1", "Pekerjaan 2"],
+      "machines": ["M1", "M2", "M3"],
+      "processing_times": [[3, 2, 4], [2, 4, 3]]
+    },
+    "graph_coloring": {
+      "edges": [["A", "B"], ["B", "C"], ["C", "D"], ["D", "E"], ["E", "A"], ["A", "C"]],
+      "vertices": ["A", "B", "C", "D", "E"]
+    },
+    "hiker_knapsack": {
+      "capacity": 15,
+      "items": ["Tenda", "Kantong tidur", "Kompor", "Makanan", "Kamera"],
+      "values": [8, 6, 5, 10, 4],
+      "weights": [5, 3, 4, 7, 2]
+    },
+    "kidney_exchange": {
+      "cycle_length_limit": 3,
+      "objective_coefficient": "|c|",
+      "packing_constraint": "sum_{c: i in c} x_c <= 1"
+    },
+    "lp_rounding_knapsack": {
+      "capacity": 15,
+      "values": [4, 2, 2, 1, 10],
+      "weights": [12, 2, 1, 1, 4]
+    },
+    "piecewise_cost": {
+      "breakpoints": [0, 10, 20, 30],
+      "costs": [0, 50, 80, 160],
+      "revenue_per_ton": 6
+    },
+    "small_town": {
+      "districts": [1, 2, 3, 4, 5, 6],
+      "neighborhoods": {
+        "1": [1, 2, 4],
+        "2": [1, 2, 3, 5],
+        "3": [2, 3, 6],
+        "4": [1, 4, 5],
+        "5": [2, 4, 5, 6],
+        "6": [3, 5, 6]
+      }
+    },
+    "terminal_location": {
+      "central_canada": [3, 4, 5],
+      "cities": ["Halifax", "Moncton", "Montréal", "Ottawa", "Toronto"],
+      "costs": [10, 12, 20, 18, 25],
+      "maximum_terminals": 2
+    },
+    "van_knapsack": {
+      "capacity": 15,
+      "items": [1, 2, 3, 4, 5],
+      "rewards": [5, 3, 3, 7, 4],
+      "weights": [11, 3, 2, 5, 4]
+    },
+    "warehouse_cover": {
+      "costs": {"A": 150, "B": 200, "C": 120, "D": 180},
+      "regions": [1, 2, 3, 4, 5],
+      "serves": {
+        "A": [1, 2, 3],
+        "B": [2, 3, 4, 5],
+        "C": [1, 4],
+        "D": [3, 4, 5]
+      },
+      "warehouses": ["A", "B", "C", "D"]
+    }
+  },
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "exercise_order": [
+    "15.1",
+    "15.2",
+    "15.3",
+    "15.4",
+    "15.5",
+    "15.6",
+    "15.7",
+    "15.8",
+    "15.9",
+    "15.10",
+    "15.11",
+    "15.12",
+    "15.13",
+    "15.14",
+    "15.15",
+    "15.16"
+  ],
+  "exercises": {
+    "15.1": {
+      "book_label": "ex:knapsack-hiker",
+      "case": "hiker_knapsack",
+      "difficulty": 1,
+      "group": "Pemanasan",
+      "manual_mapping": {"manual_id": "15.1", "status": "aligned"},
+      "method": "binary_knapsack_base_and_implication_highs",
+      "title": "Masalah Ransel"
+    },
+    "15.2": {
+      "book_label": "ex:knapsack-warmup",
+      "case": "van_knapsack",
+      "difficulty": 1,
+      "group": "Pemanasan",
+      "manual_mapping": {"manual_id": "15.2", "status": "aligned"},
+      "method": "binary_knapsack_highs_and_complete_enumeration",
+      "title": "Ransel Mobil Kurir"
+    },
+    "15.3": {
+      "book_label": "ex:fire-warmup",
+      "case": "small_town",
+      "difficulty": 1,
+      "group": "Pemanasan",
+      "manual_mapping": {"manual_id": "15.3", "status": "aligned"},
+      "method": "set_cover_highs_and_complete_optimum_enumeration",
+      "title": "Mencakup Sebuah Kota Kecil"
+    },
+    "15.4": {
+      "book_label": "ex:bigM-drill",
+      "case": "big_m_activation",
+      "difficulty": 1,
+      "group": "Pemanasan",
+      "manual_mapping": {"manual_id": "15.4", "status": "aligned"},
+      "method": "tight_big_m_bound_certificate",
+      "title": "Latihan Aktivasi Big-M"
+    },
+    "15.5": {
+      "book_label": "ex:terminals",
+      "case": "terminal_location",
+      "difficulty": 2,
+      "group": "Masalah Inti",
+      "manual_mapping": {"manual_id": "15.5", "status": "aligned"},
+      "method": "binary_logical_location_highs",
+      "title": "Menentukan Lokasi Terminal Distribusi"
+    },
+    "15.6": {
+      "book_label": "ex:warehouse-cover",
+      "case": "warehouse_cover",
+      "difficulty": 2,
+      "group": "Masalah Inti",
+      "manual_mapping": {"manual_id": "15.6", "status": "aligned"},
+      "method": "weighted_set_cover_highs",
+      "title": "Lokasi Gudang"
+    },
+    "15.7": {
+      "book_label": "ex:capital-dependencies",
+      "case": "capital_budgeting",
+      "difficulty": 2,
+      "group": "Masalah Inti",
+      "manual_mapping": {"manual_id": "15.7", "status": "aligned"},
+      "method": "binary_capital_budgeting_logic_highs",
+      "title": "Penganggaran Modal dengan Kebergantungan"
+    },
+    "15.8": {
+      "book_label": "ex:facility-small",
+      "case": "facility",
+      "difficulty": 2,
+      "group": "Masalah Inti",
+      "manual_mapping": {"manual_id": "15.8", "status": "aligned"},
+      "method": "capacitated_facility_location_highs",
+      "title": "Lokasi Fasilitas: Dua Pusat Distribusi"
+    },
+    "15.9": {
+      "book_label": "ex:graph-coloring-5",
+      "case": "graph_coloring",
+      "difficulty": 2,
+      "group": "Masalah Inti",
+      "manual_mapping": {"manual_id": "15.9", "status": "aligned"},
+      "method": "graph_coloring_highs_and_exact_canonical_enumeration",
+      "title": "Mewarnai Graf Lima Simpul"
+    },
+    "15.10": {
+      "book_label": "ex:either-or-modes",
+      "case": "either_or",
+      "difficulty": 2,
+      "group": "Masalah Inti",
+      "manual_mapping": {"manual_id": "15.10", "status": "aligned_with_qaflag"},
+      "method": "either_or_big_m_highs",
+      "title": "Kendala Salah Satu"
+    },
+    "15.11": {
+      "book_label": "ex:fixed-charge",
+      "case": "fixed_charge",
+      "difficulty": 2,
+      "group": "Masalah Inti",
+      "manual_mapping": {"manual_id": "15.11", "status": "aligned"},
+      "method": "fixed_charge_milp_highs",
+      "title": "Produksi dengan Biaya Tetap"
+    },
+    "15.12": {
+      "book_label": "ex:lp-rounding",
+      "case": "lp_rounding_knapsack",
+      "difficulty": 2,
+      "group": "Konsep dan Keterkaitan",
+      "manual_mapping": {"manual_id": "15.12", "status": "aligned"},
+      "method": "lp_relaxation_and_integer_highs_with_rounding_certificate",
+      "title": "Mengapa Pembulatan Relaksasi Gagal"
+    },
+    "15.13": {
+      "book_label": "ex:bigM-size",
+      "case": "either_or",
+      "difficulty": 2,
+      "group": "Konsep dan Keterkaitan",
+      "manual_mapping": {"manual_id": "15.13", "status": "aligned"},
+      "method": "big_m_tightness_auxiliary_lp_and_milp_highs",
+      "title": "Kapan Big-M Terlalu Besar?"
+    },
+    "15.14": {
+      "book_label": "ex:kidney-model",
+      "case": "kidney_exchange",
+      "difficulty": 2,
+      "group": "Konsep dan Keterkaitan",
+      "manual_mapping": {"manual_id": "15.14", "status": "aligned"},
+      "method": "cycle_packing_semantic_certificate",
+      "title": "Membaca Model Pertukaran Ginjal"
+    },
+    "15.15": {
+      "book_label": "ex:pwl-challenge",
+      "case": "piecewise_cost",
+      "difficulty": 3,
+      "group": "Masalah Tantangan",
+      "manual_mapping": {"manual_id": "15.15", "status": "aligned"},
+      "method": "binary_sos2_equivalent_piecewise_highs",
+      "title": "Biaya Produksi Linier Sepenggal"
+    },
+    "15.16": {
+      "book_label": "ex:flowshop",
+      "case": "flowshop",
+      "difficulty": 3,
+      "group": "Masalah Tantangan",
+      "manual_mapping": {"manual_id": "15.16", "status": "aligned"},
+      "method": "two_stage_disjunctive_flowshop_highs",
+      "title": "Dua Pekerjaan, Tiga Mesin"
+    }
+  },
+  "lab_id": "o018.ch15.integer_programming",
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 123631,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part3-integer-programming/ch11-ip-formulations/integerProgrammingFormulations-book1.tex",
+        "role": "authority_chapter",
+        "sha256": "1c3ca88201b3ae0a71d08f383611cd2e939700fda44414168447acf8139e4d22"
+      },
+      {
+        "bytes": 18773,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch15.tex",
+        "role": "authority_manual",
+        "sha256": "bffcfe89eafd124d42db814d9cce93eac662bd513104e5c8fd9b738c912af081"
+      },
+      {
+        "bytes": 136692,
+        "path": "source/Intro-Math-Programming/baseText/book/part3-integer-programming/ch11-ip-formulations/integerProgrammingFormulations-book1.tex",
+        "role": "translated_chapter",
+        "sha256": "d5d12875d4841ef4ded4a4d2cf69311070cd9d59a5a1fd34c333ead8f1a26653"
+      },
+      {
+        "bytes": 20710,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch15.tex",
+        "role": "translated_manual",
+        "sha256": "85d3a2960c32933717ac172a590085eb510689cc73ab1ec10420ffe2af31e0af"
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "source_defects": [
+    {
+      "certificate": "Pencacahan semua 15 pasangan distrik menghasilkan tepat tiga optimum: {2,5}, {3,4}, dan {1,6}. Saksi yang dibekukan sudah mencatat bahwa solusi terpilih dahulu melewatkan pasangan {1,6}.",
+      "id": "DEF-CH15-FIRE-PLACEMENTS",
+      "source_location": "Latihan ex:fire-warmup, Solusi Terpilih, dan manual 15.3",
+      "type": "source_solution_completeness_history"
+    },
+    {
+      "certificate": "Frasa 'tepat satu kendala berlaku' tidak ekuivalen dengan formulasi Big-M standar: titik asal memenuhi kedua kendala namun tetap layak untuk kedua nilai pemilih. Manual memberi qaflag yang sama.",
+      "id": "DEF-CH15-EITHER-OR-SEMANTICS",
+      "source_location": "Latihan ex:either-or-modes dan manual 15.10",
+      "type": "source_model_semantics"
+    }
+  ],
+  "unresolved_exercises": []
+}

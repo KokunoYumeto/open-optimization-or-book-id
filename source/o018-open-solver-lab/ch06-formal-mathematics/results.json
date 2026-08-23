@@ -1,0 +1,529 @@
+{
+  "content_license": "CC-BY-SA-4.0",
+  "exercises": {
+    "6.1": {
+      "calculation": {
+        "dot_product": 5,
+        "scalar_multiple": [
+          6,
+          -4,
+          8
+        ],
+        "vector_sum": [
+          2,
+          -2,
+          6
+        ]
+      },
+      "difficulty": 1,
+      "kind": "vector_operations",
+      "method": "exact_rational",
+      "plot": {
+        "description_id": "alt.ex6-1.not-applicable",
+        "reason": "not_pedagogically_useful_for_this_exercise",
+        "status": "not_generated"
+      },
+      "status": "verified",
+      "title": "Operasi Vektor"
+    },
+    "6.10": {
+      "calculation": {
+        "containment_condition": {
+          "is_necessary": false,
+          "is_sufficient": true,
+          "proof": "if_C1_subset_C2_then_union_equals_C2"
+        },
+        "counterexample": {
+          "midpoint": [
+            0,
+            0
+          ],
+          "midpoint_in_union": false,
+          "midpoint_squared_distances_to_centers": [
+            4,
+            4
+          ],
+          "witness_endpoints_in_union": true
+        },
+        "nonnecessary_example_union": "R2"
+      },
+      "difficulty": 2,
+      "kind": "union_convexity",
+      "method": "direct_union_certificate",
+      "plot": {
+        "alt_text_id": "alt.ex06-10",
+        "bytes": 4160,
+        "description": "Dua cakram satuan berpusat di (-2,0) dan (2,0) terpisah. Kedua pusat berada dalam gabungan, tetapi titik tengahnya (0,0) berada di luar kedua cakram; gabungan karena itu tidak konveks.",
+        "path": "plots/ex06-10.svg",
+        "sha256": "ddc16774a5fcd6bbb74af7887bd9a3c3bf507fdff9cce9aef0aacf0e7903e07d",
+        "status": "generated"
+      },
+      "status": "verified",
+      "title": "Apakah Gabungan Himpunan Konveks Bersifat Konveks?"
+    },
+    "6.11": {
+      "calculation": {
+        "boundedness_hypothesis_holds": false,
+        "lineality_A_times_d": [
+          0,
+          0
+        ],
+        "lineality_direction": [
+          1,
+          0
+        ],
+        "maximum_active_rank": 1,
+        "optimal_set": "{(t,0):t_in_R}",
+        "optimal_value": 0,
+        "proof_failure_without_boundedness": "feasible_t_interval_may_be_unbounded_so_no_new_active_constraint_appears",
+        "solver_checks": [
+          {
+            "maximum_violation": 0.0,
+            "objective_exact": 0,
+            "purpose": "bounded_objective_on_unbounded_strip",
+            "solver": "appsi_highs",
+            "status": "ok",
+            "termination_condition": "optimal"
+          }
+        ],
+        "vertex_count": 0
+      },
+      "difficulty": 2,
+      "kind": "boundedness_vertex_theorem",
+      "method": "exact_lineality_and_pyomo_highs",
+      "plot": {
+        "alt_text_id": "alt.ex06-11",
+        "bytes": 4077,
+        "description": "Lempeng horizontal 0 ≤ x₂ ≤ 1 memanjang tanpa batas ke kiri dan kanan. Tidak ada titik sudut karena arah (1,0) adalah linealitas. Seluruh garis x₂=0 optimal untuk memaksimumkan -x₂. Tepi kiri dan kanan jendela bukan kendala model.",
+        "path": "plots/ex06-11.svg",
+        "sha256": "9a1dfd914357581ff776de3eb1cf42e7d9421e98a6c39f819ce653837d2ae6e8",
+        "status": "generated"
+      },
+      "status": "verified",
+      "title": "Letak Penggunaan Keterbatasan dalam Teorema Titik Sudut"
+    },
+    "6.12": {
+      "calculation": {
+        "applies_to_infinite_index_families": true,
+        "empty_intersection_case": "vacuously_convex",
+        "polyhedron_corollary": "intersection_of_convex_halfspaces_is_convex",
+        "proof_steps": [
+          {
+            "id": "choose_x_y_in_intersection_and_lambda_in_unit_interval",
+            "validated": true
+          },
+          {
+            "id": "fix_arbitrary_index_i",
+            "validated": true
+          },
+          {
+            "id": "infer_x_y_in_C_i",
+            "validated": true
+          },
+          {
+            "id": "apply_convexity_of_C_i_to_z",
+            "validated": true
+          },
+          {
+            "id": "generalize_over_arbitrary_i",
+            "validated": true
+          },
+          {
+            "id": "handle_empty_intersection_vacuously",
+            "validated": true
+          },
+          {
+            "id": "identify_polyhedron_as_intersection_of_halfspaces",
+            "validated": true
+          }
+        ],
+        "uses_cardinality_bound_on_index_set": false
+      },
+      "difficulty": 3,
+      "kind": "arbitrary_intersection_proof",
+      "method": "direct_universal_proof_certificate",
+      "plot": {
+        "description_id": "alt.ex6-12.not-applicable",
+        "reason": "not_pedagogically_useful_for_this_exercise",
+        "status": "not_generated"
+      },
+      "status": "verified",
+      "title": "Irisan Keluarga Himpunan Konveks Sembarang"
+    },
+    "6.2": {
+      "calculation": {
+        "basis_determinant": 1,
+        "convex_pair_checks": {
+          "v1_v2": {
+            "feasible": true,
+            "weights": [
+              "1/2",
+              "1/2"
+            ]
+          },
+          "v1_v3": {
+            "feasible": false,
+            "weights": null
+          },
+          "v2_v3": {
+            "feasible": false,
+            "weights": null
+          }
+        },
+        "linear_combination_checks": {
+          "a": {
+            "coefficients_v1_v2": [
+              2,
+              3
+            ],
+            "is_linear_combination": true
+          },
+          "b": {
+            "coefficients_v1_v2": [
+              1,
+              1
+            ],
+            "is_linear_combination": true
+          },
+          "c": {
+            "coefficients_v1_v2": [
+              1,
+              -1
+            ],
+            "is_linear_combination": true
+          }
+        },
+        "successful_convex_pair": "v1_v2"
+      },
+      "difficulty": 1,
+      "kind": "linear_and_convex_combinations",
+      "method": "exact_rational",
+      "plot": {
+        "description_id": "alt.ex6-2.not-applicable",
+        "reason": "not_pedagogically_useful_for_this_exercise",
+        "status": "not_generated"
+      },
+      "status": "verified",
+      "title": "Kombinasi Linier dan Konveks"
+    },
+    "6.3": {
+      "calculation": {
+        "column_relation": "column_2=2*column_1",
+        "columns_linearly_independent": false,
+        "determinant": 0,
+        "exact_rank": 1,
+        "numpy_rank": 1,
+        "row_relation": "row_2=2*row_1",
+        "rows_linearly_independent": false
+      },
+      "difficulty": 1,
+      "kind": "matrix_rank",
+      "method": "exact_gaussian_and_numpy",
+      "plot": {
+        "description_id": "alt.ex6-3.not-applicable",
+        "reason": "not_pedagogically_useful_for_this_exercise",
+        "status": "not_generated"
+      },
+      "status": "verified",
+      "title": "Kebebasan Linier dan Rank Matriks"
+    },
+    "6.4": {
+      "calculation": {
+        "sets": {
+          "D": {
+            "classification": "convex",
+            "proof": "triangle_inequality_for_norm_ball"
+          },
+          "H": {
+            "classification": "convex",
+            "proof": "affine_identity_preserves_halfspace_inequality"
+          },
+          "R": {
+            "classification": "nonconvex",
+            "midpoint": [
+              0,
+              0
+            ],
+            "midpoint_in_set": false,
+            "witness_endpoints_in_set": true
+          },
+          "S": {
+            "classification": "nonconvex",
+            "midpoint": [
+              0,
+              0
+            ],
+            "midpoint_in_set": false,
+            "witness_endpoints_in_set": true
+          }
+        }
+      },
+      "difficulty": 1,
+      "kind": "convexity_classification",
+      "method": "direct_convexity_certificates",
+      "plot": {
+        "description_id": "alt.ex6-4.not-applicable",
+        "reason": "not_pedagogically_useful_for_this_exercise",
+        "status": "not_generated"
+      },
+      "status": "verified",
+      "title": "Konveks atau Tidak?"
+    },
+    "6.5": {
+      "calculation": {
+        "active_rows": [
+          1,
+          2
+        ],
+        "feasible": true,
+        "lhs_Ax": [
+          6,
+          4,
+          "-6/5",
+          "-8/5"
+        ],
+        "objective_at_point": "34/5",
+        "slack": [
+          0,
+          0,
+          "6/5",
+          "8/5"
+        ],
+        "solver_checks": [
+          {
+            "maximum_violation": 0.0,
+            "objective_exact": "34/5",
+            "point": [
+              1.2,
+              1.6
+            ],
+            "purpose": "matrix_lp_optimum_corroboration",
+            "solver": "appsi_highs",
+            "status": "ok",
+            "termination_condition": "optimal"
+          }
+        ]
+      },
+      "difficulty": 1,
+      "kind": "matrix_linear_program",
+      "method": "exact_matrix_and_pyomo_highs",
+      "plot": {
+        "description_id": "alt.ex6-5.not-applicable",
+        "reason": "not_pedagogically_useful_for_this_exercise",
+        "status": "not_generated"
+      },
+      "status": "verified",
+      "title": "Menulis Program Linier dalam Notasi Matriks"
+    },
+    "6.6": {
+      "calculation": {
+        "halfspace_description": [
+          "x1>=0",
+          "x2>=0",
+          "x1+x2<=2"
+        ],
+        "points": {
+          "inside_boundary": {
+            "in_triangle": true,
+            "weights": [
+              0,
+              "1/2",
+              "1/2"
+            ]
+          },
+          "outside": {
+            "in_triangle": false,
+            "weights": [
+              "-1/2",
+              "3/4",
+              "3/4"
+            ]
+          }
+        },
+        "solver_checks": [
+          {
+            "maximum_violation": 0.0,
+            "purpose": "convex_combination_feasibility",
+            "solver": "appsi_highs",
+            "status": "ok",
+            "termination_condition": "optimal"
+          },
+          {
+            "purpose": "convex_combination_feasibility",
+            "solver": "appsi_highs",
+            "status": "error",
+            "termination_condition": "infeasible"
+          }
+        ]
+      },
+      "difficulty": 2,
+      "kind": "triangle_convex_hull",
+      "method": "exact_barycentric_and_pyomo_highs",
+      "plot": {
+        "alt_text_id": "alt.ex06-06",
+        "bytes": 4148,
+        "description": "Segitiga tertutup bertitik sudut (0,0), (2,0), dan (0,2). Titik (1,1) berada pada hipotenusa, sedangkan (1,5;1,5) berada di luar.",
+        "path": "plots/ex06-06.svg",
+        "sha256": "b2071410e2e935f7faa05618692db0854ba77c7a4dbf133724a4b4846b5a1b54",
+        "status": "generated"
+      },
+      "status": "verified",
+      "title": "Kombinasi Konveks dan Geometri"
+    },
+    "6.7": {
+      "calculation": {
+        "boundary_intercepts": [
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "convexity_proof": "a·(lambda*x+(1-lambda)*y)=lambda*a·x+(1-lambda)*a·y<=rhs",
+        "midpoint": [
+          1,
+          "1/2"
+        ],
+        "midpoint_in_halfspace": true,
+        "midpoint_lhs": 2,
+        "point_checks": {
+          "boundary": {
+            "in_halfspace": true,
+            "lhs": 4
+          },
+          "outside": {
+            "in_halfspace": false,
+            "lhs": 5
+          }
+        }
+      },
+      "difficulty": 2,
+      "kind": "halfspace_geometry",
+      "method": "exact_halfspace_certificate",
+      "plot": {
+        "alt_text_id": "alt.ex06-07",
+        "bytes": 4612,
+        "description": "Garis batas melalui (4,0) dan (0,2). Daerah layak berada pada sisi yang memuat titik asal. (2,1) berada pada batas, (1,2) di luar, dan titik tengah (1,1/2) berada di dalam. Tepi jendela bukan kendala model.",
+        "path": "plots/ex06-07.svg",
+        "sha256": "1402a5d33dd742caad94dcb971637d496973ee622f0d99e0afafdf1313868c9a",
+        "status": "generated"
+      },
+      "status": "verified",
+      "title": "Geometri dan Konveksitas Setengah Ruang"
+    },
+    "6.8": {
+      "calculation": {
+        "non_extreme_certificate": {
+          "endpoints_feasible": true,
+          "reconstructed_target": [
+            1,
+            2
+          ],
+          "weights": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "points": {
+          "corner": {
+            "active_constraints": [
+              "c2",
+              "c3"
+            ],
+            "active_rank_exact": 2,
+            "active_rank_numpy": 2,
+            "is_corner": true,
+            "is_extreme_point": true,
+            "lhs": [
+              -10,
+              1,
+              4,
+              -2,
+              -3
+            ]
+          },
+          "non_extreme": {
+            "active_constraints": [
+              "c2"
+            ],
+            "active_rank_exact": 1,
+            "active_rank_numpy": 1,
+            "is_corner": false,
+            "is_extreme_point": false,
+            "lhs": [
+              -7,
+              1,
+              3,
+              -1,
+              -2
+            ]
+          }
+        }
+      },
+      "difficulty": 2,
+      "kind": "active_set_extreme_point",
+      "method": "exact_active_set_and_numpy_rank",
+      "plot": {
+        "alt_text_id": "alt.ex06-08",
+        "bytes": 4427,
+        "description": "Potongan polihedron tak berbatas memperlihatkan titik sudut (0,0), (0,1), dan (2,3). Titik (2,3) mempunyai dua kendala aktif bebas linier. Titik (1,2) adalah titik tengah (0,1) dan (2,3), sehingga bukan titik ekstrem. Daerah berlanjut ke kanan melewati jendela.",
+        "path": "plots/ex06-08.svg",
+        "sha256": "c6f110aa285a49e89083d97cefef1d74943a68ec8b83e274eeeab0efc865bed9",
+        "status": "generated"
+      },
+      "status": "verified",
+      "title": "Memeriksa Titik Ekstrem"
+    },
+    "6.9": {
+      "calculation": {
+        "extreme_directions_needed": false,
+        "reason": "target_in_convex_hull_of_extreme_points",
+        "solver_checks": [
+          {
+            "maximum_violation": 0.0,
+            "purpose": "convex_combination_feasibility",
+            "solver": "appsi_highs",
+            "status": "ok",
+            "termination_condition": "optimal"
+          }
+        ],
+        "weights": [
+          "1/4",
+          "1/4",
+          "1/2"
+        ]
+      },
+      "difficulty": 2,
+      "kind": "convex_representation",
+      "method": "exact_barycentric_and_pyomo_highs",
+      "plot": {
+        "description_id": "alt.ex6-9.not-applicable",
+        "reason": "not_pedagogically_useful_for_this_exercise",
+        "status": "not_generated"
+      },
+      "status": "verified",
+      "title": "Kombinasi Konveks Titik-Titik Ekstrem"
+    }
+  },
+  "lab_id": "o018.ch06.formal-mathematics",
+  "numerical_tolerance": 1e-08,
+  "runtime": {
+    "highspy": "1.15.1",
+    "numpy": "2.5.2",
+    "pyomo": "6.10.1",
+    "solver_interface": "appsi_highs"
+  },
+  "schema_version": "1.0.0",
+  "summary": {
+    "correction_count": 0,
+    "exercise_count": 12,
+    "maximum_solver_violation": 0.0,
+    "plot_count": 5,
+    "solver_call_count": 5,
+    "underdetermined_count": 0,
+    "verified_count": 12
+  }
+}

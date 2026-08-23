@@ -1,0 +1,292 @@
+{
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "corrections": [],
+  "exercise_order": [
+    "6.1",
+    "6.2",
+    "6.3",
+    "6.4",
+    "6.5",
+    "6.6",
+    "6.7",
+    "6.8",
+    "6.9",
+    "6.10",
+    "6.11",
+    "6.12"
+  ],
+  "exercises": {
+    "6.1": {
+      "difficulty": 1,
+      "kind": "vector_operations",
+      "method": "exact_rational",
+      "scalar": 2,
+      "title": "Operasi Vektor",
+      "vectors": {
+        "u": [-1, 0, 2],
+        "v": [3, -2, 4]
+      }
+    },
+    "6.2": {
+      "candidates": {
+        "a": [2, 3],
+        "b": [1, 1],
+        "c": [1, -1]
+      },
+      "difficulty": 1,
+      "kind": "linear_and_convex_combinations",
+      "method": "exact_rational",
+      "target": ["1/2", "1/2"],
+      "title": "Kombinasi Linier dan Konveks",
+      "vectors": {
+        "v1": [1, 0],
+        "v2": [0, 1],
+        "v3": [1, 1]
+      }
+    },
+    "6.3": {
+      "difficulty": 1,
+      "kind": "matrix_rank",
+      "matrix": [[1, 2], [2, 4]],
+      "method": "exact_gaussian_and_numpy",
+      "title": "Kebebasan Linier dan Rank Matriks"
+    },
+    "6.4": {
+      "difficulty": 1,
+      "kind": "convexity_classification",
+      "method": "direct_convexity_certificates",
+      "sets": [
+        {
+          "center": [0, 0],
+          "claim": "convex",
+          "id": "D",
+          "radius": 2,
+          "type": "euclidean_ball"
+        },
+        {
+          "center": [0, 0],
+          "claim": "nonconvex",
+          "id": "R",
+          "inner_radius": 1,
+          "outer_radius": 2,
+          "type": "annulus",
+          "witness": {
+            "first": [1, 0],
+            "second": [-1, 0]
+          }
+        },
+        {
+          "claim": "convex",
+          "coefficients": [1, 2],
+          "id": "H",
+          "rhs": 3,
+          "type": "halfspace"
+        },
+        {
+          "claim": "nonconvex",
+          "coordinate": 0,
+          "id": "S",
+          "threshold": 1,
+          "type": "absolute_coordinate_exterior",
+          "witness": {
+            "first": [1, 0],
+            "second": [-1, 0]
+          }
+        }
+      ],
+      "title": "Konveks atau Tidak?"
+    },
+    "6.5": {
+      "A": [[1, 3], [2, 1], [-1, 0], [0, -1]],
+      "b": [6, 4, 0, 0],
+      "c": [3, 2],
+      "check_point": ["6/5", "8/5"],
+      "check_point_source_notation": ["1.2", "1.6"],
+      "difficulty": 1,
+      "kind": "matrix_linear_program",
+      "method": "exact_matrix_and_pyomo_highs",
+      "objective_sense": "maximize",
+      "title": "Menulis Program Linier dalam Notasi Matriks"
+    },
+    "6.6": {
+      "difficulty": 2,
+      "kind": "triangle_convex_hull",
+      "method": "exact_barycentric_and_pyomo_highs",
+      "points": {
+        "inside_boundary": [1, 1],
+        "outside": ["3/2", "3/2"]
+      },
+      "title": "Kombinasi Konveks dan Geometri",
+      "vertices": [[0, 0], [2, 0], [0, 2]]
+    },
+    "6.7": {
+      "coefficients": [1, 2],
+      "difficulty": 2,
+      "kind": "halfspace_geometry",
+      "method": "exact_halfspace_certificate",
+      "midpoint_endpoints": [[0, 0], [2, 1]],
+      "rhs": 4,
+      "test_points": {
+        "boundary": [2, 1],
+        "outside": [1, 2]
+      },
+      "title": "Geometri dan Konveksitas Setengah Ruang"
+    },
+    "6.8": {
+      "A": [[1, -4], [-1, 1], [-1, 2], [-1, 0], [0, -1]],
+      "b": [0, 1, 4, 0, 0],
+      "constraint_ids": ["c1", "c2", "c3", "nonnegative_x1", "nonnegative_x2"],
+      "convex_witness": {
+        "first": [0, 1],
+        "second": [2, 3],
+        "target": [1, 2],
+        "weights": ["1/2", "1/2"]
+      },
+      "difficulty": 2,
+      "kind": "active_set_extreme_point",
+      "method": "exact_active_set_and_numpy_rank",
+      "points": {
+        "corner": [2, 3],
+        "non_extreme": [1, 2]
+      },
+      "title": "Memeriksa Titik Ekstrem"
+    },
+    "6.9": {
+      "difficulty": 2,
+      "kind": "convex_representation",
+      "method": "exact_barycentric_and_pyomo_highs",
+      "target": [1, "7/4"],
+      "title": "Kombinasi Konveks Titik-Titik Ekstrem",
+      "vertices": [[0, 0], [0, 1], [2, 3]]
+    },
+    "6.10": {
+      "counterexample": {
+        "first": {
+          "center": [-2, 0],
+          "radius": 1,
+          "type": "euclidean_ball"
+        },
+        "second": {
+          "center": [2, 0],
+          "radius": 1,
+          "type": "euclidean_ball"
+        },
+        "witness": {
+          "first": [-2, 0],
+          "second": [2, 0]
+        }
+      },
+      "difficulty": 2,
+      "kind": "union_convexity",
+      "method": "direct_union_certificate",
+      "nonnecessary_example": {
+        "first": "x2>=0",
+        "second": "x2<=0",
+        "union": "R2"
+      },
+      "sufficient_condition": "one_set_contains_the_other",
+      "title": "Apakah Gabungan Himpunan Konveks Bersifat Konveks?"
+    },
+    "6.11": {
+      "A": [[0, 1], [0, -1]],
+      "b": [1, 0],
+      "difficulty": 2,
+      "kind": "boundedness_vertex_theorem",
+      "lineality_direction": [1, 0],
+      "method": "exact_lineality_and_pyomo_highs",
+      "objective": [0, -1],
+      "objective_sense": "maximize",
+      "proof_step": "boundedness_is_used_to_make_the_feasible_t_interval_bounded",
+      "title": "Letak Penggunaan Keterbatasan dalam Teorema Titik Sudut"
+    },
+    "6.12": {
+      "difficulty": 3,
+      "kind": "arbitrary_intersection_proof",
+      "method": "direct_universal_proof_certificate",
+      "proof_contract": [
+        "choose_x_y_in_intersection_and_lambda_in_unit_interval",
+        "fix_arbitrary_index_i",
+        "infer_x_y_in_C_i",
+        "apply_convexity_of_C_i_to_z",
+        "generalize_over_arbitrary_i",
+        "handle_empty_intersection_vacuously",
+        "identify_polyhedron_as_intersection_of_halfspaces"
+      ],
+      "title": "Irisan Keluarga Himpunan Konveks Sembarang"
+    }
+  },
+  "interpretive_notes": [
+    {
+      "exercise_id": "6.7",
+      "id": "note.ch06.ex06-07-midpoint",
+      "text": "Pemeriksaan satu titik tengah adalah ilustrasi; identitas linear umum adalah bukti konveksitas."
+    },
+    {
+      "exercise_id": "6.12",
+      "id": "note.ch06.ex06-12-universal",
+      "text": "Keluarga indeks mungkin tak hingga dan irisan kosong ditangani secara vakum."
+    }
+  ],
+  "lab_id": "o018.ch06.formal-mathematics",
+  "language": "id-ID",
+  "provenance": {
+    "authority_branch": "master",
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "source_files": [
+      {
+        "bytes": 50024,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch05-lp-theory/formalize-LP.tex",
+        "role": "authority_chapter",
+        "sha256": "26c5a18526e75e869fea5e18591f095bbb642659d6c7df04bbb45564e5861803"
+      },
+      {
+        "bytes": 14069,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch06.tex",
+        "role": "authority_manual",
+        "sha256": "81f818aa9630e4f421171f745a5b31084f509465efcd9eb754e7545c9e1694e1"
+      },
+      {
+        "bytes": 52190,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch05-lp-theory/formalize-LP.tex",
+        "role": "translated_chapter",
+        "sha256": "4e08b0c7d3b5e89a868800569eeb57b9128d6b1b009301ce0cd2fcae9c2e75ca"
+      },
+      {
+        "bytes": 15677,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch06.tex",
+        "role": "translated_manual",
+        "sha256": "3f54164435b4fe489e907b8ebfc71c862ff09a73af288d427830db84feefd344"
+      }
+    ]
+  },
+  "runtime_components": [
+    {
+      "license_expression": "BSD-3-Clause",
+      "name": "Pyomo",
+      "role": "pemodelan aljabar",
+      "version": "6.10.1"
+    },
+    {
+      "license_expression": "MIT",
+      "name": "HiGHS/highspy",
+      "role": "pemecah LP terbuka",
+      "version": "1.15.1"
+    },
+    {
+      "license_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+      "name": "NumPy",
+      "role": "pemeriksaan rank dan dependensi runtime highspy",
+      "version": "2.5.2"
+    },
+    {
+      "license_expression": "MIT",
+      "name": "renderer SVG lokal",
+      "role": "visual deterministik tanpa dependensi grafis",
+      "version": "1.0.0"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "title": "Pernyataan Matematis Formal",
+  "underdetermined_exercises": []
+}

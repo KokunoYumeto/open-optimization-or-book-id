@@ -1,0 +1,101 @@
+% Hak cipta Robert Hildebrand 2019
+
+Masalah \emph{penganggaran modal} merupakan generalisasi yang berguna dari masalah ransel. Masalah ini memiliki struktur yang sama dengan masalah ransel, tetapi kini memiliki beberapa kendala. Mula-mula kita akan menjelaskan masalahnya, memberikan model umum, lalu meninjau sebuah contoh eksplisit.
+
+\begin{general}{Penganggaran Modal}{}
+\label{general:capital-budgeting}
+Sebuah perusahaan memiliki $n$ proyek yang dapat dilaksanakan untuk memaksimumkan pendapatan, tetapi keterbatasan anggaran membuat tidak semua proyek dapat diselesaikan.
+\begin{itemize}
+\item Proyek $j$ diperkirakan menghasilkan pendapatan keseluruhan sebesar $c_j$ dolar.
+\item Proyek $j$ memerlukan investasi sebesar $a_{ij}$ dolar pada periode waktu $i$, untuk $i = 1,\ldots,m$.
+\item Modal yang tersedia untuk dibelanjakan pada periode waktu $i$ adalah $b_i$.
+\end{itemize}
+Proyek mana yang harus dibiayai perusahaan untuk memaksimumkan hasil yang diharapkan sambil memenuhi kendala anggaran mingguan?
+\end{general}
+
+\newpage
+
+Mula-mula kita berikan rumusan umum masalah ini.
+
+\begin{general}{Model Penganggaran Modal}{}
+\noindent \textbf{Himpunan:}
+\begin{itemize}
+\item Misalkan $I = \{1, \dots, m\}$ adalah himpunan periode waktu.
+\item Misalkan $J = \{1, \dots, n\}$ adalah himpunan investasi yang mungkin.
+\end{itemize}
+
+\noindent \textbf{Parameter:}
+\begin{itemize}
+\item $c_j$ adalah pendapatan yang diharapkan dari investasi $j$, untuk $j \in J$.
+\item $b_i$ adalah modal yang tersedia pada periode waktu $i$, untuk $i$ di $I$.
+\item $a_{ij}$ adalah sumber daya yang diperlukan untuk investasi $j$ pada periode waktu $i$, untuk $i$ di $I$ dan $j$ di $J$.
+\end{itemize}
+
+\noindent \textbf{Variabel:}
+\begin{itemize}
+\item tetapkan $x_j = 1$ jika investasi $j$ dipilih;
+\item tetapkan $x_j = 0$ jika investasi $j$ tidak dipilih.
+\end{itemize}
+\textbf{Model:}
+\begin{align*}
+	\max ~~~& \sum_{j = 1}^n c_jx_j \tag{Total Pendapatan yang Diharapkan}\\
+	s.t. ~~~&\sum_{j = 1}^n a_{ij}x_j\leq b_i, ~~~i = 1,\ldots,m \tag{Kendala sumber daya minggu $i$}\\
+	& x_j \in \{0,1\} , \ j = 1,\ldots,n
+	\end{align*}
+
+\end{general}
+
+
+\newpage
+%\begin{examplewithcode}{Penganggaran Modal}{code:capital-budgeting}
+%\label{example:capital-budgeting}
+Perhatikan contoh pada tabel berikut.
+	\begin{table}[h]
+			\centering\small
+			\begin{tabularx}{\textwidth}{|c|c|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}%[<+->]
+				\hline
+				Proyek & $\mathbb{E}$[Pendapatan] & Sumber daya yang diperlukan pada minggu 1 & Sumber daya yang diperlukan pada minggu 2\\\hline
+				\rowcolor{gray!10} 1 & 10 & 3 & 4\\
+				\hline
+				2 & 8 & 1 & 2\\\hline
+				\rowcolor{gray!10} 3 & 6 & 2 & 1\\
+				\hline
+				Sumber daya tersedia & & 5 & 6\\
+				\hline
+		\end{tabularx}
+	\end{table}
+
+
+Berdasarkan data ini, kita dapat menyusun masalah secara eksplisit sebagai berikut.
+
+\begin{examplewithallcode}{Penganggaran Modal}{}{https://github.com/open-optimization/open-optimization-or-examples/blob/master/integer-programming/capital-budgeting.ipynb}{}
+\noindent \textbf{Himpunan:}
+\begin{itemize}
+\item Misalkan $I = \{1,2\}$ adalah himpunan periode waktu.
+\item Misalkan $J = \{1, 2,3\}$ adalah himpunan investasi yang mungkin.
+\end{itemize}
+
+\noindent \textbf{Parameter:}
+\begin{itemize}
+\item $c_j$ diberikan pada kolom ``$\mathbb{E}$[Pendapatan]''.
+\item $b_i$ diberikan pada baris ``Sumber daya tersedia''.
+\item $a_{ij}$ diberikan pada baris $j$ dan kolom untuk minggu $i$.
+\end{itemize}
+
+\noindent \textbf{Variabel:}
+\begin{itemize}
+\item tetapkan $x_j = 1$ jika investasi $j$ dipilih;
+\item tetapkan $x_j = 0$ jika investasi $j$ tidak dipilih.
+\end{itemize}
+
+Model eksplisitnya adalah\\
+\noindent \textbf{Model:}
+\begin{align*}
+	\max\ \ \  & 10x_1+8x_2+6x_3 \tag{Total Pendapatan yang Diharapkan}\\
+	s.t. \ \ &
+	3x_1+1x_2+2x_3\leq5 \tag{Kendala sumber daya minggu 1}\\
+	&4x_1+2x_2+1x_3\leq6 \tag{Kendala sumber daya minggu 2}\\
+&x_j \in \{0,1\},\  j = 1,2,3
+\end{align*}
+
+\end{examplewithallcode}

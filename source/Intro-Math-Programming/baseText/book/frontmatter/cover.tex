@@ -1,0 +1,151 @@
+% Halaman sampul untuk Buku 1
+% Karya asli oleh Robert Hildebrand, CC BY-SA 4.0
+% Visual ini merupakan komposisi berlapis: daerah fisibel LP 2D bergaya
+% (unsur utama Bagian I), sebuah graf (unsur utama Bagian II),
+% dan kisi pemrograman bilangan bulat (unsur utama Bagian III).
+% Semua elemen digambar dalam TikZ — tanpa dependensi gambar eksternal.
+
+\begin{titlepage}
+\thispagestyle{empty}
+\begingroup
+\pagecolor{white}
+\centering
+
+\vspace*{0.5in}
+
+%% ============================================================
+%% Pita atas: judul
+%% ============================================================
+{\fontsize{30}{36}\selectfont\bfseries
+  Pemrograman Matematis\\[2pt]
+  dan Riset Operasi\par}
+
+\vspace{0.25in}
+
+{\fontsize{14}{18}\selectfont\itshape
+  Pemodelan, Algoritme, dan Kompleksitas\\
+  dengan Contoh dalam Python dan Excel\par}
+
+\vspace{0.2in}
+
+{\fontsize{11}{14}\selectfont\scshape\color{chaptertitlecolour}
+  Versi Beta --- Menunggu Tinjauan Sejawat\par}
+
+\vspace{0.3in}
+
+%% ============================================================
+%% Bagian tengah: komposisi TikZ berlapis
+%% ============================================================
+\begin{tikzpicture}[
+    scale=0.95,
+    every node/.style={font=\sffamily\small},
+  ]
+
+  %% Warna latar lembut (sangat samar) — berukuran untuk membingkai ketiga motif
+  \fill[blue!2] (-6.6,-0.9) rectangle (6.6,3.6);
+
+  %% ---------- KIRI: daerah fisibel LP (motif Bagian I) ----------
+  \begin{scope}[shift={(-5.7, 0)}]
+    % sumbu
+    \draw[->, gray!60, thick] (-0.4,0) -- (3.2,0) node[right, font=\scriptsize\sffamily, gray!70] {$x_1$};
+    \draw[->, gray!60, thick] (0,-0.4) -- (0,3.0) node[above, font=\scriptsize\sffamily, gray!70] {$x_2$};
+    % daerah fisibel: segilima dengan lima titik sudut
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (2.6,0);
+    \coordinate (C) at (2.6,1.0);
+    \coordinate (D) at (1.5,2.2);
+    \coordinate (E) at (0,2.4);
+    \fill[blue!18] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+    \draw[blue!70!black, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+    % himpunan level sejajar dari fungsi tujuan (putus-putus)
+    \draw[orange!80!black, dashed, thin]  (-0.2, 0.6) -- (2.2,-0.4);
+    \draw[orange!80!black, dashed, thin]  (-0.2, 1.6) -- (3.0, 0.0);
+    \draw[orange!80!black, dashed, thick] (-0.2, 2.6) -- (3.4, 0.8);
+    % optimum di D
+    \fill[orange!90!red] (D) circle (3.2pt);
+    \node[font=\scriptsize\sffamily, above right=-1pt of D, orange!60!black] {$\mathbf{x}^\star$};
+  \end{scope}
+
+  %% ---------- TENGAH: graf/jaringan kecil (motif Bagian II) ----------
+  \begin{scope}[shift={(0, 1.2)}, every node/.style={circle, draw=teal!70!black, fill=teal!12, minimum size=4.5mm, inner sep=0pt, font=\scriptsize\sffamily}]
+    \node (n1) at ( 0.0,  1.2) {};
+    \node (n2) at (-1.2,  0.4) {};
+    \node (n3) at ( 1.2,  0.4) {};
+    \node (n4) at (-0.7, -0.9) {};
+    \node (n5) at ( 0.7, -0.9) {};
+    \node (n6) at ( 0.0, -1.7) {};
+    % semua sisi berwarna hijau kebiruan pucat
+    \begin{scope}[every edge/.style={draw=teal!50, thick}]
+      \path (n1) edge (n2)
+            (n1) edge (n3)
+            (n2) edge (n4)
+            (n3) edge (n5)
+            (n4) edge (n5)
+            (n4) edge (n6)
+            (n5) edge (n6);
+    \end{scope}
+    % "lintasan terpendek" ditonjolkan dengan hijau kebiruan yang lebih gelap
+    \begin{scope}[every edge/.style={draw=teal!85!black, line width=1.6pt}]
+      \path (n1) edge (n2)
+            (n2) edge (n4)
+            (n4) edge (n6);
+    \end{scope}
+    \node[draw=none, fill=none, font=\scriptsize\sffamily\itshape, gray!70] at (0, 1.95) {graf};
+  \end{scope}
+
+  %% ---------- KANAN: kisi pemrograman bilangan bulat (motif Bagian III) ----------
+  \begin{scope}[shift={(2.7, 0)}]
+    \draw[->, gray!60, thick] (-0.4,0) -- (3.2,0) node[right, font=\scriptsize\sffamily, gray!70] {$x_1$};
+    \draw[->, gray!60, thick] (0,-0.4) -- (0,3.0) node[above, font=\scriptsize\sffamily, gray!70] {$x_2$};
+    % daerah relaksasi LP (abu-abu muda)
+    \fill[gray!10] (0,0) -- (2.8,0) -- (2.8,0.9) -- (1.3,2.4) -- (0,2.4) -- cycle;
+    \draw[gray!45, thick] (0,0) -- (2.8,0) -- (2.8,0.9) -- (1.3,2.4) -- (0,2.4) -- cycle;
+    % titik kisi bilangan bulat: titik biru di dalam daerah fisibel, lingkaran kosong di luar
+    \foreach \x in {0,1,2}
+      \foreach \y in {0,1,2}{
+        \fill[purple!75!black] (\x,\y) circle (2.0pt);
+      }
+    % beberapa titik di luar daerah: lingkaran kosong
+    \draw[purple!75!black] (3,0) circle (2.0pt);
+    \draw[purple!75!black] (3,1) circle (2.0pt);
+    \draw[purple!75!black] (2,3) circle (2.0pt);
+    \fill[purple!75!black, opacity=0.6] (1,2) circle (3.0pt);  % optimum bilangan bulat
+  \end{scope}
+
+\end{tikzpicture}
+
+\vspace{0.3in}
+
+{\fontsize{11}{14}\selectfont\sffamily\color{gray!60!black}
+  \textsc{Pemrograman linear \,\textbullet\, algoritme diskret \,\textbullet\, pemrograman bilangan bulat}\par}
+
+\vfill
+
+%% ============================================================
+%% Pita bawah: penulis, edisi, lisensi
+%% ============================================================
+
+{\fontsize{16}{20}\selectfont\bfseries Robert Hildebrand\par}
+\vspace{4pt}
+{\fontsize{10}{12}\selectfont\sffamily Virginia Tech\par}
+
+\vspace{0.4in}
+
+{\fontsize{9}{11}\selectfont\sffamily\color{gray!55!black}
+  Sumber daya pendidikan terbuka\\[1pt]
+  Dilisensikan berdasarkan Creative Commons Attribution--ShareAlike\\
+  4.0 International (CC\,BY-SA\,4.0)\par}
+
+\vspace{0.25in}
+
+% Lencana CC BY-SA (digambar dalam TikZ — tanpa gambar eksternal)
+\begin{tikzpicture}[scale=0.9]
+  \draw[rounded corners=2pt, gray!50, line width=0.6pt] (-1.5,-0.35) rectangle (1.5,0.35);
+  \node[font=\scriptsize\sffamily\bfseries, gray!50!black] at (0,0) {CC \;BY-SA \;4.0};
+\end{tikzpicture}
+
+\vspace{0.25in}
+
+\endgroup
+\end{titlepage}
+\cleardoublepage

@@ -1,0 +1,135 @@
+{
+  "accessibility": {
+    "actual_text_and_alt_text": true,
+    "bookmarks_and_links": true,
+    "language": "id-ID",
+    "pdf_ua_claim": false,
+    "tagged_pdf": false,
+    "unicode_text": true
+  },
+  "artifacts": [
+    {
+      "bytes": 26425739,
+      "file_name": "pemrograman-matematis-dan-riset-operasi-buku-1-id-ID.pdf",
+      "media_type": "application/pdf",
+      "role": "book1_pdf",
+      "sha256": "daa9b79df3684729cc204b563669f400866d8fbd12c0977d32ff9897276a7a49"
+    },
+    {
+      "bytes": 6535806,
+      "entry_count": 88,
+      "file_name": "pemrograman-matematis-dan-riset-operasi-buku-1-modular-backend-v0.zip",
+      "media_type": "application/zip",
+      "role": "modular_backend",
+      "sha256": "7cd76333b3433518f4d983d6775412aba9fd99e1f6b9a35a89528e6994830c56",
+      "uncompressed_bytes": 64033704
+    },
+    {
+      "bytes": 527596,
+      "entry_count": 225,
+      "file_name": "pemrograman-matematis-dan-riset-operasi-buku-1-o018-open-solver-labs-id-ID.zip",
+      "media_type": "application/zip",
+      "role": "o018_open_solver_labs",
+      "sha256": "99628dcdd4984c8a3b763862dc88b06bca8bf15d47dbf1db863cfe46b2a1e592",
+      "uncompressed_bytes": 1769332
+    },
+    {
+      "bytes": 20087323,
+      "entry_count": 249,
+      "file_name": "pemrograman-matematis-dan-riset-operasi-buku-1-source-id-ID.zip",
+      "media_type": "application/zip",
+      "role": "translated_source",
+      "sha256": "55d62c53401938eb5dbc12d3f4116ce68181bd90c9f94fda1434fe20f5196914",
+      "uncompressed_bytes": 22742625
+    }
+  ],
+  "canonical_pdf": {
+    "bytes": 26425739,
+    "pages": 666,
+    "path": "output/book1-pdf/book1-id.pdf",
+    "qa_report": "qa/book1-final-qa-report.json",
+    "qa_report_sha256": "d914ab157350571779a9e4bca62a1b02031560ccda19f00b08c4d61fda5b15b0",
+    "sha256": "daa9b79df3684729cc204b563669f400866d8fbd12c0977d32ff9897276a7a49"
+  },
+  "corpora": {
+    "o018": "laboratorium Pyomo+HiGHS yang diatribusikan terpisah",
+    "r017": "Buku 1 dan edisi Bahasa Indonesia"
+  },
+  "edition_id": "r017-o018.book1.id-ID.2026.08.23-id.5",
+  "generated_at": "2026-08-23T00:00:00Z",
+  "language": "id-ID",
+  "licenses": {
+    "book_content_and_translation": "CC-BY-SA-4.0",
+    "new_o018_and_release_code": "MIT",
+    "third_party": "see LICENSES-README.md and component notices",
+    "upstream_code": "MIT"
+  },
+  "schema_version": "1.0.0",
+  "source_date_epoch": 1787443200,
+  "supporting_files": [
+    {
+      "bytes": 1312,
+      "file_name": "CITATION.cff",
+      "media_type": "text/x-cff",
+      "role": "release_documentation",
+      "sha256": "8fff46719bdff6467ba4069b7261283edd97047a9fed66a307e35f86aaf1689f"
+    },
+    {
+      "bytes": 2259,
+      "file_name": "LICENSES-README.md",
+      "media_type": "text/markdown",
+      "role": "release_documentation",
+      "sha256": "fe6c133ae3ddb2d77562869d35247c0e101c871e3c9c7c8da9162a6e94354a8a"
+    },
+    {
+      "bytes": 1091,
+      "file_name": "MIT-NEW-CODE.txt",
+      "media_type": "text/markdown",
+      "role": "release_documentation",
+      "sha256": "3af65c07da546f32647333f84eb682f040ed45cabfa14ce5e1650f6a67f00ceb"
+    },
+    {
+      "bytes": 1073,
+      "file_name": "MIT-UPSTREAM-CODE.txt",
+      "media_type": "text/markdown",
+      "role": "release_documentation",
+      "sha256": "cf0ed20e761f6d583f137d13d803733f4a9b5362521d0d1d28a223962167819f"
+    },
+    {
+      "bytes": 1401,
+      "file_name": "NOTICE-EDITION.md",
+      "media_type": "text/markdown",
+      "role": "release_documentation",
+      "sha256": "46a760bbb0d77e9c4d2c8fc3e9f6f3f75c1f573744d2ea7aaad7c84b25b68b0a"
+    },
+    {
+      "bytes": 1968,
+      "file_name": "README.md",
+      "media_type": "text/markdown",
+      "role": "release_documentation",
+      "sha256": "afad370c08b31313e808e7c6b765a9ca75d272e94c38d9254d9bff2bf8d7ff51"
+    },
+    {
+      "bytes": 2926,
+      "file_name": "RELEASE-NOTES.md",
+      "media_type": "text/markdown",
+      "role": "release_documentation",
+      "sha256": "f65bc784f389b6cd8014be8d596ce929d89607f100392dcd187eab3cb151486f"
+    }
+  ],
+  "title": "Pemrograman Matematis dan Riset Operasi — Buku 1, Edisi Bahasa Indonesia",
+  "translation_provenance": {
+    "assistant": "OpenAI Codex gpt-5.6-sol, Ultra",
+    "authorship": "not an author",
+    "requester": "the user",
+    "role": "translation and production assistance"
+  },
+  "upstream": {
+    "archive_sha256": "4bee88ed3af700b16d5643a3c18b9846244d3467eec7f4fb1f009a782b9143fc",
+    "commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "official_reader": "https://open-optimization.github.io/open-optimization-or-book/",
+    "repository": "https://github.com/open-optimization/open-optimization-or-book",
+    "tree": "209d5de696ebac4e5921b73d6b6b2f539fc23d1c"
+  },
+  "version": "2026.08.23-id.5"
+}

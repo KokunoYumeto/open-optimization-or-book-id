@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" xml:lang="id-ID" aria-labelledby="title desc">
+  <title id="title">Latihan 14.4 — Lintasan terpendek A ke G</title>
+  <desc id="desc">Graf berbobot tujuh simpul. Lintasan terpendek dari A ke G disorot jingga.</desc>
+  <metadata>{&quot;alternative_text&quot;:&quot;Lintasan terpendek adalah A–B–D–E–G dengan bobot 1+3+2+7=13.&quot;,&quot;language&quot;:&quot;id-ID&quot;,&quot;license&quot;:&quot;CC-BY-SA-4.0&quot;,&quot;schema_version&quot;:&quot;1.0.0&quot;}</metadata>
+  <rect width="960" height="640" fill="#fffdf7"/>
+  <text x="480" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#172554">Latihan 14.4 — Lintasan terpendek A ke G</text>
+  <g stroke-linecap="round">
+    <line x1="80" y1="320" x2="250" y2="135" stroke="#c2410c" stroke-width="7"/>
+    <circle cx="165" cy="227" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="165" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">1</text>
+    <line x1="80" y1="320" x2="250" y2="505" stroke="#94a3b8" stroke-width="3"/>
+    <circle cx="165" cy="412" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="165" y="417" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">4</text>
+    <line x1="250" y1="135" x2="440" y2="320" stroke="#c2410c" stroke-width="7"/>
+    <circle cx="345" cy="227" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="345" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">3</text>
+    <line x1="250" y1="505" x2="440" y2="320" stroke="#94a3b8" stroke-width="3"/>
+    <circle cx="345" cy="412" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="345" y="417" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">2</text>
+    <line x1="440" y1="320" x2="640" y2="135" stroke="#c2410c" stroke-width="7"/>
+    <circle cx="540" cy="227" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="540" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">2</text>
+    <line x1="440" y1="320" x2="640" y2="505" stroke="#94a3b8" stroke-width="3"/>
+    <circle cx="540" cy="412" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="540" y="417" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">4</text>
+    <line x1="640" y1="135" x2="875" y2="320" stroke="#c2410c" stroke-width="7"/>
+    <circle cx="757" cy="227" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="757" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">7</text>
+    <line x1="640" y1="505" x2="875" y2="320" stroke="#94a3b8" stroke-width="3"/>
+    <circle cx="757" cy="412" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="757" y="417" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">6</text>
+    <line x1="250" y1="135" x2="640" y2="135" stroke="#94a3b8" stroke-width="3"/>
+    <circle cx="445" cy="135" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="445" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">6</text>
+    <line x1="250" y1="505" x2="640" y2="505" stroke="#94a3b8" stroke-width="3"/>
+    <circle cx="445" cy="505" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="445" y="510" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">5</text>
+    <line x1="640" y1="135" x2="640" y2="505" stroke="#94a3b8" stroke-width="3"/>
+    <circle cx="640" cy="320" r="16" fill="#fffdf7" stroke="none"/>
+    <text x="640" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#111827">2</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">
+    <circle cx="80" cy="320" r="24" fill="#dbeafe" stroke="#1e3a8a" stroke-width="3"/>
+    <text x="80" y="327" fill="#172554">A</text>
+    <circle cx="250" cy="135" r="24" fill="#dbeafe" stroke="#1e3a8a" stroke-width="3"/>
+    <text x="250" y="142" fill="#172554">B</text>
+    <circle cx="250" cy="505" r="24" fill="#dbeafe" stroke="#1e3a8a" stroke-width="3"/>
+    <text x="250" y="512" fill="#172554">C</text>
+    <circle cx="440" cy="320" r="24" fill="#dbeafe" stroke="#1e3a8a" stroke-width="3"/>
+    <text x="440" y="327" fill="#172554">D</text>
+    <circle cx="640" cy="135" r="24" fill="#dbeafe" stroke="#1e3a8a" stroke-width="3"/>
+    <text x="640" y="142" fill="#172554">E</text>
+    <circle cx="640" cy="505" r="24" fill="#dbeafe" stroke="#1e3a8a" stroke-width="3"/>
+    <text x="640" y="512" fill="#172554">F</text>
+    <circle cx="875" cy="320" r="24" fill="#dbeafe" stroke="#1e3a8a" stroke-width="3"/>
+    <text x="875" y="327" fill="#172554">G</text>
+  </g>
+  <line x1="300" y1="604" x2="365" y2="604" stroke="#c2410c" stroke-width="7" stroke-linecap="round"/>
+  <text x="380" y="611" font-family="Arial, sans-serif" font-size="18" fill="#111827">sisi yang dipilih</text>
+  <line x1="535" y1="604" x2="600" y2="604" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+  <text x="615" y="611" font-family="Arial, sans-serif" font-size="18" fill="#111827">sisi lain</text>
+</svg>

@@ -1,0 +1,214 @@
+{
+  "artifacts": [
+    {
+      "bytes": 3359,
+      "path": "ATTRIBUTION.md",
+      "sha256": "a848daffdfabf1f795e23d34ea55d3542f95620c10f35280812a8a7c044e171b"
+    },
+    {
+      "bytes": 1326,
+      "path": "LICENSE-CODE.txt",
+      "sha256": "5346c6c8571dc373ecf57da5258f75ced76a7597991bd91e61d99cae91532eca"
+    },
+    {
+      "bytes": 2358,
+      "path": "README.md",
+      "sha256": "040b270f9335ccd1003677f23c765dcbba44da37933a189812d8ff729069edd6"
+    },
+    {
+      "bytes": 8462,
+      "path": "data.json",
+      "sha256": "7004ffc4b8714cfff9eee81c8a2420e1def9fbbb49373cb15efe7484c39cfbb5"
+    },
+    {
+      "bytes": 4362,
+      "path": "expected-results.json",
+      "sha256": "90fa647a911a85a59cc1cb29ae01be4c907205054d369298acd6591a34add915"
+    },
+    {
+      "bytes": 30022,
+      "path": "model.py",
+      "sha256": "f6ee0c29b174f763c98b95e27551df7ec679ee756deb9f437c48bcbe3bb39772"
+    },
+    {
+      "bytes": 10059,
+      "path": "plot_svg.py",
+      "sha256": "b4205d392c5aa7197e8ff370901138c4544dfbf8f3fa504cadf2af9ef417c899"
+    },
+    {
+      "bytes": 35837,
+      "path": "results.json",
+      "sha256": "e38b0ec15b4f9825101dc0bfc12ea0d6f0fc962de2ab130191f2e6c1ab6535d8"
+    },
+    {
+      "bytes": 3906,
+      "path": "run_lab.py",
+      "sha256": "fb7f13abbe01041faf136154075b4c1ee9d53dac34822d3bf1db3455500e4069"
+    },
+    {
+      "bytes": 13814,
+      "path": "test_models.py",
+      "sha256": "91e1016378a6d6ea1b16bab8ae19f2c1f2c1349374efd8cfcdc1c4f39fa1ce95"
+    },
+    {
+      "bytes": 1609,
+      "path": "verification.log",
+      "sha256": "995362d415da42e378a10b2a92c542c197d92f52fef4f9c4ecdbd9fd6afddf9f"
+    },
+    {
+      "bytes": 8358,
+      "path": "verify_receipt.py",
+      "sha256": "098a358053e1359b5027cf4cb5fe132e461e560bf713c9e95e6da1c38178873a"
+    },
+    {
+      "bytes": 5796,
+      "path": "plots/ex13-04.svg",
+      "sha256": "9b777a93dcd50d241a927c788d3b71def4d86e37cf4ab22dd4e4914f6f70a98e"
+    },
+    {
+      "bytes": 4762,
+      "path": "plots/ex13-07.svg",
+      "sha256": "391caf4fa28797bbfe27276523b723becbde869e597a7c2f6bcf9cdc6594342b"
+    },
+    {
+      "bytes": 4177,
+      "path": "plots/ex13-09.svg",
+      "sha256": "ea5c4c71b925ff4b1e0b271c8d4421d4b01093b0952b1f9944f2584ef2e99dce"
+    }
+  ],
+  "content_license": "CC-BY-SA-4.0",
+  "lab_id": "o018.ch13.multiobjective",
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 40340,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch09-multi-objective/multi-objective-optimization_updated.tex",
+        "role": "authority_chapter",
+        "sha256": "d3d83cb13eb0b34433551b1ed228c51dcbc062ab90f125049c7f323a3cf065b3"
+      },
+      {
+        "bytes": 18634,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch13.tex",
+        "role": "authority_manual",
+        "sha256": "ac488fb2021c8b9a561afca4ab409c2584b2f4acec0e05928cd85da3bf781a15"
+      },
+      {
+        "bytes": 43484,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch09-multi-objective/multi-objective-optimization_updated.tex",
+        "role": "translated_chapter",
+        "sha256": "fff540c73cf9f90fd0915f6cd65a4a02f330e60f01d89a14f72557aff0d6d274"
+      },
+      {
+        "bytes": 20251,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch13.tex",
+        "role": "translated_manual",
+        "sha256": "2988e24b31d3c3acf0a86908cef02298237c9df4b2fd6e184ff2fe77aa4f5680"
+      }
+    ]
+  },
+  "runtime": {
+    "closure_files": [
+      {
+        "bytes": 2313,
+        "path": "authority/runtime-licenses/MANIFEST.csv",
+        "sha256": "71451702ae6d014eb1e59fbd8ac950fa9f26b0bab47661817b5fe65daf41b329"
+      },
+      {
+        "bytes": 407,
+        "path": "authority/runtime-wheels/MANIFEST.csv",
+        "sha256": "326fc250a9b3b17f523a67672f1f38eae48d4f868239c5eaa273644ab0ec6e04"
+      },
+      {
+        "bytes": 602,
+        "path": "source/o018-open-solver-lab/requirements.lock",
+        "sha256": "2172e05818e66089772851294c4143497616b17bbe449e1a38f5aeb7a54418a0"
+      },
+      {
+        "bytes": 1952,
+        "path": "source/o018-open-solver-lab/runtime-receipt.json",
+        "sha256": "627cc1a3cbeec61635f61adff047478616e8d1de59161d632acf15372467fe7d"
+      }
+    ],
+    "highspy": "1.15.1",
+    "numpy": "2.5.2",
+    "pyomo": "6.10.1",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13",
+    "solver_interface": "appsi_highs"
+  },
+  "schema_version": "1.0.0",
+  "verification": {
+    "artifact_count_excluding_receipt": 15,
+    "exercise_count": 11,
+    "manual_alignment": {
+      "book_primary_ids": [
+        "13.1",
+        "13.2",
+        "13.3",
+        "13.4",
+        "13.5",
+        "13.6",
+        "13.7",
+        "13.8",
+        "13.9",
+        "13.10",
+        "13.11"
+      ],
+      "manual_status_counts": {
+        "aligned": 9,
+        "manual_stale_alias": 1,
+        "missing_from_manual": 1
+      },
+      "missing_book_exercise_in_manual": "13.10",
+      "stale_manual_alias": {
+        "book_id": "13.11",
+        "manual_id": "13.10"
+      }
+    },
+    "maximum_solver_violation": 0,
+    "method_counts": {
+      "continuous_epsilon_sweep_and_highs": 1,
+      "definition_equivalence_certificate": 1,
+      "exact_dominance_enumeration_and_highs": 1,
+      "exact_marginal_tradeoffs_budget_and_highs": 1,
+      "exact_vertex_weight_intervals_and_highs": 1,
+      "exact_weighted_scores_and_highs": 1,
+      "lexicographic_two_stage_and_extreme_weight_highs": 1,
+      "pareto_supported_set_epsilon_and_highs": 1,
+      "project_dominance_weighted_sum_and_highs": 1,
+      "triangle_epsilon_frontier_and_highs": 1,
+      "unsupported_pareto_proof_epsilon_and_highs": 1
+    },
+    "o018_math_correction_count": 0,
+    "plot_accessibility_contract": {
+      "generated_svg_count": 3,
+      "language": "id-ID",
+      "required_svg_elements": [
+        "title",
+        "desc",
+        "metadata"
+      ],
+      "structured_alternatives": true
+    },
+    "plots_combined_sha256": "76d1b3a6671836a5bfbe8c998bcb9764427b2fbe58c4a06aeb6e2f22ed8314a9",
+    "results_bytes": 35837,
+    "results_regeneration_runs": 2,
+    "results_sha256": "e38b0ec15b4f9825101dc0bfc12ea0d6f0fc962de2ab130191f2e6c1ab6535d8",
+    "solver_call_count_per_run": 36,
+    "solver_termination_counts": {
+      "optimal": 36
+    },
+    "source_defect_ids": [
+      "DEF-CH13-MANUAL-OMISSION",
+      "DEF-CH13-70PCT-FIGURE",
+      "DEF-CH13-REVENUE-PROFIT-TERMS"
+    ],
+    "tests_failed_per_run": 0,
+    "tests_passed_per_run": 26,
+    "unittest_runs": 2,
+    "unresolved_exercises": [],
+    "verification_date": "2026-08-22",
+    "verified_count": 11,
+    "visual_qa_svg_count": 3
+  }
+}

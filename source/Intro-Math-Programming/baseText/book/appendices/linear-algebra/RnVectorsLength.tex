@@ -1,0 +1,328 @@
+\newpage
+\section{Panjang Vektor}
+
+\begin{outcome}
+
+\begin{enumerate}
+
+\item[A.] Menentukan panjang vektor dan jarak antara dua titik dalam $\mathbb{R}^n$.
+
+\item[B.] Menentukan vektor satuan yang bersesuaian dengan suatu vektor dalam $\mathbb{R}^n$.
+
+\end{enumerate}
+\end{outcome}
+
+Dalam bagian ini, kita mengkaji apa yang dimaksud dengan panjang suatu vektor dalam $\mathbb{R}^n$.
+Kita mengembangkan konsep ini dengan terlebih dahulu meninjau jarak antara dua titik dalam $\mathbb{R}^n$.
+
+Pertama, kita akan membahas konsep jarak untuk $\mathbb{R}$, yaitu untuk titik-titik dalam $\mathbb{R}^1$.
+Di sini,
+jarak antara dua titik $P$ dan $Q$ diberikan oleh nilai mutlak
+selisih keduanya. Kita menyatakan jarak antara $P$ dan $Q$ dengan $d(P,Q)$, yang didefinisikan sebagai
+\begin{equation}
+d(P,Q) = \sqrt{ \left( P-Q\right) ^{2}}
+\label{distance1}
+\end{equation}
+
+Sekarang perhatikan kasus $n=2$, yang diperagakan oleh gambar berikut.
+
+\begin{picture}(1,100)
+\put(100,20){\begin{picture}(1,1)
+\setlength{\unitlength}{2pt}
+\thicklines
+\qbezier[10](0,0)(25,0)(50,0)
+\qbezier[7](0,0)(0,15)(0,30)
+\qbezier[10](0,30)(25,30)(50,30)
+\qbezier[7](50,30)(50,15)(50,0)
+\qbezier(0,0)(25,15)(50,30)
+\put(0,0){\circle*{2}}
+\put(50,0){\circle*{2}}
+\put(50,30){\circle*{2}}
+\put(5,-5){$Q=(q_1,q_2)$}
+\put(55,-5){$(p_1,q_2)$}
+\put(55,33){$P=(p_1,p_2)$}
+\end{picture}}
+\end{picture}\par\captionof{figure}{Jarak antara dua titik pada bidang.}\label{fig:distance-2d}% fig-num-auto
+
+
+Terdapat dua titik $P =\left( p_{1},p_{2}\right) $ dan
+$Q = \left(q_{1},q_{2}\right)$ pada bidang. Jarak antara kedua
+titik ini ditunjukkan pada gambar sebagai garis utuh. Perhatikan bahwa garis ini
+merupakan hipotenusa suatu segitiga siku-siku yang merupakan separuh dari persegi panjang
+yang ditunjukkan dengan garis putus-putus. Kita ingin mencari panjang hipotenusa ini,
+yang akan memberikan jarak antara kedua titik tersebut. Perhatikan bahwa
+panjang sisi-sisi segitiga ini adalah $\left| p_{1}-q_{1}\right| $
+dan $\left| p_{2}-q_{2}\right|$, yaitu nilai mutlak selisih nilai-nilai tersebut. Oleh karena itu, Teorema Pythagoras
+menyiratkan bahwa panjang hipotenusa (dan dengan demikian jarak antara $P$ dan $Q$) sama dengan
+\begin{equation}
+\left( \left| p_{1}-q_{1}\right| ^{2}+\left| p_{2}-q_{2}\right| ^{2}\right)
+^{1/2}=\left( \left( p_{1}-q_{1}\right) ^{2}+\left( p_{2}-q_{2}\right)
+^{2}\right) ^{1/2}
+\label{distance2}
+\end{equation}
+
+Sekarang misalkan $n=3$ dan misalkan $P = \left( p_{1},p_{2},p_{3}\right) $ dan $Q = \left(
+q_{1},q_{2},q_{3}\right) $ adalah dua titik dalam $\mathbb{R}^{3}.$ Perhatikan
+gambar berikut, dengan garis utuh yang menghubungkan kedua titik dan sebuah
+garis putus-putus yang menghubungkan titik $\left( q_{1},q_{2},q_{3}\right) $ dan $\left(
+p_{1},p_{2},q_{3}\right) .$ 
+
+\begin{picture}(1,139)
+\put(100,20){\begin{picture}(1,1)
+\setlength{\unitlength}{2pt}
+\thicklines
+\qbezier[10](0,0)(25,0)(50,0)
+\qbezier[7](0,0)(0,15)(0,30)
+\qbezier[10](0,30)(25,30)(50,30)
+\qbezier[7](50,30)(50,15)(50,0)
+\put(20,20){
+\qbezier[10](0,0)(25,0)(50,0)
+\qbezier[7](0,0)(0,15)(0,30)
+\qbezier[10](0,30)(25,30)(50,30)
+\qbezier[7](50,30)(50,15)(50,0)}
+\qbezier[7](0,0)(10,10)(20,20)
+\put(0,0){\circle*{2}}
+\put(50,0){\circle*{2}}
+\put(0,30){\qbezier[7](0,0)(10,10)(20,20)\put(70,20){\circle*{2}}\put(70,-10){\circle*{2}}}
+\put(50,30){\qbezier[7](0,0)(10,10)(20,20)}
+\put(50,0){\qbezier[7](0,0)(10,10)(20,20)}
+\qbezier[13](0,0)(35,10)(70,20)
+\qbezier(0,0)(35,25)(70,50)
+\put(-30,-5){$Q=(q_1,q_2,q_3)$}
+\put(35,-5){$(p_1,q_2,q_3)$}
+\put(72,18){$(p_1,p_2,q_3)$}
+\put(70,52){$P=(p_1,p_2,p_3)$}
+\end{picture}}
+\end{picture}\par\captionof{figure}{Jarak antara dua titik dalam tiga dimensi.}\label{fig:distance-3d}% fig-num-auto
+
+
+Di sini, kita perlu menggunakan Teorema Pythagoras dua kali untuk menemukan panjang
+garis utuh tersebut. Pertama, berdasarkan Teorema Pythagoras, panjang garis putus-putus yang menghubungkan $\left(
+q_{1},q_{2},q_{3}\right) $ dan $\left( p_{1},p_{2},q_{3}\right) $ sama dengan
+\begin{equation*}
+\left( \left( p_{1}-q_{1}\right) ^{2}+\left( p_{2}-q_{2}\right) ^{2}\right)
+^{1/2}
+\end{equation*}
+sedangkan panjang garis yang menghubungkan $\left( p_{1},p_{2},q_{3}\right) $ dengan
+$\left( p_{1},p_{2},p_{3}\right) $ hanyalah $\left| p_{3}-q_{3}\right| .$ Oleh karena itu, dengan menerapkan Teorema Pythagoras sekali lagi, panjang garis yang menghubungkan
+titik-titik $P = \left( p_{1},p_{2},p_{3}\right) $ dan $Q = \left(
+q_{1},q_{2},q_{3}\right) $ sama dengan
+\begin{equation*}
+\left( \left( \left( \left( p_{1}-q_{1}\right) ^{2}+\left(
+p_{2}-q_{2}\right) ^{2}\right) ^{1/2}\right) ^{2}+\left( p_{3}-q_{3}\right)
+^{2}\right) ^{1/2}
+\end{equation*}
+\begin{equation}
+ =\left( \left( p_{1}-q_{1}\right) ^{2}+\left( p_{2}-q_{2}\right)
+^{2}+\left( p_{3}-q_{3}\right) ^{2}\right) ^{1/2}
+\label{distance3}
+\end{equation}
+
+Pembahasan ini memotivasi definisi berikut untuk jarak antara titik-titik dalam $\mathbb{R}^n$.
+
+\begin{definition}{Jarak antara Titik-Titik}\label{def:distancebetweenpoints}
+Misalkan $P=\left( p_{1},\cdots ,p_{n}\right) $ dan
+$Q=\left( q_{1},\cdots ,q_{n}\right) $ adalah dua titik dalam
+$\mathbb{R}^{n}$. Maka jarak
+antara kedua titik ini didefinisikan sebagai
+\begin{equation*}
+\text{ jarak antara }P\text{ dan } Q\text{ } =
+d( P, Q ) = \left( \sum_{k=1}^{n}\left\vert
+p_{k}-q_{k}\right\vert ^{2}\right) ^{1/2}
+\end{equation*}
+Ini disebut \textbf{rumus jarak}. Kita juga dapat menulis $\left\vert P - Q \right\vert $ sebagai jarak antara $P$ dan $Q$.
+\index{rumus jarak}
+\end{definition}
+
+Dari pembahasan di atas, Anda dapat melihat bahwa Definisi \ref{def:distancebetweenpoints} berlaku untuk kasus-kasus khusus $n=1,2,3$, seperti dalam
+Persamaan \ref{distance1}, \ref{distance2}, \ref{distance3}.
+Dalam contoh berikut, kita menggunakan Definisi \ref{def:distancebetweenpoints} untuk menemukan jarak antara dua titik dalam
+$\mathbb{R}^4$.
+
+\begin{example}{Jarak antara Titik-Titik}\label{exa:distancebetweenpoints}
+Tentukan jarak antara titik $P$ dan $Q$ dalam $\mathbb{R}^{4}$,
+dengan $P$ dan $Q$ diberikan oleh
+\begin{equation*}
+P=\left( 1,2,-4,6\right)
+\end{equation*}
+dan
+\begin{equation*}
+Q=\left( 2,3,-1,0\right)
+\end{equation*}
+\end{example}
+
+\begin{solution}
+Kita akan menggunakan rumus yang diberikan dalam Definisi \ref{def:distancebetweenpoints} untuk mencari jarak antara
+$P$ dan $Q$.
+Gunakan rumus jarak dan tuliskan
+\begin{equation*}
+d(P,Q)= \left( \left( 1-2\right) ^{2}+\left( 2-3\right)
+^{2}+\left( -4-\left( -1\right) \right) ^{2}+\left( 6-0\right)^{2}\right) ^{\frac{1}{2}} = 47
+\end{equation*}
+
+Oleh karena itu, $d( P,Q) =
+\sqrt{47}.$
+
+\end{solution}
+
+Terdapat sifat-sifat tertentu dari jarak antara titik-titik yang penting dalam kajian kita.
+Sifat-sifat ini diuraikan dalam teorema berikut.
+
+\begin{theorem}{Sifat-Sifat Jarak}\label{thm:distanceproperties}
+Misalkan $P$ dan $Q$ adalah titik-titik dalam $\mathbb{R}^n$, dan misalkan jarak di antaranya,
+$d( P, Q)$, diberikan seperti dalam Definisi \ref{def:distancebetweenpoints}.
+Maka sifat-sifat berikut berlaku \index{rumus jarak!sifat-sifat}.
+\begin{itemize}
+\item $ d( P, Q) = d( Q, P)  $
+\item $ d( P, Q) \geq 0$, dan sama dengan 0 tepat ketika $P = Q.$
+\end{itemize}
+\end{theorem}
+
+Konsep jarak memiliki banyak penerapan. Misalnya,
+dengan diberikan dua titik, kita dapat menanyakan kumpulan titik apa yang
+semuanya berjarak sama dari kedua titik yang diberikan tersebut. Hal ini dikaji dalam
+contoh berikut.
+
+\begin{example}{Bidang di Antara Dua Titik}\label{exa:planebetweentwopoints}
+Jelaskan titik-titik dalam $\mathbb{R}^3$ yang berjarak sama dari $\left(
+1,2,3\right) $ dan $\left( 0,1,2\right) .$ 
+\end{example}
+
+\begin{solution}
+Misalkan $P = \left( p_1 , p_2, p_3\right) $ adalah titik semacam itu. Oleh karena itu, $P$ berjarak sama dari $\left(
+1,2,3\right) $ dan $\left( 0,1,2\right) .$ 
+Kemudian, berdasarkan Definisi \ref{def:distancebetweenpoints},
+\begin{equation*}
+\sqrt{\left( p_1 -1\right) ^{2}+\left( p_2 -2\right) ^{2}+\left( p_3-3\right) ^{2}}=
+\sqrt{\left( p_1 - 0 \right)^{2}+\left( p_2-1\right) ^{2}+\left( p_3-2\right) ^{2}}
+\end{equation*}
+Dengan menguadratkan kedua ruas, kita memperoleh
+\begin{equation*}
+\left( p_1 -1\right) ^{2}+\left( p_2 -2\right) ^{2}+\left( p_3 -3\right)
+^{2}=p_1^{2}+\left( p_2-1\right) ^{2}+\left( p_3 -2\right) ^{2}
+\end{equation*}
+sehingga
+\begin{equation*}
+\allowbreak p_1^{2}-2p_1+14+p_2^{2}-4p_2+p_3^{2}-6p_3=p_1^{2}+p_2^{2}-2p_2+5+p_3^{2}-4p_3
+\end{equation*}
+Dengan menyederhanakannya, diperoleh
+\begin{equation*}
+-2p_1+14-4p_2-6p_3=-2p_2+5-4p_3
+\end{equation*}
+yang dapat ditulis sebagai
+\begin{equation}
+2p_1+2p_2+2p_3=-9  \label{distanceplane}
+\end{equation}
+Oleh karena itu, titik-titik $P = \left(
+p_1,p_2,p_3\right) $ yang berjarak sama
+dari masing-masing titik yang diberikan membentuk suatu bidang yang persamaannya diberikan oleh \ref{distanceplane}.
+\end{solution}
+
+Sekarang kita dapat menggunakan pemahaman kita tentang jarak antara dua titik untuk mendefinisikan apa yang dimaksud dengan panjang suatu
+vektor. Perhatikan definisi berikut.
+
+\begin{definition}{Panjang Vektor}\label{def:lengthofvector}
+Misalkan $\vect{u} = \leftB u_{1} \cdots u_{n} \rightB^T$ adalah sebuah vektor dalam
+$\mathbb{R}^n$. Maka panjang $\vect{u}$, yang ditulis $\vectlength \vect{u} \vectlength$ \index{vektor!panjang}, diberikan oleh
+\begin{equation*}
+\vectlength
+\vect{u}
+\vectlength
+= \sqrt{ u_{1}^2 + \cdots + u_{n}^2}
+\end{equation*}
+\end{definition}
+
+Definisi ini bersesuaian dengan Definisi
+\ref{def:distancebetweenpoints}, jika Anda menganggap vektor $\vect{u}$
+berpangkal di titik $0 = \left( 0, \cdots ,0 \right)$ dan
+berujung di titik $U = \left(u_1, \cdots, u_n \right)$. Maka panjang
+$\vect{u}$ sama dengan jarak antara $0$ dan $U$, yaitu $d(0,U)$. Secara umum, $d(P,Q) = \vectlength \longvect{PQ} \vectlength$.
+
+Perhatikan Contoh \ref{exa:distancebetweenpoints}. Berdasarkan Definisi \ref{def:lengthofvector}, kita juga dapat mencari jarak antara $P$ dan $Q$
+sebagai panjang vektor yang menghubungkan keduanya. Jadi, jika kita menggambar vektor $\longvect{PQ}$
+dengan pangkal di $P$ dan ujung di $Q$, vektor ini akan memiliki panjang
+$\sqrt{47}$.
+
+Kita mengakhiri bagian ini dengan definisi baru untuk kasus khusus
+vektor yang panjangnya $1$.
+
+\begin{definition}{Vektor Satuan}\label{def:unitvector}
+Misalkan $\vect{u}$ adalah sebuah vektor dalam $\mathbb{R}^{n}$. Maka kita menyebut $\vect{u}$ sebagai
+\textbf{vektor satuan} \index{vektor satuan} jika panjangnya 1, yaitu jika
+\begin{equation*}
+\vectlength \vect{u} \vectlength
+=
+1
+\end{equation*}
+\end{definition}
+
+Misalkan $\vect{v}$ adalah sebuah vektor dalam $\mathbb{R}^{n}$. Maka vektor $\vect{u}$
+yang searah dengan $\vect{v}$ tetapi panjangnya sama dengan $1$ adalah vektor satuan yang bersesuaian dengan $\vect{v}$.
+Vektor ini diberikan oleh
+\begin{equation*}
+\vect{u}
+=
+\frac{1}{\vectlength \vect{v} \vectlength}
+\vect{v}
+\end{equation*}
+
+Kita sering menggunakan istilah \textbf{menormalkan} untuk merujuk pada proses ini. Ketika kita \textbf{menormalkan} sebuah vektor, kita mencari vektor satuan yang bersesuaian dan panjangnya $1$.
+Perhatikan contoh berikut.
+
+\begin{example}{Menentukan Vektor Satuan}\label{exa:unitvector}
+Misalkan $\vect{v}$ diberikan oleh
+\begin{equation*}
+\vect{v}
+=
+\leftB
+\begin{array}{rrr}
+1 & -3 & 4
+\end{array}
+\rightB^T
+\end{equation*}
+Tentukan vektor satuan $\vect{u}$ yang searah dengan $\vect{v}$ \index{vektor!vektor satuan yang bersesuaian}.
+\end{example}
+
+\begin{solution}
+Kita akan menggunakan Definisi \ref{def:unitvector} untuk menyelesaikan soal ini.
+Oleh karena itu, kita perlu mencari panjang $\vect{v}$ yang, berdasarkan Definisi \ref{def:lengthofvector},
+diberikan oleh
+\begin{equation*}
+\vectlength
+\vect{v}
+\vectlength
+= \sqrt{ v_{1}^2 + v_{2}^2+ v_{3}^2}
+\end{equation*}
+Dengan menggunakan nilai-nilai yang bersesuaian, kita memperoleh
+\begin{eqnarray*}
+\vectlength
+\vect{v}
+\vectlength
+&=& \sqrt{ 1^2 + \left(-3 \right)^2 + 4^2} \\
+&=& \sqrt{ 1 + 9 + 16} \\
+&=& \sqrt{26}
+\end{eqnarray*}
+Untuk mencari $\vect{u}$, kita membagi $\vect{v}$ dengan $\sqrt{26}$.
+Hasilnya adalah
+\begin{eqnarray*}
+\vect{u}
+&=&
+\frac{1}{\vectlength \vect{v} \vectlength}
+\vect{v} \\
+&=&
+\frac{1}{\sqrt{26}}
+\leftB
+\begin{array}{rrr}
+1 & -3 & 4
+\end{array}
+\rightB^T \\
+&=&
+\leftB
+\begin{array}{rrr}
+\frac{1}{\sqrt{26}} & -\frac{3}{\sqrt{26}} & \frac{4}{\sqrt{26}}
+\end{array}
+\rightB^T
+\end{eqnarray*}
+
+Anda dapat memverifikasi dengan menggunakan Definisi \ref{def:lengthofvector} bahwa $\vectlength \vect{u} \vectlength = 1 $.
+\end{solution}

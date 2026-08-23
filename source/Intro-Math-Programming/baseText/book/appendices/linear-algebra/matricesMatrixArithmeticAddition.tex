@@ -1,0 +1,169 @@
+\subsection{Penjumlahan Matriks}
+
+Saat menjumlahkan matriks, semua matriks dalam penjumlahan harus berukuran sama.
+Sebagai contoh,
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 4 \\
+5 & 2
+\end{array}
+\rightB 
+\end{equation*}
+dan
+\begin{equation*}
+\leftB
+\begin{array}{rrr}
+-1 & 4 & 8\\
+2 & 8 & 5
+\end{array}
+\rightB 
+\end{equation*}
+tidak dapat dijumlahkan karena yang satu berukuran $3 \times 2$, sedangkan yang lain berukuran $2 \times 3$.
+
+Namun, penjumlahan
+\begin{equation*}
+\leftB
+\begin{array}{rrr}
+4 & 6 & 3\\
+5 & 0 & 4\\
+11 & -2 & 3
+\end{array}
+\rightB 
++
+\leftB
+\begin{array}{rrr}
+0 & 5 & 0 \\
+4 & -4 & 14 \\
+1 & 2 & 6
+\end{array}
+\rightB
+\end{equation*}
+dapat dilakukan.
+
+Definisi formalnya adalah sebagai berikut.
+
+\begin{definition}{Penjumlahan Matriks}\label{def:additionofmatrices}
+Misalkan $A=\leftB a_{ij}\rightB $ dan $B=\leftB b_{ij}\rightB $ adalah dua
+matriks $m\times n$. Maka $A+B=C$ \index{matriks!penjumlahan}, dengan $C$ sebagai matriks $m \times n$
+$C=\leftB c_{ij}\rightB$ yang didefinisikan oleh
+\begin{equation*}
+c_{ij}=a_{ij}+b_{ij}
+\end{equation*}
+
+\end{definition}
+
+Definisi ini menyatakan bahwa ketika menjumlahkan matriks, kita cukup menjumlahkan entri-entri matriks yang bersesuaian.
+Hal ini ditunjukkan dalam contoh berikutnya. 
+
+\begin{example}{Penjumlahan Matriks Berukuran Sama}\label{exa:samesizematrixaddition}
+Jumlahkan matriks-matriks berikut jika memungkinkan.
+\begin{equation*}
+A = \leftB
+\begin{array}{ccc}
+1 & 2 & 3 \\
+1 & 0 & 4
+\end{array}
+\rightB,
+B = \leftB
+\begin{array}{rrr}
+5 & 2 & 3 \\
+-6 & 2 & 1
+\end{array}
+\rightB
+\end{equation*}
+\end{example}
+
+\begin{solution}
+Perhatikan bahwa $A$ dan $B$ sama-sama berukuran $2 \times 3$.
+Karena $A$ dan $B$ berukuran sama, penjumlahan dapat dilakukan. Dengan menggunakan Definisi \ref{def:additionofmatrices},
+penjumlahan dilakukan sebagai berikut. 
+\begin{equation*}
+A + B = \leftB
+\begin{array}{rrr}
+1 & 2 & 3 \\
+1 & 0 & 4
+\end{array}
+\rightB
++
+\leftB
+\begin{array}{rrr}
+5 & 2 & 3 \\
+-6 & 2 & 1
+\end{array}
+\rightB
+=\allowbreak 
+\leftB
+\begin{array}{rrr}
+1+5 & 2+2 & 3+3 \\
+1+ -6 & 0+2 & 4+1
+\end{array}
+\rightB
+=
+\leftB
+\begin{array}{rrr}
+6 & 4 & 6 \\
+-5 & 2 & 5
+\end{array}
+\rightB
+\end{equation*}
+\end{solution}
+
+Penjumlahan matriks mengikuti sifat-sifat yang sangat mirip dengan
+penjumlahan bilangan biasa. Perhatikan bahwa ketika kita menulis, misalnya, $A+B$, kita
+mengasumsikan kedua matriks berukuran sama sehingga operasi tersebut
+memang dapat dilakukan.
+
+\begin{proposition}{Sifat-Sifat Penjumlahan Matriks}\label{prop:propertiesofaddition}
+Misalkan $A,B$, dan $C$ adalah matriks. Maka sifat-sifat berikut \index{matriks!sifat penjumlahan} berlaku. 
+
+\begin{itemize}
+\item Hukum Komutatif Penjumlahan
+\begin{equation}
+A+B=B+A  \label{mat1}
+\end{equation}
+
+\item Hukum Asosiatif Penjumlahan
+\begin{equation}
+\left( A+B\right) +C=A+\left( B+C\right) \label{mat2}
+\end{equation}
+
+\item Keberadaan Identitas Aditif
+\begin{equation}
+\begin{array}{c}
+\mbox{Terdapat matriks nol 0 sedemikian sehingga}\\
+A+0=A  \label{mat3}
+\end{array}
+\end{equation}
+
+\item Keberadaan Invers Aditif
+\begin{equation}
+\begin{array}{c}
+\mbox{Terdapat matriks $-A$ sedemikian sehingga} \\
+A+\left( -A\right) =0 \label{mat4}
+\end{array}
+\end{equation}
+\end{itemize}
+\end{proposition}
+
+\ifdefined\showproofs
+\begin{proof}
+Perhatikan Hukum Komutatif Penjumlahan yang diberikan dalam \ref{mat1}. Misalkan $A,B,C,$ dan $D$ adalah matriks sedemikian sehingga $A+B=C$ dan
+$B+A=D.$ Kita ingin menunjukkan bahwa $D=C$. Untuk melakukannya, kita akan menggunakan definisi penjumlahan matriks yang diberikan dalam Definisi \ref{def:additionofmatrices}.
+Sekarang,
+\begin{equation*}
+c_{ij}=a_{ij}+b_{ij}=b_{ij}+a_{ij}=d_{ij}
+\end{equation*}
+Oleh karena itu, $C=D$ karena entri pada posisi $(i,j)$ sama untuk semua $i$ dan $j$. Perhatikan bahwa
+kesimpulan ini mengikuti hukum komutatif penjumlahan bilangan, yang menyatakan bahwa jika $a$ dan $b$ adalah dua bilangan,
+maka $a+b = b+a$.
+Bukti untuk hasil-hasil lainnya serupa dan diserahkan sebagai latihan.
+\end{proof}
+\fi
+
+Kita menyebut matriks nol dalam \ref{mat3} sebagai \textbf{identitas aditif}. Demikian pula, matriks $-A$
+dalam \ref{mat4} disebut \textbf{invers aditif}. $-A$
+didefinisikan sama dengan $\left( -1\right) A = [-a_{ij}].$ Dengan kata lain, setiap entri $A$ dikalikan dengan $-1$.
+Pada bagian berikutnya, kita akan mempelajari perkalian skalar secara lebih mendalam
+untuk memahami makna $\left( -1\right) A.$

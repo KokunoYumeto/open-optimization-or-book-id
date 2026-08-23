@@ -1,0 +1,1525 @@
+\chapter{Perangkat Lunak -- Python}
+\label{ch:software-python}
+
+\begin{outcome}
+\begin{itemize}
+\item Menyiapkan lingkungan Python untuk pekerjaan optimisasi
+\item Memahami struktur data Python yang penting untuk pemodelan
+\item Menggunakan paket-paket utama: NumPy, Pandas, Matplotlib, NetworkX, dan GeoPandas
+\item Memodelkan dan menyelesaikan masalah optimisasi dengan PuLP
+\end{itemize}
+\end{outcome}
+
+%==============================================================================
+\section{Mengapa Python untuk Optimisasi?}
+%==============================================================================
+
+Python telah menjadi bahasa pemrograman yang dominan untuk ilmu data, pembelajaran mesin, serta---semakin luas---riset operasi dan optimisasi. Namun, mengapa Python? Bagaimanapun, Python adalah bahasa yang \emph{diinterpretasikan}, sehingga berjalan lebih lambat daripada bahasa terkompilasi seperti C++ atau Java. Jawabannya terletak pada peran Python sebagai \textbf{bahasa perekat} dan ekosistemnya yang luar biasa.
+
+\subsection{Kekuatan Python}
+
+Ketika Anda menyelesaikan masalah optimisasi dalam Python menggunakan pustaka seperti PuLP, inilah yang sebenarnya terjadi:
+
+\begin{enumerate}
+\item Anda menulis model dengan sintaks Python yang mudah dibaca dan intuitif
+\item Python menerjemahkan model Anda ke format standar (seperti berkas LP atau MPS)
+\item Python memanggil \textbf{pemecah yang sangat dioptimalkan} dan ditulis dalam C/C++ (seperti CBC, CPLEX, atau Gurobi)
+\item Pemecah melakukan pekerjaan komputasi berat dengan kecepatan mendekati optimal
+\item Python menerima hasilnya dan memungkinkan Anda menganalisisnya dengan alat data yang andal
+\end{enumerate}
+
+Artinya, Anda memperoleh \textbf{keunggulan dari dua dunia}: kemudahan dan keluwesan Python untuk pemodelan dan analisis, dipadukan dengan daya komputasi mentah dari pemecah kelas industri.
+
+\begin{info}
+\textbf{Kekuatan istimewa Python untuk optimisasi:}
+\begin{itemize}
+\item \textbf{Sintaks yang mudah dibaca} -- Model tampak hampir seperti notasi matematika
+\item \textbf{Ekosistem yang kaya} -- NumPy, Pandas, dan Matplotlib untuk penanganan serta visualisasi data
+\item \textbf{Pembuatan purwarupa cepat} -- Uji gagasan dengan cepat tanpa siklus kompilasi yang panjang
+\item \textbf{Integrasi} -- Hubungkan model ke basis data, API web, berkas Excel, dan banyak lagi
+\item \textbf{Gratis dan sumber terbuka} -- Tidak ada biaya lisensi untuk Python maupun banyak pemecah
+\end{itemize}
+\end{info}
+
+Bandingkan penulisan suatu kendala dalam Python:
+\begin{lstlisting}[language=Python]
+prob += lpSum(cost[i,j] * x[i,j] for i in plants for j in markets) <= budget
+\end{lstlisting}
+
+dengan penulisan hal yang sama dalam bahasa tingkat rendah: Python jelas unggul dalam kejernihan dan kecepatan pengembangan.
+
+\subsection{Jupyter Notebook: Sahabat Terbaik Analis Data}
+
+Dalam buku ini, kita terutama akan menggunakan \textbf{Jupyter Notebook}. Jika Anda belum pernah menjumpainya, Jupyter notebook adalah dokumen interaktif yang memadukan:
+
+\begin{itemize}
+\item \textbf{Sel kode} -- Tulis dan jalankan kode Python
+\item \textbf{Keluaran} -- Lihat hasil, tabel, dan visualisasi tepat di bawah kode Anda
+\item \textbf{Sel Markdown} -- Tambahkan teks berformat, persamaan, dan penjelasan
+\item \textbf{Penyimpanan} -- Simpan pekerjaan, termasuk keluarannya, untuk dibagikan atau ditinjau kembali
+\end{itemize}
+
+Gaya interaktif ini sangat cocok untuk pekerjaan optimisasi ketika Anda ingin:
+\begin{itemize}
+\item Menjelajahi dan membersihkan data
+\item Membangun model secara bertahap sambil mengujinya
+\item Memvisualisasikan hasil dan menyempurnakan pendekatan secara berulang
+\item Mendokumentasikan analisis untuk orang lain (atau diri Anda di masa depan!)
+\end{itemize}
+
+\begin{warn}
+\textbf{Ketika notebook bukan pilihan ideal:}
+
+Jupyter notebook sangat baik untuk eksplorasi dan analisis, tetapi bukan pilihan ideal untuk:
+\begin{itemize}
+\item Proyek perangkat lunak besar dan kompleks dengan banyak modul
+\item Kode yang perlu dijalankan dalam sistem produksi
+\item Kendali versi (perbedaan antarberkas notebook sulit ditinjau dengan Git)
+\end{itemize}
+
+Untuk pengembangan perangkat lunak yang serius, pindahkan kode yang sudah matang ke berkas \texttt{.py} dan gunakan IDE seperti VS Code atau PyCharm. Namun, untuk belajar, membuat purwarupa, dan melakukan analisis sekali pakai, notebook sulit ditandingi.
+\end{warn}
+
+%==============================================================================
+\section{Memulai}
+%==============================================================================
+
+\subsection{Pilihan untuk Menjalankan Python}
+
+Ada beberapa pilihan untuk menjalankan Python dan Jupyter notebook:
+
+\paragraph{Google Colab (Disarankan untuk Pemula)}
+
+Google Colab (\url{https://colab.research.google.com}) adalah lingkungan Jupyter berbasis awan yang gratis. Keunggulannya:
+\begin{itemize}
+\item \textbf{Tidak perlu instalasi} -- sepenuhnya berjalan di peramban
+\item \textbf{Akses GPU gratis} -- berguna untuk pembelajaran mesin (tidak diperlukan dalam buku ini)
+\item \textbf{Integrasi Google Drive} -- simpan dan bagikan notebook dengan mudah
+\item \textbf{Sebagian besar paket telah terpasang} -- NumPy, Pandas, dan Matplotlib siap digunakan
+\end{itemize}
+
+Untuk memulai:
+\begin{enumerate}
+\item Buka \url{https://colab.research.google.com}
+\item Masuk dengan akun Google Anda
+\item Klik ``New Notebook'' untuk membuat notebook kosong
+\item Mulailah menulis kode!
+\end{enumerate}
+
+\paragraph{Anaconda (Disarankan untuk Instalasi Lokal)}
+
+Anaconda (\url{https://www.anaconda.com}) adalah distribusi Python yang dirancang untuk ilmu data. Anaconda mencakup:
+\begin{itemize}
+\item Python itu sendiri
+\item Jupyter Notebook dan JupyterLab
+\item Ratusan paket yang telah terpasang (NumPy, Pandas, Matplotlib, dan sebagainya)
+\item Pengelola paket Conda untuk memasang paket tambahan
+\end{itemize}
+
+Setelah memasang Anaconda, jalankan ``Jupyter Notebook'' dari Anaconda Navigator atau dengan mengetik \texttt{jupyter notebook} di terminal.
+
+\paragraph{VS Code}
+
+Visual Studio Code (\url{https://code.visualstudio.com}) adalah penyunting kode populer yang mendukung Jupyter notebook melalui ekstensi. Ini pilihan yang baik jika Anda menginginkan lingkungan pengembangan yang lebih tradisional tetapi tetap memerlukan kemampuan notebook.
+
+\subsection{Memasang Paket}
+
+Sebagian besar paket yang kita perlukan sudah terpasang di Colab atau Anaconda. Paket utama yang perlu Anda pasang adalah \textbf{PuLP} untuk pemodelan optimisasi:
+
+\begin{lstlisting}[language=Python]
+# Di sel Jupyter, gunakan ! untuk menjalankan perintah shell
+!pip install pulp
+\end{lstlisting}
+
+\textbf{Penting:} Setelah memasang paket baru, Anda perlu \textbf{memulai ulang kernel notebook} agar perubahan berlaku. Di Jupyter, pilih Kernel $\rightarrow$ Restart. Di Colab, pilih Runtime $\rightarrow$ Restart runtime.
+
+Setelah terpasang, impor paket yang diperlukan di bagian atas notebook:
+
+\begin{lstlisting}[language=Python]
+# Impor standar untuk pekerjaan optimisasi
+import numpy as np          # Komputasi numerik
+import pandas as pd         # Manipulasi data
+import matplotlib.pyplot as plt  # Visualisasi
+from pulp import *          # Pemodelan optimisasi
+\end{lstlisting}
+
+\begin{resource}
+\textbf{Notebook Latihan Interaktif}
+\begin{itemize}
+\item \href{https://colab.research.google.com/drive/1dqQSVfNMchIbk0k4OByve0muZeyvih6j?usp=sharing}{Dasar-Dasar Python di Colab}
+\item \href{https://colab.research.google.com/drive/1Ma8tQw6LU0NCF3jY62v7FAmXJOxbSph_?usp=sharing}{Tutorial Perulangan}
+\item \href{https://colab.research.google.com/drive/1paYp36cHf_EvZcMYfD-dN1TtJ_abkpM2?usp=sharing}{Latihan PuLP}
+\end{itemize}
+
+\textbf{Bahan Rujukan}
+\begin{itemize}
+\item \href{https://open.umn.edu/opentextbooks/textbooks/a-byte-of-python}{A Byte of Python} (buku ajar gratis)
+\item \href{https://github.com/open-optimization/open-optimization-or-examples}{Repositori Contoh Open Optimization}
+\end{itemize}
+\end{resource}
+
+\begin{tryit}
+\vizlink{lp-solvers}{Satu LP, Empat Bahasa Pemodelan}: masalah yang sama dalam PuLP, Pyomo, gurobipy, dan AMPL dengan penelusur langkah kode.
+\end{tryit}
+
+
+%==============================================================================
+\section{Dasar-Dasar Python}
+%==============================================================================
+
+Sebelum mendalami Python khusus untuk optimisasi, mari kita bahas unsur-unsur dasar bahasa ini. Jika Anda sama sekali baru dalam pemrograman, bagian ini akan membantu Anda memulai. Jika Anda berpengalaman dengan bahasa lain, Anda akan melihat perbedaan sintaks Python.
+
+\begin{resource}
+Notebook Jupyter pendamping \texttt{intro\_to\_python\_extended.ipynb} tersedia dalam folder \texttt{code/python/} di repositori buku. Kami menyarankan Anda mengerjakan notebook ini secara interaktif sembari membaca bagian ini.
+\end{resource}
+
+\subsection{Variabel dan Tipe Data}
+
+Python \textbf{bertipe dinamis}, artinya Anda tidak perlu mendeklarasikan tipe variabel secara eksplisit; Python menentukannya dari konteks. Tipe data dasarnya adalah:
+
+\begin{itemize}
+\item \textbf{Bilangan bulat}: Bilangan tanpa bagian pecahan (misalnya \texttt{10}, \texttt{-5}, \texttt{0})
+\item \textbf{Bilangan titik mengambang}: Bilangan desimal (misalnya \texttt{3.14}, \texttt{-2.7})
+\item \textbf{String}: Teks yang diapit tanda petik (misalnya \texttt{"Halo"}, \texttt{'Alice'})
+\item \textbf{Boolean}: Nilai logis (\texttt{True} atau \texttt{False})
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+# Penetapan variabel - tidak diperlukan deklarasi tipe
+x = 10           # Bilangan bulat
+y = 3.14         # Bilangan titik mengambang
+name = "Alice"   # String
+is_happy = True  # Boolean
+
+print(x, y, name, is_happy)
+# Keluaran: 10 3.14 Alice True
+\end{lstlisting}
+
+\subsection{Operasi Aritmetika}
+
+Python mendukung semua operasi aritmetika standar:
+
+\begin{lstlisting}[language=Python]
+a = 15
+b = 4
+
+print("Penjumlahan:", a + b)        # 19
+print("Pengurangan:", a - b)        # 11
+print("Perkalian:", a * b)          # 60
+print("Pembagian:", a / b)          # 3.75
+print("Pembagian bulat:", a // b)   # 3 (dibulatkan ke bawah)
+print("Modulus:", a % b)            # 3 (sisa)
+print("Perpangkatan:", a ** b)      # 50625 (15^4)
+\end{lstlisting}
+
+\begin{info}
+\textbf{Kiat pembagian:} Dalam Python 3, \texttt{/} selalu menghasilkan bilangan titik mengambang, bahkan untuk bilangan bulat. Gunakan \texttt{//} untuk pembagian bulat yang membulatkan ke bawah ke bilangan bulat terdekat.
+\end{info}
+
+\subsection{Koleksi: List, Tuple, Dictionary, dan Set}
+
+Python menyediakan beberapa struktur data bawaan untuk mengatur data:
+
+\begin{lstlisting}[language=Python]
+# List - urutan terurut yang dapat diubah
+my_list = [1, 2, 3, 4]
+
+# Tuple - urutan yang tidak dapat diubah
+my_tuple = (10, 20, 30)
+
+# Dictionary - pasangan kunci-nilai
+my_dict = {"apel": 2, "pisang": 3}
+
+# Set - hanya elemen unik (duplikat dihapus)
+my_set = {1, 2, 2, 3, 4}  # menjadi {1, 2, 3, 4}
+
+print("List:", my_list)
+print("Tuple:", my_tuple)
+print("Dictionary:", my_dict)
+print("Set:", my_set)
+\end{lstlisting}
+
+Anda dapat mengubah list dan dictionary setelah dibuat:
+
+\begin{lstlisting}[language=Python]
+# Operasi list
+my_list.append(5)     # Tambahkan elemen: [1, 2, 3, 4, 5]
+my_list.remove(2)     # Hapus elemen: [1, 3, 4, 5]
+my_list[0] = 100      # Ubah elemen: [100, 3, 4, 5]
+
+# Operasi dictionary
+my_dict["ceri"] = 5           # Tambahkan pasangan kunci-nilai baru
+my_dict["apel"] = 10          # Perbarui nilai yang ada
+print(my_dict["pisang"])      # Akses nilai berdasarkan kunci: 3
+\end{lstlisting}
+
+\subsection{Pengindeksan dan Pengirisan}
+
+Python menggunakan \textbf{pengindeksan berbasis nol}---elemen pertama berada pada indeks 0, bukan 1. Anda juga dapat memakai indeks negatif untuk menghitung dari akhir.
+
+\begin{lstlisting}[language=Python]
+colors = ["merah", "hijau", "biru", "kuning", "ungu"]
+
+# Akses satu elemen
+print(colors[0])    # "merah" (elemen pertama)
+print(colors[-1])   # "ungu" (elemen terakhir)
+print(colors[-2])   # "kuning" (elemen kedua dari belakang)
+
+# Pengirisan: [awal:akhir] - indeks akhir tidak disertakan!
+print(colors[1:3])  # ["hijau", "biru"]
+print(colors[:3])   # ["merah", "hijau", "biru"] (dari awal)
+print(colors[2:])   # ["biru", "kuning", "ungu"] (sampai akhir)
+
+# Dengan langkah: [awal:akhir:langkah]
+print(colors[::2])  # ["merah", "biru", "ungu"] (setiap elemen kedua)
+\end{lstlisting}
+
+\begin{warn}
+\textbf{Kesalahan umum:} Ingat bahwa pengirisan dengan \texttt{[a:b]} menyertakan indeks \texttt{a}, tetapi \emph{tidak menyertakan} indeks \texttt{b}. Jadi, \texttt{colors[1:3]} menghasilkan elemen pada indeks 1 dan 2, bukan 1, 2, dan 3.
+\end{warn}
+
+\subsection{Alur Kendali: Percabangan}
+
+Python menggunakan \textbf{indentasi} (bukan kurung kurawal) untuk menetapkan blok kode. Kata kunci \texttt{if}, \texttt{elif}, dan \texttt{else} menangani logika percabangan:
+
+\begin{lstlisting}[language=Python]
+num = 7
+
+if num % 2 == 0:
+    print(f"{num} genap.")
+else:
+    print(f"{num} ganjil.")
+# Keluaran: 7 ganjil.
+
+# Beberapa kondisi dengan elif
+score = 85
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+else:
+    grade = "F"
+print(f"Skor {score} memperoleh nilai {grade}")  # Nilai B
+\end{lstlisting}
+
+\begin{info}
+\textbf{f-string:} Sintaks \texttt{f"..."} membuat string berformat. Variabel di dalam kurung kurawal \texttt{\{var\}} secara otomatis diubah menjadi teks. Cara ini jauh lebih rapi daripada konkatenasi string.
+\end{info}
+
+\subsection{Alur Kendali: Perulangan}
+
+\paragraph{Perulangan \texttt{for}}
+
+Perulangan \texttt{for} mengiterasi suatu urutan (list, string, rentang, dan sebagainya):
+
+\begin{lstlisting}[language=Python]
+# Perulangan atas sebuah list
+fruits = ["apel", "pisang", "ceri"]
+for fruit in fruits:
+    print(f"Saya suka {fruit}")
+
+# Perulangan atas suatu rentang bilangan
+for i in range(5):
+    print(i)  # Mencetak 0, 1, 2, 3, 4
+
+# Perulangan atas item dictionary
+prices = {"apel": 1.50, "pisang": 0.75, "ceri": 2.00}
+for fruit, price in prices.items():
+    print(f"Harga {fruit} adalah ${price:.2f}")
+\end{lstlisting}
+
+\paragraph{Perulangan \texttt{while}}
+
+Perulangan \texttt{while} berlanjut selama suatu kondisi bernilai benar:
+
+\begin{lstlisting}[language=Python]
+count = 0
+while count < 5:
+    print(count)
+    count += 1  # Jangan lupa memperbarui kondisi!
+# Mencetak 0, 1, 2, 3, 4
+\end{lstlisting}
+
+\subsection{Fungsi}
+
+Fungsi adalah blok kode yang dapat digunakan kembali dan ditetapkan dengan kata kunci \texttt{def}:
+
+\begin{lstlisting}[language=Python]
+def square(x):
+    """Mengembalikan kuadrat x."""
+    return x * x
+
+val = 5
+print(f"Kuadrat dari {val} adalah {square(val)}.")
+# Keluaran: Kuadrat dari 5 adalah 25.
+\end{lstlisting}
+
+Fungsi dapat memiliki beberapa parameter dan nilai bawaan:
+
+\begin{lstlisting}[language=Python]
+def greet(name, greeting="Halo"):
+    """Menyapa seseorang dengan sapaan yang dapat disesuaikan."""
+    return f"{greeting}, {name}!"
+
+print(greet("Alice"))           # "Halo, Alice!"
+print(greet("Bob", "Hai"))     # Sapaan khusus untuk Bob
+\end{lstlisting}
+
+\begin{info}
+\textbf{Docstring:} String berpetik tiga tepat setelah \texttt{def} disebut docstring. String ini mendokumentasikan apa yang dilakukan fungsi dan muncul ketika Anda menggunakan \texttt{help(function\_name)}.
+\end{info}
+
+%==============================================================================
+\section{Pokok-Pokok Python untuk Optimisasi}
+%==============================================================================
+
+Setelah membahas dasar-dasarnya, mari kita lihat bagaimana fitur-fitur Python ini digunakan secara khusus dalam pemodelan optimisasi. Pola-pola berikut akan berulang kali muncul dalam pekerjaan LP dan IP Anda.
+
+\subsection{List: Koleksi Terurut}
+
+List adalah struktur data andalan Python: koleksi terurut yang dapat memuat jenis data apa pun. Dalam optimisasi, kita menggunakan list untuk merepresentasikan:
+\begin{itemize}
+\item Himpunan indeks (pabrik, pelanggan, periode waktu)
+\item Urutan data (permintaan, biaya, kapasitas)
+\item Kumpulan nama variabel atau nama kendala
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+# Definisikan himpunan untuk masalah transportasi
+plants = ['Chicago', 'Denver', 'Atlanta']
+markets = ['NYC', 'LA', 'Houston', 'Miami']
+
+# Data numerik sebagai list
+supply = [100, 150, 200]
+demand = [80, 120, 90, 110]
+\end{lstlisting}
+
+List memiliki \textbf{indeks berbasis nol}, sehingga elemen pertama berada pada posisi 0:
+
+\begin{lstlisting}[language=Python]
+plants[0]     # 'Chicago' (elemen pertama)
+plants[1]     # 'Denver' (elemen kedua)
+plants[-1]    # 'Atlanta' (elemen terakhir)
+len(plants)   # 3 (jumlah elemen)
+\end{lstlisting}
+
+Operasi umum yang akan sering Anda gunakan:
+
+\begin{lstlisting}[language=Python]
+sum(supply)           # 450 (total pasokan)
+max(demand)           # 120 (permintaan terbesar)
+min(demand)           # 80 (permintaan terkecil)
+plants.append('Boston')  # Tambahkan ke akhir list
+'Denver' in plants    # True (uji keanggotaan)
+\end{lstlisting}
+
+\subsection{Dictionary: Pemetaan Kunci--Nilai}
+
+Dictionary memetakan \textbf{kunci} ke \textbf{nilai}. Struktur ini merupakan cara alami untuk merepresentasikan \textbf{parameter berindeks} dalam optimisasi---bayangkan sebagai tabel pencarian.
+
+\begin{lstlisting}[language=Python]
+# Pasokan diindeks berdasarkan nama pabrik
+supply = {
+    'Chicago': 100,
+    'Denver': 150,
+    'Atlanta': 200
+}
+
+# Akses nilai menggunakan kunci
+supply['Chicago']    # 100
+supply['Denver']     # 150
+\end{lstlisting}
+
+Untuk parameter yang diindeks oleh \textbf{beberapa himpunan} (seperti biaya transportasi yang diindeks menurut asal DAN tujuan), gunakan \textbf{kunci tuple}:
+
+\begin{lstlisting}[language=Python]
+# Biaya transportasi dari pabrik ke pasar
+cost = {
+    ('Chicago', 'NYC'): 3.5,
+    ('Chicago', 'LA'): 4.8,
+    ('Chicago', 'Houston'): 2.1,
+    ('Denver', 'NYC'): 4.2,
+    ('Denver', 'LA'): 2.1,
+    ('Denver', 'Houston'): 3.0,
+    # ... dan seterusnya
+}
+
+# Akses menggunakan kunci tuple
+cost[('Chicago', 'NYC')]    # 3.5
+cost[('Denver', 'LA')]      # 2.1
+\end{lstlisting}
+
+Pola dictionary dengan kunci tuple ini \textbf{mendasar} dalam pemodelan optimisasi dengan Python. Pola tersebut secara langsung mencerminkan notasi matematika $c_{ij}$ untuk biaya dari asal $i$ ke tujuan $j$.
+
+Operasi dictionary yang berguna:
+
+\begin{lstlisting}[language=Python]
+supply.keys()         # Semua kunci: dict_keys(['Chicago', 'Denver', 'Atlanta'])
+supply.values()       # Semua nilai: dict_values([100, 150, 200])
+supply.items()        # Pasangan kunci-nilai (untuk iterasi)
+sum(supply.values())  # 450 (total pasokan)
+\end{lstlisting}
+
+\subsection{Perulangan \texttt{for}: Iterasi}
+
+Perulangan memungkinkan Anda mengulangi operasi atas suatu koleksi. Dalam optimisasi, Anda akan menggunakannya untuk:
+\begin{itemize}
+\item Membuat variabel keputusan untuk setiap indeks
+\item Menambahkan kendala untuk setiap elemen suatu himpunan
+\item Mengolah dan menampilkan hasil
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+# Perulangan dasar atas sebuah list
+for plant in plants:
+    print(f"Memproses pabrik: {plant}")
+\end{lstlisting}
+
+Keluaran:
+\begin{verbatim}
+Memproses pabrik: Chicago
+Memproses pabrik: Denver
+Memproses pabrik: Atlanta
+\end{verbatim}
+
+Jika Anda memerlukan indeks sekaligus nilainya, gunakan \texttt{enumerate}:
+
+\begin{lstlisting}[language=Python]
+for i, plant in enumerate(plants):
+    print(f"Pabrik {i}: {plant}")
+\end{lstlisting}
+
+Untuk dictionary, lakukan iterasi atas pasangan kunci--nilai:
+
+\begin{lstlisting}[language=Python]
+for plant, capacity in supply.items():
+    print(f"{plant} dapat memasok {capacity} unit")
+\end{lstlisting}
+
+\textbf{Perulangan bersarang} menghasilkan semua kombinasi---hal yang penting untuk membuat variabel dan kendala atas beberapa himpunan indeks:
+
+\begin{lstlisting}[language=Python]
+# Semua rute pabrik-ke-pasar
+for plant in plants:
+    for market in markets:
+        print(f"Rute: {plant} -> {market}")
+\end{lstlisting}
+
+Kode ini menghasilkan $|\text{plants}| \times |\text{markets}| = 3 \times 4 = 12$ kombinasi rute.
+
+\subsection{Komprehensi List: Pembuatan List yang Ringkas}
+
+Komprehensi list adalah cara ringkas untuk membuat list. Inilah cara Python mengatakan ``berikan sebuah list berisi X untuk setiap Y di dalam Z.''
+
+\begin{lstlisting}[language=Python]
+# Buat list semua rute (sama dengan perulangan bersarang di atas, tetapi satu baris)
+routes = [(p, m) for p in plants for m in markets]
+\end{lstlisting}
+
+Hasilnya:
+\begin{verbatim}
+[('Chicago', 'NYC'), ('Chicago', 'LA'), ('Chicago', 'Houston'),
+ ('Chicago', 'Miami'), ('Denver', 'NYC'), ... ]
+\end{verbatim}
+
+Tambahkan kondisi dengan \texttt{if}:
+
+\begin{lstlisting}[language=Python]
+# Hanya pabrik dengan kapasitas > 120
+large_plants = [p for p, cap in supply.items() if cap > 120]
+# Hasil: ['Denver', 'Atlanta']
+\end{lstlisting}
+
+Anda akan sering melihat komprehensi digunakan dalam PuLP untuk membuat penjumlahan:
+
+\begin{lstlisting}[language=Python]
+# Biaya total (akan menjadi jelas setelah bagian PuLP)
+total_cost = lpSum([cost[p,m] * x[p,m] for p in plants for m in markets])
+\end{lstlisting}
+
+\subsection{Fungsi: Kode yang Dapat Digunakan Kembali}
+
+Fungsi mengemas kode agar dapat digunakan kembali. Tetapkan fungsi dengan \texttt{def}:
+
+\begin{lstlisting}[language=Python]
+def calculate_total_cost(flows, costs):
+    """
+    Menghitung biaya transportasi total.
+
+    Argumen:
+        flows: dictionary yang memetakan (pabrik, pasar) ke jumlah aliran
+        costs: dictionary yang memetakan (pabrik, pasar) ke biaya per unit
+
+    Mengembalikan:
+        Biaya total sebagai bilangan titik mengambang
+    """
+    total = 0
+    for route, amount in flows.items():
+        total += amount * costs[route]
+    return total
+\end{lstlisting}
+
+String berpetik tiga adalah \textbf{docstring}---dokumentasi yang menjelaskan apa yang dilakukan fungsi. Ini praktik yang baik!
+
+Berikut versi yang lebih sederhana dengan \texttt{sum} dan komprehensi:
+
+\begin{lstlisting}[language=Python]
+def calculate_total_cost(flows, costs):
+    """Menghitung biaya transportasi total."""
+    return sum(flows[r] * costs[r] for r in flows)
+\end{lstlisting}
+
+%==============================================================================
+\section{NumPy: Komputasi Numerik}
+%==============================================================================
+
+NumPy (Numerical Python) menyediakan operasi larik yang efisien. Walaupun PuLP tidak memerlukan NumPy, pustaka ini sangat berguna untuk:
+\begin{itemize}
+\item Mengolah data numerik sebelum optimisasi
+\item Melakukan operasi matriks/vektor
+\item Menganalisis masukan dan hasil secara statistik
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+\end{lstlisting}
+
+\subsection{Membuat Larik}
+
+Larik NumPy menyerupai list, tetapi dioptimalkan untuk operasi numerik:
+
+\begin{lstlisting}[language=Python]
+# Dari sebuah list
+costs = np.array([3, 5, 2, 4])
+
+# Larik 2D (matriks)
+A = np.array([
+    [2, 1, 3],
+    [1, 2, 1],
+    [3, 1, 2]
+])
+
+# Pintasan yang berguna
+zeros = np.zeros(5)          # [0, 0, 0, 0, 0]
+ones = np.ones(3)            # [1, 1, 1]
+range_arr = np.arange(10)    # [0, 1, 2, ..., 9]
+\end{lstlisting}
+
+\subsection{Operasi Larik}
+
+NumPy unggul dalam operasi per elemen dan agregat:
+
+\begin{lstlisting}[language=Python]
+costs = np.array([3, 5, 2, 4])
+
+# Operasi agregat
+costs.sum()      # 14
+costs.mean()     # 3.5
+costs.min()      # 2
+costs.max()      # 5
+costs.std()      # Simpangan baku
+
+# Operasi per elemen
+costs * 2        # array([6, 10, 4, 8])
+costs + 1        # array([4, 6, 3, 5])
+costs > 3        # array([False, True, False, True])
+\end{lstlisting}
+
+\subsection{Aljabar Linear}
+
+Untuk operasi matriks (berguna dalam memahami teori LP):
+
+\begin{lstlisting}[language=Python]
+A = np.array([[2, 1], [1, 3]])
+b = np.array([4, 5])
+c = np.array([3, 2])
+x = np.array([1, 2])
+
+# Perkalian matriks-vektor: Ax
+np.dot(A, x)       # array([4, 7])
+
+# Hasil kali titik: c'x
+np.dot(c, x)       # 7
+
+# Sifat-sifat matriks
+A.shape            # (2, 2)
+A.T                # Transpos
+np.linalg.det(A)   # Determinan
+np.linalg.inv(A)   # Invers (jika ada)
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+% NumPy Visual Guide - Visualizing Array Operations
+%------------------------------------------------------------------------------
+
+\subsection{Memvisualisasikan Operasi Larik}
+
+Operasi larik NumPy dapat membingungkan pada awalnya, terutama ketika Anda menggunakan pengirisan, penumpukan, dan operasi khusus sumbu. Panduan visual berikut memperagakan konsep-konsep utama yang akan membantu Anda memahami cara NumPy memanipulasi larik---keterampilan yang akan digunakan ketika menyiapkan data untuk model optimisasi.
+
+\subimport{../external-sources/foundationsAppliedMathematicsLabs/Appendices/NumpyVisualGuide/}{NumpyVisualGuide}
+
+%==============================================================================
+\section{Pandas: Pengelolaan Data}
+%==============================================================================
+
+Pandas adalah pustaka pilihan untuk bekerja dengan data tabular. Pustaka ini unggul dalam:
+\begin{itemize}
+\item Membaca data dari berkas (CSV, Excel, basis data)
+\item Membersihkan dan mentransformasi data
+\item Mengagregasi dan meringkas hasil
+\item Menyiapkan data untuk model optimisasi
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+import pandas as pd
+\end{lstlisting}
+
+\subsection{DataFrame: Tabel Data}
+
+DataFrame menyerupai lembar sebar atau tabel basis data:
+
+\begin{lstlisting}[language=Python]
+# Buat dari sebuah dictionary
+plants_df = pd.DataFrame({
+    'Pabrik': ['Chicago', 'Denver', 'Atlanta'],
+    'Kapasitas': [100, 150, 200],
+    'BiayaTetap': [10000, 12000, 8000]
+})
+
+print(plants_df)
+\end{lstlisting}
+
+Keluaran:
+\begin{verbatim}
+     Pabrik  Kapasitas  BiayaTetap
+0  Chicago       100      10000
+1   Denver       150      12000
+2  Atlanta       200       8000
+\end{verbatim}
+
+\subsection{Membaca Data dari Berkas}
+
+Masalah optimisasi nyata memperoleh data dari berkas, bukan dari nilai yang ditulis langsung di dalam kode:
+
+\begin{lstlisting}[language=Python]
+# Baca berkas CSV
+df = pd.read_csv('transportation_data.csv')
+
+# Baca berkas Excel
+df = pd.read_excel('problem_data.xlsx', sheet_name='Biaya')
+
+# Pratinjau data
+df.head()          # Lima baris pertama
+df.info()          # Tipe dan jumlah kolom
+df.describe()      # Statistik ringkasan
+\end{lstlisting}
+
+\subsection{Mengakses dan Memfilter Data}
+
+\begin{lstlisting}[language=Python]
+# Akses sebuah kolom
+plants_df['Kapasitas']
+
+# Saring baris
+large_plants = plants_df[plants_df['Kapasitas'] > 120]
+
+# Beberapa kondisi
+selected = plants_df[(plants_df['Kapasitas'] > 100) &
+                     (plants_df['BiayaTetap'] < 11000)]
+\end{lstlisting}
+
+\subsection{Dari DataFrame ke Data Optimisasi}
+
+Salah satu keterampilan penting adalah mengubah DataFrame menjadi dictionary yang diharapkan PuLP:
+
+\begin{lstlisting}[language=Python]
+# DataFrame menjadi dictionary
+supply_dict = dict(zip(plants_df['Pabrik'], plants_df['Kapasitas']))
+# Hasil: {'Chicago': 100, 'Denver': 150, 'Atlanta': 200}
+
+# Untuk matriks biaya, data Anda mungkin berbentuk seperti berikut:
+# costs_df dengan kolom: Asal, Tujuan, Biaya
+cost_dict = {(row['Asal'], row['Tujuan']): row['Biaya']
+             for _, row in costs_df.iterrows()}
+\end{lstlisting}
+
+\subsection{Menganalisis Hasil}
+
+Setelah penyelesaian, masukkan kembali hasil ke dalam DataFrame untuk dianalisis:
+
+\begin{lstlisting}[language=Python]
+# Buat DataFrame hasil
+results = pd.DataFrame([
+    {'Rute': f"{p}->{m}", 'Aliran': x[p,m].varValue, 'Biaya': cost[p,m]}
+    for p in plants for m in markets
+    if x[p,m].varValue > 0
+])
+
+# Analisis
+print(results)
+print(f"Aliran total: {results['Aliran'].sum()}")
+print(f"Biaya rata-rata: {results['Biaya'].mean():.2f}")
+\end{lstlisting}
+
+%==============================================================================
+\section{Matplotlib: Visualisasi}
+%==============================================================================
+
+Visualisasi membantu Anda memahami data sebelum optimisasi dan mengomunikasikan hasil sesudahnya. Matplotlib adalah pustaka pembuatan plot dasar dalam Python.
+
+\begin{lstlisting}[language=Python]
+import matplotlib.pyplot as plt
+\end{lstlisting}
+
+\subsection{Diagram Batang: Membandingkan Kategori}
+
+Sangat cocok untuk menampilkan nilai persediaan, permintaan, atau solusi menurut kategori:
+
+\begin{lstlisting}[language=Python]
+plants = ['Chicago', 'Denver', 'Atlanta']
+supply = [100, 150, 200]
+
+plt.figure(figsize=(8, 5))
+plt.bar(plants, supply, color='steelblue', edgecolor='black')
+plt.xlabel('Pabrik')
+plt.ylabel('Kapasitas Pasokan')
+plt.title('Kapasitas Pasokan per Pabrik')
+plt.grid(axis='y', alpha=0.3)
+plt.show()
+\end{lstlisting}
+
+\subsection{Diagram Batang Berkelompok: Membandingkan Beberapa Deret}
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+plants = ['Chicago', 'Denver', 'Atlanta']
+supply = [100, 150, 200]
+used = [95, 150, 170]  # Setelah optimisasi
+
+x = np.arange(len(plants))
+width = 0.35
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.bar(x - width/2, supply, width, label='Kapasitas', color='steelblue')
+ax.bar(x + width/2, used, width, label='Terpakai', color='orange')
+
+ax.set_xlabel('Pabrik')
+ax.set_ylabel('Unit')
+ax.set_title('Kapasitas dan Pemanfaatan')
+ax.set_xticks(x)
+ax.set_xticklabels(plants)
+ax.legend()
+plt.show()
+\end{lstlisting}
+
+\subsection{Peta Panas: Memvisualisasikan Matriks}
+
+Sangat cocok untuk matriks biaya atau solusi aliran:
+
+\begin{lstlisting}[language=Python]
+# Matriks biaya sebagai larik 2D
+costs = np.array([
+    [3.5, 4.8, 2.1, 3.9],
+    [4.2, 2.1, 3.0, 4.5],
+    [2.8, 5.1, 2.9, 1.7]
+])
+
+plants = ['Chicago', 'Denver', 'Atlanta']
+markets = ['NYC', 'LA', 'Houston', 'Miami']
+
+plt.figure(figsize=(8, 6))
+plt.imshow(costs, cmap='YlOrRd', aspect='auto')
+plt.colorbar(label='Biaya per Unit')
+plt.xticks(range(len(markets)), markets)
+plt.yticks(range(len(plants)), plants)
+plt.xlabel('Tujuan')
+plt.ylabel('Asal')
+plt.title('Matriks Biaya Transportasi')
+
+# Tambahkan anotasi teks
+for i in range(len(plants)):
+    for j in range(len(markets)):
+        plt.text(j, i, f'{costs[i,j]:.1f}', ha='center', va='center')
+
+plt.tight_layout()
+plt.show()
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+% Matplotlib Customization Guide
+%------------------------------------------------------------------------------
+
+\subsection{Rujukan Penyesuaian Plot}
+
+Matplotlib menawarkan banyak pilihan penyesuaian untuk membuat gambar berkualitas publikasi. Panduan berikut menyediakan rujukan untuk warna, gaya garis, penanda, dan pilihan pemformatan lain yang akan berguna ketika memvisualisasikan hasil optimisasi.
+
+\subimport{../external-sources/foundationsAppliedMathematicsLabs/Appendices/MatplotlibCustomization/}{MatplotlibCustomization}
+
+%==============================================================================
+\section{NetworkX: Analisis Graf}
+%==============================================================================
+
+NetworkX adalah pustaka utama Python untuk bekerja dengan graf dan jaringan. Pustaka ini penting untuk algoritma diskret yang akan kita bahas di Bagian II, serta berguna untuk memvisualisasikan masalah optimisasi berbasis jaringan seperti transportasi dan lokasi fasilitas.
+
+\begin{lstlisting}[language=Python]
+import networkx as nx
+\end{lstlisting}
+
+\subsection{Mengapa Graf Penting bagi Optimisasi}
+
+Banyak masalah optimisasi memiliki \textbf{struktur jaringan} yang mendasarinya:
+\begin{itemize}
+\item Transportasi: pabrik dan pasar yang dihubungkan oleh rute pengiriman
+\item Lintasan terpendek: kota-kota yang dihubungkan oleh jalan
+\item Aliran jaringan: sumber, muara, dan simpul antara yang dihubungkan busur
+\item Lokasi fasilitas: calon lokasi dan pelanggan yang akan dilayani
+\end{itemize}
+
+NetworkX memungkinkan Anda merepresentasikan, menganalisis, dan memvisualisasikan struktur-struktur tersebut.
+
+\subsection{Membuat Graf}
+
+\begin{lstlisting}[language=Python]
+# Buat graf berarah (sisi mempunyai arah)
+G = nx.DiGraph()
+
+# Tambahkan simpul (dapat menyertakan atribut)
+G.add_node('Chicago', node_type='plant', supply=100)
+G.add_node('Denver', node_type='plant', supply=150)
+G.add_node('NYC', node_type='market', demand=80)
+G.add_node('LA', node_type='market', demand=120)
+
+# Tambahkan sisi beserta atributnya
+G.add_edge('Chicago', 'NYC', cost=3.5, capacity=100)
+G.add_edge('Chicago', 'LA', cost=4.8, capacity=80)
+G.add_edge('Denver', 'NYC', cost=4.2, capacity=90)
+G.add_edge('Denver', 'LA', cost=2.1, capacity=150)
+\end{lstlisting}
+
+\subsection{Mengakses Data Graf}
+
+\begin{lstlisting}[language=Python]
+# Sifat-sifat dasar
+G.number_of_nodes()                    # 4
+G.number_of_edges()                    # 4
+list(G.nodes())                        # ['Chicago', 'Denver', 'NYC', 'LA']
+list(G.edges())                        # [('Chicago', 'NYC'), ...]
+
+# Atribut simpul
+G.nodes['Chicago']['supply']           # 100
+
+# Atribut sisi
+G.edges['Chicago', 'NYC']['cost']      # 3.5
+
+# Tetangga (sisi keluar untuk DiGraph)
+list(G.successors('Chicago'))          # ['NYC', 'LA']
+\end{lstlisting}
+
+\subsection{Algoritma Graf}
+
+NetworkX mencakup banyak algoritma yang berguna:
+
+\begin{lstlisting}[language=Python]
+# Lintasan terpendek (berdasarkan biaya)
+path = nx.shortest_path(G, 'Chicago', 'LA', weight='cost')
+length = nx.shortest_path_length(G, 'Chicago', 'LA', weight='cost')
+print(f"Lintasan terpendek: {path}, biaya: {length}")
+
+# Semua lintasan terpendek dari satu sumber
+all_paths = nx.single_source_shortest_path(G, 'Chicago')
+
+# Periksa keterhubungan
+nx.is_weakly_connected(G)    # True jika graf tak berarah dasarnya terhubung
+\end{lstlisting}
+
+\subsection{Visualisasi}
+
+Melihat jaringan Anda membantu memahami struktur masalah:
+
+\begin{lstlisting}[language=Python]
+plt.figure(figsize=(10, 6))
+
+# Algoritme tata letak menempatkan simpul
+pos = nx.spring_layout(G, seed=42)
+
+# Gambar simpul
+nx.draw_networkx_nodes(G, pos, node_color='lightblue',
+                       node_size=1500, alpha=0.9)
+
+# Gambar sisi
+nx.draw_networkx_edges(G, pos, edge_color='gray',
+                       arrows=True, arrowsize=20)
+
+# Gambar label
+nx.draw_networkx_labels(G, pos, font_size=10)
+
+# Label sisi (biaya)
+edge_labels = nx.get_edge_attributes(G, 'cost')
+nx.draw_networkx_edge_labels(G, pos, edge_labels, font_size=8)
+
+plt.title('Jaringan Transportasi')
+plt.axis('off')
+plt.tight_layout()
+plt.show()
+\end{lstlisting}
+
+\begin{info}
+NetworkX sangat penting untuk Bagian II buku ini, tempat kita membahas algoritma graf, termasuk lintasan terpendek, pohon rentang minimum, dan aliran jaringan.
+\end{info}
+
+%==============================================================================
+\section{GeoPandas: Visualisasi Geografis}
+%==============================================================================
+
+Banyak masalah optimisasi memiliki komponen geografis---lokasi fasilitas, rute pengiriman, atau wilayah layanan. GeoPandas memperluas Pandas dengan kemampuan geografis sehingga model dan hasil Anda menjadi lebih nyata dan lebih mudah dikomunikasikan.
+
+\begin{lstlisting}[language=Python]
+import geopandas as gpd
+from shapely.geometry import Point
+\end{lstlisting}
+
+\subsection{Mengapa Visualisasi Geografis?}
+
+Masalah transportasi menjadi jauh lebih intuitif ketika Anda dapat \textbf{melihat} fasilitas dan pelanggan pada peta. Manfaatnya antara lain:
+\begin{itemize}
+\item \textbf{Pemeriksaan kewajaran} -- Apakah solusi Anda masuk akal secara geografis?
+\item \textbf{Komunikasi} -- Peta dipahami secara universal
+\item \textbf{Wawasan} -- Pola spasial menjadi terlihat
+\item \textbf{Data nyata} -- Bekerja dengan koordinat sebenarnya, bukan indeks abstrak
+\end{itemize}
+
+\subsection{Membuat Data Geografis}
+
+\begin{lstlisting}[language=Python]
+# Data fasilitas beserta koordinat
+facilities = pd.DataFrame({
+    'Nama': ['Pabrik Chicago', 'Pabrik Denver', 'Pabrik Atlanta'],
+    'Lintang': [41.88, 39.74, 33.75],
+    'Bujur': [-87.63, -104.99, -84.39],
+    'Kapasitas': [100, 150, 200]
+})
+
+# Konversikan menjadi GeoDataFrame
+geometry = [Point(lon, lat) for lon, lat in zip(facilities['Bujur'], facilities['Lintang'])]
+facilities_gdf = gpd.GeoDataFrame(facilities, geometry=geometry, crs='EPSG:4326')
+\end{lstlisting}
+
+\subsection{Visualisasi Peta}
+
+\begin{lstlisting}[language=Python]
+fig, ax = plt.subplots(figsize=(12, 8))
+
+# Plot fasilitas (ukuran menurut kapasitas)
+facilities_gdf.plot(ax=ax, color='red', markersize=facilities_gdf['Kapasitas'],
+                    alpha=0.6, edgecolor='black')
+
+# Tambahkan label
+for idx, row in facilities_gdf.iterrows():
+    ax.annotate(row['Nama'],
+                xy=(row.geometry.x, row.geometry.y),
+                xytext=(5, 5), textcoords='offset points',
+                fontsize=9, fontweight='bold')
+
+ax.set_xlabel('Bujur')
+ax.set_ylabel('Lintang')
+ax.set_title('Lokasi Fasilitas (ukuran = kapasitas)')
+ax.grid(True, alpha=0.3)
+plt.show()
+\end{lstlisting}
+
+\begin{info}
+GeoPandas bersifat opsional untuk buku ini, tetapi dapat mengubah masalah optimisasi yang abstrak menjadi kisah visual yang konkret. Pustaka ini sangat bermanfaat ketika Anda menyajikan hasil kepada pemangku kepentingan yang mungkin tidak terbiasa dengan notasi matematika.
+\end{info}
+
+%==============================================================================
+\section{PuLP: Pemodelan Optimisasi}
+%==============================================================================
+
+Sekarang kita sampai pada pokok utama: \textbf{PuLP}, pustaka Python untuk merumuskan dan menyelesaikan program linear (LP) serta program bilangan bulat (IP). PuLP menyediakan antarmuka bergaya Python yang bersih untuk menyatakan model optimisasi sehingga tampilannya hampir menyerupai notasi matematika.
+
+\subsection{Memasang PuLP}
+
+\begin{lstlisting}[language=Python]
+!pip install pulp
+\end{lstlisting}
+
+Setelah memasangnya, \textbf{mulai ulang kernel}, lalu impor:
+
+\begin{lstlisting}[language=Python]
+from pulp import *
+\end{lstlisting}
+
+PuLP disertai pemecah CBC (COIN-OR Branch and Cut), sebuah pemecah sumber terbuka yang andal. Untuk masalah yang lebih besar, Anda dapat menghubungkan PuLP ke pemecah komersial seperti Gurobi atau CPLEX.
+
+\subsection{Pola Pemodelan PuLP}
+\label{sec:pulp-pattern}
+
+Setiap model PuLP mengikuti enam langkah:
+
+\begin{enumerate}
+\item \textbf{Buat} objek masalah
+\item \textbf{Tetapkan} variabel keputusan
+\item \textbf{Tetapkan} fungsi tujuan
+\item \textbf{Tambahkan} kendala
+\item \textbf{Selesaikan} masalah
+\item \textbf{Ekstrak} dan analisis hasil
+\end{enumerate}
+
+Mari kita kerjakan sebuah contoh lengkap.
+
+\subsection{Contoh: Masalah Bauran Produk}
+\label{sec:pulp-product-mix}
+
+Sebuah perusahaan membuat dua produk. Setiap unit Produk 1 menghasilkan laba \$3; setiap unit Produk 2 menghasilkan laba \$2. Produksi dibatasi oleh tiga sumber daya:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Sumber daya & Produk 1 & Produk 2 & Tersedia \\
+\midrule
+Bahan & 10 & 5 & 300 \\
+Tenaga kerja & 4 & 4 & 160 \\
+Mesin & 2 & 6 & 180 \\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Penggunaan sumber daya per unit dan ketersediaannya untuk kedua produk.}\label{tab:software-python-book1-tab01}% tab-num-auto
+
+\end{center}
+
+\modelhead{Model}
+\begin{align*}
+\max \quad & 3X_1 + 2X_2 \\
+\st        & 10X_1 + 5X_2 \leq 300 \\
+& 4X_1 + 4X_2 \leq 160 \\
+& 2X_1 + 6X_2 \leq 180 \\
+& X_1, X_2 \geq 0
+\end{align*}
+
+\paragraph{Langkah 1: Membuat Masalah}
+
+\begin{lstlisting}[language=Python]
+# Buat masalah maksimisasi
+prob = LpProblem("Product_Mix", LpMaximize)
+\end{lstlisting}
+
+Argumen pertama adalah nama (digunakan dalam berkas keluaran), sedangkan argumen kedua menentukan arah optimisasi: \texttt{LpMaximize} atau \texttt{LpMinimize}.
+
+\paragraph{Langkah 2: Menetapkan Variabel Keputusan}
+
+\begin{lstlisting}[language=Python]
+# Buat variabel kontinu nonnegatif
+x1 = LpVariable("X1", lowBound=0)
+x2 = LpVariable("X2", lowBound=0)
+\end{lstlisting}
+
+\texttt{lowBound=0} memberlakukan $X_1, X_2 \geq 0$. Secara bawaan, variabel bersifat kontinu.
+
+\paragraph{Langkah 3: Menetapkan Fungsi Tujuan}
+
+\begin{lstlisting}[language=Python]
+# Tambahkan fungsi objektif
+prob += 3*x1 + 2*x2, "Total_Profit"
+\end{lstlisting}
+
+Operator \texttt{+=} menambahkan unsur ke masalah. Argumen kedua adalah nama opsional.
+
+\paragraph{Langkah 4: Menambahkan Kendala}
+
+\begin{lstlisting}[language=Python]
+# Tambahkan kendala
+prob += 10*x1 + 5*x2 <= 300, "Material"
+prob += 4*x1 + 4*x2 <= 160, "Labor"
+prob += 2*x1 + 6*x2 <= 180, "Machine"
+\end{lstlisting}
+
+Setiap kendala menggunakan \texttt{<=}, \texttt{>=}, atau \texttt{==}. Nama-nama tersebut membantu mengidentifikasi kendala dalam keluaran.
+
+\begin{warn}
+\textbf{Kesalahan umum:} Jika Anda lupa menuliskan operator perbandingan (\texttt{<=}, \texttt{>=}, \texttt{==}), Anda akan menimpa fungsi tujuan alih-alih menambahkan kendala! PuLP versi terbaru menampilkan \texttt{UserWarning} ketika hal ini terjadi, tetapi model tetap dapat diselesaikan sehingga kesalahan tersebut mudah terlewat.
+
+\textbf{Salah:}
+\begin{lstlisting}[language=Python]
+prob += 10*x1 + 5*x2  # Menimpa fungsi objektif!
+\end{lstlisting}
+
+\textbf{Benar:}
+\begin{lstlisting}[language=Python]
+prob += 10*x1 + 5*x2 <= 300  # Menambahkan kendala
+\end{lstlisting}
+\end{warn}
+
+\paragraph{Langkah 5: Menyelesaikan Masalah}
+
+\begin{lstlisting}[language=Python]
+# Selesaikan masalah
+prob.solve()
+
+# Periksa status
+print(f"Status: {LpStatus[prob.status]}")
+\end{lstlisting}
+
+Status akan berupa salah satu dari: \texttt{Optimal}, \texttt{Infeasible}, \texttt{Unbounded}, atau \texttt{Not Solved}.
+
+\paragraph{Langkah 6: Mengekstrak Hasil}
+
+\begin{lstlisting}[language=Python]
+# Nilai objektif optimal
+print(f"Laba Maksimum: ${value(prob.objective)}")
+
+# Nilai variabel optimal
+print(f"X1 = {x1.varValue}")
+print(f"X2 = {x2.varValue}")
+
+# Lakukan perulangan atas semua variabel
+for v in prob.variables():
+    print(f"{v.name} = {v.varValue}")
+\end{lstlisting}
+
+Keluaran:
+\begin{verbatim}
+Status: Optimal
+Laba Maksimum: $100.0
+X1 = 20.0
+X2 = 20.0
+\end{verbatim}
+
+\subsection{Jenis Variabel}
+
+PuLP mendukung tiga jenis variabel:
+
+\begin{lstlisting}[language=Python]
+# Kontinu (bawaan) - untuk LP
+x = LpVariable("x", lowBound=0)
+
+# Bilangan bulat - untuk IP
+y = LpVariable("y", lowBound=0, cat='Integer')
+
+# Biner (0 atau 1) - untuk keputusan ya/tidak
+z = LpVariable("z", cat='Binary')
+\end{lstlisting}
+
+\subsection{Membuat Banyak Variabel}
+
+Untuk masalah dengan banyak variabel, buat variabel secara massal menggunakan \texttt{LpVariable.dicts}:
+
+\begin{lstlisting}[language=Python]
+plants = ['Chicago', 'Denver', 'Atlanta']
+markets = ['NYC', 'LA', 'Houston']
+
+# Buat semua kombinasi rute
+routes = [(p, m) for p in plants for m in markets]
+
+# Buat dictionary variabel
+x = LpVariable.dicts("Ship", routes, lowBound=0, cat='Continuous')
+\end{lstlisting}
+
+Sekarang \texttt{x[('Chicago', 'NYC')]} adalah variabel yang merepresentasikan pengiriman dari Chicago ke NYC.
+
+\subsection{Fungsi \texttt{lpSum}}
+\label{sec:pulp-lpsum}
+
+Untuk penjumlahan atas himpunan indeks, gunakan \texttt{lpSum} (lebih efisien daripada \texttt{sum} milik Python):
+
+\begin{lstlisting}[language=Python]
+# Objektif: minimalkan biaya total
+prob += lpSum([cost[p,m] * x[p,m] for p in plants for m in markets])
+
+# Kendala pasokan untuk setiap pabrik
+for p in plants:
+    prob += lpSum([x[p,m] for m in markets]) <= supply[p], f"Supply_{p}"
+
+# Kendala permintaan untuk setiap pasar
+for m in markets:
+    prob += lpSum([x[p,m] for p in plants]) >= demand[m], f"Demand_{m}"
+\end{lstlisting}
+
+\subsection{Contoh Transportasi Lengkap}
+\label{sec:pulp-transportation}
+
+Berikut adalah masalah transportasi lengkap yang dapat langsung dijalankan:
+
+\begin{lstlisting}[language=Python]
+from pulp import *
+
+# === DATA ===
+plants = ['Chicago', 'Denver']
+markets = ['NYC', 'LA', 'Houston']
+
+supply = {'Chicago': 100, 'Denver': 150}
+demand = {'NYC': 80, 'LA': 90, 'Houston': 70}
+
+cost = {
+    ('Chicago', 'NYC'): 3, ('Chicago', 'LA'): 5, ('Chicago', 'Houston'): 2,
+    ('Denver', 'NYC'): 4, ('Denver', 'LA'): 2, ('Denver', 'Houston'): 3
+}
+
+# === MODEL ===
+prob = LpProblem("Transportation", LpMinimize)
+
+# Variabel: x[p,m] = jumlah yang dikirim dari pabrik p ke pasar m
+routes = [(p, m) for p in plants for m in markets]
+x = LpVariable.dicts("Ship", routes, lowBound=0)
+
+# Objektif: minimalkan biaya pengiriman total
+prob += lpSum([cost[r] * x[r] for r in routes]), "Total_Cost"
+
+# Kendala pasokan
+for p in plants:
+    prob += lpSum([x[p,m] for m in markets]) <= supply[p], f"Supply_{p}"
+
+# Kendala permintaan
+for m in markets:
+    prob += lpSum([x[p,m] for p in plants]) >= demand[m], f"Demand_{m}"
+
+# === PENYELESAIAN ===
+prob.solve()
+
+# === HASIL ===
+print(f"Status: {LpStatus[prob.status]}")
+print(f"Biaya Total: ${value(prob.objective)}")
+print("\nPengiriman Optimal:")
+for p in plants:
+    for m in markets:
+        if x[p,m].varValue > 0:
+            print(f"  {p} -> {m}: {x[p,m].varValue}")
+\end{lstlisting}
+
+\begin{info}
+\textbf{Notebook lengkap:} Untuk contoh yang dikerjakan sepenuhnya beserta berkas data dan visualisasi, lihat:
+\begin{itemize}
+\item \href{https://github.com/open-optimization/open-optimization-or-examples}{Repositori Contoh Open Optimization}
+\item \href{https://coin-or.github.io/pulp/}{Dokumentasi dan Tutorial PuLP}
+\end{itemize}
+\end{info}
+
+%==============================================================================
+\section{Memadukan Semuanya}
+%==============================================================================
+
+Alur kerja optimisasi yang lazim memadukan semua alat yang telah kita bahas:
+
+\begin{enumerate}
+\item \textbf{Muat data} dengan Pandas (dari CSV, Excel, atau basis data)
+\item \textbf{Jelajahi dan bersihkan} data sambil memeriksa masalah
+\item \textbf{Transformasikan} data menjadi dictionary untuk PuLP
+\item \textbf{Bangun model} (variabel, tujuan, kendala)
+\item \textbf{Selesaikan} dan pastikan statusnya optimal
+\item \textbf{Ekstrak hasil} kembali ke Pandas untuk dianalisis
+\item \textbf{Visualisasikan} dengan Matplotlib, NetworkX, atau GeoPandas
+\item \textbf{Komunikasikan} temuan kepada pemangku kepentingan
+\end{enumerate}
+
+\begin{lstlisting}[language=Python]
+# Kerangka alur kerja umum
+import pandas as pd
+import matplotlib.pyplot as plt
+from pulp import *
+
+# 1. Muat data
+plants_df = pd.read_csv('plants.csv')
+markets_df = pd.read_csv('markets.csv')
+costs_df = pd.read_csv('costs.csv')
+
+# 2-3. Olah menjadi dictionary
+supply = dict(zip(plants_df['Name'], plants_df['Capacity']))
+demand = dict(zip(markets_df['Name'], markets_df['Demand']))
+cost = {(row['From'], row['To']): row['Cost']
+        for _, row in costs_df.iterrows()}
+
+# 4-5. Bangun dan selesaikan model
+prob = LpProblem("MyProblem", LpMinimize)
+# ... definisikan variabel, objektif, dan kendala ...
+prob.solve()
+
+# 6. Analisis hasil
+results_df = pd.DataFrame([...])  # Ekstrak solusi
+print(results_df.describe())
+
+# 7. Visualisasikan
+results_df.plot(kind='bar')
+plt.show()
+\end{lstlisting}
+
+Kekuatan Python terletak pada kemampuan semua alat ini untuk bekerja bersama tanpa hambatan. Dalam satu notebook yang dapat direproduksi, Anda dapat beralih dari data mentah ke solusi optimal, lalu ke visualisasi yang siap dipresentasikan.
+
+\begin{resource}
+\textbf{Sumber Tambahan}
+\begin{itemize}
+\item \href{https://coin-or.github.io/pulp/}{Dokumentasi PuLP}
+\item \href{https://numpy.org/doc/}{Dokumentasi NumPy}
+\item \href{https://pandas.pydata.org/docs/}{Dokumentasi Pandas}
+\item \href{https://matplotlib.org/stable/contents.html}{Dokumentasi Matplotlib}
+\item \href{https://networkx.org/documentation/}{Dokumentasi NetworkX}
+\item \href{https://geopandas.org/}{Dokumentasi GeoPandas}
+\end{itemize}
+\end{resource}
+
+%==============================================================================
+\section{Latihan}
+%==============================================================================
+
+\exgroup{Pemanasan}
+
+\begin{ex}{Margin Laba Baru}{}
+\stars{1}\label{ex:pulp-new-profit}
+Dalam contoh bauran produk, kenaikan harga meningkatkan laba Produk~1 dari \$3 menjadi \$5 per unit; Produk~2 tetap menghasilkan \$2, dan data sumber daya tidak berubah. Ubah kode PuLP pada contoh, selesaikan kembali, lalu laporkan rencana produksi dan laba yang baru. Kendala mana yang mengikat pada optimum baru? (Jawabannya bukan lagi $(20, 20)$.)
+\exrefs{Bagian~\ref{sec:pulp-product-mix}}
+\end{ex}
+
+\begin{ex}{Dari Matematika ke PuLP}{}
+\stars{1}\label{ex:pulp-translate}
+Terjemahkan program linear berikut menjadi kode PuLP dengan mengikuti pola pemodelan enam langkah, lalu selesaikan. Laporkan nilai tujuan optimal dan nilai ketiga variabel.
+\begin{align*}
+\max \quad & 4x_1 + 6x_2 + 5x_3 \\
+\st        & 2x_1 + x_2 + x_3 \leq 9 \\
+& x_1 + 3x_2 + 2x_3 \leq 14 \\
+& x_1 + x_2 + 2x_3 \leq 10 \\
+& x_1, x_2, x_3 \geq 0
+\end{align*}
+\exrefs{Bagian~\ref{sec:pulp-pattern}, Bagian~\ref{sec:pulp-product-mix}}
+\end{ex}
+
+\begin{ex}{Data Permintaan Baru}{}
+\stars{1}\label{ex:pulp-transport-data}
+Dalam contoh transportasi lengkap, permintaan pasar berubah: NYC kini memerlukan 100 unit, LA memerlukan 80 unit, dan Houston tetap memerlukan 70 unit. Persediaan dan biaya tidak berubah. Perbarui dictionary \texttt{demand}, selesaikan kembali, lalu laporkan biaya total dan rencana pengiriman yang baru. Data semula menghasilkan biaya total \$610; jelaskan dalam satu kalimat mengapa biaya baru lebih tinggi.
+\exrefs{Bagian~\ref{sec:pulp-transportation}}
+\end{ex}
+
+\exgroup{Soal Inti}
+
+\begin{ex}{Model Transportasi Tiga Pabrik}{}
+\stars{2}\label{ex:pulp-transport-model}
+Bangun model PuLP dari awal untuk masalah transportasi berikut. Pabrik A, B, dan C masing-masing dapat memasok 60, 70, dan 80 unit. Pasar M1, M2, dan M3 masing-masing memerlukan 50, 60, dan 70 unit. Biaya pengiriman per unit adalah:
+
+\begin{center}
+\begin{tabular}{l|ccc}
+ & M1 & M2 & M3 \\
+\hline
+A & 4 & 6 & 8 \\
+B & 5 & 4 & 3 \\
+C & 6 & 7 & 5 \\
+\end{tabular}
+\par\captionof{table}{Biaya pengiriman per unit dari pabrik ke pasar.}\label{tab:software-python-book1-tab02}% tab-num-auto
+
+\end{center}
+
+Gunakan dictionary berkunci tuple untuk data biaya dan \texttt{lpSum} untuk fungsi tujuan serta kendala. Laporkan biaya total minimum, rencana pengiriman, dan pabrik mana yang memiliki kapasitas tak terpakai.
+\exrefs{Bagian~\ref{sec:pulp-transportation}, Bagian~\ref{sec:pulp-lpsum}}
+\end{ex}
+
+\begin{ex}{Dual dan Slack dari Model yang Telah Diselesaikan}{}
+\stars{2}\label{ex:pulp-duals}
+Selesaikan contoh bauran produk semula, lalu jalankan:
+\begin{lstlisting}[language=Python]
+for name, c in prob.constraints.items():
+    print(name, "dual =", c.pi, "slack =", c.slack)
+\end{lstlisting}
+PuLP menyimpan nilai dual (harga bayangan) setiap kendala dalam \texttt{c.pi} dan slack-nya dalam \texttt{c.slack}.
+\begin{enumerate}
+\item Laporkan nilai dual dan slack dari masing-masing ketiga kendala.
+\item Salah satu kendala memiliki nilai dual nol. Berapa slack-nya, dan mengapa kombinasi itu masuk akal?
+\item Jika tersedia satu jam tenaga kerja tambahan, berapa kenaikan laba? Jawab hanya berdasarkan keluaran yang tercetak.
+\end{enumerate}
+\exrefs{Bagian~\ref{sec:pulp-product-mix}, Bab~\ref{ch:sensitivity}, Bab~\ref{ch:duality}}
+\end{ex}
+
+\begin{ex}{Sapuan Kendala Epsilon}{}
+\stars{2}\label{ex:pulp-epsilon}
+Bab multiobjektif (\OOMultiobjectiveToolsReference{}) memberikan listing PuLP yang menyapu batas pada tujuan sekunder untuk menelusuri garis depan Pareto. Gunakan listing tersebut sebagai templat bagi contoh bauran produk: perusahaan menginginkan laba tinggi, tetapi juga ingin membatasi jam mesin $2X_1 + 6X_2$. Untuk setiap batas $\varepsilon \in \{60, 90, 120, 150, 180\}$, maksimalkan laba dengan tunduk pada ketiga kendala sumber daya serta $2X_1 + 6X_2 \leq \varepsilon$. Cetak tabel $(\varepsilon, X_1, X_2, \text{laba})$ dan uraikan kompromi antara penggunaan mesin dan laba.
+\exrefs{\OOMultiobjectiveToolsReference{}, Bagian~\ref{sec:pulp-product-mix}}
+\end{ex}
+
+\exgroup{Konsep dan Keterkaitan}
+
+\begin{ex}{Kendala yang Tidak Ada}{}
+\stars{2}\label{ex:pulp-missing-constraint}
+Misalkan Anda membangun model bauran produk, tetapi lupa menambahkan kendala tenaga kerja (baris \texttt{prob += 4*x1 + 4*x2 <= 160, "Labor"} tidak ada).
+\begin{enumerate}
+\item Apakah PuLP menimbulkan galat, mencetak peringatan, atau menyelesaikan model tanpa keluhan? Buat perkiraan, lalu cobalah.
+\item Hitung solusi yang dikembalikan PuLP dan jelaskan mengapa labanya lebih tinggi daripada \$100. Dapatkah perusahaan benar-benar melaksanakan rencana tersebut?
+\item Berkaitan dengan itu, apa yang terjadi jika Anda mengetik \texttt{prob += 4*x1 + 4*x2} dan lupa menambahkan \texttt{<= 160}? Jelaskan mengapa kutu program ini bahkan lebih berbahaya daripada baris yang hilang.
+\end{enumerate}
+\exrefs{Bagian~\ref{sec:pulp-product-mix}}
+\end{ex}
+
+\begin{ex}{Meminimumkan atau Memaksimumkan?}{}
+\stars{2}\label{ex:pulp-sense}
+Seorang mahasiswa membuat masalah bauran produk dengan \texttt{LpProblem("Product\_Mix", LpMinimize)}, tetapi mempertahankan fungsi tujuan \texttt{3*x1 + 2*x2}.
+\begin{enumerate}
+\item Solusi dan nilai tujuan apa yang dikembalikan PuLP? Mengapa model ini tidak taklayak meskipun jawabannya tidak berguna?
+\item Berikan dua perbaikan satu baris yang berbeda: satu mengubah arah optimisasi dan satu mengubah fungsi tujuan. Pastikan dalam PuLP bahwa keduanya memberikan rencana optimal yang sama.
+\item Jelaskan mengapa hanya memeriksa \texttt{LpStatus[prob.status]} tidak akan menemukan kutu program ini, lalu usulkan pemeriksaan kewajaran yang dapat menemukannya.
+\end{enumerate}
+\exrefs{Bagian~\ref{sec:pulp-pattern}}
+\end{ex}
+
+\exgroup{Soal Tantangan}
+
+\begin{ex}{Laba sebagai Fungsi Tenaga Kerja}{}
+\stars{3}\label{ex:pulp-rhs-sweep}
+Tulis sebuah perulangan yang menyelesaikan contoh bauran produk untuk ketersediaan tenaga kerja $b \in \{100, 110, 120, \ldots, 190\}$ (data lain tidak berubah), mencatat laba optimal untuk setiap $b$, serta membuat plot atau tabel laba terhadap $b$.
+\begin{enumerate}
+\item Laporkan kesepuluh laba optimal. Kurva yang dihasilkan bersifat linear sepotong-sepotong dan cekung; tentukan nilai $b$ tempat kemiringannya berubah.
+\item Cetak nilai dual \texttt{c.pi} dari kendala tenaga kerja pada setiap $b$, lalu jelaskan kemiringan kurva menggunakan harga-harga bayangan tersebut.
+\item Mengapa kurva menjadi datar untuk $b$ yang besar? Jawab berdasarkan kendala mana yang mengikat dan hubungkan temuan Anda dengan bab analisis sensitivitas.
+\end{enumerate}
+\exrefs{Bagian~\ref{sec:pulp-product-mix}, Bab~\ref{ch:sensitivity}}
+\end{ex}
+
+\subsubsection*{Solusi Terpilih}
+
+\begin{solution}(Latihan~\ref{ex:pulp-translate})
+Dengan mengikuti pola pemodelan:
+\begin{lstlisting}[language=Python]
+from pulp import *
+
+prob = LpProblem("Three_Var", LpMaximize)
+x1 = LpVariable("X1", lowBound=0)
+x2 = LpVariable("X2", lowBound=0)
+x3 = LpVariable("X3", lowBound=0)
+
+prob += 4*x1 + 6*x2 + 5*x3, "Objective"
+prob += 2*x1 + x2 + x3 <= 9, "C1"
+prob += x1 + 3*x2 + 2*x3 <= 14, "C2"
+prob += x1 + x2 + 2*x3 <= 10, "C3"
+
+prob.solve()
+print(LpStatus[prob.status], value(prob.objective))
+for v in prob.variables():
+    print(v.name, "=", v.varValue)
+\end{lstlisting}
+Keluaran: status \texttt{Optimal}, nilai tujuan $35.0$, dengan $X_1 = 2.0$, $X_2 = 2.0$, $X_3 = 3.0$. Ketiga kendala mengikat ($4+2+3 = 9$, $2+6+6 = 14$, dan $2+2+6 = 10$).
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:pulp-duals})
+(1) Menjalankan perulangan pada model yang telah diselesaikan menghasilkan
+\begin{verbatim}
+Bahan: dual = 0.2, slack = -0.0
+Tenaga kerja: dual = 0.25, slack = -0.0
+Mesin: dual = -0.0, slack = 20.0
+\end{verbatim}
+(2) Kendala mesin memiliki nilai dual $0$ dan slack $20$: pada optimum $(20,20)$, penggunaan mesin adalah $2(20) + 6(20) = 160 < 180$. Kendala dengan sisa kapasitas tidak bernilai pada margin, sehingga harga bayangannya nol. Inilah kondisi kelonggaran komplementer: untuk setiap kendala, nilai dual atau slack (atau keduanya) harus nol.
+(3) Nilai dual tenaga kerja adalah $0.25$, sehingga satu jam tenaga kerja tambahan meningkatkan laba optimal sebesar \$0.25, dari \$100 menjadi \$100.25 (berlaku selama basis saat ini tetap optimal).
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:pulp-rhs-sweep})
+Dengan membungkus model dalam fungsi $b$ dan menjalankan perulangan, diperoleh:
+\begin{verbatim}
+b = 100: laba = 75.0   dual tenaga kerja = 0.75
+b = 110: laba = 82.5   dual tenaga kerja = 0.75
+b = 120: laba = 90.0   dual tenaga kerja = 0.75
+b = 130: laba = 92.5   dual tenaga kerja = 0.25
+b = 140: laba = 95.0   dual tenaga kerja = 0.25
+b = 150: laba = 97.5   dual tenaga kerja = 0.25
+b = 160: laba = 100.0  dual tenaga kerja = 0.25
+b = 170: laba = 102.0  dual tenaga kerja = 0.0
+b = 180: laba = 102.0  dual tenaga kerja = 0.0
+b = 190: laba = 102.0  dual tenaga kerja = 0.0
+\end{verbatim}
+(1) Kemiringan berubah pada $b = 120$ dan $b = 168$ (di antara titik tercetak 160 dan 170).
+(2) Kemiringan kurva laba pada setiap $b$ sama dengan harga bayangan kendala tenaga kerja. Untuk $b \leq 120$, hanya tenaga kerja yang membatasi produksi (rencananya $(b/4, 0)$) dan setiap jam tenaga kerja bernilai $0.75$; untuk $120 \leq b \leq 168$, bahan dan tenaga kerja sama-sama mengikat dan satu jam tambahan hanya bernilai $0.25$; kemiringan yang menurun inilah yang membuat kurva cekung.
+(3) Pada $b = 168$, rencana mencapai $(18, 24)$, tempat kendala bahan dan mesin mengikat sementara tenaga kerja tidak lagi langka. Setelah itu, tenaga kerja tambahan memiliki harga bayangan $0$ dan laba tetap \$102: membeli lebih banyak sumber daya yang tidak mengikat tidaklah bernilai. Inilah perilaku sensitivitas ruas kanan dari Bab~\ref{ch:sensitivity}, yang dihitung melalui enumerasi langsung.
+\end{solution}

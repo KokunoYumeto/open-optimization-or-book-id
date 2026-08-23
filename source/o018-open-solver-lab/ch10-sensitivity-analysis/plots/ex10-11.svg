@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="680" viewBox="0 0 960 680" role="img" lang="id" xml:lang="id-ID" aria-labelledby="title-10-11 desc-10-11">
+  <title id="title-10-11">Latihan 10.11 — tekukan dan harga bayangan</title>
+  <desc id="desc-10-11">Nilai optimal sama dengan b3 hingga b3 sama dengan 2, lalu tetap 2. Tekukan di 2 memiliki turunan kiri 1 dan turunan kanan 0.</desc>
+  <metadata>{&quot;alternative_text&quot;:{&quot;dual_shadow_price_set_at_kink&quot;:[0,1],&quot;left_derivative&quot;:1,&quot;right_derivative&quot;:0,&quot;value_formula&quot;:&quot;min(b3,2)&quot;},&quot;content_license&quot;:&quot;CC BY-SA 4.0&quot;,&quot;exercise&quot;:&quot;10.11&quot;,&quot;language&quot;:&quot;id-ID&quot;,&quot;renderer&quot;:&quot;o018-local-svg-1.0&quot;}</metadata>
+  <defs>
+    <style><![CDATA[
+      .axis{stroke:#334155;stroke-width:2}.grid{stroke:#e2e8f0;stroke-width:1}.segment{fill:none;stroke:#64748b;stroke-width:4}.active{fill:none;stroke:#176b87;stroke-width:6}.prediction{fill:none;stroke:#b42318;stroke-width:4;stroke-dasharray:10 7}.guide{stroke:#8b5e00;stroke-width:2;stroke-dasharray:7 6}.point{fill:#fff;stroke:#13293d;stroke-width:3}.emphasis{fill:#f4b942;stroke:#7c4a03;stroke-width:3}.actual{fill:#176b87;stroke:#0f4c5c;stroke-width:3}.label{font:600 20px 'DejaVu Sans',sans-serif;fill:#13293d}.small{font:16px 'DejaVu Sans',sans-serif;fill:#334155}.heading{font:700 27px 'DejaVu Sans',sans-serif;fill:#102a43}.note{font:17px 'DejaVu Sans',sans-serif;fill:#475569}
+    ]]></style>
+  </defs>
+  <rect width="960" height="680" fill="#fbfdff"/>
+  <text x="58" y="48" class="heading">Latihan 10.11 — tekukan dan harga bayangan</text>
+  <line class="axis" x1="92.00" y1="590.00" x2="690.00" y2="590.00"/>
+  <line class="axis" x1="92.00" y1="590.00" x2="92.00" y2="92.00"/>
+  <line class="grid" x1="92.00" y1="590.00" x2="92.00" y2="92.00"/>
+  <text class="small" x="84.00" y="616.00">0</text>
+  <line class="grid" x1="291.33" y1="590.00" x2="291.33" y2="92.00"/>
+  <text class="small" x="283.33" y="616.00">1</text>
+  <line class="grid" x1="490.67" y1="590.00" x2="490.67" y2="92.00"/>
+  <text class="small" x="482.67" y="616.00">2</text>
+  <line class="grid" x1="690.00" y1="590.00" x2="690.00" y2="92.00"/>
+  <text class="small" x="682.00" y="616.00">3</text>
+  <line class="grid" x1="92.00" y1="590.00" x2="690.00" y2="590.00"/>
+  <text class="small" x="49.00" y="596.00">0</text>
+  <line class="grid" x1="92.00" y1="424.00" x2="690.00" y2="424.00"/>
+  <text class="small" x="49.00" y="430.00">1</text>
+  <line class="grid" x1="92.00" y1="258.00" x2="690.00" y2="258.00"/>
+  <text class="small" x="49.00" y="264.00">2</text>
+  <line class="grid" x1="92.00" y1="92.00" x2="690.00" y2="92.00"/>
+  <text class="small" x="49.00" y="98.00">3</text>
+  <text class="label" x="702.00" y="597.00">b₃</text>
+  <text class="label" x="80.00" y="76.00">z*</text>
+  <polyline class="active" points="92.00,590.00 490.67,258.00"/>
+  <polyline class="segment" points="490.67,258.00 690.00,258.00"/>
+  <circle class="emphasis" cx="490.67" cy="258.00" r="8"/>
+  <text class="label" x="432.67" y="240.00">(2,2)</text>
+  <rect x="720" y="118" width="210" height="258" rx="14" fill="#fff7df" stroke="#d6a11d"/>
+  <text x="740" y="154" class="label">Tekukan degenerat</text>
+  <text x="740" y="195" class="small">turunan kiri = 1</text>
+  <text x="740" y="227" class="small">turunan kanan = 0</text>
+  <text x="740" y="277" class="note">Harga bayangan</text>
+  <text x="740" y="305" class="note">tidak tunggal:</text>
+  <text x="740" y="337" class="small">0 ≤ y₃ ≤ 1</text>
+  <text x="92" y="648" class="note">Satu angka tidak dapat mewakili kedua arah perubahan pada b₃=2.</text>
+</svg>

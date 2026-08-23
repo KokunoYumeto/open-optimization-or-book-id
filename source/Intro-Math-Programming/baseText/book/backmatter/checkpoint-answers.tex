@@ -1,0 +1,75 @@
+% Hak cipta 2026 oleh Robert Hildebrand
+%Karya ini dilisensikan berdasarkan
+%Lisensi Internasional Creative Commons Atribusi-BerbagiSerupa 4.0 (CC BY-SA 4.0)
+%Lihat http://creativecommons.org/licenses/by-sa/4.0/
+
+\chapter{Jawaban Cek Pemahaman}
+\label{ch:checkpoint-answers}
+
+Kotak Cek Pemahaman di sepanjang buku dimaksudkan untuk dikerjakan sebelum Anda melanjutkan membaca, dan tentu saja sebelum membaca lampiran ini. Cobalah menuliskan jawaban Anda terlebih dahulu; pembelajaran terjadi ketika Anda membandingkan rumusan Anda sendiri dengan jawaban yang diberikan.
+
+\bigskip
+
+\noindent\textbf{\Cref{lc:lp-assumptions}} (halaman~\pageref{lc:lp-assumptions}).
+Proporsionalitas, aditivitas, dan kepastian merupakan asumsi yang wajar di sini: laba dan penggunaan sumber daya berubah sebanding dengan produksi, sedangkan data diperlakukan sebagai sesuatu yang diketahui. Namun, keterbagian dilanggar: Anda tidak dapat mencetak $\tfrac23$ kaus. Program linier tetap merupakan model yang berguna: ketika jumlah produksi besar, pembulatan rencana pecahan hanya mengubah hasil sedikit; ketika jawaban bilangan bulat benar-benar penting, pemrograman bilangan bulat (Bagian~\ref{part:IntroIntegerProgramming}) menambahkan persyaratan itu secara eksplisit.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:how-many-optima}} (halaman~\pageref{lc:how-many-optima}).
+Pemaksimuman: tak hingga banyak. Garis level $4x+2y=c$ sejajar dengan batas kendala $2x+y=4$, sehingga maksimum $c=8$ dicapai di seluruh rusuk dari $(1.5,1)$ sampai $(2,0)$; setiap titik pada rusuk tersebut, bukan hanya kedua ujungnya, bersifat optimal. Peminimuman: tepat satu, yaitu titik asal $(0,0)$ dengan $c=0$.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:missing-index}} (halaman~\pageref{lc:missing-index}).
+Indeks $j$ muncul dalam $y_{ij}$ tetapi tidak pernah didefinisikan: penjumlahan berjalan atas $i$, sehingga $j$ tetap bebas. Pernyataan itu memerlukan kuantor, misalnya
+\(\sum_{i \in I} y_{ij} = 1 \ \text{untuk setiap } j \in J,\)
+yang bukan satu kendala, melainkan satu kendala \emph{untuk setiap} elemen $J$.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:bfs-nonzero}} (halaman~\pageref{lc:bfs-nonzero}).
+Paling banyak $m$, yaitu jumlah kendala persamaan yang bebas linier. Dalam solusi basis, $n-m$ variabel nonbasis ditetapkan sama dengan nol, sehingga hanya $m$ variabel basis yang dapat tak nol; dalam keadaan degenerat, beberapa variabel basis itu pun bernilai nol.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:ratio-test}} (halaman~\pageref{lc:ratio-test}).
+Uji rasio menentukan variabel basis mana yang mencapai nol \emph{lebih dahulu} ketika variabel masuk bertambah. Jika Anda justru melakukan pivot pada baris dengan rasio lebih besar, variabel masuk bertambah melampaui titik ketika variabel basis pada baris yang lebih ketat mencapai nol, sehingga variabel tersebut menjadi negatif. Aljabarnya tetap menghasilkan solusi basis, tetapi solusi itu melanggar kenegatifan-nol dan karenanya tidak layak.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:artificial-removal}} (halaman~\pageref{lc:artificial-removal}).
+Karena pada tahap ini variabel artifisial bersifat nonbasis dan bernilai nol, kendala asli dipenuhi tanpa bantuannya. Menghapus kolomnya tidak menyingkirkan solusi layak apa pun dari masalah asli; mempertahankannya hanya memungkinkan variabel tersebut masuk kembali ke basis, yang bertentangan dengan tujuannya.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:shadow-price-b1}} (halaman~\pageref{lc:shadow-price-b1}).
+Harga bayangannya adalah $1$: setiap jam tambahan meningkatkan laba optimal sebesar \$1. Nilai ini berlaku untuk $7 \le b_1 \le 10$ (yakni, $-2 \le \Delta \le 1$). Pada $b_1 = 10$, variabel basis $s_2$ mencapai nol dan basis optimal berubah; setelah titik itu, nilai marginal jam tambahan ditentukan oleh basis yang berbeda: harga sebesar \$1 tersebut tidak lagi berlaku.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:nonbasic-cost}} (halaman~\pageref{lc:nonbasic-cost}).
+Kedua pernyataan benar pada sisi yang berbeda dari rentang yang diperbolehkan. Selama biaya tereduksi yang diperturbasi tetap takpositif, solusi saat ini tetap optimal dan tidak berubah: variabel tetap berada di luar basis. Dorong koefisien melewati batas rentang dan biaya tereduksi menjadi positif: variabel itu sekarang memperbaiki fungsi tujuan, masuk ke basis, dan solusi optimal \emph{baru} (dengan variabel tersebut positif) mengambil alih. Pernyataan ``tidak pernah mengubah solusi saat ini'' hanya berlaku di dalam rentang; perubahan basis terjadi di batasnya.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:duality-certificate}} (halaman~\pageref{lc:duality-certificate}).
+Dengan $y_1 = 3,\, y_2 = 0$: syarat dominasi menjadi $3 + 0 = 3 \geq 3$ dan $3 + 0 = 3 \geq 2$, keduanya terpenuhi, sehingga memberi batas $4(3) + 5(0) = 12$. Dengan $y_1 = 1,\, y_2 = 1$: syarat $1 + 2 = 3 \geq 3$ dan $1 + 1 = 2 \geq 2$ terpenuhi, sehingga memberi batas $4(1) + 5(1) = 9$. Sertifikat kedua lebih baik (lebih kecil). Tidak ada sertifikat yang dapat memberi hasil lebih baik: $y = (1,1)$ optimal bagi dual dan, memang, optimum primal $(x_1, x_2) = (1,3)$ mencapai laba $9$. Karena itu, berdasarkan dualitas kuat, batas tersebut ketat.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:dual-forms}} (halaman~\pageref{lc:dual-forms}).
+Dualnya merupakan masalah \emph{pemaksimuman}, $\max\, \b^\top \y$ dengan syarat $A^\top \y \leq \c$, $\y \geq 0$. Variabel dual dibatasi tandanya ($y_i \geq 0$) karena kendala primal berupa pertidaksamaan, sedangkan kendala dual berupa pertidaksamaan ($\leq$) karena variabel primal dibatasi tandanya. Hanya persamaan dalam primal yang menghasilkan variabel dual bebas, dan hanya variabel primal bebas yang menghasilkan persamaan dual.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:cs-leftover}} (halaman~\pageref{lc:cs-leftover}).
+Kelonggaran komplementer memaksa harga bayangan tepung bernilai nol. Secara ekonomi: jika pada optimum tepung sudah tersisa, satu unit tepung tambahan tidak bernilai apa-apa; tepung itu hanya akan tetap tidak digunakan, sehingga nilai marginal sumber daya tersebut adalah \$0.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:graph-5cities}} (halaman~\pageref{lc:graph-5cities}).
+(a)~5 simpul dan 10 sisi: setiap pasangan kota terhubung, sehingga graf ini adalah graf lengkap $K_5$.
+(b)~Ya, graf tersebut terhubung.
+(c)~Derajat LA adalah 4.
+(d)~Seattle--Dallas--Atlanta merupakan sebuah \emph{lintasan}: tidak ada simpul yang berulang dan lintasan itu tidak kembali ke titik awalnya.
+(e)~LA--Chicago--Dallas--LA merupakan sebuah \emph{sirkuit}: rangkaian itu bermula dan berakhir pada simpul yang sama.

@@ -1,0 +1,26 @@
+Chapter 5 graphical-LP laboratory verification
+Authority commit: 1745df89b608899f66983834fa4ec8c8910d18ff
+Runtime: CPython 3.12.13; Pyomo 6.10.1; highspy/HiGHS 1.15.1; NumPy 2.5.2
+Date: 2026-08-22
+
+Replay 1:
+CHECK_OK results_bytes=30221 results_sha256=6d019b95409f1c1d78200a49ee9cf42754e5e698ad15d1eddac699ec23806e40 plots=18
+unittest: 18 passed, 0 failed, 0 errors
+
+Replay 2:
+CHECK_OK results_bytes=30221 results_sha256=6d019b95409f1c1d78200a49ee9cf42754e5e698ad15d1eddac699ec23806e40 plots=18
+unittest: 18 passed, 0 failed, 0 errors
+
+Validated contracts:
+- frozen source and localized witness hashes;
+- receipt builder and unit provenance test reject live-witness or visible-attribution byte/hash drift;
+- exact 17-exercise and 19-scenario scope;
+- model topology and expected-result coverage;
+- solver classifications, vertices, optimal segments, and unbounded rays;
+- corrected diet right-hand sides and exact optimum;
+- preserved Exercise 5.8 divergence, corrected and disclosed the Exercise 5.9 title/objective mismatch, and kept Exercise 5.11 fail-closed;
+- typed correction/provenance records;
+- 18 deterministic SVGs with title, description, id-ID language, and structured alternatives;
+- no proprietary or network imports;
+- complete component-rights manifest;
+- byte-identical in-memory generation and committed-output replay.

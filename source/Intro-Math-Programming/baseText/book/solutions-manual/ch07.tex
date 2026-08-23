@@ -1,0 +1,557 @@
+% ============================================================================
+% Solusi Bab 7: Metode Simpleks (bentuk kamus)
+% Sumber buku: part1-linear-programming/ch06-simplex/simplex-basis-driven.tex
+% Penomoran latihan mengikuti urutan \begin{ex} dalam file tersebut (17 latihan).
+% Semua pivot dan optimum diverifikasi dengan aljabar basis pecahan eksak dan
+% scipy.optimize.linprog, Juli 2026.
+% ============================================================================
+\section{Bab 7: Metode Simpleks}
+
+Tujuh belas latihan dalam bab ini mengikuti alur bab: enam soal pemanasan tentang
+bentuk standar dan kamus awal (7.1 sampai 7.6), tujuh penyelesaian simpleks inti
+dalam bentuk kamus termasuk dua masalah Big-M (7.7 sampai 7.13), tiga
+soal konseptual tentang kondisi optimalitas, geometri solusi basis
+layak, dan uji rasio (7.14 sampai 7.16), serta satu soal tantangan tentang
+degenerasi akibat hasil imbang pada uji rasio (7.17). Setiap pivot di bawah ini diverifikasi melalui
+aljabar basis dengan pecahan eksak dan setiap optimum dikonfirmasi dengan pemecah
+PL. Solusi yang dicetak dalam Solusi Terpilih buku (7.5, 7.6, 7.7,
+7.8, 7.9, 7.14, 7.17) direproduksi di sini dengan sedikit penyuntingan agar
+manual ini mandiri.
+
+\exsol{7.1}{Bentuk standar dan kamus pertama}{1}
+
+\textbf{(a)} Tambahkan variabel slack $s_1, s_2 \geq 0$:
+\[
+\begin{aligned}
+\max \quad & 4x + 5y \\
+\st \quad & x + 2y + s_1 = 12, \\
+& 3x + 2y + s_2 = 24, \\
+& x, y, s_1, s_2 \geq 0.
+\end{aligned}
+\]
+
+\textbf{(b)} Menyelesaikan setiap persamaan terhadap variabel slack-nya memberikan kamus awal
+pada basis slack $\{s_1, s_2\}$:
+\[
+\begin{aligned}
+\max \quad & z = 0 + 4x + 5y \\
+\st \quad & s_1 = 12 - x - 2y, \\
+& s_2 = 24 - 3x - 2y, \\
+& x, y, s_1, s_2 \geq 0.
+\end{aligned}
+\]
+
+\textbf{(c)} Menetapkan variabel nonbasis $x = y = 0$ memberikan solusi basis
+layak $(x, y, s_1, s_2) = (0, 0, 12, 24)$ dengan nilai fungsi objektif
+$z = 0$.
+
+\textbf{(d)} Berdasarkan pendakian tercuram, kita memilih koefisien objektif
+terbesar: $5 > 4$, sehingga $y$ masuk terlebih dahulu.
+
+\exsol{7.2}{Mengonversi ke Bentuk Standar}{1}
+
+Fungsi objektif sudah berupa maksimisasi dan kedua variabel sudah
+nonnegatif. Tambahkan variabel slack $s_1 \geq 0$ ke kendala $\leq$ dan
+kurangkan variabel surplus $s_2 \geq 0$ dari kendala $\geq$:
+\[
+\begin{aligned}
+\max \quad & 3x_1 - 5x_2 \\
+\st \quad & 2x_1 + x_2 + s_1 = 6, \\
+& -x_1 + 3x_2 - s_2 = 2, \\
+& x_1, x_2, s_1, s_2 \geq 0.
+\end{aligned}
+\]
+
+\exsol{7.3}{Mengonversi ke Bentuk Standar}{1}
+
+Negasikan fungsi objektif untuk mengonversi min menjadi maks: $\max\; x_1 - 2x_2 - x_3$.
+Karena $x_3$ bebas, tuliskan $x_3 = x_3^+ - x_3^-$ dengan
+$x_3^+, x_3^- \geq 0$. Kendala pertama sudah berupa persamaan; tambahkan
+slack $s_1 \geq 0$ ke kendala kedua:
+\[
+\begin{aligned}
+\max \quad & x_1 - 2x_2 - x_3^+ + x_3^- \\
+\st \quad & x_1 - x_2 + 2x_3^+ - 2x_3^- = 4, \\
+& -2x_1 + x_2 + s_1 = 1, \\
+& x_1, x_2, x_3^+, x_3^-, s_1 \geq 0.
+\end{aligned}
+\]
+
+\exsol{7.4}{Mengonversi ke Bentuk Standar}{1}
+
+Fungsi objektif sudah berupa maksimisasi. Tangani variabelnya: $x_1$
+bebas, sehingga tetapkan $x_1 = x_1^+ - x_1^-$ dengan $x_1^+, x_1^- \geq 0$;
+$x_2, x_3 \leq 0$, sehingga tetapkan $x_2 = -x_2'$ dan $x_3 = -x_3'$ dengan
+$x_2', x_3' \geq 0$. Setelah substitusi, fungsi objektif menjadi
+$5x_1^+ - 5x_1^- - x_2' + 3x_3'$. Kurangkan surplus $s_1 \geq 0$ dari
+kendala $\geq$; persamaan tetap apa adanya:
+\[
+\begin{aligned}
+\max \quad & 5x_1^+ - 5x_1^- - x_2' + 3x_3' \\
+\st \quad & x_1^+ - x_1^- - 2x_2' + x_3' - s_1 = 7, \\
+& -x_2' + 4x_3' = 3, \\
+& x_1^+, x_1^-, x_2', x_3', s_1 \geq 0.
+\end{aligned}
+\]
+
+\exsol{7.5}{Mengonversi ke Bentuk Standar}{1}
+
+(Solusi Terpilih Buku.) Negasikan fungsi objektif:
+$\max\; -2x_1 - 4x_2$. Kurangkan surplus $s_1 \geq 0$ dari kendala $\geq$
+dan tambahkan slack $s_2 \geq 0$ ke kendala $\leq$. Karena
+$x_1$ bebas, ganti $x_1 = x_1' - x_1''$ dengan
+$x_1', x_1'' \geq 0$:
+\[
+\begin{aligned}
+\max \quad & -2(x_1' - x_1'') - 4x_2 \\
+\st \quad & (x_1' - x_1'') + x_2 - s_1 = 3, \\
+& 2(x_1' - x_1'') - x_2 + s_2 = 5, \\
+& x_1', x_1'', x_2, s_1, s_2 \geq 0.
+\end{aligned}
+\]
+
+\exsol{7.6}{Mengonversi ke Bentuk Standar}{1}
+
+(Solusi Terpilih Buku.) Negasikan fungsi objektif:
+$\max\; -5y_1 + 3y_2 - y_3$. Tambahkan slack $s_1 \geq 0$ ke kendala $\leq$;
+persamaan tidak memerlukan variabel baru. Karena $y_3$
+bebas, ganti $y_3 = y_3' - y_3''$ dengan $y_3', y_3'' \geq 0$:
+\[
+\begin{aligned}
+\max \quad & -5y_1 + 3y_2 - (y_3' - y_3'') \\
+\st \quad & 2y_1 - y_2 + 3(y_3' - y_3'') = 7, \\
+& -y_1 + 4y_2 + s_1 = 5, \\
+& y_1, y_2, y_3', y_3'', s_1 \geq 0.
+\end{aligned}
+\]
+
+\exsol{7.7}{Pivot ke arah yang berbeda}{2}
+
+(Solusi Terpilih Buku, telah diverifikasi.) Memasukkan $x$ terlebih dahulu memerlukan satu
+pivot tambahan dibandingkan lintasan pendakian tercuram: total tiga pivot.
+
+\textbf{Pivot 1: $x$ masuk.} Uji rasio: $9/1 = 9$ ($s_1$),
+$16/2 = 8$ ($s_2$), $14/1 = 14$ ($s_3$); minimumnya $8$, sehingga $s_2$
+keluar. Menyelesaikan baris $s_2$ terhadap $x$ dan menyubstitusikannya:
+\[
+\begin{aligned}
+\max\quad & z = 16 + 2y - s_2 \\
+\st\quad & s_1 = 1 - \tfrac12 y + \tfrac12 s_2, \\
+& x = 8 - \tfrac12 y - \tfrac12 s_2, \\
+& s_3 = 6 - \tfrac32 y + \tfrac12 s_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 2: $y$ masuk} (satu-satunya koefisien positif). Rasio:
+$1/\tfrac12 = 2$ ($s_1$), $8/\tfrac12 = 16$ ($x$), $6/\tfrac32 = 4$
+($s_3$); sehingga $s_1$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = 20 - 4s_1 + s_2 \\
+\st\quad & y = 2 - 2s_1 + s_2, \\
+& x = 7 + s_1 - s_2, \\
+& s_3 = 3 + 3s_1 - s_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 3: $s_2$ masuk} (koefisien $+1$). Baris $y$ memuat $s_2$
+dengan koefisien positif, sehingga tidak memberikan batas; rasio $7/1 = 7$
+($x$) dan $3/1 = 3$ ($s_3$), sehingga $s_3$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = 23 - s_1 - s_3 \\
+\st\quad & x = 4 - 2s_1 + s_3, \\
+& s_2 = 3 + 3s_1 - s_3, \\
+& y = 5 + s_1 - s_3.
+\end{aligned}
+\]
+Semua koefisien objektif negatif, sehingga kamus ini optimal:
+$(x, y) = (4, 5)$ dengan $z^* = 23$, yaitu optimum yang sama yang dicapai lintasan
+pendakian tercuram dalam dua pivot.
+
+\exsol{7.8}{Latihan Metode Simpleks}{2}
+
+(Solusi Terpilih Buku, telah diverifikasi.) Kamus awal:
+\[
+\begin{aligned}
+\max\quad & z = 5x_1 + 3x_2 \\
+\st\quad & s_1 = 12 - x_1 - x_2, \\
+& s_2 = 16 - 2x_1 - x_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 1: $x_1$ masuk} (koefisien $5$). Rasio: $12/1 = 12$ dan
+$16/2 = 8$, sehingga $s_2$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = 40 + \tfrac12 x_2 - \tfrac52 s_2 \\
+\st\quad & x_1 = 8 - \tfrac12 x_2 - \tfrac12 s_2, \\
+& s_1 = 4 - \tfrac12 x_2 + \tfrac12 s_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 2: $x_2$ masuk.} Rasio: $8/\tfrac12 = 16$ dan
+$4/\tfrac12 = 8$, sehingga $s_1$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = 44 - s_1 - 2s_2 \\
+\st\quad & x_2 = 8 - 2s_1 + s_2, \\
+& x_1 = 4 + s_1 - s_2.
+\end{aligned}
+\]
+Optimal: $(x_1, x_2) = (4, 8)$ dengan $z^* = 44$ (kedua kendala ketat).
+
+\exsol{7.9}{Latihan Metode Simpleks}{2}
+
+(Solusi Terpilih Buku, telah diverifikasi.) Kamus awal:
+\[
+\begin{aligned}
+\max\quad & z = 5x_1 + 8x_2 \\
+\st\quad & s_1 = 30 - x_1 - 2x_2, \\
+& s_2 = 30 - 3x_1 - x_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 1: $x_2$ masuk} ($8 > 5$). Rasio: $30/2 = 15$ dan
+$30/1 = 30$, sehingga $s_1$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = 120 + x_1 - 4s_1 \\
+\st\quad & x_2 = 15 - \tfrac12 x_1 - \tfrac12 s_1, \\
+& s_2 = 15 - \tfrac52 x_1 + \tfrac12 s_1.
+\end{aligned}
+\]
+
+\textbf{Pivot 2: $x_1$ masuk.} Rasio: $15/\tfrac12 = 30$ dan
+$15/\tfrac52 = 6$, sehingga $s_2$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = 126 - \tfrac{19}{5} s_1 - \tfrac25 s_2 \\
+\st\quad & x_1 = 6 + \tfrac15 s_1 - \tfrac25 s_2, \\
+& x_2 = 12 - \tfrac35 s_1 + \tfrac15 s_2.
+\end{aligned}
+\]
+Optimal: $(x_1, x_2) = (6, 12)$ dengan $z^* = 126$.
+
+\exsol{7.10}{Latihan Metode Simpleks}{2}
+
+Tambahkan slack $s_1, s_2$:
+\[
+\begin{aligned}
+\max\quad & z = 2x_1 + 3x_2 + x_3 \\
+\st\quad & s_1 = 32 - 4x_1 - 2x_2 - 5x_3, \\
+& s_2 = 28 - 2x_1 - 4x_2 - 3x_3.
+\end{aligned}
+\]
+
+\textbf{Pivot 1: $x_2$ masuk} (koefisien terbesar $3$). Rasio:
+$32/2 = 16$ dan $28/4 = 7$, sehingga $s_2$ keluar. Dengan
+$x_2 = 7 - \tfrac12 x_1 - \tfrac34 x_3 - \tfrac14 s_2$:
+\[
+\begin{aligned}
+\max\quad & z = 21 + \tfrac12 x_1 - \tfrac54 x_3 - \tfrac34 s_2 \\
+\st\quad & s_1 = 18 - 3x_1 - \tfrac72 x_3 + \tfrac12 s_2, \\
+& x_2 = 7 - \tfrac12 x_1 - \tfrac34 x_3 - \tfrac14 s_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 2: $x_1$ masuk} (koefisien $\tfrac12$). Rasio:
+$18/3 = 6$ dan $7/\tfrac12 = 14$, sehingga $s_1$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = 24 - \tfrac{11}{6} x_3 - \tfrac16 s_1 - \tfrac23 s_2 \\
+\st\quad & x_1 = 6 - \tfrac76 x_3 - \tfrac13 s_1 + \tfrac16 s_2, \\
+& x_2 = 4 - \tfrac16 x_3 + \tfrac16 s_1 - \tfrac13 s_2.
+\end{aligned}
+\]
+Semua koefisien objektif negatif, sehingga solusi ini optimal:
+$(x_1, x_2, x_3) = (6, 4, 0)$ dengan $z^* = 24$; kedua kendala ketat
+dan $x_3$ tidak pernah masuk.
+
+\exsol{7.11}{Latihan Metode Simpleks}{2}
+
+Tambahkan slack $s_1, s_2, s_3$:
+\[
+\begin{aligned}
+\max\quad & z = 6x_1 + 8x_2 + 5x_3 \\
+\st\quad & s_1 = 1800 - 4x_1 - x_2 - x_3, \\
+& s_2 = 2000 - 2x_1 - 2x_2 - x_3, \\
+& s_3 = 3200 - 4x_1 - 2x_2 - x_3.
+\end{aligned}
+\]
+
+\textbf{Pivot 1: $x_2$ masuk} (koefisien $8$). Rasio:
+$1800/1 = 1800$, $2000/2 = 1000$, $3200/2 = 1600$, sehingga $s_2$ keluar. Dengan
+$x_2 = 1000 - x_1 - \tfrac12 x_3 - \tfrac12 s_2$:
+\[
+\begin{aligned}
+\max\quad & z = 8000 - 2x_1 + x_3 - 4s_2 \\
+\st\quad & s_1 = 800 - 3x_1 - \tfrac12 x_3 + \tfrac12 s_2, \\
+& x_2 = 1000 - x_1 - \tfrac12 x_3 - \tfrac12 s_2, \\
+& s_3 = 1200 - 2x_1 + s_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 2: $x_3$ masuk} (koefisien $+1$). Baris $s_3$ tidak
+memuat $x_3$; rasio $800/\tfrac12 = 1600$ ($s_1$) dan
+$1000/\tfrac12 = 2000$ ($x_2$), sehingga $s_1$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = 9600 - 8x_1 - 2s_1 - 3s_2 \\
+\st\quad & x_3 = 1600 - 6x_1 - 2s_1 + s_2, \\
+& x_2 = 200 + 2x_1 + s_1 - s_2, \\
+& s_3 = 1200 - 2x_1 + s_2.
+\end{aligned}
+\]
+Optimal: $(x_1, x_2, x_3) = (0, 200, 1600)$ dengan $z^* = 9600$; dua
+kendala pertama ketat, kendala ketiga memiliki slack $s_3 = 1200$, dan $x_1$
+tetap tidak masuk ke solusi optimal.
+
+\exsol{7.12}{Latihan Metode Simpleks (Big-M)}{2}
+
+Konversikan minimisasi menjadi maksimisasi, $\max\ z = -4x_1 - 6x_2 - 7x_3$,
+kurangkan variabel surplus $e_1, e_2 \geq 0$, dan, karena titik asal
+tidak layak, tambahkan variabel artifisial $a_1, a_2 \geq 0$ yang dikenai penalti $-M$
+dalam fungsi objektif. Menyelesaikan terhadap $a_1, a_2$ memberikan kamus awal
+\[
+\begin{aligned}
+\max\quad & z = -50M + (2M - 4)x_1 + (3M - 6)x_2 + (3M - 7)x_3 - M e_1 - M e_2 \\
+\st\quad & a_1 = 20 - x_1 - x_2 - 2x_3 + e_1, \\
+& a_2 = 30 - x_1 - 2x_2 - x_3 + e_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 1: $x_2$ masuk} (koefisien terbesar $3M - 6$). Rasio:
+$20/1 = 20$ ($a_1$) dan $30/2 = 15$ ($a_2$), sehingga $a_2$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = (-90 - 5M) + \left(\tfrac{M}{2} - 1\right)x_1
+  + \left(\tfrac{3M}{2} - 4\right)x_3 - M e_1
+  + \left(\tfrac{M}{2} - 3\right)e_2 + \left(3 - \tfrac{3M}{2}\right)a_2 \\
+\st\quad & a_1 = 5 - \tfrac12 x_1 - \tfrac32 x_3 + e_1 - \tfrac12 e_2 + \tfrac12 a_2, \\
+& x_2 = 15 - \tfrac12 x_1 - \tfrac12 x_3 + \tfrac12 e_2 - \tfrac12 a_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 2: $x_3$ masuk} (koefisien $\tfrac{3M}{2} - 4$, yang
+terbesar). Rasio: $5/\tfrac32 = \tfrac{10}{3}$ ($a_1$) dan
+$15/\tfrac12 = 30$ ($x_2$), sehingga $a_1$ keluar. Kedua variabel artifisial sekarang
+merupakan variabel nonbasis dan dapat dihapus:
+\[
+\begin{aligned}
+\max\quad & z = -\tfrac{310}{3} + \tfrac13 x_1 - \tfrac83 e_1 - \tfrac53 e_2 \\
+\st\quad & x_3 = \tfrac{10}{3} - \tfrac13 x_1 + \tfrac23 e_1 - \tfrac13 e_2, \\
+& x_2 = \tfrac{40}{3} - \tfrac13 x_1 - \tfrac13 e_1 + \tfrac23 e_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 3: $x_1$ masuk} (koefisien $\tfrac13$). Rasio:
+$\tfrac{10}{3}/\tfrac13 = 10$ ($x_3$) dan $\tfrac{40}{3}/\tfrac13 = 40$
+($x_2$), sehingga $x_3$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = -100 - x_3 - 2e_1 - 2e_2 \\
+\st\quad & x_1 = 10 - 3x_3 + 2e_1 - e_2, \\
+& x_2 = 10 + x_3 - e_1 + e_2.
+\end{aligned}
+\]
+Optimal: $(x_1, x_2, x_3) = (10, 10, 0)$ dengan $\max z = -100$, yaitu,
+biaya minimum $z^* = 100$; kedua kendala $\geq$ ketat.
+
+\begin{qaflag}
+Catatan tentang kerumitan: dengan aturan masuk koefisien terbesar bawaan buku,
+penyelesaian Big-M ini memerlukan tiga pivot dan melalui pecahan dengan penyebut tiga,
+yang berada tepat di batas perhitungan manual. Terdapat rute yang lebih singkat:
+memasukkan $x_1$ terlebih dahulu (koefisiennya $2M - 4$ juga positif) langsung mendorong
+$a_1$ keluar dan mencapai optimum yang sama hanya dalam dua pivot.
+Pengajar mungkin ingin menunjukkan lintasan tersebut kepada mahasiswa, atau buku dapat
+menambahkan petunjuk seperti ``memasukkan $x_1$ terlebih dahulu mempersingkat perhitungan.''
+Latihan itu sendiri benar sebagaimana dinyatakan.
+\end{qaflag}
+
+\exsol{7.13}{Latihan Metode Simpleks (Big-M)}{2}
+
+Konversikan menjadi $\max\ z = -40x_1 - 48x_2 - 30x_3$, kurangkan surplus
+$e_1, e_2 \geq 0$, dan tambahkan variabel artifisial berpenalti $a_1, a_2 \geq 0$:
+\[
+\begin{aligned}
+\max\quad & z = -55M + (3M - 40)x_1 + (5M - 48)x_2 + (3M - 30)x_3 - M e_1 - M e_2 \\
+\st\quad & a_1 = 25 - 2x_1 - 2x_2 - x_3 + e_1, \\
+& a_2 = 30 - x_1 - 3x_2 - 2x_3 + e_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 1: $x_2$ masuk} (koefisien terbesar $5M - 48$). Rasio:
+$25/2 = 12.5$ ($a_1$) dan $30/3 = 10$ ($a_2$), sehingga $a_2$ keluar:
+\[
+\begin{aligned}
+\max\quad & z = (-480 - 5M) + \left(\tfrac{4M}{3} - 24\right)x_1
+  + \left(2 - \tfrac{M}{3}\right)x_3 - M e_1
+  + \left(\tfrac{2M}{3} - 16\right)e_2 + \left(16 - \tfrac{5M}{3}\right)a_2 \\
+\st\quad & a_1 = 5 - \tfrac43 x_1 + \tfrac13 x_3 + e_1 - \tfrac23 e_2 + \tfrac23 a_2, \\
+& x_2 = 10 - \tfrac13 x_1 - \tfrac23 x_3 + \tfrac13 e_2 - \tfrac13 a_2.
+\end{aligned}
+\]
+
+\textbf{Pivot 2: $x_1$ masuk} ($\tfrac{4M}{3} - 24$ mengalahkan
+$\tfrac{2M}{3} - 16$). Rasio: $5/\tfrac43 = \tfrac{15}{4}$ ($a_1$) dan
+$10/\tfrac13 = 30$ ($x_2$), sehingga $a_1$ keluar. Kedua variabel artifisial sekarang
+merupakan variabel nonbasis; setelah menghapusnya,
+\[
+\begin{aligned}
+\max\quad & z = -570 - 4x_3 - 18e_1 - 4e_2 \\
+\st\quad & x_1 = \tfrac{15}{4} + \tfrac14 x_3 + \tfrac34 e_1 - \tfrac12 e_2, \\
+& x_2 = \tfrac{35}{4} - \tfrac34 x_3 - \tfrac14 e_1 + \tfrac12 e_2.
+\end{aligned}
+\]
+Semua koefisien negatif, sehingga solusi ini optimal hanya setelah dua pivot:
+$(x_1, x_2, x_3) = \left(\tfrac{15}{4}, \tfrac{35}{4}, 0\right)$ dengan
+biaya minimum $z^* = 40 \cdot \tfrac{15}{4} + 48 \cdot \tfrac{35}{4}
+= 150 + 420 = 570$. Kedua kendala $\geq$ ketat.
+
+\begin{qaflag}
+Keputusan yang perlu dipertimbangkan: solusi optimal berbentuk pecahan
+$\left(\tfrac{15}{4}, \tfrac{35}{4}\right)$ meskipun semua datanya
+bilangan bulat. Penyelesaiannya singkat (dua pivot) dan nilai optimal $570$
+rapi, sehingga ini dapat diterima, tetapi jika jawaban bilangan bulat lebih disukai,
+mengubah ruas kanan pertama dari $25$ menjadi $24$ menghasilkan
+optimum bulat $(3, 9, 0)$ dengan biaya $552$ (telah diverifikasi).
+\end{qaflag}
+
+\exsol{7.14}{Optimalitas Kamus}{2}
+
+(Solusi Terpilih Buku, telah diverifikasi.) Solusi basis dibaca dari
+suku konstanta: $x_2 = 1$, $x_4 = 2$, $x_3 = b$, dengan
+$x_1 = x_5 = x_6 = 0$.
+\begin{enumerate}
+\item \textbf{Layak dan optimal:} kelayakan mengharuskan setiap suku konstanta
+nonnegatif, sehingga $b \geq 0$; optimalitas mengharuskan tidak ada arah
+perbaikan, sehingga $c_1 \leq 0$, $c_5 \leq 0$, $c_6 \leq 0$. Nilai
+$a_1, a_2$ boleh sembarang.
+\item \textbf{Tidak layak:} $b < 0$ (konstanta $1$ dan $2$
+sudah nonnegatif, sehingga hanya baris $x_3$ yang dapat gagal).
+\item \textbf{Degenerat:} $b = 0$, sehingga variabel basis $x_3$
+bernilai nol (kelayakan bagian lainnya otomatis).
+\item \textbf{Layak dan tak terbatas:} kita memerlukan $b \geq 0$ bersama suatu
+variabel masuk yang koefisien objektifnya positif dan peningkatannya
+tidak pernah menurunkan variabel basis apa pun. Variabel $x_5$ muncul
+dengan koefisien tetap $-1$ pada baris $x_3$ dan $x_6$ dengan $-1$ pada kedua
+baris $x_4$ dan $x_3$, sehingga uji rasio selalu menghentikannya. Hanya $x_1$
+yang dapat membuktikan ketakterbatasan: koefisien kolomnya adalah $+1$, $+1$, dan
+$-a_2$, sehingga kondisinya adalah $c_1 > 0$ dan $a_2 \leq 0$ (dengan $b \geq 0$
+untuk kelayakan).
+\end{enumerate}
+
+\exsol{7.15}{Solusi Basis Layak}{2}
+
+\begin{qaflag}
+Perbaikan buku telah diterapkan: dalam sumber, semua kecuali satu kendala latihan ini
+telah dikomentari, dan satu kendala yang terlihat
+($-x_1 + x_2 \leq 2$) tidak sesuai dengan gambar. Sistem kendala
+direkonstruksi tepat dari gambar (kelima titik sudut berlabel semuanya cocok:
+$A = (2,1)$, $B = (5,1)$, $C = (7,3)$, $D = (0, \tfrac{16}{3})$,
+$E = (0, \tfrac{7}{3})$) dan pernyataan buku diperbaiki menjadi
+\[
+\max\ 2x_1 + x_2 \quad \st\quad 2x_1 + 3x_2 \geq 7,\ \
+x_2 \geq 1,\ \ x_1 - x_2 \leq 4,\ \ x_1 + 3x_2 \leq 16,\ \ x_1, x_2 \geq 0,
+\]
+dengan variabel surplus $s_1, s_2$ pada kedua kendala $\geq$ dan slack
+$s_3, s_4$ pada kedua kendala $\leq$. Solusi di bawah ini sesuai dengan
+pernyataan yang telah diperbaiki.
+\end{qaflag}
+
+\textbf{(a)} Titik sudut $D = (0, \tfrac{16}{3})$ adalah perpotongan
+batas $x_1 = 0$ dan $x_1 + 3x_2 = 16$ (yaitu, $s_4 = 0$). Jadi,
+variabel nonbasis adalah $N = \{x_1, s_4\}$ dan variabel basis adalah
+$B = \{x_2, s_1, s_2, s_3\}$, dengan nilai
+\[
+x_2 = \tfrac{16}{3}, \qquad s_1 = 9, \qquad s_2 = \tfrac{13}{3},
+\qquad s_3 = \tfrac{28}{3}.
+\]
+
+\textbf{(b)} Bergerak dari $D$ ke $C = (7, 3)$ berarti menempuh sisi
+$s_4 = 0$ ketika $x_1$ meningkat dari $0$: jadi \emph{$x_1$ masuk}. Pada $C$,
+batas $x_1 - x_2 = 4$ menjadi ketat, yaitu, $s_3 = 0$: jadi
+\emph{$s_3$ keluar}. Ini sesuai dengan uji rasio dalam kamus di
+$D$, ketika peningkatan $x_1$ (dengan $s_4 = 0$) mendorong
+$s_3 = \tfrac{28}{3} - \tfrac43 x_1$ ke nol terlebih dahulu, pada $x_1 = 7$,
+sebelum $s_2$ (pada $x_1 = 13$) atau $x_2$ (pada $x_1 = 16$).
+
+\exsol{7.16}{Apa yang dilindungi oleh uji rasio}{2}
+
+\textbf{(a)} Melakukan pivot pada baris $s_2$ berarti menyelesaikan
+$s_2 = 9 - \tfrac32 x + \tfrac12 s_3$ terhadap $x$, sehingga memberikan
+$x = 6 - \tfrac23 s_2 + \tfrac13 s_3$, lalu menyubstitusikannya ke semua tempat:
+\[
+\begin{aligned}
+\max\quad & z = 24 - \tfrac13 s_2 - \tfrac43 s_3 \\
+\st\quad & s_1 = -1 + \tfrac13 s_2 + \tfrac13 s_3, \\
+& x = 6 - \tfrac23 s_2 + \tfrac13 s_3, \\
+& y = 4 + \tfrac13 s_2 - \tfrac23 s_3.
+\end{aligned}
+\]
+Solusi basisnya adalah $(x, y, s_1, s_2, s_3) = (6, 4, -1, 0, 0)$: variabel
+basis $s_1$ negatif, sehingga kamus tidak layak. (Memang,
+titik $(x, y) = (6, 4)$ melanggar $x + y \leq 9$.) Perhatikan bahwa
+``nilai fungsi objektif'' $24$ melebihi optimum sebenarnya $23$ justru karena
+titik tersebut berada di luar daerah layak.
+
+\textbf{(b)} Ketika variabel masuk $x$ meningkat, setiap variabel basis
+dengan koefisien $x$ negatif menurun menuju nol; rasio setiap
+baris mengukur seberapa jauh $x$ dapat bergerak sebelum variabel basis pada baris itu mencapai
+nol. Rasio minimum adalah nilai pemblokir pertama. Melakukan pivot pada
+baris lain mendorong $x$ melampaui pemblokir pertama tersebut, sehingga variabel basis yang
+memiliki rasio minimum (di sini $s_1$, terblokir pada $x = 4$) terdorong
+menjadi negatif. Aturan rasio minimum tepat melindungi nonnegativitas
+semua variabel basis yang tetap berada dalam basis.
+
+\exsol{7.17}{Hasil imbang dalam uji rasio memaksa degenerasi}{3}
+
+(Solusi Terpilih Buku, telah diverifikasi, dengan bagian (c) dinyatakan ulang.)
+
+\textbf{(a)} Kamus awalnya adalah
+\[
+\begin{aligned}
+\max\quad & z = 2x + y \\
+\st\quad & s_1 = 4 - x - y, \\
+& s_2 = 8 - 2x - y.
+\end{aligned}
+\]
+Dengan $x$ masuk (dan $y = 0$), uji rasio memberikan $4/1 = 4$ untuk $s_1$
+dan $8/2 = 4$ untuk $s_2$: terjadi hasil imbang pada $x = 4$.
+
+\textbf{(b)} Biarkan $s_1$ keluar. Maka $x = 4 - y - s_1$ dan
+\[
+\begin{aligned}
+\max\quad & z = 8 - y - 2s_1 \\
+\st\quad & x = 4 - y - s_1, \\
+& s_2 = 0 + y + 2s_1.
+\end{aligned}
+\]
+Variabel basis $s_2$ bernilai $0$: kamus tersebut degenerat. Kamus ini
+juga optimal (kedua biaya tereduksi negatif), dengan $(x, y) = (4, 0)$ dan
+$z^* = 8$.
+
+\textbf{(c)} Sebagai gantinya, biarkan $s_2$ keluar. Maka
+$x = 4 - \tfrac12 y - \tfrac12 s_2$ dan
+\[
+\begin{aligned}
+\max\quad & z = 8 + 0 \cdot y - s_2 \\
+\st\quad & x = 4 - \tfrac12 y - \tfrac12 s_2, \\
+& s_1 = 0 - \tfrac12 y + \tfrac12 s_2.
+\end{aligned}
+\]
+Sekali lagi, suatu variabel basis ($s_1$) sama dengan nol: degenerat. Biaya tereduksi
+$y$ tepat $0$. Biaya tereduksi nol biasanya menandakan optimum alternatif
+sepanjang sisi yang bersesuaian; di sini baris degenerat
+$s_1 = 0 - \tfrac12 y + \cdots$ langsung memblokir $y$, sehingga
+\emph{solusi} optimal $(4, 0)$ unik, tetapi terdapat beberapa
+\emph{basis} optimal yang mendeskripsikannya. Ini merupakan ciri khas degenerasi.
+
+\textbf{(d)} Jika dua baris memiliki rasio minimum yang sama, variabel masuk
+berhenti pada nilai ketika kedua variabel basis yang bersesuaian mencapai nol
+secara bersamaan. Hanya salah satunya yang keluar dari basis; yang lain tetap
+menjadi variabel basis dengan nilai nol, sehingga kamus baru pasti memiliki variabel basis
+yang sama dengan nol, yang merupakan definisi degenerasi. Sebuah
+konstruksi: $\max\ x + y$ dengan kendala $x \leq 3$, $x + 2y \leq 3$,
+$x, y \geq 0$; memasukkan $x$ memberikan rasio $3/1 = 3$ dan $3/1 = 3$, yaitu hasil imbang.

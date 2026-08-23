@@ -1,0 +1,153 @@
+\section{Aritmetika Matriks}
+
+\begin{outcome}
+\begin{enumerate}
+\item[A.] Melakukan operasi matriks berupa penjumlahan matriks, perkalian
+skalar, transpos, dan perkalian matriks. Mengidentifikasi kapan
+operasi-operasi ini tidak terdefinisi. Merepresentasikan operasi-operasi ini berdasarkan
+entri-entri suatu matriks.
+
+\item[B.] Membuktikan sifat-sifat aljabar untuk penjumlahan matriks, perkalian
+skalar, transpos, dan perkalian matriks. Menerapkan sifat-sifat ini
+untuk memanipulasi ekspresi aljabar yang melibatkan matriks.
+
+\item[C.] Menghitung invers suatu matriks menggunakan operasi baris, dan membuktikan identitas yang melibatkan
+invers matriks.
+
+\item[E.] Menyelesaikan sistem linear menggunakan aljabar matriks.
+
+\item[F.] Menggunakan perkalian dengan matriks elementer untuk menerapkan operasi baris. 
+
+\item[G.] Menuliskan suatu matriks sebagai hasil kali matriks-matriks elementer.
+
+\end{enumerate}
+\end{outcome}
+
+Anda kini telah menyelesaikan sistem persamaan dengan menuliskannya dalam bentuk
+matriks diperbesar, lalu melakukan operasi baris pada matriks diperbesar tersebut. Ternyata,
+matriks penting bukan hanya untuk sistem persamaan, melainkan juga dalam banyak penerapan.
+
+Ingat bahwa sebuah \textbf{matriks}
+\index{matriks} adalah susunan bilangan berbentuk persegi panjang. Bentuk jamaknya juga
+disebut \textbf{matriks}. Sebagai contoh, berikut adalah sebuah matriks.
+\begin{equation}
+\leftB
+\begin{array}{rrrr}
+1 & 2 & 3 & 4 \\
+5 & 2 & 8 & 7 \\
+6 & -9 & 1 & 2
+\end{array}
+\rightB
+\label{matrix}
+\end{equation}
+Ingat bahwa ukuran atau dimensi suatu matriks didefinisikan sebagai $m\times n$, dengan $m$ sebagai
+banyaknya baris dan $n$ sebagai banyaknya kolom. Matriks di atas adalah matriks
+$3\times 4$ karena memiliki tiga baris dan empat kolom. Anda dapat mengingat bahwa kolom-kolom
+menyerupai tiang pada kuil Yunani. Kolom berdiri tegak, sedangkan baris membentang
+mendatar seperti alur yang dibuat traktor di ladang yang telah dibajak.
+
+Saat menyatakan ukuran matriks, banyaknya baris selalu ditulis
+sebelum banyaknya kolom. Anda
+dapat mengingat urutan ini dengan frasa \textbf{B}aris sebelum \textbf{K}olom. 
+
+Perhatikan definisi berikut.
+
+\begin{definition}{Matriks Persegi}\label{def:squarematrix}
+Matriks $A$ yang berukuran $n \times n$ disebut \textbf{matriks persegi} \index{matriks!persegi}.
+Dengan kata lain, $A$ adalah matriks persegi jika banyaknya baris sama dengan
+banyaknya kolom.
+\end{definition}
+
+Sekarang kita memperkenalkan beberapa notasi yang khusus digunakan untuk matriks. Kita menyatakan kolom-kolom matriks $A$
+dengan $A_{j}$ sebagai berikut
+\begin{equation*}
+A = 
+\leftB
+\begin{array}{rrrr}
+A_{1} & A_{2} & \cdots & A_{n}
+\end{array}
+\rightB
+\end{equation*}
+Dengan demikian, $A_{j}$ adalah kolom $j$ dari $A$, jika dihitung dari kiri ke kanan. 
+
+Unsur-unsur individual dalam matriks disebut \textbf{entri} \index{matriks!entri matriks} atau \textbf{komponen} \index{matriks!komponen matriks} dari $A$. Unsur-unsur matriks
+diidentifikasi berdasarkan posisinya. $\mathbf{\left( i, j \right)}$\textbf{-entri} suatu matriks adalah entri
+pada baris $i$ dan kolom $j$. Sebagai contoh, pada matriks \ref{matrix} di atas, $8$ berada di
+posisi $\left(2,3 \right)$ (dan disebut entri-$\left(2,3 \right)$) karena berada pada baris kedua dan kolom ketiga. 
+
+Agar jelas matriks mana yang sedang dibahas, kita
+akan menyatakan entri pada baris $i$ dan kolom $j$ dari matriks $A$ dengan $a_{ij}$. Dengan demikian, kita dapat menuliskan $A$ berdasarkan entri-entrinya,
+sebagai $A= \leftB a_{ij} \rightB$. Dengan menggunakan notasi ini pada matriks dalam \ref{matrix},
+$a_{23}=8, a_{32}=-9, a_{12}=2,$ dan seterusnya.
+
+Ada berbagai operasi yang dilakukan pada matriks-matriks dengan ukuran yang sesuai.
+Matriks dapat dijumlahkan dengan dan dikurangkan dari matriks lain,
+dikalikan dengan suatu skalar, dan dikalikan dengan matriks lain. Kita
+tidak pernah membagi suatu matriks dengan matriks lain, tetapi nanti kita akan melihat bagaimana invers matriks memainkan peran yang serupa. 
+
+Dalam melakukan aritmetika matriks, kita sering mendefinisikan suatu operasi berdasarkan apa yang
+terjadi pada entri-entri (atau komponen-komponen)
+matriks tersebut. Sebelum menelaah operasi-operasi ini secara mendalam, perhatikan beberapa
+definisi umum berikut.
+
+\begin{definition}{Matriks Nol}\label{def:zeromatrix}
+\textbf{Matriks nol $m\times n$} adalah matriks $m\times n$
+yang setiap entrinya sama dengan nol. Matriks ini
+\index{matriks nol} dinyatakan dengan $0.$
+\end{definition}
+
+Salah satu matriks nol ditunjukkan dalam contoh berikut.
+
+\begin{example}{Matriks Nol}\label{exa:zeromatrix}
+Matriks nol $2\times 3$ adalah $0= \leftB
+\begin{array}{ccc}
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{array}
+\rightB $.
+\end{example}
+
+Perhatikan bahwa ada matriks nol $2\times 3$, matriks nol $3\times 4$, dan seterusnya. Bahkan,
+ada matriks nol untuk setiap ukuran! 
+
+\begin{definition}{Kesamaan Matriks}\label{def:equalityofmatrices}
+ Misalkan $A$ dan $B$ adalah dua matriks $m \times n$. Maka $A=B$ \index{matriks!kesamaan} berarti
+bahwa untuk $A=\leftB a_{ij}\rightB $
+dan $B=\leftB b_{ij}\rightB ,$ berlaku $a_{ij}=b_{ij}$ untuk semua $1\leq i\leq m$ dan
+$1\leq j\leq n.$
+\end{definition}
+
+Dengan kata lain, dua matriks sama persis ketika ukurannya sama dan
+entri-entri yang bersesuaian identik. Oleh karena itu,
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+0 & 0 \\
+0 & 0 \\
+0 & 0
+\end{array}
+\rightB \neq \leftB
+\begin{array}{rr}
+0 & 0 \\
+0 & 0
+\end{array}
+\rightB
+\end{equation*}
+karena ukurannya berbeda. 
+Selain itu,
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+0 & 1 \\
+3 & 2 
+\end{array}
+\rightB \neq \leftB
+\begin{array}{rr}
+1 & 0 \\
+2 & 3
+\end{array}
+\rightB
+\end{equation*}
+karena, meskipun ukurannya sama, entri-entri yang bersesuaian tidak identik.
+
+Pada bagian berikutnya, kita membahas penjumlahan matriks. 

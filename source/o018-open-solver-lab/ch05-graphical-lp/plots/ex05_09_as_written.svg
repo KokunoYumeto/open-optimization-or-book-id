@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520" role="img" aria-labelledby="title-ex05-9-as_written desc-ex05-9-as_written" xml:lang="id-ID" lang="id" focusable="false">
+<title id="title-ex05-9-as_written">Latihan 5.9: Objektif sebagaimana tertulis</title>
+<desc id="desc-ex05-9-as_written">Daerah layak tak berbatas dari contoh rujukan. Walaupun judul latihan mengisyaratkan solusi berhingga, sinar vertikal dari (0,2) menaikkan -2x1+x2 tanpa batas. Tampilan dipotong pada jendela x=[-1,9] dan y=[-1,9]; tepi jendela bukan kendala model.</desc>
+<metadata>Konten, model, dan data: CC BY-SA 4.0; kode renderer: MIT.</metadata>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b45309"/></marker>
+<style>
+.background{fill:#ffffff}.frame{fill:none;stroke:#334155;stroke-width:1.5}
+.grid{stroke:#e2e8f0;stroke-width:1}.axis{stroke:#475569;stroke-width:1.4}
+.constraint{stroke:#be123c;stroke-width:2;fill:none}
+.objective{stroke:#047857;stroke-width:2;stroke-dasharray:8 6;fill:none}
+.region{fill:#67e8f9;fill-opacity:.38;stroke:#0891b2;stroke-width:1.5}
+.optimum{stroke:#1d4ed8;stroke-width:5;fill:#1d4ed8}
+.ray{stroke:#b45309;stroke-width:3;stroke-dasharray:7 5;fill:none}
+.label{font:14px 'Segoe UI',Arial,sans-serif;fill:#0f172a}
+.small{font:12px 'Segoe UI',Arial,sans-serif;fill:#334155}
+.status{font:600 15px 'Segoe UI',Arial,sans-serif;fill:#0f172a}
+</style>
+</defs>
+<rect class="background" width="720" height="520"/>
+<text class="status" x="72" y="30">Latihan 5.9: Objektif sebagaimana tertulis</text>
+<line class="grid" x1="72" y1="58" x2="72" y2="458"/>
+<line class="grid" x1="72" y1="458" x2="692" y2="458"/>
+<text class="small" text-anchor="middle" x="72" y="480">-1</text>
+<text class="small" text-anchor="end" x="63" y="462">-1</text>
+<line class="grid" x1="196" y1="58" x2="196" y2="458"/>
+<line class="grid" x1="72" y1="378" x2="692" y2="378"/>
+<text class="small" text-anchor="middle" x="196" y="480">1</text>
+<text class="small" text-anchor="end" x="63" y="382">1</text>
+<line class="grid" x1="320" y1="58" x2="320" y2="458"/>
+<line class="grid" x1="72" y1="298" x2="692" y2="298"/>
+<text class="small" text-anchor="middle" x="320" y="480">3</text>
+<text class="small" text-anchor="end" x="63" y="302">3</text>
+<line class="grid" x1="444" y1="58" x2="444" y2="458"/>
+<line class="grid" x1="72" y1="218" x2="692" y2="218"/>
+<text class="small" text-anchor="middle" x="444" y="480">5</text>
+<text class="small" text-anchor="end" x="63" y="222">5</text>
+<line class="grid" x1="568" y1="58" x2="568" y2="458"/>
+<line class="grid" x1="72" y1="138" x2="692" y2="138"/>
+<text class="small" text-anchor="middle" x="568" y="480">7</text>
+<text class="small" text-anchor="end" x="63" y="142">7</text>
+<line class="grid" x1="692" y1="58" x2="692" y2="458"/>
+<line class="grid" x1="72" y1="58" x2="692" y2="58"/>
+<text class="small" text-anchor="middle" x="692" y="480">9</text>
+<text class="small" text-anchor="end" x="63" y="62">9</text>
+<polygon class="region" points="134,338 340.666667,404.666667 692,178 692,58 134,58"/>
+<line class="constraint" x1="692" y1="178" x2="258" y2="458"/>
+<line class="constraint" x1="72" y1="318" x2="506" y2="458"/>
+<line class="axis" x1="134" y1="458" x2="134" y2="58"/>
+<line class="axis" x1="72" y1="418" x2="692" y2="418"/>
+<line class="objective" x1="72" y1="418" x2="351" y2="58"/>
+<line class="ray" x1="134" y1="338" x2="134" y2="108.4" marker-end="url(#arrow)"/>
+<rect class="frame" x="72" y="58" width="620" height="400"/>
+<text class="label" text-anchor="end" x="692" y="505">x1</text>
+<text class="label" x="18" y="63">x2</text>
+<text class="small" x="72" y="505">Daerah sian = layak; merah = batas; hijau putus-putus = kurva aras; jingga = sinar; biru = optimum.</text>
+</svg>

@@ -1,0 +1,148 @@
+{
+  "15.1": {
+    "base": {
+      "objective": 24,
+      "selected": ["Tenda", "Kantong tidur", "Makanan"],
+      "vector": [1, 1, 0, 1, 0],
+      "weight": 15
+    },
+    "implication_constraint": "x_Kompor <= x_Makanan",
+    "with_implication": {
+      "objective": 24,
+      "selected": ["Tenda", "Kantong tidur", "Makanan"],
+      "vector": [1, 1, 0, 1, 0],
+      "weight": 15
+    }
+  },
+  "15.2": {
+    "objective": 17,
+    "selected_packages": [2, 3, 4, 5],
+    "unique_optimum": true,
+    "vector": [0, 1, 1, 1, 1],
+    "weight": 14
+  },
+  "15.3": {
+    "minimum_station_count": 2,
+    "neighborhoods": {
+      "1": [1, 2, 4],
+      "2": [1, 2, 3, 5],
+      "3": [2, 3, 6],
+      "4": [1, 4, 5],
+      "5": [2, 4, 5, 6],
+      "6": [3, 5, 6]
+    },
+    "optimal_placements": [[1, 6], [2, 5], [3, 4]]
+  },
+  "15.4": {
+    "constraint": "x1+x2+x3 <= 40+M*delta",
+    "maximum_lhs": 90,
+    "minimum_valid_M": 50
+  },
+  "15.5": {
+    "cities": ["Halifax", "Ottawa"],
+    "objective": 28,
+    "vector": [1, 0, 0, 1, 0]
+  },
+  "15.6": {
+    "classic_problem": "penutupan himpunan berbobot",
+    "objective": 320,
+    "open_warehouses": ["B", "C"],
+    "vector": [0, 1, 1, 0]
+  },
+  "15.7": {
+    "funded_projects": [1, 2, 3],
+    "npv": 80,
+    "spending": [12, 17],
+    "vector": [1, 1, 1, 0, 0]
+  },
+  "15.8": {
+    "allocation": [[10, 12, 15], [0, 0, 0]],
+    "cost": 151,
+    "open_centers": [1],
+    "total_capacity": 65,
+    "total_demand": 37,
+    "vector": [1, 0]
+  },
+  "15.9": {
+    "canonical_coloring": {"A": 1, "B": 2, "C": 3, "D": 1, "E": 2},
+    "chromatic_number": 3,
+    "lower_bound_certificate": "segitiga A-B-C"
+  },
+  "15.10": {
+    "delta": 1,
+    "objective": 60,
+    "point": [12, 0],
+    "semantics": "formulasi Big-M menerapkan sedikitnya satu kendala, bukan tepat satu",
+    "tight_big_m": [14, 18]
+  },
+  "15.11": {
+    "linking_constraint": "x <= 200*y",
+    "production": 200,
+    "profit": 900,
+    "startup": 1
+  },
+  "15.12": {
+    "integer_optimum": {
+      "objective": 15,
+      "vector": [0, 1, 1, 1, 1],
+      "weight": 8
+    },
+    "lp_relaxation": {
+      "objective": "52/3",
+      "vector": ["7/12", 1, 1, 1, 1],
+      "weight": 15
+    },
+    "round_down": {"feasible": true, "objective": 15, "weight": 8},
+    "round_up": {"feasible": false, "objective": 19, "weight": 20}
+  },
+  "15.13": {
+    "large_M_delta_example": {
+      "M": 1000000,
+      "delta": "1/100000",
+      "relaxation_added_to_A": 10
+    },
+    "minimum_M1": 14,
+    "minimum_M2": 18,
+    "objective_with_M_1000000": 60,
+    "objective_with_M_20": 60,
+    "numerical_hazard": "koefisien berskala sangat berbeda memperburuk pengondisian dan mengubah toleransi keutuhan menjadi kelonggaran logis"
+  },
+  "15.14": {
+    "altruistic_extension": "tambahkan himpunan rantai H, variabel biner x_h, kendala pengepakan bersama siklus, kendala paling banyak satu rantai per donor altruistik, dan batas panjang L",
+    "cycle_limit_reason": "operasi serentak memerlukan 2k ruang operasi dan tim; jumlah calon siklus tumbuh kombinatorial",
+    "objective_reason": "siklus terpilih c melakukan tepat |c| transplantasi tanpa hitung ganda",
+    "packing_meaning": "setiap pasangan pasien-donor boleh berada dalam paling banyak satu siklus terpilih"
+  },
+  "15.15": {
+    "breakpoint_costs": {"0": 0, "10": 50, "20": 80, "30": 160},
+    "cost": 80,
+    "lambda": [0, 0, 1, 0],
+    "nonconvex_certificate": "C(10)=50 > (C(0)+C(20))/2=40",
+    "production": 20,
+    "profit": 40,
+    "segment_selector": [0, 1, 0]
+  },
+  "15.16": {
+    "big_m": 18,
+    "machine_order": {
+      "M1": ["Pekerjaan 1", "Pekerjaan 2"],
+      "M2": ["Pekerjaan 1", "Pekerjaan 2"],
+      "M3": ["Pekerjaan 1", "Pekerjaan 2"]
+    },
+    "makespan": 12,
+    "schedule": {
+      "Pekerjaan 1": [[0, 3], [3, 5], [5, 9]],
+      "Pekerjaan 2": [[3, 5], [5, 9], [9, 12]]
+    }
+  },
+  "summary": {
+    "exercise_count": 16,
+    "manual_alignment_count": 16,
+    "o018_math_correction_count": 0,
+    "plot_count": 2,
+    "solver_call_count": 20,
+    "source_defect_count": 2,
+    "unresolved_count": 0,
+    "verified_count": 16
+  }
+}

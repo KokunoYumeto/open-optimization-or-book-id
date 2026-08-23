@@ -1,0 +1,921 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "exercises": {
+    "12.1": {
+      "book_label": "ex:pulp-new-profit",
+      "certificate": {
+        "binding_constraints": [
+          "material"
+        ],
+        "objective": 150,
+        "slacks": {
+          "labor": 40,
+          "machine": 120,
+          "material": 0
+        },
+        "solution": {
+          "X1": 30,
+          "X2": 0
+        }
+      },
+      "difficulty": 1,
+      "manual_mapping": {
+        "manual_id": "12.1",
+        "status": "aligned"
+      },
+      "method": "pyomo_product_mix_parameter_change",
+      "solver_checks": [
+        {
+          "maximum_violation": 0,
+          "objective": 150,
+          "purpose": "perubahan margin laba",
+          "slacks": {
+            "labor": 40,
+            "machine": 120,
+            "material": 0
+          },
+          "solution": {
+            "X1": 30,
+            "X2": 0
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "profit-5-2"
+        }
+      ],
+      "status": "verified",
+      "title": "Margin Laba Baru"
+    },
+    "12.2": {
+      "book_label": "ex:pulp-translate",
+      "certificate": {
+        "constraint_slacks": [
+          0,
+          0,
+          0
+        ],
+        "objective": 35,
+        "solution": {
+          "X1": 2,
+          "X2": 2,
+          "X3": 3
+        }
+      },
+      "difficulty": 1,
+      "manual_mapping": {
+        "manual_id": "12.2",
+        "status": "aligned"
+      },
+      "method": "pyomo_six_step_translation",
+      "solver_checks": [
+        {
+          "constraint_slacks": [
+            0,
+            0,
+            0
+          ],
+          "maximum_violation": 0,
+          "objective": 35,
+          "purpose": "terjemahan enam langkah",
+          "solution": {
+            "X1": 2,
+            "X2": 2,
+            "X3": 3
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "three-variable"
+        }
+      ],
+      "status": "verified",
+      "title": "Dari Matematika ke Python"
+    },
+    "12.3": {
+      "book_label": "ex:pulp-transport-data",
+      "certificate": {
+        "demand_total": 250,
+        "explanation": "Permintaan total bertambah dan bergeser ke pasar dengan biaya masuk yang lebih tinggi.",
+        "objective": 670,
+        "supply_total": 250
+      },
+      "difficulty": 1,
+      "manual_mapping": {
+        "manual_id": "12.3",
+        "status": "aligned"
+      },
+      "method": "pyomo_transport_data_update",
+      "solver_checks": [
+        {
+          "market_surplus": {
+            "Houston": 0,
+            "LA": 0,
+            "NYC": 0
+          },
+          "maximum_violation": 0,
+          "objective": 670,
+          "plant_unused": {
+            "Chicago": 0,
+            "Denver": 0
+          },
+          "purpose": "model transportasi berindeks",
+          "shipments": [
+            {
+              "from": "Chicago",
+              "quantity": 100,
+              "to": "NYC"
+            },
+            {
+              "from": "Denver",
+              "quantity": 80,
+              "to": "LA"
+            },
+            {
+              "from": "Denver",
+              "quantity": 70,
+              "to": "Houston"
+            }
+          ],
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "demand-new"
+        }
+      ],
+      "status": "verified",
+      "title": "Data Permintaan Baru"
+    },
+    "12.4": {
+      "book_label": "ex:pulp-transport-model",
+      "certificate": {
+        "objective": 770,
+        "plant_unused": {
+          "A": 10,
+          "B": 0,
+          "C": 20
+        },
+        "total_unused_capacity": 30
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "12.4",
+        "status": "aligned"
+      },
+      "method": "pyomo_indexed_transport_model",
+      "solver_checks": [
+        {
+          "market_surplus": {
+            "M1": 0,
+            "M2": 0,
+            "M3": 0
+          },
+          "maximum_violation": 0,
+          "objective": 770,
+          "plant_unused": {
+            "A": 10,
+            "B": 0,
+            "C": 20
+          },
+          "purpose": "model transportasi berindeks",
+          "shipments": [
+            {
+              "from": "A",
+              "quantity": 50,
+              "to": "M1"
+            },
+            {
+              "from": "B",
+              "quantity": 60,
+              "to": "M2"
+            },
+            {
+              "from": "B",
+              "quantity": 10,
+              "to": "M3"
+            },
+            {
+              "from": "C",
+              "quantity": 60,
+              "to": "M3"
+            }
+          ],
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "three-plant"
+        }
+      ],
+      "status": "verified",
+      "title": "Model Transportasi Tiga Pabrik"
+    },
+    "12.5": {
+      "book_label": "ex:pulp-duals",
+      "certificate": {
+        "duals": {
+          "labor": "1/4",
+          "machine": 0,
+          "material": "1/5"
+        },
+        "objective": 100,
+        "slacks": {
+          "labor": 0,
+          "machine": 20,
+          "material": 0
+        },
+        "solution": {
+          "X1": 20,
+          "X2": 20
+        }
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "12.5",
+        "status": "aligned"
+      },
+      "method": "pyomo_highs_dual_slack_import",
+      "solver_checks": [
+        {
+          "duals": {
+            "labor": "1/4",
+            "machine": 0,
+            "material": "1/5"
+          },
+          "maximum_violation": 0,
+          "objective": 100,
+          "purpose": "impor dual dan slack",
+          "slacks": {
+            "labor": 0,
+            "machine": 20,
+            "material": 0
+          },
+          "solution": {
+            "X1": 20,
+            "X2": 20
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "base-duals"
+        }
+      ],
+      "status": "verified",
+      "title": "Dual dan Slack dari Model yang Telah Diselesaikan"
+    },
+    "12.6": {
+      "book_label": "ex:pulp-epsilon",
+      "certificate": {
+        "epsilon_table": [
+          {
+            "X1": 30,
+            "X2": 0,
+            "epsilon": 60,
+            "profit": 90
+          },
+          {
+            "X1": 27,
+            "X2": 6,
+            "epsilon": 90,
+            "profit": 93
+          },
+          {
+            "X1": 24,
+            "X2": 12,
+            "epsilon": 120,
+            "profit": 96
+          },
+          {
+            "X1": 21,
+            "X2": 18,
+            "epsilon": 150,
+            "profit": 99
+          },
+          {
+            "X1": 20,
+            "X2": 20,
+            "epsilon": 180,
+            "profit": 100
+          }
+        ],
+        "machine_use_without_extra_cap": 160,
+        "tradeoff_profit_per_machine_hour": "1/10"
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "12.6",
+        "status": "aligned"
+      },
+      "method": "pyomo_epsilon_parameter_sweep",
+      "solver_checks": [
+        {
+          "maximum_violation": 0,
+          "objective": 90,
+          "purpose": "sapuan batas penggunaan mesin",
+          "slacks": {
+            "labor": 40,
+            "machine": 120,
+            "machine_cap": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 30,
+            "X2": 0
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon-60"
+        },
+        {
+          "maximum_violation": 0,
+          "objective": 93,
+          "purpose": "sapuan batas penggunaan mesin",
+          "slacks": {
+            "labor": 28,
+            "machine": 90,
+            "machine_cap": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 27,
+            "X2": 6
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon-90"
+        },
+        {
+          "maximum_violation": 0,
+          "objective": 96,
+          "purpose": "sapuan batas penggunaan mesin",
+          "slacks": {
+            "labor": 16,
+            "machine": 60,
+            "machine_cap": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 24,
+            "X2": 12
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon-120"
+        },
+        {
+          "maximum_violation": 0,
+          "objective": 99,
+          "purpose": "sapuan batas penggunaan mesin",
+          "slacks": {
+            "labor": 4,
+            "machine": 30,
+            "machine_cap": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 21,
+            "X2": 18
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon-150"
+        },
+        {
+          "maximum_violation": 0,
+          "objective": 100,
+          "purpose": "sapuan batas penggunaan mesin",
+          "slacks": {
+            "labor": 0,
+            "machine": 20,
+            "machine_cap": 20,
+            "material": 0
+          },
+          "solution": {
+            "X1": 20,
+            "X2": 20
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon-180"
+        }
+      ],
+      "status": "verified",
+      "title": "Sapuan Kendala Epsilon"
+    },
+    "12.7": {
+      "book_label": "ex:pulp-missing-constraint",
+      "certificate": {
+        "missing_labor": {
+          "actual_profit": 102,
+          "labor_excess": 8,
+          "labor_used": 168,
+          "reported_objective": 102,
+          "solution": {
+            "X1": 18,
+            "X2": 24
+          }
+        },
+        "overwritten_objective_equivalent": {
+          "actual_profit": 102,
+          "labor_expression_value": 168,
+          "reported_objective": 168,
+          "solution": {
+            "X1": 18,
+            "X2": 24
+          }
+        }
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "12.7",
+        "status": "aligned"
+      },
+      "method": "fail_loud_model_inventory_and_highs",
+      "solver_checks": [
+        {
+          "maximum_violation": 0,
+          "objective": 102,
+          "purpose": "diagnosis inventaris kendala",
+          "slacks": {
+            "machine": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 18,
+            "X2": 24
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "missing-labor"
+        },
+        {
+          "maximum_violation": 0,
+          "objective": 168,
+          "purpose": "diagnosis fungsi tujuan tertimpa",
+          "slacks": {
+            "machine": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 18,
+            "X2": 24
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "overwritten-objective-equivalent"
+        }
+      ],
+      "status": "verified",
+      "title": "Kendala yang Tidak Ada"
+    },
+    "12.8": {
+      "book_label": "ex:pulp-sense",
+      "certificate": {
+        "correct_maximize": {
+          "objective": 100,
+          "solution": {
+            "X1": 20,
+            "X2": 20
+          }
+        },
+        "minimize_negative_profit": {
+          "objective": -100,
+          "solution": {
+            "X1": 20,
+            "X2": 20
+          }
+        },
+        "wrong_minimize": {
+          "objective": 0,
+          "solution": {
+            "X1": 0,
+            "X2": 0
+          }
+        }
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "12.8",
+        "status": "aligned"
+      },
+      "method": "objective_sense_invariant_and_highs",
+      "solver_checks": [
+        {
+          "maximum_violation": 0,
+          "objective": 0,
+          "purpose": "uji arah tujuan salah",
+          "slacks": {
+            "labor": 160,
+            "machine": 180,
+            "material": 300
+          },
+          "solution": {
+            "X1": 0,
+            "X2": 0
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "wrong-minimize"
+        },
+        {
+          "maximum_violation": 0,
+          "objective": 100,
+          "purpose": "perbaikan arah tujuan",
+          "slacks": {
+            "labor": 0,
+            "machine": 20,
+            "material": 0
+          },
+          "solution": {
+            "X1": 20,
+            "X2": 20
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "correct-maximize"
+        },
+        {
+          "maximum_violation": 0,
+          "objective": -100,
+          "purpose": "perbaikan dengan tujuan negatif",
+          "slacks": {
+            "labor": 0,
+            "machine": 20,
+            "material": 0
+          },
+          "solution": {
+            "X1": 20,
+            "X2": 20
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "minimize-negative-profit"
+        }
+      ],
+      "status": "verified",
+      "title": "Meminimumkan atau Memaksimumkan?"
+    },
+    "12.9": {
+      "book_label": "ex:pulp-rhs-sweep",
+      "certificate": {
+        "breakpoints": [
+          120,
+          168
+        ],
+        "labor_rhs": [
+          100,
+          110,
+          120,
+          130,
+          140,
+          150,
+          160,
+          170,
+          180,
+          190
+        ],
+        "profit_values": [
+          75,
+          "165/2",
+          90,
+          "185/2",
+          95,
+          "195/2",
+          100,
+          102,
+          102,
+          102
+        ],
+        "slope_intervals": [
+          "3/4",
+          "1/4",
+          0
+        ]
+      },
+      "difficulty": 3,
+      "manual_mapping": {
+        "manual_id": "12.9",
+        "status": "aligned"
+      },
+      "method": "pyomo_rhs_sweep_duals_and_highs",
+      "solver_checks": [
+        {
+          "duals": {
+            "labor": "3/4",
+            "machine": 0,
+            "material": 0
+          },
+          "labor_dual": "3/4",
+          "labor_rhs": 100,
+          "maximum_violation": 0,
+          "objective": 75,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 0,
+            "machine": 130,
+            "material": 50
+          },
+          "solution": {
+            "X1": 25,
+            "X2": 0
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-100"
+        },
+        {
+          "duals": {
+            "labor": "3/4",
+            "machine": 0,
+            "material": 0
+          },
+          "labor_dual": "3/4",
+          "labor_rhs": 110,
+          "maximum_violation": 0,
+          "objective": 82.5,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 0,
+            "machine": 125,
+            "material": 25
+          },
+          "solution": {
+            "X1": 27.5,
+            "X2": 0
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-110"
+        },
+        {
+          "duals": {
+            "labor": "3/4",
+            "machine": 0,
+            "material": 0
+          },
+          "labor_dual": "3/4",
+          "labor_rhs": 120,
+          "maximum_violation": 0,
+          "objective": 90,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 0,
+            "machine": 120,
+            "material": 0
+          },
+          "solution": {
+            "X1": 30,
+            "X2": 0
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-120"
+        },
+        {
+          "duals": {
+            "labor": "1/4",
+            "machine": 0,
+            "material": "1/5"
+          },
+          "labor_dual": "1/4",
+          "labor_rhs": 130,
+          "maximum_violation": 0,
+          "objective": 92.5,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 0,
+            "machine": 95,
+            "material": 0
+          },
+          "solution": {
+            "X1": 27.5,
+            "X2": 5
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-130"
+        },
+        {
+          "duals": {
+            "labor": "1/4",
+            "machine": 0,
+            "material": "1/5"
+          },
+          "labor_dual": "1/4",
+          "labor_rhs": 140,
+          "maximum_violation": 0,
+          "objective": 95,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 0,
+            "machine": 70,
+            "material": 0
+          },
+          "solution": {
+            "X1": 25,
+            "X2": 10
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-140"
+        },
+        {
+          "duals": {
+            "labor": "1/4",
+            "machine": 0,
+            "material": "1/5"
+          },
+          "labor_dual": "1/4",
+          "labor_rhs": 150,
+          "maximum_violation": 0,
+          "objective": 97.5,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 0,
+            "machine": 45,
+            "material": 0
+          },
+          "solution": {
+            "X1": 22.5,
+            "X2": 15
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-150"
+        },
+        {
+          "duals": {
+            "labor": "1/4",
+            "machine": 0,
+            "material": "1/5"
+          },
+          "labor_dual": "1/4",
+          "labor_rhs": 160,
+          "maximum_violation": 0,
+          "objective": 100,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 0,
+            "machine": 20,
+            "material": 0
+          },
+          "solution": {
+            "X1": 20,
+            "X2": 20
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-160"
+        },
+        {
+          "duals": {
+            "labor": 0,
+            "machine": "1/10",
+            "material": "7/25"
+          },
+          "labor_dual": 0,
+          "labor_rhs": 170,
+          "maximum_violation": 0,
+          "objective": 102,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 2,
+            "machine": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 18,
+            "X2": 24
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-170"
+        },
+        {
+          "duals": {
+            "labor": 0,
+            "machine": "1/10",
+            "material": "7/25"
+          },
+          "labor_dual": 0,
+          "labor_rhs": 180,
+          "maximum_violation": 0,
+          "objective": 102,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 12,
+            "machine": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 18,
+            "X2": 24
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-180"
+        },
+        {
+          "duals": {
+            "labor": 0,
+            "machine": "1/10",
+            "material": "7/25"
+          },
+          "labor_dual": 0,
+          "labor_rhs": 190,
+          "maximum_violation": 0,
+          "objective": 102,
+          "purpose": "sapuan ruas kanan tenaga kerja",
+          "slacks": {
+            "labor": 22,
+            "machine": 0,
+            "material": 0
+          },
+          "solution": {
+            "X1": 18,
+            "X2": 24
+          },
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "labor-190"
+        }
+      ],
+      "status": "verified",
+      "title": "Laba sebagai Fungsi Tenaga Kerja"
+    }
+  },
+  "lab_id": "o018.ch12.python-workflow",
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 54729,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch03-software/software-python-book1.tex",
+        "role": "authority_chapter",
+        "sha256": "3570d7199cb26850ae22523c6506324b51685f05ac48969476356b6660bad951"
+      },
+      {
+        "bytes": 20228,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch12.tex",
+        "role": "authority_manual",
+        "sha256": "5ff803126798622edd790e3ad6f962102bbb369f04d355bcd1e5d982855ec905"
+      },
+      {
+        "bytes": 57622,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch03-software/software-python-book1.tex",
+        "role": "translated_chapter",
+        "sha256": "ecadcf255ec67e9ee538735255268bb7142bdd8511dd1dccdfa0a9aeeeae5801"
+      },
+      {
+        "bytes": 21520,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch12.tex",
+        "role": "translated_manual",
+        "sha256": "73fed9c588d36a0915c0777e7f118330d18aa71b10229fac19e0c7e830820246"
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "source_defects": [],
+  "summary": {
+    "exercise_count": 9,
+    "maximum_solver_violation": 0,
+    "method_counts": {
+      "fail_loud_model_inventory_and_highs": 1,
+      "objective_sense_invariant_and_highs": 1,
+      "pyomo_epsilon_parameter_sweep": 1,
+      "pyomo_highs_dual_slack_import": 1,
+      "pyomo_indexed_transport_model": 1,
+      "pyomo_product_mix_parameter_change": 1,
+      "pyomo_rhs_sweep_duals_and_highs": 1,
+      "pyomo_six_step_translation": 1,
+      "pyomo_transport_data_update": 1
+    },
+    "o018_math_correction_count": 0,
+    "solver_call_count": 25,
+    "solver_termination_counts": {
+      "optimal": 25
+    },
+    "source_defect_count": 0,
+    "unresolved_count": 0,
+    "verified_count": 9
+  },
+  "unresolved_exercises": []
+}

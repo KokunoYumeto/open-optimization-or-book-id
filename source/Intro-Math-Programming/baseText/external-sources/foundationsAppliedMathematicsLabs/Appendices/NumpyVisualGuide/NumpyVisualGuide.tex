@@ -1,0 +1,244 @@
+\section{Panduan Visual NumPy}{Panduan Visual NumPy}
+\label{appendix:numpy-visual-guide}
+\objective{Operasi NumPy dapat sulit divisualisasikan, tetapi konsepnya sederhana.
+Lampiran ini memberikan peragaan visual tentang penggunaan larik NumPy dengan sintaks pengirisan, penumpukan, penyiaran, dan operasi khusus sumbu.
+Walaupun visualisasi ini ditujukan untuk larik berdimensi 1 atau 2, konsepnya dapat diperluas ke larik berdimensi $n$.
+% See Lab \ref{lab:NumPy} for an introduction to NumPy operations and synatx.
+}
+
+\section*{Akses Data} % ======================================================
+
+Entri-entri larik 2-D adalah baris-baris matriks tersebut (sebagai larik 1-D).
+Untuk mengakses satu entri, masukkan indeks baris, tanda koma, lalu indeks kolom.
+Ingat bahwa pengindeksan dimulai dari $0$.
+
+\begin{align*}
+\text{\li{A[0]}} = \left[\begin{array}{rrrrr}
+\tikzmarkin{row1}\times & \times & \times & \times & \times\tikzmarkend{row1}\\
+\times & \times & \times & \times & \times\\
+\times & \times & \times & \times & \times\\
+\times & \times & \times & \times & \times\\
+\end{array}\right]
+&&
+\text{\li{A[2,1]}} = \left[\begin{array}{rrrrr}
+\times & \times & \times & \times & \times\\
+\times & \times & \times & \times & \times\\
+\times & \tikzmarkin{entry} \times \tikzmarkend{entry} & \times & \times & \times\\
+\times & \times & \times & \times & \times
+\end{array}\right]
+\end{align*}
+
+\section*{Pengirisan} % =======================================================
+
+Tanda titik dua tunggal mengekstrak seluruh baris atau kolom dari larik 2-D.
+Sintaks \li{[a:b]} dapat dibaca sebagai ``entri ke-$a$ sampai (tetapi tidak termasuk) entri ke-$b$.''
+Demikian pula, \li{[a:]} berarti ``entri ke-$a$ sampai akhir'' dan \li{[:b]} berarti ``semuanya sampai (tetapi tidak termasuk) entri ke-$b$.''
+
+
+% The authority repeats this row/column example in two implementations.  Keep
+% the later hf-tikz form, which carries the same mathematics and the intended
+% highlights without the broken overlay's null-font semicolon artifacts.
+\begin{align*}
+\text{\li{A[1]}} = \text{\li{A[1,:]}} = \left[\begin{array}{rrrrr}
+\times & \times & \times & \times & \times\\
+\tikzmarkin{row2}\times & \times & \times & \times & \times\tikzmarkend{row2}\\
+\times & \times & \times & \times & \times\\
+\times & \times & \times & \times & \times\\
+\end{array}\right]
+&&
+\text{\li{A[:,2]}} = \left[\begin{array}{rrrrr}
+\times & \times & \tikzmarkin{col}\times & \times & \times\\
+\times & \times & \times & \times & \times\\
+\times & \times & \times & \times & \times\\
+\times & \times & \times\tikzmarkend{col} & \times & \times
+\end{array}\right]
+\end{align*}
+
+\begin{align*}
+\text{\li{A[1:,:2]}} = \left[\begin{array}{rrrrr}
+\times & \times & \times & \times & \times\\
+\tikzmarkin{block}\times & \times & \times & \times & \times\\
+\times & \times & \times & \times & \times\\
+\times & \times\tikzmarkend{block} & \times & \times & \times
+\end{array}\right]
+&&
+\text{\li{A[1:-1,1:-1]}} = \left[\begin{array}{rrrrr}
+\times & \times & \times & \times & \times\\
+\times & \tikzmarkin{interior} \times & \times & \times & \times\\
+\times & \times & \times & \times \tikzmarkend{interior} & \times\\
+\times & \times & \times & \times & \times\end{array}\right]
+\end{align*}
+
+\section*{Penumpukan} % =======================================================
+
+\li{np.hstack()} menumpuk urutan larik secara horizontal, sedangkan \li{np.vstack()} menumpuk urutan larik secara vertikal.
+
+\begin{align*}
+\text{\li{A}} = \left[\begin{array}{ccc}
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}
+\end{array}\right]
+&&
+\text{\li{B}} = \left[\begin{array}{ccc}
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*} \\
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*} \\
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*}
+\end{array}\right]
+\end{align*}
+
+\begin{align*}
+\text{\li{np.hstack((A,B,A))}} =
+\left[\begin{array}{ccccccccc}
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*}&
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*}&
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*}&
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}
+\end{array}\right]
+\end{align*}
+
+\begin{align*}
+\text{\li{np.vstack((A,B,A))}} =
+\left[\begin{array}{ccc}
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*} \\
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*} \\
+\textcolor{red}{*} & \textcolor{red}{*} & \textcolor{red}{*} \\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}
+\end{array}\right]
+\end{align*}
+Karena larik 1-D berbentuk datar, \li{np.hstack()} menggabungkan larik-larik 1-D dan \li{np.vstack()} menumpuknya secara vertikal.
+Untuk menjadikan beberapa larik 1-D sebagai kolom-kolom larik 2-D, gunakan \li{np.column_stack()}.
+
+\begin{align*}
+\text{\li{x}} = \left[\begin{array}{cccc}
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}
+\end{array}\right]
+&&
+\text{\li{y}} = \left[\begin{array}{cccc}
+\textcolor{red}{*}&\textcolor{red}{*}&\textcolor{red}{*}&\textcolor{red}{*}\end{array}\right]
+\end{align*}
+
+\begin{align*}
+\text{\li{np.hstack((x,y,x))}} =
+\left[\begin{array}{cccccccccccc}
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&
+\textcolor{red}{*}&\textcolor{red}{*}&\textcolor{red}{*}&\textcolor{red}{*}&
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}
+\end{array}\right]
+\end{align*}
+
+\begin{align*}
+\text{\li{np.vstack((x,y,x))}} =
+\left[\begin{array}{cccc}
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}\\
+\textcolor{red}{*}&\textcolor{red}{*}&\textcolor{red}{*}&\textcolor{red}{*}\\
+\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}&\textcolor{blue}{\times}
+\end{array}\right]
+\end{align*}
+\begin{align*}
+\text{\li{np.column_stack((x,y,x))}} =
+\left[\begin{array}{ccc}
+\textcolor{blue}{\times}&\textcolor{red}{*}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{red}{*}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{red}{*}&\textcolor{blue}{\times}\\
+\textcolor{blue}{\times}&\textcolor{red}{*}&\textcolor{blue}{\times}
+\end{array}\right]
+\end{align*}
+Fungsi \li{np.concatenate()} dan \li{np.stack()} merupakan versi yang lebih umum dari \li{np.hstack()} dan \li{np.vstack()}, sedangkan \li{np.row_stack()} adalah alias untuk \li{np.vstack()}.
+
+\section*{Penyiaran} % ========================================================
+
+NumPy secara otomatis menyelaraskan larik untuk operasi per komponen kapan pun memungkinkan.
+% The default behavior adds the first element to the first element of each row, the second element to the second element of each row, and so on.
+Lihat \url{http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html} untuk contoh yang lebih mendalam dan aturan penyiaran.
+
+\begin{align*}
+\text{\li{A}} = \left[\begin{array}{ccc}
+1 & 2 & 3\\
+1 & 2 & 3\\
+1 & 2 & 3\\
+\end{array}\right]
+&&
+\text{\li{x}} = \left[\begin{array}{ccc}
+10 & 20 & 30
+\end{array}\right]
+\end{align*}
+
+\begin{align*}
+\text{\li{A + x}}
+&= \begin{blockarray}{ccc}
+\begin{block}{[ccc]}
+1 & 2 & 3\\
+1 & 2 & 3\\
+1 & 2 & 3\\
+\end{block}
+  & + &  \\
+\begin{block}{[ccc]}
+10 & 20 & 30\\
+\end{block}
+\end{blockarray}
+&= \left[\begin{array}{ccc}
+11 & 22 & 33\\
+11 & 22 & 33\\
+11 & 22 & 33
+\end{array}\right]
+\\ \\
+\text{\li{A + x.reshape((1,-1))}}
+&= \left[\begin{array}{ccc}
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+\end{array}\right]
++ \left[\begin{array}{c}
+10 \\ 20 \\ 30\\
+\end{array}\right]
+&= \left[\begin{array}{ccc}
+11 & 12 & 13\\
+21 & 22 & 23\\
+31 & 32 & 33\\
+\end{array}\right]
+\end{align*}
+
+\section*{Operasi Sepanjang Sumbu} % ==========================================
+
+Sebagian besar metode larik memiliki argumen \li{axis} yang memungkinkan suatu operasi dilakukan sepanjang sumbu tertentu.
+Untuk menghitung jumlah setiap kolom, gunakan \li{axis=0}; untuk menghitung jumlah setiap baris, gunakan \li{axis=1}.
+
+\begin{align*}
+A = \left[\begin{array}{cccc}
+1 & 2 & 3 & 4\\
+1 & 2 & 3 & 4\\
+1 & 2 & 3 & 4\\
+1 & 2 & 3 & 4
+\end{array}\right]
+\end{align*}
+
+\begin{align*}
+\text{\li{A.<<sum>>(axis=0)}} &= %\text{\li{np.array([sum(A[:,j]) for j in range(A.shape[1])])}} =
+\left[\begin{array}{cccc}
+\tikzmarkin{col1}1 & \tikzmarkin{col2}2 & \tikzmarkin{col3}3 & \tikzmarkin{col4}4\\
+1 & 2 & 3 & 4\\
+1 & 2 & 3 & 4\\
+1\tikzmarkend{col1} & 2\tikzmarkend{col2} & 3\tikzmarkend{col3} & 4\tikzmarkend{col4}
+\end{array}\right]
+= \left[\begin{array}{cccc} 4 & 8 & 12 & 16 \end{array}\right]
+\\ \\
+\text{\li{A.<<sum>>(axis=1)}} &= %\text{\li{np.array([sum(A[i,:]) for i in range(A.shape[0])])}} =
+\left[\begin{array}{cccc}
+\tikzmarkin{rowA}1 & 2 & 3 & 4\tikzmarkend{rowA}\\
+\tikzmarkin{rowB}1 & 2 & 3 & 4\tikzmarkend{rowB}\\
+\tikzmarkin{rowC}1 & 2 & 3 & 4\tikzmarkend{rowC}\\
+\tikzmarkin{rowD}1 & 2 & 3 & 4\tikzmarkend{rowD}\\
+\end{array}\right]
+= \left[\begin{array}{cccc} 10 & 10 & 10 & 10 \end{array}\right]
+\end{align*}

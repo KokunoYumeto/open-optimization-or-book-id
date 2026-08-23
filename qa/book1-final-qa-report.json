@@ -1,0 +1,1132 @@
+{
+  "schema": "book1-final-qa-v1",
+  "canonical": {
+    "path": "C:\\Users\\Floris\\Documents\\interlanguage\\04_mirrors\\id\\open-optimization-or-book-id\\output\\book1-pdf\\book1-id.pdf",
+    "bytes": 26425739,
+    "sha256": "daa9b79df3684729cc204b563669f400866d8fbd12c0977d32ff9897276a7a49",
+    "pages": 666,
+    "page_geometry_exceptions": [],
+    "catalog": {
+      "lang": "id-ID",
+      "encrypted": false,
+      "tagged": false,
+      "acroform": false,
+      "javascript": false
+    },
+    "metadata": {
+      "/Author": "Robert Hildebrand",
+      "/Keywords": "pemrograman matematis, riset operasi, pemrograman linear, pemrograman bilangan bulat, optimisasi",
+      "/Title": "Pemrograman Matematis dan Riset Operasi: Pemodelan, Algoritme, dan Kompleksitas; Contoh dalam Python dan Excel",
+      "/Subject": "Edisi Bahasa Indonesia, Buku 1: Pemrograman Linear dan Bilangan Bulat",
+      "/Creator": "LaTeX with hyperref",
+      "/Producer": "MiKTeX-pdfTeX 4.27.0 (1.40.29)",
+      "/CreationDate": "D:20260821000000Z",
+      "/ModDate": "D:20260821000000Z",
+      "/Trapped": "/False"
+    },
+    "outline_count": 320,
+    "outline_destinations_all_valid": true,
+    "outline_pages_monotonic": true,
+    "named_destination_count": 3485,
+    "named_destination_errors": [],
+    "links": {
+      "counts": {
+        "links": 1354,
+        "uri": 289,
+        "internal": 1065
+      },
+      "uri_schemes": {
+        "https": 278,
+        "mailto": 1,
+        "http": 10
+      },
+      "invalid": []
+    },
+    "fonts": {
+      "count": 63,
+      "all_embedded": true,
+      "all_unicode": true,
+      "type3_count": 0,
+      "fonts": [
+        {
+          "name": "ZVBIYG+TeXGyreTermes-Bold",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "ONKPDR+TeXGyreTermes-Italic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QLVCIV+TeXGyreTermes-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "RDPTVF+NimbusRomNo9L-ReguItal",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TFTRTQ+NimbusRomNo9L-Regu",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "APDIJK+NimbusRomNo9L-Medi",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "XDOWKF+CMMI10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TFOWUM+TeXGyreHeros-Italic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "OSDLXT+TeXGyreHeros-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "OSDLXT+TeXGyreHeros-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "OSDLXT+TeXGyreHeros-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "DMMNWY+TeXGyreHeros-Bold",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QLVCIV+TeXGyreTermes-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TGLBCT+TeXGyreCursor-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QLVCIV+TeXGyreTermes-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EHPQXI+CMR10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "KUCGNW+PazoMathBlackboardBold",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "NUADEQ+CMSY10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "IUNXEI+StandardSymL",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "LHJKHE+CMSSBX10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QOFMRP+CMSS9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "PAWZQY+CMSSI8",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "SUQVVQ+CMSS8",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EQJEZA+CMR7",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "JKVUIX+CMR9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "XDOWKF+CMMI10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QOFMRP+CMSS9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "IKWQBF+CMMI9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QLBNSL+CMSY9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "JKVUIX+CMR9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BWMEMP+StandardSymL-Slant_167",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "WMVRGT+CMEX10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "AJXIOR+URWPalladioL-Roma",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "KSGHMQ+PazoMath",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TGLBCT+TeXGyreCursor-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "JNXGTZ+TeXGyreCursor-Bold",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "YQVYJG+TeXGyreTermes-BoldItalic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "HRNKBF+TeXGyreCursor-Italic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "RFXHBC+Dingbats",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "YMBFTY+rsfs10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BBOKRU+MSAM10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TGLBCT+TeXGyreCursor-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "type": "CID TrueType",
+          "encoding": "Identity-H",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "type": "CID TrueType",
+          "encoding": "Identity-H",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "type": "CID TrueType",
+          "encoding": "Identity-H",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "type": "CID TrueType",
+          "encoding": "Identity-H",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EHPQXI+CMR10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "XDOWKF+CMMI10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "CPKEAE+CMMI7",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "NUADEQ+CMSY10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "PXBGHL+CMSY7",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EHPQXI+CMR10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "XDOWKF+CMMI10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "HRNKBF+TeXGyreCursor-Italic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EHPQXI+CMR10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "DNHZKZ+SFRM1000",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "MTRDDD+CMBX10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "MTRDDD+CMBX10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "MTRDDD+CMBX10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QOFMRP+CMSS9",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "PKZGOH+LINEW10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BAMXPI+MSBM10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "ZVBIYG+TeXGyreTermes-Bold",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        }
+      ]
+    }
+  },
+  "replay": {
+    "path": "C:\\Users\\Floris\\Documents\\interlanguage\\04_mirrors\\id\\open-optimization-or-book-id\\qa\\book1-final-replay-id4\\book1-id.pdf",
+    "bytes": 26425739,
+    "sha256": "daa9b79df3684729cc204b563669f400866d8fbd12c0977d32ff9897276a7a49",
+    "pages": 666,
+    "page_geometry_exceptions": [],
+    "catalog": {
+      "lang": "id-ID",
+      "encrypted": false,
+      "tagged": false,
+      "acroform": false,
+      "javascript": false
+    },
+    "metadata": {
+      "/Author": "Robert Hildebrand",
+      "/Keywords": "pemrograman matematis, riset operasi, pemrograman linear, pemrograman bilangan bulat, optimisasi",
+      "/Title": "Pemrograman Matematis dan Riset Operasi: Pemodelan, Algoritme, dan Kompleksitas; Contoh dalam Python dan Excel",
+      "/Subject": "Edisi Bahasa Indonesia, Buku 1: Pemrograman Linear dan Bilangan Bulat",
+      "/Creator": "LaTeX with hyperref",
+      "/Producer": "MiKTeX-pdfTeX 4.27.0 (1.40.29)",
+      "/CreationDate": "D:20260821000000Z",
+      "/ModDate": "D:20260821000000Z",
+      "/Trapped": "/False"
+    },
+    "outline_count": 320,
+    "outline_destinations_all_valid": true,
+    "outline_pages_monotonic": true,
+    "named_destination_count": 3485,
+    "named_destination_errors": [],
+    "links": {
+      "counts": {
+        "links": 1354,
+        "uri": 289,
+        "internal": 1065
+      },
+      "uri_schemes": {
+        "https": 278,
+        "mailto": 1,
+        "http": 10
+      },
+      "invalid": []
+    },
+    "fonts": {
+      "count": 63,
+      "all_embedded": true,
+      "all_unicode": true,
+      "type3_count": 0,
+      "fonts": [
+        {
+          "name": "ZVBIYG+TeXGyreTermes-Bold",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "ONKPDR+TeXGyreTermes-Italic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QLVCIV+TeXGyreTermes-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "RDPTVF+NimbusRomNo9L-ReguItal",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TFTRTQ+NimbusRomNo9L-Regu",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "APDIJK+NimbusRomNo9L-Medi",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "XDOWKF+CMMI10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TFOWUM+TeXGyreHeros-Italic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "OSDLXT+TeXGyreHeros-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "OSDLXT+TeXGyreHeros-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "OSDLXT+TeXGyreHeros-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "DMMNWY+TeXGyreHeros-Bold",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QLVCIV+TeXGyreTermes-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TGLBCT+TeXGyreCursor-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QLVCIV+TeXGyreTermes-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EHPQXI+CMR10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "KUCGNW+PazoMathBlackboardBold",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "NUADEQ+CMSY10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "IUNXEI+StandardSymL",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "LHJKHE+CMSSBX10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QOFMRP+CMSS9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "PAWZQY+CMSSI8",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "SUQVVQ+CMSS8",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EQJEZA+CMR7",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "JKVUIX+CMR9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "XDOWKF+CMMI10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QOFMRP+CMSS9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "IKWQBF+CMMI9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QLBNSL+CMSY9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "JKVUIX+CMR9",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BWMEMP+StandardSymL-Slant_167",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "WMVRGT+CMEX10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "AJXIOR+URWPalladioL-Roma",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "KSGHMQ+PazoMath",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TGLBCT+TeXGyreCursor-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "JNXGTZ+TeXGyreCursor-Bold",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "YQVYJG+TeXGyreTermes-BoldItalic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "HRNKBF+TeXGyreCursor-Italic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "RFXHBC+Dingbats",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "YMBFTY+rsfs10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BBOKRU+MSAM10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "TGLBCT+TeXGyreCursor-Regular",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "type": "CID TrueType",
+          "encoding": "Identity-H",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "type": "CID TrueType",
+          "encoding": "Identity-H",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "type": "CID TrueType",
+          "encoding": "Identity-H",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "type": "CID TrueType",
+          "encoding": "Identity-H",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EHPQXI+CMR10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "XDOWKF+CMMI10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "CPKEAE+CMMI7",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "NUADEQ+CMSY10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "PXBGHL+CMSY7",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EHPQXI+CMR10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "XDOWKF+CMMI10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "HRNKBF+TeXGyreCursor-Italic",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "EHPQXI+CMR10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "DNHZKZ+SFRM1000",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "MTRDDD+CMBX10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "MTRDDD+CMBX10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "MTRDDD+CMBX10",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "QOFMRP+CMSS9",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "PKZGOH+LINEW10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "BAMXPI+MSBM10",
+          "type": "Type 1",
+          "encoding": "Builtin",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        },
+        {
+          "name": "ZVBIYG+TeXGyreTermes-Bold",
+          "type": "Type 1",
+          "encoding": "Custom",
+          "embedded": "yes",
+          "subset": "yes",
+          "unicode": "yes"
+        }
+      ]
+    }
+  },
+  "replay_byte_identical": true,
+  "tex_log": {
+    "fatal_counts": {
+      "latex_error": 0,
+      "package_error": 0,
+      "fatal_error": 0,
+      "emergency_stop": 0,
+      "undefined_control": 0,
+      "undefined_references": 0,
+      "undefined_citation": 0,
+      "multiply_defined": 0,
+      "duplicate_destination": 0,
+      "missing_character": 0
+    },
+    "overfull_hbox_count": 0,
+    "overfull_vbox_count": 0
+  },
+  "failures": [],
+  "passed": true
+}

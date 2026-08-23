@@ -1,0 +1,241 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "corrections": [],
+  "exercise_order": [
+    "7.1", "7.2", "7.3", "7.4", "7.5", "7.6", "7.7", "7.8", "7.9",
+    "7.10", "7.11", "7.12", "7.13", "7.14", "7.15", "7.16", "7.17",
+    "8.1", "8.2", "8.3", "8.4", "8.5", "8.6", "8.7", "8.8", "8.9",
+    "9.1", "9.2", "9.3", "9.4", "9.5", "9.6", "9.7", "9.8", "9.9",
+    "9.10", "9.11", "9.12"
+  ],
+  "exercises": {
+    "7.1": {
+      "difficulty": 1,
+      "method": "exact_dictionary_and_highs",
+      "title": "Bentuk standar dan kamus pertama",
+      "lp": {"sense": "max", "variables": ["x", "y"], "c": [4, 5], "constraints": [[[1, 2], "<=", 12], [[3, 2], "<=", 24]]},
+      "expected_solver": {"point": [6, 3], "objective": 39}
+    },
+    "7.2": {
+      "difficulty": 1,
+      "method": "exact_standardization",
+      "title": "Mengonversi ke Bentuk Standar",
+      "original": {"sense": "max", "variables": [{"name": "x1", "domain": "nonnegative"}, {"name": "x2", "domain": "nonnegative"}], "c": [3, -5], "constraints": [[[2, 1], "<=", 6], [[-1, 3], ">=", 2]]}
+    },
+    "7.3": {
+      "difficulty": 1,
+      "method": "exact_standardization",
+      "title": "Mengonversi ke Bentuk Standar",
+      "original": {"sense": "min", "variables": [{"name": "x1", "domain": "nonnegative"}, {"name": "x2", "domain": "nonnegative"}, {"name": "x3", "domain": "free"}], "c": [-1, 2, 1], "constraints": [[[1, -1, 2], "=", 4], [[-2, 1, 0], "<=", 1]]}
+    },
+    "7.4": {
+      "difficulty": 1,
+      "method": "exact_standardization",
+      "title": "Mengonversi ke Bentuk Standar",
+      "original": {"sense": "max", "variables": [{"name": "x1", "domain": "free"}, {"name": "x2", "domain": "nonpositive"}, {"name": "x3", "domain": "nonpositive"}], "c": [5, 1, -3], "constraints": [[[1, 2, -1], ">=", 7], [[0, 1, -4], "=", 3]]}
+    },
+    "7.5": {
+      "difficulty": 1,
+      "method": "exact_standardization",
+      "title": "Mengonversi ke Bentuk Standar",
+      "original": {"sense": "min", "variables": [{"name": "x1", "domain": "free"}, {"name": "x2", "domain": "nonnegative"}], "c": [2, 4], "constraints": [[[1, 1], ">=", 3], [[2, -1], "<=", 5]]}
+    },
+    "7.6": {
+      "difficulty": 1,
+      "method": "exact_standardization",
+      "title": "Mengonversi ke Bentuk Standar",
+      "original": {"sense": "min", "variables": [{"name": "y1", "domain": "nonnegative"}, {"name": "y2", "domain": "nonnegative"}, {"name": "y3", "domain": "free"}], "c": [5, -3, 1], "constraints": [[[2, -1, 3], "=", 7], [[-1, 4, 0], "<=", 5]]}
+    },
+    "7.7": {
+      "difficulty": 2,
+      "method": "exact_dictionary_path_and_highs",
+      "title": "Pivot ke arah yang berbeda",
+      "lp": {"sense": "max", "variables": ["x", "y"], "c": [2, 3], "constraints": [[[1, 1], "<=", 9], [[2, 1], "<=", 16], [[1, 2], "<=", 14]]},
+      "forced_entering": ["x"],
+      "expected_pivots": [["x", "s2"], ["y", "s1"], ["s2", "s3"]],
+      "expected_solver": {"point": [4, 5], "objective": 23}
+    },
+    "7.8": {
+      "difficulty": 2,
+      "method": "exact_dictionary_path_and_highs",
+      "title": "Latihan Metode Simpleks",
+      "lp": {"sense": "max", "variables": ["x1", "x2"], "c": [5, 3], "constraints": [[[1, 1], "<=", 12], [[2, 1], "<=", 16]]},
+      "expected_pivots": [["x1", "s2"], ["x2", "s1"]],
+      "expected_solver": {"point": [4, 8], "objective": 44}
+    },
+    "7.9": {
+      "difficulty": 2,
+      "method": "exact_dictionary_path_and_highs",
+      "title": "Latihan Metode Simpleks",
+      "lp": {"sense": "max", "variables": ["x1", "x2"], "c": [5, 8], "constraints": [[[1, 2], "<=", 30], [[3, 1], "<=", 30]]},
+      "expected_pivots": [["x2", "s1"], ["x1", "s2"]],
+      "expected_solver": {"point": [6, 12], "objective": 126}
+    },
+    "7.10": {
+      "difficulty": 2,
+      "method": "exact_dictionary_path_and_highs",
+      "title": "Latihan Metode Simpleks",
+      "lp": {"sense": "max", "variables": ["x1", "x2", "x3"], "c": [2, 3, 1], "constraints": [[[4, 2, 5], "<=", 32], [[2, 4, 3], "<=", 28]]},
+      "expected_pivots": [["x2", "s2"], ["x1", "s1"]],
+      "expected_solver": {"point": [6, 4, 0], "objective": 24}
+    },
+    "7.11": {
+      "difficulty": 2,
+      "method": "exact_dictionary_path_and_highs",
+      "title": "Latihan Metode Simpleks",
+      "lp": {"sense": "max", "variables": ["x1", "x2", "x3"], "c": [6, 8, 5], "constraints": [[[4, 1, 1], "<=", 1800], [[2, 2, 1], "<=", 2000], [[4, 2, 1], "<=", 3200]]},
+      "expected_pivots": [["x2", "s2"], ["x3", "s1"]],
+      "expected_solver": {"point": [0, 200, 1600], "objective": 9600}
+    },
+    "7.12": {
+      "difficulty": 2,
+      "manual_title_variant": "Latihan Metode Simpleks (Big-M)",
+      "method": "symbolic_big_m_path_and_highs",
+      "title": "Latihan Metode Simpleks",
+      "lp": {"sense": "min", "variables": ["x1", "x2", "x3"], "c": [4, 6, 7], "constraints": [[[1, 1, 2], ">=", 20], [[1, 2, 1], ">=", 30]]},
+      "expected_pivots": [["x2", "a2"], ["x3", "a1"], ["x1", "x3"]],
+      "expected_solver": {"point": [10, 10, 0], "objective": 100}
+    },
+    "7.13": {
+      "difficulty": 2,
+      "manual_title_variant": "Latihan Metode Simpleks (Big-M)",
+      "method": "symbolic_big_m_path_and_highs",
+      "title": "Latihan Metode Simpleks",
+      "lp": {"sense": "min", "variables": ["x1", "x2", "x3"], "c": [40, 48, 30], "constraints": [[[2, 2, 1], ">=", 25], [[1, 3, 2], ">=", 30]]},
+      "expected_pivots": [["x2", "a2"], ["x1", "a1"]],
+      "expected_solver": {"point": ["15/4", "35/4", 0], "objective": 570}
+    },
+    "7.14": {"difficulty": 2, "method": "direct_dictionary_certificate", "title": "Optimalitas Kamus"},
+    "7.15": {
+      "difficulty": 2,
+      "method": "exact_geometry_basis_and_highs",
+      "title": "Solusi Basis Layak",
+      "lp": {"sense": "max", "variables": ["x1", "x2"], "c": [2, 1], "constraints": [[[2, 3], ">=", 7], [[0, 1], ">=", 1], [[1, -1], "<=", 4], [[1, 3], "<=", 16]]},
+      "vertices": {"A": [2, 1], "B": [5, 1], "C": [7, 3], "D": [0, "16/3"], "E": [0, "7/3"]},
+      "expected_solver": {"point": [7, 3], "objective": 17}
+    },
+    "7.16": {"difficulty": 2, "method": "exact_wrong_pivot_certificate", "title": "Apa yang dilindungi oleh uji rasio"},
+    "7.17": {
+      "difficulty": 3,
+      "method": "exact_tie_paths_proof_and_highs",
+      "title": "Hasil imbang dalam uji rasio memaksa degenerasi",
+      "lp": {"sense": "max", "variables": ["x", "y"], "c": [2, 1], "constraints": [[[1, 1], "<=", 4], [[2, 1], "<=", 8]]},
+      "expected_solver": {"point": [4, 0], "objective": 8},
+      "constructed_example": {"sense": "max", "variables": ["x", "y"], "c": [1, 1], "constraints": [[[1, 0], "<=", 3], [[1, 2], "<=", 3]]}
+    },
+    "8.1": {"difficulty": 1, "method": "exact_basis_matrix", "title": "Matriks basis dan solusi basis", "basis_case": {"A": [[1, 2, 1], [3, 1, 2]], "b": [4, 5], "variables": ["x1", "x2", "x3"], "basis": ["x2", "x3"]}},
+    "8.2": {"difficulty": 1, "method": "exact_basis_matrix", "title": "Solusi basis yang tidak layak", "basis_case": {"A": [[1, 2, 1], [3, 1, 2]], "b": [4, 5], "variables": ["x1", "x2", "x3"], "basis": ["x1", "x3"]}},
+    "8.3": {"difficulty": 1, "method": "exact_basis_matrix", "title": "Basis keempat untuk contoh tiga basis", "basis_case": {"A": [[1, 2, 1, 0], [5, 3, 0, 1]], "b": [16, 45], "variables": ["x1", "x2", "s1", "s2"], "basis": ["x2", "s2"]}},
+    "8.4": {
+      "difficulty": 2,
+      "method": "exact_reduced_costs_and_highs",
+      "title": "Biaya tereduksi pada dua basis",
+      "lp_standard": {"A": [[1, 1, 1, 0, 0], [2, 1, 0, 1, 0], [1, 2, 0, 0, 1]], "b": [9, 16, 14], "c": [2, 3, 0, 0, 0], "variables": ["x", "y", "s1", "s2", "s3"]},
+      "bases": [["y", "s1", "s2"], ["x", "y", "s2"]],
+      "lp": {"sense": "max", "variables": ["x", "y"], "c": [2, 3], "constraints": [[[1, 1], "<=", 9], [[2, 1], "<=", 16], [[1, 2], "<=", 14]]},
+      "expected_solver": {"point": [4, 5], "objective": 23}
+    },
+    "8.5": {"difficulty": 2, "method": "exact_basis_enumeration", "title": "Basis mana yang layak?", "basis_case": {"A": [[1, 2, 1, 0], [5, 3, 0, 1]], "b": [16, 45], "variables": ["x1", "x2", "s1", "s2"]}},
+    "8.6": {
+      "difficulty": 2,
+      "method": "exact_dictionary_reconstruction_and_highs",
+      "title": "Membangun kembali kamus dari rumus",
+      "lp_standard": {"A": [[3, 1, 1, 0], [5, 3, 0, 1]], "b": [23, 45], "c": [2, 1, 0, 0], "variables": ["x", "y", "s1", "s2"]},
+      "basis": ["x", "y"],
+      "lp": {"sense": "max", "variables": ["x", "y"], "c": [2, 1], "constraints": [[[3, 1], "<=", 23], [[5, 3], "<=", 45]]},
+      "expected_solver": {"point": [6, 5], "objective": 17}
+    },
+    "8.7": {"difficulty": 2, "method": "direct_matrix_identity_proof", "title": "Biaya tereduksi variabel basis"},
+    "8.8": {"difficulty": 2, "manual_title_variant": "Tanda biaya tereduksi dan aturan masuk", "method": "direct_sign_convention_proof", "title": "Tanda biaya tereduksi dan aturan variabel masuk"},
+    "8.9": {"difficulty": 3, "method": "direct_unique_optimum_proof", "title": "Biaya tereduksi yang negatif secara ketat menyiratkan optimum unik"},
+    "9.1": {
+      "difficulty": 1,
+      "method": "exact_tableau_reading",
+      "title": "Membaca tableau di tengah proses penyelesaian",
+      "tableau": {"variables": ["x", "y", "s1", "s2", "s3"], "basis": ["s1", "s2", "y"], "objective": [["-1/2", 0, 0, 0, "3/2"], 21], "rows": [[["1/2", 0, 1, 0, "-1/2"], 2], [["3/2", 0, 0, 1, "-1/2"], 9], [["1/2", 1, 0, 0, "1/2"], 7]]}
+    },
+    "9.2": {
+      "difficulty": 1,
+      "method": "exact_tableau_reading",
+      "title": "Membaca tableau",
+      "tableau": {"variables": ["x1", "x2", "s1", "s2"], "basis": ["x1", "x2"], "objective": [[0, 0, 3, 1], 40], "rows": [[[1, 0, 2, -1], 6], [[0, 1, -1, 1], 4]]}
+    },
+    "9.3": {
+      "difficulty": 1,
+      "method": "exact_tableau_ratio_test",
+      "title": "Variabel masuk, uji rasio, dan elemen pivot",
+      "lp": {"sense": "max", "variables": ["x1", "x2"], "c": [4, 3], "constraints": [[[2, 3], "<=", 6], [[4, 1], "<=", 8], [[3, 4], "<=", 12]]}
+    },
+    "9.4": {
+      "difficulty": 2,
+      "method": "exact_tableau_pivot",
+      "title": "Melakukan satu pivot",
+      "lp": {"sense": "max", "variables": ["x1", "x2"], "c": [4, 3], "constraints": [[[2, 3], "<=", 6], [[4, 1], "<=", 8], [[3, 4], "<=", 12]]}
+    },
+    "9.5": {
+      "difficulty": 2,
+      "method": "exact_tableau_path_and_highs",
+      "title": "Menyelesaikan program linier dalam bentuk tableau",
+      "lp": {"sense": "max", "variables": ["x", "y"], "c": [1, 2], "constraints": [[[1, 1], "<=", 4], [[1, 3], "<=", 6]]},
+      "expected_pivots": [["y", "s2"], ["x", "s1"]],
+      "expected_solver": {"point": [3, 1], "objective": 5}
+    },
+    "9.6": {
+      "difficulty": 2,
+      "method": "exact_tableau_path_and_highs",
+      "title": "Penyelesaian lengkap dengan dua pivot",
+      "lp": {"sense": "max", "variables": ["x", "y"], "c": [3, 2], "constraints": [[[2, 1], "<=", 10], [[1, 3], "<=", 15]]},
+      "expected_pivots": [["x", "s1"], ["y", "s2"]],
+      "expected_solver": {"point": [3, 4], "objective": 17}
+    },
+    "9.7": {
+      "difficulty": 2,
+      "method": "symbolic_big_m_tableau_and_highs",
+      "title": "Menyusun tableau Big-M",
+      "lp": {"sense": "max", "variables": ["x", "y"], "c": [4, 3], "constraints": [[[1, 1], ">=", 4], [[1, 2], "<=", 10]]},
+      "expected_solver": {"point": [10, 0], "objective": 40}
+    },
+    "9.8": {"difficulty": 2, "method": "direct_tableau_sign_proof", "title": "Konvensi tanda pada baris z"},
+    "9.9": {"difficulty": 2, "method": "exact_tableau_to_dictionary", "title": "Dari tableau ke kamus"},
+    "9.10": {"difficulty": 2, "method": "direct_unbounded_tableau_certificate", "title": "Mengenali masalah tak terbatas"},
+    "9.11": {"difficulty": 2, "method": "direct_infeasible_big_m_certificate", "title": "Membaca ketaklayakan"},
+    "9.12": {
+      "difficulty": 3,
+      "method": "exact_unbounded_ray_and_highs",
+      "title": "Menyertifikasi ketakterbatasan dari tableau",
+      "lp": {"sense": "max", "variables": ["x1", "x2"], "c": [1, 1], "constraints": [[[1, -1], "<=", 1], [[-1, 1], "<=", 2]]}
+    }
+  },
+  "lab_id": "o018.ch07-ch09.simplex",
+  "provenance": {
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "source_files": [
+      {"bytes": 132627, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-basis-driven.tex", "role": "authority_ch07_chapter", "sha256": "925e23f06a5c5900f4e61c416d6f624b57ab6581ae42696e09cf2e9892c19021"},
+      {"bytes": 20547, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch07.tex", "role": "authority_ch07_manual", "sha256": "e2068bcaf5538f47009f2e420907baabbc559d3c175ddb2443c352e1513f0b4b"},
+      {"bytes": 37596, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-matrix-version.tex", "role": "authority_ch08_chapter", "sha256": "f012408ddcc285dc717c4156338fc9f315be9290122efdd0bad0cde704e5cec4"},
+      {"bytes": 12614, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch08.tex", "role": "authority_ch08_manual", "sha256": "7e374e3f0282398ee5150582735978637490d4d95328fe309bfed5580edc7fa6"},
+      {"bytes": 30290, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-tableau.tex", "role": "authority_ch09_chapter", "sha256": "a99da17f6820e2e955f34c9db08f354c211b90ebf87cb2027bcf6660caca7b0b"},
+      {"bytes": 14072, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch09.tex", "role": "authority_ch09_manual", "sha256": "d5f7d7296e1b162ab74031a86d4d1e45da2a07891c992b50b2ab9fe57271ca65"},
+      {"bytes": 136847, "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-basis-driven.tex", "role": "translated_ch07_chapter", "sha256": "b18eac29969fdce112da5ceb83b74518138d1bcaa22efe52aeee2411676b9b7c"},
+      {"bytes": 21264, "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch07.tex", "role": "translated_ch07_manual", "sha256": "bff78cc451540559fa73eb619ae0f71e86bfd0df9575e3dd50cea0faf56ae98d"},
+      {"bytes": 39468, "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-matrix-version.tex", "role": "translated_ch08_chapter", "sha256": "1e0ac6ecd971c245bf090c82dcc4779b06cdd9e716004632138c4094c0430bf2"},
+      {"bytes": 12946, "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch08.tex", "role": "translated_ch08_manual", "sha256": "c19558f01e860afdf475157fda8af00ca3e5a08314cb188a5b3c9bc7046a7885"},
+      {"bytes": 30803, "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-tableau.tex", "role": "translated_ch09_chapter", "sha256": "6fe55f1e5eac82caf2128f7cae220bb29ff9537802465cb9b28feb6bab1330de"},
+      {"bytes": 15079, "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch09.tex", "role": "translated_ch09_manual", "sha256": "f563b1aabe4d56830afbfb882e677d65ad890145c2a668d7dc31631d8baa7cb4"}
+    ]
+  },
+  "runtime_components": [
+    {"license": "BSD-3-Clause", "name": "Pyomo", "version": "6.10.1"},
+    {"license": "MIT", "name": "HiGHS/highspy", "version": "1.15.1"},
+    {"license": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0", "name": "NumPy", "version": "2.5.2"},
+    {"license": "MIT", "name": "renderer SVG lokal", "version": "1.0"}
+  ],
+  "source_manual_divergences": [
+    {"exercise": "7.12", "kind": "title_only", "source": "Latihan Metode Simpleks", "manual": "Latihan Metode Simpleks (Big-M)"},
+    {"exercise": "7.13", "kind": "title_only", "source": "Latihan Metode Simpleks", "manual": "Latihan Metode Simpleks (Big-M)"},
+    {"exercise": "8.8", "kind": "title_only", "source": "Tanda biaya tereduksi dan aturan variabel masuk", "manual": "Tanda biaya tereduksi dan aturan masuk"}
+  ],
+  "underdetermined_exercises": []
+}

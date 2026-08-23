@@ -1,0 +1,135 @@
+\subsection{Perkalian Skalar Vektor dalam \texorpdfstring{$\mathbb{R}^n$}{Rn}}
+
+Perkalian skalar vektor dalam $\mathbb{R}^n$ didefinisikan sebagai \index{vektor!perkalian skalar}
+berikut.
+
+\begin{definition}{Perkalian Skalar Vektor dalam $\mathbb{R}^n$}\label{def:vectorscalarmultiplication}
+Jika $\vect{u}\in \mathbb{R}^{n}$ dan $k\in \mathbb{R}$ adalah suatu
+skalar,
+\index{skalar} maka $k\vect{u}\in \mathbb{R}^{n}$ didefinisikan oleh
+\begin{equation*}
+k\vect{u}=k\leftB \begin{array}{c}
+u_{1} \\
+\vdots \\
+u_{n}
+\end{array}
+\rightB = \leftB \begin{array}{c}
+ku_{1} \\
+\vdots \\
+ku_{n}
+\end{array}
+\rightB
+\end{equation*}
+\end{definition}
+
+Seperti halnya penjumlahan, perkalian skalar vektor memenuhi beberapa sifat penting. Sifat-sifat ini
+diuraikan dalam teorema berikut.
+
+\begin{theorem}{Sifat-Sifat Perkalian Skalar}\label{thm:vectorscalarmult}
+Sifat-sifat berikut berlaku untuk vektor $\vect{u},\vect{v}\in \mathbb{R}^{n}$ dan skalar $k,p $.
+\begin{itemize}
+\item Hukum Distributif terhadap Penjumlahan Vektor
+\begin{equation*}
+k \left( \vect{u}+\vect{v}\right) = k\vect{u}+ k\vect{v}
+\end{equation*}
+\item Hukum Distributif terhadap Penjumlahan Skalar
+\begin{equation*}
+\left( k + p  \right)\vect{u} = k \vect{u}+p \vect{u}
+\end{equation*}
+\item Hukum Asosiatif untuk Perkalian Skalar
+\begin{equation*}
+k \left( p \vect{u}\right) = \left(k p \right)\vect{u}
+\end{equation*}
+\item Aturan Perkalian dengan $1$
+\begin{equation*}
+1\vect{u}=\vect{u}
+\end{equation*}
+\end{itemize}
+\end{theorem}
+
+\ifdefined\showproofs
+\begin{proof}
+Kita akan menunjukkan bukti untuk:
+\begin{equation*}
+k \left( \vect{u}+\vect{v}\right) = k \vect{u}+ k \vect{v}
+\end{equation*}
+Perhatikan bahwa:
+\begin{equation*}
+\begin{array}{ll}
+k \left( \vect{u}+\vect{v}\right) & =k \leftB u_{1}+v_{1} \cdots u_{n}+v_{n}\rightB^T \\
+& = \leftB k \left( u_{1}+v_{1}\right) \cdots k \left( u_{n}+v_{n}\right) \rightB^T \\
+& = \leftB k u_{1}+ k  v_{1} \cdots k u_{n}+ k v_{n}\rightB^T \\
+& = \leftB k u_{1} \cdots k u_{n} \rightB^T + \leftB k v_{1} \cdots k v_{n} \rightB^T \\
+& = k \vect{u}+k \vect{v} \\
+\end{array}
+\end{equation*}
+\end{proof}
+\fi
+Sekarang kita sajikan sebuah gagasan berguna yang mungkin pernah Anda jumpai sebelumnya, yang menggabungkan penjumlahan vektor dan perkalian skalar.
+
+\begin{definition}{Kombinasi Linear}\label{def:linearcombination}
+Sebuah vektor $\vect{v}$ disebut sebagai \textbf{kombinasi linear}
+\index{kombinasi linear} dari vektor-vektor $\vect{u}_1,\cdots , \vect{u}_n $
+jika terdapat skalar $a_{1},\cdots ,a_{n}$ sedemikian sehingga
+\begin{equation*}
+\vect{v} = a_1 \vect{u}_1 + \cdots + a_n \vect{u}_n
+\end{equation*}
+\end{definition}
+
+Sebagai contoh,
+\begin{equation*}
+3
+\leftB
+\begin{array}{r}
+-4 \\
+1 \\
+0
+\end{array}
+\rightB
++
+2
+\leftB
+\begin{array}{r}
+-3 \\
+0\\
+1
+\end{array}
+\rightB
+ =
+\leftB
+\begin{array}{r}
+-18 \\
+3 \\
+2
+\end{array}
+\rightB.
+\end{equation*}
+Dengan demikian, kita dapat mengatakan bahwa
+\begin{equation*}
+\vect{v}= \leftB
+\begin{array}{r}
+-18 \\
+3 \\
+2
+\end{array}
+\rightB
+\end{equation*}
+merupakan kombinasi linear dari vektor-vektor
+\begin{equation*}
+\vect{u}_1 = \leftB
+\begin{array}{r}
+-4 \\
+1 \\
+0
+\end{array}
+\rightB
+\mbox{ dan }
+\vect{u}_2 =
+\leftB
+\begin{array}{r}
+-3 \\
+0\\
+1
+\end{array}
+\rightB
+\end{equation*}

@@ -1,0 +1,38 @@
+{
+  "lab_id": "o018.ch01.shirt-ordering",
+  "modes": {
+    "integer": {
+      "inventory": {
+        "friday": 17.0,
+        "saturday": 7.0,
+        "sunday": 0.0
+      },
+      "mode": "integer",
+      "objective": 188.0,
+      "orders": {
+        "friday": 0.0,
+        "saturday": 0.0,
+        "thursday": 22.0
+      },
+      "solver": "appsi_highs",
+      "termination_condition": "optimal"
+    },
+    "lp": {
+      "inventory": {
+        "friday": 17.0,
+        "saturday": 7.0,
+        "sunday": 0.0
+      },
+      "mode": "lp",
+      "objective": 188.0,
+      "orders": {
+        "friday": 0.0,
+        "saturday": 0.0,
+        "thursday": 22.0
+      },
+      "solver": "appsi_highs",
+      "termination_condition": "optimal"
+    }
+  },
+  "schema_version": "1.0.0"
+}

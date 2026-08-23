@@ -1,0 +1,94 @@
+% Panduan Notasi
+% Berkas ini mendefinisikan notasi standar yang digunakan di seluruh buku teks
+
+\chapter*{Notasi}
+\addcontentsline{toc}{chapter}{Notasi}
+
+Buku ini menggunakan notasi yang konsisten. Berikut adalah panduan rujukan untuk simbol dan konvensi yang digunakan.
+
+\section*{Himpunan dan Sistem Bilangan}
+
+\begin{tabular}{@{}ll@{}}
+$\R$ & Bilangan real \\
+$\R^n$ & Vektor real berdimensi $n$ \\
+$\R_+$, $\R^n_+$ & Bilangan real nonnegatif / vektor real nonnegatif \\
+$\Z$ & Bilangan bulat \\
+$\Z_+$, $\Z^n_+$ & Bilangan bulat nonnegatif / vektor bilangan bulat nonnegatif \\
+$\Q$ & Bilangan rasional \\
+$\{0,1\}^n$ & Vektor biner berdimensi $n$ \\
+\end{tabular}
+
+\section*{Vektor dan Matriks}
+
+\begin{tabular}{@{}ll@{}}
+$\x, \y, \z$ & Vektor variabel keputusan (huruf kecil tebal) \\
+$\a, \b, \c$ & Vektor parameter (huruf kecil tebal) \\
+$\0$ & Vektor nol \\
+$A, B$ & Matriks (huruf kapital miring) \\
+$x_i$ & Komponen ke-$i$ dari vektor $\x$ \\
+$a_{ij}$ & Elemen pada baris $i$, kolom $j$ dari matriks $A$ \\
+$\x^\top$ & Transpos vektor $\x$ \\
+$A^\top$ & Transpos matriks $A$ \\
+$\c^\top \x$ & Hasil kali titik (hasil kali dalam) $\c$ dan $\x$ \\
+$\|\x\|$ & Norma vektor $\x$ \\
+\end{tabular}
+
+\section*{Masalah Optimisasi}
+
+Program linear bentuk standar ditulis sebagai berikut:
+\[
+\begin{split}
+\max \quad & \c^\top \x \\
+\st \quad & A\x \leq \b \\
+& \x \geq \0
+\end{split}
+\]
+
+\begin{tabular}{@{}ll@{}}
+$\max$, $\min$ & Maksimumkan, minimumkan \\
+s.t. & Dengan syarat (diikuti kendala) \\
+$\leq$, $\geq$, $=$ & Jenis tanda kendala \\
+$\x^*$ & Solusi optimal \\
+$z^*$ & Nilai fungsi tujuan optimal \\
+\end{tabular}
+
+\section*{Penjumlahan dan Pengindeksan}
+
+\begin{tabular}{@{}ll@{}}
+$\sum_{i=1}^{n} x_i$ & Jumlah $x_1 + x_2 + \cdots + x_n$ \\
+$\sum_{i \in I} x_i$ & Jumlah untuk semua indeks dalam himpunan $I$ \\
+$\prod_{i=1}^{n} x_i$ & Hasil kali $x_1 \cdot x_2 \cdots x_n$ \\
+$\forall i \in I$ & Untuk semua $i$ dalam himpunan $I$ \\
+$\exists$ & Terdapat \\
+\end{tabular}
+
+\section*{Fungsi dan Operator}
+
+\begin{tabular}{@{}ll@{}}
+$f(x)$ & Fungsi dari $x$ \\
+$\nabla f$ & Gradien dari $f$ \\
+$\nabla^2 f$ & Matriks Hessian dari $f$ \\
+$\argmin_x f(x)$ & Nilai $x$ yang meminimumkan $f$ \\
+$\conv(S)$ & Selubung konveks dari himpunan $S$ \\
+$\dom(f)$ & Domain fungsi $f$ \\
+\end{tabular}
+
+\section*{Kelas Kompleksitas}
+
+\begin{tabular}{@{}ll@{}}
+\polynomial & Dapat diselesaikan dalam waktu polinomial \\
+\npcomplete & Masalah NP-lengkap \\
+\nphard & Masalah NP-sukar \\
+\end{tabular}
+
+\section*{Singkatan Umum}
+
+\begin{tabular}{@{}ll@{}}
+LP & Pemrograman Linear \\
+IP & Pemrograman Bilangan Bulat \\
+ILP & Pemrograman Linear Bilangan Bulat \\
+BIP & Pemrograman Bilangan Bulat Biner \\
+MILP & Pemrograman Linear Bilangan Bulat Campuran \\
+NLP & Pemrograman Nonlinier \\
+MINLP & Pemrograman Nonlinier Bilangan Bulat Campuran \\
+\end{tabular}

@@ -1,0 +1,172 @@
+{
+  "artifacts": [
+    {
+      "bytes": 3040,
+      "path": "ATTRIBUTION.md",
+      "sha256": "19b8d862d51dfba90ef6ff450a7be470ee95c0d33aedb86145a114f98609abc7"
+    },
+    {
+      "bytes": 1325,
+      "path": "LICENSE-CODE.txt",
+      "sha256": "0d0676d29717b661ea219a8100b02dabd4cdf631ae0dceedb2640e754822fbca"
+    },
+    {
+      "bytes": 2294,
+      "path": "README.md",
+      "sha256": "124356d34b3cf86bbefb309fd3da338ff85e68c941495a4e9315640890777b79"
+    },
+    {
+      "bytes": 9856,
+      "path": "data.json",
+      "sha256": "5f9a6fd218236ff73d53ae70cf7ea1011e3c100e8bbb96f60650df940dd73e00"
+    },
+    {
+      "bytes": 3417,
+      "path": "expected-results.json",
+      "sha256": "e20b4eb703cb7dcfcd6841dd87d70a3c16df6242dc6315a8a746c42efee58e1b"
+    },
+    {
+      "bytes": 24248,
+      "path": "model.py",
+      "sha256": "f8f3c4c688b91293982933ba736292be4c147f23974d916bd413d9644fa78cca"
+    },
+    {
+      "bytes": 6526,
+      "path": "plot_svg.py",
+      "sha256": "bc4d8a064a1934ae910d5e49bbb8126e1ac563dfed9a05ec91fa61e1f4c21940"
+    },
+    {
+      "bytes": 24177,
+      "path": "results.json",
+      "sha256": "6e9fa65517c722c749aa2805ab852bf8aaf5c77eaf46c5d6500b63bdc7e0af2c"
+    },
+    {
+      "bytes": 3515,
+      "path": "run_lab.py",
+      "sha256": "87893d8937289b6179e18a89964d9c637fb06c9ad3186817fed1d62819b34e84"
+    },
+    {
+      "bytes": 15698,
+      "path": "test_models.py",
+      "sha256": "82dc9ddd564fd80257345bfcd0bd2100df338b034d11996896e21224342f8283"
+    },
+    {
+      "bytes": 1671,
+      "path": "verification.log",
+      "sha256": "6451919d12495e957eb2568cb3bfbec2c1896c328debe0a6254438b286212041"
+    },
+    {
+      "bytes": 7358,
+      "path": "verify_receipt.py",
+      "sha256": "e06f6747017820bd17e2f3647fd954fb5abd53f429d541af402f5ac2666ce89a"
+    },
+    {
+      "bytes": 6544,
+      "path": "plots/ex14-01-mst.svg",
+      "sha256": "a258fff2e13aaf2698d22e646e75d502541c81465d1de51f50bbf549676e27a9"
+    },
+    {
+      "bytes": 5513,
+      "path": "plots/ex14-04-shortest.svg",
+      "sha256": "1e29a6a58f19af2552911cb0bfe2ee43143ff8c4e7e07e4d32604622fe0b7e93"
+    }
+  ],
+  "content_license": "CC-BY-SA-4.0",
+  "lab_id": "o018.ch14.graph-algorithms",
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 153603,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex",
+        "role": "authority_chapter",
+        "sha256": "3dd0d46fdebb5794dd3597b387fd116cd5c12bcc1320453f0b053c8a3875b2bf"
+      },
+      {
+        "bytes": 20192,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch14.tex",
+        "role": "authority_manual",
+        "sha256": "6b16c6ca1aac795f83c74fa5f128926b1edbac94b7dc086dc81067df5f6945e8"
+      },
+      {
+        "bytes": 160224,
+        "path": "source/Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex",
+        "role": "translated_chapter",
+        "sha256": "4353255f2fe5ddc304a57e9f38be20d54de2b1d2f365fbb78166a5d33e74482a"
+      },
+      {
+        "bytes": 22169,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch14.tex",
+        "role": "translated_manual",
+        "sha256": "ce143e1c44694c9d47d00870fc31d1e63c70c1fe9d679e32593bc5eef9b7689a"
+      }
+    ]
+  },
+  "runtime": {
+    "closure_files": [
+      {
+        "bytes": 602,
+        "path": "source/o018-open-solver-lab/requirements.lock",
+        "sha256": "2172e05818e66089772851294c4143497616b17bbe449e1a38f5aeb7a54418a0"
+      },
+      {
+        "bytes": 1952,
+        "path": "source/o018-open-solver-lab/runtime-receipt.json",
+        "sha256": "627cc1a3cbeec61635f61adff047478616e8d1de59161d632acf15372467fe7d"
+      }
+    ],
+    "implementation": "pure_stdlib",
+    "networkx": "not_installed_not_used",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13"
+  },
+  "schema_version": "1.0.0",
+  "verification": {
+    "algorithm_check_count_per_run": 23,
+    "artifact_count_excluding_receipt": 14,
+    "exercise_count": 23,
+    "method_counts": {
+      "all_unweighted_shortest_paths_and_rubric": 1,
+      "connected_components": 2,
+      "degree_and_handshake_certificate": 2,
+      "dijkstra_and_bellman_ford_crosscheck": 4,
+      "exchange_argument_and_negative_edge_check": 1,
+      "handshake_lemma_certificate": 1,
+      "image_dependent_multigraph_rubric": 1,
+      "image_dependent_rubric": 1,
+      "kruskal_and_exhaustive_certificate": 4,
+      "levenshtein_graph_weighted_example_and_rubric": 1,
+      "negative_counterexample_and_bellman_ford": 1,
+      "prim_and_kruskal_crosscheck": 1,
+      "stdlib_replacement_for_networkx": 1,
+      "weighted_graph_construction": 2
+    },
+    "o018_math_correction_count": 0,
+    "plot_accessibility_contract": {
+      "generated_svg_count": 2,
+      "language": "id-ID",
+      "required_svg_elements": [
+        "title",
+        "desc",
+        "metadata"
+      ],
+      "structured_alternatives": true
+    },
+    "plots_combined_sha256": "490ba4a3e4cca123de505613ebc20db28c671907a962a4dcdc7aa03f4f1f3db3",
+    "results_bytes": 24177,
+    "results_regeneration_runs": 2,
+    "results_sha256": "6e9fa65517c722c749aa2805ab852bf8aaf5c77eaf46c5d6500b63bdc7e0af2c",
+    "source_note_ids": [
+      "NOTE-CH14-BERN-TIME",
+      "NOTE-CH14-LOWRES-EXERCISES",
+      "NOTE-CH14-PRIM-FLOAT",
+      "NOTE-CH14-HARDCODED-REFS"
+    ],
+    "tests_failed_per_run": 0,
+    "tests_passed_per_run": 33,
+    "unittest_runs": 2,
+    "unresolved_exercises": [],
+    "verification_date": "2026-08-22",
+    "verified_count": 23,
+    "visual_qa_svg_count": 2
+  }
+}

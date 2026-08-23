@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" role="img" xml:lang="id-ID" aria-labelledby="title desc">
+  <title id="title">Jadwal optimal dua pekerjaan pada tiga mesin</title>
+  <desc id="desc">Diagram Gantt. Pekerjaan 1 berjalan pada M1 dari 0 sampai 3, M2 dari 3 sampai 5, dan M3 dari 5 sampai 9. Pekerjaan 2 berjalan pada M1 dari 3 sampai 5, M2 dari 5 sampai 9, dan M3 dari 9 sampai 12. Makespan optimal adalah 12.</desc>
+  <metadata>{&quot;exercise_id&quot;:&quot;15.16&quot;,&quot;language&quot;:&quot;id-ID&quot;,&quot;makespan&quot;:12,&quot;processing_times&quot;:[[3,2,4],[2,4,3]],&quot;schedule&quot;:{&quot;Pekerjaan 1&quot;:[[0,3],[3,5],[5,9]],&quot;Pekerjaan 2&quot;:[[3,5],[5,9],[9,12]]}}</metadata>
+  <rect width="900" height="430" fill="#ffffff"/>
+  <text x="450" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#111827">Jadwal flow-shop optimal</text>
+  <text x="450" y="59" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#374151">Makespan = 12</text>
+  <g stroke="#d1d5db" stroke-width="1">
+    <line x1="115" y1="87" x2="115" y2="346"/>
+    <line x1="175" y1="87" x2="175" y2="346"/>
+    <line x1="235" y1="87" x2="235" y2="346"/>
+    <line x1="295" y1="87" x2="295" y2="346"/>
+    <line x1="355" y1="87" x2="355" y2="346"/>
+    <line x1="415" y1="87" x2="415" y2="346"/>
+    <line x1="475" y1="87" x2="475" y2="346"/>
+    <line x1="535" y1="87" x2="535" y2="346"/>
+    <line x1="595" y1="87" x2="595" y2="346"/>
+    <line x1="655" y1="87" x2="655" y2="346"/>
+    <line x1="715" y1="87" x2="715" y2="346"/>
+    <line x1="775" y1="87" x2="775" y2="346"/>
+    <line x1="835" y1="87" x2="835" y2="346"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="14" fill="#111827">
+    <text x="115" y="78" text-anchor="middle">0</text>
+    <text x="175" y="78" text-anchor="middle">1</text>
+    <text x="235" y="78" text-anchor="middle">2</text>
+    <text x="295" y="78" text-anchor="middle">3</text>
+    <text x="355" y="78" text-anchor="middle">4</text>
+    <text x="415" y="78" text-anchor="middle">5</text>
+    <text x="475" y="78" text-anchor="middle">6</text>
+    <text x="535" y="78" text-anchor="middle">7</text>
+    <text x="595" y="78" text-anchor="middle">8</text>
+    <text x="655" y="78" text-anchor="middle">9</text>
+    <text x="715" y="78" text-anchor="middle">10</text>
+    <text x="775" y="78" text-anchor="middle">11</text>
+    <text x="835" y="78" text-anchor="middle">12</text>
+    <text x="87" y="134" text-anchor="end" font-weight="700">M1</text>
+    <line x1="115" y1="158" x2="835" y2="158" stroke="#9ca3af"/>
+    <rect x="115" y="100" width="180" height="54" rx="6" fill="#0072B2" stroke="#111827" stroke-width="2"/>
+    <text x="205" y="124" text-anchor="middle" font-weight="700" fill="#ffffff">P1</text>
+    <text x="205" y="143" text-anchor="middle" font-size="12" fill="#ffffff">0–3</text>
+    <rect x="295" y="100" width="120" height="54" rx="6" fill="#E69F00" stroke="#111827" stroke-width="2"/>
+    <text x="355" y="124" text-anchor="middle" font-weight="700" fill="#ffffff">P2</text>
+    <text x="355" y="143" text-anchor="middle" font-size="12" fill="#ffffff">3–5</text>
+    <text x="87" y="216" text-anchor="end" font-weight="700">M2</text>
+    <line x1="115" y1="240" x2="835" y2="240" stroke="#9ca3af"/>
+    <rect x="295" y="182" width="120" height="54" rx="6" fill="#0072B2" stroke="#111827" stroke-width="2"/>
+    <text x="355" y="206" text-anchor="middle" font-weight="700" fill="#ffffff">P1</text>
+    <text x="355" y="225" text-anchor="middle" font-size="12" fill="#ffffff">3–5</text>
+    <rect x="415" y="182" width="240" height="54" rx="6" fill="#E69F00" stroke="#111827" stroke-width="2"/>
+    <text x="535" y="206" text-anchor="middle" font-weight="700" fill="#ffffff">P2</text>
+    <text x="535" y="225" text-anchor="middle" font-size="12" fill="#ffffff">5–9</text>
+    <text x="87" y="298" text-anchor="end" font-weight="700">M3</text>
+    <line x1="115" y1="322" x2="835" y2="322" stroke="#9ca3af"/>
+    <rect x="415" y="264" width="240" height="54" rx="6" fill="#0072B2" stroke="#111827" stroke-width="2"/>
+    <text x="535" y="288" text-anchor="middle" font-weight="700" fill="#ffffff">P1</text>
+    <text x="535" y="307" text-anchor="middle" font-size="12" fill="#ffffff">5–9</text>
+    <rect x="655" y="264" width="180" height="54" rx="6" fill="#E69F00" stroke="#111827" stroke-width="2"/>
+    <text x="745" y="288" text-anchor="middle" font-weight="700" fill="#ffffff">P2</text>
+    <text x="745" y="307" text-anchor="middle" font-size="12" fill="#ffffff">9–12</text>
+  </g>
+  <g transform="translate(280 388)" font-family="Arial, sans-serif" font-size="14" fill="#111827">
+    <rect x="0" y="-13" width="22" height="18" rx="3" fill="#0072B2" stroke="#111827"/>
+    <text x="31" y="2">Pekerjaan 1</text>
+    <rect x="185" y="-13" width="22" height="18" rx="3" fill="#E69F00" stroke="#111827"/>
+    <text x="216" y="2">Pekerjaan 2</text>
+  </g>
+</svg>

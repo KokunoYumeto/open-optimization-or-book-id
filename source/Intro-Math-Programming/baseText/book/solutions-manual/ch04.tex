@@ -1,0 +1,257 @@
+% ============================================================================
+% Bab 4: Pemodelan dengan Notasi Ringkas
+% (book/part1-linear-programming/ch02-modeling/modeling-sums.tex dan
+%  modeling-sums-continued.tex; latihan berada di berkas kedua)
+% 14 latihan. Semua jawaban numerik telah diverifikasi dengan scipy
+% (linprog/HiGHS dan linear_sum_assignment) pada 2026-07-13.
+% PERBAIKAN BUKU diterapkan 2026-07-13: jaringan pada Latihan 4.7 semula
+% memiliki kapasitas 1 pada busur (v2,v1), sehingga instans tidak layak;
+% kapasitas di buku diubah menjadi 4 dan nilai pemeriksaan (biaya minimum 67)
+% ditambahkan. Lihat qaflag pada 4.7.
+% ============================================================================
+\section{Bab 4: Pemodelan dengan Notasi Ringkas}
+
+\textbf{Cakupan dan alur.} Bab ini mengembangkan model penjumlahan ringkas (perencanaan produksi, penugasan, aliran jaringan, aliran maksimum, aliran multikomoditas, transportasi, dan investasi multiperiode), dan keempat belas latihannya mengikuti alur tersebut dengan baik. Perencanaan produksi dilatih melalui 4.1 (pemanasan) dan 4.10 (kendala kapasitas dan produksi lebih awal); penugasan melalui 4.2, 4.4 (instans berbasis data berukuran 12 kali 12), 4.9 (pasangan terlarang), serta pasangan latihan keadilan 4.12/4.14; aliran berbiaya minimum dan transshipment melalui 4.3, 4.7, 4.8, serta latihan konseptual 4.11; aliran maksimum melalui 4.5 dan 4.6; dan aliran multikomoditas melalui 4.13. Dua latihan konseptual (4.11 tentang keseimbangan aliran agregat dan 4.12 tentang integralitas) sangat menonjol karena menghubungkan model-model ini dengan teori pada bab selanjutnya. Kekurangannya: bagian investasi modal multiperiode, perencanaan produksi dengan lembur, dan formulasi multikomoditas sumber--tujuan belum memiliki latihan; teorema aliran-maksimum potongan-minimum hanya dilatih secara tidak langsung (sertifikat potongan muncul pada 4.6); dan materi bus sekolah/tabel transportasi tidak dilatih secara langsung. Edisi ini tidak mengarang data investasi atau lembur yang belum tersedia; desain latihan untuk kedua bagian tersebut tetap menjadi pekerjaan terbuka. Penilaian apa adanya: cakupan bagian pemodelan inti sudah menyeluruh dan tingkat kesulitannya meningkat dengan baik, tetapi satu latihan investasi dan satu latihan lembur akan melengkapinya. Satu kesalahan data ditemukan dan telah diperbaiki dalam buku (Latihan 4.7; lihat di bawah).
+
+% ----------------------------------------------------------------------------
+\exsol{4.1}{Perencanaan Produksi Selama Lima Periode}{1}
+
+(a) Dengan produksi $x_t \geq 0$ dan persediaan akhir periode $s_t \geq 0$:
+\begin{align*}
+\min \quad & 8x_1 + 10x_2 + 12x_3 + 14x_4 + 16x_5 + 3(s_1 + s_2 + s_3 + s_4 + s_5)\\
+\st \quad & 2 + x_1 = 5 + s_1\\
+& s_1 + x_2 = 7 + s_2\\
+& s_2 + x_3 = 6 + s_3\\
+& s_3 + x_4 = 8 + s_4\\
+& s_4 + x_5 = 4 + s_5\\
+& x_t, s_t \geq 0 \quad \text{untuk } t = 1, \dots, 5.
+\end{align*}
+
+(b) Rencana optimalnya adalah produksi yang mengikuti permintaan, $x = (3, 7, 6, 8, 4)$, dengan semua $s_t = 0$: persediaan awal sebanyak $2$ memenuhi sebagian permintaan periode 1. Biayanya adalah $8(3) + 10(7) + 12(6) + 14(8) + 16(4) = 24 + 70 + 72 + 112 + 64 = 342$, sesuai dengan nilai pemeriksaan.
+
+(c) Memproduksi satu unit satu periode lebih awal memerlukan biaya produksi pada periode sebelumnya ditambah biaya penyimpanan sebesar $3$; menunggu hanya menambah biaya sebesar $2$, sebab biaya produksi naik $2$ per periode. Karena $3 > 2$, produksi lebih awal tidak pernah menguntungkan dan tidak ada persediaan yang disimpan.
+
+% ----------------------------------------------------------------------------
+\exsol{4.2}{Penugasan Mesin dengan Biaya Baru}{1}
+
+Modelnya adalah masalah penugasan standar dengan $x_{ij}$ biner ($1$ jika mesin $i$ mengerjakan tugas $j$), fungsi tujuan $\min \sum_{i,j} c_{ij} x_{ij}$, satu kendala $\sum_j x_{ij} = 1$ untuk setiap mesin, dan satu kendala $\sum_i x_{ij} = 1$ untuk setiap tugas. Dengan matriks biaya yang diberikan, penugasan optimalnya adalah
+\[
+0 \to 1 \;(3), \qquad 1 \to 0 \;(5), \qquad 2 \to 2 \;(2), \qquad 3 \to 3 \;(3),
+\]
+dengan biaya total $3 + 5 + 2 + 3 = 13$, sesuai dengan nilai pemeriksaan. Pencacahan seluruh $4! = 24$ penugasan memastikan optimalitas; penugasan terbaik kedua berbiaya $16$.
+
+% ----------------------------------------------------------------------------
+\exsol{4.3}{Pengiriman dari Gudang dengan Data Baru}{1}
+
+Model dari contoh gudang dalam buku dengan data baru:
+\begin{align*}
+\min \quad & 4x_{11} + 6x_{12} + 3x_{21} + 2x_{22}\\
+\st \quad & x_{11} + x_{12} \leq 20, \qquad x_{21} + x_{22} \leq 30,\\
+& x_{11} + x_{21} = 20, \qquad x_{12} + x_{22} = 30,\\
+& 0 \leq x_{11} \leq 15, \quad 0 \leq x_{12} \leq 10, \quad 0 \leq x_{21} \leq 20, \quad 0 \leq x_{22} \leq 20.
+\end{align*}
+
+(a) Permintaan total ($50$) sama dengan pasokan total, sehingga kedua gudang mengirimkan seluruh pasokannya. Aliran optimalnya adalah
+\[
+x_{11} = 10, \quad x_{12} = 10, \quad x_{21} = 10, \quad x_{22} = 20,
+\]
+dengan biaya $4(10) + 6(10) + 3(10) + 2(20) = 40 + 60 + 30 + 40 = 170$, sesuai dengan nilai pemeriksaan.
+
+(b) Rute $W_1 \to S_2$ (aliran $10$, kapasitas $10$) dan $W_2 \to S_2$ (aliran $20$, kapasitas $20$) mencapai kapasitas: permintaan Toko 2 sebesar $30$ tepat menghabiskan kapasitas kedua rute yang menuju toko tersebut, sehingga aliran sisanya juga ditentukan secara unik.
+
+\begin{qaflag}
+Catatan duplikasi: latihan ini dan Latihan 3.1 sama-sama mengulang jaringan gudang yang sama dari contoh yang sama; perbedaannya hanya terletak pada biaya dan permintaan. Hal itu dapat dibenarkan (3.1 melatih buku kerja Excel, sedangkan 4.3 melatih penulisan model), tetapi jika kedua bab pernah ditugaskan bersama, pertimbangkan untuk mengubah topologi jaringan pada salah satunya agar mahasiswa tidak menyelesaikan instans yang pada dasarnya sama dua kali.
+\end{qaflag}
+
+% ----------------------------------------------------------------------------
+\exsol{4.4}{Penugasan Hunian yang Adil bagi 12 Keluarga}{2}
+
+Model: $x_{ij}$ biner dengan $x_{ij} = 1$ jika keluarga $i$ memperoleh apartemen $j$, fungsi tujuan $\min \sum_{i,j} P_{ij} x_{ij}$ dengan $P_{ij}$ menyatakan peringkat apartemen $j$ menurut keluarga $i$, serta $\sum_j x_{ij} = 1$ untuk setiap keluarga dan $\sum_i x_{ij} = 1$ untuk setiap apartemen. Di Excel: kisi variabel kuning berukuran $12 \times 12$ di samping tabel preferensi biru dari CSV, fungsi tujuan \texttt{=SUMPRODUCT(prefs, assign)}, jumlah setiap baris dan kolom dibatasi sama dengan $1$, variabel $\geq 0$ (biner tidak diperlukan; LP penugasan menghasilkan solusi 0--1, lihat Latihan 4.12), Simplex LP.
+
+(a, b) Jumlah minimum skor peringkat preferensi adalah $\mathbf{17}$, yang dicapai oleh
+\begin{center}
+\begin{tabular}{llc|llc}
+Keluarga & Apartemen & Peringkat & Keluarga & Apartemen & Peringkat\\
+\hline
+1 & 12 & 2 & 7 & 5 & 1\\
+2 & 4 & 1 & 8 & 6 & 1\\
+3 & 11 & 1 & 9 & 10 & 1\\
+4 & 8 & 2 & 10 & 9 & 2\\
+5 & 1 & 1 & 11 & 3 & 1\\
+6 & 7 & 1 & 12 & 2 & 3\\
+\end{tabular}
+\end{center}
+Delapan keluarga memperoleh pilihan pertama, tiga keluarga memperoleh pilihan kedua, dan satu keluarga memperoleh pilihan ketiga. (Mungkin terdapat optimum alternatif dengan jumlah $17$; setiap penugasan yang dihasilkan Solver dengan jumlah $17$ adalah benar.)
+
+(c) Skor peringkat preferensi terburuk yang diberikan adalah $3$ (Keluarga 12 memperoleh Apartemen 2, pilihan ketiganya).
+
+% ----------------------------------------------------------------------------
+\exsol{4.5}{Aliran Jaringan Maksimum ke Satu Simpul}{2}
+
+\emph{Variabel.} Untuk setiap busur $(i,j)$ pada gambar, misalkan $x_{ij} \geq 0$ menyatakan banyaknya unit bantuan yang dikirim dari $i$ ke $j$.
+
+\emph{Fungsi tujuan.} Maksimumkan jumlah total yang mencapai hub:
+\[
+\max \quad x_{D_1,\mathrm{Hub}} + x_{D_2,\mathrm{Hub}} + x_{D_3,\mathrm{Hub}}.
+\]
+
+\emph{Kendala.} Ada tiga kelompok:
+\begin{itemize}
+\item Kapasitas truk: $x_{ij} \leq u_{ij}$ untuk setiap busur, dengan $u$ sesuai label ($x_{W_1,D_1} \leq 100$, $x_{W_2,D_1} \leq 150$, $x_{W_2,D_2} \leq 70$, $x_{W_3,D_2} \leq 120$, $x_{W_4,D_1} \leq 120$, $x_{W_4,D_3} \leq 100$, $x_{W_5,D_3} \leq 90$, $x_{D_1,\mathrm{Hub}} \leq 200$, $x_{D_1,D_2} \leq 80$, $x_{D_2,\mathrm{Hub}} \leq 180$, $x_{D_3,\mathrm{Hub}} \leq 160$).
+\item Kekekalan aliran pada simpul distribusi (tidak ada bantuan yang disimpan di sana):
+\begin{align*}
+x_{W_1,D_1} + x_{W_2,D_1} + x_{W_4,D_1} &= x_{D_1,D_2} + x_{D_1,\mathrm{Hub}},\\
+x_{W_2,D_2} + x_{W_3,D_2} + x_{D_1,D_2} &= x_{D_2,\mathrm{Hub}},\\
+x_{W_4,D_3} + x_{W_5,D_3} &= x_{D_3,\mathrm{Hub}}.
+\end{align*}
+\item Persediaan gudang: total aliran keluar dari setiap gudang paling banyak sebesar persediaannya; misalnya, $x_{W_2,D_1} + x_{W_2,D_2} \leq 300$ dan $x_{W_4,D_1} + x_{W_4,D_3} \leq 250$.
+\end{itemize}
+
+Penyelesaian LP menghasilkan pengiriman maksimum sebesar $\mathbf{540}$ unit: ketiga busur menuju hub mencapai kapasitas ($200 + 180 + 160$), yang juga merupakan batas atas karena setiap unit harus masuk ke hub melalui salah satu busur tersebut. Salah satu rencana optimal: $x_{W_2,D_1} = 80$, $x_{W_4,D_1} = 120$, $x_{W_2,D_2} = 60$, $x_{W_3,D_2} = 120$, $x_{W_4,D_3} = 70$, $x_{W_5,D_3} = 90$, $x_{D_1,D_2} = 0$, dan busur-busur menuju hub masing-masing bernilai $200, 180, 160$ (terdapat banyak optimum alternatif, misalnya yang menggunakan $W_1$).
+
+Perhatian penting dalam pemodelan: kendala gudang harus berupa pertidaksamaan. Menuliskannya sebagai persamaan (mengirimkan seluruh persediaan) membuat model tidak layak karena, misalnya, $W_1$ menyimpan $200$ unit sedangkan satu-satunya busur keluarnya berkapasitas $100$.
+
+\begin{qaflag}
+Redaksi: latihan menyatakan ``Anda tidak ingin meninggalkan persediaan apa pun di pusat distribusi,'' padahal simpul yang menyimpan persediaan adalah gudang, dan Latihan 4.11(3) kemudian merujuk kembali ke latihan ini seolah-olah redaksi sebelumnya menyebut gudang. Redaksi yang disarankan ialah ``bantuan tidak boleh disimpan di pusat distribusi (apa pun yang masuk harus keluar), sedangkan gudang boleh mengirim hingga sebanyak persediaannya,'' sesuai dengan model yang dimaksud. Dengan redaksi saat ini, pembaca yang menafsirkannya secara harfiah mungkin menggunakan kendala persamaan pada gudang dan memperoleh ketidaklayakan yang dibahas di atas (dan kemudian dimanfaatkan oleh 4.11; jadi pertahankan pembahasannya, tetapi selaraskan redaksinya).
+\end{qaflag}
+
+% ----------------------------------------------------------------------------
+\exsol{4.6}{Aliran Maksimum}{2}
+
+Misalkan $x_{ij} \geq 0$ menyatakan aliran pada busur $(i,j)$. Maksimumkan aliran yang masuk ke $t$ dengan tunduk pada kekekalan aliran di keempat simpul internal dan kapasitas berikut:
+\begin{align*}
+\max \quad & x_{v_3 t} + x_{v_4 t}\\
+\st \quad & x_{s v_1} + x_{v_2 v_1} = x_{v_1 v_3} + x_{v_1 v_2} && (v_1)\\
+& x_{s v_2} + x_{v_1 v_2} + x_{v_3 v_2} = x_{v_2 v_4} + x_{v_2 v_1} && (v_2)\\
+& x_{v_1 v_3} + x_{v_4 v_3} = x_{v_3 t} + x_{v_3 v_2} && (v_3)\\
+& x_{v_2 v_4} = x_{v_4 t} + x_{v_4 v_3} && (v_4)\\
+& x_{s v_2} \leq 8, \quad x_{s v_1} \leq 11, \quad x_{v_1 v_2} \leq 10, \quad x_{v_2 v_1} \leq 1, \quad x_{v_2 v_4} \leq 11,\\
+& x_{v_1 v_3} \leq 12, \quad x_{v_3 v_2} \leq 4, \quad x_{v_4 v_3} \leq 7, \quad x_{v_4 t} \leq 4, \quad x_{v_3 t} \leq 15,\\
+& x_{ij} \geq 0.
+\end{align*}
+Di Excel, gunakan satu sel variabel per busur, empat kendala kekekalan sebagai persamaan, kapasitas sebagai batas $\leq$, dan Simplex LP.
+
+Aliran maksimumnya adalah $\mathbf{19}$. Salah satu aliran optimal: $x_{s v_1} = 11$, $x_{s v_2} = 8$, $x_{v_1 v_3} = 8$, $x_{v_1 v_2} = 3$, $x_{v_2 v_4} = 11$, $x_{v_4 t} = 4$, $x_{v_4 v_3} = 7$, $x_{v_3 t} = 15$, dan semua busur lainnya bernilai $0$. Optimalitas dapat disertifikasi tanpa teori apa pun: dua busur yang masuk ke $t$ memiliki kapasitas total $15 + 4 = 19$, sehingga aliran tidak mungkin melebihi $19$, dan aliran ini mencapainya (suatu potongan minimum).
+
+% ----------------------------------------------------------------------------
+\exsol{4.7}{Aliran Jaringan Berbiaya Minimum}{2}
+
+Berdasarkan gambar (kapasitas berwarna hitam, biaya berwarna merah, dan label biru adalah permintaan neto, dengan nilai positif berarti permintaan dan nilai negatif berarti pasokan), datanya adalah: permintaan $d_{v_1} = 6$, $d_{v_6} = 10$; pasokan sebesar $2, 5, 3, 6$ pada $v_5, v_2, v_3, v_4$; dan busur-busur (kapasitas, biaya): $(v_5,v_2)$: $(8,7)$, $(v_5,v_1)$: $(11,4)$, $(v_2,v_4)$: $(11,7)$, $(v_4,v_6)$: $(4,2)$, $(v_1,v_3)$: $(12,9)$, $(v_3,v_6)$: $(15,2)$, $(v_3,v_2)$: $(4,1)$, $(v_4,v_3)$: $(7,8)$, $(v_2,v_1)$: $(4,2)$, $(v_1,v_2)$: $(10,1)$. Modelnya, dengan $x_{ij}$ menyatakan aliran pada busur $(i,j)$:
+\begin{align*}
+\min \quad & \textstyle\sum_{(i,j)} c_{ij} x_{ij}\\
+\st \quad & \sum_{i:(i,k)} x_{ik} - \sum_{j:(k,j)} x_{kj} = d_k \quad \text{untuk semua simpul } k \qquad (d_{v_1} = 6,\; d_{v_6} = 10,\; d_{v_5} = -2,\\
+& \hspace{16em} d_{v_2} = -5,\; d_{v_3} = -3,\; d_{v_4} = -6)\\
+& 0 \leq x_{ij} \leq u_{ij} \quad \text{untuk semua busur}.
+\end{align*}
+Biaya optimalnya adalah $\mathbf{67}$, dengan aliran
+\[
+x_{v_5 v_1} = 2, \quad x_{v_2 v_1} = 4, \quad x_{v_2 v_4} = 1, \quad x_{v_4 v_6} = 4, \quad x_{v_4 v_3} = 3, \quad x_{v_3 v_6} = 6,
+\]
+dan semua busur lainnya bernilai nol. (Pemeriksaan: $2 \cdot 4 + 4 \cdot 2 + 1 \cdot 7 + 4 \cdot 2 + 3 \cdot 8 + 6 \cdot 2 = 8 + 8 + 7 + 8 + 24 + 12 = 67$.) Salah satu ciri menarik instans ini: permintaan simpul $v_1$ sebesar $6$ tepat sama dengan aliran masuk neto maksimum yang mungkin ($2$ dari $v_5$, yang pasokannya $2$, ditambah kapasitas $4$ pada busur $(v_2,v_1)$), sehingga setiap aliran layak memiliki $x_{v_5 v_1} = 2$ dan $x_{v_2 v_1} = 4$; satu-satunya kebebasan nyata dalam LP adalah cara merutekan permintaan $v_6$.
+
+\begin{qaflag}
+Diperbaiki dalam buku (2026-07-13): pada gambar semula, busur $(v_2,v_1)$ memiliki kapasitas $1$, sehingga instans tidak layak dengan konvensi tanda mana pun (simpul $v_1$ meminta $6$, tetapi hanya dapat menerima paling banyak $2 + 1 = 3$; membalik tanda justru menjadikan $v_6$ simpul pasokan tanpa busur keluar). Gambar buku kini menunjukkan kapasitas $4$ pada busur tersebut, pernyataan latihan menjelaskan konvensi label secara eksplisit, dan nilai pemeriksaan (biaya minimum $67$) telah ditambahkan. Diverifikasi dengan scipy.
+\end{qaflag}
+
+% ----------------------------------------------------------------------------
+\exsol{4.8}{Transshipment Melalui Hub Regional}{2}
+
+(a) Sepuluh variabel busur: $x_{A,H_1}, x_{A,H_2}, x_{B,H_1}, x_{B,H_2}$ dari pabrik ke hub, dan $x_{H_h,S_j}$ dari setiap hub ke setiap toko. Modelnya:
+\begin{align*}
+\min \quad & 2x_{A,H_1} + 4x_{A,H_2} + 3x_{B,H_1} + x_{B,H_2}\\
+& \quad + 4x_{H_1,S_1} + 6x_{H_1,S_2} + 7x_{H_1,S_3} + 5x_{H_2,S_1} + 3x_{H_2,S_2} + 2x_{H_2,S_3}\\
+\st \quad & x_{A,H_1} + x_{A,H_2} \leq 40, \qquad x_{B,H_1} + x_{B,H_2} \leq 60 && \text{(pasokan)}\\
+& x_{A,H_1} + x_{B,H_1} = x_{H_1,S_1} + x_{H_1,S_2} + x_{H_1,S_3} && \text{(keseimbangan di } H_1)\\
+& x_{A,H_2} + x_{B,H_2} = x_{H_2,S_1} + x_{H_2,S_2} + x_{H_2,S_3} && \text{(keseimbangan di } H_2)\\
+& x_{H_1,S_j} + x_{H_2,S_j} = d_j \quad (d = 30, 45, 25) && \text{(permintaan)}\\
+& x \geq 0.
+\end{align*}
+Dua persamaan keseimbangan hub menyatakan secara eksplisit bahwa hub tidak menciptakan maupun menyimpan produk.
+
+(b) Permintaan total ($100$) sama dengan pasokan total, sehingga kedua pabrik mengirimkan seluruh produknya. Salah satu rencana optimal:
+\[
+x_{A,H_1} = 30, \quad x_{A,H_2} = 10, \quad x_{B,H_2} = 60, \qquad x_{H_1,S_1} = 30, \quad x_{H_2,S_2} = 45, \quad x_{H_2,S_3} = 25,
+\]
+dengan biaya minimum $30(2) + 10(4) + 60(1) + 30(4) + 45(3) + 25(2) = 60 + 40 + 60 + 120 + 135 + 50 = \mathbf{465}$. Strukturnya intuitif: B menggunakan busur murahnya menuju $H_2$, $H_2$ melayani toko-toko yang dapat dicapainya dengan murah ($S_2$, $S_3$), dan $S_1$ dilayani melalui $H_1$.
+
+% ----------------------------------------------------------------------------
+\exsol{4.9}{Penugasan dengan Pasangan Terlarang}{2}
+
+(a) Tanpa aturan sertifikasi, penugasan optimalnya adalah
+\[
+1 \to 2 \;(8), \quad 2 \to 1 \;(7), \quad 3 \to 3 \;(6), \quad 4 \to 5 \;(6), \quad 5 \to 4 \;(6),
+\]
+dengan biaya minimum $8 + 7 + 6 + 6 + 6 = 33$, sesuai dengan nilai pemeriksaan. Perhatikan bahwa penugasan ini menggunakan kedua pasangan terlarang: pekerja 1 pada tugas 2 dan pekerja 4 pada tugas 5.
+
+(b) Menambahkan $x_{12} = 0$ (dan $x_{45} = 0$) mengeluarkan variabel-variabel tersebut dari daerah layak, sehingga tidak ada penugasan yang menggunakan pasangan itu yang dapat dipilih. Mengganti $c_{12}$ dengan biaya sangat besar $M$ membuat pasangan tersebut tetap layak, tetapi menyebabkan setiap penugasan yang menggunakannya berbiaya setidaknya $M$, lebih besar daripada biaya setiap penugasan yang menghindarinya; karena itu, pengoptimal tidak pernah memilihnya. Kedua pendekatan mempertahankan struktur penugasan (dan sifat integralitasnya); kendala eksplisit lebih bersih secara numerik, sedangkan trik biaya besar tidak memerlukan kendala baru.
+
+(c) Setelah pasangan terlarang diberlakukan, optimumnya menjadi
+\[
+1 \to 5 \;(11), \quad 2 \to 1 \;(7), \quad 3 \to 3 \;(6), \quad 4 \to 2 \;(7), \quad 5 \to 4 \;(6),
+\]
+dengan biaya $11 + 7 + 6 + 7 + 6 = 37$, sesuai dengan nilai pemeriksaan. Aturan sertifikasi menambah biaya perusahaan sebesar $37 - 33 = 4$.
+
+% ----------------------------------------------------------------------------
+\exsol{4.10}{Persediaan Multiperiodik dengan Batas Produksi}{2}
+
+(a) Modelnya adalah LP perencanaan produksi dengan tambahan batas $x_t \leq 120$:
+\[
+\min \; \sum_{t=1}^{6} \big(c_t x_t + 2 s_t\big) \quad \st \; s_{t-1} + x_t = d_t + s_t \; (t = 1, \dots, 6), \quad 0 \leq x_t \leq 120, \quad s_t \geq 0, \quad s_0 = 0,
+\]
+dengan $c = (20, 20, 22, 25, 24, 23)$ dan $d = (80, 120, 60, 140, 90, 110)$.
+
+(b) Satu unit untuk periode 4 yang diproduksi pada periode $t$ memerlukan biaya $c_t$ ditambah $2$ untuk setiap periode penyimpanan: periode 3 berbiaya $22 + 2 = 24$, periode 2 berbiaya $20 + 4 = 24$, dan periode 1 berbiaya $20 + 6 = 26$. Periode 2 dan 3 sama-sama termurah dengan biaya $24$, dan keduanya lebih murah daripada produksi pada periode 4 itu sendiri ($25$). Namun, kapasitas periode 2 sepenuhnya terpakai untuk memenuhi permintaannya sendiri ($d_2 = 120$ sama dengan batas kapasitas), sehingga semua produksi lebih awal harus berlangsung pada periode 3.
+
+(c) Rencana optimalnya adalah
+\[
+x = (80, 120, 120, 80, 90, 110), \qquad s = (0, 0, 60, 0, 0, 0),
+\]
+dengan biaya minimum $\mathbf{13{,}450}$, sesuai dengan nilai pemeriksaan. Ini menegaskan bagian (b), dengan satu hal yang patut ditunjukkan kepada mahasiswa: karena unit yang diproduksi lebih awal berbiaya $24$, sedangkan produksi pada periode 4 berbiaya $25$, LP tidak hanya memproduksi lebih awal sebanyak $20$ unit yang diwajibkan oleh batas kapasitas ($140 - 120$); LP menggunakan seluruh kapasitas periode 3 dan memproduksi $60$ unit lebih awal, sehingga produksi periode 4 hanya $80$. (Karena periode 2 sudah mencapai kapasitas, tidak ada pilihan berbiaya sama yang dapat dimanfaatkan dan rencana ini pada dasarnya unik.)
+
+% ----------------------------------------------------------------------------
+\exsol{4.11}{Mengapa Semuanya Harus Dikirim ke Suatu Tempat}{2}
+
+(a) Tetapkan sebuah busur $(i,j) \in A$. Variabel $x_{ij}$ muncul tepat dalam dua kendala keseimbangan: pada kendala simpul $i$ dengan koefisien $-1$ (sebagai aliran keluar dari $i$) dan pada kendala simpul $j$ dengan koefisien $+1$ (sebagai aliran masuk ke $j$). Oleh karena itu, menjumlahkan kendala untuk semua $k \in V$ saling menghapus setiap variabel dan menyisakan
+\[
+0 = \sum_{k \in V} d_k.
+\]
+Jadi, jika total pasokan neto tidak sama dengan total permintaan neto, persamaan hasil penjumlahan $0 = \sum_k d_k$ dilanggar oleh setiap $\x$, dan model tidak layak. Keseimbangan antara pasokan dan permintaan merupakan syarat perlu bagi kelayakan.
+
+(b) Pada simpul antara, kendala menyatakan aliran masuk dikurangi aliran keluar sama dengan nol: apa pun yang tiba harus berangkat. Aliran tidak dapat diciptakan (aliran keluar melebihi aliran masuk) maupun dimusnahkan (aliran masuk melebihi aliran keluar) di simpul tersebut. Jika hubungan ini dirangkaikan sepanjang suatu rute, setiap unit yang meninggalkan simpul pasokan bergerak tanpa perubahan melalui simpul-simpul antara sampai mencapai simpul dengan permintaan positif, tempat kendala keseimbangan mengizinkannya diserap.
+
+(c) Dalam Latihan 4.5, gudang-gudang menyimpan $200 + 300 + 150 + 250 + 180 = 1080$ unit, tetapi busur-busur yang masuk ke hub hanya dapat menampung paling banyak $200 + 180 + 160 = 540$. Menuliskan kendala gudang sebagai persamaan menetapkan pasokan neto setiap gudang sama dengan seluruh persediaannya, sehingga $d_k$ berjumlah $1080$ dikurangi apa pun yang diserap hub; tidak ada pilihan permintaan hub hingga $540$ yang dapat membuat jumlah totalnya nol sambil tetap mematuhi kapasitas. Berdasarkan bagian (a), model dengan persamaan tersebut tidak mungkin layak (bagian (b) menyatakan bahwa kelebihan tidak dapat lenyap begitu saja di gudang). Perbaikan standar: nyatakan pasokan gudang sebagai pertidaksamaan (aliran keluar paling banyak sebesar persediaan), atau pertahankan persamaan dan tambahkan simpul semu yang menyerap kelebihan melalui busur berbiaya nol dan berkapasitas besar dari setiap gudang. Kedua cara memungkinkan model menentukan berapa banyak persediaan yang benar-benar dipindahkan.
+
+% ----------------------------------------------------------------------------
+\exsol{4.12}{Jawaban Bulat Tanpa Kendala Tambahan}{2}
+
+(a) Jawaban model: daerah layak LP penugasan adalah politop yang seluruh titik sudutnya kebetulan memiliki koordinat 0--1, karena matriks kendalanya unimodular total. Metode simpleks selalu berhenti di suatu titik sudut, sehingga meskipun kita hanya mensyaratkan $x_{ij} \geq 0$, jawaban yang dihasilkannya secara otomatis merupakan penugasan 0--1 yang sah. Integralitas diperoleh tanpa kendala tambahan karena geometri model, bukan karena kita memaksakannya.
+
+(b) Matriks kendala transportasi memiliki struktur jaringan yang sama, sehingga hasil yang sama berlaku: apabila semua pasokan $s_i$ dan permintaan $d_j$ berupa bilangan bulat, setiap titik sudut politop transportasi bersifat integral, dan selalu ada rencana pengiriman optimal dalam unit bulat. Penyelesaian LP dengan metode simpleks menghasilkan pengiriman bilangan bulat tanpa memerlukan kendala integralitas.
+
+(c) Dalam contoh dua tim (kedua tim menempatkan Proyek 2 pada peringkat pertama, dengan skor peringkat masing-masing $2$ dan $1$), setiap penugasan bilangan bulat memberikan proyek dengan skor peringkat $2$ kepada satu tim dan proyek dengan skor peringkat $1$ kepada tim lainnya. Karena skor peringkat yang lebih rendah lebih baik, nilai \emph{min--max} untuk penugasan bilangan bulat adalah $2$. Formulasi min--max yang benar adalah $\min z$ dengan kendala $z \geq \sum_j C_{ij}x_{ij}$ untuk setiap tim. Relaksasi LP bekerja lebih baik: membagi setiap proyek sama rata memberi kedua tim skor peringkat $1{,}5$, sehingga nilai min--max turun dari $2$ menjadi $1{,}5$. Sebaliknya, bila besaran yang dipakai adalah skor kepuasan yang lebih tinggi lebih baik, konvensi yang benar ialah \emph{max--min}: $\max z$ dengan $z \leq \sum_j S_{ij}x_{ij}$. Karena optimum LP $1{,}5$ pada contoh peringkat tidak dicapai oleh titik bilangan bulat mana pun, titik sudut optimal LP ini bersifat pecahan; formulasi tersebut tidak lagi memiliki sifat integralitas. Baris-baris tambahan yang memuat $z$ merusak struktur jaringan (unimodular total) pada matriks kendala.
+
+% ----------------------------------------------------------------------------
+\exsol{4.13}{Perutean Ulang Multikomoditas Akibat Kapasitas yang Lebih Ketat}{3}
+
+(a) Dengan kapasitas semula, komoditas-komoditas tidak saling berebut kapasitas: komoditas 1 mengirim seluruh $10$ unit melalui $1 \to 2 \to 4$ dengan biaya per unit $2 + 1 = 3$ (biaya $30$), dan komoditas 2 mengirim $5$ unit melalui $1 \to 3 \to 4$ dengan biaya per unit $2 + 1 = 3$ (biaya $15$). Biaya minimum totalnya $45$, seperti dinyatakan; semua muatan busur ($10, 5, 10, 5$) masih berada dalam kapasitas.
+
+(b) Dengan $u_{24} = 8$, komoditas 1 hanya dapat mengalirkan $8$ unit melalui $2 \to 4$; LP merutekan ulang $2$ unit sisanya melalui $1 \to 3 \to 4$ dengan biaya per unit $3 + 2 = 5$. Komoditas 2 tetap melewati $1 \to 3 \to 4$ (biayanya pada rute itu $3$, dibandingkan $5$ melalui simpul 2). Aliran optimal: komoditas 1 mengirim $8$ unit melalui $1 \to 2 \to 4$ dan $2$ unit melalui $1 \to 3 \to 4$; komoditas 2 mengirim $5$ unit melalui $1 \to 3 \to 4$. Biayanya $8(3) + 2(5) + 5(3) = 24 + 10 + 15 = \mathbf{49}$, sesuai dengan nilai pemeriksaan. Busur $(2,4)$ mencapai kapasitasnya sebesar $8$; busur $(1,3)$ dan $(3,4)$ masing-masing membawa $7$ unit, masih dalam kapasitas.
+
+(c) Contoh: dua simpul $s$ dan $t$ dihubungkan oleh dua rute paralel, yaitu rute murah dengan biaya $1$ dan kapasitas $10$, serta rute mahal dengan biaya $3$ dan kapasitas $10$. Komoditas 1 dan 2 masing-masing harus mengirim $8$ unit dari $s$ ke $t$. Jika diselesaikan secara terpisah, masing-masing komoditas merutekan seluruh $8$ unit melalui rute murah, sehingga membebani rute itu sebesar $16 > 10$: tidak layak. LP gabungan memperhitungkan kendala kapasitas bersama $f_{\text{murah},1} + f_{\text{murah},2} \leq 10$ dan mengatasi konflik dengan membagi kapasitas rute murah: rute itu membawa total $10$ unit (dapat dibagi di antara komoditas dalam proporsi apa pun), sedangkan $6$ unit sisanya melewati rute mahal; biaya totalnya $10(1) + 6(3) = 28$. Kendala penghubung memaksa komoditas-komoditas berbagi kapasitas murah yang langka; inilah tepatnya yang membuat aliran multikomoditas lebih sulit daripada menyelesaikan setiap komoditas secara terpisah.
+
+% ----------------------------------------------------------------------------
+\exsol{4.14}{Penugasan Proyek Adil Max--Min}{3}
+
+(a) Dengan mencacah $3! = 6$ penugasan, kepuasan total maksimum dicapai ketika tim $1 \to$ proyek 1, tim $2 \to$ proyek 2, dan tim $3 \to$ proyek 3, dengan jumlah $8 + 8 + 7 = 23$ (pemaksimum tunggal), sesuai dengan nilai pemeriksaan.
+
+(b) Penugasan yang sama juga memaksimumkan nilai minimum: tim yang paling tidak puas memperoleh skor $\min(8, 8, 7) = 7$. Tidak ada penugasan yang mencapai nilai minimum $8$: tim 2 hanya memperoleh skor sedikitnya $8$ pada proyek 2, dan tim 3 juga hanya memperoleh skor sedikitnya $8$ pada proyek 2 (skornya $6, 9, 7$), sehingga keduanya memerlukan proyek 2, yang tidak mungkin. Jadi, nilai minimum terbaik yang dapat dicapai adalah $7$.
+
+(c) LP max--min
+\[
+\max \; z \quad \st \; z \leq \sum_j S_{ij} x_{ij} \; (i = 1,2,3), \quad \sum_j x_{ij} = 1, \quad \sum_i x_{ij} = 1, \quad x_{ij} \geq 0
+\]
+memiliki nilai optimal $z = 7{,}5$. Salah satu solusi optimal adalah matriks stokastik ganda
+\[
+x = \begin{bmatrix} 5/6 & 0 & 1/6 \\ 1/6 & 3/4 & 1/12 \\ 0 & 1/4 & 3/4 \end{bmatrix},
+\]
+yang memberi setiap tim ekspektasi kepuasan tepat sebesar $7{,}5$. Pecahan membantu di sini karena fungsi tujuan max--min menghargai pemerataan antartim: pembagian proyek memungkinkan tim yang paling tidak puas menerima sebagian surplus tim lain (tim 1 melepaskan sebagian nilai proyek 1 untuk meningkatkan tim 2 dan 3). Pada bagian (a), fungsi tujuan $\sum_{ij} S_{ij} x_{ij}$ bersifat linear pada politop penugasan yang titik-titik sudutnya integral; karena itu, selalu ada penugasan bilangan bulat yang optimal dan pecahan tidak dapat meningkatkan jumlah total. Kendala tambahan $z \leq \sum_j S_{ij} x_{ij}$ merusak struktur tersebut (lihat Latihan 4.12(c)), sehingga optimum LP benar-benar melampaui nilai bilangan bulat terbaik.

@@ -1,0 +1,39 @@
+{
+  "schema_version": "r017-reader-identity-v1",
+  "edition_id": "r017-o018.book1.id-ID.2026.08.23-id.5",
+  "frozen_date": "2026-08-23",
+  "reader": {
+    "path": "output/book1-pdf/book1-id.pdf",
+    "release_file_name": "pemrograman-matematis-dan-riset-operasi-buku-1-id-ID.pdf",
+    "media_type": "application/pdf",
+    "language": "id-ID",
+    "pages": 666,
+    "bytes": 26425739,
+    "sha256": "daa9b79df3684729cc204b563669f400866d8fbd12c0977d32ff9897276a7a49"
+  },
+  "qa": {
+    "path": "qa/book1-final-qa-report.json",
+    "bytes": 30770,
+    "sha256": "d914ab157350571779a9e4bca62a1b02031560ccda19f00b08c4d61fda5b15b0",
+    "status": "passed",
+    "language": "id-ID",
+    "tagged_pdf": false,
+    "pdf_ua_claim": false,
+    "all_fonts_embedded": true,
+    "all_fonts_unicode": true,
+    "type3_font_count": 0,
+    "invalid_link_count": 0
+  },
+  "upstream": {
+    "repository": "https://github.com/open-optimization/open-optimization-or-book",
+    "commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "tree": "209d5de696ebac4e5921b73d6b6b2f539fc23d1c",
+    "archive_sha256": "4bee88ed3af700b16d5643a3c18b9846244d3467eec7f4fb1f009a782b9143fc"
+  },
+  "translation_provenance": {
+    "assistant": "OpenAI Codex gpt-5.6-sol, Ultra",
+    "requester": "the user",
+    "role": "translation and production assistance",
+    "authorship": "not an author"
+  }
+}

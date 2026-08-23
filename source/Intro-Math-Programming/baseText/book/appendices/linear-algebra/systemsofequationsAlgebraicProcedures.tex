@@ -1,0 +1,101 @@
+\section{Sistem Persamaan, Prosedur Aljabar}
+
+\begin{outcome}
+\begin{enumerate}
+\item[A.] Gunakan operasi elementer untuk menemukan solusi suatu sistem persamaan linear.
+
+\item[B.] Temukan \ef\;dan \rref\;suatu matriks.
+
+\item[C.] Tentukan dari \ef{} suatu sistem persamaan linear apakah sistem tersebut tidak memiliki solusi, memiliki
+solusi unik, atau memiliki tak berhingga banyak solusi.
+
+\item[D.] Selesaikan suatu sistem persamaan menggunakan eliminasi Gauss dan eliminasi Gauss--Jordan.
+
+\item[E.] Modelkan suatu sistem fisik dengan persamaan linear, lalu selesaikan.
+\end{enumerate}
+
+\end{outcome}
+
+Kita telah membahas secara mendalam representasi grafis sistem persamaan serta cara menemukan solusi yang mungkin
+secara grafis. Sekarang perhatian kita beralih ke pengolahan sistem secara aljabar.
+
+\begin{definition}{Sistem Persamaan Linear}\label{def:systemoflinearequations}
+Suatu \textbf{sistem persamaan linear} \index{sistem persamaan} adalah daftar persamaan,
+\begin{equation*}
+\begin{array}{c}
+a_{11}x_{1}+a_{12}x_{2}+\cdots +a_{1n}x_{n}=b_{1} \\
+a_{21}x_{1}+a_{22}x_{2}+\cdots +a_{2n}x_{n}=b_{2} \\
+\vdots \\
+a_{m1}x_{1}+a_{m2}x_{2}+\cdots +a_{mn}x_{n}=b_{m}
+\end{array}
+\end{equation*}
+dengan $a_{ij}$ dan $b_{j}$ berupa bilangan real. Bentuk di atas merupakan sistem
+yang terdiri atas $m$ persamaan dalam $n$ variabel, $x_{1},x_{2}\cdots ,x_{n}$.
+ Secara lebih ringkas, dengan menggunakan
+notasi penjumlahan, bentuk di atas dapat ditulis sebagai
+\begin{equation*}
+\sum_{j=1}^{n}a_{ij}x_{j}=b_{i},
+\text{ }i=1,2,3,\cdots ,m
+\end{equation*}
+Terakhir, kita dapat menuliskannya dalam notasi matriks sebagai
+$$
+A \x = \b 
+$$
+dengan
+$$
+A = \begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1n}\\
+a_{21} & a_{22} & \dots & a_{2n}\\
+\vdots\\
+a_{m1} & a_{m2} & \dots & a_{mn}
+\end{bmatrix}, \ \ \ \x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n\end{bmatrix}, \ \ \text{ dan } \ \ \b = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_m\end{bmatrix}.
+$$
+\end{definition}
+
+Ukuran relatif $m$ dan $n$ tidak penting di sini. Perhatikan bahwa kita
+memperbolehkan $a_{ij}$ dan $b_{j}$ berupa sembarang bilangan real. Kita juga dapat
+menyebut bilangan-bilangan ini \textbf{skalar} \index{skalar}. Istilah ini akan digunakan
+di seluruh teks, jadi ingatlah bahwa istilah
+\textbf{skalar} hanya berarti bahwa kita bekerja dengan bilangan real.
+
+Sekarang, misalkan kita memiliki suatu sistem dengan $b_{i} = 0$ untuk setiap $i$. Dengan kata lain, setiap
+persamaan sama dengan $0$. Ini merupakan jenis sistem khusus.
+
+\begin{definition}{Sistem Persamaan Homogen}\label{def:homogeneoussystem}
+Suatu sistem persamaan disebut \textbf{homogen} \index{sistem persamaan!homogen} jika setiap persamaan dalam
+sistem tersebut sama dengan $0$. Sistem homogen memiliki bentuk
+\begin{equation*}
+\begin{array}{c}
+a_{11}x_{1}+a_{12}x_{2}+\cdots +a_{1n}x_{n}= 0 \\
+a_{21}x_{1}+a_{22}x_{2}+\cdots +a_{2n}x_{n}= 0  \\
+\vdots \\
+a_{m1}x_{1}+a_{m2}x_{2}+\cdots +a_{mn}x_{n}= 0 
+\end{array}
+\end{equation*}
+dengan $a_{ij}$ berupa skalar dan $x_{i}$ berupa variabel.
+\end{definition}
+
+Ingat kembali dari bagian sebelumnya bahwa tujuan kita ketika bekerja dengan sistem persamaan linear
+adalah menemukan titik perpotongan persamaan-persamaan tersebut ketika digambarkan. Dengan kata lain, kita
+mencari solusi sistem. Sekarang kita ingin menemukan solusi-solusi tersebut secara aljabar. Kita ingin menemukan nilai
+$ x_{1},\cdots ,x_{n} $ yang memenuhi semua
+persamaan. Jika himpunan nilai semacam itu ada, kita menyebut $\left( x_{1},\cdots ,x_{n}\right)$ sebagai \textbf{himpunan solusi}. \index{sistem persamaan!himpunan solusi}
+
+Ingat kembali pembahasan di atas mengenai jenis-jenis solusi yang mungkin.
+Kita akan melihat bahwa sistem persamaan linear memiliki satu solusi unik, tak berhingga banyak solusi,
+atau tidak memiliki solusi. Perhatikan definisi berikut.
+
+\begin{definition}{Sistem Konsisten dan Tak Konsisten}\label{def:consistentandinconsistent}
+Suatu sistem persamaan linear disebut
+\index{sistem konsisten} \textbf{konsisten} jika terdapat sedikitnya satu solusi. Sistem tersebut
+disebut
+\index{sistem tak konsisten} \textbf{tak konsisten} jika tidak memiliki solusi.
+\end{definition}
+
+Jika setiap persamaan dianggap sebagai syarat yang harus
+dipenuhi oleh variabel, konsisten berarti terdapat suatu pilihan nilai
+variabel yang dapat memenuhi \textbf{semua} syarat. Tak konsisten berarti
+tidak ada pilihan nilai variabel yang dapat memenuhi semua syarat.
+
+Bagian-bagian berikut memberikan metode untuk menentukan apakah suatu sistem konsisten atau tak konsisten, serta untuk menemukan
+solusinya jika solusi tersebut ada.

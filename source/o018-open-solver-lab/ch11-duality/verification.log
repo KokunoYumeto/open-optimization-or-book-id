@@ -1,0 +1,22 @@
+O018 Bab 11 — bukti verifikasi deterministik
+verification_date: 2026-08-22
+runtime: CPython 3.12 / Pyomo 6.10.1 / highspy 1.15.1 / NumPy 2.5.2
+solver_interface: appsi_highs
+bytecode_writes: disabled (PYTHONDONTWRITEBYTECODE=1)
+
+run_1:
+CHECK_OK results_bytes=38721 results_sha256=fac7a8b626acc4c108dcb04ecd3971f7d14a47a23f0c52254519e1ebb87654a4 plots=1 exercises=17 solver_calls=36
+unittest: 29 passed, 0 failed, 0 errors
+
+run_2:
+CHECK_OK results_bytes=38721 results_sha256=fac7a8b626acc4c108dcb04ecd3971f7d14a47a23f0c52254519e1ebb87654a4 plots=1 exercises=17 solver_calls=36
+unittest: 29 passed, 0 failed, 0 errors
+
+solver_classifications: optimal=32 infeasible=3 unbounded=1
+maximum_solver_violation: 0
+source_math_corrections_preserved: 3
+o018_math_corrections: 0
+high_confidence_upstream_defects: 2
+underdetermined_exercises: 0
+visual_qa: 1 SVG diperiksa pada raster 1440x1020
+visual_qa_result: lulus; label, sumbu, titik optimum, garis aktif, daerah layak, dan legenda terbaca tanpa tumpang tindih atau pemotongan

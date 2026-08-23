@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="680" viewBox="0 0 960 680" role="img" aria-labelledby="title desc" xml:lang="id-ID">
+<title id="title">Daerah layak dual Latihan 11.16</title>
+<desc id="desc">Daerah layak berada di kanan garis y1 sama dengan 4 dan di atas garis y2 sama dengan 2. Titik optimum adalah (4,2) dengan nilai tujuan 64.</desc>
+<metadata>{"alternative_text": {"active_constraints": ["y1 ≥ 4", "y2 ≥ 2"], "conclusion": "Minimum 10y1 + 12y2 dicapai di (4,2) dengan nilai 64.", "feasible_region": "Daerah di kanan y1=4 dan di atas y2=2.", "inactive_constraints": ["y1 + 2y2 ≥ 3", "2y1 ≥ 2", "y2 ≥ 1", "y1 + 3y2 ≥ 5"]}, "content_license": "CC-BY-SA-4.0", "exercise_id": "11.16", "language": "id-ID", "renderer": "o018.ch11.plot-svg.v1"}</metadata>
+<defs><style><![CDATA[
+.axis{stroke:#172554;stroke-width:2}.grid{stroke:#cbd5e1;stroke-width:1}
+.inactive{stroke:#94a3b8;stroke-width:2;stroke-dasharray:7 7}
+.active{stroke:#0f766e;stroke-width:4}.level{stroke:#7e22ce;stroke-width:3;stroke-dasharray:10 7}
+.label{font:18px system-ui,sans-serif;fill:#172554}.small{font:15px system-ui,sans-serif;fill:#334155}
+.heading{font:bold 25px system-ui,sans-serif;fill:#0f172a}.opt{fill:#dc2626;stroke:#fff;stroke-width:3}
+]]></style></defs>
+<rect width="960" height="680" fill="#f8fafc" />
+<text x="480" y="38" text-anchor="middle" class="heading">Latihan 11.16 — harga sumber daya dual</text>
+<rect x="557.143" y="72" width="342.857" height="304.8" fill="#99f6e4" fill-opacity="0.55" />
+<line x1="100" y1="580" x2="100" y2="72" class="grid" />
+<text x="100" y="608" text-anchor="middle" class="small">0</text>
+<line x1="214.286" y1="580" x2="214.286" y2="72" class="grid" />
+<text x="214.286" y="608" text-anchor="middle" class="small">1</text>
+<line x1="328.571" y1="580" x2="328.571" y2="72" class="grid" />
+<text x="328.571" y="608" text-anchor="middle" class="small">2</text>
+<line x1="442.857" y1="580" x2="442.857" y2="72" class="grid" />
+<text x="442.857" y="608" text-anchor="middle" class="small">3</text>
+<line x1="557.143" y1="580" x2="557.143" y2="72" class="grid" />
+<text x="557.143" y="608" text-anchor="middle" class="small">4</text>
+<line x1="671.429" y1="580" x2="671.429" y2="72" class="grid" />
+<text x="671.429" y="608" text-anchor="middle" class="small">5</text>
+<line x1="785.714" y1="580" x2="785.714" y2="72" class="grid" />
+<text x="785.714" y="608" text-anchor="middle" class="small">6</text>
+<line x1="900" y1="580" x2="900" y2="72" class="grid" />
+<text x="900" y="608" text-anchor="middle" class="small">7</text>
+<line x1="100" y1="580" x2="900" y2="580" class="grid" />
+<text x="78" y="585" text-anchor="end" class="small">0</text>
+<line x1="100" y1="478.4" x2="900" y2="478.4" class="grid" />
+<text x="78" y="483.4" text-anchor="end" class="small">1</text>
+<line x1="100" y1="376.8" x2="900" y2="376.8" class="grid" />
+<text x="78" y="381.8" text-anchor="end" class="small">2</text>
+<line x1="100" y1="275.2" x2="900" y2="275.2" class="grid" />
+<text x="78" y="280.2" text-anchor="end" class="small">3</text>
+<line x1="100" y1="173.6" x2="900" y2="173.6" class="grid" />
+<text x="78" y="178.6" text-anchor="end" class="small">4</text>
+<line x1="100" y1="72" x2="900" y2="72" class="grid" />
+<text x="78" y="77" text-anchor="end" class="small">5</text>
+<line x1="100" y1="580" x2="900" y2="580" class="axis" />
+<line x1="100" y1="580" x2="100" y2="72" class="axis" />
+<line x1="214.286" y1="580" x2="214.286" y2="72" class="inactive" />
+<line x1="100" y1="478.4" x2="900" y2="478.4" class="inactive" />
+<line x1="100" y1="427.6" x2="442.857" y2="580" class="inactive" />
+<line x1="100" y1="410.667" x2="671.429" y2="580" class="inactive" />
+<line x1="557.143" y1="580" x2="557.143" y2="72" class="active" />
+<line x1="100" y1="376.8" x2="900" y2="376.8" class="active" />
+<line x1="145.714" y1="72" x2="831.429" y2="580" class="level" />
+<text x="900" y="630" text-anchor="end" class="label">y₁ (jam dapur)</text>
+<text x="27" y="92" class="label">y₂</text>
+<circle cx="557.143" cy="376.8" r="9" class="opt" />
+<text x="571.143" y="362.8" class="label">optimum (4,2), nilai 64</text>
+<text x="565.143" y="112.64" class="small">y₁ ≥ 4 (aktif)</text>
+<text x="682.857" y="367.8" class="small">y₂ ≥ 2 (aktif)</text>
+<rect x="110" y="626" width="18" height="18" fill="#99f6e4" fill-opacity="0.7" />
+<text x="138" y="641" class="small">daerah layak</text>
+<line x1="290" y1="636" x2="340" y2="636" class="level" />
+<text x="350" y="641" class="small">10y₁+12y₂=64</text>
+</svg>

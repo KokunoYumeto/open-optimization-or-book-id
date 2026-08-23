@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="680" viewBox="0 0 960 680" role="img" lang="id" xml:lang="id-ID" aria-labelledby="title-7-15 desc-7-15">
+  <title id="title-7-15">Latihan 7.15 — basis dan pivot pada daerah layak</title>
+  <desc id="desc-7-15">Poligon layak A-B-C-D-E. Panah merah dari D ke C menunjukkan x1 masuk, s3 keluar, sedangkan s4 tetap nonbasis nol.</desc>
+  <metadata>{&quot;alternative_text&quot;:{&quot;feasible_vertices_in_order&quot;:[&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;],&quot;pivot&quot;:{&quot;entering&quot;:&quot;x1&quot;,&quot;from&quot;:&quot;D&quot;,&quot;leaving&quot;:&quot;s3&quot;,&quot;to&quot;:&quot;C&quot;}},&quot;content_license&quot;:&quot;CC BY-SA 4.0&quot;,&quot;exercise&quot;:&quot;7.15&quot;,&quot;language&quot;:&quot;id-ID&quot;,&quot;renderer&quot;:&quot;o018-local-svg-1.0&quot;}</metadata>
+  <defs>
+    <marker id="arrow-7-15" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b42318"/></marker>
+    <style><![CDATA[
+      .axis{stroke:#334155;stroke-width:2}.grid{stroke:#dbe5ee;stroke-width:1}.line{fill:none;stroke:#345995;stroke-width:3}.secondary{fill:none;stroke:#6b7280;stroke-width:2;stroke-dasharray:8 6}.region{fill:#b8d8f0;fill-opacity:.62;stroke:#176b87;stroke-width:2}.ray{fill:none;stroke:#b42318;stroke-width:4}.point{fill:#fff;stroke:#13293d;stroke-width:3}.tie{fill:#f4b942;stroke:#7c4a03;stroke-width:3}.label{font:600 20px 'DejaVu Sans',sans-serif;fill:#13293d}.small{font:16px 'DejaVu Sans',sans-serif;fill:#334155}.heading{font:700 27px 'DejaVu Sans',sans-serif;fill:#102a43}.note{font:17px 'DejaVu Sans',sans-serif;fill:#475569}
+    ]]></style>
+  </defs>
+  <rect width="960" height="680" fill="#fbfdff"/>
+  <text x="58" y="48" class="heading">Latihan 7.15 — basis dan pivot pada daerah layak</text>
+  <line class="axis" x1="92.00" y1="576.00" x2="700.00" y2="576.00"/>
+  <line class="axis" x1="92.00" y1="576.00" x2="92.00" y2="120.00"/>
+  <line class="grid" x1="168.00" y1="576.00" x2="168.00" y2="120.00"/>
+  <text class="small" x="163.00" y="601.00">1</text>
+  <line class="grid" x1="244.00" y1="576.00" x2="244.00" y2="120.00"/>
+  <text class="small" x="239.00" y="601.00">2</text>
+  <line class="grid" x1="320.00" y1="576.00" x2="320.00" y2="120.00"/>
+  <text class="small" x="315.00" y="601.00">3</text>
+  <line class="grid" x1="396.00" y1="576.00" x2="396.00" y2="120.00"/>
+  <text class="small" x="391.00" y="601.00">4</text>
+  <line class="grid" x1="472.00" y1="576.00" x2="472.00" y2="120.00"/>
+  <text class="small" x="467.00" y="601.00">5</text>
+  <line class="grid" x1="548.00" y1="576.00" x2="548.00" y2="120.00"/>
+  <text class="small" x="543.00" y="601.00">6</text>
+  <line class="grid" x1="624.00" y1="576.00" x2="624.00" y2="120.00"/>
+  <text class="small" x="619.00" y="601.00">7</text>
+  <line class="grid" x1="700.00" y1="576.00" x2="700.00" y2="120.00"/>
+  <text class="small" x="695.00" y="601.00">8</text>
+  <line class="grid" x1="92.00" y1="500.00" x2="700.00" y2="500.00"/>
+  <text class="small" x="64.00" y="506.00">1</text>
+  <line class="grid" x1="92.00" y1="424.00" x2="700.00" y2="424.00"/>
+  <text class="small" x="64.00" y="430.00">2</text>
+  <line class="grid" x1="92.00" y1="348.00" x2="700.00" y2="348.00"/>
+  <text class="small" x="64.00" y="354.00">3</text>
+  <line class="grid" x1="92.00" y1="272.00" x2="700.00" y2="272.00"/>
+  <text class="small" x="64.00" y="278.00">4</text>
+  <line class="grid" x1="92.00" y1="196.00" x2="700.00" y2="196.00"/>
+  <text class="small" x="64.00" y="202.00">5</text>
+  <line class="grid" x1="92.00" y1="120.00" x2="700.00" y2="120.00"/>
+  <text class="small" x="64.00" y="126.00">6</text>
+  <text class="label" x="714.00" y="583.00">x₁</text>
+  <text class="label" x="83.00" y="105.00">x₂</text>
+  <polygon class="region" points="244.00,500.00 472.00,500.00 624.00,348.00 92.00,170.67 92.00,398.67"/>
+  <line class="ray" x1="92.00" y1="170.67" x2="624.00" y2="348.00" marker-end="url(#arrow-7-15)"/>
+  <circle class="point" cx="244.00" cy="500.00" r="7"/>
+  <text class="label" x="216.00" y="526.00">A</text>
+  <circle class="point" cx="472.00" cy="500.00" r="7"/>
+  <text class="label" x="470.00" y="528.00">B</text>
+  <circle class="point" cx="624.00" cy="348.00" r="7"/>
+  <text class="label" x="636.00" y="340.00">C</text>
+  <circle class="point" cx="92.00" cy="170.67" r="7"/>
+  <text class="label" x="102.00" y="160.67">D</text>
+  <circle class="point" cx="92.00" cy="398.67" r="7"/>
+  <text class="label" x="102.00" y="420.67">E</text>
+  <rect x="728" y="116" width="195" height="215" rx="14" fill="#eef6fb" stroke="#9bbbd1"/>
+  <text x="748" y="151" class="label">Pivot D → C</text>
+  <text x="748" y="187" class="small">masuk: x₁</text>
+  <text x="748" y="219" class="small">keluar: s₃</text>
+  <text x="748" y="251" class="small">tetap nol: s₄</text>
+  <text x="748" y="293" class="note">Daerah biru = layak</text>
+  <text x="92" y="650" class="note">Skala koordinat seragam; segmen merah mengikuti sisi s₄ = 0.</text>
+</svg>

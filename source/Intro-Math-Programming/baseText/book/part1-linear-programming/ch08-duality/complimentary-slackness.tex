@@ -1,0 +1,672 @@
+\section{Kelonggaran Komplementer}
+\label{sec:complementary-slackness}
+
+Sejauh ini, kita telah menetapkan bahwa masalah primal dan dual saling berkaitan erat, dan nilai tujuan optimalnya berimpit berdasarkan dualitas kuat. Namun, \textbf{bagaimana kita dapat mengidentifikasi solusi optimal bagi kedua masalah secara bersamaan?} Jawabannya terletak pada \textit{kelonggaran komplementer}, yaitu syarat yang kita gunakan untuk memverifikasi keoptimalan.
+
+\subsection{Definisi Kelonggaran Komplementer}
+\begin{definition}{Kelonggaran Komplementer}
+Syarat kelonggaran komplementer menyatakan bahwa jika \( \x^* \) dan \( \y^* \) merupakan solusi optimal bagi masalah primal dan dual, maka hal-hal berikut harus berlaku:
+
+\begin{enumerate}
+\item Untuk setiap kendala primal \( i \), kendala tersebut ketat, atau variabel dual yang bersesuaian bernilai nol (atau keduanya):
+\[
+\text{entah } \a_i^\top \x^* = b_i \quad \text{atau} \quad y_i^* = 0, \quad \forall i.
+\]
+Secara ekuivalen,
+\[
+y_i^* (\a_i^\top \x^* - b_i) = 0.
+\]
+
+\item Untuk setiap kendala dual \( j \), kendala tersebut ketat, atau variabel primal yang bersesuaian bernilai nol (atau keduanya):
+\[
+\text{entah } (A^\top \y^*)_j = c_j \quad \text{atau} \quad x_j^* = 0, \quad \forall j.
+\]
+Secara ekuivalen,
+\[
+x_j^* (c_j - (A^\top y^*)_j) = 0.
+\]
+\end{enumerate}
+\end{definition}
+
+Secara bersama-sama, syarat-syarat ini memastikan bahwa pada solusi optimal, hanya kendala aktif yang dapat memiliki variabel dual positif, dan hanya kendala dual aktif yang dapat memiliki variabel primal positif.
+\begin{theorem}{Keoptimalan Primal--Dual}\label{thm:cs-optimality}
+Solusi primal $\x^*$ dan solusi dual $\y^*$ bersifat \textbf{optimal} jika dan hanya jika:
+\begin{enumerate}
+\item $\x^*$ \textbf{layak} dalam masalah primal.
+\item $\y^*$ \textbf{layak} dalam masalah dual.
+\item \textbf{Kelonggaran komplementer berlaku} antara solusi primal dan dual.
+\end{enumerate}
+\end{theorem}
+Kumpulan syarat ini memungkinkan kita memeriksa secara efisien apakah solusi tertentu optimal tanpa perlu membandingkannya secara eksplisit dengan semua solusi layak.
+
+\subsection{Menafsirkan Kelonggaran Komplementer}
+Kelonggaran komplementer memberi kita cara untuk menentukan \textbf{kendala mana yang mengikat} pada solusi optimal. Jika kita menyelesaikan masalah primal atau masalah dual, kita dapat menggunakan syarat-syarat ini untuk menurunkan solusi optimal masalah lainnya.
+
+\begin{example}{Meninjau Kembali Masalah Toko Roti}\label{example:cs-bakery-revisited}
+Perhatikan masalah toko roti dari bagian sebelumnya. Ingat kembali perumusan primal dan dualnya:
+
+\textbf{Masalah Primal:}
+\begin{align*}
+\max \quad & 3x_1 + 2x_2 \\
+\text{dengan kendala} \quad & x_1 + x_2 \leq 4 \quad \text{(kendala tepung)} \\
+& 2x_1 + x_2 \leq 5 \quad \text{(kendala gula)} \\
+& x_1, x_2 \geq 0.
+\end{align*}
+
+\textbf{Masalah Dual:}
+\begin{align*}
+\min \quad & 4y_1 + 5y_2 \\
+\text{dengan kendala} \quad & y_1 + 2y_2 \geq 3 \\
+& y_1 + y_2 \geq 2 \\
+& y_1, y_2 \geq 0.
+\end{align*}
+
+Misalkan kita diberi solusi optimal:
+\[
+x_1^* = 1, \quad x_2^* = 3, \quad y_1^* = 1, \quad y_2^* = 1.
+\]
+
+Untuk memverifikasi keoptimalan, kita memeriksa kelonggaran komplementer:
+\begin{enumerate}
+\item Kendala pertama dalam masalah primal ($x_1 + x_2 \leq 4$) ketat ($1+3=4$), sehingga $y_1^*$ boleh positif.
+\item Kendala kedua ($2x_1 + x_2 \leq 5$) ketat ($2(1) + 3 = 5$), sehingga $y_2^*$ boleh positif.
+\item Pemeriksaan kendala dual:
+   \begin{align*}
+   y_1 + 2y_2 &= 1 + 2(1) = 3, \quad \text{(ketat, sehingga $x_1^* > 0$ diperbolehkan)} \\
+   y_1 + y_2 &= 1 + 1 = 2, \quad \text{(ketat, sehingga $x_2^* > 0$ diperbolehkan)}.
+   \end{align*}
+\end{enumerate}
+Karena kelonggaran komplementer berlaku, nilai-nilai yang diberikan memang merupakan solusi optimal.
+\end{example}
+
+\subsection{Menggunakan Kelonggaran Komplementer untuk Menyelesaikan Masalah}
+\label{sec:cs-solving}
+Sering kali, kita tidak memiliki informasi lengkap tentang suatu solusi optimal. Kita mungkin hanya mempunyai informasi sebagian atau hanya salah satu dari solusi optimal tersebut (primal atau dual). Kelonggaran komplementer memungkinkan kita menurunkan informasi yang belum diketahui.
+
+\begin{example}{Menemukan Variabel Dual yang Belum Diketahui}\label{example:cs-missing-duals}
+Misalkan kita menyelesaikan masalah primal dan memperoleh solusi optimal:
+\[
+x_1^* = 1, \quad x_2^* = 3.
+\]
+Dengan kelonggaran komplementer, kita menentukan $y^*$:
+\begin{itemize}
+\item Karena $x_1^* > 0$, kendala dual pertama harus \textbf{ketat}, sehingga $y_1 + 2y_2 = 3$.
+\item Karena $x_2^* > 0$, kendala dual kedua harus \textbf{ketat}, sehingga $y_1 + y_2 = 2$.
+\end{itemize}
+
+Selesaikan sistem:
+\begin{align*}
+   y_1 + 2y_2 &= 3, \\
+   y_1 + y_2 &= 2.
+\end{align*}
+
+Penyelesaian terhadap $y_1$ dan $y_2$ memberi $y_1^* = 1, y_2^* = 1$.
+
+Dengan demikian, kelonggaran komplementer memungkinkan kita menentukan solusi dual secara langsung dari solusi primal.
+\end{example}
+
+\subsection{Ringkasan Pokok Penting}
+\begin{itemize}
+\item Kelonggaran komplementer mencirikan keoptimalan dalam pasangan primal--dual.
+\item Jika kendala primal tidak ketat, variabel dual yang bersesuaian bernilai nol.
+\item Jika kendala dual tidak ketat, variabel primal yang bersesuaian bernilai nol.
+\item Syarat-syarat ini memungkinkan kita menemukan solusi yang belum diketahui dan memverifikasi keoptimalan secara efisien.
+\end{itemize}
+
+\begin{learningcheckpoint}[label={lc:cs-leftover}]
+Pada suatu solusi optimal masalah toko roti, misalkan tersisa dua satuan tepung (kendala tepung tidak ketat). Apa yang dikatakan kelonggaran komplementer mengenai harga bayangan tepung? Jelaskan dalam satu kalimat mengapa hal ini masuk akal secara ekonomi.
+\end{learningcheckpoint}
+
+\subsection*{Meninjau Kembali Contoh Toko Roti 2.0}
+
+\begin{example}{Memverifikasi Keoptimalan dengan Kelonggaran Komplementer}\label{example:cs-bakery2-verify}
+Kita diberi solusi optimal primal dan dual:
+
+\begin{itemize}
+\item Primal: \( x_1 = 4,\ x_2 = 0,\ x_3 = 6 \)
+\item Dual: \( y_1 = 0,\ y_2 = 50,\ y_3 = 40 \)
+\end{itemize}
+
+Kita akan memeriksa bahwa keduanya memenuhi kelonggaran komplementer.
+
+\textbf{Langkah 1: Periksa keketatan kendala primal}
+
+\begin{itemize}
+\item \textbf{Tepung: } \( 5x_1 + 4x_2 + x_3 = 5(4) + 4(0) + 6 = 26 \). Nilai ini benar-benar lebih kecil daripada 40, sehingga kendalanya tidak ketat \(\Rightarrow\) variabel dual terkait \(y_1 = 0\).
+\item \textbf{Gula: } \( x_1 + x_2 + x_3 = 4 + 0 + 6 = 10 \). Ketat \(\Rightarrow\) \(y_2\) boleh positif.
+\item \textbf{Waktu Pemanggangan: } \( x_1 + x_2 + 0.5x_3 = 4 + 0 + 3 = 7 \). Ketat \(\Rightarrow\) \(y_3\) boleh positif.
+\end{itemize}
+
+\textbf{Langkah 2: Periksa keketatan kendala dual ketika \(x_j > 0\)}
+
+\begin{itemize}
+\item \(x_1 = 4 > 0\): Kendala dual yang bersesuaian harus ketat:
+\[
+5y_1 + y_2 + y_3 = 0 + 50 + 40 = 90
+\]
+\item \(x_2 = 0\): Tidak ada syarat yang diperlukan.
+\item \(x_3 = 6 > 0\): Kendala dual untuk muffin harus ketat:
+\[
+y_1 + y_2 + 0.5y_3 = 0 + 50 + 20 = 70
+\]
+\end{itemize}
+
+Karena semua syarat kelonggaran komplementer dipenuhi, kedua solusi optimal dan dualitas berlaku (nilai tujuannya sama-sama 780).
+\end{example}
+
+\begin{example}{Memperoleh Kembali Variabel Dual melalui Kelonggaran Komplementer}
+Misalkan kita hanya mengetahui solusi primal optimal:
+\[
+x_1 = 4,\quad x_2 = 0,\quad x_3 = 6.
+\]
+
+Kita menggunakan kelonggaran komplementer untuk memperoleh kembali solusi dual optimal.
+
+\textbf{Langkah 1: Gunakan syarat keketatan dari masalah primal}
+
+\begin{itemize}
+\item \(x_1 > 0\): Kendala dual untuk kue harus ketat:
+\[
+5y_1 + y_2 + y_3 = 90 \tag{1}
+\]
+\item \(x_3 > 0\): Kendala dual untuk muffin harus ketat:
+\[
+y_1 + y_2 + 0.5y_3 = 70 \tag{2}
+\]
+\end{itemize}
+
+\textbf{Langkah 2: Gunakan kelonggaran pada kendala primal untuk menemukan variabel dual nol}
+
+\begin{itemize}
+\item Kendala tepung tidak ketat \( \Rightarrow y_1 = 0 \).
+\end{itemize}
+
+\textbf{Langkah 3: Substitusikan \(y_1 = 0\) ke persamaan (1) dan (2):}
+
+\begin{align*}
+y_2 + y_3 &= 90 \tag{1'} \\
+y_2 + 0.5y_3 &= 70 \tag{2'}
+\end{align*}
+
+\textbf{Langkah 4: Selesaikan sistem}
+
+Kurangkan (2') dari (1'):
+\[
+(y_2 + y_3) - (y_2 + 0.5y_3) = 90 - 70 \Rightarrow 0.5y_3 = 20 \Rightarrow y_3 = 40
+\]
+
+Substitusikan kembali ke (1'): \( y_2 + 40 = 90 \Rightarrow y_2 = 50 \).
+
+\textbf{Hasil: } \( y_1 = 0,\ y_2 = 50,\ y_3 = 40 \)
+
+Dengan demikian, solusi dual diperoleh kembali sepenuhnya menggunakan kelonggaran komplementer.
+\end{example}
+
+\section{Latihan}
+
+\exgroup{Pemanasan}
+
+\begin{ex}{Memeriksa Syarat-syarat}{}
+\label{ex:cs-warmup-check}
+\stars{1} Perhatikan pasangan primal--dual
+\[
+\begin{aligned}
+\max \quad & 4x_1 + 3x_2 \\
+\text{dengan kendala} \quad & x_1 + x_2 \leq 6 \\
+& 2x_1 + x_2 \leq 10 \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\qquad\qquad
+\begin{aligned}
+\min \quad & 6y_1 + 10y_2 \\
+\text{dengan kendala} \quad & y_1 + 2y_2 \geq 4 \\
+& y_1 + y_2 \geq 3 \\
+& y_1, y_2 \geq 0
+\end{aligned}
+\]
+dan kandidat solusi $\x^* = (4, 2)$ serta $\y^* = (2, 1)$.
+\begin{enumerate}
+\item Periksa bahwa $\x^*$ layak bagi masalah primal dan $\y^*$ layak bagi masalah dual.
+\item Tuliskan keempat syarat kelonggaran komplementer bagi pasangan ini dan periksa satu per satu.
+\item Simpulkan bahwa kedua solusi optimal, lalu konfirmasikan dengan menghitung kedua nilai tujuan.
+\end{enumerate}
+\exrefs{Contoh~\ref{example:cs-bakery-revisited}, \S\ref{sec:complementary-slackness}}
+\end{ex}
+
+\exgroup{Masalah inti}
+
+\begin{ex}{Produksi Toko Roti dan Interpretasi Dualitas}{}
+\label{ex:cs-bakery-duality}
+\stars{2} Sebuah toko roti membuat kue ($x_1$), kukis ($x_2$), dan muffin ($x_3$) untuk memaksimumkan laba:
+
+\[
+\text{maksimumkan} \quad 90x_1 + 40x_2 + 70x_3
+\]
+
+Dengan kendala sumber daya berikut:
+\begin{itemize}
+  \item \textbf{Tepung ($\leq$ 40 kg):} \quad $5x_1 + 4x_2 + x_3 \leq 40$
+  \item \textbf{Gula ($\leq$ 10 kg):} \quad $x_1 + x_2 + x_3 \leq 10$
+  \item \textbf{Waktu Pemanggangan ($\leq$ 7 jam):} \quad $x_1 + x_2 + 0.5x_3 \leq 7$
+  \item \textbf{Ketaknegatifan:} \quad $x_1, x_2, x_3 \geq 0$
+\end{itemize}
+
+Solusi primal optimal adalah:
+\[
+x_1 = 4, \quad x_2 = 0, \quad x_3 = 6
+\]
+
+\textbf{Program Linear Dual:}
+\[
+\text{minimumkan} \quad 40y_1 + 10y_2 + 7y_3
+\]
+\[
+\text{dengan kendala} \quad
+\begin{aligned}
+5y_1 + y_2 + y_3 &\geq 90 \\
+4y_1 + y_2 + y_3 &\geq 40 \\
+y_1 + y_2 + 0.5y_3 &\geq 70 \\
+y_1, y_2, y_3 &\geq 0
+\end{aligned}
+\]
+
+Solusi dual optimal adalah:
+\[
+y_1 = 0, \quad y_2 = 50, \quad y_3 = 40
+\]
+
+Jawablah pertanyaan berikut:
+
+\begin{enumerate}
+  \item \textbf{Pemeriksaan Kelayakan:}
+  Periksa bahwa solusi primal memenuhi semua kendala. Kemudian, periksa bahwa solusi dual memenuhi semua kendala dual.
+
+  \item \textbf{Kelonggaran Komplementer:}
+  Tentukan kendala mana yang ketat dalam masalah primal dan kendala mana yang ketat dalam masalah dual. Gunakan kelonggaran komplementer untuk memverifikasi konsistensi antara solusi optimal primal dan dual.
+
+  \item \textbf{Pemeriksaan Nilai Tujuan:}
+  Hitung nilai tujuan primal dan dual menggunakan solusi yang diberikan, lalu periksa bahwa keduanya sama.
+
+  \item \textbf{Interpretasi Ekonomi (Harga Bayangan):}
+  Dengan menggunakan solusi dual $(y_1, y_2, y_3)$, tafsirkan harga bayangan setiap sumber daya (tepung, gula, waktu pemanggangan). Sebagai contoh, apa arti $y_2 = 50$ mengenai nilai satu kg gula tambahan?
+
+  \item \textbf{Analisis Sensitivitas:}
+  Bagaimana laba optimal akan berubah jika tersedia:
+  \begin{enumerate}
+    \item Satu kg tepung tambahan?
+    \item Satu kg gula tambahan?
+    \item Satu jam waktu pemanggangan tambahan?
+  \end{enumerate}
+  Gunakan harga bayangan untuk membenarkan jawaban Anda.
+\end{enumerate}
+\exrefs{Contoh~\ref{example:cs-bakery2-verify}, \S\ref{sec:complementary-slackness}}
+\end{ex}
+
+\begin{ex}{Kendala Kotak dan Sertifikat Dual}{}
+\label{ex:cs-box-constraints}
+\stars{2} Perhatikan masalah optimisasi
+
+\begin{equation*}
+\begin{array}{rrrrrrrrrrrrrrrrr}
+\max \ \ \ &   x_1 &+ &4 x_2 &+& 9x_3 &+& 16 x_4&\\
+\text{dengan kendala} \ \
+& x_1& &&&&&&\leq &1& \text{ (Kendala 1)}\\
+&&& x_2 &&&&&\leq &1& \text{ (Kendala 2)}\\
+&&&&& x_3&&& \leq &1& \text{ (Kendala 3)}\\
+&&&&&&& x_4 &\leq &1& \text{ (Kendala 4)}\\
+& x_1 &+& 2x_2& + &3x_3 &+& 4x_4 &\leq &8 & \text{ (Kendala 5)}
+\end{array}
+\end{equation*}
+$$ x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0
+$$
+
+(a) Apa masalah dual dari program linear ini?
+
+(b) Jelaskan bagaimana masalah dual dapat digunakan untuk membuktikan bahwa suatu solusi optimal.
+
+(c) Solusi optimal program linear ini adalah $(x_1, x_2, x_3, x_4) = (0,\tfrac{1}{2},1,1)$ dengan nilai tujuan $27$. \\
+
+Dengan menggunakan teori dualitas, buktikan bahwa ini merupakan solusi optimal. \\
+\textit{(Petunjuk: Ingat bahwa kelonggaran komplementer menyiratkan variabel dual yang bersesuaian dengan kendala 1 dan 2 harus bernilai 0).}
+\exrefs{Teorema~\ref{thm:weak-duality}, Teorema~\ref{thm:cs-optimality}}
+\end{ex}
+
+\begin{ex}{Menurunkan Solusi Primal dari Tebakan Dual}{}
+\label{ex:cs-dual-guess}
+\stars{2} Perhatikan pasangan primal--dual berikut:
+
+\textbf{Masalah Primal:}
+
+$$
+\begin{aligned}
+\text{Maksimumkan} \quad & 5x_1 + 4x_2 \\
+\text{dengan kendala} \quad & 2x_1 + x_2 \leq 8 \\
+& x_1 + 3x_2 \leq 9 \\
+& x_1, x_2 \geq 0
+\end{aligned}
+$$
+
+\textbf{Masalah Dual:}
+
+$$
+\begin{aligned}
+\text{Minimumkan} \quad & 8y_1 + 9y_2 \\
+\text{dengan kendala} \quad & 2y_1 + y_2 \geq 5 \\
+& y_1 + 3y_2 \geq 4 \\
+& y_1, y_2 \geq 0
+\end{aligned}
+$$
+
+(a) Misalkan Anda diberi kandidat solusi dual $\y^* = (1, 1)$. Gunakan kelonggaran komplementer untuk menentukan nilai $x_1^*$ dan $x_2^*$.
+
+(b) Apakah solusi primal yang dihasilkan layak?
+
+(c) Apakah kelonggaran komplementer berlaku? Apakah ini pasangan solusi optimal yang sah?
+\exrefs{Contoh~\ref{example:cs-missing-duals}, \S\ref{sec:cs-solving}}
+\end{ex}
+
+\exgroup{Konsep dan hubungan}
+
+\begin{ex}{Harga Positif pada Kendala yang Longgar}{}
+\stars{2} Seorang teman sekelas menyelesaikan pasangan primal--dual program linear dan melaporkan $\x^*$ yang layak bagi masalah primal serta $\y^*$ yang layak bagi masalah dual. Dalam laporannya, kendala primal kedua memiliki kelonggaran pada $\x^*$ (ruas kirinya benar-benar lebih kecil daripada $b_2$), tetapi harga dualnya adalah $y_2^* = 3 > 0$. Ia mengklaim bahwa kedua solusi tersebut optimal.
+\begin{enumerate}
+\item Apa yang dapat Anda simpulkan, dan berdasarkan teorema mana?
+\item Apakah kesimpulan Anda berarti $\x^*$ tidak optimal? Apakah berarti $\y^*$ tidak optimal? Nyatakan dengan tepat apa yang dapat disangkal.
+\item Jelaskan keganjilan ekonomi dari harga positif pada sumber daya yang tidak digunakan sepenuhnya.
+\end{enumerate}
+\exrefs{Teorema~\ref{thm:cs-optimality}, \S\ref{sec:complementary-slackness}}
+\end{ex}
+
+\begin{ex}{Menyangkal Klaim Solusi Optimal}{}
+\label{ex:cs-claimed-optimal}
+\stars{2} Misalkan suatu program linear memiliki perumusan primal dan dual berikut:
+
+\textbf{Primal:}
+
+$$
+\begin{aligned}
+\text{Maksimumkan} \quad & 3x_1 + 2x_2 \\
+\text{dengan kendala} \quad & x_1 + x_2 \leq 4 \\
+& 2x_1 + x_2 \leq 5 \\
+& x_1, x_2 \geq 0
+\end{aligned}
+$$
+
+\textbf{Dual:}
+
+$$
+\begin{aligned}
+\text{Minimumkan} \quad & 4y_1 + 5y_2 \\
+\text{dengan kendala} \quad & y_1 + 2y_2 \geq 3 \\
+& y_1 + y_2 \geq 2 \\
+& y_1, y_2 \geq 0
+\end{aligned}
+$$
+
+Seorang mahasiswa mengklaim bahwa solusi primal optimal adalah $x_1^* = 2, x_2^* = 0$.
+
+(a) Tuliskan syarat kelonggaran komplementer bagi masalah ini.
+
+(b) Dengan menganggap klaim mahasiswa tersebut benar, gunakan syarat-syarat itu untuk menurunkan persyaratan bagi $y_1$ dan $y_2$.
+
+(c) Tunjukkan bahwa tidak ada solusi dual layak yang memenuhi persyaratan tersebut, lalu simpulkan bahwa solusi yang diklaim mahasiswa itu tidak mungkin optimal. Apa solusi optimal yang sebenarnya?
+\exrefs{Teorema~\ref{thm:cs-optimality}, \S\ref{sec:cs-solving}}
+\end{ex}
+
+\exgroup{Masalah tantangan}
+
+\begin{ex}{Optimisasi Paket Makanan dan Dualitas}{}
+\stars{3} Anda adalah manajer operasi pada perusahaan rintisan yang merakit dan mengirimkan paket makanan sehat. Setiap paket memenuhi selera pelanggan yang berbeda: vegetarian, tinggi protein, cepat disiapkan, dan sebagainya. Anda ingin menentukan banyaknya tiap paket yang harus dibuat hari ini untuk memaksimumkan laba.
+
+Terdapat enam pilihan paket makanan:
+
+\begin{center}
+\begin{tabular}{|c|l|c|}
+\hline
+Variabel & Deskripsi & Laba per Paket \\
+\hline
+$x_1$ & Classic Chicken & \$3 \\
+$x_2$ & Vegan Delight & \$2 \\
+$x_3$ & Protein Boost & \$4 \\
+$x_4$ & Quick \& Light & \$1 \\
+$x_5$ & Gourmet Chef Special & \$5 \\
+$x_6$ & Breakfast Box & \$2 \\
+\hline
+\end{tabular}
+\par\captionof{table}{Enam pilihan paket makanan beserta laba per paket.}\label{tab:complimentary-slackness-tab01}% tab-num-auto
+
+\end{center}
+
+Setiap paket memerlukan waktu dalam dua bidang utama:
+\begin{itemize}
+  \item \textbf{Waktu Persiapan Dapur (dalam jam)}: memotong, memarinasi, menakar bahan sebelumnya, dan sebagainya.
+  \item \textbf{Tenaga Kerja Pengemasan (dalam jam)}: memasukkan ke kotak, memberi label, menyegel, dan sebagainya.
+\end{itemize}
+
+Sumber daya yang tersedia:
+\begin{itemize}
+  \item 10 jam Waktu Dapur
+  \item 12 jam Tenaga Kerja Pengemasan
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Paket Makanan & Waktu Dapur & Waktu Pengemasan \\
+\hline
+$x_1$: Classic Chicken & 1 & 2 \\
+$x_2$: Vegan Delight & 2 & 0 \\
+$x_3$: Protein Boost & 1 & 0 \\
+$x_4$: Quick \& Light & 0 & 1 \\
+$x_5$: Gourmet Chef Special & 1 & 3 \\
+$x_6$: Breakfast Box & 0 & 1 \\
+\hline
+\end{tabular}
+\par\captionof{table}{Waktu dapur dan pengemasan yang diperlukan untuk setiap paket makanan.}\label{tab:complimentary-slackness-tab02}% tab-num-auto
+
+\end{center}
+
+Program linear primalnya adalah:
+\begin{align*}
+\text{maksimumkan} \quad & 3x_1 + 2x_2 + 4x_3 + x_4 + 5x_5 + 2x_6 \\
+\text{dengan kendala} \quad & x_1 + 2x_2 + x_3 + x_5 \leq 10 \\[-0.5em]
+& 2x_1 + x_4 + 3x_5 + x_6 \leq 12 \\
+& x_1, x_2, x_3, x_4, x_5, x_6 \geq 0
+\end{align*}
+
+Jawablah pertanyaan berikut:
+\begin{enumerate}
+  \item \textbf{Rumuskan program linear dual.}
+  Tentukan apa yang dinyatakan oleh setiap variabel dual, lalu tuliskan fungsi tujuan dan kendala dual secara eksplisit.
+
+  \item \textbf{Selesaikan masalah dual secara grafis.}
+  Gambarkan kendala dual pada bidang $y_1$--$y_2$ dan tentukan daerah layaknya. Gunakan kurva level untuk menentukan solusi optimal.
+
+  \item \textbf{Interpretasi ekonomi.}
+  Jelaskan arti solusi dual ditinjau dari nilai sumber daya Anda.
+
+  \item \textbf{Gunakan kelonggaran komplementer untuk menentukan variabel basis dalam masalah primal.}
+  Berdasarkan solusi dual optimal dan kelonggaran komplementer, tentukan kendala primal mana yang ketat dan, dari sana, variabel mana yang menjadi variabel basis.
+
+  \item \textbf{Peroleh kembali solusi primal optimal.}
+  Gunakan kendala yang ketat dan sistem persamaan untuk menyelesaikan variabel basis primal, lalu hitung nilai tujuan optimal.
+\end{enumerate}
+\exrefs{\S\ref{sec:cs-solving}, \S\ref{sec:duality-economic}}
+\end{ex}
+
+\begin{ex}{Dualitas dengan Jenis Kendala Campuran: Perusahaan Rintisan Kemasan Ramah Lingkungan}{}
+\stars{3} Anda mengelola produksi pada perusahaan rintisan kemasan ramah lingkungan. Tim Anda membuat berbagai set wadah yang dapat terurai secara hayati untuk petani dan toko bahan makanan setempat. Setiap set dirakit dengan menggunakan tenaga kerja dan bahan daur ulang.
+
+Anda membuat tiga jenis set kemasan:
+
+\begin{center}
+\begin{tabular}{|c|l|c|}
+\hline
+Variabel & Jenis Set Kemasan & Harga Eceran \\
+\hline
+$x_1$ & FreshBox Standard & \$6 \\
+$x_2$ & FreshBox Premium & \$9 \\
+$x_3$ & Market Crate & \$8 \\
+\hline
+\end{tabular}
+\par\captionof{table}{Jenis set kemasan dan harga ecerannya.}\label{tab:complimentary-slackness-tab03}% tab-num-auto
+
+\end{center}
+
+Anda harus mengelola penggunaan tiga sumber daya penting:
+\begin{itemize}
+  \item \textbf{Jam Kerja:} tersedia paling banyak 140 jam
+  \item \textbf{Bahan Daur Ulang:} harus digunakan tepat 240 satuan
+  \item \textbf{Persyaratan Kontrak Eceran:} nilai eceran total harus sedikitnya \$80
+\end{itemize}
+
+Laba per satuan untuk setiap set adalah:
+
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+Set Kemasan & Laba per Satuan \\
+\hline
+$x_1$: FreshBox Standard & \$4 \\
+$x_2$: FreshBox Premium & \$6 \\
+$x_3$: Market Crate & \$5 \\
+\hline
+\end{tabular}
+\par\captionof{table}{Laba per satuan untuk setiap set kemasan.}\label{tab:complimentary-slackness-tab04}% tab-num-auto
+
+\end{center}
+
+Kendala pendapatan eceran adalah:
+\[
+6x_1 + 9x_2 + 8x_3 \geq 80
+\]
+
+Kebutuhan sumber daya setiap set kemasan adalah:
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Set Kemasan & Tenaga Kerja & Bahan \\
+\hline
+$x_1$: FreshBox Standard & 2 & 4 \\
+$x_2$: FreshBox Premium & 4 & 6 \\
+$x_3$: Market Crate & 3 & 4 \\
+\hline
+\end{tabular}
+\par\captionof{table}{Tenaga kerja dan bahan yang diperlukan untuk setiap set kemasan.}\label{tab:complimentary-slackness-tab05}% tab-num-auto
+
+\end{center}
+
+Program linear primalnya adalah:
+
+\[
+\begin{aligned}
+\text{maksimumkan} \quad & 4x_1 + 6x_2 + 5x_3 \\
+\text{dengan kendala} \quad
+& 2x_1 + 4x_2 + 3x_3 \leq 140 \quad \text{(Tenaga Kerja)} \\
+& 4x_1 + 6x_2 + 4x_3 = 240 \quad \text{(Bahan)} \\
+& 6x_1 + 9x_2 + 8x_3 \geq 80 \quad \text{(Komitmen Pendapatan Eceran)} \\
+& x_1, x_2, x_3 \geq 0
+\end{aligned}
+\]
+
+\textbf{Tugas:}
+
+\begin{enumerate}
+  \item \textbf{Rumuskan program linear dual.}
+  Tangani tanda setiap kendala dan variabel dual dengan cermat. Apa yang dinyatakan oleh setiap variabel dual? Bentuk kendala apakah yang dihasilkan bagi setiap kendala dual?
+
+  \item \textbf{Selesaikan masalah dual secara grafis atau menggunakan perangkat lunak.}
+  Jika masalah dual berdimensi dua, selesaikan dengan menggambarkan daerah layaknya dan menemukan nilai optimal. Jika tidak, gunakan pemecah seperti PuLP atau analisis grafis terhadap titik perpotongan.
+
+  \item \textbf{Gunakan kelonggaran komplementer.}
+  Berdasarkan solusi dual optimal, tentukan kendala primal mana yang ketat. Gunakan informasi ini untuk mengidentifikasi variabel yang kemungkinan menjadi variabel basis dalam solusi primal optimal.
+
+  \item \textbf{Peroleh kembali solusi primal optimal.}
+  Selesaikan sistem yang dihasilkan dengan menggunakan kendala yang ketat untuk menemukan solusi primal, lalu hitung laba total optimal.
+\end{enumerate}
+\exrefs{\S\ref{sec:duality-forms}, \S\ref{sec:cs-solving}}
+\end{ex}
+
+\subsubsection*{Solusi Pilihan}
+
+\begin{solution}(Latihan~\ref{ex:cs-bakery-duality})
+\begin{enumerate}
+\item \textbf{Kelayakan:} Dengan menyubstitusikan $(x_1, x_2, x_3) = (4, 0, 6)$: tepung $5(4) + 4(0) + 6 = 26 \leq 40$, gula $4 + 0 + 6 = 10 \leq 10$, waktu pemanggangan $4 + 0 + 0.5(6) = 7 \leq 7$, sehingga solusi primal layak. Dengan menyubstitusikan $(y_1, y_2, y_3) = (0, 50, 40)$: kendala dual masing-masing bernilai $90 \geq 90$, $90 \geq 40$, dan $70 \geq 70$, sehingga solusi dual layak.
+
+\item \textbf{Kelonggaran komplementer:} Dalam masalah primal, kendala gula dan waktu pemanggangan ketat, sedangkan kendala tepung memiliki kelonggaran ($26 < 40$); sesuai dengan itu, $y_1 = 0$, sedangkan $y_2, y_3 > 0$. Dalam masalah dual, kendala 1 dan 3 ketat, sedangkan kendala 2 memiliki kelonggaran ($90 > 40$); sesuai dengan itu, $x_2 = 0$, sedangkan $x_1, x_3 > 0$. Setiap syarat $y_i(\a_i^\top \x - b_i) = 0$ dan $x_j(c_j - (A^\top \y)_j) = 0$ dipenuhi.
+
+\item \textbf{Nilai tujuan:} Primal: $90(4) + 40(0) + 70(6) = 780$. Dual: $40(0) + 10(50) + 7(40) = 780$. Nilainya sama, sehingga keoptimalan terkonfirmasi oleh dualitas kuat.
+
+\item \textbf{Harga bayangan:} Tepung memiliki harga bayangan $y_1 = 0$: dengan sisa 14 kg, tepung tambahan tidak bernilai. Gula memiliki harga bayangan $y_2 = 50$: satu kg gula tambahan akan menaikkan laba sebesar \$50. Waktu pemanggangan memiliki harga bayangan $y_3 = 40$: satu jam penggunaan oven tambahan bernilai \$40.
+
+\item \textbf{Sensitivitas:} (a) Satu kg tepung tambahan: tidak ada perubahan (\$0). (b) Satu kg gula tambahan: laba naik \$50. (c) Satu jam waktu pemanggangan tambahan: laba naik \$40. Taksiran ini berlaku untuk perubahan kecil pada ruas kanan (selama basis optimal tidak berubah).
+\end{enumerate}
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:cs-box-constraints})
+(a) Masalah dualnya adalah
+\[
+\begin{aligned}
+\min \quad & y_1 + y_2 + y_3 + y_4 + 8y_5 \\
+\text{dengan kendala} \quad & y_1 + y_5 \geq 1, \quad y_2 + 2y_5 \geq 4, \quad y_3 + 3y_5 \geq 9, \quad y_4 + 4y_5 \geq 16, \\
+& y_1, \dots, y_5 \geq 0.
+\end{aligned}
+\]
+
+(b) Berdasarkan dualitas lemah, setiap $\y$ yang layak bagi masalah dual memberi batas atas $\b^\top \y$ bagi fungsi tujuan primal. Jika kita menunjukkan $\x$ yang layak bagi masalah primal dan $\y$ yang layak bagi masalah dual dengan nilai tujuan yang sama, keduanya pasti optimal.
+
+(c) Pada $\x^* = (0, \tfrac{1}{2}, 1, 1)$, kendala 1 dan 2 memiliki kelonggaran ($0 < 1$ dan $\tfrac12 < 1$), sehingga $y_1 = y_2 = 0$. Karena $x_2, x_3, x_4 > 0$, kendala dual 2, 3, dan 4 harus ketat: $2y_5 = 4$ memberi $y_5 = 2$; kemudian $y_3 = 9 - 3(2) = 3$ dan $y_4 = 16 - 4(2) = 8$. Kendala dual yang tersisa berlaku dengan kelonggaran: $y_1 + y_5 = 2 \geq 1$, konsisten dengan $x_1 = 0$. Jadi, $\y^* = (0, 0, 3, 8, 2)$ layak bagi masalah dual dengan nilai tujuan $3 + 8 + 8(2) = 27$, sama dengan nilai primal $4(\tfrac12) + 9 + 16 = 27$. Berdasarkan bagian (b), kedua solusi optimal.
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:cs-claimed-optimal})
+(a) Syarat-syaratnya adalah $y_1(x_1 + x_2 - 4) = 0$, $y_2(2x_1 + x_2 - 5) = 0$, $x_1(y_1 + 2y_2 - 3) = 0$, dan $x_2(y_1 + y_2 - 2) = 0$.
+
+(b) Pada $(x_1, x_2) = (2, 0)$: kendala primal pertama memberi $2 < 4$ (longgar), sehingga memaksa $y_1 = 0$; kendala kedua memberi $4 < 5$ (longgar), sehingga memaksa $y_2 = 0$. Namun, $x_1 = 2 > 0$ mensyaratkan kendala dual pertama ketat: $y_1 + 2y_2 = 3$.
+
+(c) Dengan $y_1 = y_2 = 0$, kita memperoleh $0 = 3$, suatu kontradiksi: tidak ada solusi dual yang kompatibel, sehingga $(2,0)$ tidak optimal. (Titik itu layak, tetapi kedua kendala memiliki kelonggaran sehingga kita dapat memperoleh hasil yang lebih baik.) Solusi optimal sebenarnya adalah $(x_1, x_2) = (1, 3)$ dengan nilai $9$: kedua kendala primal ketat, dan penyelesaian $y_1 + 2y_2 = 3$, $y_1 + y_2 = 2$ memberi solusi dual optimal $\y^* = (1,1)$ dengan nilai yang sama, yaitu $4(1) + 5(1) = 9$.
+\end{solution}
+
+\section*{Ringkasan: Mengapa Mempelajari Dualitas?}
+\addcontentsline{toc}{section}{Ringkasan: Mengapa Mempelajari Dualitas?}
+
+Kebanyakan mahasiswa dan praktisi jarang menuliskan program linear dual secara eksplisit.
+Namun, pemahaman dualitas sangat penting untuk menafsirkan keluaran pemecah optimisasi
+dan mengambil keputusan berdasarkan informasi yang memadai.
+
+Dalam praktik, Anda menyelesaikan PL primal, tetapi pemecah menggunakan dualitas secara internal dan melaporkan variabel dual sebagai \emph{harga bayangan} pada setiap kendala: seberapa besar fungsi tujuan akan membaik jika kendala tersebut dilonggarkan sebanyak satu satuan. Makna ekonomi angka-angka tersebut, penalaran di balik nilai nol dibandingkan nilai taknol, dan nilai marginal sumber daya semuanya bertumpu pada konsep dualitas yang dikembangkan dalam bab ini: kelayakan dual, dualitas kuat, dan kelonggaran komplementer. Harga bayangan juga mendukung analisis sensitivitas ``bagaimana-jika'' secara cepat, sehingga Anda dapat menaksir dampak perubahan ruas kanan tanpa menyelesaikan ulang PL.
+
+Sebagai ilustrasi kecil, perhatikan PL di bawah ini beserta keluaran pemecah yang lazim:
+
+\medskip
+
+\begin{minipage}{\textwidth}
+\textbf{PL Primal:}
+\[
+\begin{aligned}
+\max\quad & 50x_1 + 20x_2 \\
+\text{dengan kendala} \quad
+& 2x_1 + x_2 \le 90 && \text{(Tenaga Kerja)} \\
+& x_1 + x_2 \le 70 && \text{(Bahan)} \\
+& x_1, x_2 \ge 0
+\end{aligned}
+\]
+\end{minipage}
+\par\medskip\noindent
+\begin{minipage}{\textwidth}
+\textbf{Keluaran Pemecah:}
+\begin{itemize}
+    \item Solusi optimal: \( x_1 = 45,\; x_2 = 0 \), laba \$2250
+    \item Harga bayangan:
+    \begin{itemize}
+        \item Tenaga kerja: \$25
+        \item Bahan: \$0
+    \end{itemize}
+\end{itemize}
+\end{minipage}
+
+\medskip
+
+Tanpa pernah menuliskan masalah dual, keluaran pemecah sudah menggunakan bahasanya: tenaga kerja merupakan sumber daya langka (satu jam tambahan bernilai \$25), sedangkan bahan tidak digunakan sepenuhnya (hanya 45 dari 70 satuan yang terpakai, sehingga harga bayangannya nol, persis seperti yang diprediksi oleh kelonggaran komplementer).
+
+Bagi mahasiswa yang melanjutkan studi dalam optimisasi, riset operasi, atau algoritma, dualitas kembali muncul sebagai gagasan inti di balik metode dekomposisi (misalnya Benders dan Dantzig--Wolfe), metode titik-interior primal--dual, algoritma aproksimasi, dan optimisasi berskala besar.

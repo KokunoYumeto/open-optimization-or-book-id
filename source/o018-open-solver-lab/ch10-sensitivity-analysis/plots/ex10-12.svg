@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="680" viewBox="0 0 960 680" role="img" lang="id" xml:lang="id-ID" aria-labelledby="title-10-12 desc-10-12">
+  <title id="title-10-12">Latihan 10.12 — harga bayangan di luar rentang</title>
+  <desc id="desc-10-12">Nilai optimal naik dari 23 pada b1 sama dengan 9 menjadi 24 pada b1 sama dengan 10, lalu mendatar. Ekstrapolasi harga bayangan ke b1 sama dengan 14 memprediksi 28, tetapi nilai aktual tetap 24.</desc>
+  <metadata>{&quot;alternative_text&quot;:{&quot;actual&quot;:{&quot;b1&quot;:14,&quot;objective&quot;:24},&quot;allowable_range&quot;:[7,10],&quot;prediction&quot;:{&quot;b1&quot;:14,&quot;objective&quot;:28},&quot;shadow_price_at_b1_9&quot;:1},&quot;content_license&quot;:&quot;CC BY-SA 4.0&quot;,&quot;exercise&quot;:&quot;10.12&quot;,&quot;language&quot;:&quot;id-ID&quot;,&quot;renderer&quot;:&quot;o018-local-svg-1.0&quot;}</metadata>
+  <defs>
+    <style><![CDATA[
+      .axis{stroke:#334155;stroke-width:2}.grid{stroke:#e2e8f0;stroke-width:1}.segment{fill:none;stroke:#64748b;stroke-width:4}.active{fill:none;stroke:#176b87;stroke-width:6}.prediction{fill:none;stroke:#b42318;stroke-width:4;stroke-dasharray:10 7}.guide{stroke:#8b5e00;stroke-width:2;stroke-dasharray:7 6}.point{fill:#fff;stroke:#13293d;stroke-width:3}.emphasis{fill:#f4b942;stroke:#7c4a03;stroke-width:3}.actual{fill:#176b87;stroke:#0f4c5c;stroke-width:3}.label{font:600 20px 'DejaVu Sans',sans-serif;fill:#13293d}.small{font:16px 'DejaVu Sans',sans-serif;fill:#334155}.heading{font:700 27px 'DejaVu Sans',sans-serif;fill:#102a43}.note{font:17px 'DejaVu Sans',sans-serif;fill:#475569}
+    ]]></style>
+  </defs>
+  <rect width="960" height="680" fill="#fbfdff"/>
+  <text x="58" y="48" class="heading">Latihan 10.12 — harga bayangan di luar rentang</text>
+  <line class="axis" x1="92.00" y1="590.00" x2="690.00" y2="590.00"/>
+  <line class="axis" x1="92.00" y1="590.00" x2="92.00" y2="92.00"/>
+  <line class="grid" x1="92.00" y1="590.00" x2="92.00" y2="92.00"/>
+  <text class="small" x="84.00" y="616.00">0</text>
+  <line class="grid" x1="211.60" y1="590.00" x2="211.60" y2="92.00"/>
+  <text class="small" x="203.60" y="616.00">3</text>
+  <line class="grid" x1="331.20" y1="590.00" x2="331.20" y2="92.00"/>
+  <text class="small" x="323.20" y="616.00">6</text>
+  <line class="grid" x1="371.07" y1="590.00" x2="371.07" y2="92.00"/>
+  <text class="small" x="363.07" y="616.00">7</text>
+  <line class="grid" x1="450.80" y1="590.00" x2="450.80" y2="92.00"/>
+  <text class="small" x="442.80" y="616.00">9</text>
+  <line class="grid" x1="490.67" y1="590.00" x2="490.67" y2="92.00"/>
+  <text class="small" x="482.67" y="616.00">10</text>
+  <line class="grid" x1="570.40" y1="590.00" x2="570.40" y2="92.00"/>
+  <text class="small" x="562.40" y="616.00">12</text>
+  <line class="grid" x1="650.13" y1="590.00" x2="650.13" y2="92.00"/>
+  <text class="small" x="642.13" y="616.00">14</text>
+  <line class="grid" x1="690.00" y1="590.00" x2="690.00" y2="92.00"/>
+  <text class="small" x="682.00" y="616.00">15</text>
+  <line class="grid" x1="92.00" y1="590.00" x2="690.00" y2="590.00"/>
+  <text class="small" x="49.00" y="596.00">0</text>
+  <line class="grid" x1="92.00" y1="507.00" x2="690.00" y2="507.00"/>
+  <text class="small" x="49.00" y="513.00">5</text>
+  <line class="grid" x1="92.00" y1="424.00" x2="690.00" y2="424.00"/>
+  <text class="small" x="49.00" y="430.00">10</text>
+  <line class="grid" x1="92.00" y1="341.00" x2="690.00" y2="341.00"/>
+  <text class="small" x="49.00" y="347.00">15</text>
+  <line class="grid" x1="92.00" y1="258.00" x2="690.00" y2="258.00"/>
+  <text class="small" x="49.00" y="264.00">20</text>
+  <line class="grid" x1="92.00" y1="175.00" x2="690.00" y2="175.00"/>
+  <text class="small" x="49.00" y="181.00">25</text>
+  <line class="grid" x1="92.00" y1="92.00" x2="690.00" y2="92.00"/>
+  <text class="small" x="49.00" y="98.00">30</text>
+  <text class="label" x="702.00" y="597.00">b₁</text>
+  <text class="label" x="80.00" y="76.00">z*</text>
+  <polyline class="segment" points="92.00,590.00 371.07,241.40"/>
+  <polyline class="active" points="371.07,241.40 490.67,191.60"/>
+  <polyline class="segment" points="490.67,191.60 690.00,191.60"/>
+  <polyline class="prediction" points="450.80,208.20 650.13,125.20"/>
+  <circle class="point" cx="450.80" cy="208.20" r="8"/>
+  <circle class="actual" cx="650.13" cy="191.60" r="8"/>
+  <circle class="emphasis" cx="650.13" cy="125.20" r="8"/>
+  <text class="small" x="578.13" y="220.60">aktual 24</text>
+  <text class="small" x="552.13" y="109.20">prediksi 28</text>
+  <rect x="720" y="118" width="210" height="274" rx="14" fill="#fff0ed" stroke="#d47a6a"/>
+  <text x="740" y="154" class="label">Harga bayangan = 1</text>
+  <text x="740" y="195" class="small">berlaku: 7 ≤ b₁ ≤ 10</text>
+  <text x="740" y="237" class="small">b₁=9: z*=23</text>
+  <text x="740" y="269" class="small">b₁=10: z*=24</text>
+  <text x="740" y="301" class="small">b₁=14: z*=24</text>
+  <text x="740" y="349" class="note">Garis merah =</text>
+  <text x="740" y="377" class="note">ekstrapolasi keliru.</text>
+  <text x="92" y="648" class="note">Sesudah b₁=10, kendala jam tidak lagi mengikat dan kemiringannya menjadi nol.</text>
+</svg>

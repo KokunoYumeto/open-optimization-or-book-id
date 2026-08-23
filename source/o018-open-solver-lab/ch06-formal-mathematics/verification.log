@@ -1,0 +1,35 @@
+Chapter 6 formal-mathematics laboratory verification
+Authority commit: 1745df89b608899f66983834fa4ec8c8910d18ff
+Runtime: CPython 3.12.13; Pyomo 6.10.1; highspy/HiGHS 1.15.1; NumPy 2.5.2
+Date: 2026-08-22
+
+Replay 1:
+CHECK_OK results_bytes=15146 results_sha256=c2559401de6e5206c7590b02abfc433d80391103c1cadf36dfbd9b345f121f71 plots=5 exercises=12 solver_calls=5
+unittest: 21 passed, 0 failed, 0 errors
+
+Replay 2:
+CHECK_OK results_bytes=15146 results_sha256=c2559401de6e5206c7590b02abfc433d80391103c1cadf36dfbd9b345f121f71 plots=5 exercises=12 solver_calls=5
+unittest: 21 passed, 0 failed, 0 errors
+
+Visual QA:
+visual_qa: 5 SVG diperiksa pada raster 1440x1040
+source_math_corrections: 0
+implementation_visual_corrections: 2
+- Skala koordinat x dan y dibuat seragam pada kelima SVG setelah pemeriksaan
+  raster menemukan distorsi aspek pada geometri awal.
+- Tiga anotasi dipindahkan setelah pemeriksaan raster menemukan benturan
+  dengan label tick; raster final tidak mempunyai tumpang tindih atau kliping.
+
+Validated contracts:
+- four frozen authority/translated source byte counts and SHA-256 identities;
+- exact 12-exercise title, order, and difficulty scope;
+- exact rational vector, matrix, barycentric, midpoint, active-set, and witness checks;
+- independent exact-Gaussian and NumPy rank agreement;
+- five Pyomo+HiGHS calls with four optimal and one infeasible termination;
+- direct general certificates for ball/halfspace convexity, nonconvex witnesses,
+  lineality, arbitrary intersections, the empty case, and the polyhedron corollary;
+- zero underdetermined exercises and zero invented or silently corrected data;
+- five deterministic SVGs with title, description, metadata, id-ID language,
+  structured alternatives, and uniform coordinate aspect ratio;
+- no proprietary or network imports and complete component-rights manifest;
+- byte-identical in-memory generation and committed-output replay.

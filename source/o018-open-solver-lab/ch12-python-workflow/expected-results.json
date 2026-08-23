@@ -1,0 +1,75 @@
+{
+  "12.1": {
+    "binding_constraints": ["material"],
+    "objective": 150,
+    "slacks": {"labor": 40, "machine": 120, "material": 0},
+    "solution": {"X1": 30, "X2": 0}
+  },
+  "12.2": {
+    "constraint_slacks": [0, 0, 0],
+    "objective": 35,
+    "solution": {"X1": 2, "X2": 2, "X3": 3}
+  },
+  "12.3": {
+    "demand_total": 250,
+    "explanation": "Permintaan total bertambah dan bergeser ke pasar dengan biaya masuk yang lebih tinggi.",
+    "objective": 670,
+    "supply_total": 250
+  },
+  "12.4": {
+    "objective": 770,
+    "plant_unused": {"A": 10, "B": 0, "C": 20},
+    "total_unused_capacity": 30
+  },
+  "12.5": {
+    "duals": {"labor": "1/4", "machine": 0, "material": "1/5"},
+    "objective": 100,
+    "slacks": {"labor": 0, "machine": 20, "material": 0},
+    "solution": {"X1": 20, "X2": 20}
+  },
+  "12.6": {
+    "epsilon_table": [
+      {"X1": 30, "X2": 0, "epsilon": 60, "profit": 90},
+      {"X1": 27, "X2": 6, "epsilon": 90, "profit": 93},
+      {"X1": 24, "X2": 12, "epsilon": 120, "profit": 96},
+      {"X1": 21, "X2": 18, "epsilon": 150, "profit": 99},
+      {"X1": 20, "X2": 20, "epsilon": 180, "profit": 100}
+    ],
+    "machine_use_without_extra_cap": 160,
+    "tradeoff_profit_per_machine_hour": "1/10"
+  },
+  "12.7": {
+    "missing_labor": {
+      "actual_profit": 102,
+      "labor_excess": 8,
+      "labor_used": 168,
+      "reported_objective": 102,
+      "solution": {"X1": 18, "X2": 24}
+    },
+    "overwritten_objective_equivalent": {
+      "actual_profit": 102,
+      "labor_expression_value": 168,
+      "reported_objective": 168,
+      "solution": {"X1": 18, "X2": 24}
+    }
+  },
+  "12.8": {
+    "correct_maximize": {"objective": 100, "solution": {"X1": 20, "X2": 20}},
+    "minimize_negative_profit": {"objective": -100, "solution": {"X1": 20, "X2": 20}},
+    "wrong_minimize": {"objective": 0, "solution": {"X1": 0, "X2": 0}}
+  },
+  "12.9": {
+    "breakpoints": [120, 168],
+    "labor_rhs": [100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
+    "profit_values": [75, "165/2", 90, "185/2", 95, "195/2", 100, 102, 102, 102],
+    "slope_intervals": ["3/4", "1/4", 0]
+  },
+  "summary": {
+    "exercise_count": 9,
+    "o018_math_correction_count": 0,
+    "solver_call_count": 25,
+    "source_defect_count": 0,
+    "unresolved_count": 0,
+    "verified_count": 9
+  }
+}

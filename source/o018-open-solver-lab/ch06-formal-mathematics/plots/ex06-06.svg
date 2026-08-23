@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="720" height="520" viewBox="0 0 720 520"
+  role="img" aria-labelledby="ex06-06-title ex06-06-desc" lang="id"
+  xml:lang="id-ID" focusable="false">
+  <title id="ex06-06-title">Latihan 6.6 — Selubung konveks sebuah segitiga</title>
+  <desc id="ex06-06-desc">Segitiga tertutup bertitik sudut (0,0), (2,0), dan (0,2). Titik (1,1) berada pada hipotenusa, sedangkan (1,5;1,5) berada di luar.</desc>
+  <metadata>Adaptasi latihan O018 Bab 6; CC BY-SA 4.0.</metadata>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+      orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 z" fill="#1c2430"/>
+    </marker>
+    <style><![CDATA[
+      .background { fill: #ffffff; }
+      .frame { fill: none; stroke: #697386; stroke-width: 1; }
+      .axis { stroke: #1c2430; stroke-width: 1.5; }
+      .tick { stroke: #1c2430; stroke-width: 1; }
+      .tick-label { fill: #1c2430; font: 13px sans-serif; text-anchor: middle; }
+      .tick-label.y { text-anchor: end; }
+      .axis-label { fill: #1c2430; font: 16px sans-serif; font-weight: 700; }
+      .region { fill: #dcecff; stroke: #174a7e; stroke-width: 2.5; }
+      .boundary { fill: none; stroke: #174a7e; stroke-width: 3; }
+      .secondary { fill: none; stroke: #8a3f00; stroke-width: 2.5; stroke-dasharray: 8 5; }
+      .point { fill: #ffffff; stroke: #111111; stroke-width: 2.5; }
+      .point-filled { fill: #111111; stroke: #ffffff; stroke-width: 1.5; }
+      .point-alert { fill: #ffffff; stroke: #a32020; stroke-width: 3; }
+      .point-label { fill: #111111; font: 14px sans-serif; font-weight: 600; }
+      .annotation { fill: #111111; font: 14px sans-serif; }
+      .annotation-strong { fill: #111111; font: 14px sans-serif; font-weight: 700; }
+      .optimal { stroke: #111111; stroke-width: 4; }
+      .guide { stroke: #697386; stroke-width: 1.5; stroke-dasharray: 4 4; }
+    ]]></style>
+  </defs>
+  <rect class="background" x="0" y="0" width="720" height="520"/>
+  <rect class="frame" x="170" y="35" width="420" height="420"/>
+<polygon class="region" points="216.666667,408.333333 450,408.333333 216.666667,175"/>
+<line class="axis" x1="170" y1="408.333333" x2="590" y2="408.333333" marker-end="url(#arrow)"/>
+<line class="axis" x1="216.666667" y1="455" x2="216.666667" y2="35" marker-end="url(#arrow)"/>
+<line class="tick" x1="333.333333" y1="404.333333" x2="333.333333" y2="412.333333"/>
+<text class="tick-label" x="333.333333" y="428.333333">1</text>
+<line class="tick" x1="450" y1="404.333333" x2="450" y2="412.333333"/>
+<text class="tick-label" x="450" y="428.333333">2</text>
+<line class="tick" x1="566.666667" y1="404.333333" x2="566.666667" y2="412.333333"/>
+<text class="tick-label" x="566.666667" y="428.333333">3</text>
+<line class="tick" x1="212.666667" y1="291.666667" x2="220.666667" y2="291.666667"/>
+<text class="tick-label y" x="206.666667" y="295.666667">1</text>
+<line class="tick" x1="212.666667" y1="175" x2="220.666667" y2="175"/>
+<text class="tick-label y" x="206.666667" y="179">2</text>
+<line class="tick" x1="212.666667" y1="58.333333" x2="220.666667" y2="58.333333"/>
+<text class="tick-label y" x="206.666667" y="62.333333">3</text>
+<text class="axis-label" x="594" y="474">x₁</text>
+<text class="axis-label" x="150" y="30">x₂</text>
+<circle class="point-filled" cx="216.666667" cy="408.333333" r="6"/><text class="point-label" x="225.666667" y="399.333333">(0,0)</text>
+<circle class="point-filled" cx="450" cy="408.333333" r="6"/><text class="point-label" x="459" y="399.333333">(2,0)</text>
+<circle class="point-filled" cx="216.666667" cy="175" r="6"/><text class="point-label" x="225.666667" y="166">(0,2)</text>
+<circle class="point" cx="333.333333" cy="291.666667" r="6"/><text class="point-label" x="342.333333" y="282.666667">(1,1), dalam</text>
+<circle class="point-alert" cx="391.666667" cy="233.333333" r="6"/><text class="point-label" x="400.666667" y="224.333333">(1,5;1,5), luar</text>
+<text class="annotation-strong" x="467.5" y="367.5">x₁ + x₂ ≤ 2</text>
+</svg>

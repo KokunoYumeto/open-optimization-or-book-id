@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.interlanguage.local/modular-backend/backend-input-v0.schema.json",
+  "title": "R017/O018 modular backend input v0",
+  "type": "object",
+  "required": [
+    "schema_name",
+    "schema_version",
+    "snapshot_at",
+    "responsible_workflow",
+    "path_roots",
+    "programs",
+    "courses",
+    "resources",
+    "editions",
+    "root_units",
+    "file_units",
+    "native_file_units",
+    "concepts",
+    "unit_concept_rules",
+    "terms",
+    "assets",
+    "rights",
+    "corrections",
+    "qa_events",
+    "artifacts",
+    "relations"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_name": {"const": "interlanguage.modular-backend-input"},
+    "schema_version": {"const": "0.1.0"},
+    "snapshot_at": {"type": "string", "minLength": 1},
+    "responsible_workflow": {"type": "string", "minLength": 1},
+    "path_roots": {
+      "type": "object",
+      "required": ["authority", "target"],
+      "additionalProperties": false,
+      "properties": {
+        "authority": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1}
+      }
+    },
+    "programs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/seed"}},
+    "courses": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/seed"}},
+    "resources": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/seed"}},
+    "editions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/seed"}},
+    "root_units": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/seed"}},
+    "file_units": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/file_unit"}},
+    "native_file_units": {"type": "array", "items": {"$ref": "#/$defs/native_file_unit"}},
+    "concepts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/seed"}},
+    "unit_concept_rules": {"type": "array", "items": {"$ref": "#/$defs/seed"}},
+    "terms": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/seed"}},
+    "assets": {"type": "array", "items": {"$ref": "#/$defs/seed"}},
+    "rights": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/seed"}},
+    "corrections": {"type": "array", "items": {"$ref": "#/$defs/seed"}},
+    "qa_events": {"type": "array", "items": {"$ref": "#/$defs/seed"}},
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/seed"}},
+    "relations": {"type": "array", "items": {"$ref": "#/$defs/seed"}}
+  },
+  "$defs": {
+    "seed": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"}
+      },
+      "additionalProperties": true
+    },
+    "file_unit": {
+      "type": "object",
+      "required": [
+        "id",
+        "unit_type",
+        "parent_id",
+        "order",
+        "source_path",
+        "target_path",
+        "source_sha256",
+        "expected_target_sha256",
+        "rights_component_id"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "unit_type": {"type": "string", "minLength": 1},
+        "parent_id": {"type": "string", "minLength": 1},
+        "order": {"type": "integer"},
+        "source_path": {"type": "string", "minLength": 1},
+        "target_path": {"type": "string", "minLength": 1},
+        "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "expected_target_sha256": {"anyOf": [{"type": "null"}, {"type": "string", "pattern": "^[0-9a-f]{64}$"}]},
+        "rights_component_id": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "native_file_unit": {
+      "type": "object",
+      "required": [
+        "id",
+        "unit_type",
+        "parent_id",
+        "order",
+        "content_path",
+        "expected_content_sha256",
+        "locale",
+        "rights_component_id"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "unit_type": {"type": "string", "minLength": 1},
+        "parent_id": {"type": "string", "minLength": 1},
+        "order": {"type": "integer"},
+        "content_path": {"type": "string", "minLength": 1},
+        "expected_content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "locale": {"type": "string", "minLength": 1},
+        "rights_component_id": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    }
+  }
+}

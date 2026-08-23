@@ -1,0 +1,163 @@
+{
+  "content_license": "CC-BY-SA-4.0",
+  "exercises": {
+    "3.1": {
+      "objective": 160.0,
+      "route_flow": {
+        "W1-S1": 15.0,
+        "W1-S2": 5.0,
+        "W2-S1": 10.0,
+        "W2-S2": 20.0
+      },
+      "saturated_routes": [
+        "W1-S1",
+        "W2-S2"
+      ]
+    },
+    "3.2": {
+      "ending_inventory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "objective": 1252.0,
+      "production": [
+        1.0,
+        9.0,
+        7.0,
+        8.0,
+        5.0,
+        10.0,
+        7.0,
+        6.0,
+        8.0,
+        4.0
+      ]
+    },
+    "3.3": {
+      "active_minimums": [
+        "calories",
+        "fat",
+        "protein"
+      ],
+      "exact_objective_fraction": "2407651/760055",
+      "objective": 3.1677325983
+    },
+    "3.4": {
+      "baseline": {
+        "objective": 173.3333333333,
+        "production": {
+          "gadget": 6.6666666667,
+          "widget": 16.6666666667
+        },
+        "resource_dual": {
+          "machine": 3.3333333333,
+          "material": 1.3333333333
+        }
+      },
+      "widget_profit_9": {
+        "objective": 190.0,
+        "production": {
+          "gadget": 6.6666666667,
+          "widget": 16.6666666667
+        }
+      },
+      "widget_profit_allowable_range": [
+        3.0,
+        12.0
+      ]
+    },
+    "3.5": {
+      "objective": 300.0,
+      "route_flow": {
+        "W1-S1": 20.0,
+        "W1-S2": 0.0,
+        "W1-S3": 40.0,
+        "W2-S1": 10.0,
+        "W2-S2": 40.0,
+        "W2-S3": 0.0
+      }
+    },
+    "3.6": {
+      "baseline": {
+        "desk_reduced_cost": -15.0,
+        "objective": 4100.0,
+        "production": {
+          "chair": 40.0,
+          "desk": 0.0,
+          "table": 30.0
+        },
+        "resource_dual": {
+          "carpentry": 15.0,
+          "finishing": 5.0,
+          "wood": 0.0
+        }
+      },
+      "desk_profit_100": {
+        "objective": 4100.0,
+        "production": {
+          "chair": 40.0,
+          "desk": 0.0,
+          "table": 30.0
+        }
+      },
+      "desk_profit_110": {
+        "objective": 4200.0,
+        "production": {
+          "chair": 40.0,
+          "desk": 20.0,
+          "table": 0.0
+        }
+      },
+      "finishing_plus_20": {
+        "objective": 4200.0,
+        "production": {
+          "chair": 0.0,
+          "desk": 0.0,
+          "table": 60.0
+        }
+      }
+    },
+    "3.7": {
+      "city_total": {
+        "C1": 50.0,
+        "C2": 60.0,
+        "C3": 40.0
+      },
+      "objective": 560.0,
+      "route_flows_omitted_due_to_degeneracy": true,
+      "supply_dual": {
+        "P1": 0.0,
+        "P2": -2.0,
+        "P3": 0.0
+      },
+      "total_unused_capacity": 10.0
+    },
+    "3.9": {
+      "nonnegative_checkbox_off": {
+        "holdings": {
+          "A": -40.0,
+          "B": 140.0
+        },
+        "objective": 14.8
+      },
+      "nonnegative_checkbox_on": {
+        "holdings": {
+          "A": 0.0,
+          "B": 100.0
+        },
+        "objective": 12.0
+      }
+    }
+  },
+  "lab_id": "o018.ch03.spreadsheet-replacements",
+  "numerical_tolerance": 1e-07,
+  "schema_version": "1.0.0"
+}

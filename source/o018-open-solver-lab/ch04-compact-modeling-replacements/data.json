@@ -1,0 +1,709 @@
+{
+  "balance_conventions": {
+    "positive_demand_in_minus_out": "d_v > 0 berarti permintaan; jumlah aliran masuk dikurangi jumlah aliran keluar sama dengan d_v.",
+    "positive_supply_out_minus_in": "b_v > 0 berarti pasokan; jumlah aliran keluar dikurangi jumlah aliran masuk sama dengan b_v.",
+    "source_sink_fraction": "Untuk setiap komoditas, aliran pecahan bersih yang keluar bernilai 1 di sumber, -1 di tujuan, dan 0 di simpul transit."
+  },
+  "cases": {
+    "absolute_deviation": {
+      "domain": {
+        "x": "Reals",
+        "z": "NonNegativeReals"
+      },
+      "points": [
+        2,
+        5,
+        9
+      ],
+      "sense": "minimize",
+      "status": "executable",
+      "title_id": "Deviasi mutlak minimum"
+    },
+    "airline_max_flow": {
+      "arc_capacity": {
+        "a->c": 5,
+        "a->d": 2,
+        "b->c": 6,
+        "b->e": 9,
+        "c->d": 1,
+        "c->e": 3,
+        "c->t": 4,
+        "d->t": 7,
+        "e->t": 5,
+        "s->a": 4,
+        "s->b": 2,
+        "s->c": 8
+      },
+      "certifying_cut": [
+        "a->d",
+        "c->d",
+        "c->t",
+        "e->t"
+      ],
+      "domain": "NonNegativeReals",
+      "sense": "maximize",
+      "sink": "t",
+      "source": "s",
+      "status": "executable",
+      "title_id": "Aliran maksimum jaringan transit maskapai"
+    },
+    "assignment_generic": {
+      "agent_ids": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "cost": [
+        [
+          45,
+          38,
+          60
+        ],
+        [
+          52,
+          41,
+          33
+        ],
+        [
+          27,
+          49,
+          56
+        ]
+      ],
+      "domain": "Binary",
+      "sense": "minimize",
+      "status": "executable",
+      "task_ids": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "title_id": "Penugasan orang ke tugas"
+    },
+    "assignment_machine": {
+      "agent_ids": [
+        "M0",
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "cost": [
+        [
+          9,
+          2,
+          7,
+          8
+        ],
+        [
+          6,
+          4,
+          3,
+          7
+        ],
+        [
+          5,
+          8,
+          1,
+          8
+        ],
+        [
+          7,
+          6,
+          9,
+          4
+        ]
+      ],
+      "domain": "Binary",
+      "sense": "minimize",
+      "status": "executable",
+      "task_ids": [
+        "J0",
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "title_id": "Penugasan mesin"
+    },
+    "assignment_school_bus": {
+      "agent_ids": [
+        "Bus 1",
+        "Bus 2",
+        "Bus 3",
+        "Bus 4",
+        "Bus 5"
+      ],
+      "cost": [
+        [
+          50,
+          80,
+          60,
+          90,
+          100
+        ],
+        [
+          60,
+          85,
+          55,
+          70,
+          110
+        ],
+        [
+          75,
+          65,
+          50,
+          85,
+          90
+        ],
+        [
+          70,
+          90,
+          55,
+          80,
+          95
+        ],
+        [
+          80,
+          70,
+          60,
+          75,
+          85
+        ]
+      ],
+      "domain": "Binary",
+      "sense": "minimize",
+      "status": "executable",
+      "task_ids": [
+        "Sekolah A",
+        "Sekolah B",
+        "Sekolah C",
+        "Sekolah D",
+        "Sekolah E"
+      ],
+      "title_id": "Penugasan bus sekolah"
+    },
+    "investment_multi_period": {
+      "design_questions": [
+        "Apakah variabel pilihan harus biner, pecahan di [0,1], atau berupa tingkat investasi kontinu?",
+        "Bagaimana kas menganggur dibawa dari satu periode ke periode berikutnya?",
+        "Apakah satu peluang dapat dipilih lebih dari sekali atau hanya sekali?",
+        "Apakah pembayaran bersifat deterministik, dan kapan tepatnya pembayaran tersedia?"
+      ],
+      "executable": false,
+      "initial_cash": 50000,
+      "investments": {
+        "A": {
+          "cost": 10000,
+          "payout_next_period": 15000,
+          "period": 1
+        },
+        "B": {
+          "cost": 20000,
+          "payout_next_period": 30000,
+          "period": 1
+        },
+        "C": {
+          "cost": 15000,
+          "payout_next_period": 22000,
+          "period": 1
+        },
+        "D": {
+          "cost": 12000,
+          "payout_next_period": 18000,
+          "period": 2
+        },
+        "E": {
+          "cost": 25000,
+          "payout_next_period": 35000,
+          "period": 2
+        },
+        "F": {
+          "cost": 18000,
+          "payout_next_period": 26000,
+          "period": 2
+        },
+        "G": {
+          "cost": 15000,
+          "payout_next_period": 20000,
+          "period": 3
+        },
+        "H": {
+          "cost": 10000,
+          "payout_next_period": 14000,
+          "period": 3
+        },
+        "I": {
+          "cost": 20000,
+          "payout_next_period": 28000,
+          "period": 3
+        },
+        "J": {
+          "cost": 8000,
+          "payout_next_period": 10000,
+          "period": 4
+        },
+        "K": {
+          "cost": 16000,
+          "payout_next_period": 22000,
+          "period": 4
+        },
+        "L": {
+          "cost": 12000,
+          "payout_next_period": 16000,
+          "period": 4
+        }
+      },
+      "status": "design_unresolved",
+      "title_id": "Investasi modal multiperiodik"
+    },
+    "min_cost_flow_unstructured": {
+      "arc_cost": {
+        "a->c": 2,
+        "b->a": 5,
+        "b->e": 4,
+        "c->e": 1,
+        "c->f": 6,
+        "d->b": 3,
+        "e->h": 4,
+        "g->e": 7,
+        "g->f": 3,
+        "h->d": 2
+      },
+      "balance_convention": "positive_demand_in_minus_out",
+      "domain": "NonNegativeReals",
+      "finite_arc_capacities": null,
+      "net_demand": {
+        "a": 10,
+        "b": -5,
+        "c": 0,
+        "d": 5,
+        "e": 0,
+        "f": 0,
+        "g": -5,
+        "h": -5
+      },
+      "sense": "minimize",
+      "status": "executable",
+      "title_id": "Aliran biaya minimum tak terstruktur"
+    },
+    "min_cost_flow_warehouses": {
+      "arc_capacity": {
+        "W1->S1": 15,
+        "W1->S2": 10,
+        "W2->S1": 20,
+        "W2->S2": 20
+      },
+      "arc_cost": {
+        "W1->S1": 4,
+        "W1->S2": 6,
+        "W2->S1": 5,
+        "W2->S2": 2
+      },
+      "demand": {
+        "S1": 25,
+        "S2": 25
+      },
+      "domain": "NonNegativeReals",
+      "sense": "minimize",
+      "status": "executable",
+      "supply_capacity": {
+        "W1": 20,
+        "W2": 30
+      },
+      "title_id": "Aliran biaya minimum gudang-ke-toko"
+    },
+    "multicommodity_fractional": {
+      "arc_capacity": {
+        "1->2": 10,
+        "1->3": 8,
+        "2->3": 4,
+        "2->4": 7,
+        "3->4": 9
+      },
+      "arc_cost": {
+        "1->2": 1,
+        "1->3": 2,
+        "2->3": 1,
+        "2->4": 3,
+        "3->4": 1
+      },
+      "balance_convention": "source_sink_fraction",
+      "commodities": {
+        "1": {
+          "demand": 10,
+          "sink": "4",
+          "source": "1"
+        },
+        "2": {
+          "demand": 5,
+          "sink": "4",
+          "source": "1"
+        }
+      },
+      "domain": "UnitInterval",
+      "sense": "minimize",
+      "status": "executable",
+      "title_id": "Aliran multikomoditas pecahan sumber-tujuan"
+    },
+    "multicommodity_integer": {
+      "arc_capacity": {
+        "1->2": 20,
+        "1->3": 15,
+        "2->4": 25,
+        "3->4": 20
+      },
+      "balance_convention": "positive_demand_in_minus_out",
+      "commodities": [
+        "1",
+        "2"
+      ],
+      "domain": "NonNegativeIntegers",
+      "net_demand": {
+        "1": {
+          "1": -10,
+          "2": -5
+        },
+        "2": {
+          "1": 0,
+          "2": 0
+        },
+        "3": {
+          "1": 0,
+          "2": 0
+        },
+        "4": {
+          "1": 10,
+          "2": 5
+        }
+      },
+      "sense": "minimize",
+      "status": "executable",
+      "title_id": "Aliran multikomoditas bilangan bulat",
+      "unit_cost": {
+        "1->2": {
+          "1": 2,
+          "2": 3
+        },
+        "1->3": {
+          "1": 3,
+          "2": 2
+        },
+        "2->4": {
+          "1": 1,
+          "2": 2
+        },
+        "3->4": {
+          "1": 2,
+          "2": 1
+        }
+      }
+    },
+    "production_10period": {
+      "demand": [
+        8,
+        6,
+        9,
+        7,
+        10,
+        5,
+        8,
+        6,
+        4,
+        7
+      ],
+      "domain": "NonNegativeReals",
+      "holding_cost": 5,
+      "initial_inventory": 5,
+      "production_cost": [
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28
+      ],
+      "sense": "minimize",
+      "status": "executable",
+      "title_id": "Perencanaan produksi sepuluh periode"
+    },
+    "production_overtime": {
+      "demand": [
+        8,
+        6,
+        9,
+        7,
+        10,
+        5,
+        8,
+        6,
+        4,
+        7
+      ],
+      "executable": false,
+      "holding_cost": 5,
+      "initial_inventory": 0,
+      "overtime_cost": [
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28,
+        30,
+        32,
+        34
+      ],
+      "regular_cost": [
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28
+      ],
+      "required_parameters": [
+        "regular_capacity[1..10]",
+        "overtime_capacity[1..10]"
+      ],
+      "status": "parameter_required",
+      "title_id": "Perencanaan produksi dengan lembur"
+    }
+  },
+  "content_license": "CC-BY-SA-4.0",
+  "divergences": [
+    {
+      "id": "div.ch04.unstructured-arc-direction",
+      "resolution": "Gunakan busur d->b, sesuai data simpul dan gambar yang telah dikoreksi; busur b->d membuat instans tidak layak.",
+      "source_behavior": "Authority semula menuliskan (b,d) pada himpunan busur.",
+      "status": "corrected"
+    },
+    {
+      "id": "div.ch04.airline-terminal-arc",
+      "resolution": "Gunakan d->t berkapasitas 7 dan nilai aliran maksimum 12, sesuai matematika cetak yang telah dikoreksi.",
+      "source_behavior": "Workbook dan kedua notebook membentuk d->e berkapasitas 7 dan hanya menghasilkan aliran maksimum 9.",
+      "status": "corrected"
+    },
+    {
+      "id": "div.ch04.multicommodity-direction-and-cost",
+      "resolution": "Gunakan busur 1->3 dan aliran layak [0,5] pada 1->3 serta 3->4; biaya minimum yang benar 45.",
+      "source_behavior": "Gambar sumber membalik arah 1->3 dan menampilkan aliran [5,5] yang tidak menaati konservasi.",
+      "status": "corrected"
+    },
+    {
+      "id": "div.ch04.overtime-capacity-omission",
+      "resolution": "Kasus diberi status parameter_required; kapasitas reguler dan lembur wajib dipasok sebelum model boleh dijalankan.",
+      "source_behavior": "Model cetak, workbook, dan notebook tidak mempunyai kendala kapasitas, sehingga produksi lembur yang lebih mahal tidak pernah diperlukan.",
+      "status": "unresolved_upstream"
+    },
+    {
+      "id": "div.ch04.investment-semantics",
+      "resolution": "Kasus diberi status design_unresolved dan tidak dijalankan sampai domain keputusan, kas menganggur, pengulangan peluang, serta waktu pembayaran ditetapkan.",
+      "source_behavior": "Soal meminta LP, solusi memakai variabel biner, kas menganggur hilang antarkurun, dan TODO sumber mengakui pilihan domain belum selesai.",
+      "status": "unresolved_upstream"
+    },
+    {
+      "id": "div.ch04.assignment-workbook-report",
+      "resolution": "Gunakan penugasan P1->T2, P2->T3, P3->T1 dengan biaya 38+33+27=98.",
+      "source_behavior": "Lembar Answer Report 1 pada assignment-problem-excel.xlsx melaporkan nilai akhir 129 meskipun sel keputusan yang sama berjumlah 98.",
+      "status": "corrected"
+    }
+  ],
+  "lab_id": "o018.ch04.compact-modeling-replacements",
+  "provenance": {
+    "authority_branch": "master",
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "authority_tree": "209d5de696ebac4e5921b73d6b6b2f539fc23d1c",
+    "external_school_bus_commit": "b924d2fe61ee0ba925903aba615db4f46e65b4be",
+    "source_files": [
+      {
+        "bytes": 40459,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch02-modeling/modeling-sums.tex",
+        "sha256": "b549fb1399f98744b5485a0b064b54238485166f5456fabc4ea898778750c630"
+      },
+      {
+        "bytes": 80405,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch02-modeling/modeling-sums-continued.tex",
+        "sha256": "7ebb3e77a83b05ddb51e8009072ea11b92ff566af58f539c5b80a576c2f06f55"
+      },
+      {
+        "bytes": 5750,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/production-10period-excel.xlsx",
+        "sha256": "9d80e9a81e0780abdc7ac63791eb5e2bc28bfdddbb15c498515e555b8b8c0f54"
+      },
+      {
+        "bytes": 9027,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-data.xlsx",
+        "sha256": "faffcca55a110f736107e43f4fe7b60037f9953fb3266442f879560a72b04745"
+      },
+      {
+        "bytes": 1487,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_pulp.ipynb",
+        "sha256": "09dd33a58b4e4b609ba08f65eb60d11ae361f57066763c44f5e37d99d241ce37"
+      },
+      {
+        "bytes": 1214,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_gurobi.ipynb",
+        "sha256": "fe1a214e66af204caf5815b456e25feba94c783dd8472effe383b8be735b58b9"
+      },
+      {
+        "bytes": 5898,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/production-overtime-excel.xlsx",
+        "sha256": "e89c7f6d84f5b182ee4f4432c1378976c36a9cd269d8a70b04b72cedc836f957"
+      },
+      {
+        "bytes": 8726,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/production_costs.xlsx",
+        "sha256": "5a9de5019d617e1193ee165785cbd751b26305977a56deb203dc5b3f14ea805e"
+      },
+      {
+        "bytes": 1682,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_pulp.ipynb",
+        "sha256": "112055da5b7af3dc34e40db3f282ec6ab4f9f2ee6792304b2595ce1b64bac76d"
+      },
+      {
+        "bytes": 1343,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_gurobi.ipynb",
+        "sha256": "55150b739852419ae20fdc904e1f025e6d31011545ca0a511a749a20ebe06382"
+      },
+      {
+        "bytes": 6177,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/machine-assignment-excel.xlsx",
+        "sha256": "d9cc018faecbd4bea27b270f250dd935c5c2fdbc1f3638d96b53869daf0b0a2b"
+      },
+      {
+        "bytes": 2024,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_pulp.ipynb",
+        "sha256": "f0eb419dc86902b100650178f8c4abb3e9bd34ac4ffd8d693049813b99567321"
+      },
+      {
+        "bytes": 1643,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_gurobi.ipynb",
+        "sha256": "8c4a8a32d5102355313f1b60e3bed035f51a03e9d356a5174154c2615881130b"
+      },
+      {
+        "bytes": 5785,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/school-bus-excel.xlsx",
+        "sha256": "fd5cdd08e941801acc5b0c16ab98620680ba83142565387ab3e8eadb06795f85"
+      },
+      {
+        "bytes": 1547,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_pulp.ipynb",
+        "sha256": "8157c7333bbde94f1da70d836dd942227896a2e7957077a0c0876a9b3eee9dc9"
+      },
+      {
+        "bytes": 1469,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_gurobi.ipynb",
+        "sha256": "c334df3b265fb8c713576328186b54160b6a0bbe6961d2aa50e2805e85de7fa3"
+      },
+      {
+        "bytes": 163,
+        "path": "authority/external/open-optimization-or-examples-b924d2fe61ee0ba925903aba615db4f46e65b4be/integer-programming/school_bus_data.csv",
+        "sha256": "8caa2666672c507cf1317fcf87c2c66e2a1705c914573a6b87c80dfca5119817"
+      },
+      {
+        "bytes": 8324,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel.xlsx",
+        "sha256": "a9d7ee6d5b706028fbd908a0e43710e1dbb51d9b9c4a4466ba6c075e9a270f63"
+      },
+      {
+        "bytes": 1347,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_pulp.ipynb",
+        "sha256": "93dc9579b2bbce9cf03fed76ab2c4228548fe926d4e8d845361777f8c8ebe581"
+      },
+      {
+        "bytes": 1293,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_gurobi.ipynb",
+        "sha256": "9234ac83f4a31332b2e726c9df8ec56e020e9ceeb4961d4acde32db02333f722"
+      },
+      {
+        "bytes": 6074,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute-value-excel.xlsx",
+        "sha256": "90043d4b467d9b306b641800f48f394333028e8fd96c5af4c0153c4f1704b849"
+      },
+      {
+        "bytes": 1331,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_pulp.ipynb",
+        "sha256": "4fb2c1dea82c42caba14a63bd557d8837f7944a2882eb2484beee48f05a423c0"
+      },
+      {
+        "bytes": 1084,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_gurobi.ipynb",
+        "sha256": "da708580320a5bbb69751d8ad87b243fe623422cad0bac6df6c6bbac5d8c3eff"
+      },
+      {
+        "bytes": 5545,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/network-flow-excel.xlsx",
+        "sha256": "5af2897be5ad9b96f20adf1846495f8fda24a249189b0fc4911607b956439210"
+      },
+      {
+        "bytes": 1398,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_pulp.ipynb",
+        "sha256": "7c85eb044edab8aaa77fe66ef25c2a5e9b6f735f9680d9fad2201cbe3d79afd5"
+      },
+      {
+        "bytes": 1299,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_gurobi.ipynb",
+        "sha256": "2c6b8b787e540679e559338d1b32d1f4ddd3198ffbd6d6ab78a347be7205568d"
+      },
+      {
+        "bytes": 5695,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/airline-maxflow-excel.xlsx",
+        "sha256": "24e488445d85a4659544ce5947d0510cad5029af0616c60c345b5c6e05ffb81f"
+      },
+      {
+        "bytes": 1354,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/airline_maxflow_pulp.ipynb",
+        "sha256": "f9ba8ba0cfac56393ec8cf5c42a47c0466db179da3eaa80a532cf19ce3336fca"
+      },
+      {
+        "bytes": 1304,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/airline_maxflow_gurobi.ipynb",
+        "sha256": "4ede788d9695618b2a156e0138cb8b2edee228c45f69c5aebda2e64f829e3db4"
+      },
+      {
+        "bytes": 1876,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_flow_pulp.ipynb",
+        "sha256": "9ca967f994bda65885f8a9586f2931e8512ea50aea40dbbecb50d75083fb2774"
+      },
+      {
+        "bytes": 1597,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_flow_gurobi.ipynb",
+        "sha256": "f53b932fa8550e2ede2fce30341f4d855c43aa7a41ca1472cf4f573f02ae1e45"
+      },
+      {
+        "bytes": 2012,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_sourcesink_pulp.ipynb",
+        "sha256": "736d792aeb0648cc10d4c724036b68bca5b2586811b560c489e2ea6e27fa1e51"
+      },
+      {
+        "bytes": 1600,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_sourcesink_gurobi.ipynb",
+        "sha256": "b3409c3972eef05ab1f358c68f7129e43f4e63695a0d02a857e1bbd6a732dd38"
+      },
+      {
+        "bytes": 5844,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/multi-period-investment-excel.xlsx",
+        "sha256": "a4a9a97b023912693900c60c455494d351c549441f4d8315ac4453c24a0d93f7"
+      },
+      {
+        "bytes": 1696,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/multi_period_investment_pulp.ipynb",
+        "sha256": "8c60512d9d5adb4b1348e0626f14a3e3680b2f721f408a5fde89e3dd143e2296"
+      },
+      {
+        "bytes": 1508,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/optimization-examples/multi_period_investment_gurobi.ipynb",
+        "sha256": "cfe08d1d59f2eb5a009f31618a00d7539484676ee74d5edf350abc56eb23423d"
+      }
+    ]
+  },
+  "schema_version": "1.0.0"
+}

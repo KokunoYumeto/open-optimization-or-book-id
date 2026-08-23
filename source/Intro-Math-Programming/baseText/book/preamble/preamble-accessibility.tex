@@ -1,0 +1,26 @@
+% Accessibility wrapper for \includegraphics.
+% Caller syntax: \altincludegraphics[<graphicx opts>]{<image path>}{<alt text>}
+%
+% IMPORTANT: this file deliberately does NOT load the `pdfcomment` package.
+% pdfcomment transitively loads soulpos, which requires soul. The soul
+% package redefines \st as a strikethrough macro, but the book already
+% defines \st for "subject to" in preamble-optimization.tex -- the
+% collision breaks compilation everywhere \st is used (many places).
+% See LaTeX log: "soul-ori.sty:98: Command \st already defined."
+%
+% Structural PDF tagging remains blocked by the installed latex-lab/kernel
+% mismatch, but accsupp still exposes each description as ActualText in the
+% page content stream.  This makes the image meaning available to extraction
+% and assistive tooling without claiming a PDF/UA structure tree.
+\usepackage{accsupp}
+\newcommand{\altincludegraphics}[3][]{%
+  % Keep the marked-content boundary and image in one unbreakable box.  A
+  % standalone BeginAccSupp whatsit can otherwise remain at the bottom of one
+  % page while a following image moves to the next page, producing an invalid
+  % cross-page BDC/EMC pair in the PDF content stream.
+  \mbox{%
+    \BeginAccSupp{method=escape,ActualText={#3}}%
+    \includegraphics[#1]{#2}%
+    \EndAccSupp{}%
+  }%
+}

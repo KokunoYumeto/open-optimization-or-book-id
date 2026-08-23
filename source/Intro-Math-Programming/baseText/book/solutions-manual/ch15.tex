@@ -1,0 +1,263 @@
+% ============================================================================
+% Bab 15: Pengantar Formulasi Pemrograman Bilangan Bulat
+% Sumber: part3-integer-programming/ch11-ip-formulations/
+%         integerProgrammingFormulations-book1.tex, \section{Latihan}
+% 16 latihan dalam empat kelompok: Pemanasan 15.1-15.4, Inti 15.5-15.11,
+% Konsep dan keterkaitan 15.12-15.14, Tantangan 15.15-15.16.
+% Semua optimum numerik diverifikasi dengan PuLP 3.3 / CBC.
+% ============================================================================
+
+\section{Bab 15: Pengantar Formulasi Pemrograman Bilangan Bulat}
+
+Enam belas latihan dalam bab ini dikelompokkan menjadi empat kelompok: Pemanasan (15.1 hingga 15.4: ransel, penutupan himpunan, dan latihan Big-$M$), Masalah inti (15.5 hingga 15.11: penganggaran modal, penutupan, lokasi fasilitas, pewarnaan, dan kendala logis), Konsep dan keterkaitan (15.12 hingga 15.14: pembulatan LP, keketatan Big-$M$, dan membaca model pertukaran ginjal), serta Masalah tantangan (15.15 dan 15.16: biaya linier sepenggal dan flow shop kecil). Setiap model di bawah diterapkan dan diselesaikan dengan PuLP (CBC), dan setiap nilai optimal yang dinyatakan dalam soal latihan telah terbukti benar, termasuk nilai petunjuk $52/3$ dalam 15.12, laba \$40 dalam 15.15, dan makespan 12 dalam 15.16. Keenam Solusi Terpilih dalam buku (15.2, 15.3, 15.8, 15.9, 15.10, 15.11) semuanya telah diverifikasi; solusi 15.3 diperluas dalam buku dengan mencatat penempatan optimal ketiga $\{1,6\}$ di samping $\{2,5\}$ dan $\{3,4\}$. Latihan-latihan tersebut tampaknya merupakan karya asli buku ini (tidak muncul masalah atribusi sumber eksternal dalam bab ini).
+
+\exsol{15.1}{Masalah Ransel}{1}
+
+(a) Misalkan $x_i \in \{0,1\}$ sama dengan 1 jika barang $i$ dikemas, untuk $i \in \{$T(enda), S(kantong tidur), V(kompor), F(makanan), C(kamera)$\}$:
+\[
+\begin{aligned}
+\max\quad & 8x_T + 6x_S + 5x_V + 10x_F + 4x_C\\
+\st\quad & 5x_T + 3x_S + 4x_V + 7x_F + 2x_C \leq 15\\
+& x \in \{0,1\}^5.
+\end{aligned}
+\]
+Optimum mengemas tenda, kantong tidur, dan makanan: berat $5+3+7 = 15$ (tepat sama dengan kapasitas), nilai $8+6+10 = 24$. Muatan peringkat kedua seperti $\{$tenda, kantong tidur, kompor, kamera$\}$ (berat 14, nilai 23) masih lebih rendah.
+
+(b) ``Jika kompor dikemas, maka makanan dikemas'' merupakan trik implikasi dari bagian trik pemodelan:
+\[
+x_V \leq x_F.
+\]
+Solusi optimal dari (a) tidak mengemas kompor, sehingga tetap optimal dengan nilai 24. Kedua versi diverifikasi dengan PuLP.
+
+\exsol{15.2}{Ransel Mobil Kurir}{1}
+
+(a) Dengan $x_i = 1$ jika paket $i$ dimuat,
+\[
+\max\ 5x_1 + 3x_2 + 3x_3 + 7x_4 + 4x_5
+\quad \st \quad
+11x_1 + 3x_2 + 2x_3 + 5x_4 + 4x_5 \leq 15,\quad x \in \{0,1\}^5.
+\]
+(b) Muatan optimal: paket 2, 3, 4, 5, dengan berat $3+2+5+4 = 14 \leq 15$ dan imbalan $3+3+7+4 = \$17$. Mengambil paket 1 yang berat hanya menyisakan 4\,kg untuk paket lainnya, sehingga membatasi imbalan pada $5+3 = \$8$. Sesuai dengan Solusi Terpilih dalam buku; diverifikasi dengan PuLP.
+
+\exsol{15.3}{Mencakup Sebuah Kota Kecil}{1}
+
+(a) Dengan menyertakan distrik itu sendiri (seperti dalam contoh stasiun pemadam kebakaran):
+\[
+V_1 = \{1,2,4\},\ V_2 = \{1,2,3,5\},\ V_3 = \{2,3,6\},\ V_4 = \{1,4,5\},\ V_5 = \{2,4,5,6\},\ V_6 = \{3,5,6\}.
+\]
+(b) Dengan $x_i = 1$ jika sebuah stasiun ditempatkan di distrik $i$:
+\[
+\min\ \sum_{i=1}^{6} x_i
+\quad \st \quad
+\sum_{j \in V_i} x_j \geq 1 \ \text{ untuk } i = 1,\dots,6, \qquad x \in \{0,1\}^6.
+\]
+(c) Optimum adalah 2 stasiun. Satu stasiun tidak mungkin cukup karena tidak ada $V_i$ yang memuat keenam distrik (himpunan terbesar memiliki empat unsur). Pencacahan semua pasangan menunjukkan tepat tiga penempatan optimal: $\{2,5\}$, $\{3,4\}$, dan $\{1,6\}$; sebagai contoh, $\{1,6\}$ berhasil karena $1 \in V_1 \cap V_2 \cap V_4$ dan $6 \in V_3 \cap V_5 \cap V_6$. Diverifikasi dengan PuLP beserta pencacahan lengkap. (Solusi Terpilih dalam buku semula hanya mencantumkan $\{2,5\}$ dan $\{3,4\}$; penempatan ketiga telah ditambahkan di sana.)
+
+\exsol{15.4}{Latihan Aktivasi Big-M}{1}
+
+(a) Kebijakan ``jika $\delta = 0$, maka $x_1 + x_2 + x_3 \leq 40$'' menjadi kendala tunggal
+\[
+x_1 + x_2 + x_3 \leq 40 + M\delta.
+\]
+Ketika $\delta = 0$, batas 40 diterapkan; ketika $\delta = 1$, kendala tersebut harus tidak membatasi.
+
+(b) Dengan $0 \leq x_i \leq 30$, ruas kiri paling besar $90$. Tidak membatasi berarti $40 + M \geq 90$, sehingga konstanta sah terkecil adalah
+\[
+M = 90 - 40 = 50.
+\]
+Nilai $M$ yang lebih kecil akan secara keliru memangkas solusi sah seperti $x_1 = x_2 = x_3 = 30$ ketika pemandu kedua dipekerjakan.
+
+\exsol{15.5}{Menentukan Lokasi Terminal Distribusi}{2}
+
+Ketiga kondisi diterjemahkan secara langsung: (1) adalah kendala kardinalitas, (2) menyatakan $y_1 = 0 \Rightarrow y_2 = 1$, yaitu $y_1 + y_2 \geq 1$, dan (3) adalah kendala penutupan:
+\[
+\begin{aligned}
+\min\quad & 10y_1 + 12y_2 + 20y_3 + 18y_4 + 25y_5\\
+\st\quad & y_1 + y_2 + y_3 + y_4 + y_5 \leq 2\\
+& y_1 + y_2 \geq 1\\
+& y_3 + y_4 + y_5 \geq 1\\
+& y \in \{0,1\}^5.
+\end{aligned}
+\]
+Latihan hanya meminta model, tetapi contoh ini layak diselesaikan di kelas: kendala (2) dan (3) memaksa satu terminal Maritimes dan satu terminal pusat, batas dua terminal menjadikannya tepat satu dari setiap jenis, dan pasangan termurah adalah Halifax dan Ottawa, $y_1 = y_4 = 1$, dengan biaya $\$28$ juta. Diverifikasi dengan PuLP.
+
+\exsol{15.6}{Lokasi Gudang}{2}
+
+(a) Misalkan $y_i = 1$ jika gudang $i \in \{A, B, C, D\}$ dibuka. Setiap wilayah memerlukan gudang terbuka yang melayaninya:
+\[
+\begin{aligned}
+\min\quad & 150y_A + 200y_B + 120y_C + 180y_D\\
+\st\quad & y_A + y_C \geq 1 && \text{(wilayah 1)}\\
+& y_A + y_B \geq 1 && \text{(wilayah 2)}\\
+& y_A + y_B + y_D \geq 1 && \text{(wilayah 3)}\\
+& y_B + y_C + y_D \geq 1 && \text{(wilayah 4)}\\
+& y_B + y_D \geq 1 && \text{(wilayah 5)}\\
+& y \in \{0,1\}^4.
+\end{aligned}
+\]
+Optimum membuka B dan C dengan biaya $200 + 120 = \$320$K: C mencakup wilayah 1 dan 4, sedangkan B mencakup 2, 3, 4, 5. Sebagai perbandingan, A bersama D berbiaya 330 dan A bersama B berbiaya 350; C bersama D tidak mencakup wilayah 2. Diverifikasi dengan PuLP.
+
+(b) Ini adalah masalah \emph{penutupan himpunan} (berbobot): gudang merupakan himpunannya, wilayah merupakan unsur yang harus dicakup, dan biaya tetap menggantikan fungsi objektif satuan.
+
+\exsol{15.7}{Penganggaran Modal dengan Kebergantungan}{2}
+
+(a) Dengan $x_j = 1$ jika proyek $j$ didanai:
+\[
+\begin{aligned}
+\max\quad & 20x_1 + 40x_2 + 20x_3 + 15x_4 + 30x_5\\
+\st\quad & 5x_1 + 4x_2 + 3x_3 + 7x_4 + 8x_5 \leq 20 && \text{(tahun 1)}\\
+& x_1 + 7x_2 + 9x_3 + 4x_4 + 6x_5 \leq 20 && \text{(tahun 2)}\\
+& x_3 \leq x_1 && \text{(3 hanya bersama 1)}\\
+& x_2 + x_5 \leq 1 && \text{(2 dan 5 bertentangan)}\\
+& x \in \{0,1\}^5.
+\end{aligned}
+\]
+(b) Optimum: danai proyek 1, 2, dan 3 untuk NPV $20 + 40 + 20 = 80$ (\$80{,}000). Pengeluaran: tahun 1 menggunakan $5+4+3 = 12 \leq 20$; tahun 2 menggunakan $1+7+9 = 17 \leq 20$. Menambahkan proyek 4 akan mendorong tahun 2 menjadi 21 dan tidak layak; mengganti 2 dengan 5 menurunkan NPV menjadi 70. Diverifikasi dengan PuLP.
+
+\exsol{15.8}{Lokasi Fasilitas: Dua Pusat Distribusi}{2}
+
+(a) Total permintaan adalah $10+12+15 = 37$ dibandingkan total kapasitas $40+25 = 65$, sehingga contoh tersebut layak. Pusat 1 saja ($u_1 = 40 \geq 37$) dapat melayani semuanya; pusat 2 saja tidak dapat ($25 < 37$).
+
+(b) Mengikuti model lokasi fasilitas berkapasitas, dengan $y_i \in \{0,1\}$ dan $x_{ij} \geq 0$ unit permintaan toko $j$ yang dilayani oleh pusat $i$:
+\[
+\begin{aligned}
+\min\quad & 80y_1 + 60y_2 + \textstyle\sum_{i,j} c_{ij}x_{ij}\\
+\st\quad & x_{1j} + x_{2j} = d_j && j = 1,2,3\\
+& x_{11} + x_{12} + x_{13} \leq 40\,y_1\\
+& x_{21} + x_{22} + x_{23} \leq 25\,y_2\\
+& x_{ij} \geq 0,\ y_i \in \{0,1\},
+\end{aligned}
+\]
+dengan $c$ dan $d$ sebagaimana ditabulasikan.
+
+(c) Optimum: buka pusat 1 saja dan layani semua permintaan darinya, $x_{11} = 10$, $x_{12} = 12$, $x_{13} = 15$:
+\[
+\text{biaya} = 80 + 2(10) + 3(12) + 1(15) = 80 + 71 = \$151.
+\]
+Membuka pusat 2 juga akan menambah biaya tetapnya sebesar \$60 dan paling banyak menghemat $2 \cdot 12 = 24$ untuk melayani toko 2 (satu-satunya penugasan yang lebih murah), sehingga pusat yang lebih murah tidak layak dibuka. Sesuai dengan Solusi Terpilih dalam buku; diverifikasi dengan PuLP.
+
+\exsol{15.9}{Mewarnai Graf Lima Simpul}{2}
+
+(a) Dengan paling banyak $n = 5$ warna, $x_{ij} = 1$ jika simpul $i$ memperoleh warna $j$ dan $w_j = 1$ jika warna $j$ digunakan:
+\[
+\begin{aligned}
+\min\quad & \sum_{j=1}^{5} w_j\\
+\st\quad & \sum_{j=1}^{5} x_{ij} = 1 && i \in \{A,\dots,E\}\\
+& x_{ij} + x_{kj} \leq w_j && \{i,k\} \in E,\ j = 1,\dots,5\\
+& x_{ij}, w_j \in \{0,1\}.
+\end{aligned}
+\]
+(b) Pemecah menghasilkan $\sum_j w_j = 3$, sehingga bilangan kromatiknya adalah 3. Salah satu pewarnaan optimal (dengan mengganti label warna dari pemecah): $A \to 1$, $B \to 2$, $C \to 3$, $D \to 2$, $E \to 3$; keenam sisi $AB, BC, CD, DE, EA, AC$ masing-masing menghubungkan warna berbeda.
+
+(c) Tali busur $\{A,C\}$ membuat $A, B, C$ saling bertetangga berpasangan dan membentuk segitiga, sehingga setiap pewarnaan sah memerlukan setidaknya 3 warna. Pewarnaan dalam (b) mencapai 3, sehingga batas tersebut ketat. (Siklus-5 saja sudah memerlukan 3 warna karena merupakan siklus ganjil; segitiga tersebut hanyalah sertifikat tercepat.) Sesuai dengan Solusi Terpilih dalam buku; diverifikasi dengan PuLP.
+
+\exsol{15.10}{Kendala Salah Satu}{2}
+
+Perkenalkan $\delta \in \{0,1\}$ dengan $\delta = 0$ memilih modus A dan $\delta = 1$ memilih modus B:
+\[
+\begin{aligned}
+\max\quad & 5x_1 + 4x_2\\
+\st\quad & 2x_1 + x_2 \leq 10 + M_1\delta\\
+& x_1 + 3x_2 \leq 12 + M_2(1-\delta)\\
+& x_1, x_2 \geq 0,\quad \delta \in \{0,1\}.
+\end{aligned}
+\]
+Setiap konstanta yang cukup besar dapat digunakan (Solusi Terpilih dalam buku menggunakan $M_1 = M_2 = 20$); Latihan 15.13 menunjukkan bahwa pilihan paling ketat adalah $M_1 = 14$ dan $M_2 = 18$. Sebagai pemeriksaan, optimumnya adalah $\delta = 1$ (modus B) dengan $x = (12, 0)$ dan objektif 60; perhatikan $2x_1 + x_2 = 24 = 10 + 14$, sehingga kendala modus A yang direlaksasi tepat merupakan hal yang diizinkan oleh $M_1 = 14$. Diverifikasi dengan PuLP untuk $M = 20$ maupun $M = 10^6$.
+
+\begin{qaflag}
+Soal menyatakan ``Tepat satu dari kedua kendala ini harus berlaku,'' tetapi konstruksi Big-$M$ standar (dan bagian yang dirujuknya) menerapkan \emph{setidaknya} satu; solusi yang memenuhi kedua kendala, seperti titik asal, tetap layak, dan mengecualikannya tidak mungkin dilakukan dalam arti yang berguna maupun dimaksudkan. Disarankan mengubah redaksi menjadi ``setidaknya satu dari kedua kendala ini harus berlaku (mesin beroperasi dalam satu modus)'' agar sesuai dengan semantik atau-inklusif pada subbagian Kendala Salah Satu.
+\end{qaflag}
+
+\exsol{15.11}{Produksi dengan Biaya Tetap}{2}
+
+(a) Misalkan $x \geq 0$ adalah unit yang diproduksi dan $y \in \{0,1\}$ menunjukkan dimulainya produksi:
+\[
+\max\ 15x - 8x - 500y = 7x - 500y
+\quad \st \quad
+x \leq 200y,\quad x \geq 0,\ y \in \{0,1\}.
+\]
+Optimum: $y = 1$, $x = 200$, laba $7(200) - 500 = \$900$.
+
+(b) Kendala pengait $x \leq 200y$ memiliki dua fungsi. Jika $y = 0$, kendala tersebut memaksa $x = 0$: produksi tidak berlangsung tanpa membayar biaya tetap, yang tepat merupakan logika biaya tetap (tanpa kendala itu, model akan memproduksi sambil menyatakan $y = 0$ dan menghindari biaya \$500). Jika $y = 1$, kendala tersebut menjadi kendala kapasitas $x \leq 200$. Konstanta 200 adalah Big-$M$ sah paling ketat di sini karena merupakan kapasitas sebenarnya. Sesuai dengan Solusi Terpilih dalam buku; diverifikasi dengan PuLP.
+
+\exsol{15.12}{Mengapa Pembulatan Relaksasi Gagal}{2}
+
+(a) Contoh ransel memiliki bobot $(12, 2, 1, 1, 4)$ dan nilai $(4, 2, 2, 1, 10)$ dengan kapasitas 15. Nilai per kg: $1/3, 1, 2, 1, 5/2$. Prosedur rakus mengisi barang 5, 3, 2, 4 sepenuhnya (total berat 8, nilai 15), lalu memasukkan sisa 7 kg ke dalam barang 1: $x_1 = 7/12$, semua $x_i = 1$ lainnya, dengan nilai LP
+\[
+15 + \tfrac{7}{12}\cdot 4 = \tfrac{52}{3} \approx 17.33,
+\]
+sebagaimana dinyatakan dalam latihan. Diverifikasi dengan PuLP ($x_1 = 0.5833$, nilai $17.333$).
+
+(b) Membulatkan $x_1$ ke atas memberikan total berat $12 + 8 = 20 > 15$: tidak layak. Membulatkan ke bawah memberikan $x = (0,1,1,1,1)$, berat 8, nilai 15, yang kebetulan sama dengan optimum bilangan bulat sejati (PuLP mengonfirmasi optimum IP adalah 15).
+
+(c) Keberuntungan dalam (b) tidak berlaku umum. Tiga modus kegagalan: (i) pembulatan dapat menghasilkan solusi \emph{tidak layak}, sebagaimana ditunjukkan oleh pembulatan ke atas, dan dengan kendala kesamaan hal itu hampir selalu terjadi: dalam model jumlah koin minimum $p + 5n + 10d + 25q = 83$, membulatkan solusi LP pecahan mengubah ruas kiri sehingga persamaan tidak lagi berlaku; dengan demikian, titik hasil pembulatan sama sekali bukan cara untuk membentuk 83 sen; (ii) pembulatan dapat layak tetapi jauh dari optimal, karena titik bilangan bulat terdekat dengan optimum LP dapat merupakan solusi yang buruk, dan optimum bilangan bulat bahkan dapat berada jauh dari optimum LP baik dalam posisi maupun nilai; (iii) untuk variabel keputusan biner seperti pilihan terminal $y_i$ dalam Latihan 15.5, nilai relaksasi $y_i = 0.5$ sama sekali tidak bermakna: kita tidak dapat membangun setengah terminal di Halifax, dan pembulatan variabel logis dapat melanggar kendala terkait seperti $y_1 + y_2 \geq 1$ atau $x_3 \leq x_1$. Inilah tepatnya alasan branch-and-bound, bukan pembulatan, menjadi metode utama untuk program bilangan bulat.
+
+\exsol{15.13}{Kapan Big-M Terlalu Besar?}{2}
+
+(a) Dengan $M = 10^6$, nilai pecahan $\delta = 10^{-5}$ menambahkan $M\delta = 10$ unit kelonggaran pada kendala modus A: relaksasi dapat berperilaku seolah-olah ruas kanannya 20 alih-alih 10 dengan hanya membayar pelanggaran keutuhan sebesar $10^{-5}$. Karena itu, relaksasi LP bergerak jauh di luar daerah layak sebenarnya dan batasnya bagi optimum sangat lemah, sehingga branch-and-bound harus bekerja lebih keras untuk menutup kesenjangan. (Interaksi toleransinya bahkan lebih buruk: pemecah menerima $\delta$ yang berada dalam jarak sekitar $10^{-6}$ dari bilangan bulat, dan $10^{-6} \times 10^6 = 1$, satu unit penuh kelonggaran semu dalam solusi yang dianggap ``layak bilangan bulat''.)
+
+(b) Konstanta $M_1$ harus membatasi $2x_1 + x_2 - 10$ setiap kali kendala modus B berlaku. Memaksimumkan $2x_1 + x_2$ dengan kendala $x_1 + 3x_2 \leq 12$, $x \geq 0$ menempatkan semuanya pada $x_1$: maksimumnya $24$ pada $(12, 0)$, sehingga $M_1 = 24 - 10 = 14$ sudah cukup. Secara simetris, memaksimumkan $x_1 + 3x_2$ dengan kendala $2x_1 + x_2 \leq 10$, $x \geq 0$ memberikan $30$ pada $(0, 10)$, sehingga $M_2 = 30 - 12 = 18$. Kedua maksimum dikonfirmasi dengan LP, dan keduanya tercapai, sehingga tidak ada konstanta yang lebih kecil yang sah.
+
+(c) Paragraf Memilih Nilai Big-M dalam teks menyebutkan ketidakstabilan numerik: koefisien yang sangat besar dicampur dengan koefisien kecil menghasilkan basis berkondisi buruk dan galat pembulatan titik mengambang, dan (sebagaimana dihitung dalam (a)) memungkinkan toleransi keutuhan diterjemahkan menjadi pelanggaran logika yang berarti.
+
+\exsol{15.14}{Membaca Model Pertukaran Ginjal}{2}
+
+(a) $\sum_{c \ni i} x_c \leq 1$ menyatakan bahwa setiap pasangan pasien--donor bergabung dengan paling banyak satu siklus terpilih. Secara medis, seorang donor hanya memiliki satu ginjal untuk diberikan: jika kendala tersebut dihapus, pengoptimasi dapat menjadwalkan donor yang sama dalam dua siklus pertukaran berbeda, dan salah satu dari kedua penerima akan dipersiapkan untuk transplantasi yang ginjalnya tidak ada.
+
+(b) Siklus terpilih $c$ melakukan tepat $|c|$ transplantasi, satu per pasangan di sepanjang siklus (setiap pasien dalam $c$ menerima ginjal dari donor pasangan sebelumnya). Karena kendala pada bagian (a) mencegah pasangan mana pun dihitung dalam dua siklus, $\sum_c |c| x_c$ menjumlahkan transplantasi tanpa penghitungan ganda.
+
+(c) Semua pembedahan dalam satu siklus harus berjalan serentak agar tidak ada donor yang mengundurkan diri setelah pasangannya menerima ginjal; siklus sepanjang $k$ menggunakan $2k$ ruang operasi dan tim bedah secara bersamaan, yang hanya dapat disediakan rumah sakit untuk $k \leq 3$. Menaikkan batas membuat $|C|$ meledak secara kombinatorial: jumlah calon siklus sepanjang $k$ bertumbuh kira-kira seperti jumlah subhimpunan berurutan berukuran $k$ dari pasangan (berorde $|P|^k$), sehingga variasi siklus panjang dan rantai panjang memerlukan pembangkitan kolom alih-alih pencacahan lengkap.
+
+(d) Tambahkan himpunan $A$ berisi donor altruistik dan himpunan $H$ berisi \emph{rantai} layak: urutan yang dimulai dari suatu donor altruistik $a \in A$ dan melewati pasangan-pasangan berbeda, dengan setiap donor cocok dengan pasien berikutnya, hingga batas panjang $L$. Perkenalkan $x_h \in \{0,1\}$ untuk setiap rantai, perluas kendala pengepakan agar setiap pasangan berada dalam paling banyak satu siklus \emph{atau} rantai terpilih, tambahkan $\sum_{h \ni a} x_h \leq 1$ untuk setiap donor altruistik, dan beri setiap rantai nilai sebesar jumlah transplantasi pasiennya (jumlah pasangan yang dimuatnya) dalam fungsi objektif:
+\[
+\max\ \sum_{c \in C} |c|x_c + \sum_{h \in H} n_h x_h
+\quad \st\quad
+\sum_{c \ni i} x_c + \sum_{h \ni i} x_h \leq 1 \ \forall i \in P,\qquad
+\sum_{h \ni a} x_h \leq 1 \ \forall a \in A.
+\]
+
+\exsol{15.15}{Biaya Produksi Linier Sepenggal}{3}
+
+(a) Dengan mengakumulasikan biaya segmen: $C(0) = 0$, $C(10) = 50$, $C(20) = 50 + 30 = 80$, $C(30) = 80 + 80 = 160$. Biaya marginalnya berurutan $5, 3, 8$: turun lalu naik, sehingga $C$ tidak cembung (secara konkret, $C(10) = 50 > 40 = \tfrac{1}{2}(C(0) + C(20))$). Trik epigraf LP standar $y \geq$ setiap garis segmen hanya bekerja ketika biayanya cembung, sehingga masalah ini benar-benar memerlukan mekanisme SOS2 atau biner.
+
+(b) Formulasi SOS2 dengan bobot pada empat titik patah:
+\[
+\begin{aligned}
+\max\quad & 6x - y\\
+\st\quad & x = 0\lambda_1 + 10\lambda_2 + 20\lambda_3 + 30\lambda_4\\
+& y = 0\lambda_1 + 50\lambda_2 + 80\lambda_3 + 160\lambda_4\\
+& \lambda_1 + \lambda_2 + \lambda_3 + \lambda_4 = 1,\quad \lambda \geq 0\\
+& \{\lambda_1, \lambda_2, \lambda_3, \lambda_4\} \text{ SOS2}.
+\end{aligned}
+\]
+Formulasi biner ekuivalen dari teks, dengan $z_i = 1$ memilih segmen $i$:
+\[
+\sum_{i=1}^{3} z_i = 1,\qquad
+\lambda_1 \leq z_1,\quad \lambda_2 \leq z_1 + z_2,\quad \lambda_3 \leq z_2 + z_3,\quad \lambda_4 \leq z_3,\qquad z_i \in \{0,1\}.
+\]
+(c) Penyelesaian (PuLP dengan formulasi biner) memberikan $x = 20$, $C = 80$, laba $6(20) - 80 = \$40$, dengan $\lambda_3 = 1$, $z_2 = 1$. Gambaran marginal menjelaskan titik berhenti: pada segmen tengah yang mendapat diskon, setiap ton tambahan menghasilkan $6 - 3 = 3$, sehingga pabrik berproduksi hingga melewatinya; tetapi pada segmen lembur, setiap ton menimbulkan kerugian $6 - 8 = 2$, sehingga produksi berhenti tepat pada batas segmen $x = 20$. (Pemeriksaan titik ujung: laba bernilai 0, 10, 40, 20 pada $x = 0, 10, 20, 30$.)
+
+\exsol{15.16}{Dua Pekerjaan, Tiga Mesin}{3}
+
+(a) Misalkan $s_{jk} \geq 0$ adalah waktu mulai pekerjaan $j$ pada mesin $k$, dengan waktu pemrosesan $p_{jk}$ dari tabel. Presedensi dalam setiap pekerjaan (kedua pekerjaan mengikuti rute $M_1 \to M_2 \to M_3$):
+\[
+s_{j,k+1} \geq s_{j,k} + p_{j,k}, \qquad j = 1,2,\ k = 1,2.
+\]
+(b) Untuk setiap mesin $k$, misalkan $\delta_k = 1$ jika pekerjaan 1 mendahului pekerjaan 2 pada $k$:
+\[
+s_{2k} \geq s_{1k} + p_{1k} - M(1 - \delta_k),
+\qquad
+s_{1k} \geq s_{2k} + p_{2k} - M\delta_k.
+\]
+Nilai $M$ yang sah berdasarkan data adalah jumlah semua waktu pemrosesan, $M = 3+2+4+2+4+3 = 18$: tidak ada waktu mulai yang melampaui 18 dalam jadwal mana pun tanpa waktu menganggur tambahan, sehingga kendala yang tidak aktif selalu dilepaskan.
+
+(c) Dengan meminimumkan $C_{\max}$ dengan $C_{\max} \geq s_{j3} + p_{j3}$ untuk kedua pekerjaan, CBC menghasilkan makespan optimal sebesar \textbf{12}, dengan pekerjaan 1 lebih dahulu pada ketiga mesin:
+\begin{center}
+\begin{tabular}{l|ccc}
+ & $M_1$ & $M_2$ & $M_3$\\
+\hline
+Pekerjaan 1 & 0--3 & 3--5 & 5--9\\
+Pekerjaan 2 & 3--5 & 5--9 & 9--12\\
+\end{tabular}
+\end{center}
+Jadwal tersebut ketat di semua tempat: pekerjaan 2 langsung mengikuti pekerjaan 1 pada setiap mesin dan selesai pada 12. Menempatkan pekerjaan 2 terlebih dahulu justru menghasilkan makespan 13 (pekerjaan 1 akan selesai di $M_3$ pada 13), dan urutan campuran lebih buruk, sehingga 12 optimal, sebagaimana dijanjikan oleh latihan. Batas bawah cepat untuk diskusi: setiap pekerjaan sendiri memerlukan 9 jam, dan $M_2$ tidak dapat dimulai sebelum waktu 2, sehingga 12 hanya menyisakan sedikit kelonggaran. Diverifikasi dengan PuLP.

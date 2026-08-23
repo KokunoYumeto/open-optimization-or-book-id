@@ -1,0 +1,229 @@
+% ============================================================================
+% Bab 14: Algoritme Graf
+% Sumber: part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex
+% Tata letak latihan tidak baku: empat lingkungan \begin{ex} di dalam bab
+% (bernomor 14.1-14.4 menurut urutan berkas), satu cek pembelajaran, dan
+% \section{Latihan} yang butirnya berada dalam tiga kelompok enumerasi:
+% Keterampilan 1-14, Konsep 15-17, Eksplorasi 18-19.
+% Blok mati \ifdefined\old (materi Euler/Hamilton) tidak disertakan.
+% Semua jawaban numerik diverifikasi dengan NetworkX 3.4 (Dijkstra, Kruskal, Prim).
+% ============================================================================
+
+\section{Bab 14: Algoritme Graf}
+
+Latihan dalam bab ini terdiri atas dua lapisan. Empat latihan di dalam bab (bernomor 14.1 sampai 14.4 menurut urutan kemunculannya: algoritme Kruskal, NetworkX, algoritme Prim, dan masalah lintasan terpendek) ditempatkan di dekat materi yang dilatihnya, dan buku menjawab tiga di antaranya dalam blok Jawaban Latihan. Bagian Latihan pada akhir bab disusun dalam tiga kelompok: butir \textbf{Keterampilan} 1 sampai 14 (menggambar graf, derajat, keterhubungan, Dijkstra, pohon merentang), butir \textbf{Konsep} 15 sampai 17 (lema jabat tangan, kebenaran Kruskal dan Dijkstra), dan butir \textbf{Eksplorasi} 18 dan 19 (jejaring sosial dan jarak Levenshtein), yang kita lengkapi dengan panduan dan catatan rubrik, bukan satu jawaban tunggal. Setiap lintasan terpendek, pohon merentang, dan perhitungan derajat di bawah ini telah diverifikasi ulang secara komputasional dengan NetworkX, dan blok Jawaban Latihan serta Solusi Terpilih dalam buku semuanya benar. Satu salah ketik data telah diperbaiki dalam buku (waktu perjalanan Bern ke Frankfurt tertulis ``3.55'' alih-alih ``3:55'' pada graf Keterampilan 9). Sebagian besar bab ini, termasuk banyak latihannya, diadaptasi dari bab Teori Graf dalam \emph{Math in Society} karya David Lippman (CC BY-SA 3.0); atribusi tersebut sebelumnya tidak ada dan kini telah ditambahkan ke kepala sumber bab serta bagian awal Sumber dan Atribusi buku.
+
+\subsection*{Cek pembelajaran (graf harga tiket pesawat lima kota)}
+
+Blok Jawaban Latihan dalam buku telah menjawab butir ini; kita mengonfirmasi: (a) 5 simpul dan 10 sisi (setiap pasangan kota terhubung, sehingga grafnya adalah $K_5$); (b) ya, graf tersebut terhubung karena $K_5$ memuat lintasan di antara setiap pasangan; (c) LA berderajat 4, dengan satu sisi ke setiap kota lain; (d) Seattle ke Dallas ke Atlanta merupakan lintasan (tidak kembali ke titik awalnya); (e) LA ke Chicago ke Dallas ke LA merupakan sirkuit (berawal dan berakhir di LA).
+
+\subsection*{Latihan 14.1: Pohon Merentang Biaya Minimum (Kruskal)}
+
+Urutkan kelima belas sisi menurut bobot lalu periksa satu per satu, dengan menolak setiap sisi yang menutup sirkuit:
+\begin{center}
+\begin{tabular}{llll}
+AB & 11 & tambahkan & \\
+BG & 13 & tambahkan & \\
+AE & 14 & tambahkan & \\
+AG & 15 & tolak & menutup sirkuit A--B--G--A \\
+EF & 16 & tambahkan & \\
+CE & 17 & tambahkan & pohon lengkap (5 sisi, 6 simpul) \\
+\end{tabular}
+\end{center}
+Pohon merentang biaya minimumnya adalah $\{AB, BG, AE, EF, CE\}$ dengan bobot total $11 + 13 + 14 + 16 + 17 = 71$. Hasil ini cocok dengan blok Jawaban Latihan dalam buku (yang mendaftarkan sisi-sisi yang sama; total 71 layak ditambahkan di papan tulis). Diverifikasi dengan NetworkX.
+
+\subsection*{Latihan 14.2: NetworkX}
+
+Setelah kode pemuatan yang disediakan dijalankan, dua baris berikut menyelesaikan masalah:
+\begin{quote}
+\texttt{T = nx.minimum\_spanning\_tree(G)} \\
+\texttt{print(sorted(T.edges(data='weight')), T.size(weight='weight'))}
+\end{quote}
+Keluaran: sisi $(A,B,11)$, $(A,E,14)$, $(B,G,13)$, $(C,E,17)$, $(E,F,16)$ dan bobot total $71.0$, sesuai dengan perhitungan tangan dalam Latihan 14.1. Sebagai tindak lanjut, pengajar juga dapat meminta \texttt{nx.dijkstra\_path} pada graf yang sama.
+
+\subsection*{Latihan 14.3: Algoritme Prim}
+
+Dimulai dari simpul A dan selalu menambahkan sisi termurah yang meninggalkan pohon saat ini:
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+Pohon $\{A\}$ & sisi termurah yang meninggalkan pohon AB (11) & tambahkan AB \\
+Pohon $\{A,B\}$ & kandidat: BG 13, AE 14, AG 15, BF 23, \dots & tambahkan BG \\
+Pohon $\{A,B,G\}$ & kandidat: AE 14, AG ditolak (kedua ujung di pohon), FG 19, \dots & tambahkan AE \\
+Pohon $\{A,B,G,E\}$ & kandidat: EF 16, EC 17, \dots & tambahkan EF \\
+Pohon $\{A,B,G,E,F\}$ & kandidat: EC 17, BC 25, \dots & tambahkan EC \\
+\end{tabularx}
+\end{center}
+Urutan pemilihan: AB (11), BG (13), AE (14), EF (16), EC (17). Algoritme Prim menghasilkan pohon yang sama seperti algoritme Kruskal, dengan total 71, sesuai perkiraan karena semua bobot sisi berbeda (MST-nya unik). Diverifikasi dengan iterator Prim dari NetworkX.
+
+\begin{qaflag}
+Gambar mengambang berjudul ``Algoritme Prim'' yang muncul tepat setelah Latihan 14.3 memperlihatkan graf tujuh simpul yang \emph{berbeda} (simpul $a$ sampai $g$) dengan solusi yang disorot, dan tidak ada teks yang merujuk kepadanya. Mahasiswa dapat mengiranya sebagai jawaban Latihan 14.3. Disarankan agar ditambahkan kalimat yang memperkenalkannya sebagai ilustrasi kedua yang dikerjakan, atau agar gambar diberi keterangan dengan datanya sendiri, atau agar gambar dihapus.
+\end{qaflag}
+
+\subsection*{Latihan 14.4: Masalah Lintasan Terpendek (A ke G)}
+
+Dijkstra dari A. Label permanen menurut urutan: A $[0]$, B $[1]$, C $[4]$, D $[4]$ (melalui B, karena $1+3=4$ lebih baik daripada $4+2=6$), E $[6]$ (melalui D), F $[8]$ (seri: melalui D $4+4$ atau melalui E $6+2$), G $[13]$ (melalui E, karena $6+7=13$ lebih baik daripada $8+6=14$). Lintasan terpendeknya adalah
+\[
+A \to B \to D \to E \to G, \qquad 1 + 3 + 2 + 7 = 13,
+\]
+dan lintasan tersebut unik. Hasil ini cocok dengan entri Jawaban Latihan dalam buku (``ABDEG, dengan panjang 13''). Diverifikasi dengan NetworkX.
+
+\subsection*{Keterampilan 1: Graf petugas pos (menggambar)}
+
+Butir rubrik; terdapat satu konstruksi yang dimaksudkan. Tempatkan simpul pada setiap persimpangan jalan: keenam blok tersusun 2 kali 3, sehingga jalan membentuk kisi dengan $3 \times 4 = 12$ persimpangan. Gambar sebuah sisi di sepanjang setiap segmen jalan yang memiliki sedikitnya satu rumah (kotak hitam), dan abaikan segmen tanpa rumah karena petugas hanya memerlukan jalan ``yang memiliki rumah''. Nilai tiga hal: (i) simpul hanya pada persimpangan, bukan pada rumah; (ii) satu sisi per segmen jalan meskipun rumah berada di kedua sisi jalan (petugas menyusuri jalan itu satu kali); (iii) segmen yang hanya berbatasan dengan blok kosong dan tidak memiliki rumah diabaikan. Pertanyaan tindak lanjut yang layak diajukan: apakah graf yang dihasilkan memiliki lintasan Euler (hitung simpul berderajat ganjil)?
+
+\subsection*{Keterampilan 2: Graf tujuh jembatan (menggambar)}
+
+Konstruksi ini mengikuti contoh K\"onigsberg: susutkan setiap daratan menjadi satu simpul dan gambar satu sisi untuk setiap jembatan, sehingga diperoleh multigraf dengan 7 sisi (sisi sejajar memang diharapkan di tempat dua jembatan menghubungkan pasangan tepi yang sama). Dari peta terlihat bahwa sungai membagi kota menjadi empat daratan, sehingga jawabannya adalah multigraf dengan 4 simpul dan 7 sisi; jumlah derajat harus bernilai $2 \times 7 = 14$. Nilai hal-hal berikut: simpul merupakan daratan (bukan jembatan), terdapat tepat tujuh sisi, dan sisi sejajar digambar di tempat yang sesuai. Tindak lanjut alami yang dituju oleh pokok soal ialah bahwa perjalanan melewati semua jembatan ada tepat ketika banyaknya simpul berderajat ganjil adalah 0 atau 2.
+
+\begin{qaflag}
+Keterampilan 1 dan 2 bergantung pada gambar raster beresolusi rendah (\texttt{GraphExercise1.png}, \texttt{GraphExercise2.png}), dan dalam Keterampilan 2, penetapan tepat jembatan pada pasangan daratan sulit dibaca dari gambar. Karena itu, jawaban mahasiswa dapat berbeda secara sah dalam perincian multigraf. Pertimbangkan untuk menggambar ulang keduanya sebagai gambar TikZ dengan penempatan rumah dan jembatan yang tidak ambigu, atau memberi label pada daratan di dalam gambar.
+\end{qaflag}
+
+\subsection*{Keterampilan 3: Graf waktu berkendara Dallas (menggambar)}
+
+Lima simpul (Fort Worth, Plano, Mesquite, Arlington, Denton). Tabel memuat kesepuluh waktu berpasangan, sehingga jawabannya adalah graf lengkap $K_5$ dengan bobot sisi dalam menit:
+FW--Plano 54, FW--Mesquite 52, FW--Arlington 19, FW--Denton 42, Plano--Mesquite 38, Plano--Arlington 53, Plano--Denton 41, Mesquite--Arlington 43, Mesquite--Denton 56, Arlington--Denton 50.
+Tata letak planar apa pun dapat diterima; nilai keberadaan dan ketepatan label kesepuluh sisi berbobot.
+
+\subsection*{Keterampilan 4: Graf harga tiket pesawat (menggambar)}
+
+Sekali lagi berupa $K_5$ berbobot, pada Seattle, Honolulu, London, Moskwa, Kairo, dengan harga:
+Seattle--Honolulu \$159, Seattle--London \$370, Seattle--Moscow \$654, Seattle--Cairo \$684, Honolulu--London \$830, Honolulu--Moscow \$854, Honolulu--Cairo \$801, London--Moscow \$245, London--Cairo \$323, Moscow--Cairo \$329.
+Graf ini digunakan kembali dalam Keterampilan 14, sehingga mahasiswa sebaiknya menyimpan gambar mereka.
+
+\subsection*{Keterampilan 5: Derajat pada graf pertama}
+
+Beri label simpul A $(0,0)$, B $(1,0)$, C $(0,1)$, D $(1,1)$, E $(2,1)$. Keenam sisinya adalah AB, BC, BD, BE, CD, DE. Derajat:
+\[
+\deg A = 1,\quad \deg B = 4,\quad \deg C = 2,\quad \deg D = 3,\quad \deg E = 2.
+\]
+Pemeriksaan: jumlah derajat adalah $12 = 2 \times 6$ sisi. Diverifikasi dengan NetworkX.
+
+\subsection*{Keterampilan 6: Derajat pada graf kedua}
+
+Beri label simpul A $(0,0)$ di bawah, B dan C pada kedua simpul tengah (kiri dan kanan), serta D dan E pada kedua simpul atas (kiri dan kanan). Kelima sisinya adalah AB, AC, BC, BD, CE. Derajat:
+\[
+\deg A = 2,\quad \deg B = 3,\quad \deg C = 3,\quad \deg D = 1,\quad \deg E = 1,
+\]
+dengan jumlah $10 = 2 \times 5$. Diverifikasi dengan NetworkX.
+
+\subsection*{Keterampilan 7: Graf mana yang terhubung (lima simpul)}
+
+Beri label simpul setiap graf sebagai a $(0,0)$, b $(1,0)$, c $(0,1)$, d $(1,1)$, e $(2,1)$.
+\begin{itemize}
+\item Graf pertama (sisi ab, bd, cd, be): terhubung; dari b, a, d, e dapat dicapai langsung dan c dapat dicapai melalui d.
+\item Graf kedua (sisi bd, be, de, ac): \emph{tidak} terhubung; segitiga $\{b,d,e\}$ dan sisi $\{a,c\}$ membentuk dua bagian terpisah.
+\item Graf ketiga (sisi ab, bd, cd, be, de, ac): terhubung; graf ini memuat graf pertama ditambah dua sisi lain.
+\end{itemize}
+Jadi, graf pertama dan ketiga terhubung. Diverifikasi dengan NetworkX.
+
+\subsection*{Keterampilan 8: Graf mana yang terhubung (delapan simpul)}
+
+Beri label simpul a $(0,0)$, b $(1,0)$, c $(2,0)$ sepanjang bagian bawah; d $(0.5,1)$, e $(1.5,1)$ di tengah; dan f $(0,2)$, g $(1,2)$, h $(2,2)$ sepanjang bagian atas.
+\begin{itemize}
+\item Graf pertama (sisi ab, bc, de, fg, gh): \emph{tidak} terhubung; terdapat tiga komponen (lintasan bawah a--b--c, sisi tengah d--e, lintasan atas f--g--h).
+\item Graf kedua (sisi ab, be, de, df, gh, eh, ce): terhubung; e bersisian dengan b, d, h, c, dan dari simpul-simpul tersebut a, f, g dapat dicapai.
+\item Graf ketiga (sisi ab, be, ed, df, fa, gh, hc): \emph{tidak} terhubung; siklus-5 a--b--e--d--f--a dan lintasan g--h--c merupakan komponen terpisah.
+\end{itemize}
+Hanya graf tengah yang terhubung. Diverifikasi dengan NetworkX.
+
+\subsection*{Keterampilan 9: Eurail, Bern ke Berlin (Dijkstra)}
+
+Jalankan Dijkstra dari Bern (secara ekuivalen dapat dari Berlin; Solusi Terpilih buku menjalankannya dari Bern dan hasilnya benar). Dengan satuan jam:menit, label menjadi permanen dalam urutan
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}llX@{}}
+Bern & 0:00 & \\
+Lyon & 3:50 & melalui Bern \\
+Frankfurt & 3:55 & melalui Bern \\
+Paris & 5:45 & melalui Lyon ($3{:}50 + 1{:}55$) \\
+M\"unchen & 7:05 & melalui Frankfurt ($3{:}55 + 3{:}10$) \\
+Amsterdam & 7:10 & melalui Paris ($5{:}45 + 1{:}25$; lebih baik daripada Frankfurt $3{:}55 + 4{:}00 = 7{:}55$) \\
+Berlin & 12:50 & melalui M\"unchen ($7{:}05 + 5{:}45$; lebih baik daripada Amsterdam $7{:}10 + 6{:}10 = 13{:}20$) \\
+\end{tabularx}
+\end{center}
+Rute terpendek: Bern $\to$ Frankfurt $\to$ M\"unchen $\to$ Berlin, total $3{:}55 + 3{:}10 + 5{:}45 = 12{:}50$. Diverifikasi dengan NetworkX (770 menit). Catatan: label sisi Bern--Frankfurt dalam buku tertulis ``3.55''; nilai ini telah diperbaiki menjadi ``3:55'' dalam sumber bab, sesuai dengan nilai yang digunakan oleh Solusi Terpilih buku.
+
+\subsection*{Keterampilan 10: Eurail, Paris ke M\"unchen}
+
+Graf yang sama. Dijkstra dari M\"unchen memberikan label permanen M\"unchen 0:00, Frankfurt 3:10, Berlin 5:45, Bern 7:05, Amsterdam 7:10 ($3{:}10 + 4{:}00$), Paris 8:35 (melalui Amsterdam, $7{:}10 + 1{:}25$), Lyon 10:30 (melalui Paris). Rute terpendeknya adalah
+\[
+\text{Paris} \to \text{Amsterdam} \to \text{Frankfurt} \to \text{M\"unchen},
+\qquad 1{:}25 + 4{:}00 + 3{:}10 = 8{:}35.
+\]
+Alternatif selatan melalui Lyon dan Bern memerlukan $1{:}55 + 3{:}50 + 3{:}55 + 3{:}10 = 12{:}50$, hampir empat setengah jam lebih lama. Diverifikasi dengan NetworkX (515 menit).
+
+\subsection*{Keterampilan 11: MST graf Dallas}
+
+Kruskal pada graf dari Keterampilan 3. Pemeriksaan terurut:
+\begin{center}
+\begin{tabular}{lll}
+FW--Arlington & 19 & tambahkan \\
+Plano--Mesquite & 38 & tambahkan \\
+Plano--Denton & 41 & tambahkan \\
+FW--Denton & 42 & tambahkan; pohon lengkap (4 sisi, 5 simpul) \\
+\end{tabular}
+\end{center}
+Tidak ada sisi yang ditolak sebelum pohon lengkap. MST-nya adalah $\{$FW--Arlington, Plano--Mesquite, Plano--Denton, FW--Denton$\}$ dengan total $19 + 38 + 41 + 42 = 140$ menit. Diverifikasi dengan NetworkX.
+
+\subsection*{Keterampilan 12: MST untuk lima bangunan}
+
+Kruskal, dalam ribuan dolar: CE $4.0$ tambahkan, BD $4.3$ tambahkan, AE $4.4$ tambahkan, AD $4.7$ tambahkan, dan pohon lengkap tanpa penolakan. Total $4.0 + 4.3 + 4.4 + 4.7 = 17.4$, yaitu \$17{,}400 sesuai satuan biaya. Hasil ini cocok dengan Solusi Terpilih buku, termasuk keterangannya bahwa sebuah pohon tidak menyediakan lintasan cadangan jika kabel terputus. Diverifikasi dengan NetworkX.
+
+\subsection*{Keterampilan 13: Kereta Virginia, Bristol ke Washington (Dijkstra)}
+
+Dijkstra dari Washington. Label permanen menurut urutan: Washington $[0]$, Richmond $[115]$, Charlottesville $[140]$, Lynchburg $[210]$ (melalui Charlottesville, $140+70$, lebih baik daripada Richmond $115+125 = 240$), Roanoke $[260]$ (melalui Charlottesville, $140+120$, lebih baik daripada Lynchburg $210+55 = 265$), Bristol $[405]$ (melalui Roanoke). Rute terpendek:
+\[
+\text{Bristol} \to \text{Roanoke} \to \text{Charlottesville} \to \text{Washington},
+\qquad 145 + 120 + 140 = 405 \text{ minutes} = 6\text{h}45.
+\]
+Cocok dengan Solusi Terpilih buku. Diverifikasi dengan NetworkX.
+
+\subsection*{Keterampilan 14: Kruskal pada graf harga tiket pesawat}
+
+Pemeriksaan terurut kesepuluh harga dari Keterampilan 4:
+\begin{center}
+\begin{tabular}{lll}
+Seattle--Honolulu & \$159 & tambahkan \\
+London--Moscow & \$245 & tambahkan \\
+London--Cairo & \$323 & tambahkan \\
+Moscow--Cairo & \$329 & tolak; menutup sirkuit London--Moscow--Cairo \\
+Seattle--London & \$370 & tambahkan; pohon lengkap \\
+\end{tabular}
+\end{center}
+Total MST: $159 + 245 + 323 + 370 = \$1097$. Sebuah aliansi maskapai dapat menafsirkan pohon ini sebagai himpunan rute termurah yang tetap menghubungkan kelima kota, misalnya sebagai tulang punggung minimum bagi tarif terusan, dengan catatan bahwa perjalanan di antara kota-kota pada cabang berbeda memerlukan penerbangan sambungan. Cocok dengan Solusi Terpilih buku; diverifikasi dengan NetworkX.
+
+\subsection*{Konsep 15: Simpul berderajat ganjil}
+
+Tidak. Setiap sisi menyumbang tepat 2 pada jumlah derajat semua simpul, sehingga $\sum_v \deg(v) = 2|E|$ bernilai genap (lema jabat tangan). Jika tepat satu simpul berderajat ganjil, jumlah tersebut akan ganjil, suatu kontradiksi. Argumen yang sama menyingkirkan setiap \emph{jumlah ganjil} simpul berderajat ganjil: 1, 3, 5, dan seterusnya mustahil, sedangkan setiap jumlah genap (0, 2, 4, \dots) dapat terjadi. Fakta inilah yang membuat uji lintasan Euler (paling banyak dua simpul berderajat ganjil) terumuskan dengan baik.
+
+\subsection*{Konsep 16: Mengapa sifat rakus berhasil untuk pohon merentang}
+
+Misalkan $T$ adalah pohon Kruskal dan anggap suatu pohon merentang $T^*$ lebih murah. Pilih sisi $e \in T^* \setminus T$. Algoritme Kruskal memeriksa $e$ dan menolaknya hanya karena $e$ menutup sirkuit dengan sisi-sisi yang telah diterima; karena sisi diperiksa dari yang termurah sampai yang termahal, biaya setiap sisi dalam sirkuit tersebut paling besar $c(e)$. Sirkuit itu tidak mungkin seluruhnya berada dalam $T^*$ (pohon tidak memiliki sirkuit), sehingga sirkuit tersebut memuat sisi $f \notin T^*$ dengan $c(f) \leq c(e)$. Maka $T^* - e + f$ kembali merupakan pohon merentang (penghapusan $e$ membagi $T^*$ menjadi dua bagian dan sirkuit menyediakan sisi $f$ yang menghubungkan keduanya kembali), biayanya tidak melebihi $T^*$, dan bersepakat dengan $T$ pada satu sisi tambahan. Pengulangan pertukaran ini mengubah $T^*$ menjadi $T$ tanpa pernah meningkatkan biaya, sehingga $c(T) \leq c(T^*)$: pohon rakus tersebut optimal.
+
+Biaya negatif tidak mengubah apa pun: argumen hanya membandingkan biaya melalui \emph{urutan} pemeriksaan sisi oleh algoritme Kruskal, bukan melalui tandanya. Hal ini benar-benar berbeda dari algoritme Dijkstra (Konsep 17), yang memang memerlukan ketaknegatifan. Solusi Terpilih buku untuk butir ini benar.
+
+\subsection*{Konsep 17: Mengapa Dijkstra memerlukan bobot tak negatif}
+
+Pembenaran: ketika algoritme menjadikan simpul $u$ permanen, $u$ memuat jarak sementara terkecil di antara semua simpul yang belum dikunjungi. Setiap rute lain dari sumber ke $u$ mula-mula harus meninggalkan himpunan simpul yang telah dikunjungi melalui suatu simpul belum dikunjungi $w$, yang label sementaranya sudah $\geq$ label$(u)$; dengan bobot sisi tak negatif, sisa rute tersebut hanya dapat menambah panjang. Jadi, tidak mungkin ada rute yang lebih pendek ke $u$, dan memfinalkan $u$ merupakan langkah yang aman.
+
+Contoh tandingan dengan bobot negatif (berarah, tiga simpul): sisi $A \to B$ berbobot 2, $A \to C$ berbobot 3, dan $C \to B$ berbobot $-2$. Lintasan terpendek yang sebenarnya dari A ke B adalah $A \to C \to B$ dengan panjang $3 + (-2) = 1$. Dijkstra dari A memberikan label sementara 2 kepada B, mula-mula menjadikan B permanen (karena $2 < 3$), dan tidak pernah mengunjunginya kembali, sehingga melaporkan 2 alih-alih 1. Diverifikasi terhadap Bellman--Ford dalam NetworkX. Contoh tiga simpul apa pun dengan struktur yang sama memperoleh nilai penuh; mahasiswa yang menggunakan sisi negatif tak berarah perlu mencatat bahwa sisi negatif tak berarah membuat “perjalanan terpendek” mengalami degenerasi, sehingga versi berarah merupakan jawaban yang bersih.
+
+\subsection*{Eksplorasi 18: Jejaring sosial (panduan dan rubrik)}
+
+(a) Graf pertemanan memiliki simpul A sampai I dan lima belas sisi yang dibaca dari segitiga atas tabel: AB, AC, AF, AG, BC, BE, CE, DE, DI, EG, EI, FH, FI, GH, HI. Pemeriksaan: setiap X di atas diagonal digunakan satu kali; baris I tidak dicantumkan dalam tabel karena semua pertemanan I telah muncul pada baris sebelumnya.
+
+(b) Lintasan terpendek dari A ke D memiliki panjang 3, sehingga A dan D terpisah tiga derajat keterpisahan. Terdapat empat lintasan terpendek: A--B--E--D, A--C--E--D, A--G--E--D, dan A--F--I--D (salah satu sudah memadai). Tidak ada lintasan dengan panjang 2 karena teman-teman A adalah $\{B, C, F, G\}$ dan teman-teman D adalah $\{E, I\}$, yang tidak beririsan. Diverifikasi dengan NetworkX.
+
+(c) Rubrik untuk pengembangan film (kegiatan kelompok, tanpa jawaban tunggal): kelengkapan graf aktor untuk film yang dipilih (simpul adalah aktor, satu sisi per film bersama, diberi label); kebenaran sedikitnya satu lintasan bertahap di antara dua aktor dalam film berbeda; kualitas interaksi kuis. Pertanyaan penilaian yang alami adalah meminta setiap kelompok menghitung angka “derajat keterpisahan” di antara dua aktor yang disebutkan dan menjelaskan lintasannya. Pengajar dapat menghubungkannya dengan permainan Six Degrees of Kevin Bacon dan pencarian melebar sebagai kasus khusus Dijkstra tanpa bobot.
+
+\subsection*{Eksplorasi 19: Jarak Levenshtein (panduan dan rubrik)}
+
+(a) Setiap bintang kata-kata kamus yang benar pada jarak 1 dari “moke” memperoleh nilai. Daftar praktis berisi lebih dari sepuluh kata: penggantian menghasilkan make, mike, mode, mole, more, mote, move (posisi di dalam kata berubah) serta coke, joke, poke, woke, yoke, toke (huruf pertama); penyisipan smoke juga berlaku. Mahasiswa kemudian perlu menghubungkan pasangan \emph{kata-kata tersebut} yang saling berjarak 1 (misalnya make--mike, poke--joke) agar memperoleh graf sejati, bukan sekadar bintang. Pemeriksa ejaan menggunakan graf dengan menyarankan tetangga dalam kamus dari kata salah eja, yaitu simpul yang bersisian dengan “moke”.
+
+(b) Rubrik: (i) skema pembobotan dinyatakan secara eksplisit dan dapat dipertahankan (misalnya kedekatan papan ketik: mengganti huruf dengan tombol tetangga murah; kesalahan fonetik umum murah; penggantian langka mahal); (ii) Dijkstra dijalankan dari “moke” dan menghasilkan label jarak untuk setiap kata kandidat; (iii) penafsirannya dinyatakan: pemeriksa ejaan mengurutkan saran menurut kenaikan jarak lintasan terpendek, sehingga kata yang lebih mungkin dimaksud muncul lebih dahulu. Setiap bobot yang konsisten dapat diterima; nilai penalarannya, bukan angka tertentu.
+
+\begin{qaflag}
+Catatan pemeliharaan kecil untuk bagian Latihan. (1) Keterampilan 11 dan Keterampilan 14 merujuk pada ``soal \#3'' dan ``soal \#4'' dengan nomor yang diketik manual; jika butir pernah disisipkan atau diurutkan ulang, referensi ini akan rusak tanpa terlihat. Pertimbangkan untuk memberi label pada butir dan menggunakan \texttt{\textbackslash ref}. (2) Latihan 14.4 mandiri (Masalah Lintasan Terpendek) berada di antara pengantar kelompok dan daftar Keterampilan, di luar ketiga kelompok; memindahkannya ke Keterampilan (latihan ini melatih mekanisme) akan membuat struktur kelompok tepat.
+\end{qaflag}

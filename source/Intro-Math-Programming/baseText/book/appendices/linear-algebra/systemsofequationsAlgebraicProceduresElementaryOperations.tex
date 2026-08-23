@@ -1,0 +1,335 @@
+\subsection{Operasi Elementer}
+
+Kita memulai bagian ini dengan sebuah contoh. Ingat kembali dari Contoh \ref{exa:graphicalsoln} bahwa solusi sistem yang diberikan adalah $\left(x, y \right) = \left( -1, 4 \right)$.
+
+\begin{example}{Memverifikasi bahwa Pasangan Terurut Merupakan Solusi}\label{exa:verifyingorderedpairsolution}
+Verifikasikan secara aljabar bahwa $\left(x, y \right) = \left( -1, 4 \right)$ merupakan solusi sistem persamaan berikut.
+\[
+\begin{array}{c}
+x+y=3 \\
+y-x=5  
+\label{eq1.2.1}
+\end{array}
+\]
+\end{example}
+
+\begin{solution} 
+Dengan menggambarkan kedua persamaan ini dan menentukan titik
+perpotongannya, sebelumnya kita menemukan bahwa $\left(x, y \right) = \left(
+-1, 4 \right)$ merupakan solusi unik.
+
+Kita dapat memverifikasinya secara aljabar dengan menyubstitusikan nilai-nilai ini
+ke dalam persamaan semula dan memastikan bahwa persamaan tersebut berlaku.
+Pertama, kita menyubstitusikan nilainya ke dalam persamaan pertama dan memeriksa bahwa hasilnya sama dengan $3$.
+\[
+x + y = (-1)+(4) = 3
+\]
+Hasil ini sama dengan $3$ seperti yang diperlukan, sehingga kita melihat bahwa $\left( -1,4 \right)$ merupakan solusi persamaan pertama.
+Menyubstitusikan nilai-nilai tersebut ke dalam persamaan kedua menghasilkan
+\[
+y -x = (4) - (-1) = 4 + 1  = 5
+\]
+yang benar.
+Untuk
+$\left( x,y\right) =\left( -1,4\right) $, setiap persamaan benar; oleh karena itu, pasangan tersebut merupakan solusi sistem.
+\end{solution}
+
+Sekarang muncul pertanyaan menarik berikut:\ Jika Anda tidak diberi
+bilangan-bilangan ini untuk diverifikasi, bagaimana Anda dapat menentukan solusinya secara aljabar? Aljabar linear memberi kita alat yang diperlukan untuk menjawab
+pertanyaan tersebut. Operasi-operasi dasar berikut merupakan alat penting yang akan kita gunakan.
+
+\begin{definition}{Operasi Elementer}\label{def:elementaryoperations}
+\textbf{Operasi elementer} \index{operasi elementer} adalah
+operasi-operasi berikut.
+
+\begin{enumerate}
+\item Tukarkan urutan pencantuman persamaan.
+
+\item Kalikan sembarang persamaan dengan bilangan tak nol.
+
+\item Ganti sembarang persamaan dengan persamaan itu sendiri ditambah suatu kelipatan dari persamaan
+lain.
+
+\end{enumerate}
+\end{definition}
+
+Penting untuk dicatat bahwa tidak satu pun dari operasi ini akan
+mengubah himpunan solusi sistem persamaan. Bahkan, operasi elementer merupakan {\em alat utama \em}yang kita gunakan dalam aljabar linear untuk menemukan solusi sistem persamaan.
+
+Perhatikan contoh berikut.
+
+\begin{example}{Dampak Operasi Elementer}\label{exa:effectsofelementaryoperation}
+\label{example:effectsofelementaryoperation}
+Tunjukkan bahwa sistem
+\begin{equation*}
+\begin{array}{cccccc}
+x&+&y&=&7 \\
+2x&-&y&=&8
+\end{array}
+\end{equation*}
+memiliki solusi yang sama dengan sistem
+\begin{equation*}
+\begin{array}{cccccc}
+x&+&y&=&7 \\
+&&-3y&=&-6
+\end{array}
+\end{equation*}
+\end{example}
+
+\begin{solution}
+Perhatikan bahwa sistem kedua diperoleh dengan mengambil persamaan kedua dari sistem pertama
+dan menambahkan -2 kali persamaan pertama, sebagai berikut:
+\begin{equation*}
+2x-y + (-2)(x+y) = 8 + (-2)(7)
+\end{equation*}
+Dengan menyederhanakannya, kita memperoleh
+\begin{equation*}
+-3y=-6
+\end{equation*}
+yang merupakan persamaan kedua dalam sistem kedua.
+Sekarang, dari sini kita dapat mencari $y$ dan melihat bahwa $y=2$. Selanjutnya, kita menyubstitusikan nilai ini ke dalam persamaan pertama sebagai berikut \:
+\begin{equation*}
+x+y=x+2=7
+\end{equation*}
+Jadi $x=5$, sehingga $\left( x,y\right) = \left(5,2 \right)$ merupakan solusi sistem kedua.
+Kita ingin memeriksa apakah $\left(5,2 \right)$ juga merupakan solusi sistem pertama. Kita memeriksanya dengan menyubstitusikan $\left(x, y \right) = \left(5,2 \right)$
+ke dalam sistem dan memastikan bahwa persamaan-persamaannya benar.
+\begin{equation*}
+\begin{array}{c}
+x+y = \left(5 \right)+ \left( 2 \right) = 7 \\
+2x-y= 2 \left(5 \right) - \left( 2 \right) = 8
+\end{array}
+\end{equation*}
+Jadi, $\left(5,2 \right)$ juga merupakan solusi sistem pertama.
+\end{solution}
+
+Contoh ini memperlihatkan bahwa operasi elementer yang diterapkan pada sistem dua persamaan dalam dua variabel
+tidak memengaruhi himpunan solusi. Namun, suatu sistem linear dapat melibatkan banyak persamaan dan banyak variabel, dan tidak ada
+alasan untuk membatasi kajian kita pada sistem kecil. Untuk sistem berukuran apa pun dengan berapa pun banyak variabel,
+himpunan solusi tetap merupakan kumpulan solusi persamaan-persamaan tersebut. Dalam setiap
+kasus, operasi-operasi pada Definisi \ref{def:elementaryoperations} di atas tidak
+mengubah himpunan solusi sistem persamaan linear.
+
+Dalam teorema berikut, kita menggunakan notasi $E_i$ untuk merepresentasikan suatu persamaan, sedangkan $b_i$ menyatakan
+konstanta.
+
+\begin{theorem}{Operasi Elementer dan Solusi}\label{thm:elementaryoperationsandsolns}
+Misalkan Anda memiliki sistem dua persamaan linear
+\begin{equation}
+ \begin{array}{c}
+  E_{1}=b_{1}\\
+  E_{2}=b_{2}
+\end{array} \label{system}
+\end{equation}
+Maka sistem-sistem berikut memiliki himpunan solusi yang sama dengan \ref{system}:
+\begin{enumerate}
+\item   \begin{equation}
+	\begin{array}{c}
+	E_{2}=b_{2}\\
+	E_{1}=b_{1}
+	\end{array}
+	\label{thm1.9.1}
+	\end{equation}
+\item  \begin{equation}
+	\begin{array}{c}
+	E_{1}=b_{1} \\
+	kE_{2}=kb_{2}\\        
+	\end{array}
+	\label{thm1.9.2}
+	\end{equation}
+  untuk sembarang skalar $k$, asalkan $k\neq0$.
+\item \begin{equation}
+      \begin{array}{c}
+       E_{1}=b_{1} \\
+       E_{2}+kE_{1}=b_{2}+kb_{1}
+       \end{array}  
+	\label{thm1.9.3}
+	\end{equation}
+	untuk sembarang skalar $k$ (termasuk $k=0$).
+
+\end{enumerate}
+\end{theorem}
+
+Sebelum melanjutkan ke pembuktian Teorema \ref{thm:elementaryoperationsandsolns},
+marilah kita membahas teorema ini dalam konteks Contoh \ref{exa:effectsofelementaryoperation}. Dalam hal ini,
+\begin{equation*}
+\begin{array}{cc}
+E_{1} = x+y, & b_{1} = 7 \\
+E_{2} = 2x-y, & b_{2} = 8 
+\end{array}
+\end{equation*}
+Ingat kembali operasi elementer yang kita gunakan untuk mengubah sistem dalam solusi contoh tersebut.
+Pertama, kita menambahkan $\left( -2 \right)$ kali persamaan pertama ke persamaan kedua.
+Menurut Teorema \ref{thm:elementaryoperationsandsolns}, tindakan ini dinyatakan sebagai
+\begin{equation*}
+E_{2} + \left( -2 \right) E_{1} = b_{2} + \left( -2 \right)b_{1}
+\end{equation*}
+atau
+\begin{equation*}
+2x-y + \left( -2 \right) \left(x+y \right) = 8 + \left( -2 \right) 7
+\end{equation*}
+Hal ini menghasilkan sistem kedua dalam Contoh \ref{example:effectsofelementaryoperation}, yaitu
+\begin{equation*}
+\begin{array}{c}
+E_{1} = b_{1} \\
+E_{2} + \left( -2 \right) E_{1} = b_{2} + \left( -2 \right) b_{1}
+\end{array}
+\end{equation*}
+
+Dari titik ini, kita dapat
+menemukan solusi sistem. Teorema \ref{thm:elementaryoperationsandsolns} memberi tahu kita bahwa solusi yang
+kita temukan memang merupakan solusi sistem semula.
+
+\ifdefined\showproofs
+Sekarang kita akan membuktikan Teorema \ref{thm:elementaryoperationsandsolns}.
+
+\begin{proof} 
+\begin{enumerate}
+\item
+Pembuktian bahwa sistem \ref{system} dan \ref{thm1.9.1} memiliki
+himpunan solusi yang sama adalah sebagai berikut. Misalkan $\left( x_{1},\cdots
+,x_{n}\right) $ merupakan solusi $E_{1}=b_{1},E_{2}=b_{2}$. Kita ingin
+menunjukkan bahwa pasangan ini merupakan solusi sistem pada \ref{thm1.9.1} di atas.
+Hal ini jelas karena sistem pada \ref{thm1.9.1} merupakan sistem semula,
+tetapi dicantumkan dalam urutan berbeda. Mengubah urutan tidak
+memengaruhi himpunan solusi, sehingga $\left( x_{1},\cdots ,x_{n}\right) $ merupakan
+solusi \ref{thm1.9.1}.
+
+\item
+Selanjutnya, kita ingin membuktikan bahwa sistem \ref{system} dan \ref{thm1.9.2} memiliki
+himpunan solusi yang sama. Artinya, $E_{1}=b_{1},E_{2}=b_{2}$ memiliki
+himpunan solusi yang sama dengan sistem $E_{1}=b_{1},kE_{2}=kb_{2}$ asalkan $k\neq
+0 $. Misalkan $\left( x_{1},\cdots ,x_{n}\right) $ merupakan
+solusi $E_{1}=b_{1},E_{2}=b_{2},$. Kita ingin menunjukkan bahwa pasangan ini merupakan solusi $E_{1}=b_{1},kE_{2}=kb_{2}$.
+Perhatikan bahwa satu-satunya perbedaan di antara kedua sistem ini ialah bahwa sistem kedua
+mengalikan persamaan $E_{2}=b_{2}$ dengan skalar $k$. Ingatlah bahwa ketika kedua ruas suatu
+persamaan dikalikan dengan bilangan yang sama, kedua ruas tersebut tetap sama. Jadi, jika $\left( x_{1},\cdots ,x_{n}\right) $
+merupakan solusi $E_{2}=b_{2}$, pasangan ini juga merupakan solusi $kE_{2}=kb_{2}$. Dengan demikian, $\left( x_{1},\cdots ,x_{n}\right) $ juga
+merupakan solusi \ref{thm1.9.2}.
+
+Demikian pula, misalkan $\left( x_{1},\cdots
+,x_{n}\right) $ merupakan solusi $E_{1}=b_{1},kE_{2}=kb_{2}$. Selanjutnya kita dapat
+mengalikan persamaan $kE_{2}=kb_{2}$ dengan skalar $1/k$, yang hanya mungkin karena kita mensyaratkan $k\neq
+0$. Seperti di atas, tindakan ini mempertahankan kesamaan dan kita memperoleh persamaan $E_{2} = b_{2}$.
+Jadi, $\left( x_{1},\cdots ,x_{n}\right)$ juga merupakan solusi $E_{1}=b_{1},E_{2}=b_{2}.$
+
+\item
+Terakhir, kita akan membuktikan bahwa sistem \ref{system} dan
+\ref{thm1.9.3} memiliki himpunan solusi yang sama. Kita akan menunjukkan bahwa setiap
+solusi $E_{1}=b_{1},E_{2}=b_{2}$ juga merupakan solusi
+\ref{thm1.9.3}. Kemudian, kita akan menunjukkan bahwa setiap solusi \ref{thm1.9.3}
+juga merupakan solusi $E_{1}=b_{1},E_{2}=b_{2}$. Misalkan $\left(
+x_{1},\cdots ,x_{n}\right) $ merupakan solusi
+$E_{1}=b_{1},E_{2}=b_{2}$. Secara khusus, pasangan ini memenuhi $E_{1} =
+b_{1}$. Jadi, pasangan ini memenuhi persamaan pertama dalam \ref{thm1.9.3}.
+Demikian pula, pasangan ini juga memenuhi $E_{2} = b_{2}$. Berdasarkan pembuktian
+\ref{thm1.9.2}, pasangan ini juga memenuhi $kE_{1}=kb_{1}$. Perhatikan bahwa jika kita menjumlahkan
+$E_{2}$ dan $kE_{1}$, hasilnya sama dengan $b_{2} + kb_{1}$. Oleh karena itu, jika
+$\left( x_{1},\cdots ,x_{n}\right) $ memenuhi $E_{1}=b_{1},E_{2}=b_{2}$,
+pasangan ini juga harus memenuhi $E_{2}+kE_{1}=b_{2}+kb_{1}$.
+
+Sekarang misalkan $\left( x_{1},\cdots ,x_{n}\right)$ memenuhi sistem
+$E_{1}=b_{1}, E_{2}+kE_{1}=b_{2}+kb_{1}$. Secara khusus, pasangan ini merupakan solusi $E_{1} = b_{1}$. Sekali lagi berdasarkan pembuktian \ref{thm1.9.2},
+ pasangan ini juga merupakan solusi $kE_{1}=kb_{1}$. Jika kita mengurangkan besaran-besaran yang sama ini dari kedua ruas
+$E_{2}+kE_{1}=b_{2}+kb_{1}$, kita memperoleh $E_{2}=b_{2}$, yang menunjukkan bahwa solusi tersebut juga memenuhi
+$E_{1}=b_{1},E_{2}=b_{2}.$
+\end{enumerate}
+\end{proof}
+\fi
+Secara sederhana, teorema di atas menunjukkan bahwa operasi elementer tidak
+mengubah himpunan solusi suatu sistem persamaan.
+
+Sekarang kita akan melihat contoh suatu sistem dengan tiga persamaan dan tiga variabel.
+Seperti pada contoh-contoh sebelumnya, tujuannya adalah menemukan nilai $x,y,z$ sedemikian sehingga setiap persamaan yang diberikan
+terpenuhi ketika nilai-nilai tersebut disubstitusikan.
+
+\begin{example}{ Menyelesaikan Sistem Persamaan dengan Operasi Elementer}\label{exa:solvingasystemwithelementaryops}
+Temukan solusi sistem berikut,
+
+\begin{equation}
+\begin{array}{ccccccc}
+x&+&3y&+&6z&=&25 \\
+2x&+&7y&+&14z&=&58 \\
+&&2y&+&5z&=&19
+\end{array}
+\label{solvingasystem1}
+\end{equation}
+\end{example}
+
+\begin{solution}
+Kita dapat menghubungkan sistem ini dengan Teorema \ref{thm:elementaryoperationsandsolns} di atas. Dalam hal ini, kita memiliki
+\begin{equation*}
+\begin{array}{c c}
+E_{1} = x + 3y + 6z, & b_{1} = 25\\
+E_{2} = 2x+7y+14z, & b_{2} = 58 \\
+E_{3} = 2y+5z, & b_{3} = 19 
+\end{array}
+\end{equation*}
+Teorema \ref{thm:elementaryoperationsandsolns} menyatakan bahwa jika kita melakukan operasi elementer pada sistem ini,
+kita tidak akan mengubah himpunan solusinya. Oleh karena itu,
+kita dapat menyelesaikan sistem ini menggunakan operasi elementer yang diberikan dalam Definisi \ref{def:elementaryoperations}.
+Pertama, ganti persamaan kedua dengan hasil penambahan $\left( -2\right)$
+kali persamaan pertama ke persamaan kedua. Hal ini menghasilkan sistem
+\begin{equation}
+\begin{array}{c}
+x+3y+6z=25 \\
+y+2z=8 \\
+2y+5z=19
+\end{array}
+\label{solvingasystem2}
+\end{equation}
+Sekarang, ganti persamaan ketiga dengan hasil penambahan $\left( -2\right) $ kali
+persamaan kedua ke persamaan ketiga. Hal ini menghasilkan sistem
+\begin{equation}
+\begin{array}{c}
+x+3y+6z=25 \\
+y+2z=8 \\
+z=3
+\end{array}
+\label{solvingasystem3}
+\end{equation}
+Pada tahap ini, kita dapat menemukan solusinya dengan mudah. Ambil $z=3$ dan substitusikan kembali nilai ini ke dalam
+ persamaan sebelumnya untuk mencari $y$, lalu lakukan hal serupa untuk mencari $x$.
+\begin{equation*}
+\begin{array}{c}
+x + 3y + 6 \left(3 \right) = x + 3y + 18 = 25\\
+y + 2 \left(3 \right) = y + 6 = 8 \\
+z = 3
+\end{array}
+\end{equation*}
+Persamaan kedua kini menjadi
+\begin{equation*}
+y+6=8
+\end{equation*}
+Dari persamaan ini Anda dapat melihat bahwa $y = 2$. Oleh karena itu, kita dapat menyubstitusikan nilai tersebut ke dalam persamaan pertama sebagai berikut:
+\begin{equation*}
+x + 3 \left(2 \right) + 18 = 25
+\end{equation*}
+Dengan menyederhanakan persamaan ini, kita menemukan bahwa $x=1$.
+Jadi, solusi sistem ini adalah $\left( x,y,z \right) = \left( 1,2,3 \right)$.
+Proses ini disebut \textbf{substitusi balik}. \index{substitusi balik}
+
+Sebagai alternatif, pada \ref{solvingasystem3} Anda dapat melanjutkan sebagai berikut. Tambahkan $\left(
+-2\right) $ kali persamaan ketiga ke persamaan kedua, lalu tambahkan $\left(
+-6\right) $ kali persamaan kedua ke persamaan pertama. Hal ini menghasilkan
+\begin{equation*}
+\allowbreak
+\begin{array}{c}
+x+3y=7 \\
+y=2 \\
+z=3
+\end{array}
+\end{equation*}
+Sekarang tambahkan $\left( -3\right) $ kali persamaan kedua ke persamaan pertama. Hal ini menghasilkan
+\begin{equation*}
+\allowbreak
+\begin{array}{c}
+x=1 \\
+y=2 \\
+z=3
+\end{array}
+\end{equation*}
+suatu sistem yang memiliki himpunan solusi yang sama dengan sistem semula. Cara ini
+menghindari substitusi balik dan menghasilkan himpunan solusi yang sama. Anda dapat memilih metode yang lebih disukai karena keduanya menghasilkan solusi yang benar,
+$\left( x,y,z \right) = \left(1,2,3\right)$.
+\end{solution}

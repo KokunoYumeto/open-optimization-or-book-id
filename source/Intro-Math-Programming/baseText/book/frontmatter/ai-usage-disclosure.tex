@@ -1,0 +1,121 @@
+\chapter*{Penggunaan AI Generatif}
+\addcontentsline{toc}{chapter}{Penggunaan AI Generatif}
+\markboth{Penggunaan AI Generatif}{Penggunaan AI Generatif}
+
+Sesuai dengan praktik terbaik saat ini untuk sumber daya pendidikan terbuka,
+bab ini mengungkapkan cara kecerdasan buatan (AI) generatif digunakan
+dalam penyiapan buku ini.
+
+%-------------------------------------------------------------------
+\section*{Kepengarangan}
+%-------------------------------------------------------------------
+
+Konten matematis, struktur, contoh, latihan, bukti, dan keputusan pedagogis
+dalam buku ini merupakan karya Robert Hildebrand dan para kontributor yang
+disebutkan dalam bagian Ucapan Terima Kasih serta Sumber dan Atribusi. AI
+digunakan sebagai alat bantu penulisan dan produksi, bukan sebagai penulis.
+Penulis telah meninjau, memverifikasi, dan menyunting seluruh materi yang
+disusun dengan bantuan AI.
+
+Untuk edisi Bahasa Indonesia ini, bantuan penerjemahan dan produksi diberikan
+oleh OpenAI Codex gpt-5.6-sol, Ultra atas permintaan pengguna. Sistem AI tersebut
+tidak dicantumkan sebagai pengarang; atribusi Robert Hildebrand dan seluruh
+kontributor manusia tetap dipertahankan.
+
+%-------------------------------------------------------------------
+\section*{Untuk Apa AI Digunakan}
+%-------------------------------------------------------------------
+
+Asisten AI generatif (terutama model bahasa besar) digunakan selama
+penyiapan buku ini untuk jenis tugas berikut:
+
+\begin{itemize}
+  \item \textbf{Penyuntingan dan penyelarasan naskah} atas uraian untuk
+    meningkatkan kejelasan, tata bahasa, dan konsistensi ragam bahasa.
+  \item \textbf{Penyusunan draf teks baku}, seperti ringkasan kompatibilitas
+    lisensi, pemberitahuan atribusi, metadata aksesibilitas, dan paragraf
+    pengantar pembuka bab, yang kemudian direvisi oleh penulis.
+  \item \textbf{Pembuatan draf deskripsi teks alternatif} untuk gambar,
+    yang ditinjau dan disunting oleh penulis demi ketepatan matematis.
+  \item \textbf{Bantuan pemformatan dengan \LaTeX{}}: menghasilkan
+    kerangka \texttt{tikz}, memperbaiki definisi makro, menata ulang tabel,
+    dan menelusuri galat kompilasi.
+  \item \textbf{Penyusunan draf komentar kode dan kode contoh} dalam Python
+    dan Excel. Semua contoh numerik dan kode diverifikasi secara independen
+    dengan menjalankan kode dan memeriksa hasilnya.
+  \item \textbf{Bantuan audit lisensi}: memeriksa silang kompatibilitas
+    lisensi sumber, menyusun draf pemberitahuan lisensi, serta mengidentifikasi
+    gambar atau bagian teks yang perlu diatribusikan ulang atau ditulis ulang.
+  \item \textbf{Koreksi naskah dan pemeriksaan konsistensi} notasi yang
+    digunakan dalam berbagai bab.
+\end{itemize}
+
+%-------------------------------------------------------------------
+\section*{Untuk Apa AI Tidak Digunakan}
+%-------------------------------------------------------------------
+
+AI generatif tidak digunakan untuk:
+
+\begin{itemize}
+  \item Menghasilkan atau mengada-adakan pernyataan, bukti, teorema,
+    atau hasil numerik matematis yang tidak diverifikasi secara independen
+    oleh penulis.
+  \item Menghasilkan gambar akhir yang digunakan dalam buku terbitan tanpa
+    peninjauan. Semua gambar TikZ dibuat secara manual atau dihasilkan oleh AI,
+    lalu ditinjau dan diperbaiki.
+  \item Menghasilkan solusi latihan tanpa verifikasi.
+  \item Mengambil keputusan pedagogis mengenai cakupan, urutan, atau
+    penekanan. Keputusan tersebut merupakan keputusan penulis.
+\end{itemize}
+
+%-------------------------------------------------------------------
+\section*{Contoh Jenis Prompt}
+%-------------------------------------------------------------------
+
+Untuk memberi pembaca dan peninjau gambaran konkret tentang cara AI
+digunakan, berikut adalah pola prompt representatif yang dipakai selama
+penyiapan:
+
+\begin{itemize}
+  \item ``Tulis ulang paragraf ini agar lebih jelas tanpa mengubah
+    konten matematisnya.''
+  \item ``Buat deskripsi teks alternatif satu kalimat untuk gambar TikZ
+    berikut yang menyampaikan tata letak visual sekaligus makna
+    matematisnya.''
+  \item ``Verifikasi bahwa sumber CC~BY~3.0 ini dapat dimasukkan ke dalam
+    karya CC~BY-SA~4.0 dan jelaskan mekanisme kompatibilitasnya.''
+  \item ``Susun draf contoh Python menggunakan paket \texttt{pyomo} yang
+    menyelesaikan program linear berikut; jangan menciptakan opsi solver
+    yang keberadaannya tidak Anda yakini.''
+  \item ``Identifikasi makro LaTeX yang dirujuk tetapi tidak didefinisikan
+    dalam berkas ini dan usulkan perbaikannya.''
+\end{itemize}
+
+%-------------------------------------------------------------------
+\section*{Verifikasi dan Akuntabilitas}
+%-------------------------------------------------------------------
+
+Semua kontribusi berbantuan AI ditinjau oleh penulis. Contoh numerik
+diverifikasi dengan menjalankan kode dan, jika sesuai, melalui komputasi
+independen menggunakan alat seperti \texttt{scipy.optimize} dan
+\texttt{Gurobi}. Kebenaran matematis setiap pernyataan, bukti, dan contoh
+dalam buku ini merupakan tanggung jawab penulis.
+
+Pembaca yang menduga adanya galat (baik yang muncul akibat AI maupun bukan)
+dianjurkan untuk melaporkannya melalui pelacak isu GitHub proyek atau dengan
+mengirim surel ke \texttt{open.optimization@gmail.com}. Ralat akan dicatat
+dalam riwayat revisi buku.
+
+%-------------------------------------------------------------------
+\section*{Standar Pengungkapan}
+%-------------------------------------------------------------------
+
+Pengungkapan ini mengikuti prinsip-prinsip yang ditetapkan oleh program
+sumber daya pendidikan terbuka Virginia Tech Publishing dan selaras dengan
+norma yang berkembang di komunitas OER: bantuan AI dapat diterima dalam
+produksi materi pendidikan terbuka apabila (i) penulis manusia tetap
+bertanggung jawab atas konten dan ketepatannya, (ii) AI tidak dicantumkan
+sebagai penulis, dan (iii) penggunaan AI diungkapkan secara transparan dalam
+karya yang diterbitkan.
+
+\cleardoublepage

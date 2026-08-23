@@ -1,0 +1,162 @@
+{
+  "exercises": {
+    "6.1": {
+      "calculation": {
+        "dot_product": 5,
+        "scalar_multiple": [6, -4, 8],
+        "vector_sum": [2, -2, 6]
+      },
+      "status": "verified"
+    },
+    "6.2": {
+      "calculation": {
+        "basis_determinant": 1,
+        "convex_pair_checks": {
+          "v1_v2": {"feasible": true, "weights": ["1/2", "1/2"]},
+          "v1_v3": {"feasible": false, "weights": null},
+          "v2_v3": {"feasible": false, "weights": null}
+        },
+        "linear_combination_checks": {
+          "a": {"coefficients_v1_v2": [2, 3], "is_linear_combination": true},
+          "b": {"coefficients_v1_v2": [1, 1], "is_linear_combination": true},
+          "c": {"coefficients_v1_v2": [1, -1], "is_linear_combination": true}
+        },
+        "successful_convex_pair": "v1_v2"
+      },
+      "status": "verified"
+    },
+    "6.3": {
+      "calculation": {
+        "columns_linearly_independent": false,
+        "determinant": 0,
+        "exact_rank": 1,
+        "numpy_rank": 1,
+        "rows_linearly_independent": false
+      },
+      "status": "verified"
+    },
+    "6.4": {
+      "calculation": {
+        "sets": {
+          "D": {"classification": "convex"},
+          "H": {"classification": "convex"},
+          "R": {"classification": "nonconvex", "midpoint": [0, 0], "midpoint_in_set": false},
+          "S": {"classification": "nonconvex", "midpoint": [0, 0], "midpoint_in_set": false}
+        }
+      },
+      "status": "verified"
+    },
+    "6.5": {
+      "calculation": {
+        "active_rows": [1, 2],
+        "feasible": true,
+        "lhs_Ax": [6, 4, "-6/5", "-8/5"],
+        "objective_at_point": "34/5",
+        "slack": [0, 0, "6/5", "8/5"]
+      },
+      "status": "verified"
+    },
+    "6.6": {
+      "calculation": {
+        "points": {
+          "inside_boundary": {"in_triangle": true, "weights": [0, "1/2", "1/2"]},
+          "outside": {"in_triangle": false, "weights": ["-1/2", "3/4", "3/4"]}
+        }
+      },
+      "status": "verified"
+    },
+    "6.7": {
+      "calculation": {
+        "boundary_intercepts": [[4, 0], [0, 2]],
+        "midpoint": [1, "1/2"],
+        "midpoint_in_halfspace": true,
+        "midpoint_lhs": 2,
+        "point_checks": {
+          "boundary": {"in_halfspace": true, "lhs": 4},
+          "outside": {"in_halfspace": false, "lhs": 5}
+        }
+      },
+      "status": "verified"
+    },
+    "6.8": {
+      "calculation": {
+        "non_extreme_certificate": {
+          "endpoints_feasible": true,
+          "reconstructed_target": [1, 2],
+          "weights": ["1/2", "1/2"]
+        },
+        "points": {
+          "corner": {
+            "active_constraints": ["c2", "c3"],
+            "active_rank_exact": 2,
+            "active_rank_numpy": 2,
+            "is_corner": true,
+            "is_extreme_point": true,
+            "lhs": [-10, 1, 4, -2, -3]
+          },
+          "non_extreme": {
+            "active_constraints": ["c2"],
+            "active_rank_exact": 1,
+            "active_rank_numpy": 1,
+            "is_corner": false,
+            "is_extreme_point": false,
+            "lhs": [-7, 1, 3, -1, -2]
+          }
+        }
+      },
+      "status": "verified"
+    },
+    "6.9": {
+      "calculation": {
+        "extreme_directions_needed": false,
+        "weights": ["1/4", "1/4", "1/2"]
+      },
+      "status": "verified"
+    },
+    "6.10": {
+      "calculation": {
+        "containment_condition": {"is_necessary": false, "is_sufficient": true},
+        "counterexample": {
+          "midpoint": [0, 0],
+          "midpoint_in_union": false,
+          "midpoint_squared_distances_to_centers": [4, 4],
+          "witness_endpoints_in_union": true
+        },
+        "nonnecessary_example_union": "R2"
+      },
+      "status": "verified"
+    },
+    "6.11": {
+      "calculation": {
+        "boundedness_hypothesis_holds": false,
+        "lineality_A_times_d": [0, 0],
+        "lineality_direction": [1, 0],
+        "maximum_active_rank": 1,
+        "optimal_set": "{(t,0):t_in_R}",
+        "optimal_value": 0,
+        "vertex_count": 0
+      },
+      "status": "verified"
+    },
+    "6.12": {
+      "calculation": {
+        "applies_to_infinite_index_families": true,
+        "empty_intersection_case": "vacuously_convex",
+        "polyhedron_corollary": "intersection_of_convex_halfspaces_is_convex",
+        "uses_cardinality_bound_on_index_set": false
+      },
+      "status": "verified"
+    }
+  },
+  "lab_id": "o018.ch06.formal-mathematics",
+  "numerical_tolerance": 1e-08,
+  "summary": {
+    "correction_count": 0,
+    "exercise_count": 12,
+    "maximum_solver_violation": 0.0,
+    "plot_count": 5,
+    "solver_call_count": 5,
+    "underdetermined_count": 0,
+    "verified_count": 12
+  }
+}

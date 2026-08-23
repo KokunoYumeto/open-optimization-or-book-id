@@ -1,0 +1,24 @@
+O018 VERIFICATION LOG — CHAPTER 12 PYTHON WORKFLOW
+verification_date: 2026-08-22
+runtime: CPython 3.12.13; Pyomo 6.10.1; highspy/HiGHS 1.15.1; NumPy 2.5.2
+network_used: no
+proprietary_solver_used: no
+pulp_runtime_used: no
+
+REPLAY_1
+CHECK_OK results_bytes=23487 results_sha256=697c7bcf5b134a9067e7d25180c9b38e14a4461285cd65ce03fc05cdf216937d exercises=9 solver_calls=25
+unittest: 22 passed, 0 failed, 0 errors
+
+REPLAY_2
+CHECK_OK results_bytes=23487 results_sha256=697c7bcf5b134a9067e7d25180c9b38e14a4461285cd65ce03fc05cdf216937d exercises=9 solver_calls=25
+unittest: 22 passed, 0 failed, 0 errors
+
+exercise_coverage: 9/9 verified
+solver_terminations: 25 optimal
+maximum_solver_violation: 0
+manual_alignment: buku 12.1--12.9 -> manual 12.1--12.9
+source_defects_recorded: 0
+o018_math_corrections: 0
+unresolved_exercises: 0
+rights_split: CC BY-SA 4.0 prose/data/oracle; MIT Python; factual outputs/receipt/log no added creative claim
+source_witnesses: 4 hashes checked live (2 authority + 2 translated)

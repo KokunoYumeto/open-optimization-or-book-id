@@ -1,0 +1,15 @@
+This repository contains components under multiple open licenses.
+
+- Book content, the Bahasa Indonesia translation, and adapted instructional
+  prose/data: Creative Commons Attribution-ShareAlike 4.0 International
+  (CC BY-SA 4.0), subject to the component attributions carried with the work.
+- Applicable upstream code and new O018/backend/release code: MIT.
+- Third-party components: their retained component-specific licenses and
+  notices.
+
+The authoritative component map and links to the applicable legal texts are in
+LICENSES/README.md. MIT notices are in LICENSES/MIT-UPSTREAM-CODE.txt and
+LICENSES/MIT-NEW-CODE.txt. Detailed source attributions are also preserved in
+the book and source packages.
+
+No endorsement by the source author or source project is implied.

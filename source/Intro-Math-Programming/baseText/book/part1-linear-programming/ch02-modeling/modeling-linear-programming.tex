@@ -1,0 +1,1085 @@
+% Hak cipta 2020 oleh Robert Hildebrand
+%Karya ini dilisensikan di bawah
+%Lisensi Internasional Creative Commons Atribusi-BerbagiSerupa 4.0 (CC BY-SA 4.0)
+%Lihat http://creativecommons.org/licenses/by-sa/4.0/
+
+\chapter{Pemodelan: Pemrograman Linear}
+
+\begin{outcome}
+\begin{enumerate}
+\item Mendefinisikan apa yang dimaksud dengan program linear
+\item Memahami cara memodelkan program linear
+\item Menelaah banyak contoh dan memahami jenis-jenis masalah yang dapat dimodelkan sebagai program linear.
+\end{enumerate}
+\end{outcome}
+\begin{resource}
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=K7TL5NMlKIk&ab_channel=Dr.TreforBazett}{YouTube! --- Pemodelan dengan Pemrograman Linear --- Tonton 0:00--4:19}
+\item \href{https://www.youtube.com/watch?v=E72DWgKP_1Y&t=1014s&ab_channel=TomS}{YouTube! --- Tonton 0:00--1:43}
+\end{itemize}
+\end{resource}
+
+\begin{tryit}
+\vizlink{modeling-intro}{Dari Kata-Kata ke Matematika}: tutorial pemodelan interaktif langkah demi langkah.
+\end{tryit}
+
+
+Pemrograman linear, yang juga dikenal sebagai optimisasi linear, merupakan titik awal bagi sebagian besar bentuk optimisasi. Pemrograman linear adalah masalah mengoptimalkan suatu fungsi linier dengan kendala-kendala linier.
+
+Dalam bab ini, kita akan mendefinisikan arti pernyataan tersebut, mempelajari cara menyusun program linear, dan membahas banyak contoh. Contoh-contoh akan dihubungkan dengan kode dalam Excel dan Python (menggunakan perangkat pemodelan PuLP atau Gurobipy) agar Anda dapat segera mulai menyelesaikan masalah optimisasi dengan mudah. Tutorial tentang perangkat-perangkat ini akan disajikan dalam bab-bab selanjutnya.
+
+Sebagai pemanasan, perhatikan soal cerita berikut.\\
+\noindent \textbf{Soal:} Sebuah bioskop menjual tiket dewasa seharga $\$10$ per tiket dan tiket anak-anak seharga $\$6$ per tiket. Pada hari Sabtu, bioskop tersebut menjual total $120$ tiket dan memperoleh $\$1{,}000$ dari penjualan tiket. Berapa banyak tiket dewasa dan tiket anak-anak yang terjual?
+
+\smallskip
+
+\noindent \textbf{\textcolor{blue}{Penyelesaian:}} Misalkan $x$ dan $y$ masing-masing menyatakan jumlah tiket dewasa dan tiket anak-anak yang terjual. Maka
+\[
+x + y = 120 \tag{1}
+\]
+\[
+10x + 6y = 1{,}000. \tag{2}
+\]
+Dengan menyubstitusikan $x = 120 - y$ dari (1) ke dalam (2), kita memperoleh $10(120-y) + 6y = 1{,}000$, yang menyederhana menjadi $4y = 200$, sehingga $y = 50$ dan $x = 70$.
+
+\smallskip
+
+Dalam optimisasi, kita mengikuti proses serupa: menetapkan variabel dan menuliskan ekspresi matematis berdasarkan suatu soal cerita. Namun, alih-alih menggunakan persamaan yang menetapkan satu jawaban unik, kita biasanya memiliki \emph{pertidaksamaan} yang membatasi variabel dalam berbagai cara, serta suatu \emph{fungsi tujuan} yang hendak dimaksimumkan atau diminimumkan. Karena itu, mungkin terdapat banyak solusi fisibel, dan tujuannya adalah menemukan solusi terbaik.
+
+\section{Contoh Pengantar LP}
+\label{sec:lp-intro-example}
+Kita mulai dengan sebuah contoh sederhana.
+\begin{example}{Usaha Sablon}{}
+\emph{Catatan edisi: tiga berkas contoh eksternal yang ditautkan oleh otoritas sumber tidak tersedia pada commit yang dipinkan, sehingga tombol kode yang rusak dinonaktifkan di sini.}
+Sebuah usaha sablon mencetak kaus dan tas jinjing sesuai pesanan serta harus memutuskan berapa banyak masing-masing produk yang akan dibuat pekan ini. Berikut informasi yang diketahui pemilik usaha. Dari sisi pendapatan, kaus dijual seharga $\$15$ dengan biaya bahan $\$5$, sedangkan tas jinjing dijual seharga $\$12$ dengan biaya bahan $\$4$. Dari sisi produksi, dua sumber daya terbatas: mesin sablon (paling banyak $150$ jam pekan ini) dan bagian pengeringan/pengemasan (paling banyak $60$ jam). Sebuah kaus menggunakan mesin sablon selama $2$ jam dan sebuah tas jinjing selama $3$ jam; setiap barang kemudian memerlukan $1$ jam untuk pengeringan dan pengemasan. Satu informasi lain membatasi rencana tersebut: permintaan lokal terhadap kaus paling banyak sekitar $45$ buah per pekan, sehingga membuat lebih dari jumlah itu akan menjadi pekerjaan sia-sia. Rencana produksi apa yang menghasilkan laba terbesar?
+
+Untuk mengubah cerita ini menjadi bentuk matematis, kita memerlukan variabel keputusan, fungsi tujuan, dan kendala. Keputusannya adalah jumlah produksi: misalkan $x_1$ menyatakan jumlah kaus dan $x_2$ menyatakan jumlah tas jinjing yang dibuat pekan ini. Karena setiap kaus menghasilkan laba bersih $\$15 - \$5 = \$10$ dan setiap tas jinjing menghasilkan laba bersih $\$12 - \$4 = \$8$, besaran yang ingin dimaksimumkan oleh pemilik usaha adalah laba mingguan:
+\begin{equation}
+z(x_1,x_2) = 10x_1 + 8x_2
+\end{equation}
+Selanjutnya, setiap sumber daya yang terbatas menjadi sebuah pertidaksamaan. Mencetak $x_1$ kaus dan $x_2$ tas jinjing menggunakan $2x_1 + 3x_2$ jam mesin sablon, yang tidak boleh melebihi $150$ jam yang tersedia:
+\begin{equation}
+2x_1 + 3x_2 \leq 150
+\end{equation}
+Bagian pengeringan dan pengemasan memberikan batasan sejenis, yakni satu jam per barang dengan anggaran waktu $60$ jam:
+\begin{equation}
+x_1 + x_2 \leq 60
+\end{equation}
+Batas atas permintaan merupakan kendala yang paling sederhana: $x_1 \leq 45$. Dengan menggabungkan fungsi tujuan dan kendala-kendala tersebut, serta mengingat bahwa produksi tidak boleh bernilai negatif, kita memperoleh program linear lengkap:
+\begin{equation}
+\begin{array}{l r@{\;}c@{\;}r@{\;}c@{\;}r}
+\max & z(x_1,x_2) = 10x_1 & + & 8x_2 & & \\[2pt]
+\st  & 2x_1 & + & 3x_2 & \leq & 150 \\
+     & x_1  & + & x_2  & \leq & 60  \\
+     & x_1  &   &      & \leq & 45  \\
+     & x_1  &   &      & \geq & 0   \\
+     &      &   & x_2  & \geq & 0
+\end{array}
+\label{eqn:ScreenPrintEx}
+\end{equation}
+\label{ex:ScreenPrint}
+\end{example}
+
+\section{Pemodelan dan Asumsi dalam Pemrograman Linear}
+\label{sec:lp-modeling-assumptions}
+
+\begin{outcome}
+\begin{enumerate}
+\item Membahas asumsi-asumsi utama ketika memilih untuk memodelkan suatu masalah dengan pemrograman linear.
+\end{enumerate}
+\end{outcome}
+
+\paragraph{Program Linear (LP) Generik}
+
+Pemrograman linear (LP) merupakan kerangka optimisasi matematis yang digunakan secara luas dalam pengambilan keputusan dan alokasi sumber daya. Dalam bentuk paling dasarnya, LP berupaya mengoptimalkan (memaksimumkan atau meminimumkan) suatu fungsi tujuan linier dengan tunduk pada sekumpulan kendala linier. Kendala-kendala ini biasanya merepresentasikan batasan atau persyaratan dalam situasi dunia nyata, seperti anggaran, kapasitas, atau ketersediaan sumber daya.
+
+\smallskip \modelhead{Variabel}\\
+Variabel keputusan merepresentasikan besaran yang hendak kita tentukan. Sebagai contoh:
+\begin{itemize}
+    \item $x_i$: Variabel kontinu ($x_i \in \mathbb{R}$, yaitu bilangan riil), $\forall i = 1,\dots,n$.
+\end{itemize}
+Variabel-variabel ini dapat merepresentasikan jumlah produk yang akan dibuat, sumber daya yang akan dialokasikan, atau investasi yang akan dilakukan. Kita dapat menggunakan huruf apa pun untuk merepresentasikan variabel-variabel tersebut. Biasanya kita menggunakan $x_i$, tetapi sering pula menggunakan $y_i$ atau huruf lain, bergantung pada konteks dan pilihan yang membuat masalah paling mudah dibaca.
+
+\smallskip \modelhead{Parameter}\\
+Parameter adalah data yang diberikan dalam masalah dan diasumsikan telah diketahui sebelumnya:
+\begin{itemize}
+    \item $c_i$: Koefisien fungsi tujuan untuk setiap variabel keputusan, $\forall i = 1,\dots,n$. Nilai-nilai ini merepresentasikan kontribusi setiap variabel terhadap fungsi tujuan.
+    \item $a_{ij}$: Koefisien kendala, $\forall i = 1,\dots,m$ dan $j = 1,\dots,n$. Koefisien-koefisien ini mendefinisikan hubungan antara variabel keputusan dan kendala.
+    \item $b_i$: Nilai ruas kanan kendala, $\forall i = 1,\dots,m$. Nilai-nilai ini merepresentasikan batas atau persyaratan untuk setiap kendala.
+\end{itemize}
+
+Bentuk umum suatu program linear dapat dituliskan sebagai berikut:
+
+\begin{equation}
+\begin{aligned}
+\max\;\;&& z = c_1x_1 + \dots + c_nx_n \\
+\st\;\;&& a_{11}x_1 + \dots + a_{1n}x_n &\leq b_1 \\
+&& \hspace*{0.5in}\vdots \\
+&& a_{m1}x_1 + \dots + a_{mn}x_n &\leq b_m \\
+&& x_i &\geq 0 \quad \forall i=1, \dots, n.
+\end{aligned}
+\label{eqn:GeneralLPMax}
+\end{equation}
+
+\paragraph{Ciri-Ciri Program Linear}
+
+\begin{itemize}
+    \item \textbf{Fungsi Tujuan}: Fungsi linier $z = c_1x_1 + \dots + c_nx_n$ merepresentasikan tujuan yang hendak dioptimalkan. Tujuan ini dapat berupa memaksimumkan laba, meminimumkan biaya, atau mencapai hasil terukur lainnya.
+    \item \textbf{Kendala}: Sistem pertidaksamaan (atau persamaan) membatasi nilai variabel keputusan. Setiap kendala mencerminkan suatu batasan dunia nyata, seperti ketersediaan sumber daya atau batas kapasitas.
+    \item \textbf{Kelayakan}: Himpunan semua solusi yang memenuhi kendala disebut daerah fisibel. Solusi optimal harus berada di dalam daerah ini.
+    \item \textbf{Hubungan Linier}: Fungsi tujuan dan kendala sama-sama linier, yang berarti hubungan antarvariabel bersifat aditif dan proporsional.
+    \item \textbf{Himpunan}: Untuk masalah optimisasi tertentu, pendefinisian himpunan variabel atau parameter dapat membantu kita menuliskan masalah dalam suatu formulasi generik.
+\end{itemize}
+
+\begin{example}{Contoh Program Linear}{}
+Sebagai ilustrasi, perhatikan contoh khusus dengan tiga variabel keputusan dan empat kendala, yang mencakup campuran jenis kendala ($\leq$, $\geq$, dan $=$):
+
+\smallskip \modelhead{Variabel}\\
+$x_i$: Variabel kontinu ($x_i \in \mathbb{R}$, yaitu bilangan riil), $\forall i = 1,\dots,3$.
+
+\smallskip \modelhead{Parameter}\\
+\begin{itemize}
+    \item $c_i$: Koefisien biaya, $\forall i = 1,\dots,3$.
+    \item $a_{ij}$: Koefisien kendala, $\forall i = 1,\dots,4$ dan $j = 1,\dots,3$.
+    \item $b_i$: Nilai ruas kanan untuk setiap kendala, $\forall i = 1,\dots,4$.
+\end{itemize}
+
+\smallskip \modelhead{Model}
+\begin{align*}
+\min \quad & z = c_1x_1 + c_2x_2 + c_3x_3 \\
+\st        & a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \geq b_1 \\
+& a_{21}x_1 + a_{22}x_2 + a_{23}x_3 \leq b_2 \\
+& a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \\
+& a_{41}x_1 + a_{42}x_2 + a_{43}x_3 \geq b_4 \\
+& x_1 \geq 0, \; x_2 \leq 0, \; x_3 \text{ bebas.}
+\end{align*}
+\end{example}
+
+Salah satu ciri utama pemrograman linear adalah penggunaan fungsi linier, yang didefinisikan sebagai berikut:
+
+\begin{definition}{Fungsi Linier}\label{def:linearfunction}
+Suatu fungsi $z: \mathbb{R}^n \rightarrow \mathbb{R}$ disebut \textit{linier} jika terdapat konstanta $c_1, \dots, c_n \in \mathbb{R}$ sehingga:
+\begin{equation}
+z(x_1, \dots, x_n) = c_1x_1 + \dots + c_nx_n.
+\end{equation}
+\label{def:LinearFunc}
+\end{definition}
+
+Fungsi linier dicirikan oleh kesederhanaan dan sifat aditifnya, sehingga cocok digunakan untuk masalah optimisasi yang mengasumsikan proporsionalitas. Kesederhanaan ini memungkinkan program linear diselesaikan secara efisien, bahkan untuk masalah berskala besar.
+
+\subsection{Asumsi}
+\label{sec:lp-assumptions}
+Ketika menuliskan model dalam Contoh \ref{ex:ScreenPrint}, kita secara tersirat membuat empat asumsi pemodelan. Asumsi-asumsi tersebut perlu dinyatakan dengan jelas karena menunjukkan kapan program linear merupakan perangkat yang tepat dan kapan bukan.
+
+\begin{description}
+\item[Proporsionalitas] Menggandakan nilai suatu variabel akan menggandakan pengaruhnya. Jika satu kaus menghasilkan laba \$10 dan menggunakan waktu mesin sablon selama 2 jam, maka 50 kaus menghasilkan laba \$500 dan menggunakan 100 jam. Tidak ada diskon kuantitas, skala ekonomis, ataupun biaya penyiapan: setiap unit berperilaku sama seperti unit pertama.
+
+\item[Aditivitas] Pengaruh dari berbagai variabel dijumlahkan tanpa adanya interaksi. Waktu mesin sablon yang digunakan untuk kaus dan waktu yang digunakan untuk tas jinjing cukup dijumlahkan; memproduksi satu produk tidak membuat produk lain menjadi lebih murah, lebih menguntungkan, atau lebih sulit dibuat.
+
+\item[Keterbagian] Variabel boleh bernilai pecahan. Model boleh saja merekomendasikan pencetakan setengah kaus, terlepas dari masuk akal atau tidaknya hal tersebut secara fisik.
+
+\item[Kepastian] Setiap angka dalam model (laba per kaus, menit per pengoperasian mesin sablon, dan jumlah jam yang tersedia) dianggap diketahui secara tepat, bukan merupakan taksiran ataupun besaran acak.
+\end{description}
+
+Proporsionalitas dan aditivitas secara bersama-sama menyatakan bahwa fungsi tujuan dan fungsi kendala benar-benar \emph{linier} dalam pengertian Definisi~\ref{def:linearfunction}. Jika masalah Anda memiliki diskon kuantitas, pengaruh interaksi, atau biaya tetap penyiapan, program linear biasa tidak dapat merepresentasikannya, meskipun dalam bab-bab tentang pemrograman bilangan bulat kita akan melihat bahwa sebagian ciri tersebut dapat ditangani melalui pemodelan yang cermat.
+
+Asumsi keterbagian perlu ditelaah lebih jauh. Beberapa besaran memang dapat dibagi secara alami: ons tinta, jam kerja, atau dolar dalam anggaran. Barang seperti kaus tidak demikian; tidak seorang pun menjual enam persepuluh kaus. Pada skala produksi besar, solusi relaksasi LP tetap berguna sebagai batas dan panduan, tetapi rencana yang dibulatkan harus diperiksa kembali kelayakannya karena pembulatan dapat melanggar kendala. Jika jawaban berupa bilangan bulat benar-benar penting, kita menambahkan persyaratan integralitas secara eksplisit dan menyelesaikan \emph{program bilangan bulat}, yang merupakan pokok bahasan \OOIntegerProgrammingReference{}.
+
+Kepastian merupakan asumsi yang paling sering dilanggar di dunia nyata: prakiraan permintaan meleset, harga berubah, dan mesin berjalan lambat. Bidang-bidang seperti \emph{pemrograman stokastik} dan \emph{optimisasi robust} memperluas pemrograman linear agar dapat menangani data yang tidak pasti, sedangkan analisis sensitivitas (\OOSensitivityReference{}) memungkinkan kita menanyakan seberapa besar data dapat berubah sebelum rencana optimal kita turut berubah. Untuk saat ini, kita menganggap data yang diberikan sebagai tetap.
+
+\begin{learningcheckpoint}[label={lc:lp-assumptions}]
+Dalam satu atau dua kalimat singkat, bahas apakah masalah dalam
+Contoh~\ref{ex:ScreenPrint} memenuhi semua asumsi model pemrograman linear.
+%Lakukan hal yang sama untuk Latihan~\autoref{ex:ChemicalPlant}.
+
+\emph{Petunjuk: Dapatkah Anda mencetak $\tfrac{2}{3}$ kaus? Dapatkah Anda menjalankan suatu proses
+selama $\tfrac{1}{3}$ jam?}
+\end{learningcheckpoint}
+
+\section{Contoh-Contoh}
+\label{sec:lp-examples}
+
+\begin{outcome}
+
+\begin{enumerate}
+\item Mengidentifikasi variabel keputusan dan parameter
+\item Mempelajari cara memformat suatu masalah optimisasi linear.
+\item Mengidentifikasi dan memahami kelas-kelas umum masalah optimisasi linear.
+\end{enumerate}
+\end{outcome}
+
+Kita akan mulai dengan beberapa contoh, kemudian membahas jenis-jenis masalah tertentu yang sering dijumpai.
+
+\Needspace{0.56\textheight}
+\begin{examplewithallcode}{Perencanaan Produksi}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production_planning_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production_planning_gurobi.ipynb}
+\label{example:production-planning}
+Sebuah perusahaan manufaktur ingin mengoptimalkan jadwal produksinya dalam cakrawala perencanaan dua hari agar dapat memenuhi permintaan harian sekaligus meminimumkan biaya. Perusahaan memulai dengan persediaan awal sebanyak \( s_0 \) unit. Biaya yang terkait dengan produksi dan persediaan adalah sebagai berikut:
+
+\begin{itemize}
+    \item \textbf{Biaya produksi:} \$10 per unit pada Hari 1 dan \$16 per unit pada Hari 2.
+    \item \textbf{Biaya persediaan:} \$5 per unit untuk menyimpan kelebihan persediaan dari satu hari ke hari berikutnya.
+\end{itemize}
+
+\begin{tikzpicture}[
+    node distance=2cm, 
+    thick, 
+    >=stealth',
+    every node/.style={font=\small},
+    main/.style={circle, draw, fill=gray!20, minimum size=1cm, font=\normalsize}
+]
+
+% Simpul
+\node[main] (1) {1};
+\node[main, right of=1] (2) {2};
+
+% Panah Produksi
+\draw[->] (1) ++(0,1) -- node[left] {$x_1$} (1.north);
+\draw[->] (2) ++(0,1) -- node[left] {$x_2$} (2.north);
+
+% Panah Persediaan
+\draw[<-] (1.west) -- ++(-1,0) node[midway, above] {$s_0$};
+\draw[->] (1.east) -- node[midway, above] {$s_1$} (2.west);
+\draw[->] (2.east) -- ++(1,0) node[midway, above] {$s_2$};
+
+% Panah Permintaan
+\draw[->] (1.south) -- ++(0,-1) node[midway, right] {10};
+\draw[->] (2.south) -- ++(0,-1) node[midway, right] {4};
+
+% Label
+\node at (-4,1.2) {Produksi};
+\node at (-4,0) {Persediaan};
+\node at (-4,-1.2) {Permintaan};
+
+\end{tikzpicture}\par\captionof{figure}{Skema jaringan perencanaan produksi dua periode: dua lingkaran abu-abu berlabel 1 dan 2.}\label{fig:modeling-linear-programming-tikz01}% fig-num-auto
+
+
+Tujuannya adalah menentukan jumlah unit yang akan diproduksi setiap hari dan tingkat persediaan yang meminimumkan biaya total sambil memenuhi permintaan setiap hari.
+
+\end{examplewithallcode}
+
+\begin{solution}
+ \modelhead{Himpunan}
+\begin{itemize}
+    \item Hari produksi $ = \{1, 2\}$.
+\end{itemize}
+ \modelhead{Parameter} 
+\begin{itemize}
+    \item $c_{p1}$: Biaya produksi per unit pada Hari 1 (\$10).
+    \item $c_{p2}$: Biaya produksi per unit pada Hari 2 (\$16).
+    \item $c_{inv}$: Biaya persediaan per unit (\$5).
+    \item $d_1$: Permintaan pada Hari 1 (10 unit).
+    \item $d_2$: Permintaan pada Hari 2 (4 unit).
+    \item $s_0$: Persediaan tetap pada awal Hari 1, dengan $s_0 \geq 0$.
+\end{itemize}
+
+ \modelhead{Variabel} 
+\begin{itemize}
+    \item $x_1$: Jumlah unit yang diproduksi pada Hari 1.
+    \item $x_2$: Jumlah unit yang diproduksi pada Hari 2.
+    \item $s_1$: Persediaan pada akhir Hari 1.
+    \item $s_2$: Persediaan pada akhir Hari 2.
+\end{itemize}
+
+\modelhead{Model}
+\begin{align*}
+\min \quad & z = 10x_1 + 16x_2 + 5s_1 + 5s_2   \tag{Biaya total} \\
+\st        & s_0 + x_1 = 10 + s_1   \tag{Keseimbangan Hari 1} \\
+& s_1 + x_2 = 4 + s_2   \tag{Keseimbangan Hari 2} \\
+& x_1, x_2, s_1, s_2 \geq 0.   \tag{Kendala nonnegativitas}
+\end{align*}
+
+\end{solution}
+
+\begin{definition}{Komponen model optimisasi}
+Ketika mendefinisikan model optimisasi, kita perlu mengidentifikasi dan menguraikan dengan jelas lima komponen berikut:
+
+\begin{itemize}
+    \item \textbf{Himpunan:} Daftar data apa yang perlu Anda tuliskan? Daftar tersebut dapat mencakup indeks, kategori, atau kelompok yang relevan dengan masalah.
+    \item \textbf{Parameter (Data):} Apa data sebenarnya dalam masalah? Parameter merupakan nilai numerik tetap seperti biaya, kapasitas, atau ketersediaan sumber daya.
+    \item \textbf{Variabel Keputusan:} Keputusan apa yang perlu dibuat untuk menghasilkan suatu solusi? Variabel ini merepresentasikan besaran yang dapat dikendalikan atau disesuaikan, seperti tingkat produksi atau alokasi sumber daya.
+    \item \textbf{Fungsi Tujuan:} Ekspresi yang hendak kita maksimumkan atau minimumkan. Ekspresi ini merupakan sasaran optimisasi, seperti meminimumkan biaya atau memaksimumkan laba.
+    \item \textbf{Kendala:} Aturan tertentu yang harus dipenuhi oleh variabel keputusan tersebut. Aturan ini mencakup batasan atau persyaratan, seperti kapasitas sumber daya atau pemenuhan permintaan.
+\end{itemize}
+
+Setiap komponen ini memegang peranan penting dalam merumuskan model optimisasi terstruktur yang merepresentasikan masalah secara akurat dan menghasilkan solusi yang dapat ditindaklanjuti. Peran himpunan akan menjadi semakin penting ketika kita membahas model optimisasi yang lebih rumit.
+\end{definition}
+
+\newpage
+\begin{examplewithallcode}{Produksi Toko Roti}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/bakery-production-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/bakery_production_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/bakery_production_gurobi.ipynb}
+\label{example:bakery-production}
+Sebuah toko roti kecil menghasilkan tiga produk setiap hari: kue, kukis, dan muffin. Setiap produk memerlukan jumlah bahan dan waktu pemanggangan tertentu serta memberikan laba bagi toko roti. Toko roti beroperasi dengan batas harian untuk tepung, gula, dan waktu pemanggangan karena keterbatasan pasokan bahan dan tenaga kerja.
+
+Setiap kue menghasilkan laba \$6.00 serta memerlukan 500 gram tepung, 200 gram gula, dan 60 menit waktu pemanggangan. Setiap kukis menghasilkan laba \$1.50 serta memerlukan 100 gram tepung, 50 gram gula, dan 10 menit waktu pemanggangan. Setiap muffin menghasilkan laba \$2.50 serta memerlukan 200 gram tepung, 80 gram gula, dan 20 menit waktu pemanggangan.
+
+Toko roti memiliki paling banyak 4,800 gram tepung, 2,060 gram gula, dan 480 menit waktu pemanggangan yang tersedia setiap hari.
+
+Tentukan berapa banyak kue, kukis, dan muffin yang harus diproduksi oleh toko roti setiap hari untuk memaksimumkan laba totalnya, dengan tetap mematuhi batas tepung, gula, dan waktu pemanggangan.
+
+\subsection*{Relaksasi Pemrograman Linear}
+
+\[
+\begin{aligned}
+\text{Maksimumkan} \quad & 6x_1 + 1.5x_2 + 2.5x_3 \\
+\text{dengan kendala} \quad
+& 500x_1 + 100x_2 + 200x_3 \leq 4800 \quad \text{(Tepung)} \\
+& 200x_1 + 50x_2 + 80x_3 \leq 2060 \quad \text{(Gula)} \\
+& 60x_1 + 10x_2 + 20x_3 \leq 480 \quad \text{(Waktu pemanggangan)} \\
+& x_1, x_2, x_3 \geq 0
+\end{aligned}
+\]
+Jika setiap barang harus diproduksi dalam jumlah utuh, tambahkan kendala $x_1,x_2,x_3\in\mathbb{Z}$; model tersebut kemudian menjadi program bilangan bulat, bukan LP.
+\end{examplewithallcode}
+
+\begin{examplewithallcode}{Produksi dengan Robot Las}
+{https://github.com/open-optimization/open-optimization-or-examples/blob/master/linear-programming/production_welding/production-welding-robot.xlsx}
+{https://github.com/open-optimization/open-optimization-or-examples/blob/master/linear-programming/production_welding/production_welding_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-examples/blob/master/linear-programming/production_welding/production_welding_gurobipy.ipynb}
+%{productionproblem}{}{}{}
+\label{example:welding-robot}
+Anda memiliki 21 unit paduan aluminium transparan (TAA), LazWeld1, yakni robot penyambung yang disewa selama 23 jam, dan CrumCut1, yakni robot pemotong yang disewa untuk memotong aluminium selama 17 jam. Anda juga memiliki kode produksi untuk rak buku, meja kerja, dan lemari, serta komitmen pembelian atas setiap barang yang dapat Anda produksi dengan harga masing-masing \$18, \$16, dan \$10 per buah. Sebuah rak buku memerlukan 2 unit TAA, 3 jam penyambungan, dan 1 jam pemotongan; sebuah meja kerja memerlukan 2 unit TAA, 2 jam penyambungan, dan 2 jam pemotongan; dan sebuah lemari memerlukan 1 unit TAA, 2 jam penyambungan, dan 1 jam pemotongan.
+
+Rumuskan LP untuk memaksimumkan pendapatan berdasarkan sumber daya yang tersedia saat ini.
+\end{examplewithallcode}
+
+\begin{solution}
+
+\noindent\medskip \modelhead{Himpunan}
+\begin{itemize}
+\item Jenis objek $ = \{$ rak~buku,~meja~kerja,~lemari$\}$.
+\end{itemize}
+\medskip \modelhead{Parameter} 
+\begin{itemize}
+\item Pendapatan penjualan setiap objek
+\item Unit TAA yang diperlukan untuk setiap objek
+\item Jam penyambungan yang diperlukan untuk setiap objek
+\item Jam pemotongan yang diperlukan untuk setiap objek
+\item Jumlah unit TAA serta jam penyambungan dan pemotongan yang tersedia
+\end{itemize}
+
+\noindent\medskip \modelhead{Variabel} \\
+$x_i$ : jumlah unit produk $i$ yang akan diproduksi, \\
+untuk semua $ i = $rak buku,~meja kerja,~lemari.\\
+
+\noindent \medskip \modelhead{Model}
+\begin{align*}
+\max \quad & z = 18x_1 + 16x_2 + 10x_3   \tag{pendapatan} \\
+\st        & 2x_1 + 2x_2 + 1x_3 \le 21   \tag{TAA} \\
+& 3x_1 + 2x_2 + 2x_3 \le 23   \tag{LazWeld1} \\
+& 1x_1 + 2x_2 + 1x_3 \le 17   \tag{CrumCut1} \\
+& x_1, x_2, x_3 \ge 0.
+\end{align*}
+\end{solution}
+
+\begin{examplewithallcode}{Masalah Diet}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/diet-problem.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_gurobi.ipynb}
+\label{example:diet-problem}
+
+Pada masa depan (seperti yang dibayangkan dalam film fiksi ilmiah buruk tahun 70-an), semua makanan berbentuk tablet dan tersedia dalam empat jenis: hijau, biru, kuning, dan merah. Diet futuristis yang seimbang memerlukan sedikitnya 20 unit zat besi, 25 unit vitamin B, 30 unit vitamin C, dan 15 unit vitamin D. Rumuskan LP yang menjamin diet seimbang dengan biaya serendah mungkin.
+\end{examplewithallcode}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Tablet & Zat besi & B & C & D & Biaya (\$) \\ \hline
+Bahan 1 & 6 & 6 & 7 & 4 & 1.25 \\
+Bahan 2 & 4 & 5 & 4 & 9 & 1.05 \\
+Bahan 3 & 5 & 2 & 5 & 6 & 0.85 \\
+Bahan 4 & 3 & 6 & 3 & 2 & 0.65 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Kandungan setiap zat gizi dan biaya untuk setiap jenis tablet.}\label{tab:pillContent}% tab-num-auto
+\end{table}
+
+\begin{solution}
+\smallskip \modelhead{Himpunan}
+\begin{itemize}
+\item Himpunan tablet $\{1,2,3,4\}$
+\end{itemize}
+
+\smallskip \modelhead{Parameter}
+\begin{itemize}
+\item Zat besi dalam setiap tablet
+\item Vitamin B dalam setiap tablet
+\item Vitamin C dalam setiap tablet
+\item Vitamin D dalam setiap tablet
+\item Biaya setiap tablet
+\end{itemize}
+
+\smallskip  \modelhead{Variabel} \\
+$x_i$ : jumlah tablet jenis $i$ yang disertakan dalam diet, $\forall i \in \{1,2,3,4\}$.\\
+
+\smallskip  \modelhead{Model}
+\begin{align*}
+\min \quad && z = 1.25x_1 + 1.05x_2 + 0.85x_3 + 0.65x_4 \\
+\st \quad &&  6x_1 + 4x_2 + 5x_3 + 3x_4 &\ge 20  \\
+&& 6x_1 + 5x_2 + 2x_3 + 6x_4 &\ge 25 \\
+&& 7x_1 + 4x_2 + 5x_3 + 3x_4 &\ge 30 \\
+&& 4x_1 + 9x_2 + 6x_3 + 2x_4 &\ge 15  \\
+&& x_1, x_2, x_3, x_4 &\ge 0. 
+\end{align*}
+\end{solution}
+
+%Diet optimal berbiaya \$5.34375 dan terdiri atas 4.0625 tablet hijau serta 0.3125 tablet kuning.
+
+\begin{examplewithallcode}{Masalah Diet Berikutnya}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/diet-problem-next.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_next_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_next_gurobi.ipynb}
+
+Kemajuan itu penting, dan masalah terakhir kita menggunakan terlalu banyak tablet. Karena itu, kita akan membuat satu tablet ungu berbobot 10 gram untuk memenuhi kebutuhan diet futuristis, yaitu sedikitnya 20 unit zat besi, 25 unit vitamin B, 30 unit vitamin C, 15 unit vitamin D, dan 2000 kalori. Tablet tersebut dibuat dengan mencampurkan 4 bahan kimia bergizi; tabel berikut menunjukkan jumlah unit zat gizi per gram dan biaya setiap gram bahan kimia.
+
+Rumuskan LP yang menjamin diet seimbang dengan biaya serendah mungkin.
+\end{examplewithallcode}
+
+\begin{table}[h!] \begin{center} \begin{tabular} {|c|c|c|c|c|c|c|}
+\hline Tablet  & Zat besi  &  B &  C &  D & Kalori & Biaya (\$) \\ \hline
+\hline  Bahan 1  & 6    & 6         & 7         & 4         &  1000    & 1.25 \\
+\hline  Bahan 2  & 4    & 5         & 4         & 9         &  250     & 1.05 \\
+\hline  Bahan 3  & 5    & 2         & 5         & 6         &  850     & 0.85 \\
+\hline  Bahan 4  & 3    & 6         & 3         & 2         &  750     & 0.65 \\
+\hline
+\end{tabular} \end{center} \caption{Jumlah unit setiap zat gizi per gram, kalori, dan biaya setiap bahan kimia.}\label{tab:modeling-linear-programming-tab02}% tab-num-auto
+\end{table}
+
+\begin{solution}
+
+\smallskip \modelhead{Himpunan}
+\begin{itemize}
+\item Himpunan bahan kimia $\{1,2,3,4\}$
+\end{itemize}
+\smallskip \modelhead{Parameter}
+\begin{itemize}
+\item Zat besi dalam setiap bahan kimia
+\item Vitamin B dalam setiap bahan kimia
+\item Vitamin C dalam setiap bahan kimia
+\item Vitamin D dalam setiap bahan kimia
+\item Kalori dalam setiap bahan kimia
+\item Biaya setiap bahan kimia
+\end{itemize}
+\smallskip \modelhead{Variabel} \\
+$x_i$ : gram bahan kimia $i$ yang disertakan dalam tablet ungu, $\forall i = 1,2,3,4$.\\
+\smallskip \modelhead{Model}
+\begin{align*}
+\min\ && z = 1.25x_1 + 1.05x_2 + 0.85x_3 + 0.65x_4 \\
+\st &&  6x_1 + 4x_2 + 5x_3 + 3x_4 &\ge 20 \\
+&& 6x_1 + 5x_2 + 2x_3 + 6x_4 &\ge 25  \\
+&& 7x_1 + 4x_2 + 5x_3 + 3x_4 &\ge 30  \\
+&& 4x_1 + 9x_2 + 6x_3 + 2x_4 &\ge 15  \\
+&& 1000x_1 + 250x_2 + 850x_3 + 750x_4 &\ge 2000 \\
+&& x_1 + x_2 + x_3 + x_4 &= 10  \\
+&& x_1, x_2, x_3, x_4 &\ge 0. 
+\end{align*}
+
+\end{solution}
+
+Masalah diet mungkin terasa seperti sekadar contoh main-main. Padahal tidak.
+
+\begin{casestudybox}{Memberi Makan Jutaan Orang: Mesin Optimisasi Program Pangan Dunia}
+\label{case:wfp}
+
+Program Pangan Dunia Perserikatan Bangsa-Bangsa (WFP) adalah organisasi kemanusiaan terbesar di dunia yang membantu sekitar 100 juta orang setiap tahun di wilayah seperti Irak, Yaman, dan Sudan Selatan. Setiap operasi harus menjawab pertanyaan yang sama: paket pangan \emph{apa} yang harus diberikan, \emph{di mana} membelinya, dan \emph{bagaimana} mengangkutnya. WFP membangun Optimus, sebuah alat optimisasi yang menjawab ketiga pertanyaan tersebut sekaligus, dan timnya meraih INFORMS Franz Edelman Award pada tahun 2021.
+
+\subsection*{Tantangan}
+Sebuah paket pangan harus memenuhi kebutuhan gizi (energi, protein, lemak, dan zat gizi mikro) seorang penerima manfaat dengan menggunakan komoditas yang benar-benar dapat dibeli dan dikirim melalui jaringan pemasok, pelabuhan, gudang, serta titik distribusi, yang masing-masing memiliki biaya dan kapasitas. Paket yang lebih murah dapat kurang bergizi; paket yang lebih bergizi dapat mustahil dikirimkan. Sebelum Optimus hadir, keputusan-keputusan ini dibuat secara terpisah oleh tim yang berbeda.
+
+\subsection*{Solusi: Masalah Diet Bertemu dengan Aliran Jaringan}
+\textbf{Jenis model: pemrograman linear bilangan bulat campuran. Intinya adalah model pemrograman linear diet klasik yang digabungkan dengan model aliran berbiaya minimum; variabel bilangan bulat menangani pilihan seperti moda bantuan (pangan vs.\ uang tunai). Tidak ada pembelajaran mesin di dalam optimisasi; masukan permintaan dan harga berasal dari asesmen WFP.}
+
+Versi sederhana yang memuat dua unsur utama tersebut adalah sebagai berikut:
+
+\modelhead{Variabel}
+\begin{itemize}
+\item Misalkan $x_k \geq 0$ menyatakan jumlah komoditas $k$ (gram per orang per hari) dalam paket pangan.
+\item Misalkan $f_{ka} \geq 0$ menyatakan aliran komoditas $k$ pada busur $a$ dalam jaringan pasokan.
+\end{itemize}
+
+\modelhead{Model}
+\begin{align*}
+\min \quad & \sum_{k} c^{\text{proc}}_k\, x_k + \sum_{k,\,a} c^{\text{transp}}_a\, f_{ka}   \tag{biaya pengadaan + pengangkutan} \\
+\st        & \sum_{k} n_{jk} \, x_k \geq R_j &&\quad \text{untuk tiap } j   \tag{kebutuhan gizi} \\
+           & \text{konservasi aliran yang menghubungkan } f_{ka} \text{ dengan pengiriman } x_k   \tag{paket harus benar-benar tiba} \\
+           & \sum_{k} f_{ka} \leq u_a &&\quad \text{untuk tiap } a   \tag{kapasitas pelabuhan/rute} \\
+           & x_k \geq 0, \quad f_{ka} \geq 0,
+\end{align*}
+di mana $n_{jk}$ adalah jumlah zat gizi $j$ per gram komoditas $k$ dan $R_j$ adalah kebutuhan harian. Model yang dipublikasikan menambahkan aturan palatabilitas (misalnya, paket tidak boleh hanya berisi lentil), keputusan pengadaan, perencanaan multiperiode, dan pilihan moda pangan atau uang tunai; pada pilihan terakhir inilah variabel bilangan bulat digunakan.
+
+\subsection*{Asumsi dan Penyederhanaan}
+\begin{itemize}
+\item Kebutuhan gizi dimodelkan untuk ``penerima manfaat rata-rata''; artikel tersebut membahas kebutuhan menurut profil demografis.
+\item Harga dan waktu tunggu diperlakukan sebagai data; artikel tersebut menjelaskan cara WFP memperbaruinya untuk setiap operasi.
+\end{itemize}
+
+\subsection*{Implementasi dan Hasil}
+Di Irak, alat ini memangkas biaya operasi sebesar 17 persen, dan paket pangan yang dihasilkan memenuhi 98 persen kebutuhan gizi; sejak itu WFP telah menerapkannya di seluruh operasi utamanya. MILP lengkap dicantumkan dalam artikel yang dapat diakses secara terbuka, sehingga mahasiswa dapat membaca secara persis apa yang dimodelkan dan asumsi apa yang digunakan.
+
+\subsection*{Referensi}
+\begin{itemize}
+\item K. Peters, S. Silva, R. Gon$\c{c}$alves, M. Kavelj, H. Fleuren, D. den Hertog, O. Ergun, M. Freeman. ``The Nutritious Supply Chain: Optimizing Humanitarian Food Assistance.'' \emph{INFORMS Journal on Optimization} 3(2), 200--226, 2021. \url{https://doi.org/10.1287/ijoo.2019.0047}
+\end{itemize}
+\end{casestudybox}
+
+\begin{examplewithallcode}{Masalah Penjadwalan Kerja}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_gurobi.ipynb}
+\label{example:work-scheduling}
+
+Anda adalah manajer LP Burger. Tabel berikut menunjukkan jumlah minimum karyawan yang diperlukan untuk menjalankan restoran pada setiap hari dalam seminggu. Setiap karyawan harus bekerja selama lima hari berturut-turut. Formulasikan sebuah model pemrograman bilangan bulat untuk menentukan jumlah minimum karyawan yang diperlukan agar restoran dapat beroperasi.
+
+\end{examplewithallcode}
+
+\begin{table}[h!] \begin{center} \begin{tabular} {|l|l|} 
+\hline Hari & Karyawan yang Diperlukan   \\ \hline
+\hline  1 = Senin & 6  \\
+\hline  2 = Selasa & 4  \\
+\hline  3 = Rabu & 5  \\
+\hline  4 = Kamis & 4  \\
+\hline  5 = Jumat & 3  \\
+\hline  6 = Sabtu & 7  \\
+\hline  7 = Minggu & 7  \\
+\hline \end{tabular} \end{center} \caption{Jumlah minimum karyawan yang diperlukan di LP Burger pada setiap hari dalam seminggu.}\label{tab:modeling-linear-programming-tab03}% tab-num-auto
+\end{table}
+
+\begin{solution} Masalah ini memiliki beberapa solusi optimal yang berbeda dalam hal hari mulai bekerja para karyawan; semuanya menghasilkan total 8 karyawan yang direkrut.
+
+\modelhead{Variabel} \\
+$x_i$ : jumlah karyawan yang mulai bekerja selama 5 hari berturut-turut pada hari $i$, $ i = 1,\dots,7$ \\
+\smallskip \modelhead{Model}
+\begin{align*}
+\min \quad & z = x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 \\
+\st        & x_1 + x_4 + x_5 + x_6 + x_7 \ge 6   \tag{Sen} \\
+& x_2 + x_5 + x_6 + x_7 + x_1 \ge 4   \tag{Sel} \\
+& x_3 + x_6 + x_7 + x_1 + x_2 \ge 5   \tag{Rab} \\
+& x_4 + x_7 + x_1 + x_2 + x_3 \ge 4   \tag{Kam} \\
+& x_5 + x_1 + x_2 + x_3 + x_4 \ge 3   \tag{Jum} \\
+& x_6 + x_2 + x_3 + x_4 + x_5 \ge 7   \tag{Sab} \\
+& x_7 + x_3 + x_4 + x_5 + x_6 \ge 7   \tag{Min} \\
+& x_1, \dots, x_7 \in \mathbb{Z}_{\ge 0}.
+\end{align*}
+
+Salah satu solusinya adalah sebagai berikut. Relaksasi pemrograman linear menghasilkan $z_{LP} = 7.333$ dengan nilai pecahan $(x_1, \dots, x_7) = (0,\; 0.333,\; 1,\; 2.333,\; 0,\; 3.333,\; 0.333)$. Penyelesaian model bilangan bulat menghasilkan $z_{IP} = 8$ dengan $(x_1, \dots, x_7) = (0,\; 0,\; 0,\; 3,\; 0,\; 4,\; 1)$.
+\end{solution}
+
+\newpage
+\begin{examplewithallcode}{LP Burger - Versi Diperluas}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_excel_extended.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_extended_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_extended_gurobi.ipynb}
+LP Burger telah mengubah kebijakannya dan kini mengizinkan paling banyak dua karyawan paruh waktu yang bekerja selama dua hari berturut-turut dalam seminggu. Dengan menganggap biaya tenaga kerja sama untuk setiap hari kerja, formulasikan model pemrograman bilangan bulat yang meminimumkan jumlah total hari kerja terjadwal.
+\end{examplewithallcode}
+\begin{solution}
+\modelhead{Variabel} \\
+$x_i$ : jumlah karyawan yang mulai bekerja selama 5 hari berturut-turut pada hari $i$, $ i = 1,\cdots,7$ \\
+$y_i$ : jumlah karyawan yang mulai bekerja selama 2 hari berturut-turut pada hari $i$, $ i = 1,\cdots,7$.
+
+\smallskip \modelhead{Model}
+\begin{align*}
+\min \quad && z = 5(x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7) \\
+&& + 2(y_1 + y_2 + y_3 + y_4 + y_5 + y_6 + y_7) \nonumber \\
+\st \quad && x_1 + x_4 + x_5 + x_6 + x_7 + y_1 + y_7 &\ge 6 \\
+&& x_2 + x_5 + x_6 + x_7 + x_1 + y_2 + y_1 &\ge 4 \\
+&&           x_3 + x_6 + x_7 + x_1 + x_2 + y_3 + y_2 &\ge 5 \\
+&&           x_4 + x_7 + x_1 + x_2 + x_3 + y_4 + y_3 &\ge 4 \\
+&&           x_5 + x_1 + x_2 + x_3 + x_4 + y_5 + y_4 &\ge 3 \\
+&&           x_6 + x_2 + x_3 + x_4 + x_5 + y_6 + y_5 &\ge 7 \\
+&&           x_7 + x_3 + x_4 + x_5 + x_6 + y_7 + y_6 &\ge 7 \\
+&&           y_1 + y_2 + y_3 + y_4 + y_5 + y_6 + y_7 &\le 2 \\
+&&           x_i, y_i \in \mathbb{Z}_{\ge 0}, \forall i = 1,\cdots,7.
+\end{align*}
+\end{solution}
+
+% SUBSECTION 3.2.1
+\newpage
+\subsection{Masalah Ransel}
+Sekarang kita membahas sebuah contoh sederhana dengan variabel yang hanya dapat bernilai 0 atau 1. Variabel tersebut disebut \emph{variabel biner}.
+\begin{examplewithallcode}{Perjalanan Berkemah}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-problem-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-three-two-one-pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-three-two-one-gurobi.ipynb}
+Bayangkan Anda sedang mempersiapkan perjalanan berkemah selama satu minggu ke pegunungan. Anda memiliki sebuah ransel dengan kapasitas berat 20 kilogram. Tujuan Anda adalah membawa barang-barang yang paling bernilai agar perjalanan nyaman dan aman tanpa melampaui batas berat ransel. Setiap barang memiliki berat dan nilai yang menunjukkan tingkat kepentingan dan kegunaannya bagi perjalanan tersebut. Tabel di bawah ini mencantumkan barang-barang yang dapat dibawa, beratnya dalam kilogram, dan nilainya pada skala 1 sampai 10 (dengan 10 sebagai nilai tertinggi).
+\newline
+Formulasikan sebuah model pemrograman bilangan bulat untuk menentukan barang-barang optimal yang sebaiknya Anda bawa dalam perjalanan. 
+\end{examplewithallcode}
+
+\begin{table}[h!] \begin{center} \begin{tabular} {|l|l|l|l|} 
+\hline Barang & Indeks & Berat (kg) & Nilai  \\ \hline
+\hline Tenda & A & 4 & 10  \\
+\hline Kompor & B & 2 & 9  \\
+\hline Kantong Tidur & C & 3 & 8  \\
+\hline Kotak P3K & D & 1 & 7  \\
+\hline Persediaan Makanan & E & 5 & 9  \\
+\hline Filter Air & F & 1 & 6  \\
+\hline Pakaian & G & 4 & 5  \\
+\hline Peta dan Kompas & H & 0.5 & 7  \\
+\hline \end{tabular} \end{center} \caption{Berat dan nilai barang-barang kandidat untuk perjalanan berkemah.}\label{tab:modeling-linear-programming-tab04}% tab-num-auto
+\end{table}
+
+\begin{solution}
+\modelhead{Variabel} \\
+$x_i$ : apakah barang $i$ dimasukkan ke dalam ransel, dengan $i \in \{A, B, C, D, E, F, G, H\}$, $x_i = 1$ jika barang $i$ dimasukkan, dan $x_i = 0$ jika tidak.
+
+\smallskip \modelhead{Model}
+\begin{align*}
+\max \quad & z = 10x_A + 9x_B + 8x_C + 7x_D + 9x_E + 6x_F + 5x_G + 7x_H \\
+\st        & 4x_A + 2x_B + 3x_C + 1x_D + 5x_E + 1x_F + 4x_G + 0.5x_H \le 20 \\
+& x_A, x_B, x_C, x_D, x_E, x_F, x_G, x_H \in \{0,1\}.
+\end{align*}
+\end{solution}
+
+% SUBSECTION 3.2.2
+\subsection{Investasi Modal}
+Selanjutnya kita akan melihat penerapan variabel biner lain yang serupa.
+%FIRST EXAMPLE OF CAPITAL INVESTMENT
+\begin{examplewithallcode}{Masalah Alokasi Modal}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/capital-allocation-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-capital-allocation-pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-capital-allocation-gurobi.ipynb}
+Anda adalah perencana keuangan di sebuah perusahaan investasi. Perusahaan memiliki dana sebesar \$100,000 untuk diinvestasikan dalam sebuah portofolio proyek. Setiap proyek memiliki proyeksi imbal hasil dan memerlukan investasi awal. Tujuannya adalah memaksimumkan imbal hasil total portofolio tanpa melampaui modal yang tersedia. Tabel berikut mencantumkan proyek-proyek potensial, investasi yang dibutuhkan, dan proyeksi imbal hasilnya.
+
+Formulasikan sebuah program bilangan bulat biner (model ransel 0--1) untuk memaksimumkan imbal hasil total portofolio tanpa melampaui modal investasi yang tersedia.
+\end{examplewithallcode}
+
+\begin{table}[h!] \begin{center} \begin{tabular} {|l|l|l|} 
+\hline Proyek & Investasi yang Dibutuhkan (\$) & Proyeksi Imbal Hasil (\$)  \\ \hline
+\hline  A & 20,000 & 30,000  \\
+\hline  B & 30,000 & 40,000  \\
+\hline  C & 50,000 & 75,000  \\
+\hline  D & 10,000 & 15,000  \\
+\hline  E & 40,000 & 60,000  \\
+\hline \end{tabular} \end{center} \caption{Investasi yang dibutuhkan dan proyeksi imbal hasil untuk setiap proyek kandidat.}\label{tab:modeling-linear-programming-tab05}% tab-num-auto
+\end{table}
+
+\begin{solution}
+
+\smallskip \modelhead{Himpunan}
+\begin{itemize}
+\item Proyek: \( P = \{A, B, C, D, E\} \)
+\end{itemize}
+
+\smallskip \modelhead{Parameter}
+\begin{itemize}
+\item \( \text{inv}_i \): investasi yang dibutuhkan untuk proyek \( i \)
+\item \( \text{ret}_i \): proyeksi imbal hasil dari proyek \( i \)
+\item \( B = 100{,}000 \): total modal yang tersedia
+\end{itemize}
+
+\smallskip \modelhead{Variabel} \\
+\( x_i \in \{0,1\} \): 1 jika proyek \( i \) dipilih, dan 0 jika tidak
+
+\smallskip \modelhead{Model}
+\begin{align*}
+\max \quad & z = 30{,}000x_A + 40{,}000x_B + 75{,}000x_C + 15{,}000x_D + 60{,}000x_E \\
+\st \quad 
+& 20{,}000x_A + 30{,}000x_B + 50{,}000x_C + 10{,}000x_D + 40{,}000x_E \le 100{,}000 \\
+& x_A, x_B, x_C, x_D, x_E \in \{0,1\}
+\end{align*}
+
+\smallskip \underline{Bentuk Ringkas:}
+
+\begin{align*}
+\max \quad & \sum_{i \in P} \text{ret}_i \cdot x_i \\
+\st        & \sum_{i \in P} \text{inv}_i \cdot x_i \le B \\
+& x_i \in \{0,1\} &&\quad \text{untuk semua } i \in P
+\end{align*}
+
+\end{solution}
+
+\subsection{Masalah Transportasi}
+\begin{example}{Pengiriman Panel Surya}{}
+\emph{Catatan edisi: tiga berkas contoh yang ditautkan oleh otoritas sumber tidak terdapat dalam commit yang dipinkan, sehingga tombol kode yang rusak dinonaktifkan di sini.}
+
+SolTranz Inc. memproduksi panel surya berefisiensi tinggi di tiga pabrik yang berlokasi di Reno (R), Boulder (B), dan Tucson (T). Produksi maksimum di masing-masing fasilitas tersebut secara berurutan adalah 4,500, 5,500, dan 7,000 panel. Panel-panel ini harus dikirim ke lima gudang (berlabel 1 sampai 5), yang masing-masing memiliki permintaan tetap.
+
+Biaya produksi panel surya bergantung pada pabriknya, dan biaya pengiriman ke setiap gudang juga diketahui. Namun, tidak lebih dari 2,000 panel boleh dikirim dari satu pabrik ke satu gudang. Tabel berikut merangkum data tersebut.
+
+Formulasikan sebuah model pemrograman linear yang meminimumkan biaya total produksi dan pengiriman untuk memenuhi seluruh permintaan gudang.
+
+\end{example}
+
+\begin{table}[h!] \begin{center} \begin{tabular} {|c|c|c|c|c|c|c|}
+\hline Pabrik  & Biaya Produksi (\$) & G1 & G2 & G3 & G4 & G5 \\ \hline
+\hline Reno (R)     & 150     & 60  & 70  & 75  & 65  & 50 \\
+\hline Boulder (B)  & 140     & 80  & 55  & 65  & 70  & 60 \\
+\hline Tucson (T)   & 130     & 85  & 60  & 55  & 50  & 65 \\
+\hline
+\end{tabular} \end{center} \caption{Biaya produksi di setiap pabrik dan biaya pengiriman ke setiap gudang (dalam \$ per panel).}\label{tab:modeling-linear-programming-tab10}% tab-num-auto
+\end{table}
+
+\textbf{Permintaan Gudang:}
+\[
+\begin{aligned}
+\text{G1: } & 3000 \quad \text{G2: } 3500 \quad \text{G3: } 2500 \quad \text{G4: } 4000 \quad \text{G5: } 3000
+\end{aligned}
+\]
+
+\begin{solution}
+
+\smallskip \modelhead{Himpunan}
+\begin{itemize}
+\item Pabrik: \( F = \{R, B, T\} \)
+\item Gudang: \( W = \{1, 2, 3, 4, 5\} \)
+\end{itemize}
+
+\smallskip \modelhead{Parameter}
+\begin{itemize}
+\item \( C_f \): biaya produksi per panel di pabrik \( f \)
+\item \( S_f \): kapasitas pasokan pabrik \( f \)
+\item \( D_w \): permintaan di gudang \( w \)
+\item \( T_{f,w} \): biaya pengiriman per panel dari pabrik \( f \) ke gudang \( w \)
+\item \( M = 2000 \): jumlah maksimum panel yang dikirim dari pabrik mana pun ke gudang mana pun
+\end{itemize}
+
+\smallskip \modelhead{Variabel} \\
+\( x_{f,w} \): jumlah panel surya yang dikirim dari pabrik \( f \) ke gudang \( w \)
+
+\smallskip \modelhead{Model}
+\begin{align*}
+\min \quad & \sum_{f \in F} \sum_{w \in W} (C_f + T_{f,w}) \cdot x_{f,w} \\
+\st \quad 
+& \sum_{w \in W} x_{R,w} \leq 4500   \tag{kapasitas Reno} \\
+& \sum_{w \in W} x_{B,w} \leq 5500   \tag{kapasitas Boulder} \\
+& \sum_{w \in W} x_{T,w} \leq 7000   \tag{kapasitas Tucson} \\
+& \sum_{f \in F} x_{f,1} = 3000   \tag{permintaan G1} \\
+& \sum_{f \in F} x_{f,2} = 3500   \tag{permintaan G2} \\
+& \sum_{f \in F} x_{f,3} = 2500   \tag{permintaan G3} \\
+& \sum_{f \in F} x_{f,4} = 4000   \tag{permintaan G4} \\
+& \sum_{f \in F} x_{f,5} = 3000   \tag{permintaan G5} \\
+& 0 \leq x_{f,w} \leq 2000 &&\quad \text{untuk semua } f \in F,\; w \in W \\
+\end{align*}
+
+\end{solution}
+
+\subsection{Masalah Penugasan}
+Pertimbangkan penugasan $3$ karyawan kepada $3$ tugas, dengan biaya tertentu bagi setiap karyawan untuk mengerjakan setiap tugas. Bagaimana cara menentukan penugasan terbaik untuk tugas-tugas tersebut?
+
+\begin{examplewithallcode}
+{Perekrutan untuk Tugas}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_gurobi.ipynb}
+\label{example:hiring-for-tasks}
+Dalam masalah penugasan ini, kita perlu mempekerjakan tiga orang (Orang 1, Orang 2, Orang 3) untuk tiga tugas (Tugas 1, Tugas 2, Tugas 3). Tabel di bawah mencantumkan biaya dalam dolar untuk mempekerjakan setiap orang guna mengerjakan setiap tugas. Karena setiap orang mengenakan biaya yang berbeda untuk setiap tugas, kita harus membuat penugasan yang meminimumkan biaya total.
+
+\medskip
+\noindent
+\begin{center}
+\begin{tabular}{llll}
+    \hline
+        Biaya & Tugas 1 & Tugas 2 & Tugas 3  \\ \hline
+        Orang 1 & 45 & 38 & 60  \\ \hline
+        Orang 2 & 52 & 41 & 33  \\ \hline
+        Orang 3 & 27 & 49 & 56 \\ \hline
+    \end{tabular}
+\par\captionof{table}{Biaya untuk menugaskan setiap orang ke setiap tugas, dalam dolar.}\label{tab:modeling-linear-programming-tab06}% tab-num-auto
+
+\end{center}
+
+Berdasarkan biaya spesifik untuk menugaskan tiga orang kepada tiga tugas, kita dapat menuliskan model matematis secara eksplisit dengan menggunakan angka-angka yang diberikan.
+\end{examplewithallcode}
+\begin{solution}
+
+\smallskip \modelhead{Himpunan}
+\begin{itemize}
+\item Orang: $\{1, 2, 3\}$
+\item Tugas: $\{1, 2, 3\}$
+\end{itemize}
+
+\smallskip \modelhead{Parameter}
+\begin{itemize}
+\item $c_{ij}$: biaya penugasan orang $i$ untuk menyelesaikan tugas $j$
+\end{itemize}
+
+\smallskip \modelhead{Variabel} \\
+$x_{ij} = 1$ jika orang $i$ ditugaskan ke tugas $j$, dan $0$ jika tidak.
+
+\smallskip \modelhead{Model}
+\begin{align*}
+\min \quad & z = 45x_{11} + 38x_{12} + 60x_{13} + 52x_{21} + 41x_{22} + 33x_{23} + 27x_{31} + 49x_{32} + 56x_{33} \\
+\st        & x_{11} + x_{12} + x_{13} = 1   \tag{Orang 1} \\
+& x_{21} + x_{22} + x_{23} = 1   \tag{Orang 2} \\
+& x_{31} + x_{32} + x_{33} = 1   \tag{Orang 3} \\
+& x_{11} + x_{21} + x_{31} = 1   \tag{Tugas 1} \\
+& x_{12} + x_{22} + x_{32} = 1   \tag{Tugas 2} \\
+& x_{13} + x_{23} + x_{33} = 1   \tag{Tugas 3} \\
+& x_{ij} \in \{0, 1\}, \quad i,j \in \{1,2,3\}.
+\end{align*}
+\end{solution}
+
+\section{Latihan}
+
+Kerjakan soal-soal berikut untuk berlatih merumuskan program linear.\footnote{Beberapa latihan dalam bagian ini diadaptasi dari materi karya Rupinder Sekhon dan Roberta Bloom, yang dibagikan dengan lisensi CC BY 4.0 melalui LibreTexts.}
+
+\exgroup{Pemanasan}
+
+\begin{ex}{Mengidentifikasi Fungsi Linier}{}
+\stars{1} Manakah yang merupakan fungsi linier?
+\begin{enumerate}
+    \item $x^2 + 3y + 2z$
+    \item $\sqrt{x_1 x_2 x_3}$
+    \item $\sum_{i=1}^n a_i 2^{x_i}, \quad \text{dengan } a_1, a_2, \dots, a_n \text{ adalah konstanta}$
+    \item $\sum_{i=1}^n a_i x_i, \quad \text{dengan } a_1, a_2, \dots, a_n \text{ adalah konstanta}$
+\end{enumerate}
+\exrefs{\S\ref{sec:lp-modeling-assumptions}, Definisi~\ref{def:linearfunction}}
+\end{ex}
+
+\begin{ex}{Mengidentifikasi Fungsi Linier}{}
+\stars{1} Manakah yang merupakan fungsi linier?
+
+\begin{enumerate}
+    \item $2x_1 + x_2x_3 - 7x_3$
+    \item $\sqrt{2}x_1 + x_2 + 3^{1.6}x_3$
+\end{enumerate}
+\exrefs{\S\ref{sec:lp-modeling-assumptions}, Definisi~\ref{def:linearfunction}}
+\end{ex}
+
+\begin{ex}{Hoodie dan Poster}{}
+\label{ex:HoodiePosters}
+\stars{1} Sebuah usaha percetakan memproduksi hoodie dan poster sesuai pesanan. Setiap hoodie dijual seharga \$30 dengan biaya bahan \$18, sedangkan setiap poster dijual seharga \$8 dengan biaya bahan \$3. Sebuah hoodie memerlukan 3 jam waktu pencetakan dan 1 jam penyelesaian akhir, sedangkan sebuah poster memerlukan 1 jam waktu pencetakan dan 1 jam penyelesaian akhir. Usaha tersebut memiliki paling banyak 120 jam waktu pencetakan dan 70 jam waktu penyelesaian akhir per pekan, serta akan menjual tidak lebih dari 35 hoodie per pekan. Dengan mengikuti struktur Contoh~\ref{ex:ScreenPrint}, definisikan variabel keputusan, hitung koefisien laba, dan tuliskan program linear lengkap yang memaksimumkan laba mingguan.
+\exrefs{\S\ref{sec:lp-intro-example}, Contoh~\ref{ex:ScreenPrint}}
+\end{ex}
+
+\begin{ex}{Bubuk Smoothie}{}
+\stars{1} Sebuah gerai smoothie mencampurkan tiga bubuk suplemen ke dalam campuran hariannya. Per takar, bubuk A berharga \$1.20 dan menyediakan 6 g protein, 3 g serat, serta 2 mg zat besi; bubuk B berharga \$0.80 dan menyediakan 4 g protein, 2 g serat, serta 3 mg zat besi; bubuk C berharga \$0.60 dan menyediakan 2 g protein, 4 g serat, serta 1 mg zat besi. Campuran harian harus mengandung sekurang-kurangnya 24 g protein, 18 g serat, dan 12 mg zat besi. Dengan mengikuti struktur Contoh~\ref{example:diet-problem}, rumuskan sebuah LP yang memenuhi persyaratan dengan biaya minimum. Kemudian selesaikan dengan perangkat lunak, verifikasi bahwa biaya minimumnya adalah \$5.20, dan tentukan apakah campuran optimalnya unik.
+\exrefs{\S\ref{sec:lp-examples}, Contoh~\ref{example:diet-problem}}
+\end{ex}
+
+\exgroup{Soal inti}
+
+\begin{ex}{Pembuatan Bahan Kimia}{}
+\label{ex:ChemicalPlant}
+\stars{2} Sebuah pabrik pelapis khusus membuat tiga bahan aditif, yang diberi label A, B, dan C, sebagai keluaran bersama dari dua lini produksi kontinu. Setiap jam pengoperasian Lini 1 memerlukan biaya energi dan tenaga kerja sebesar \$5 serta menghasilkan 2 drum A, 3 drum B, dan 1 drum C. Setiap jam pengoperasian Lini 2 memerlukan biaya \$2 serta menghasilkan 1 drum A dan 2 drum C (Lini 2 tidak dapat membuat B). Kontrak mengharuskan pabrik mengirim sekurang-kurangnya 8 drum A, 6 drum B, dan 5 drum C setiap hari. Manajer pabrik menginginkan jadwal operasi harian untuk kedua lini yang memenuhi kontrak dengan biaya terendah.
+
+Rumuskan sebuah program linear untuk masalah manajer tersebut. Nyatakan variabel keputusan Anda dengan jelas, termasuk satuannya.
+
+\emph{[Petunjuk: keputusan yang diambil adalah berapa lama setiap lini harus dioperasikan, bukan berapa banyak setiap bahan kimia harus dibuat. Setelah variabel tersebut dipilih, biaya maupun keluaran setiap bahan kimia merupakan ekspresi linier dari variabel itu.]}
+\label{exer:ChemicalPlant}
+\exrefs{\S\ref{sec:lp-examples}, Contoh~\ref{example:diet-problem}}
+\end{ex}
+
+\begin{ex}{Ruang Pamer Sepeda Listrik}{}
+\label{ex:ebike-showroom}
+\stars{2} Sebuah ruang pamer menjual tiga model sepeda listrik: komuter, kargo, dan gunung. Setiap sepeda komuter, kargo, dan gunung yang dipajang masing-masing memerlukan ruang lantai seluas 2, 4, dan 3 meter persegi; ruang pamer memiliki 60 meter persegi yang tersedia. Penjualan satu sepeda masing-masing memerlukan 2, 3, dan 2 jam waktu staf, sedangkan 120 jam kerja staf tersedia per bulan. Setiap sepeda yang terjual juga masing-masing memerlukan 1, 3, dan 2 jam di area perakitan, yang memiliki 75 jam tersedia per bulan.
+
+Jika laba (dalam dolar) per sepeda komuter, kargo, dan gunung masing-masing adalah 150, 300, dan 240, berapa banyak setiap model yang harus direncanakan ruang pamer untuk dijual setiap bulan guna memaksimumkan laba, dan berapakah laba maksimumnya?
+\exrefs{\S\ref{sec:lp-examples}, Contoh~\ref{example:bakery-production}}
+\end{ex}
+
+\begin{ex}{Masalah Laba Manufaktur}{}
+\label{ex:two-machine-profit}
+\stars{2} Sebuah bengkel furnitur membuat rak buku, meja, dan lemari. Setiap produk melewati dua stasiun kerja: mesin router CNC dan stasiun penyelesaian akhir. Mesin router tersedia selama 200 jam per bulan dan stasiun penyelesaian akhir selama 240 jam per bulan. Tabel di bawah ini menunjukkan kebutuhan waktu (dalam jam per unit) dan laba per unit untuk setiap produk.
+
+\[
+\begin{array}{|c|c|c|c|}
+\hline
+ & \text{Rak buku} & \text{Meja} & \text{Lemari} \\
+\hline
+\text{Router} & 1 & 2 & 3 \\
+\hline
+\text{Penyelesaian akhir} & 2 & 2 & 4 \\
+\hline
+\text{Laba (dolar)} & 25 & 40 & 55 \\
+\hline
+\end{array}
+\]
+\par\captionof{table}{Kebutuhan waktu (jam per unit) dan laba per unit untuk setiap produk.}\label{tab:modeling-linear-programming-tab07}% tab-num-auto
+
+
+Berapa unit setiap produk yang harus dibuat untuk memaksimumkan laba, dan berapakah laba maksimumnya?
+\exrefs{\S\ref{sec:lp-examples}, Contoh~\ref{example:welding-robot}}
+\end{ex}
+
+\begin{ex}{Pabrik Pembotolan Jus}{}
+\label{ex:factory-days}
+\stars{2} Sebuah perusahaan minuman membotolkan tiga jenis jus (apel, jeruk, dan anggur) di dua pabrik. Jumlah peti yang dibotolkan setiap pabrik per hari operasi tercantum di bawah ini:
+
+\[
+\begin{array}{|c|c|c|}
+\hline
+ & \text{Pabrik 1} & \text{Pabrik 2} \\
+\hline
+\text{Apel} & 30 & 10 \\
+\hline
+\text{Jeruk} & 20 & 20 \\
+\hline
+\text{Anggur} & 10 & 30 \\
+\hline
+\end{array}
+\]
+\par\captionof{table}{Jumlah peti setiap jus yang dibotolkan per hari operasi di setiap pabrik.}\label{tab:modeling-linear-programming-tab08}% tab-num-auto
+
+
+Seorang distributor telah memesan sekurang-kurangnya 300 peti jus apel, 320 peti jus jeruk, dan 180 peti jus anggur. Jika biaya pengoperasian Pabrik 1 adalah \$3000 per hari dan biaya pengoperasian Pabrik 2 adalah \$4500 per hari, berapa hari setiap pabrik harus beroperasi untuk memenuhi pesanan dengan biaya minimum, dan berapakah biaya minimumnya?
+\exrefs{\S\ref{sec:lp-examples}, Contoh~\ref{example:diet-problem}}
+\end{ex}
+
+\begin{ex}{Meminimumkan Waktu Penilaian Kuis}{}
+\stars{2} Profesor Wright memberikan tiga jenis kuis (objektif, hafalan, dan hafalan-plus) serta memutuskan untuk memberikan sekurang-kurangnya 20 kuis pada kuartal berikutnya. Setiap jenis kuis mengharuskan mahasiswa meluangkan waktu persiapan tambahan:
+\[
+\begin{aligned}
+&\text{Objektif: } 10 \text{ menit per kuis},\\
+&\text{Hafalan: } 30 \text{ menit per kuis},\\
+&\text{Hafalan-plus: } 60 \text{ menit per kuis}.
+\end{aligned}
+\]
+Ia ingin mahasiswa menghabiskan sekurang-kurangnya 12 jam (720 menit) untuk persiapan total bagi kuis-kuis ini (di luar waktu belajar biasa).
+
+Nilai rata-rata kuis adalah:
+\[
+\text{Objektif: } 5,\quad
+\text{Hafalan: } 6,\quad
+\text{Hafalan-plus: } 7.
+\]
+Ia ingin jumlah seluruh nilai kuis sekurang-kurangnya 130 poin.
+
+Waktu yang dibutuhkan profesor adalah:
+\[
+\begin{aligned}
+& 1 \text{ menit untuk menilai setiap kuis objektif},\\
+& 2 \text{ menit untuk menilai setiap kuis hafalan},\\
+& 3 \text{ menit untuk menilai setiap kuis hafalan-plus}.
+\end{aligned}
+\]
+Berapa banyak kuis dari setiap jenis yang harus ia berikan untuk meminimumkan waktu penilaiannya sendiri?
+\exrefs{\S\ref{sec:lp-examples}, Contoh~\ref{example:diet-problem}}
+\end{ex}
+
+\begin{ex}{Penjadwalan Kaf\'e Kampus}{}
+\label{ex:cafe-scheduling}
+\stars{2} Sebuah kaf\'e kampus buka tujuh hari dalam sepekan. Setiap barista bekerja selama empat hari berturut-turut, kemudian libur selama tiga hari. Jumlah minimum barista yang diperlukan setiap hari adalah:
+\[
+\begin{array}{|l|c|c|c|c|c|c|c|}
+\hline
+\text{Hari} & \text{Sen} & \text{Sel} & \text{Rab} & \text{Kam} & \text{Jum} & \text{Sab} & \text{Min} \\
+\hline
+\text{Barista yang diperlukan} & 5 & 4 & 3 & 4 & 6 & 8 & 7 \\
+\hline
+\end{array}
+\]
+\par\captionof{table}{Jumlah minimum barista yang diperlukan pada setiap hari dalam sepekan.}\label{tab:modeling-linear-programming-tab09}% tab-num-auto
+
+\begin{enumerate}
+\item Misalkan $x_i$ adalah jumlah barista yang memulai rentang kerja empat hari mereka pada hari $i$ (dengan pekan berulang secara siklis). Rumuskan sebuah LP yang meminimumkan jumlah total barista yang direkrut.
+\item Selesaikan relaksasi LP dengan perangkat lunak dan verifikasi bahwa nilai optimalnya adalah $28/3 \approx 9.33$.
+\item Jelaskan mengapa bagian (b) menyiratkan bahwa setiap rencana penempatan staf fisibel dengan jumlah barista berupa bilangan bulat menggunakan sekurang-kurangnya 10 barista, lalu temukan sebuah rencana yang menggunakan tepat 10 barista.
+\end{enumerate}
+\exrefs{\S\ref{sec:lp-examples}, Contoh~\ref{example:work-scheduling}}
+\end{ex}
+
+\exgroup{Konsep dan keterkaitan}
+
+\begin{ex}{Mengidentifikasi Kendala Linier}{}
+\label{ex:linear-inequalities-check}
+\stars{2} Manakah yang merupakan kendala linier? Untuk setiap kendala yang tidak linier sebagaimana dituliskan, tentukan apakah kendala tersebut dapat diubah menjadi kendala linier.
+
+\begin{enumerate}
+    \item $\frac{x_1}{x_1 + x_2 + x_3} \geq 0.5$
+    \item $\sin x_1 + x_2 + x_3 = 0.5$
+    \item $\sum_{i=1}^n a_i 2^{x_i} \geq b, \quad \text{dengan } a_1, a_2, \dots, a_n, b \text{ adalah konstanta}$
+    \item $\sum_{i=1}^n a_i x_i = b, \quad \text{dengan } a_1, a_2, \dots, a_n, b \text{ adalah konstanta}$
+    \item $\sum_{i=1}^n a_i x_i \geq b, \quad \text{dengan } a_1, a_2, \dots, a_n, b \text{ adalah konstanta}$
+\end{enumerate}
+\exrefs{\S\ref{sec:lp-modeling-assumptions}, Definisi~\ref{def:linearfunction}}
+\end{ex}
+
+\begin{ex}{Biaya Acak dalam Fungsi Tujuan}{}
+\stars{3} Dalam setiap model sejauh ini, koefisien fungsi tujuan merupakan bilangan tetap. Sekarang, anggap setiap koefisien biaya $c_i$ tidak diketahui secara tepat; sebagai gantinya, Anda mengetahui distribusi probabilitasnya. Usulkan satu program linear deterministik yang meminimumkan biaya harapan dan menghasilkan rencana yang masuk akal dalam ketidakpastian ini, lalu jelaskan apa yang direpresentasikan oleh fungsi tujuan Anda.
+
+\emph{[Petunjuk: jika sebuah tiket lotre memberikan hadiah antara \$1 dan \$2 dengan semua nilai memiliki peluang yang sama, satu bilangan apa yang merangkum nilainya bagi Anda? Terapkan ringkasan yang sama pada setiap $c_i$.]}
+\exrefs{\S\ref{sec:lp-modeling-assumptions}}
+\end{ex}
+
+\begin{ex}{Asumsi Mana yang Dilanggar?}{}
+\label{ex:assumption-audit}
+\stars{2} Untuk setiap skenario di bawah ini, sebutkan asumsi pemrograman linear (proporsionalitas, aditivitas, keterbagian, atau kepastian) yang paling jelas dilanggar, lalu jelaskan pilihan Anda dalam satu kalimat.
+\begin{enumerate}
+\item Seorang pemasok mengenakan harga \$5 per unit untuk 100 unit pertama dan \$4 per unit untuk setiap unit setelah 100 unit.
+\item Dua kampanye iklan masing-masing meningkatkan penjualan ketika dijalankan sendiri, tetapi ketika keduanya dijalankan pada pekan yang sama, keduanya menjangkau sebagian besar audiens yang sama sehingga dampak gabungannya lebih kecil daripada jumlah dampak masing-masing.
+\item Sebuah rencana pengiriman optimal membutuhkan 3.6 truk.
+\item Model penanaman seorang petani menggunakan hasil panen yang bergantung pada curah hujan musim panas mendatang.
+\end{enumerate}
+Kemudian jawab: dalam skenario (a), apakah pelanggaran tersebut menimbulkan masalah jika perusahaan pasti membeli lebih dari 100 unit dan model hanya perlu akurat dalam rentang tersebut?
+\exrefs{\S\ref{sec:lp-assumptions}, Contoh~\ref{ex:ScreenPrint}}
+\end{ex}
+
+\exgroup{Soal tantangan}
+
+\begin{ex}{Produksi dengan Tenaga Kerja Sewa}{}
+\label{ex:rented-labor}
+\stars{3} Sebuah bengkel membuat tiga produk, A, B, dan C, dengan laba masing-masing \$30, \$45, dan \$24 per unit. Setiap unit A, B, dan C masing-masing menggunakan 2, 4, dan 1 jam-mesin, sedangkan paling banyak 160 jam-mesin tersedia per pekan. Setiap unit masing-masing menggunakan 3, 3, dan 2 jam kerja. Bengkel tersebut memiliki 180 jam kerja miliknya sendiri, dan ada satu hal tambahan: bengkel juga dapat menyewa hingga 30 jam kerja dari agen tenaga kerja dengan biaya \$9 per jam, dengan jumlah jam sewa dipilih sebagai bagian dari rencana.
+\begin{enumerate}
+\item Rumuskan masalah ini sebagai sebuah LP dengan variabel $x_1, x_2, x_3$ untuk produksi dan $r$ untuk jam sewa. Perhatikan letak $r$ dalam fungsi tujuan dan dalam kendala.
+\item Selesaikan LP dengan perangkat lunak. Laporkan rencana produksi, jumlah jam sewa, dan laba bersih.
+\item Perhitungkan juga kendala jam-mesin: tunjukkan bahwa satu jam tenaga kerja tambahan dapat digunakan melalui perubahan $\Delta x_2=-0.2$ dan $\Delta x_3=0.8$ tanpa mengubah penggunaan mesin. Bandingkan kenaikan laba kotor yang dihasilkan dengan biaya sewa \$9 untuk menjelaskan mengapa rencana optimal menyewa sampai batas yang tersedia.
+\end{enumerate}
+\exrefs{\S\ref{sec:lp-examples}, Contoh~\ref{example:welding-robot}, \S\ref{sec:lp-assumptions}}
+\end{ex}
+
+\subsubsection*{Solusi Terpilih}
+
+\begin{solution}(Latihan~\ref{ex:ChemicalPlant})
+Misalkan $x_1$ dan $x_2$ adalah waktu operasi harian (dalam jam) Lini 1 dan Lini 2. Setiap jam pengoperasian Lini 1 memerlukan biaya \$5 dan setiap jam pengoperasian Lini 2 memerlukan biaya \$2, sedangkan setiap kontrak menjadi kendala batas bawah untuk keluaran total:
+\begin{align*}
+\min \quad & z = 5x_1 + 2x_2\\
+\st \quad & 2x_1 + x_2 \geq 8 && \text{(drum A)}\\
+& 3x_1 \geq 6 && \text{(drum B)}\\
+& x_1 + 2x_2 \geq 5 && \text{(drum C)}\\
+& x_1, x_2 \geq 0.
+\end{align*}
+Penyelesaian (secara grafis atau dengan perangkat lunak) menghasilkan $x_1 = 2$ jam dan $x_2 = 4$ jam, dengan biaya harian $z^* = 5(2) + 2(4) = \$18$. Kontrak A dan B dipenuhi secara tepat ($2(2)+4 = 8$ dan $3(2) = 6$), sedangkan C dikirim secara berlebih: jadwal tersebut menghasilkan $2 + 2(4) = 10$ drum dibandingkan dengan $5$ drum yang diperlukan.
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:linear-inequalities-check})
+Hanya (4) dan (5) yang linier sebagaimana dituliskan: (4) adalah persamaan linier dan (5) adalah pertidaksamaan linier, keduanya dengan ruas kiri berbentuk $\sum_i a_i x_i$. Persamaan (4) dapat digunakan dalam program linear; persamaan tersebut ekuivalen dengan pasangan pertidaksamaan $\sum_i a_i x_i \geq b$ dan $\sum_i a_i x_i \leq b$.
+Pertidaksamaan (1) tidak linier karena variabel muncul dalam sebuah rasio, tetapi dapat diubah menjadi linier: jika kita mengetahui $x_1 + x_2 + x_3 > 0$, mengalikan kedua ruas dengan penyebut menghasilkan $x_1 \geq 0.5(x_1 + x_2 + x_3)$, yaitu $0.5x_1 - 0.5x_2 - 0.5x_3 \geq 0$.
+Kendala (2) dan (3) tidak dapat dilinierkan: $\sin x_1$ dan $2^{x_i}$ merupakan fungsi nonlinier dari variabel, dan tidak ada penataan ulang aljabar yang menghilangkannya.
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:two-machine-profit})
+Misalkan $x_1, x_2, x_3$ adalah jumlah rak buku, meja, dan lemari yang dibuat per bulan. Jam kerja setiap stasiun kerja memberikan satu kendala:
+\begin{align*}
+\max \quad & z = 25x_1 + 40x_2 + 55x_3\\
+\st \quad & x_1 + 2x_2 + 3x_3 \leq 200 && \text{(router)}\\
+& 2x_1 + 2x_2 + 4x_3 \leq 240 && \text{(penyelesaian akhir)}\\
+& x_1, x_2, x_3 \geq 0.
+\end{align*}
+Solusi optimalnya adalah $x_1 = 40$ rak buku, $x_2 = 80$ meja, dan $x_3 = 0$ lemari, dengan laba maksimum \$4200. Kedua kendala stasiun kerja mengikat, dan membuat lemari tidak menguntungkan: sebuah lemari menggunakan tepat sumber daya yang sama dengan gabungan satu rak buku dan satu meja ($3=1+2$ jam mesin router dan $4=2+2$ jam penyelesaian akhir), tetapi hanya menghasilkan \$55 dibandingkan dengan \$65 dari gabungan tersebut.
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:factory-days})
+Misalkan $x_1$ dan $x_2$ adalah jumlah hari pengoperasian Pabrik 1 dan Pabrik 2. Kita meminimumkan biaya operasi dengan kendala bahwa pesanan harus dipenuhi:
+\begin{align*}
+\min \quad & z = 3000x_1 + 4500x_2\\
+\st \quad & 30x_1 + 10x_2 \geq 300 && \text{(apel)}\\
+& 20x_1 + 20x_2 \geq 320 && \text{(jeruk)}\\
+& 10x_1 + 30x_2 \geq 180 && \text{(anggur)}\\
+& x_1, x_2 \geq 0.
+\end{align*}
+Solusi optimalnya adalah $x_1 = 15$ hari dan $x_2 = 1$ hari, dengan biaya minimum \$49{,}500. Pada titik ini, kendala jus jeruk dan anggur mengikat, sedangkan jus apel diproduksi secara berlebih ($460 \geq 300$ peti).
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:HoodiePosters})
+Misalkan $x_1$ adalah jumlah hoodie dan $x_2$ adalah jumlah poster yang diproduksi per pekan. Laba per hoodie adalah $\$30 - \$18 = \$12$ dan laba per poster adalah $\$8 - \$3 = \$5$, sehingga modelnya adalah
+\begin{align*}
+\max \quad & z = 12x_1 + 5x_2\\
+\st \quad & 3x_1 + x_2 \leq 120 && \text{(pencetakan)}\\
+& x_1 + x_2 \leq 70 && \text{(penyelesaian akhir)}\\
+& x_1 \leq 35 && \text{(pasar)}\\
+& x_1, x_2 \geq 0.
+\end{align*}
+Solusi optimalnya adalah $x_1 = 25$ hoodie dan $x_2 = 45$ poster, yaitu pada perpotongan kendala pencetakan dan penyelesaian akhir, dengan laba mingguan $12(25) + 5(45) = \$525$. Memproduksi jumlah maksimum 35 hoodie bukanlah pilihan optimal: hal itu hanya menyisakan $120 - 105 = 15$ jam pencetakan untuk poster, dan labanya turun menjadi $12(35) + 5(15) = \$495$.
+\end{solution}
+
+\enlargethispage{2\baselineskip}
+\begin{solution}(Latihan~\ref{ex:rented-labor})
+Petunjuk: jam sewa berbiaya $9r$ dan menambah kapasitas tenaga kerja menjadi $3x_1 + 3x_2 + 2x_3 \leq 180 + r$, dengan $0 \leq r \leq 30$. Per jam sewa, $\Delta x_2=-0.2$ dan $\Delta x_3=0.8$ menjaga penggunaan mesin karena $4(-0.2)+0.8=0$, memakai satu jam tenaga kerja karena $3(-0.2)+2(0.8)=1$, dan menaikkan laba kotor sebesar $45(-0.2)+24(0.8)=\$10.20$. Setelah biaya \$9, laba bersih bertambah \$1.20, sehingga batas sewa aktif. Solver memberi $(x_1,x_2,x_3,r)=(0,22,72,30)$; kedua kendala mengikat dan laba bersihnya $45(22) + 24(72) - 9(30) = \$2448$.
+\end{solution}

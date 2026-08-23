@@ -1,0 +1,319 @@
+{
+  "content_license": "CC-BY-SA-4.0",
+  "exercises": {
+    "3.1": {
+      "cost": {
+        "W1": {
+          "S1": 3,
+          "S2": 7
+        },
+        "W2": {
+          "S1": 4,
+          "S2": 2
+        }
+      },
+      "demand": {
+        "S1": 25,
+        "S2": 25
+      },
+      "domain": "NonNegativeReals",
+      "route_capacity": {
+        "W1": {
+          "S1": 15,
+          "S2": 10
+        },
+        "W2": {
+          "S1": 20,
+          "S2": 20
+        }
+      },
+      "sense": "minimize",
+      "supply": {
+        "W1": 20,
+        "W2": 30
+      },
+      "title_id": "Jaringan biaya minimum"
+    },
+    "3.2": {
+      "demand": [
+        6,
+        9,
+        7,
+        8,
+        5,
+        10,
+        7,
+        6,
+        8,
+        4
+      ],
+      "domain": "NonNegativeReals",
+      "holding_cost": 5,
+      "initial_inventory": 5,
+      "production_cost": [
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28
+      ],
+      "sense": "minimize",
+      "title_id": "Perencanaan produksi sepuluh periode"
+    },
+    "3.3": {
+      "domain": "NonNegativeReals",
+      "exact_objective_fraction": "2407651/760055",
+      "foods": [
+        "oatmeal",
+        "whole_milk",
+        "brown_rice",
+        "black_beans",
+        "almond_butter"
+      ],
+      "minimum": {
+        "calories": 2200,
+        "carbohydrates": 300,
+        "fat": 60,
+        "protein": 90
+      },
+      "nutrient": {
+        "almond_butter": {
+          "calories": 196,
+          "carbohydrates": 6,
+          "fat": 18,
+          "protein": 7
+        },
+        "black_beans": {
+          "calories": 227,
+          "carbohydrates": 41,
+          "fat": 0.9,
+          "protein": 15
+        },
+        "brown_rice": {
+          "calories": 216,
+          "carbohydrates": 45,
+          "fat": 1.8,
+          "protein": 5
+        },
+        "oatmeal": {
+          "calories": 150,
+          "carbohydrates": 27,
+          "fat": 3,
+          "protein": 5
+        },
+        "whole_milk": {
+          "calories": 149,
+          "carbohydrates": 12,
+          "fat": 8,
+          "protein": 8
+        }
+      },
+      "price": {
+        "almond_butter": 0.45,
+        "black_beans": 0.4,
+        "brown_rice": 0.18,
+        "oatmeal": 0.25,
+        "whole_milk": 0.3
+      },
+      "sense": "minimize",
+      "title_id": "Diet kontinu"
+    },
+    "3.4": {
+      "domain": "NonNegativeReals",
+      "profit": {
+        "gadget": 6,
+        "widget": 8
+      },
+      "resource_capacity": {
+        "machine": 40,
+        "material": 30
+      },
+      "resource_use": {
+        "gadget": {
+          "machine": 1,
+          "material": 2
+        },
+        "widget": {
+          "machine": 2,
+          "material": 1
+        }
+      },
+      "sensitivity": {
+        "widget_profit_allowable_range": [
+          3,
+          12
+        ],
+        "widget_profit_rerun": 9
+      },
+      "sense": "maximize",
+      "title_id": "Produksi dua produk"
+    },
+    "3.5": {
+      "cost": {
+        "W1": {
+          "S1": 4,
+          "S2": 8,
+          "S3": 1
+        },
+        "W2": {
+          "S1": 6,
+          "S2": 3,
+          "S3": 5
+        }
+      },
+      "demand": {
+        "S1": 30,
+        "S2": 40,
+        "S3": 40
+      },
+      "domain": "NonNegativeReals",
+      "sense": "minimize",
+      "supply": {
+        "W1": 60,
+        "W2": 50
+      },
+      "title_id": "Transportasi seimbang"
+    },
+    "3.6": {
+      "domain": "NonNegativeReals",
+      "profit": {
+        "chair": 50,
+        "desk": 90,
+        "table": 70
+      },
+      "resource_capacity": {
+        "carpentry": 240,
+        "finishing": 100,
+        "wood": 2000
+      },
+      "resource_use": {
+        "chair": {
+          "carpentry": 3,
+          "finishing": 1,
+          "wood": 20
+        },
+        "desk": {
+          "carpentry": 6,
+          "finishing": 3,
+          "wood": 40
+        },
+        "table": {
+          "carpentry": 4,
+          "finishing": 2,
+          "wood": 30
+        }
+      },
+      "sensitivity": {
+        "desk_profit_allowable_increase": 15,
+        "desk_profit_reruns": [
+          100,
+          110
+        ],
+        "finishing_capacity_increase": 20,
+        "shadow_price_scope": "Interpretasi 5 dolar per jam berlaku hanya sampai kenaikan RHS 20 jam yang diuji."
+      },
+      "sense": "maximize",
+      "title_id": "Produksi furnitur dan sensitivitas"
+    },
+    "3.7": {
+      "cost": {
+        "P1": {
+          "C1": 4,
+          "C2": 5,
+          "C3": 7
+        },
+        "P2": {
+          "C1": 6,
+          "C2": 3,
+          "C3": 2
+        },
+        "P3": {
+          "C1": 5,
+          "C2": 8,
+          "C3": 4
+        }
+      },
+      "demand": {
+        "C1": 50,
+        "C2": 60,
+        "C3": 40
+      },
+      "domain": "NonNegativeReals",
+      "reporting_assumption": "Karena solusi primal degenerat, hasil tidak menserialkan vektor aliran rute atau total tiap pabrik sebagai nilai unik.",
+      "sense": "minimize",
+      "supply_capacity": {
+        "P1": 70,
+        "P2": 50,
+        "P3": 40
+      },
+      "title_id": "Transportasi tak seimbang dan sensitivitas"
+    },
+    "3.8": {
+      "comparison": [
+        {
+          "global_guarantee": "Ya, untuk LP yang layak dan berbatas.",
+          "method": "Simplex LP",
+          "model_class": "Objektif dan kendala linear kontinu.",
+          "sensitivity": "Dual, reduced cost, dan rentang sensitivitas basis LP tersedia."
+        },
+        {
+          "global_guarantee": "Tidak secara umum; dapat berhenti di optimum lokal dan bergantung pada titik awal.",
+          "method": "GRG Nonlinear",
+          "model_class": "Model nonlinear halus pada domainnya.",
+          "sensitivity": "Tidak memberikan rentang allowable LP yang setara."
+        },
+        {
+          "global_guarantee": "Tidak; hasil bersifat heuristik.",
+          "method": "Evolutionary",
+          "model_class": "Model nonsmooth atau diskret yang sulit ditangani metode gradien.",
+          "sensitivity": "Tidak memberikan laporan sensitivitas LP klasik."
+        }
+      ],
+      "formula_case": "Rumus B2*B3 bersifat nonlinear bila kedua sel adalah variabel keputusan; Simplex LP harus menolaknya atau model harus direformulasi.",
+      "smooth_example": "sqrt(x1)+sqrt(x2) halus hanya pada domain x1 >= epsilon dan x2 >= epsilon untuk epsilon > 0.",
+      "title_id": "Perbandingan konseptual metode pemecah"
+    },
+    "3.9": {
+      "assets": {
+        "A": {
+          "return": 0.05
+        },
+        "B": {
+          "return": 0.12,
+          "upper_bound": 140
+        }
+      },
+      "budget": 100,
+      "modes": {
+        "nonnegative_checkbox_off": {
+          "A_domain": "Reals",
+          "B_domain": "NonNegativeReals"
+        },
+        "nonnegative_checkbox_on": {
+          "A_domain": "NonNegativeReals",
+          "B_domain": "NonNegativeReals"
+        }
+      },
+      "sense": "maximize",
+      "title_id": "Variabel bebas dan short selling"
+    }
+  },
+  "lab_id": "o018.ch03.spreadsheet-replacements",
+  "provenance": {
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "translated_chapter": {
+      "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch03-software/software-excel.tex",
+      "sha256": "a38b55c6ffd45a60b0b225c5fd9807628c17bbc39201efac588fbe760dae5a70"
+    },
+    "translated_solutions_manual": {
+      "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch03.tex",
+      "sha256": "847c8b25bcca57a0d20c15f7b46ce81ddb72e4a76a8d2421cd057b4c765eed15"
+    }
+  },
+  "schema_version": "1.0.0"
+}

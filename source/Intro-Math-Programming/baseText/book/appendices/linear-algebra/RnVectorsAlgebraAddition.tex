@@ -1,0 +1,73 @@
+\subsection{Penjumlahan Vektor dalam \texorpdfstring{$\mathbb{R}^n$}{Rn}}
+
+Penjumlahan vektor dalam $\mathbb{R}^n$ didefinisikan sebagai berikut.  \index{vektor!penjumlahan}
+
+\begin{definition}{Penjumlahan Vektor dalam $\mathbb{R}^n$}\label{def:vectoraddition}
+Jika $\vect{u}=\leftB \begin{array}{c}
+u_{1} \\
+\vdots \\
+u_{n}
+\end{array}
+\rightB,\; \vect{v}= \leftB \begin{array}{c}
+v_{1} \\
+\vdots \\
+v_{n}
+\end{array}
+\rightB \in \mathbb{R}^{n}$
+maka $\vect{u}+\vect{v}\in \mathbb{R}^{n}$ dan didefinisikan oleh
+\begin{eqnarray*}
+\vect{u}+\vect{v} &=& \leftB \begin{array}{c}
+u_{1} \\
+\vdots \\
+u_{n}
+\end{array}
+\rightB +  \leftB \begin{array}{c}
+v_{1} \\
+\vdots \\
+v_{n}
+\end{array} \rightB\\
+& =& \leftB \begin{array}{c}
+u_{1}+v_{1} \\
+\vdots \\
+u_{n}+v_{n}
+\end{array}
+\rightB
+\end{eqnarray*}
+\end{definition}
+
+Untuk menjumlahkan vektor, kita cukup menjumlahkan komponen-komponen yang bersesuaian. Oleh karena itu, agar dapat dijumlahkan, vektor-vektor tersebut harus
+berukuran sama.
+
+Penjumlahan vektor memenuhi beberapa sifat penting yang diuraikan dalam teorema berikut.
+
+\begin{theorem}{Sifat-Sifat Penjumlahan Vektor}\label{thm:propertiesvectoraddition}
+Sifat-sifat berikut berlaku untuk vektor $\vect{u},\vect{v}, \vect{w} \in \mathbb{R}^{n}$.
+\begin{itemize}
+\item Hukum Komutatif Penjumlahan
+\begin{equation*}
+\vect{u}+\vect{v}=\vect{v}+\vect{u}
+\end{equation*}
+\item Hukum Asosiatif Penjumlahan
+\begin{equation*}
+\left( \vect{u}+\vect{v}\right) +\vect{w}=\vect{u}+\left( \vect{v}+\vect{w}\right)
+\end{equation*}
+\item Keberadaan Identitas Aditif
+\begin{equation}
+\vect{u}+\vect{0}=\vect{u}
+\label{vectoridentity}
+\end{equation}
+\item Keberadaan Invers Aditif
+\begin{equation*}
+\vect{u}+\left( -\vect{u}\right) =\vect{0}
+\end{equation*}
+\end{itemize}
+\end{theorem}
+
+Identitas aditif yang ditunjukkan dalam persamaan
+\ref{vectoridentity} juga disebut \textbf{vektor nol}\index{vektor nol},
+yaitu vektor $n \times 1$ yang semua komponennya sama dengan $0$.
+Lebih lanjut, $-\vect{u}$ hanyalah vektor yang semua komponennya memiliki
+nilai yang sama dengan komponen-komponen $\vect{u}$ tetapi bertanda kebalikan; ini tidak lain adalah
+$(-1)\vect{u}$. Hal ini akan dibuat lebih eksplisit pada bagian berikutnya
+ketika kita mengkaji perkalian skalar pada vektor. Perhatikan bahwa pengurangan didefinisikan sebagai $\vect{u}-\vect{v} = \vect{u}+\left(
+-\vect{v} \right)$ \index{vektor!pengurangan}.

@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: >-
+  Jika Anda menggunakan edisi Bahasa Indonesia ini, sitasilah buku dan
+  cantumkan versi atau DOI rilis yang Anda gunakan.
+title: "Pemrograman Matematis dan Riset Operasi: Buku 1 — Edisi Bahasa Indonesia"
+type: book
+authors:
+  - family-names: Hildebrand
+    given-names: Robert
+version: "2026.08.23-id.5"
+date-released: 2026-08-23
+doi: 10.5281/zenodo.22059794
+license:
+  - CC-BY-SA-4.0
+  - MIT
+abstract: >-
+  Edisi Bahasa Indonesia dari Mathematical Programming and Operations
+  Research, Book 1, berdasarkan komit sumber
+  1745df89b608899f66983834fa4ec8c8910d18ff. Rilis menyertakan laboratorium
+  Pyomo+HiGHS O018 yang diatribusikan secara terpisah dan backend modular
+  untuk pertukaran unit terjemahan. Terjemahan dan produksi dibantu oleh
+  OpenAI Codex gpt-5.6-sol, Ultra atas permintaan pengguna; AI bukan pengarang.
+keywords:
+  - Bahasa Indonesia
+  - operations research
+  - mathematical programming
+  - linear programming
+  - integer programming
+  - Pyomo
+  - HiGHS
+references:
+  - type: software
+    title: "open-optimization/open-optimization-or-book"
+    authors:
+      - family-names: Hildebrand
+        given-names: Robert
+    repository-code: "https://github.com/open-optimization/open-optimization-or-book"
+    version: "1745df89b608899f66983834fa4ec8c8910d18ff"

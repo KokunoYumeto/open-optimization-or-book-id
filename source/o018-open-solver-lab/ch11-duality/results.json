@@ -1,0 +1,1402 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "corrections": [
+    {
+      "certificate": "Kasus minimisasi simetris yang sah adalah min b^T x dengan Ax>=c dan x>=0, berdual max c^T y dengan A^T y<=b dan y>=0; contoh satu variabel terkoreksi memberi 3=3, sedangkan bentuk lama memberi klaim 3<=0 yang salah.",
+      "id": "CORR-CH11-CASE2-GEQ",
+      "solver_checks": [
+        {
+          "case": "case2_corrected",
+          "maximum_violation": 0,
+          "objective": 3,
+          "point": {
+            "x1": 3
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "case2_corrected",
+          "maximum_violation": 0,
+          "objective": 3,
+          "point": {
+            "y1": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "source_location": "translated duality.tex lines 556-584; translated manual ch11.tex line 16",
+      "type": "source_math_correction",
+      "verification": {
+        "corrected_dual_value": 3,
+        "corrected_primal_value": 3,
+        "old_form_weak_duality_counterexample": "dual 3 tidak <= primal 0"
+      }
+    },
+    {
+      "certificate": "Pada maksimisasi campuran, kendala >= memberi pengali <=0, kendala <= memberi pengali >=0, dan variabel bebas memberi persamaan dual; contoh terkoreksi memiliki primal taklayak dan dual takterbatas.",
+      "id": "CORR-CH11-MIXED-SIGNS-FREE",
+      "solver_checks": [
+        {
+          "case": "complicated_corrected",
+          "maximum_violation": null,
+          "objective": null,
+          "point": null,
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "error",
+          "termination_condition": "infeasible",
+          "variant": "corrected_signs"
+        },
+        {
+          "case": "complicated_corrected",
+          "maximum_violation": null,
+          "objective": null,
+          "point": null,
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "error",
+          "termination_condition": "unbounded",
+          "variant": "corrected_signs"
+        }
+      ],
+      "source_location": "translated duality.tex lines 902-1038; translated manual ch11.tex line 17",
+      "type": "source_math_correction",
+      "verification": {
+        "dual_feasible_base_point": [
+          "3/2",
+          0,
+          "1/2"
+        ],
+        "dual_unbounded_ray": [
+          1,
+          -2,
+          3
+        ],
+        "primal_x1_lower_bound": "5/3",
+        "primal_x1_upper_bound": "3/2",
+        "ray_objective_change": -1
+      }
+    },
+    {
+      "certificate": "Titik (1,1) hanya kandidat: 2(1)+1=3<5, sehingga tidak layak dual; pasangan optimum adalah x=(3,2), y=(11/5,3/5), bernilai 23.",
+      "id": "CORR-CH11-EX11-13-CANDIDATE",
+      "solver_checks": [],
+      "source_location": "translated complimentary-slackness.tex line 360; translated manual ch11.tex line 18",
+      "type": "source_wording_correction",
+      "verification": {
+        "candidate_first_constraint_lhs": 3,
+        "candidate_first_constraint_rhs": 5,
+        "candidate_is_dual_feasible": false,
+        "correct_optimum": 23
+      }
+    }
+  ],
+  "exercises": {
+    "11.1": {
+      "certificate": {
+        "data_mapping": {
+          "primal_objective_to_dual_rhs": [
+            5,
+            4
+          ],
+          "primal_rhs_to_dual_objective": [
+            12,
+            5
+          ],
+          "transpose_verified": true
+        },
+        "dual_constraint_matrix": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "dual_objective": [
+          12,
+          5
+        ],
+        "economic_interpretation": [
+          "y1 adalah harga per unit tepung",
+          "y2 adalah harga per unit gula",
+          "setiap bundel bahan harus berharga sekurang-kurangnya laba produknya"
+        ],
+        "optimal_dual": [
+          0,
+          5
+        ],
+        "optimal_primal": [
+          5,
+          0
+        ],
+        "optimum": 25,
+        "primal_slacks": [
+          2,
+          0
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 1,
+      "method": "explicit_dual_resource_prices_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_1",
+          "maximum_violation": 0,
+          "objective": 25,
+          "point": {
+            "x1": 5,
+            "x2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_1",
+          "maximum_violation": 0,
+          "objective": 25,
+          "point": {
+            "y1": 0,
+            "y2": 5
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Masalah Dual Toko Roti Kecil"
+    },
+    "11.10": {
+      "certificate": {
+        "complementary_products": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "dual_feasible": true,
+        "dual_objective": 22,
+        "dual_surpluses": [
+          0,
+          0
+        ],
+        "optimal_dual": [
+          2,
+          1
+        ],
+        "optimal_primal": [
+          4,
+          2
+        ],
+        "primal_feasible": true,
+        "primal_objective": 22,
+        "primal_slacks": [
+          0,
+          0
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 1,
+      "method": "termwise_complementary_slackness_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_10",
+          "maximum_violation": 0,
+          "objective": 22,
+          "point": {
+            "x1": 4,
+            "x2": 2
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_10",
+          "maximum_violation": 0,
+          "objective": 22,
+          "point": {
+            "y1": 2,
+            "y2": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Memeriksa Syarat-syarat"
+    },
+    "11.11": {
+      "certificate": {
+        "complementary_products": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "dual_surpluses": [
+          0,
+          50,
+          0
+        ],
+        "optimal_dual": [
+          0,
+          50,
+          40
+        ],
+        "optimal_primal": [
+          4,
+          0,
+          6
+        ],
+        "optimum": 780,
+        "primal_slacks": [
+          14,
+          0,
+          0
+        ],
+        "shadow_prices": {
+          "baking_time": 40,
+          "flour": 0,
+          "sugar": 50
+        },
+        "unit_rhs_values": {
+          "baking_time": 820,
+          "flour": 780,
+          "sugar": 830
+        }
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "bakery_shadow_prices_perturbations_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_11",
+          "maximum_violation": 0,
+          "objective": 780,
+          "point": {
+            "x1": 4,
+            "x2": 0,
+            "x3": 6
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_11",
+          "maximum_violation": 0,
+          "objective": 780,
+          "point": {
+            "y1": 0,
+            "y2": 50,
+            "y3": 40
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_11",
+          "maximum_violation": 0,
+          "objective": 780,
+          "point": {
+            "x1": 4,
+            "x2": 0,
+            "x3": 6
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "one_more_flour"
+        },
+        {
+          "case": "ex11_11",
+          "maximum_violation": 0,
+          "objective": 830,
+          "point": {
+            "x1": 3,
+            "x2": 0,
+            "x3": 8
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "one_more_sugar"
+        },
+        {
+          "case": "ex11_11",
+          "maximum_violation": 0,
+          "objective": 820,
+          "point": {
+            "x1": 6,
+            "x2": 0,
+            "x3": 4
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "one_more_baking_time"
+        }
+      ],
+      "status": "verified",
+      "title": "Produksi Toko Roti dan Interpretasi Dualitas"
+    },
+    "11.12": {
+      "certificate": {
+        "certificate_rule": "primal dan dual layak dengan nilai sama membuktikan optimalitas melalui dualitas lemah",
+        "dual_surpluses": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "optimal_dual": [
+          0,
+          0,
+          3,
+          8,
+          2
+        ],
+        "optimal_primal": [
+          0,
+          "1/2",
+          1,
+          1
+        ],
+        "optimum": 27,
+        "primal_slacks": [
+          1,
+          "1/2",
+          0,
+          0,
+          0
+        ],
+        "weak_duality_gap": 0
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "box_constraint_dual_certificate_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_12",
+          "maximum_violation": 0,
+          "objective": 27,
+          "point": {
+            "x1": 0,
+            "x2": 0.5,
+            "x3": 1,
+            "x4": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_12",
+          "maximum_violation": 0,
+          "objective": 27,
+          "point": {
+            "y1": 0,
+            "y2": 0,
+            "y3": 3,
+            "y4": 8,
+            "y5": 2
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Kendala Kotak dan Sertifikat Dual"
+    },
+    "11.13": {
+      "certificate": {
+        "candidate_dual": [
+          1,
+          1
+        ],
+        "candidate_dual_surpluses": [
+          -2,
+          0
+        ],
+        "candidate_dual_value": 17,
+        "candidate_is_dual_feasible": false,
+        "complementary_slackness_gate": "kedua sisi harus layak sebelum syarat KK menjadi sertifikat optimalitas",
+        "correct_dual": [
+          "11/5",
+          "3/5"
+        ],
+        "correct_dual_surpluses": [
+          0,
+          0
+        ],
+        "optimum": 23,
+        "recovered_primal": [
+          3,
+          2
+        ],
+        "recovered_primal_feasible": true,
+        "weak_duality_alarm": "17<23"
+      },
+      "correction_refs": [
+        "CORR-CH11-EX11-13-CANDIDATE"
+      ],
+      "difficulty": 2,
+      "method": "candidate_feasibility_gate_cs_recovery_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_13",
+          "maximum_violation": 0,
+          "objective": 23,
+          "point": {
+            "x1": 3,
+            "x2": 2
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_13",
+          "maximum_violation": 0,
+          "objective": 23,
+          "point": {
+            "y1": 2.2,
+            "y2": 0.6
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Menurunkan Solusi Primal dari Tebakan Dual"
+    },
+    "11.14": {
+      "certificate": {
+        "complementary_product": "y2*(a2^T*x-b2)<0",
+        "conclusion": "joint_optimality_ruled_out",
+        "economic_interpretation": "sumber daya yang tersisa tidak bernilai marginal pada keseimbangan optimal yang sama",
+        "individual_culprit_identified": false,
+        "logical_possibilities": [
+          "primal optimal dan dual suboptimal",
+          "dual optimal dan primal suboptimal",
+          "keduanya suboptimal"
+        ],
+        "status": "verified_conceptual_proof"
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "general_positive_price_slack_contradiction",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [],
+      "status": "verified_proof",
+      "title": "Harga Positif pada Kendala yang Longgar"
+    },
+    "11.15": {
+      "certificate": {
+        "actual_dual": [
+          1,
+          1
+        ],
+        "actual_optimum": 9,
+        "actual_primal": [
+          1,
+          3
+        ],
+        "claimed_feasible": true,
+        "claimed_primal": [
+          2,
+          0
+        ],
+        "claimed_primal_slacks": [
+          2,
+          1
+        ],
+        "claimed_value": 6,
+        "contradiction": "y1=y2=0 tetapi y1+2*y2=3",
+        "cs_requirements": [
+          "y1=0",
+          "y2=0",
+          "y1+2*y2=3"
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "claimed_optimum_cs_contradiction_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_15",
+          "maximum_violation": 0,
+          "objective": 9,
+          "point": {
+            "x1": 1,
+            "x2": 3
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_15",
+          "maximum_violation": 0,
+          "objective": 9,
+          "point": {
+            "y1": 1,
+            "y2": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Menyangkal Klaim Solusi Optimal"
+    },
+    "11.16": {
+      "certificate": {
+        "active_dual_constraints": [
+          "x3",
+          "x6"
+        ],
+        "dual_feasible_region_reduction": [
+          "y1>=4",
+          "y2>=2"
+        ],
+        "dual_surpluses": [
+          5,
+          6,
+          0,
+          1,
+          5,
+          0
+        ],
+        "optimal_dual": [
+          4,
+          2
+        ],
+        "optimal_primal": [
+          0,
+          0,
+          10,
+          0,
+          0,
+          12
+        ],
+        "optimum": 64,
+        "positive_primal_variables": [
+          "x3",
+          "x6"
+        ],
+        "resource_shadow_prices": {
+          "kitchen": 4,
+          "packaging": 2
+        },
+        "tight_primal_resources": [
+          "kitchen",
+          "packaging"
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 3,
+      "method": "meal_kit_dual_geometry_cs_and_highs",
+      "plot": {
+        "bytes": 4596,
+        "path": "plots/ex11-16.svg",
+        "sha256": "8c0fe5d58dc1241fbcd7e571866fbd20d8474d7339f107b86a24087ecf5fd446",
+        "status": "generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_16",
+          "maximum_violation": 0,
+          "objective": 64,
+          "point": {
+            "x1": 0,
+            "x2": 0,
+            "x3": 10,
+            "x4": 0,
+            "x5": 0,
+            "x6": 12
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_16",
+          "maximum_violation": 0,
+          "objective": 64,
+          "point": {
+            "y1": 4,
+            "y2": 2
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Optimisasi Paket Makanan dan Dualitas"
+    },
+    "11.17": {
+      "certificate": {
+        "dual_surpluses": [
+          0,
+          1,
+          0
+        ],
+        "dual_variable_domains": [
+          "nonnegative",
+          "free",
+          "nonpositive"
+        ],
+        "optimal_dual": [
+          1,
+          "1/2",
+          0
+        ],
+        "optimal_primal": [
+          40,
+          0,
+          20
+        ],
+        "optimum": 260,
+        "primal_row_residuals": [
+          0,
+          0,
+          320
+        ],
+        "retail_identity": "6*x1+9*x2+8*x3=360+2*x3",
+        "retail_implied_lower_bound": 360,
+        "retail_redundancy_verified": true
+      },
+      "correction_refs": [
+        "CORR-CH11-MIXED-SIGNS-FREE"
+      ],
+      "difficulty": 3,
+      "method": "mixed_constraint_startup_duality_cs_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_17",
+          "maximum_violation": 0,
+          "objective": 260,
+          "point": {
+            "x1": 40,
+            "x2": 0,
+            "x3": 20
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_17",
+          "maximum_violation": 0,
+          "objective": 260,
+          "point": {
+            "y1": 1,
+            "y2": 0.5,
+            "y3": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Dualitas dengan Jenis Kendala Campuran: Perusahaan Rintisan Kemasan Ramah Lingkungan"
+    },
+    "11.2": {
+      "certificate": {
+        "dual_constraint_matrix": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "dual_constraint_senses": [
+          ">=",
+          ">=",
+          ">="
+        ],
+        "dual_objective": [
+          10,
+          12
+        ],
+        "optimal_dual": [
+          "11/5",
+          "3/5"
+        ],
+        "optimal_primal": [
+          "14/5",
+          "18/5",
+          0
+        ],
+        "optimum": "146/5",
+        "transpose_dimensions": {
+          "dual_A": [
+            3,
+            2
+          ],
+          "primal_A": [
+            2,
+            3
+          ]
+        }
+      },
+      "correction_refs": [],
+      "difficulty": 1,
+      "method": "explicit_matrix_transpose_dual_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_2",
+          "maximum_violation": 0,
+          "objective": 29.2,
+          "point": {
+            "x1": 2.8,
+            "x2": 3.6,
+            "x3": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_2",
+          "maximum_violation": 0,
+          "objective": 29.2,
+          "point": {
+            "y1": 2.2,
+            "y2": 0.6
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Rumuskan Masalah Dual"
+    },
+    "11.3": {
+      "certificate": {
+        "candidate_dual_feasible": true,
+        "candidate_dual_surpluses": [
+          1,
+          1
+        ],
+        "candidate_dual_value": 13,
+        "candidate_primal_feasible": true,
+        "candidate_primal_slacks": [
+          1,
+          1
+        ],
+        "candidate_primal_value": 7,
+        "optimum": 9,
+        "sandwich": [
+          7,
+          9,
+          13
+        ],
+        "weak_duality_verified": true
+      },
+      "correction_refs": [],
+      "difficulty": 1,
+      "method": "weak_duality_sandwich_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_3",
+          "maximum_violation": 0,
+          "objective": 9,
+          "point": {
+            "x1": 1,
+            "x2": 3
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_3",
+          "maximum_violation": 0,
+          "objective": 9,
+          "point": {
+            "y1": 1,
+            "y2": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Memverifikasi Dualitas Lemah"
+    },
+    "11.4": {
+      "certificate": {
+        "coincident_bound": 10,
+        "dual_candidate": [
+          1,
+          1
+        ],
+        "dual_feasible": true,
+        "dual_value": 10,
+        "primal_candidate": [
+          2,
+          2
+        ],
+        "primal_feasible": true,
+        "primal_value": 10,
+        "status": "verified_exact_weak_duality_certificate"
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "coincident_weak_bounds_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_4",
+          "maximum_violation": 0,
+          "objective": 10,
+          "point": {
+            "x1": 2,
+            "x2": 2
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_4",
+          "maximum_violation": 0,
+          "objective": 10,
+          "point": {
+            "y1": 1,
+            "y2": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Batas Dualitas Lemah"
+    },
+    "11.5": {
+      "certificate": {
+        "dual_constraint_senses": [
+          ">=",
+          "="
+        ],
+        "dual_variable_domains": [
+          "free",
+          "nonnegative"
+        ],
+        "mapping_rules": [
+          "kendala primal persamaan menghasilkan variabel dual bebas",
+          "kendala primal <= pada maksimisasi menghasilkan variabel dual taknegatif",
+          "variabel primal bebas menghasilkan kendala dual persamaan"
+        ],
+        "optimal_dual": [
+          3,
+          0
+        ],
+        "optimal_primal": [
+          0,
+          5
+        ],
+        "optimum": 15
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "mixed_equality_free_variable_dual_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_5",
+          "maximum_violation": 0,
+          "objective": 15,
+          "point": {
+            "x1": 0,
+            "x2": 5
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_5",
+          "maximum_violation": 0,
+          "objective": 15,
+          "point": {
+            "y1": 3,
+            "y2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Masalah Dual dengan Kendala Campuran"
+    },
+    "11.6": {
+      "certificate": {
+        "binding_constraints": [
+          "flour",
+          "sugar"
+        ],
+        "complementary_products": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "nonbinding_constraints": [
+          "oven"
+        ],
+        "optimal_dual": [
+          2,
+          1,
+          0
+        ],
+        "optimal_primal": [
+          "22/3",
+          "16/3"
+        ],
+        "optimum": 58,
+        "primal_slacks": [
+          0,
+          0,
+          "1/3"
+        ],
+        "shadow_prices": {
+          "flour": 2,
+          "oven": 0,
+          "sugar": 1
+        },
+        "strong_duality_gap": 0,
+        "value_with_one_more_flour": 60
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "strong_duality_shadow_price_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_6",
+          "maximum_violation": 0,
+          "objective": 58,
+          "point": {
+            "x1": 7.3333333333,
+            "x2": 5.3333333333
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_6",
+          "maximum_violation": 0,
+          "objective": 58,
+          "point": {
+            "y1": 2,
+            "y2": 1,
+            "y3": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_6",
+          "maximum_violation": 0,
+          "objective": 60,
+          "point": {
+            "x1": 8,
+            "x2": 5
+          },
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "one_more_flour"
+        }
+      ],
+      "status": "verified",
+      "title": "Harga Bayangan dan Variabel Dual"
+    },
+    "11.7": {
+      "certificate": {
+        "certificate_conditions": [
+          "y>=0",
+          "A^T*y>=c",
+          "b^T*y<=M"
+        ],
+        "concrete_witness": {
+          "dual_certificate": [
+            2,
+            1
+          ],
+          "primal_plan": [
+            1,
+            2
+          ],
+          "verified_bound": "7<=13"
+        },
+        "inequality_chain": "c^T*x<=x^T*A^T*y=y^T*A*x<=b^T*y",
+        "proof_steps": [
+          "A^T*y>=c mendominasi koefisien laba untuk x>=0",
+          "y>=0 mempertahankan arah Ax<=b ketika baris diagregasikan",
+          "setiap y layak memberi batas atas b^T*y",
+          "meminimumkan batas linear itu adalah dual dan dualitas kuat membuat batas terbaik tepat"
+        ],
+        "status": "verified_conceptual_proof"
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "general_weak_duality_certificate_proof",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [],
+      "status": "verified_proof",
+      "title": "Sertifikat dengan Kata-kata Anda Sendiri"
+    },
+    "11.8": {
+      "certificate": {
+        "dual_status": "infeasible",
+        "dual_sum_certificate": "0>=2",
+        "explanation": "status dual memerlukan pemeriksaan langsung; ketaklayakan primal saja tidak membedakan dual taklayak dari dual takterbatas",
+        "primal_status": "infeasible",
+        "primal_sum_certificate": "0<=-2",
+        "theorem_fourth_case_required": true
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "double_infeasibility_certificates_and_highs",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "ex11_8",
+          "maximum_violation": null,
+          "objective": null,
+          "point": null,
+          "purpose": "independent_lp_corroboration",
+          "side": "primal",
+          "solver": "appsi_highs",
+          "status": "error",
+          "termination_condition": "infeasible",
+          "variant": "nominal"
+        },
+        {
+          "case": "ex11_8",
+          "maximum_violation": null,
+          "objective": null,
+          "point": null,
+          "purpose": "independent_lp_corroboration",
+          "side": "dual",
+          "solver": "appsi_highs",
+          "status": "error",
+          "termination_condition": "infeasible",
+          "variant": "nominal"
+        }
+      ],
+      "status": "verified",
+      "title": "Dualitas Kuat dan Ketaklayakan"
+    },
+    "11.9": {
+      "certificate": {
+        "dual_of_dual_constraint_matrix": "A",
+        "dual_of_dual_objective": "c^T*z",
+        "intermediate_constraint": "(-A^T)*y<=-c",
+        "intermediate_matrix": "-A^T",
+        "intermediate_objective": "(-b)^T*y",
+        "proof_steps": [
+          "ubah min b^T*y menjadi max (-b)^T*y",
+          "ubah A^T*y>=c menjadi (-A^T)*y<=-c",
+          "dual bentuk simetris itu memakai transpose (-A^T)^T=-A",
+          "min (-c)^T*z dengan (-A)z>=-b setara dengan max c^T*z dan Az<=b"
+        ],
+        "sign_domain_preserved": "z>=0",
+        "status": "verified_symbolic_involution"
+      },
+      "correction_refs": [],
+      "difficulty": 3,
+      "method": "symbolic_dual_of_dual_involution_proof",
+      "plot": {
+        "reason": "visual tidak diperlukan untuk sertifikat latihan ini",
+        "status": "not_generated"
+      },
+      "solver_checks": [],
+      "status": "verified_proof",
+      "title": "Dual dari Dual adalah Primal"
+    }
+  },
+  "lab_id": "o018.ch11.duality",
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 52217,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/duality.tex",
+        "role": "authority_duality_chapter",
+        "sha256": "627b34388b3ce2a3058298c4beb8e76f7c621ae435c8de1b12aca8bc9648f685"
+      },
+      {
+        "bytes": 26931,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/complimentary-slackness.tex",
+        "role": "authority_complementary_slackness_chapter",
+        "sha256": "4623cc1ac31689d782f57714bc6778ddc5bae655f30f6b70d88764a20dd4d8f8"
+      },
+      {
+        "bytes": 31219,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch11.tex",
+        "role": "authority_manual",
+        "sha256": "a813d9dbfbd735dcea4747c15042b7e25eb58d06cfca2dda29cd6a4b7c3f0249"
+      },
+      {
+        "bytes": 54574,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/duality.tex",
+        "role": "translated_duality_chapter",
+        "sha256": "ce71b6225b7c96fd52bb9c5df2718d6a2355a0482c4aec4350b0b1f0d5d34ec1"
+      },
+      {
+        "bytes": 28658,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/complimentary-slackness.tex",
+        "role": "translated_complementary_slackness_chapter",
+        "sha256": "acf99fe82812fc9ad487bdeb4d8a4e2e46918e0e40bb48edcd1a75d075ebc69a"
+      },
+      {
+        "bytes": 34607,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch11.tex",
+        "role": "translated_manual",
+        "sha256": "6688bdb15e34fba8f412815979df92494ff9018d15f4c8b8661e0ada9b607d2d"
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "summary": {
+    "correction_count": 3,
+    "exercise_count": 17,
+    "high_confidence_upstream_defect_count": 2,
+    "maximum_solver_violation": 0,
+    "method_counts": {
+      "bakery_shadow_prices_perturbations_and_highs": 1,
+      "box_constraint_dual_certificate_and_highs": 1,
+      "candidate_feasibility_gate_cs_recovery_and_highs": 1,
+      "claimed_optimum_cs_contradiction_and_highs": 1,
+      "coincident_weak_bounds_and_highs": 1,
+      "double_infeasibility_certificates_and_highs": 1,
+      "explicit_dual_resource_prices_and_highs": 1,
+      "explicit_matrix_transpose_dual_and_highs": 1,
+      "general_positive_price_slack_contradiction": 1,
+      "general_weak_duality_certificate_proof": 1,
+      "meal_kit_dual_geometry_cs_and_highs": 1,
+      "mixed_constraint_startup_duality_cs_and_highs": 1,
+      "mixed_equality_free_variable_dual_and_highs": 1,
+      "strong_duality_shadow_price_and_highs": 1,
+      "symbolic_dual_of_dual_involution_proof": 1,
+      "termwise_complementary_slackness_and_highs": 1,
+      "weak_duality_sandwich_and_highs": 1
+    },
+    "o018_math_correction_count": 0,
+    "plot_count": 1,
+    "proof_only_count": 3,
+    "solver_call_count": 36,
+    "solver_termination_counts": {
+      "infeasible": 3,
+      "optimal": 32,
+      "unbounded": 1
+    },
+    "underdetermined_count": 0,
+    "verified_count": 17
+  },
+  "underdetermined_exercises": [],
+  "upstream_defects": [
+    {
+      "certificate": "Latihan 11.8 memberi primal dan dual yang sama-sama taklayak: penjumlahan kendala primal memaksa 0<=-2 dan penjumlahan kendala dual memaksa 0>=2.",
+      "confidence": "high",
+      "id": "UPSTREAM-DEFECT-CH11-STRONG-DUALITY-OMITS-BOTH-INFEASIBLE",
+      "source_location": "translated duality.tex lines 219-243; translated manual ch11.tex lines 156-158",
+      "status": "reported_not_modified",
+      "type": "upstream_theorem_completeness_defect"
+    },
+    {
+      "certificate": "Dari 4x1+6x2+4x3=240 dan x3>=0 diperoleh 6x1+9x2+8x3=(3/2)(240)+2x3=360+2x3>=360, sehingga kendala retail >=80 selalu redundan.",
+      "confidence": "high",
+      "id": "UPSTREAM-DEFECT-CH11-EX11-17-RETAIL-REDUNDANT",
+      "source_location": "translated complimentary-slackness.tex lines 539-570; translated manual ch11.tex lines 316-346",
+      "status": "reported_not_modified",
+      "type": "upstream_modeling_redundancy_defect"
+    }
+  ]
+}

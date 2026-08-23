@@ -1,0 +1,54 @@
+% Copyright 2026 by Robert Hildebrand
+% Karya ini dilisensikan berdasarkan CC BY-SA 4.0.
+% Batas terjemahan: jawaban Cek Pemahaman sampai akhir Bab 12.
+
+\input{backmatter/checkpoint-answers-through-ch06-id.tex}
+
+\medskip
+
+\noindent\textbf{\Cref{lc:shadow-price-b1}} (halaman~\pageref{lc:shadow-price-b1}).
+Harga bayangannya adalah $1$: setiap jam tambahan menaikkan laba optimal sebesar
+\$1. Nilai ini berlaku untuk $7 \le b_1 \le 10$ (yakni,
+$-2 \le \Delta \le 1$). Pada $b_1=10$, variabel basis $s_2$ mencapai nol dan
+basis optimal berubah. Setelah titik itu, nilai marginal setiap jam tambahan
+ditentukan oleh basis lain; harga sebesar \$1 tersebut tidak lagi berlaku.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:nonbasic-cost}} (halaman~\pageref{lc:nonbasic-cost}).
+Kedua pernyataan benar pada sisi rentang yang berbeda. Selama biaya tereduksi
+yang diusik tetap tidak positif, solusi saat ini tetap optimal dan tidak
+berubah: variabel tersebut tetap di luar basis. Jika koefisien didorong melewati
+batas rentang, biaya tereduksi menjadi positif; variabel itu kemudian
+memperbaiki objektif, masuk ke basis, dan solusi optimal baru mengambil alih.
+Jadi, ``solusi saat ini tidak pernah berubah'' hanya berlaku di dalam rentang;
+perubahan basis terjadi pada batasnya.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:duality-certificate}} (halaman~\pageref{lc:duality-certificate}).
+Untuk $y_1=3,\,y_2=0$, syarat dominasi adalah $3+0=3\geq3$ dan
+$3+0=3\geq2$, sehingga keduanya terpenuhi dan menghasilkan batas
+$4(3)+5(0)=12$. Untuk $y_1=1,\,y_2=1$, syarat $1+2=3\geq3$ dan
+$1+1=2\geq2$ juga terpenuhi, dengan batas $4(1)+5(1)=9$. Sertifikat kedua
+lebih baik karena batasnya lebih kecil. Tidak ada sertifikat yang lebih baik:
+$y=(1,1)$ optimal bagi dual, sementara optimum primal
+$(x_1,x_2)=(1,3)$ mencapai laba $9$; oleh dualitas kuat, batas itu ketat.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:dual-forms}} (halaman~\pageref{lc:dual-forms}).
+Dualnya merupakan masalah \emph{maksimisasi},
+$\max\,\b^\top\y$ dengan $A^\top\y\leq\c$ dan $\y\geq0$. Variabel dual
+dibatasi tandanya ($y_i\geq0$) karena kendala primal berupa pertidaksamaan,
+sedangkan kendala dual berupa pertidaksamaan ($\leq$) karena variabel primal
+dibatasi tandanya. Hanya persamaan pada primal yang menghasilkan variabel dual
+bebas, dan hanya variabel primal bebas yang menghasilkan persamaan dual.
+
+\medskip
+
+\noindent\textbf{\Cref{lc:cs-leftover}} (halaman~\pageref{lc:cs-leftover}).
+Kelonggaran komplementer memaksa harga bayangan tepung bernilai nol. Secara
+ekonomi, jika tepung sudah tersisa pada optimum, satu unit tepung tambahan tidak
+bernilai apa pun; unit itu hanya akan tetap tidak digunakan, sehingga nilai
+marginal sumber daya tersebut adalah \$0.

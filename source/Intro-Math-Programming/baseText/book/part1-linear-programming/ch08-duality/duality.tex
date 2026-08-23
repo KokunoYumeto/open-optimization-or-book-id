@@ -1,0 +1,1249 @@
+
+% Copyright 2022 by Robert Hildebrand
+%This work is licensed under a
+%Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+%See http://creativecommons.org/licenses/by-sa/4.0/
+
+\chapter{Dualitas}
+\label{ch:duality}
+
+\begin{outcome}
+Anda akan mempelajari
+\begin{itemize}
+\item Cara menurunkan batas bagi nilai tujuan optimal
+\item Cara merumuskan ulang masalah menjadi suatu masalah \emph{dual} dengan penafsiran yang berbeda
+\item Korespondensi antara masalah primal (asli) dan masalah dual
+\end{itemize}
+\end{outcome}
+
+\begin{tryit}
+\vizlink{dual-construction}{Penyusunan Primal-ke-Dual}: susun masalah dual dengan menambahkan satu pengali pada satu waktu, persis seperti dalam bab ini.
+
+\vizlink{duality-sensitivity}{Penjelajah Dualitas dan Sensitivitas}: amati secara langsung masalah primal, masalah dual, dan harga bayangan.
+
+\vizlink{dual-simplex}{Metode Simpleks Dual}: topik lanjutan yang dapat dijelajahi setelah bab ini.
+\end{tryit}
+
+
+
+\begin{quote}
+\itshape Seorang pembuat roti pesaing mengetuk pintu Anda dan mengajukan tawaran: ``Jangan membuat apa pun besok. Jual seluruh persediaan dapur Anda kepada saya (setiap satuan tepung dan gula), lalu beristirahatlah sehari.'' Anda hanya akan menerima jika bayarannya melebihi hasil setiap rencana produksi yang dapat Anda jalankan sendiri. Karena itu, pesaing tersebut harus menetapkan harga setiap bahan dengan cermat: bahan-bahan yang diperlukan untuk satu kue harus bernilai paling sedikit sebesar laba satu kue, demikian pula untuk kukis; jika tidak, Anda tinggal menolak dan tetap membuat produk sendiri. Tentu saja, pesaing itu menginginkan tawaran termurah yang dapat meyakinkan Anda. Ternyata, nilai tawaran termurah yang meyakinkan itu \emph{persis} sama dengan laba terbaik dari produksi Anda. Pencarian harga versi pesaing juga merupakan program linear: masalah \emph{dual} dari masalah Anda.
+\end{quote}
+
+\section{Teori Dualitas}
+\label{sec:duality-theory}
+
+\subsection*{Contoh Pemotivasi}
+
+Bayangkan Anda mengelola toko roti kecil yang membuat dua produk: kue ($x_1$) dan kukis ($x_2$). Tujuan Anda adalah memaksimumkan laba harian. Setiap kue menghasilkan laba \$3 dan setiap kukis menghasilkan laba \$2. Persediaan bahan membatasi produksi Anda: setiap hari tersedia paling banyak 4 satuan tepung dan 5 satuan gula. Setiap kue memerlukan 1 satuan tepung dan 2 satuan gula, sedangkan setiap kukis memerlukan 1 satuan tepung dan 1 satuan gula. Situasi ini dapat ditulis sebagai program linear:
+
+\[
+\begin{aligned}
+\max \; & 3x_1 + 2x_2 && \text{(memaksimumkan laba total)}\\
+\text{dengan kendala } & x_1 + x_2 \leq 4 && \text{(kendala tepung)}\\
+& 2x_1 + x_2 \leq 5 && \text{(kendala gula)}\\
+& x_1, x_2 \geq 0.
+\end{aligned}
+\]
+
+Di sini, $x_1$ adalah banyaknya kue yang Anda buat dan $x_2$ adalah banyaknya kukis. Kendala-kendala tersebut membatasi banyaknya tiap produk yang dapat dibuat dengan sumber daya yang tersedia.
+
+Sekarang, misalkan seorang teman meragukan kebenaran pernyataan Anda tentang laba maksimum yang dapat diperoleh. Ia bertanya, ``Bisakah Anda membuktikan suatu batas atas bagi jumlah uang yang mungkin diperoleh dengan kendala bahan-bahan ini, tanpa benar-benar menyelesaikan masalahnya?''
+
+\subsection*{Intuisi di Balik Dualitas}
+
+Perhatikan kendala-kendala dalam masalah tersebut. Masing-masing membatasi seberapa besar kombinasi $x_1$ dan $x_2$ dapat bernilai. Jika dipandang secara terpisah:
+
+\begin{itemize}
+\item Kendala tepung: $x_1 + x_2 \leq 4$.
+\item Kendala gula: $2x_1 + x_2 \leq 5$.
+\end{itemize}
+Sekarang, bagaimana jika kita mengambil pengali taknegatif $y_1$ dan $y_2$, lalu menggabungkan kedua pertidaksamaan ini menjadi satu pertidaksamaan? Misalnya, kalikan kendala tepung dengan $y_1 \geq 0$, kalikan kendala gula dengan $y_2 \geq 0$, lalu jumlahkan:
+
+\[
+y_1(x_1 + x_2) + y_2(2x_1 + x_2) \leq y_1(4) + y_2(5).
+\]
+
+Pengelompokan suku berdasarkan $x_1$ dan $x_2$ menghasilkan:
+
+\[
+(x_1(y_1 + 2y_2)) + (x_2(y_1 + y_2)) \leq 4y_1 + 5y_2.
+\]
+
+Jika memilih $y_1$ dan $y_2$ secara tepat, kita dapat memastikan bahwa ruas kiri merupakan ekspresi yang selalu \emph{sekurang-kurangnya} sebesar fungsi laba $3x_1 + 2x_2$. Secara khusus, kita menginginkan
+
+\[
+y_1 + 2y_2 \geq 3 \quad \text{dan} \quad y_1 + y_2 \geq 2.
+\]
+
+Mengapa? Jika koefisien $x_1$ dan $x_2$ dalam pertidaksamaan gabungan mendominasi koefisien dalam fungsi laba, batas atas pada ruas kanan pertidaksamaan gabungan ($4y_1 + 5y_2$) juga menjadi batas atas bagi laba $3x_1 + 2x_2$. Hal ini menjamin:
+
+\[
+3x_1 + 2x_2 \leq (y_1+2y_2)x_1 + (y_1 + y_2)x_2 \leq 4y_1 + 5y_2.
+\]
+
+Dengan demikian, pemilihan $y_1$ dan $y_2$ memberi kita batas atas yang sah bagi laba maksimum. Jika kita meminimumkan $4y_1 + 5y_2$ atas semua $y_1, y_2 \geq 0$ yang memenuhi pertidaksamaan tersebut, kita memperoleh batas atas terbaik (terkecil) bagi masalah semula.
+
+Seluruh argumen ini merupakan suatu alur: dimulai dari kendala yang sudah ada dan berakhir pada masalah optimisasi baru. Gambar~\ref{fig:duality-pipeline} merangkumnya. Langkah kuncinya adalah langkah terakhir: pencarian \emph{sertifikat terbaik} itu sendiri merupakan program linear.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    node distance=1.05cm,
+    box/.style={rectangle, rounded corners=3pt, draw=blue!60!black, fill=blue!5,
+                text width=8.2cm, align=center, inner sep=7pt, font=\small},
+    dualbox/.style={rectangle, rounded corners=3pt, draw=green!60!black, fill=green!5,
+                text width=8.2cm, align=center, inner sep=7pt, font=\small},
+    lbl/.style={font=\scriptsize\itshape, text=black!70, align=left},
+    arr/.style={-{Stealth}, thick, draw=black!70}
+]
+\node[box] (constraints) {\textbf{Mulailah dengan kendala primal}\\[2pt]
+  $x_1 + x_2 \leq 4$ (tepung) \qquad $2x_1 + x_2 \leq 5$ (gula)};
+\node[box, below=of constraints] (combine) {\textbf{Gabungkan menjadi satu pertidaksamaan}\\[2pt]
+  $(y_1 + 2y_2)\,x_1 + (y_1 + y_2)\,x_2 \;\leq\; 4y_1 + 5y_2$};
+\node[box, below=of combine] (dominate) {\textbf{Buat ruas kiri mendominasi laba}\\[2pt]
+  $y_1 + 2y_2 \geq 3$ \qquad $y_1 + y_2 \geq 2$\\[2pt]
+  $\Longrightarrow\; 3x_1 + 2x_2 \;\leq\; 4y_1 + 5y_2$ \quad (sebuah sertifikat!)};
+\node[dualbox, below=of dominate] (dual) {\textbf{Carilah sertifikat terbaik}\\[2pt]
+  $\min\; 4y_1 + 5y_2$ \; dengan kendala \; $y_1 + 2y_2 \geq 3$, \; $y_1 + y_2 \geq 2$, \; $y \geq 0$\\[2pt]
+  \emph{Inilah PL dual!}};
+\draw[arr] (constraints) -- node[lbl, right=3pt] {kalikan dengan $y_1, y_2 \geq 0$, lalu jumlahkan} (combine);
+\draw[arr] (combine) -- node[lbl, right=3pt] {pilih $y$ agar koefisien mencakup $3$ dan $2$} (dominate);
+\draw[arr] (dominate) -- node[lbl, right=3pt] {minimumkan batas atas semua $y$ yang sah} (dual);
+\end{tikzpicture}
+\caption{Dari kendala menuju masalah dual: setiap $y$ yang layak menyertifikasi batas atas laba, dan PL dual mencari sertifikat terbaik.}
+\label{fig:duality-pipeline}
+\end{figure}
+
+\begin{learningcheckpoint}[label={lc:duality-certificate}]
+Dalam masalah toko roti, ambil pengali $y_1 = 3$ dan $y_2 = 0$. Periksa bahwa pilihan ini memenuhi kedua syarat dominasi, lalu hitung batas atas laba yang dihasilkan. Setelah itu, bandingkan dengan batas dari $y_1 = 1,\, y_2 = 1$. Sertifikat mana yang lebih baik? Dapatkah Anda menemukan yang lebih baik lagi?
+\end{learningcheckpoint}
+
+\subsection*{Penurunan Umum Masalah Dual}
+
+Kita mulai dengan masalah primal dalam bentuk umum:
+
+\[
+\begin{aligned}
+\max \; & \c^\top \x \\
+\text{dengan kendala } & A\x \leq \b \\
+& \x \geq 0.
+\end{aligned}
+\]
+
+Setiap kendala $a^i \cdot x \leq b_i$ (dengan $a^i$ sebagai baris ke-$i$ dari $A$) berlaku bagi setiap $x$ yang layak. Jika kita mengambil kombinasi taknegatif dari kendala-kendala ini, misalnya dengan pengali $y_i \geq 0$, diperoleh:
+
+\[
+\sum_{i=1}^m y_i (a^i \cdot \x) \leq \sum_{i=1}^m y_i b_i.
+\]
+
+Ini dapat ditulis sebagai:
+
+\[
+(\sum_{i=1}^m y_i \a^i) \cdot \x \leq \sum_{i=1}^m y_i b_i.
+\]
+
+Jika kita memilih $\y$ sehingga $\sum_{i=1}^m y_i a^i \geq c$, maka untuk setiap $\x$ yang layak (karena $\x \geq 0$):
+
+\[
+\c^\top \x \leq (\sum_{i=1}^m y_i a^i)\cdot \x \leq \sum_{i=1}^m y_i b_i.
+\]
+
+Jadi, $\b^\top \y = \sum_{i=1}^m y_i b_i$ adalah batas atas bagi nilai tujuan maksimum primal. Dengan meminimumkan atas semua $y$ tersebut, kita mencari batas atas yang paling ketat:
+
+\[
+\begin{aligned}
+\min \; & \b^\top \y \\
+\text{dengan kendala } & A^\top \y \geq \c \\
+& \y \geq 0.
+\end{aligned}
+\]
+
+Inilah masalah \emph{dual}. Dalam contoh toko roti, perumusan dual ini berkaitan dengan penyesuaian harga (nilai $y$ dapat dipandang sebagai ``harga bayangan'') yang Anda tetapkan untuk setiap bahan. Jika Anda membebankan harga bayangan tersebut kepada diri sendiri atas bahan-bahan yang dipakai, Anda memperoleh ``tagihan'' sekecil mungkin yang tetap selalu melampaui atau menyamai laba maksimum yang mungkin diperoleh. Teorema Dualitas Kuat menjamin bahwa nilai primal optimal sama dengan nilai dual optimal. Inilah tepatnya masalah pembuat roti pesaing pada awal bab: kendala $A^\top \y \geq \c$ menyatakan bahwa tawarannya harus mengalahkan kegiatan produksi, produk demi produk, sedangkan tujuan $\min \b^\top \y$ menyatakan bahwa pesaing itu mencari tawaran termurah yang tetap dapat meyakinkan Anda.
+
+Dari penalaran di atas, kita telah menunjukkan bahwa jika $\x$ layak bagi masalah primal dan $\y$ layak bagi masalah dual, maka $\c^\top \x \leq \b^\top \y$. Dengan kata lain, nilai setiap solusi primal yang layak selalu dibatasi dari atas oleh nilai setiap solusi dual yang layak. Pertidaksamaan ini disebut \emph{dualitas lemah}; kita menyatakannya sebagai teorema pada bagian berikutnya.
+
+Dualitas lemah tidak hanya berlaku pada pemrograman linear; batas serupa muncul dalam banyak kelas masalah optimisasi lain. Dalam kasus khusus program linear (dan kelas masalah tertentu lainnya), kita dapat mengatakan lebih banyak lagi: terdapat solusi optimal bagi kedua masalah dengan nilai tujuan yang sama. Hasil ini dikenal sebagai \emph{Teorema Dualitas Kuat}.
+
+\section{Pasangan Primal--Dual dan Dualitas Kuat}
+\label{sec:duality-strong}
+\begin{outcome}
+\begin{itemize}
+\item Pelajari dua teorema terpenting dalam Pemrograman Linear!!!
+\end{itemize}
+\end{outcome}
+Perhatikan pasangan program linear berikut, yang dikenal sebagai pasangan primal--dual. Masalah primal (P) mempunyai $n$ variabel keputusan dan $m$ kendala, sedangkan masalah dual (D) mempunyai $m$ variabel keputusan dan $n$ kendala.
+\par\noindent
+\begin{tcolorbox}[title=Primal (P), colback=blue!5, colframe=blue!60!black, sharp corners=south]
+\[
+\begin{aligned}
+\max\ & \mathbf{c}^\top \mathbf{x} \\
+\text{dengan kendala} \quad & A \mathbf{x} \leq \mathbf{b} \\
+& \mathbf{x} \geq 0 \\
+& \text{(Di sini, } \mathbf{x} \in \mathbb{R}^n \text{ dan } A \text{ adalah matriks } m \times n\text{.)}
+\\
+\phantom{} \\
+\end{aligned}
+\]
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[title=Dual (D), colback=green!5, colframe=green!60!black, sharp corners=south]
+\[
+\begin{aligned}
+\min\ & \mathbf{b}^\top \mathbf{y} \\
+\text{dengan kendala} \quad & A^\top \mathbf{y} \geq \mathbf{c} \\
+& \mathbf{y} \geq 0 \\
+& \text{(Di sini, } \mathbf{y} \in \mathbb{R}^m, \text{ sehingga masalah dual mempunyai } \\
+& m \text{ variabel dan } n \text{ kendala.)}
+\end{aligned}
+\]
+\end{tcolorbox}
+\par
+
+Dari dualitas lemah, kita mengetahui bahwa bagi setiap $\x$ yang layak dalam (P) dan setiap $\y$ yang layak dalam (D), berlaku:
+\[
+\c^\top \x \leq \b^\top \y.
+\]
+
+Hal ini menunjukkan bahwa nilai optimal masalah dual selalu merupakan batas atas bagi nilai optimal masalah primal.
+
+\begin{theorem}{Dualitas Lemah}\label{thm:weak-duality}
+Bagi setiap solusi $\x$ yang layak dari masalah primal (P) dan setiap solusi $\y$ yang layak dari masalah dual (D),
+\[
+\c^\top \x \leq \b^\top \y.
+\]
+\end{theorem}
+
+Teorema dualitas lemah muncul dalam banyak kelas masalah optimisasi. Dalam kasus khusus program linear (dan beberapa masalah terstruktur lainnya), terdapat pula hasil yang lebih kuat, yang dikenal sebagai \emph{Teorema Dualitas Kuat}. Teorema ini mencirikan secara lengkap hubungan antara solusi primal dan dual:
+
+\begin{theorem}{Dualitas Kuat}\label{thm:strong-duality}
+Bagi pasangan primal--dual program linear:
+\[
+\begin{aligned}
+\textbf{(P)} \quad &\max \c^\top \x \\
+&\text{dengan kendala } A \x \leq \b, \x \geq 0,
+\end{aligned}
+\quad\quad
+\begin{aligned}
+\textbf{(D)} \quad &\min \b^\top \y \\
+&\text{dengan kendala } A^\top \y \geq \c, \y \geq 0,
+\end{aligned}
+\]
+berlaku kasus-kasus berikut:
+\begin{enumerate}
+\item Jika (P) takterbatas, maka (D) pasti taklayak.
+\item Jika (D) takterbatas, maka (P) pasti taklayak.
+\item Jika (P) dan (D) sama-sama memiliki solusi layak dan terbatas, keduanya masing-masing memiliki solusi optimal $\x^*$ dan $\y^*$, serta
+\[
+\c^\top \x^* = \b^\top \y^*.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{example}{Ketaklayakan Dual akibat Ketakterbatasan Primal}\label{example:dual-infeasibility-unbounded}
+Perhatikan program linear berikut:
+\[
+\begin{aligned}
+\text{maksimumkan} \quad & x_1 \\
+\text{dengan kendala} \quad
+& x_1 - x_2 \leq 1 \\
+& 2x_1 - x_2 \leq 3 \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\]
+
+Seperti ditunjukkan dalam Contoh~\ref{example:simplex-unbounded}, masalah primal ini takterbatas. Setelah menerapkan metode simpleks, kita menemukan bahwa ketika \( s_1 \) masuk ke basis, tidak ada kendala yang mencegah nilainya bertambah tanpa batas, dan tujuan juga meningkat tanpa batas. Karena itu, masalah primal takterbatas.
+
+Sekarang, perhatikan masalah dualnya:
+\[
+\begin{aligned}
+\text{minimumkan} \quad & y_1 + 3y_2 \\
+\text{dengan kendala} \quad
+& y_1 + 2y_2 \geq 1 \\
+& -y_1 - y_2 \geq 0 \\
+& y_1, y_2 \geq 0
+\end{aligned}
+\]
+Untuk menentukan status masalah dual, kita menerapkan metode simpleks dengan teknik Big-M guna memperoleh kelayakan awal. Variabel artifisial \( a_1 \) diperkenalkan untuk menangani ketaklayakan solusi basis awal.
+
+\textbf{Kamus pertama (dengan penalti Big-M):}
+\[
+\text{Maksimumkan } -y_1 - 3y_2 - 1000a_1
+\]
+\[
+\text{dengan kendala} \quad
+\begin{cases}
+w_1 = -1 + y_1 + 2y_2 + a_1 \\
+w_2 = 0 - y_1 - y_2
+\end{cases}
+\]
+
+\textbf{Persiapan: eliminasi \( a_1 \) dari fungsi tujuan (bukan pivot).} Pada \( y_1 = y_2 = 0 \), persamaan pertama memberi \( w_1 = -1 \), yang taklayak. Sebagai gantinya, kita menjadikan \( a_1 \) sebagai variabel basis: selesaikan persamaan pertama terhadap \( a_1 \), lalu substitusikan ke dalam fungsi tujuan. Ini merupakan penulisan ulang sistem yang sama, bukan pivot simpleks; hasilnya adalah kamus awal yang layak dengan baris tujuan yang memuat penalti Big-M.
+
+\textbf{Kamus kedua:}
+\[
+\text{Maksimumkan } -1000 + 999y_1 + 1997y_2 - 1000w_1
+\]
+\[
+\text{dengan kendala} \quad
+\begin{cases}
+a_1 = 1 - y_1 - 2y_2 + w_1 \\
+w_2 = 0 - y_1 - y_2
+\end{cases}
+\]
+
+\textbf{Pivot:} Masukkan \( y_2 \), keluarkan \( w_2 \). Koefisien \( y_2 \) dalam fungsi tujuan positif, dan uji rasio memilih \( w_2 \) (pivot degenerat: \( y_2 \) masuk dengan nilai \( 0 \)).
+
+\textbf{Kamus akhir:}
+\[
+\text{Maksimumkan } -1000 - 998y_1 - 1000w_1 - 1997w_2
+\]
+\[
+\text{dengan kendala} \quad
+\begin{cases}
+a_1 = 1 + y_1 + w_1 + 2w_2 \\
+y_2 = 0 - y_1 - w_2
+\end{cases}
+\]
+
+Dalam kamus akhir ini, semua variabel dalam fungsi tujuan mempunyai koefisien takpositif, tetapi variabel artifisial \( a_1 \) tetap berada dalam basis dengan nilai positif. Karena \( a_1 > 0 \) saat algoritma berhenti, kita menyimpulkan bahwa masalah dual semula \emph{taklayak}.
+
+\textbf{Kesimpulan melalui Dualitas Kuat:}
+Inilah tepatnya yang diprediksi oleh \textbf{dualitas kuat}: karena masalah primal takterbatas, masalah dual pasti \textbf{taklayak}, dan perhitungan Big-M mengonfirmasinya secara langsung.
+
+\end{example}
+
+\subsection{Interpretasi Ekonomi Masalah Dual}
+\label{sec:duality-economic}
+
+Dualitas dalam pemrograman linear memiliki interpretasi ekonomi yang alami: variabel dual menyatakan \emph{nilai} sumber daya atau kendala dalam masalah primal. Nilai-nilai ini lazim disebut \textbf{harga bayangan}.
+
+\vspace{1em}
+\begin{definition}{Harga Bayangan}
+\emph{Harga bayangan} suatu kendala dalam program linear memberi tahu kita seberapa besar nilai tujuan optimal akan berubah jika ruas kanan kendala tersebut dinaikkan sedikit sebanyak satu satuan, sementara semua hal lain dipertahankan tetap.
+
+\smallskip
+Dalam masalah maksimisasi, harga bayangan menyatakan \textbf{kenaikan nilai} per satuan tambahan sumber daya yang langka. Dalam masalah minimisasi, harga bayangan menyatakan \textbf{penurunan biaya}.
+
+\smallskip
+\textbf{Interpretasi:}
+Jika suatu kendala menyatakan ketersediaan sumber daya (misalnya waktu atau bahan), harga bayangannya mencerminkan nilai marginal sumber daya tersebut: seberapa besar fungsi tujuan akan membaik jika tersedia satu satuan tambahan.
+
+\smallskip
+\textbf{Secara matematis:}
+Jika kendala \( a_i^\top \x \leq b_i \) memiliki variabel dual terkait \( y_i^* \), maka:
+\[
+\text{Harga bayangan} = \frac{d z^*}{d b_i} = y_i^*
+\]
+dengan \( z^* \) sebagai nilai optimal fungsi tujuan.
+\end{definition}
+
+\paragraph{Satuan dan Interpretasi:}
+Satuan harga bayangan sama dengan satuan fungsi tujuan (misalnya dolar laba) per satuan sumber daya (misalnya kilogram tepung atau jam kerja). Jika $y_2 = 50$ dalam contoh toko roti, dan kendala tersebut berkaitan dengan gula (dalam kg), setiap kg gula tambahan memungkinkan toko roti menaikkan laba sebesar \$50.
+
+\begin{example}{Meninjau Kembali Toko Roti}{}
+Perhatikan masalah primal:
+
+$$
+\begin{aligned}
+\text{maksimumkan} \quad & 3x_1 + 2x_2 \\
+\text{dengan kendala} \quad
+& x_1 + x_2 \leq 4 \quad \text{(Tepung)} \\
+& 2x_1 + x_2 \leq 5 \quad \text{(Gula)} \\
+& x_1, x_2 \geq 0
+\end{aligned}
+$$
+
+Masalah dualnya adalah:
+
+$$
+\begin{aligned}
+\text{minimumkan} \quad & 4y_1 + 5y_2 \\
+\text{dengan kendala} \quad
+& y_1 + 2y_2 \geq 3 \\
+& y_1 + y_2 \geq 2 \\
+& y_1, y_2 \geq 0
+\end{aligned}
+$$
+
+Jika solusi dual optimal adalah $y_1^* = 1, y_2^* = 1$, maka:
+
+\begin{itemize}
+\item Harga bayangan tepung adalah 1: setiap satuan tepung tambahan menaikkan laba sebesar \$1.
+\item Harga bayangan gula adalah 1: setiap satuan gula tambahan menaikkan laba sebesar \$1.
+\end{itemize}
+\end{example}
+
+\subsubsection*{Masalah Dual dari Contoh Berkesinambungan}
+
+Sekarang kita dapat melengkapi pembahasan contoh berkesinambungan dari Bab~\ref{ch:simplex-dictionary}--\ref{ch:sensitivity}. Masalah primal dan dualnya adalah:
+\[
+\begin{aligned}
+\max \quad & 2x + 3y \\
+\st \quad
+& x + y \leq 9 \quad & \text{(jam)} \\
+& 2x + y \leq 16 \quad & \text{(tepung)} \\
+& x + 2y \leq 14 \quad & \text{(gula)} \\
+& x, y \geq 0
+\end{aligned}
+\qquad\qquad
+\begin{aligned}
+\min \quad & 9y_1 + 16y_2 + 14y_3 \\
+\st \quad
+& y_1 + 2y_2 + y_3 \geq 2 \quad & \text{(kolom $x$)} \\
+& y_1 + y_2 + 2y_3 \geq 3 \quad & \text{(kolom $y$)} \\
+& y_1, y_2, y_3 \geq 0.
+\end{aligned}
+\]
+Dalam Bab~\ref{ch:sensitivity}, kita menghitung harga bayangan masalah ini dari kamus akhir: \$1 per jam, \$0 per satuan tepung, dan \$1 per satuan gula. Cobalah vektor $\y^* = (1, 0, 1)$ dalam masalah dual. Vektor ini layak (kendala pertama memberi $1 + 0 + 1 = 2 \geq 2$ dan kendala kedua memberi $1 + 0 + 2 = 3 \geq 3$, keduanya ketat), dan nilai tujuannya adalah
+\[
+9(1) + 16(0) + 14(1) = 23,
+\]
+persis sama dengan laba primal optimal. Menurut dualitas lemah, tidak ada solusi dual yang dapat memberi nilai lebih baik, sehingga harga bayangan tersebut \emph{merupakan} solusi dual optimal. Perhatikan pula bahwa tepung, yaitu sumber daya yang memiliki kelonggaran pada solusi optimal ($s_2 = 3$), justru diberi harga nol. Pola ini akan kita rumuskan sebagai \emph{kelonggaran komplementer}.
+
+Anda dapat bereksperimen sendiri: geser pengali pada ketiga kendala di \href{https://www.desmos.com/calculator/d2d5c861c3}{penjelajah dualitas Desmos} (\href{https://open-optimization.github.io/open-optimization-or-book/interactive-figures/lp-duality-explorer.html}{plot interaktif cadangan}), lalu amati bagaimana pertidaksamaan gabungan menyapu daerah layak. Setiap kombinasi pengali yang sah menghasilkan batas atas laba, dan kombinasi terbaik menyentuh verteks optimal.
+
+\begin{example}{Contoh yang Lebih Besar: Toko Roti 2.0}{}
+Masalah primal menggambarkan sebuah toko roti yang mengoptimalkan produksi kue, kukis, dan muffin untuk memaksimumkan laba. Kendala-kendalanya menyatakan keterbatasan sumber daya: tepung, gula, dan waktu pemanggangan. Masalah dual memasangkan harga bayangan pada setiap sumber daya tersebut, yang mencerminkan nilai marginalnya.
+
+\vspace{1em}
+\noindent\textbf{Masalah Primal:}
+$$
+\begin{aligned}
+\max\quad & 90x_1 + 40x_2 + 70x_3 \\
+\text{dengan kendala} \quad
+& 5x_1 + 4x_2 + x_3 \leq 40 \quad \text{(Tepung)} \\
+& x_1 + x_2 + x_3 \leq 10 \quad \text{(Gula)} \\
+& x_1 + x_2 + 0.5x_3 \leq 7 \quad \text{(Waktu Pemanggangan)} \\
+& x_1, x_2, x_3 \geq 0
+\end{aligned}
+$$
+\textbf{Solusi Primal Optimal:}
+$$
+x_1 = 4,\quad x_2 = 0,\quad x_3 = 6,\quad \text{Nilai Tujuan } = 780
+$$
+\vspace{1em}
+\noindent\textbf{Masalah Dual:}
+$$
+\begin{aligned}
+\min\quad & 40y_1 + 10y_2 + 7y_3 \\
+\text{dengan kendala} \quad
+& 5y_1 + y_2 + y_3 \geq 90 \quad \text{(Kue)} \\
+& 4y_1 + y_2 + y_3 \geq 40 \quad \text{(Kukis)} \\
+& y_1 + y_2 + 0.5y_3 \geq 70 \quad \text{(Muffin)} \\
+& y_1, y_2, y_3 \geq 0
+\end{aligned}
+$$
+\textbf{Solusi Dual Optimal:}
+$$
+y_1 = 0,\quad y_2 = 50,\quad y_3 = 40,\quad \text{Nilai Tujuan } = 780
+$$
+
+\vspace{1em}
+\subsubsection*{Interpretasi Harga Bayangan}
+\begin{itemize}
+\item $y_1 = 0$: Harga bayangan tepung adalah \$0.
+Ini menyiratkan bahwa kendala tepung \textbf{tidak mengikat}: toko roti tidak menggunakan seluruh 40 kg tepung. Penambahan persediaan tepung tidak akan menaikkan laba.
+
+\item $y_2 = 50$: Harga bayangan gula adalah \$50.
+Setiap kilogram gula tambahan memungkinkan toko roti menaikkan laba sebesar \$50. Kendala gula \textbf{mengikat}.
+
+\item $y_3 = 40$: Harga bayangan waktu pemanggangan adalah \$40 per jam.
+Waktu pemanggangan digunakan sepenuhnya dan membatasi produksi. Satu jam tambahan memungkinkan kenaikan laba sebesar \$40.
+\end{itemize}
+
+\vspace{1em}
+\subsubsection*{Verifikasi Kelonggaran Komplementer}
+
+Dari solusi primal:
+\begin{itemize}
+\item \textbf{Kendala tepung} tidak ketat \ $\Rightarrow$ \  $y_1 = 0$
+\item \textbf{Kendala gula} ketat \ $\Rightarrow$ \ $y_2 > 0$
+\item \textbf{Kendala waktu pemanggangan} ketat \ $\Rightarrow$ \ $y_3 > 0$
+\end{itemize}
+
+Hubungan ini memenuhi \emph{syarat kelonggaran komplementer}:
+
+$$
+y_i > 0 \Rightarrow \text{Kendala } i \text{ ketat}, \quad
+\text{Kendala } i \text{ tidak ketat} \Rightarrow y_i = 0
+$$
+
+\vspace{1em}
+\textbf{Analisis Sensitivitas: Nilai Marginal Sumber Daya}
+Dengan menganggap basis saat ini tetap optimal, kenaikan laba maksimum akibat penambahan satu satuan:
+\begin{itemize}
+\item Tepung = \$0
+\item Gula = \$50
+\item Waktu Pemanggangan = \$40
+\end{itemize}
+
+\vspace{1em}
+
+Solusi dual bukan hanya memvalidasi nilai tujuan primal (melalui dualitas kuat), melainkan juga memberi makna ekonomi pada setiap kendala. Harga bayangan menunjukkan seberapa besar Anda bersedia membayar untuk memperoleh lebih banyak dari setiap sumber daya, sebuah konsep mendasar dalam operasi, penetapan harga, dan perencanaan.
+
+\paragraph{Kapan Harga Bayangan Bermakna?}
+Harga bayangan bermakna hanya ketika:
+
+\begin{itemize}
+\item Kendala tersebut \emph{mengikat} (yakni, ketat) pada solusi optimal.
+\item Masalah memenuhi dualitas kuat (yang selalu berlaku bagi program linear yang layak dan terbatas).
+\item Ruas kanan diganggu sedikit (sensitivitas lokal).
+\end{itemize}
+
+Jika suatu kendala tidak ketat, harga bayangannya adalah 0: sumber daya tersebut tidak membatasi solusi optimal.
+
+\vspace{1em}
+\paragraph{Hubungan dengan Masalah Dual:}
+Dalam masalah dual:
+\begin{itemize}
+\item \emph{Fungsi tujuan} adalah nilai total sumber daya, yang dinilai dengan harga bayangan.
+\item \emph{Kendala} memastikan bahwa tidak ada kegiatan dalam masalah primal yang menghasilkan laba lebih besar daripada biayanya ketika input dinilai dengan harga bayangan.
+\end{itemize}
+Hal ini menjamin keseimbangan: tidak ada arbitrase yang menguntungkan, dan setiap satuan sumber daya terbatas dinilai menurut nilai marginalnya yang sebenarnya.
+
+\vspace{1em}
+\noindent\textbf{Ringkasan Sifat Harga Bayangan:}
+\begin{itemize}
+\item Harga bayangan menyatakan seberapa besar Anda bersedia \emph{membayar} untuk satu satuan tambahan sumber daya yang terbatas.
+\item Nilainya sama dengan variabel dual yang berkaitan dengan kendala tersebut.
+\item Nilainya mencerminkan nilai marginal dari pelonggaran kendala tersebut.
+\item Harga bayangan hanya taknol bagi kendala yang \textbf{mengikat}.
+\end{itemize}
+
+\vspace{0.5em}
+
+\begin{itemize}
+\item Jika suatu sumber daya digunakan sepenuhnya dan membatasi keoptimalan, harga bayangannya positif.
+\item Jika suatu sumber daya tidak digunakan atau berlimpah, harga bayangannya nol.
+\end{itemize}
+\end{example}
+
+\section{Berbagai Bentuk Primal--Dual}
+\label{sec:duality-forms}
+
+Bentuk masalah dual bergantung pada tujuan primal (maksimum atau minimum), arah pertidaksamaan, dan kendala tanda pada variabel. Alih-alih menghafal aturan terpisah untuk setiap kombinasi, akan lebih membantu jika kita melihat beberapa pasangan primal--dual yang mewakili secara berdampingan, lalu memperhatikan polanya: jenis kendala dalam suatu masalah menentukan tanda variabel dalam masalah lainnya, dan sebaliknya. Di bawah ini kita membahas empat kasus umum.
+
+\paragraph{Kasus 1: Maksimisasi dengan kendala $=$ (bentuk standar).}
+Jika kendala primal berupa persamaan, kita dapat menggabungkannya dengan pengali bertanda \emph{apa pun}, sehingga variabel dualnya bebas. Inilah bentuk yang dihasilkan dengan menambahkan variabel slack, sehingga merupakan versi yang paling sering dijumpai di dalam metode simpleks.
+
+\par\noindent
+\begin{tcolorbox}[title=Primal (P), colback=blue!5, colframe=blue!40!black]
+\[
+\begin{aligned}
+\max\ & \mathbf{c}^\top \mathbf{x} \\
+\text{dengan kendala} \quad & A \mathbf{x} = \mathbf{b} \\
+& \mathbf{x} \geq 0
+\end{aligned}
+\]
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[title=Dual (D), colback=green!5, colframe=green!40!black]
+\[
+\begin{aligned}
+\min\ & \mathbf{b}^\top \mathbf{y} \\
+\text{dengan kendala} \quad & A^\top \mathbf{y} \geq \mathbf{c} \\
+& \mathbf{y} \ \ \text{ bebas}
+\end{aligned}
+\]
+\end{tcolorbox}
+\par
+
+\paragraph{Kasus 2: Minimisasi dengan kendala $\geq$.}
+Dualitas bersifat simetris: masalah primal minimisasi menghasilkan masalah dual maksimisasi, dan peran $\b$ serta $\c$ bertukar. Perhatikan bagaimana arah kendala dan pembatasan tanda mencerminkan kasus maksimisasi.
+
+\par\noindent
+\begin{tcolorbox}[title=Primal (P), colback=blue!5, colframe=blue!40!black]
+\[
+\begin{aligned}
+\min\ & \mathbf{b}^\top \mathbf{x} \\
+\text{dengan kendala} \quad & A \mathbf{x} \geq \mathbf{c} \\
+& \mathbf{x} \geq 0
+\end{aligned}
+\]
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[title=Dual (D), colback=green!5, colframe=green!40!black]
+\[
+\begin{aligned}
+\max\ & \mathbf{c}^\top \mathbf{y} \\
+\text{dengan kendala} \quad & A^\top \mathbf{y} \leq \mathbf{b} \\
+& \mathbf{y} \geq 0
+\end{aligned}
+\]
+\end{tcolorbox}
+\par
+
+\paragraph{Kasus 3: Variabel bebas dalam masalah primal.}
+Jika suatu variabel primal bebas, kita kehilangan kemampuan untuk melonggarkan koefisiennya: argumen pembatasan hanya berlaku apabila koefisien dual sama persis dengan koefisien tujuan. Karena itu, variabel primal bebas memaksa adanya kendala \emph{persamaan} dalam masalah dual.
+
+\par\noindent
+\begin{tcolorbox}[title=Primal (P), colback=blue!5, colframe=blue!40!black]
+\[
+\begin{aligned}
+\max\ & \mathbf{c}^\top \mathbf{x} \\
+\text{dengan kendala} \quad & A \mathbf{x} \leq \mathbf{b} \\
+& \mathbf{x} \ \ \text{bebas}
+\end{aligned}
+\]
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[title=Dual (D), colback=green!5, colframe=green!40!black]
+\[
+\begin{aligned}
+\min\ & \mathbf{b}^\top \mathbf{y} \\
+\text{dengan kendala} \quad & A^\top \mathbf{y} = \mathbf{c} \\
+& \mathbf{y} \geq 0
+\end{aligned}
+\]
+\end{tcolorbox}
+\par
+
+\paragraph{Kasus 4: Variasi tanda pada variabel dan kendala primal.}
+Semua variasi lainnya mengikuti logika pembatasan yang sama. Setiap aturan di bawah ini dapat diperiksa dengan menanyakan: apa yang harus berlaku bagi pengali agar kendala gabungan membatasi fungsi tujuan?
+
+\begin{itemize}
+  \item Jika variabel primal \( x_j \) tidak dibatasi (bebas), kendala dual yang bersesuaian merupakan \emph{persamaan}.
+  \item Jika \( x_j \leq 0 \), kendala dual menjadi \( \leq \), bukan \( \geq \).
+  \item Jika kendala primal \( a_i^\top \mathbf{x} \leq b_i \) diubah menjadi \( \geq b_i \), kendala tanda pada variabel dual \( y_i \) yang bersesuaian berbalik.
+\end{itemize}
+
+Ini menunjukkan bagaimana setiap komponen dalam masalah primal memengaruhi masalah dual, khususnya bagaimana arah pertidaksamaan dan pembatasan tanda mengendalikan domain variabel serta bentuk kendala dual.
+
+Seperti dapat dilihat, perubahan pada kendala dan domain variabel primal mengubah struktur masalah dual. Setiap transformasi tersebut memiliki pasangan primal--dual yang bersesuaian dan tetap mempertahankan prinsip dualitas. Dalam setiap kasus, teorema dualitas lemah dan dualitas kuat tetap berlaku.
+
+\begin{learningcheckpoint}[label={lc:dual-forms}]
+Tanpa menuliskan penurunan lengkap, prediksikan bentuk dual dari
+\[
+\min\; \c^\top \x \quad \text{dengan kendala}\quad A\x \geq \b,\ \x \geq 0.
+\]
+Apakah masalah dual merupakan maksimisasi atau minimisasi? Apakah variabel dual dibatasi tandanya atau bebas? Apakah kendala dual berupa pertidaksamaan atau persamaan?
+\end{learningcheckpoint}
+
+\subsection*{Menurunkan Masalah Dual dengan Kendala Persamaan}
+
+Sekarang, mari kita tinjau variasi dari penurunan masalah dual sebelumnya. Kali ini, masalah primal (P) memiliki kendala persamaan, bukan pertidaksamaan, dan semua variabel tetap taknegatif. Sebagai contoh, perhatikan program linear berikut dengan $m=2$ kendala persamaan dan $n=4$ variabel:
+
+\[
+\begin{aligned}
+\max \; & 2x_1 + 3x_2 - x_3 + x_4 \\
+\text{dengan kendala } & x_1 + x_2 + 0 \cdot x_3 + x_4 = 10 \\
+& 2x_1 + x_2 - x_3 + 0 \cdot x_4 = 5 \\
+& x_1, x_2, x_3, x_4 \geq 0.
+\end{aligned}
+\]
+
+Dalam bentuk matriks, jika kita tetapkan
+\[
+A = \begin{bmatrix}
+1 & 1 & 0 & 1 \\
+2 & 1 & -1 & 0
+\end{bmatrix}, \quad b = \begin{bmatrix}10 \\ 5\end{bmatrix}, \quad c = \begin{bmatrix}2 \\ 3 \\ -1 \\ 1\end{bmatrix},
+\]
+masalah primal kita adalah:
+\[
+\max \c^\top \x \quad\text{dengan kendala } A \x = \b, \; \x \geq 0.
+\]
+
+\subsubsection*{Menyusun Batas dengan Kombinasi Persamaan}
+
+Sebelumnya, ketika menghadapi pertidaksamaan, kita membentuk batas atas fungsi tujuan dengan mengambil kombinasi linear taknegatif dari kendala. Sekarang, karena kita menghadapi \emph{persamaan}, kita bebas memilih sebarang pengali riil bagi kendala tersebut (positif, negatif, atau nol), dan kombinasi yang dihasilkan tetap berlaku sebagai persamaan. Alasannya, setiap kelipatan skalar suatu persamaan tetap merupakan persamaan yang sah.
+
+Misalkan $y_1$ dan $y_2$ adalah bilangan riil sebarang, lalu bentuk kombinasi linear:
+\[
+y_1 (x_1 + x_2 + x_4 = 10) \quad \text{dan} \quad y_2 (2x_1 + x_2 - x_3 = 5).
+\]
+Menjumlahkan keduanya menghasilkan:
+\[
+y_1 x_1 + y_1 x_2 + y_1 x_4 \;+\; y_2(2x_1 + x_2 - x_3) \;=\; 10y_1 + 5y_2.
+\]
+
+Dengan mengumpulkan suku berdasarkan variabel:
+\[
+x_1(y_1 + 2y_2) + x_2(y_1 + y_2) + x_3(-y_2) + x_4(y_1) = 10y_1 + 5y_2.
+\]
+
+Karena $x \geq 0$, jika kita ingin ruas kiri menjadi batas atas bagi fungsi tujuan $2x_1 + 3x_2 - x_3 + x_4$ untuk setiap $x$ yang layak, koefisien setiap $x_j$ dalam persamaan gabungan harus mendominasi koefisiennya dalam fungsi tujuan. Secara khusus, kita menginginkan:
+\[
+y_1 + 2y_2 \geq 2, \quad y_1 + y_2 \geq 3, \quad -y_2 \geq -1 \;(\text{yang menyiratkan } y_2 \leq 1), \quad y_1 \geq 1.
+\]
+
+Jika pertidaksamaan ini berlaku, maka untuk setiap $x$ yang layak:
+\[
+2x_1 + 3x_2 - x_3 + x_4 \;\leq\; (y_1+2y_2)x_1 + (y_1+y_2)x_2 + (-y_2)x_3 + (y_1)x_4 \;=\; 10y_1 + 5y_2.
+\]
+
+Dengan demikian, $10y_1 + 5y_2$ merupakan batas atas bagi nilai maksimum $2x_1 + 3x_2 - x_3 + x_4$. Karena tanda $y_1$ dan $y_2$ tidak dibatasi, kita dapat mencoba \emph{meminimumkan} $10y_1 + 5y_2$ dengan syarat kondisi dominasi tersebut dipenuhi.
+
+\subsubsection*{Masalah Dual}
+
+Dalam bentuk umum dengan kendala persamaan dan variabel primal taknegatif, variabel dual yang berkaitan dengan kendala persamaan ini bersifat \emph{bebas} (dapat positif, negatif, atau nol). Proses yang kita ikuti di atas menghasilkan masalah dual:
+\[
+\min \b^\top \y = 10y_1 + 5y_2
+\]
+dengan syarat $A^\top \y \geq \c$, yaitu:
+\[
+\begin{bmatrix}
+1 & 2 \\
+1 & 1 \\
+0 & -1 \\
+1 & 0
+\end{bmatrix}
+\begin{bmatrix}y_1 \\ y_2\end{bmatrix}
+\geq
+\begin{bmatrix}2 \\ 3 \\ -1 \\ 1\end{bmatrix}.
+\]
+
+Dalam contoh numerik kita, meminimumkan $10y_1 + 5y_2$ dengan keempat pertidaksamaan tersebut menghasilkan solusi dual optimal $\y^* = (2, 1)$ dengan nilai $25$; kendala yang berasal dari $x_2$ dan $x_3$ ketat pada titik itu, sedangkan dua kendala lainnya berlaku dengan pertidaksamaan ketat. Secara lebih umum, masalah dual yang berkaitan dengan
+\[
+\max \c^\top \x \quad\text{dengan kendala } A \x = \b, \x \geq 0
+\]
+adalah
+\[
+\min \b^\top \y \quad \text{dengan kendala } A^\top \y \geq \c,\; \y \text{ bebas}.
+\]
+
+Tidak adanya pembatasan tanda pada $\y$ merupakan akibat langsung dari penggunaan persamaan dalam masalah primal. Karena tidak ada arah pertidaksamaan yang ditetapkan, Anda bebas ``menjumlahkan'' atau ``mengurangkan'' persamaan yang diberikan sesuka hati; oleh karena itu, tidak muncul kendala tanda bagi variabel dual.
+
+\begin{example}{Contoh dengan Pertidaksamaan dan Variabel Bebas}{}
+Sekarang, perhatikan masalah primal dengan tiga kendala pertidaksamaan dan dua variabel bebas. Misalkan:
+
+\par\noindent
+\begin{tcolorbox}[title=Primal (P), colback=blue!5, colframe=blue!60!black, sharp corners=south]
+\[
+\begin{aligned}
+\max\ & 3x_1 - 2x_2 \\
+\text{dengan kendala} \quad
+& x_1 + x_2 \leq 10 \\
+& 2x_1 - x_2 \leq 5 \\
+& -x_1 + 3x_2 \leq 7 \\
+& x_1 \text{ bebas, } x_2 \text{ bebas}
+\end{aligned}
+\]
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[title=Dual (D), colback=green!5, colframe=green!60!black, sharp corners=south]
+\[
+\begin{aligned}
+\min\ & 10y_1 + 5y_2 + 7y_3 \\
+\text{dengan kendala} \quad
+& y_1 + 2y_2 - y_3 = 3 \quad \text{(koefisien } x_1) \\
+& y_1 - y_2 + 3y_3 = -2 \quad \text{(koefisien } x_2) \\
+& y_1, y_2, y_3 \geq 0
+\end{aligned}
+\]
+\end{tcolorbox}
+\par
+
+Di sini, $x_1$ dan $x_2$ dapat bernilai positif maupun negatif.
+
+Kita dapat menuliskannya dalam bentuk matriks ringkas. Misalkan:
+\[
+A = \begin{bmatrix}
+1 & 1 \\
+2 & -1 \\
+-1 & 3
+\end{bmatrix}, \quad b = \begin{bmatrix}
+10 \\ 5 \\ 7
+\end{bmatrix}, \quad c = \begin{bmatrix}
+3 \\ -2
+\end{bmatrix}.
+\]
+
+Dengan demikian, (P) adalah:
+\[
+\max \c^\top \x \quad \text{dengan kendala } A \x \leq \b, \text{ dan } \x \text{ bebas}.
+\]
+
+Untuk membentuk batas bagi $3x_1 - 2x_2$, kita mengambil kombinasi taknegatif dari kendala. Misalkan $y_1, y_2, y_3 \geq 0$ adalah pengali bagi ketiga kendala:
+
+\[
+y_1(x_1 + x_2) + y_2(2x_1 - x_2) + y_3(-x_1 + 3x_2) \leq 10y_1 + 5y_2 + 7y_3.
+\]
+
+Dengan menggabungkan suku-suku sejenis dalam $x_1$ dan $x_2$:
+
+\[
+x_1(y_1 + 2y_2 - y_3) + x_2(y_1 - y_2 + 3y_3) \leq 10y_1 + 5y_2 + 7y_3.
+\]
+
+Kita ingin pertidaksamaan ini berlaku bagi setiap $x_1, x_2$ yang \emph{bebas}. Jika $y_1 + 2y_2 - y_3 > 3$, kita dapat memilih $x_1$ positif yang cukup besar sehingga ruas kiri menjadi sebesar apa pun dan melanggar batas. Jika $y_1 + 2y_2 - y_3 < 3$, kita melanggar batas dengan memilih $x_1$ negatif yang nilai mutlaknya cukup besar. Satu-satunya cara agar pertidaksamaan selalu berlaku adalah kesamaan persis:
+
+\[
+y_1 + 2y_2 - y_3 = 3.
+\]
+
+Demikian pula untuk $x_2$:
+
+Jika $y_1 - y_2 + 3y_3 > -2$, kita dapat membuat $x_2$ menuju $-\infty$ untuk melanggar batas. Jika $y_1 - y_2 + 3y_3 < -2$, kita dapat membuat $x_2$ menuju $\infty$. Sekali lagi, satu-satunya pilihan yang aman adalah kesamaan:
+
+\[
+y_1 - y_2 + 3y_3 = -2.
+\]
+
+Dengan demikian, kendala dual harus berupa persamaan. Masalah dualnya adalah:
+
+\[
+\textbf{Dual (D):} \quad
+\begin{aligned}
+\min \; & 10y_1 + 5y_2 + 7y_3 \\
+\text{dengan kendala } & y_1 + 2y_2 - y_3 = 3 \\
+& y_1 - y_2 + 3y_3 = -2 \\
+& y_1, y_2, y_3 \geq 0.
+\end{aligned}
+\]
+
+Dari penurunan kita, masalah dual (D) menjadi:
+\[
+\min \b^\top \y = 10y_1 + 5y_2 + 7y_3
+\]
+dengan kendala:
+\[
+\begin{bmatrix}
+1 & 2 & -1 \\
+1 & -1 & 3
+\end{bmatrix}
+\begin{bmatrix}
+y_1 \\ y_2 \\ y_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+3 \\ -2
+\end{bmatrix},
+\]
+dan
+\[
+y_1, y_2, y_3 \geq 0.
+\]
+
+Sebagai ringkasan, kita memperoleh
+
+\par\noindent
+\begin{tcolorbox}[title=Primal (P), colback=blue!5, colframe=blue!60!black, sharp corners=south]
+\[
+\begin{aligned}
+\max \quad &
+\begin{bmatrix} 3 & -2 \end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \\[0.5em]
+\text{dengan kendala} \quad &
+\begin{bmatrix}
+1 & 1 \\
+2 & -1 \\
+-1 & 3
+\end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+\leq
+\begin{bmatrix} 10 \\ 5 \\ 7 \end{bmatrix} \\[0.5em]
+& x_1, x_2 \text{ bebas}
+\end{aligned}
+\]
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[title=Dual (D), colback=green!5, colframe=green!60!black, sharp corners=south]
+\[
+\begin{aligned}
+\min \quad &
+\begin{bmatrix} 10 & 5 & 7 \end{bmatrix}
+\begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix} \\[0.5em]
+\text{dengan kendala} \quad &
+\begin{bmatrix}
+1 & 2 & -1 \\
+1 & -1 & 3
+\end{bmatrix}
+\begin{bmatrix} y_1 \\ y_2 \\ y_3 \end{bmatrix}
+=
+\begin{bmatrix} 3 \\ -2 \end{bmatrix} \\[0.5em]
+& y_1, y_2, y_3 \geq 0
+\end{aligned}
+\]
+\end{tcolorbox}
+\par
+
+Di sini kita melihat polanya: variabel $\x$ yang bebas dalam masalah primal memaksa kendala dual menjadi persamaan. Singkatnya:
+\begin{itemize}
+\item Pertidaksamaan primal dengan $\x$ bebas $\Rightarrow$ kendala dual berupa persamaan.
+\item Persamaan primal dengan $\x \geq 0$ $\Rightarrow$ kendala dual berupa pertidaksamaan dan $\y$ bebas.
+\end{itemize}
+
+Hubungan ini memastikan bahwa dengan memilih pengali dual yang sesuai, kita selalu dapat membentuk batas yang sah bagi fungsi tujuan primal.
+
+Tabel berikut dapat membantu mengingat hubungan di atas.\\
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+\textbf{Primal (min)}       & \textbf{Dual (maks)}      \\
+\midrule
+Kendala \(\geq\)           & Variabel \(\geq 0\)      \\
+Kendala \(\leq\)           & Variabel \(\leq 0\)      \\
+Kendala \(=\)               & Variabel \(\text{bebas}\) \\
+Variabel \(\geq 0\)        & Kendala \(\leq\)         \\
+Variabel \(\leq 0\)        & Kendala \(\geq\)         \\
+Variabel \(\text{bebas}\)  & Kendala \(=\)             \\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Korespondensi antara jenis kendala dan variabel primal dengan padanannya dalam masalah dual.}\label{tab:duality-tab01}% tab-num-auto
+
+\end{center}
+\end{example}
+
+\subsection*{Masalah Dual yang Rumit}
+\label{example:complicated-dual}
+Perhatikan program linear primal berikut:
+\par\noindent
+\begin{tcolorbox}[title=Primal (P), colback=blue!5, colframe=blue!60!black, sharp corners=south]
+\[
+\begin{aligned}
+\max\quad & 2x_1 + x_2 \\
+\text{dengan kendala} \quad
+& x_1 + x_2 = 2 \quad \text{(1)} \\
+& 2x_1 - x_2 \geq 3 \quad \text{(2)} \\
+& x_1 - x_2 \leq 1 \quad \text{(3)} \\
+& x_1 \geq 0, \; x_2 \text{ bebas}
+\end{aligned}
+\]
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[title=Dual (D), colback=green!5, colframe=green!60!black, sharp corners=south]
+Misalkan \( y_1 \in \mathbb{R} \), \( y_2 \leq 0 \), dan \( y_3 \geq 0 \) adalah variabel dual masing-masing bagi kendala (1), (2), dan (3).
+\[
+\begin{aligned}
+\min\quad & 2y_1 + 3y_2 + 1y_3 \\
+\text{dengan kendala} \quad
+& y_1 + 2y_2 + y_3 \geq 2 \quad \text{(dari } x_1 \geq 0\text{)} \\
+& y_1 - y_2 - y_3 = 1 \quad \text{(dari } x_2 \text{ bebas)}\\
+& y_1  \text{ bebas } , y_2 \leq 0 , y_3 \geq 0
+\end{aligned}
+\]
+\end{tcolorbox}
+\par
+
+Untuk menurunkan masalah dual, kita memperkenalkan satu variabel dual bagi setiap kendala:
+\begin{itemize}
+    \item Misalkan \( y_1 \) adalah variabel dual bagi kendala persamaan \( x_1 + x_2 = 2 \).
+    \item Misalkan \( y_2 \) adalah variabel dual bagi kendala \( \geq \), yaitu \( 2x_1 - x_2 \geq 3 \).
+    \item Misalkan \( y_3 \) adalah variabel dual bagi kendala \( \leq \), yaitu \( x_1 - x_2 \leq 1 \).
+\end{itemize}
+
+\textbf{Penjelasan Struktur Dual:}
+\begin{itemize}
+    \item Masalah primal memiliki satu kendala persamaan. Karena itu, variabel dual terkait \( y_1 \) tidak dibatasi tandanya.
+    \item Kendala primal kedua adalah pertidaksamaan \( \geq \) dalam masalah maksimisasi, sehingga variabel dual terkait \( y_2 \) harus memenuhi \( \leq 0 \): hanya pengali takpositif yang mengubah kendala \( \geq \) menjadi komponen \( \leq \) yang sah bagi suatu batas atas.
+    \item Kendala primal ketiga adalah pertidaksamaan \( \leq \), sehingga variabel dual terkait \( y_3 \) harus memenuhi \( \geq 0 \).
+    \item Kendala dual berasal dari koefisien variabel primal. Karena masalah primal merupakan maksimisasi, kendala dual berarah \( \geq \).
+    \item Koefisien tujuan dual berasal dari ruas kanan kendala primal: \( 2, 3, 1 \).
+\end{itemize}
+
+\textbf{Ringkasan:}
+Contoh ini memperlihatkan bagaimana campuran jenis kendala dalam masalah primal (\( =, \geq, \leq \)) menghasilkan masalah dual dengan campuran pembatasan tanda variabel. Batas variabel primal juga menentukan apakah kendala dual berupa pertidaksamaan atau persamaan. Pemetaan ini diperlukan untuk menyusun masalah dual dengan benar.
+
+(Catatan tambahan: masalah primal khusus ini ternyata taklayak. Kendala (1) dan (2) memaksa \( x_1 \geq 5/3 \), sedangkan kendala (1) dan (3) memaksa \( x_1 \leq 3/2 \). Penyusunan masalah dual sepenuhnya bersifat sintaktis dan tidak bergantung pada kelayakan; sesuai dengan Teorema~\ref{thm:strong-duality}, masalah dual di atas ternyata takterbatas.)
+
+\subsubsection*{Penurunan Masalah Dual yang Rumit: Tinjauan Kedua melalui Agregasi}
+{}\label{example:complicated-dual-aggregation}
+Perhatikan program linear primal berikut:
+\[
+\begin{aligned}
+\text{maksimumkan} \quad & 2x_1 + x_2 \\
+\text{dengan kendala} \quad
+& x_1 + x_2 = 2 \quad \text{(kendala 1)} \\
+& 2x_1 - x_2 \geq 3 \quad \text{(kendala 2)} \\
+& x_1 - x_2 \leq 1 \quad \text{(kendala 3)} \\
+& x_1 \geq 0, \; x_2 \text{ bebas}
+\end{aligned}
+\]
+
+Sekarang kita menurunkan masalah dual dengan \textbf{metode agregasi}.
+
+\vspace{0.5em}
+\textbf{Langkah 1: Kalikan kendala dengan variabel dual.}
+
+Kita memperkenalkan variabel dual \( y_1, y_2, y_3 \) yang masing-masing bersesuaian dengan kendala 1, 2, dan 3.
+
+Kita mengagregasikan kendala dengan membentuk kombinasi linear:
+\[
+y_1(x_1 + x_2 = 2) + y_2(2x_1 - x_2 \geq 3) + y_3(x_1 - x_2 \leq 1)
+\]
+
+Sebelum menggabungkan, kita harus memastikan bahwa setiap suku menyumbangkan pertidaksamaan \( \leq \) yang sah, karena kita memaksimumkan masalah primal dan menginginkan batas \emph{atas}. Jadi:
+
+- Kendala persamaan: sebarang pengali dapat digunakan, sehingga \( y_1 \in \mathbb{R} \).
+- Kendala \( \geq \): kalikan dengan \( y_2 \leq 0 \) (pengali takpositif membalik \( \geq \) menjadi \( \leq \)).
+- Kendala \( \leq \): kalikan dengan \( y_3 \geq 0 \) (pengali taknegatif mempertahankan \( \leq \)).
+
+Sekarang lakukan agregasi:
+\[
+\begin{aligned}
+& y_1(x_1 + x_2) + y_2(2x_1 - x_2) + y_3(x_1 - x_2) \\
+&= (y_1 + 2y_2 + y_3)x_1 + (y_1 - y_2 - y_3)x_2
+\end{aligned}
+\]
+
+Ruas kanan yang teragregasi adalah:
+\[
+2y_1 + 3y_2 + 1y_3
+\]
+
+Jadi, kendala yang teragregasi adalah:
+\[
+(y_1 + 2y_2 + y_3)x_1 + (y_1 - y_2 - y_3)x_2 \leq 2y_1 + 3y_2 + y_3
+\]
+
+\vspace{0.5em}
+\textbf{Langkah 2: Pastikan kendala ini mendominasi fungsi tujuan primal.}
+
+Untuk membatasi fungsi tujuan primal \( 2x_1 + x_2 \) dari atas, kita menginginkan:
+\[
+(y_1 + 2y_2 + y_3)x_1 + (y_1 - y_2 - y_3)x_2 \geq 2x_1 + x_2 \quad \text{bagi semua } x_1, x_2 \text{ yang layak}
+\]
+
+Karena \( x_1 \geq 0 \), dominasi pada koordinat \( x_1 \) berarti koefisien teragregasi harus sekurang-kurangnya \( 2 \). Karena \( x_2 \) bebas, koefisien teragregasinya harus sama \emph{persis} dengan koefisien tujuan (jika tidak, nilai positif atau negatif \( x_2 \) yang cukup besar akan melanggar batas):
+\[
+\begin{aligned}
+y_1 + 2y_2 + y_3 &\geq 2 \quad \text{(koefisien pada } x_1 \geq 0) \\
+y_1 - y_2 - y_3 &= 1 \quad \text{(koefisien pada } x_2 \text{ bebas})
+\end{aligned}
+\]
+
+\vspace{0.5em}
+\textbf{Langkah 3: Rumuskan masalah dual.}
+
+Fungsi tujuan dual adalah ruas kanan kendala teragregasi:
+\[
+\text{minimumkan } 2y_1 + 3y_2 + y_3
+\]
+
+Dengan kendala:
+\[
+\begin{aligned}
+y_1 + 2y_2 + y_3 &\geq 2 \\
+y_1 - y_2 - y_3 &= 1 \\
+y_2 &\leq 0 \quad \text{(dari kendala primal } \geq\text{)} \\
+y_3 &\geq 0 \quad \text{(dari kendala primal } \leq\text{)} \\
+y_1 &\in \mathbb{R} \quad \text{(dari kendala } =\text{)}
+\end{aligned}
+\]
+
+\vspace{0.5em}
+\textbf{Kesimpulan:}
+
+Penurunan ini menunjukkan bahwa:
+\begin{itemize}
+  \item \emph{Arah kendala} dalam masalah primal menentukan tanda variabel dual yang bersesuaian.
+  \item \emph{Tanda variabel primal} (misalnya, \( x_1 \geq 0 \)) menentukan arah kendala dual: untuk menjamin dominasi bagi variabel taknegatif, kita mensyaratkan kombinasi dual bernilai \(\geq\) koefisien primal.
+  \item \emph{Fungsi tujuan dual} berasal dari agregasi ruas kanan yang diboboti oleh variabel dual.
+\end{itemize}
+Contoh ini memperlihatkan bagaimana pengelolaan tanda dan pertidaksamaan secara cermat menghasilkan masalah dual yang sah dan membatasi fungsi tujuan primal dari atas.
+
+\textbf{Pertanyaan:} Apa yang terjadi jika variabel $x_1$ justru dibatasi oleh $x_1 \leq 0$?
+
+\section{Latihan}
+
+\exgroup{Pemanasan}
+
+\begin{ex}{Masalah Dual Toko Roti Kecil}{}
+\label{ex:dual-2x2-warmup}
+\stars{1} Sebuah toko roti menjual roti tawar ($x_1$, laba \$5 per buah) dan roti gulung ($x_2$, laba \$4 per buah), dengan penggunaan paling banyak 12 satuan tepung dan 5 satuan gula:
+\[
+\begin{aligned}
+\max \quad & 5x_1 + 4x_2 \\
+\text{dengan kendala} \quad & 2x_1 + 3x_2 \leq 12 \quad \text{(tepung)} \\
+& x_1 + x_2 \leq 5 \quad \text{(gula)} \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\]
+\begin{enumerate}
+\item Tuliskan program linear dual dengan memperkenalkan satu variabel dual bagi setiap sumber daya.
+\item Tafsirkan setiap variabel dual sebagai harga per satuan sumber daya, seperti dalam kisah pembuat roti pesaing: apa arti kedua kendala dual bagi roti tawar dan roti gulung?
+\item Data primal mana yang menjadi koefisien tujuan dual, dan data mana yang menjadi ruas kanan dual?
+\end{enumerate}
+\exrefs{\S\ref{sec:duality-theory}}
+\end{ex}
+
+\begin{ex}{Rumuskan Masalah Dual}{}
+\label{ex:formulate-dual}
+\stars{1} Tuliskan masalah dual dari program linear berikut:
+\[
+\begin{aligned}
+\text{Maksimumkan} \quad & 4x_1 + 5x_2 + 3x_3 \\
+\text{dengan kendala} \quad
+& x_1 + 2x_2 + x_3 \leq 10 \\
+& 3x_1 + x_2 + 2x_3 \leq 12 \\
+& x_1, x_2, x_3 \geq 0
+\end{aligned}
+\]
+\exrefs{\S\ref{sec:duality-theory}, \S\ref{sec:duality-strong}}
+\end{ex}
+
+\begin{ex}{Memverifikasi Dualitas Lemah}{}
+\label{ex:weak-duality-check}
+\stars{1} Untuk masalah toko roti pada \S\ref{sec:duality-theory},
+\[
+\max \; 3x_1 + 2x_2 \quad \text{dengan kendala} \quad x_1 + x_2 \leq 4, \quad 2x_1 + x_2 \leq 5, \quad x_1, x_2 \geq 0,
+\]
+dengan masalah dual $\min \; 4y_1 + 5y_2$ yang memenuhi $y_1 + 2y_2 \geq 3$, $y_1 + y_2 \geq 2$, dan $y_1, y_2 \geq 0$, perhatikan titik $\x = (1, 2)$ dan $\y = (2, 1)$.
+\begin{enumerate}
+\item Periksa bahwa $\x$ layak bagi masalah primal, lalu hitung nilai tujuannya.
+\item Periksa bahwa $\y$ layak bagi masalah dual, lalu hitung nilai tujuannya.
+\item Selang apit apa yang diberikan oleh Teorema~\ref{thm:weak-duality} bagi nilai optimal $z^*$? Konfirmasikan bahwa solusi optimal sebenarnya, $\x^* = (1,3)$ dengan $z^* = 9$, berada di dalam selang tersebut.
+\end{enumerate}
+\exrefs{Teorema~\ref{thm:weak-duality}, \S\ref{sec:duality-theory}}
+\end{ex}
+
+\exgroup{Masalah inti}
+
+\begin{ex}{Batas Dualitas Lemah}{}
+\label{ex:weak-duality-bound}
+\stars{2} Perhatikan PL primal berikut:
+\[
+\begin{aligned}
+\max \quad & 3x_1 + 2x_2 \\
+\text{dengan kendala} \quad & x_1 + x_2 \leq 4 \\
+& 2x_1 + x_2 \leq 6 \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\]
+\begin{enumerate}
+\item Tuliskan masalah dual.
+\item Periksa bahwa $\mathbf{y} = (1, 1)$ layak bagi masalah dual. Hitung nilai tujuan dual $\mathbf{b}^\top \mathbf{y}$.
+\item Periksa bahwa $\mathbf{x} = (2, 2)$ layak bagi masalah primal. Hitung nilai tujuan primal $\mathbf{c}^\top \mathbf{x}$.
+\item Gunakan dualitas lemah untuk menjelaskan mengapa nilai optimal masalah primal harus berada di antara kedua nilai tersebut.
+\end{enumerate}
+\exrefs{Teorema~\ref{thm:weak-duality}, \S\ref{sec:duality-strong}}
+\end{ex}
+
+\begin{ex}{Masalah Dual dengan Kendala Campuran}{}
+\stars{2} Rumuskan masalah dual dari PL berikut:
+\[
+\begin{aligned}
+\text{Maksimumkan} \quad & 2x_1 + 3x_2 \\
+\text{dengan kendala} \quad
+& x_1 + x_2 = 5 \\
+& x_1 - x_2 \leq 2 \\
+& x_1 \geq 0, \quad x_2 \text{ bebas}
+\end{aligned}
+\]
+Tentukan pembatasan tanda pada setiap variabel dual dan apakah setiap kendala dual berupa pertidaksamaan atau persamaan.
+\exrefs{\S\ref{sec:duality-forms}}
+\end{ex}
+
+\begin{ex}{Harga Bayangan dan Variabel Dual}{}
+\stars{2} Sebuah toko roti menyelesaikan PL berikut:
+\[
+\begin{aligned}
+\max \quad & 5x_1 + 4x_2 \quad \text{(laba dalam dolar)}\\
+\text{dengan kendala} \quad
+& 2x_1 + x_2 \leq 20 \quad \text{(tepung dalam kg)} \\
+& x_1 + 2x_2 \leq 18 \quad \text{(gula dalam kg)} \\
+& x_1 + x_2 \leq 13 \quad \text{(kapasitas oven)} \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\]
+Solusi primal optimal adalah $(x_1^*, x_2^*) = (7\tfrac{1}{3}, 5\tfrac{1}{3})$ dengan $z^* = 58$.
+Solusi dual optimal adalah $(y_1^*, y_2^*, y_3^*) = (2, 1, 0)$.
+
+\begin{enumerate}
+\item Periksa bahwa dualitas kuat berlaku: hitung $\mathbf{b}^\top \mathbf{y}^*$ dan konfirmasikan bahwa nilainya sama dengan $z^*$.
+\item Kendala mana yang mengikat pada solusi optimal? Mana yang tidak mengikat?
+\item Periksa bahwa syarat kelonggaran komplementer dipenuhi.
+\item Tafsirkan variabel dual sebagai harga bayangan. Jika toko roti dapat memperoleh tambahan 1 kg tepung, kira-kira berapa kenaikan labanya?
+\end{enumerate}
+\exrefs{\S\ref{sec:duality-economic}, Teorema~\ref{thm:strong-duality}}
+\end{ex}
+
+\exgroup{Konsep dan hubungan}
+
+\begin{ex}{Sertifikat dengan Kata-kata Anda Sendiri}{}
+\stars{2} Gambar~\ref{fig:duality-pipeline} menggambarkan setiap solusi dual yang layak sebagai suatu \emph{sertifikat}.
+\begin{enumerate}
+\item Jelaskan dengan kata-kata Anda sendiri apa yang disertifikasi oleh $\y$ dual yang layak mengenai masalah primal, dan apa yang akan Anda tunjukkan kepada teman yang skeptis untuk meyakinkannya, tanpa menyelesaikan masalah primal, bahwa tidak ada rencana layak yang dapat menghasilkan laba lebih dari jumlah tertentu.
+\item Mengapa argumen sertifikat memerlukan $\y \geq 0$ ketika kendala primal berupa pertidaksamaan?
+\item Jelaskan mengapa pencarian \emph{sertifikat terbaik} itu sendiri merupakan program linear, dan apa yang dikatakan dualitas kuat tentang mutu sertifikat terbaik tersebut.
+\end{enumerate}
+\exrefs{Gambar~\ref{fig:duality-pipeline}, \S\ref{sec:duality-theory}, Teorema~\ref{thm:strong-duality}}
+\end{ex}
+
+\begin{ex}{Dualitas Kuat dan Ketaklayakan}{}
+\stars{2} Perhatikan PL primal berikut:
+\[
+\begin{aligned}
+\max \quad & x_1 + x_2 \\
+\text{dengan kendala} \quad & x_1 - x_2 \leq 1 \\
+& -x_1 + x_2 \leq -3 \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\]
+\begin{enumerate}
+\item Tuliskan masalah dual.
+\item Tunjukkan bahwa masalah primal taklayak dengan menjelaskan mengapa tidak ada $(x_1, x_2) \geq 0$ yang dapat memenuhi kedua kendala secara bersamaan.
+\item Apakah masalah dual layak, taklayak, atau takterbatas? Jelaskan dengan menggunakan teorema dualitas kuat.
+\end{enumerate}
+\exrefs{Teorema~\ref{thm:strong-duality}, Contoh~\ref{example:dual-infeasibility-unbounded}}
+\end{ex}
+
+\exgroup{Masalah tantangan}
+
+\begin{ex}{Dual dari Dual adalah Primal}{}
+\label{ex:dual-of-dual}
+\stars{3} Perhatikan pasangan primal--dual simetris
+\[
+\textbf{(P)} \quad \max \; \c^\top \x \ \text{ dengan kendala } A\x \leq \b, \ \x \geq 0,
+\qquad
+\textbf{(D)} \quad \min \; \b^\top \y \ \text{ dengan kendala } A^\top \y \geq \c, \ \y \geq 0.
+\]
+Buktikan bahwa dual dari (D) adalah (P) kembali. (Petunjuk: pertama, tulis ulang (D) sebagai masalah maksimisasi dalam bentuk simetris yang sama, dengan vektor tujuan, matriks kendala, dan ruas kanan baru; kemudian terapkan definisi dual pada masalah tersebut dan sederhanakan.)
+\exrefs{\S\ref{sec:duality-strong}, \S\ref{sec:duality-forms}}
+\end{ex}
+
+\subsubsection*{Solusi Pilihan}
+
+\begin{solution}(Latihan~\ref{ex:formulate-dual})
+Terdapat dua kendala, sehingga masalah dual memiliki dua variabel $y_1, y_2 \geq 0$, masing-masing satu bagi setiap kendala. Setiap dari ketiga variabel primal menghasilkan kendala dual dengan ruas kanan berupa koefisien tujuan variabel tersebut:
+\[
+\begin{aligned}
+\text{Minimumkan} \quad & 10y_1 + 12y_2 \\
+\text{dengan kendala} \quad
+& y_1 + 3y_2 \geq 4 \\
+& 2y_1 + y_2 \geq 5 \\
+& y_1 + 2y_2 \geq 3 \\
+& y_1, y_2 \geq 0.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:weak-duality-bound})
+Masalah dual adalah $\min\, 4y_1 + 6y_2$ dengan kendala $y_1 + 2y_2 \geq 3$, $y_1 + y_2 \geq 2$, dan $y_1, y_2 \geq 0$.
+Untuk $\y = (1,1)$: $1 + 2 = 3 \geq 3$ dan $1 + 1 = 2 \geq 2$, sehingga $\y$ layak bagi masalah dual dengan nilai tujuan $4(1) + 6(1) = 10$.
+Untuk $\x = (2,2)$: $2 + 2 = 4 \leq 4$ dan $4 + 2 = 6 \leq 6$, sehingga $\x$ layak bagi masalah primal dengan nilai tujuan $3(2) + 2(2) = 10$.
+Menurut dualitas lemah, setiap nilai primal paling besar sama dengan setiap nilai dual, sehingga nilai optimal $z^*$ memenuhi $10 \leq z^* \leq 10$. Karena kedua batas berimpit, kedua solusi tersebut sesungguhnya optimal dan $z^* = 10$.
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:dual-of-dual})
+Tulis ulang (D) dalam bentuk maksimisasi simetris. Meminimumkan $\b^\top \y$ sama dengan memaksimumkan $(-\b)^\top \y$, dan kendala $A^\top \y \geq \c$ ekuivalen dengan $(-A^\top)\y \leq -\c$. Jadi, (D) adalah
+\[
+\max \; (-\b)^\top \y \quad \text{dengan kendala } \quad (-A^\top)\y \leq -\c, \quad \y \geq 0,
+\]
+yang merupakan bentuk simetris dengan vektor tujuan $\tilde{\c} = -\b$, matriks $\tilde{A} = -A^\top$, dan ruas kanan $\tilde{\b} = -\c$. Berdasarkan definisi, masalah dualnya adalah
+\[
+\min \; \tilde{\b}^\top \z \quad \text{dengan kendala } \quad \tilde{A}^\top \z \geq \tilde{\c}, \quad \z \geq 0,
+\]
+yaitu, $\min\, (-\c)^\top \z$ dengan kendala $(-A)\z \geq -\b$, $\z \geq 0$. Mengalikan fungsi tujuan dan kendala dengan $-1$ mengubahnya menjadi
+\[
+\max \; \c^\top \z \quad \text{dengan kendala } \quad A\z \leq \b, \quad \z \geq 0,
+\]
+yang persis merupakan (P) dengan $\z$ menggantikan $\x$. Jadi, dual dari dual adalah primal.
+\end{solution}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="720" height="520" viewBox="0 0 720 520"
+  role="img" aria-labelledby="ex06-11-title ex06-11-desc" lang="id"
+  xml:lang="id-ID" focusable="false">
+  <title id="ex06-11-title">Latihan 6.11 — Lempeng tak berbatas tanpa titik sudut</title>
+  <desc id="ex06-11-desc">Lempeng horizontal 0 ≤ x₂ ≤ 1 memanjang tanpa batas ke kiri dan kanan. Tidak ada titik sudut karena arah (1,0) adalah linealitas. Seluruh garis x₂=0 optimal untuk memaksimumkan -x₂. Tepi kiri dan kanan jendela bukan kendala model.</desc>
+  <metadata>Adaptasi latihan O018 Bab 6; CC BY-SA 4.0.</metadata>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+      orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 z" fill="#1c2430"/>
+    </marker>
+    <style><![CDATA[
+      .background { fill: #ffffff; }
+      .frame { fill: none; stroke: #697386; stroke-width: 1; }
+      .axis { stroke: #1c2430; stroke-width: 1.5; }
+      .tick { stroke: #1c2430; stroke-width: 1; }
+      .tick-label { fill: #1c2430; font: 13px sans-serif; text-anchor: middle; }
+      .tick-label.y { text-anchor: end; }
+      .axis-label { fill: #1c2430; font: 16px sans-serif; font-weight: 700; }
+      .region { fill: #dcecff; stroke: #174a7e; stroke-width: 2.5; }
+      .boundary { fill: none; stroke: #174a7e; stroke-width: 3; }
+      .secondary { fill: none; stroke: #8a3f00; stroke-width: 2.5; stroke-dasharray: 8 5; }
+      .point { fill: #ffffff; stroke: #111111; stroke-width: 2.5; }
+      .point-filled { fill: #111111; stroke: #ffffff; stroke-width: 1.5; }
+      .point-alert { fill: #ffffff; stroke: #a32020; stroke-width: 3; }
+      .point-label { fill: #111111; font: 14px sans-serif; font-weight: 600; }
+      .annotation { fill: #111111; font: 14px sans-serif; }
+      .annotation-strong { fill: #111111; font: 14px sans-serif; font-weight: 700; }
+      .optimal { stroke: #111111; stroke-width: 4; }
+      .guide { stroke: #697386; stroke-width: 1.5; stroke-dasharray: 4 4; }
+    ]]></style>
+  </defs>
+  <rect class="background" x="0" y="0" width="720" height="520"/>
+  <rect class="frame" x="70" y="167.5" width="620" height="155"/>
+<rect class="region" x="70" y="206.25" width="620" height="77.5"/>
+<line class="boundary" x1="70" y1="206.25" x2="690" y2="206.25"/>
+<line class="optimal" x1="70" y1="283.75" x2="690" y2="283.75"/>
+<line class="axis" x1="70" y1="283.75" x2="690" y2="283.75" marker-end="url(#arrow)"/>
+<line class="axis" x1="380" y1="322.5" x2="380" y2="167.5" marker-end="url(#arrow)"/>
+<line class="tick" x1="70" y1="279.75" x2="70" y2="287.75"/>
+<text class="tick-label" x="70" y="303.75">-4</text>
+<line class="tick" x1="147.5" y1="279.75" x2="147.5" y2="287.75"/>
+<text class="tick-label" x="147.5" y="303.75">-3</text>
+<line class="tick" x1="225" y1="279.75" x2="225" y2="287.75"/>
+<text class="tick-label" x="225" y="303.75">-2</text>
+<line class="tick" x1="302.5" y1="279.75" x2="302.5" y2="287.75"/>
+<text class="tick-label" x="302.5" y="303.75">-1</text>
+<line class="tick" x1="457.5" y1="279.75" x2="457.5" y2="287.75"/>
+<text class="tick-label" x="457.5" y="303.75">1</text>
+<line class="tick" x1="535" y1="279.75" x2="535" y2="287.75"/>
+<text class="tick-label" x="535" y="303.75">2</text>
+<line class="tick" x1="612.5" y1="279.75" x2="612.5" y2="287.75"/>
+<text class="tick-label" x="612.5" y="303.75">3</text>
+<line class="tick" x1="690" y1="279.75" x2="690" y2="287.75"/>
+<text class="tick-label" x="690" y="303.75">4</text>
+<line class="tick" x1="376" y1="206.25" x2="384" y2="206.25"/>
+<text class="tick-label y" x="370" y="210.25">1</text>
+<text class="axis-label" x="694" y="341.5">x₁</text>
+<text class="axis-label" x="50" y="162.5">x₂</text>
+<text class="annotation-strong" x="473" y="189.2">x₂ = 1</text>
+<text class="annotation-strong" x="434.25" y="269.8">x₂ = 0: seluruh garis optimal</text>
+<text class="annotation" x="263.75" y="245">← arah linealitas (1,0) →</text>
+</svg>

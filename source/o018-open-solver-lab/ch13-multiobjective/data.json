@@ -1,0 +1,245 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "cases": {
+    "contracts": {
+      "items": [
+        {"f1": 2, "f2": 9, "name": "G"},
+        {"f1": 4, "f2": 7, "name": "H"},
+        {"f1": 5, "f2": 8, "name": "I"},
+        {"f1": 7, "f2": 3, "name": "J"},
+        {"f1": 6, "f2": 5, "name": "K"}
+      ],
+      "senses": ["min", "min"]
+    },
+    "designs": {
+      "items": [
+        {"f1": 6, "f2": 5, "name": "A"},
+        {"f1": 4, "f2": 8, "name": "B"},
+        {"f1": 7, "f2": 4, "name": "C"},
+        {"f1": 3, "f2": 6, "name": "D"},
+        {"f1": 5, "f2": 6, "name": "E"},
+        {"f1": 10, "f2": 3, "name": "F"}
+      ],
+      "senses": ["min", "min"]
+    },
+    "epsilon_lp": {
+      "constraints": [
+        {"coefficients": [1, 1], "rhs": 4, "sense": ">="},
+        {"coefficients": [1, 0], "rhs": 5, "sense": "<="},
+        {"coefficients": [0, 1], "rhs": 5, "sense": "<="}
+      ],
+      "f1": [1, 2],
+      "f2": [3, 1],
+      "objective_sense": "min",
+      "variables": ["x1", "x2"]
+    },
+    "furniture": {
+      "constraints": [
+        {"coefficients": [80, 20], "rhs": 960, "sense": "<="},
+        {"coefficients": [12, 10], "rhs": 200, "sense": "<="}
+      ],
+      "revenue_raw": [8000, 2000],
+      "revenue_scaled": [8, 2],
+      "variables": ["x", "y"],
+      "vertices": [[0, 0], [0, 20], [10, 8], [12, 0]],
+      "waste": [10, 2]
+    },
+    "nonconvex": {
+      "items": [
+        {"f1": 0, "f2": 4, "name": "P"},
+        {"f1": 3, "f2": 3, "name": "Q"},
+        {"f1": 4, "f2": 0, "name": "R"}
+      ],
+      "senses": ["min", "min"]
+    },
+    "projects": {
+      "items": [
+        {"accessibility": 7, "f1": 2, "f2": -7, "name": "P1"},
+        {"accessibility": 9, "f1": 5, "f2": -9, "name": "P2"},
+        {"accessibility": 6, "f1": 3, "f2": -6, "name": "P3"}
+      ],
+      "senses": ["min", "min"]
+    },
+    "tradeoff": {
+      "items": [
+        {"f1": 40, "f2": 20, "name": "S1"},
+        {"f1": 45, "f2": 14, "name": "S2"},
+        {"f1": 55, "f2": 10, "name": "S3"},
+        {"f1": 70, "f2": 8, "name": "S4"}
+      ],
+      "senses": ["min", "min"]
+    },
+    "triangle": {
+      "constraints": [
+        {"coefficients": [1, 1], "rhs": 6, "sense": "<="}
+      ],
+      "f1": [3, 1],
+      "f2": [1, 3],
+      "objective_sense": "max",
+      "variables": ["x1", "x2"]
+    }
+  },
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "exercise_order": [
+    "13.1",
+    "13.2",
+    "13.3",
+    "13.4",
+    "13.5",
+    "13.6",
+    "13.7",
+    "13.8",
+    "13.9",
+    "13.10",
+    "13.11"
+  ],
+  "exercises": {
+    "13.1": {
+      "book_label": "ex:pareto-def",
+      "difficulty": 1,
+      "manual_mapping": {"manual_id": "13.1", "status": "aligned"},
+      "method": "definition_equivalence_certificate",
+      "title": "Mendefinisikan Optimalitas Pareto"
+    },
+    "13.2": {
+      "book_label": "ex:moo-dominance",
+      "case": "contracts",
+      "difficulty": 1,
+      "manual_mapping": {"manual_id": "13.2", "status": "aligned"},
+      "method": "exact_dominance_enumeration_and_highs",
+      "title": "Menemukan Desain Terdominasi"
+    },
+    "13.3": {
+      "book_label": "ex:moo-weighted-scores",
+      "case": "contracts",
+      "difficulty": 1,
+      "manual_mapping": {"manual_id": "13.3", "status": "aligned"},
+      "method": "exact_weighted_scores_and_highs",
+      "title": "Menghitung Skor Jumlah Berbobot"
+    },
+    "13.4": {
+      "book_label": "ex:pareto-table",
+      "case": "designs",
+      "difficulty": 2,
+      "manual_mapping": {"manual_id": "13.4", "status": "aligned"},
+      "method": "pareto_supported_set_epsilon_and_highs",
+      "title": "Batas Pareto, Jumlah Berbobot, dan Kendala-ε"
+    },
+    "13.5": {
+      "book_label": "ex:weighted-sum-projects",
+      "case": "projects",
+      "difficulty": 2,
+      "manual_mapping": {"manual_id": "13.5", "status": "aligned"},
+      "method": "project_dominance_weighted_sum_and_highs",
+      "title": "Metode Jumlah Berbobot"
+    },
+    "13.6": {
+      "book_label": "ex:eps-constraint-lp",
+      "case": "epsilon_lp",
+      "difficulty": 2,
+      "manual_mapping": {"manual_id": "13.6", "status": "aligned"},
+      "method": "continuous_epsilon_sweep_and_highs",
+      "title": "Metode Kendala-Epsilon"
+    },
+    "13.7": {
+      "book_label": "ex:eps-triangle",
+      "case": "triangle",
+      "difficulty": 2,
+      "manual_mapping": {"manual_id": "13.7", "status": "aligned"},
+      "method": "triangle_epsilon_frontier_and_highs",
+      "title": "Kendala-Epsilon secara Manual"
+    },
+    "13.8": {
+      "book_label": "ex:tradeoff-analysis",
+      "case": "tradeoff",
+      "difficulty": 2,
+      "manual_mapping": {"manual_id": "13.8", "status": "aligned"},
+      "method": "exact_marginal_tradeoffs_budget_and_highs",
+      "title": "Analisis Kompromi"
+    },
+    "13.9": {
+      "book_label": "ex:nonconvex-weights",
+      "case": "nonconvex",
+      "difficulty": 2,
+      "manual_mapping": {"manual_id": "13.9", "status": "aligned"},
+      "method": "unsupported_pareto_proof_epsilon_and_highs",
+      "title": "Hal yang Tidak Dapat Dilihat oleh Jumlah Berbobot"
+    },
+    "13.10": {
+      "book_label": "ex:lex-vs-weighted",
+      "case": "furniture",
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": null,
+        "note": "Latihan buku ini tidak memiliki entri dalam manual otoritas maupun manual terjemahan.",
+        "status": "missing_from_manual"
+      },
+      "method": "lexicographic_two_stage_and_extreme_weight_highs",
+      "title": "Leksikografis versus Jumlah Berbobot"
+    },
+    "13.11": {
+      "book_label": "ex:furniture-weights",
+      "case": "furniture",
+      "difficulty": 3,
+      "manual_mapping": {
+        "manual_id": "13.10",
+        "note": "Manual usang: entri 13.10 menjawab latihan buku 13.11 setelah penyisipan ex:lex-vs-weighted.",
+        "status": "manual_stale_alias"
+      },
+      "method": "exact_vertex_weight_intervals_and_highs",
+      "title": "Bobot yang Memilih Setiap Titik Sudut"
+    }
+  },
+  "lab_id": "o018.ch13.multiobjective",
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 40340,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch09-multi-objective/multi-objective-optimization_updated.tex",
+        "role": "authority_chapter",
+        "sha256": "d3d83cb13eb0b34433551b1ed228c51dcbc062ab90f125049c7f323a3cf065b3"
+      },
+      {
+        "bytes": 18634,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch13.tex",
+        "role": "authority_manual",
+        "sha256": "ac488fb2021c8b9a561afca4ab409c2584b2f4acec0e05928cd85da3bf781a15"
+      },
+      {
+        "bytes": 43484,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch09-multi-objective/multi-objective-optimization_updated.tex",
+        "role": "translated_chapter",
+        "sha256": "fff540c73cf9f90fd0915f6cd65a4a02f330e60f01d89a14f72557aff0d6d274"
+      },
+      {
+        "bytes": 20251,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch13.tex",
+        "role": "translated_manual",
+        "sha256": "2988e24b31d3c3acf0a86908cef02298237c9df4b2fd6e184ff2fe77aa4f5680"
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "source_defects": [
+    {
+      "certificate": "Buku memuat 11 latihan; manual memuat 10 dan melewatkan ex:lex-vs-weighted. Entri manual 13.10 menjawab ex:furniture-weights, yaitu latihan buku 13.11.",
+      "id": "DEF-CH13-MANUAL-OMISSION",
+      "source_location": "urutan latihan bab otoritas dibandingkan inventaris exsol manual otoritas",
+      "type": "source_manual_alignment"
+    },
+    {
+      "certificate": "Titik poligon (8.5,0) dan (5,14) memenuhi pendapatan 68000, sedangkan 70% dari 96000 adalah 67200; perpotongan tepatnya (8.4,0) dan (34/7,496/35).",
+      "id": "DEF-CH13-70PCT-FIGURE",
+      "source_location": "bab otoritas baris 143--151 dan 179--185",
+      "type": "source_figure_data"
+    },
+    {
+      "certificate": "Fungsi 8000x+2000y diperkenalkan sebagai pendapatan tetapi kemudian disebut laba tanpa suku biaya.",
+      "id": "DEF-CH13-REVENUE-PROFIT-TERMS",
+      "source_location": "bab otoritas baris 127--148",
+      "type": "source_terminology"
+    }
+  ],
+  "unresolved_exercises": []
+}

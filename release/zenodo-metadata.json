@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Hildebrand, Robert"
+      }
+    ],
+    "description": "<p>Edisi Bahasa Indonesia (id-ID) lengkap dari <em>Mathematical Programming and Operations Research, Book 1</em>, berdasarkan komit sumber <code>1745df89b608899f66983834fa4ec8c8910d18ff</code>. Rilis mencakup PDF 666 halaman, sumber LaTeX/TikZ, laboratorium O018 Pyomo+HiGHS yang diatribusikan secara terpisah, backend modular JSON/JSONL/CSV, manifest, dan checksum.</p><p>Versi id.5 mempertahankan QA terminologi bidang Indonesia dan sanitasi metadata jejak-build absolut dari id.4, serta memperbarui receipt QA internal agar semua identitas backend dan pembaca sejalan. Matematika dan cakupan instruksional tidak berubah. Konten dan terjemahan berlisensi CC BY-SA 4.0; kode dan komponen runtime memiliki lisensi terpisah sebagaimana dipetakan dalam rilis. Terjemahan dan lapisan produksi disiapkan dengan bantuan OpenAI Codex gpt-5.6-sol, Ultra atas permintaan pengguna. AI bukan pengarang. Edisi ini independen dan tidak menyiratkan dukungan dari pengarang atau proyek sumber.</p>",
+    "keywords": [
+      "Bahasa Indonesia",
+      "operations research",
+      "mathematical programming",
+      "linear programming",
+      "integer programming",
+      "open textbook",
+      "Pyomo",
+      "HiGHS"
+    ],
+    "language": "ind",
+    "license": "other-open",
+    "notes": "Catatan ini memuat komponen dengan beberapa lisensi terbuka. Konten dan terjemahan buku mengikuti CC BY-SA 4.0; kode sumber asli dan kode baru mengikuti lisensi MIT yang berlaku; komponen runtime mempertahankan lisensi dan pemberitahuannya masing-masing. Nilai record-level `other-open` dipilih agar satu lisensi Zenodo tidak diterapkan secara keliru pada seluruh berkas. Lihat LICENSES-README.md dan pemberitahuan di dalam paket.",
+    "publication_date": "2026-08-23",
+    "publication_type": "book",
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/open-optimization/open-optimization-or-book/tree/1745df89b608899f66983834fa4ec8c8910d18ff",
+        "relation": "isDerivedFrom",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "https://open-optimization.github.io/open-optimization-or-book/",
+        "relation": "isDerivedFrom",
+        "resource_type": "publication-book"
+      }
+    ],
+    "title": "Pemrograman Matematis dan Riset Operasi — Buku 1, Edisi Bahasa Indonesia",
+    "upload_type": "publication",
+    "version": "2026.08.23-id.5"
+  }
+}

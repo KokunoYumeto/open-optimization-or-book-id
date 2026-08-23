@@ -1,0 +1,9 @@
+# Runtime closure Windows x86-64 / CPython 3.12.13.
+# From the lane root, install only from the frozen wheel directory with:
+# python -m pip install --no-index --find-links=authority/runtime-wheels/windows-cp312-amd64 --require-hashes --only-binary=:all: -r source/o018-open-solver-lab/requirements.lock
+pyomo==6.10.1 \
+    --hash=sha256:7a81b5301d4c0389809c1afd12311d23db04522341566332229d8ce4226bccb1
+highspy==1.15.1 \
+    --hash=sha256:8c548165270608a40147a7ea6d985fd62a65fabf0f075b3c0c59ea910b724223
+numpy==2.5.2 \
+    --hash=sha256:28ac63476ec7651484215ee7fa15a1f78b57c14621f01e392afe17b9a1390ce4

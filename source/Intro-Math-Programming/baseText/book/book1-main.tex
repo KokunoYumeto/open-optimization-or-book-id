@@ -1,0 +1,720 @@
+% Book 1: Introduction to Mathematical Programming
+% Pemrograman Linear + Algoritma Diskret + Pengantar Pemrograman Bilangan Bulat
+% Author: Robert Hildebrand
+%
+% This is Book 1 of a two-book series.
+% Book 2 covers Integer Programming and Nonlinear Programming. 
+ 
+%% ACCESSIBILITY TOOLCHAIN BLOCKER: even a metadata-only \DocumentMetadata call
+%% activates the installed latex-lab test phase here, and this machine's
+%% mismatched LaTeX kernel/latex-lab pair fails inside
+%% latex-lab-testphase-block.sty before any book source loads.  Hyperref and
+%% hyperxmp below still emit the frozen id-ID metadata.  Re-enable
+%% \DocumentMetadata with structure tagging only after a matched toolchain
+%% passes both the build and structure-tree QA.
+
+% pdfTeX otherwise seeds the trailer /ID with the input filename and start
+% time, so isolated clean builds differ even when every semantic byte is
+% identical.  This edition/version seed makes that identifier reproducible.
+\ifdefined\pdftrailerid
+  \pdftrailerid{r017-book1-id-ID-draft-2026-08-21-authority-1745df89b608899f66983834fa4ec8c8910d18ff}
+\fi
+
+% pdfTeX otherwise records absolute source paths on included PDF pages through
+% /PTEX.FileName (and related non-semantic PTEX fields).  Suppress all four
+% PTEX information classes so a public reader cannot expose its build machine.
+\ifdefined\pdfsuppressptexinfo
+  \pdfsuppressptexinfo=15
+\fi
+
+\documentclass[letter,12pt]{book}
+
+% Load shared preamble
+\input{../packages-and-commands}
+
+% biblatex has no Indonesian localization module in the pinned toolchain and
+% otherwise falls back to reader-visible English for URL access dates and
+% back-reference labels.  Override only those generated strings in the active
+% fallback language.
+\DefineBibliographyStrings{english}{%
+  and={dan},%
+  in={Dalam},%
+  page={hlm.},%
+  pages={hlm.},%
+  urlseen={diakses pada},%
+  backrefpage={dikutip pada hlm.},%
+  backrefpages={dikutip pada hlm.}%
+}
+
+% The active biblatex fallback language is English, whose short-date formatter
+% uses month/day/year.  Add this override to biblatex's English-language extras
+% hook so it runs after english.lbx rather than being overwritten by that hook.
+% Keep a compact numeric date, but render it in Indonesian day/month/year order.
+\DefineBibliographyExtras{english}{%
+  \protected\def\mkbibdateshort#1#2#3{%
+    \iffieldundef{#3}{}{\mkdayzeros{\thefield{#3}}}%
+    \iffieldundef{#2}{}{\iffieldundef{#3}{}{\bibdatesep}\mkmonthzeros{\thefield{#2}}}%
+    \iffieldundef{#1}{}{\iffieldundef{#2}{\iffieldundef{#3}{}{\bibdatesep}}{\bibdatesep}\mkyearzeros{\thefield{#1}}}%
+  }%
+}
+
+% Accessibility wrapper for \includegraphics (defines \altincludegraphics).
+\input{preamble/preamble-accessibility}
+
+% Keep the first heading and the following framed model together when there is
+% insufficient room at the bottom of a page.
+\usepackage{needspace}
+
+% Use scalable TeX Gyre text families so front-matter small caps, sans serif,
+% and monospaced text retain searchable Unicode mappings instead of PK/Type 3
+% bitmap fallbacks on Windows.
+\usepackage{tgtermes}
+\usepackage{tgheros}
+\usepackage{tgcursor}
+
+% MiKTeX supplies the two wasysym glyphs used by Book 1 only as PK bitmaps.
+% Use scalable, semantically equivalent forms throughout every Indonesian
+% reader, including the complete book.
+\let\leadsto\rightsquigarrow
+
+% Localize the fixed box headings and allow long Indonesian titles to wrap.
+% The upstream underlined title was one unbreakable horizontal box.
+\renewtcolorbox{pioneerspotlight}[1]{
+  colback=green!5!white,
+  colframe=green!75!black,
+  rounded corners,
+  boxrule=1pt,
+  width=\textwidth,
+  title={\large\textbf{Sorotan Pelopor: #1}},
+  breakable
+}
+\renewtcolorbox{casestudybox}[1]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  rounded corners,
+  boxrule=1pt,
+  width=\textwidth,
+  title={\large\textbf{Studi Kasus: #1}},
+  breakable
+}
+
+% Bahasa Indonesia is selected only after the English-only upstream package
+% localizations have loaded.  Keep these reader labels explicit and stable.
+\addto\captionsindonesian{%
+  \renewcommand{\chaptername}{Bab}%
+  \renewcommand{\contentsname}{Daftar Isi}%
+  \renewcommand{\figurename}{Gambar}%
+  \renewcommand{\tablename}{Tabel}%
+  \renewcommand{\lstlistingname}{Kode}%
+  \renewcommand{\appendixname}{Lampiran}%
+  \renewcommand{\indexname}{Indeks}%
+  \renewcommand{\proofname}{Bukti}%
+}
+\renewcommand{\chapterautorefname}{Bab}
+\renewcommand{\sectionautorefname}{Bagian}
+\renewcommand{\subsectionautorefname}{Subbagian}
+\renewcommand{\figureautorefname}{Gambar}
+\renewcommand{\tableautorefname}{Tabel}
+\renewcommand{\equationautorefname}{Persamaan}
+\renewcommand{\appendixautorefname}{Lampiran}
+
+% Lokalisasi kata kunci algoritme tanpa mengubah salinan paket upstream.
+\algrenewcommand\algorithmicend{\textbf{akhir}}
+\algrenewcommand\algorithmicdo{\textbf{lakukan}}
+\algrenewcommand\algorithmicwhile{\textbf{selama}}
+\algrenewcommand\algorithmicfor{\textbf{untuk}}
+\algrenewcommand\algorithmicforall{\textbf{untuk setiap}}
+\algrenewcommand\algorithmicloop{\textbf{ulang}}
+\algrenewcommand\algorithmicrepeat{\textbf{ulangi}}
+\algrenewcommand\algorithmicuntil{\textbf{hingga}}
+\algrenewcommand\algorithmicprocedure{\textbf{prosedur}}
+\algrenewcommand\algorithmicfunction{\textbf{fungsi}}
+\algrenewcommand\algorithmicif{\textbf{jika}}
+\algrenewcommand\algorithmicthen{\textbf{maka}}
+\algrenewcommand\algorithmicelse{\textbf{jika tidak}}
+\algrenewcommand\algorithmicrequire{\textbf{Prasyarat:}}
+\algrenewcommand\algorithmicensure{\textbf{Pastikan:}}
+\algrenewcommand\algorithmicreturn{\textbf{kembalikan}}
+\AtBeginDocument{%
+  \selectlanguage{indonesian}%
+  \floatname{algorithm}{Algoritma}%
+}
+\hypersetup{
+  pdflang={id-ID},
+  hypertexnames=false,
+  pdftitle={Pemrograman Matematis dan Riset Operasi: Pemodelan, Algoritme, dan Kompleksitas; Contoh dalam Python dan Excel},
+  pdfauthor={Robert Hildebrand},
+  pdfsubject={Edisi Bahasa Indonesia, Buku 1: Pemrograman Linear dan Bilangan Bulat}
+}
+% doclicense registers its English XMP defaults at begin-document time.  This
+% later hook retains the package's license identity while making the emitted
+% rights statement and language-neutral legal URL accurate for this edition.
+\AtBeginDocument{%
+\hypersetup{
+  pdfauthor={Robert Hildebrand},
+  pdfkeywords={pemrograman matematis, riset operasi, pemrograman linear, pemrograman bilangan bulat, optimisasi},
+  pdfcopyright={Karya ini dilisensikan berdasarkan Creative Commons Atribusi-BerbagiSerupa 4.0 Internasional (CC BY-SA 4.0).},
+  pdflicenseurl={https://creativecommons.org/licenses/by-sa/4.0/}
+}%
+\pdfinfo{%
+  /Author (Robert Hildebrand)%
+  /Keywords (pemrograman matematis, riset operasi, pemrograman linear, pemrograman bilangan bulat, optimisasi)%
+}%
+}
+
+% The upstream style resets equations by section but prints only chapter-level
+% numbers and suppresses all caption labels.  These edition overrides restore
+% unique equation numbers and visible Indonesian figure/table identifiers.
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\captionsetup{labelformat=default,labelsep=colon}
+\renewcommand{\objective}[1]{{\bfseries Tujuan Laboratorium: }\emph{#1}\bigskip}
+
+% References whose destinations lie beyond the bounded first-unit proof remain
+% live in the complete book, while the proof itself explains that they are
+% deferred instead of emitting unresolved-reference markers.
+\ifdefined\OOThroughChapterTwelveOnly
+  \newcommand{\OOCasePage}[1]{pada bagian lanjutan edisi lengkap}
+  \newcommand{\OOIntegerProgrammingReference}{bab pemrograman bilangan bulat pada edisi lengkap}
+  \newcommand{\OOSoftwareAppendixReference}{lampiran perangkat lunak pada edisi lengkap}
+  \newcommand{\OOSensitivityReference}{Bab~\ref{ch:sensitivity}}
+\else
+\ifdefined\OOFirstUnitOnly
+  \newcommand{\OOCasePage}[1]{pada bagian lanjutan edisi lengkap}
+  \newcommand{\OOIntegerProgrammingReference}{bab pemrograman bilangan bulat pada edisi lengkap}
+  \newcommand{\OOSoftwareAppendixReference}{lampiran perangkat lunak pada edisi lengkap}
+  \newcommand{\OOSensitivityReference}{bab analisis sensitivitas pada edisi lengkap}
+\else
+  \ifdefined\OOThroughChapterTwoOnly
+    \newcommand{\OOCasePage}[1]{pada bagian lanjutan edisi lengkap}
+    \newcommand{\OOIntegerProgrammingReference}{bab pemrograman bilangan bulat pada edisi lengkap}
+    \newcommand{\OOSoftwareAppendixReference}{lampiran perangkat lunak pada edisi lengkap}
+    \newcommand{\OOSensitivityReference}{bab analisis sensitivitas pada edisi lengkap}
+  \else
+    \ifdefined\OOThroughChapterThreeOnly
+      \newcommand{\OOCasePage}[1]{pada bagian lanjutan edisi lengkap}
+      \newcommand{\OOIntegerProgrammingReference}{bab pemrograman bilangan bulat pada edisi lengkap}
+      \newcommand{\OOSoftwareAppendixReference}{lampiran perangkat lunak pada edisi lengkap}
+      \newcommand{\OOSensitivityReference}{bab analisis sensitivitas pada edisi lengkap}
+    \else
+      \ifdefined\OOThroughChapterFourOnly
+        \newcommand{\OOCasePage}[1]{pada bagian lanjutan edisi lengkap}
+        \newcommand{\OOIntegerProgrammingReference}{bab pemrograman bilangan bulat pada edisi lengkap}
+        \newcommand{\OOSoftwareAppendixReference}{lampiran perangkat lunak pada edisi lengkap}
+        \newcommand{\OOSensitivityReference}{bab analisis sensitivitas pada edisi lengkap}
+      \else
+        \ifdefined\OOThroughChapterFiveOnly
+          \newcommand{\OOCasePage}[1]{pada bagian lanjutan edisi lengkap}
+          \newcommand{\OOIntegerProgrammingReference}{bab pemrograman bilangan bulat pada edisi lengkap}
+          \newcommand{\OOSoftwareAppendixReference}{lampiran perangkat lunak pada edisi lengkap}
+          \newcommand{\OOSensitivityReference}{bab analisis sensitivitas pada edisi lengkap}
+        \else
+          \ifdefined\OOThroughChapterSixOnly
+            \newcommand{\OOCasePage}[1]{pada bagian lanjutan edisi lengkap}
+            \newcommand{\OOIntegerProgrammingReference}{bab pemrograman bilangan bulat pada edisi lengkap}
+            \newcommand{\OOSoftwareAppendixReference}{lampiran perangkat lunak pada edisi lengkap}
+            \newcommand{\OOSensitivityReference}{bab analisis sensitivitas pada edisi lengkap}
+          \else
+            \ifdefined\OOThroughSimplexOnly
+              \newcommand{\OOCasePage}[1]{pada bagian lanjutan edisi lengkap}
+              \newcommand{\OOIntegerProgrammingReference}{bab pemrograman bilangan bulat pada edisi lengkap}
+              \newcommand{\OOSoftwareAppendixReference}{lampiran perangkat lunak pada edisi lengkap}
+              \newcommand{\OOSensitivityReference}{bab analisis sensitivitas pada edisi lengkap}
+            \else
+              \newcommand{\OOCasePage}[1]{halaman~\pageref{#1}}
+              \newcommand{\OOIntegerProgrammingReference}{Bab~\ref{sec:IP-formulations}}
+              \newcommand{\OOSoftwareAppendixReference}{Lampiran~\ref{app:software}}
+              \newcommand{\OOSensitivityReference}{Bab~\ref{ch:sensitivity}}
+            \fi
+          \fi
+        \fi
+      \fi
+    \fi
+  \fi
+\fi
+\fi
+
+% The Python chapter points forward to the multiobjective chapter.  Preserve a
+% live link in the complete book while keeping the cumulative Chapter 12 proof
+% free of an unresolved destination.
+\ifdefined\OOThroughChapterTwelveOnly
+  \newcommand{\OOMultiobjectiveToolsReference}{bagian perkakas multiobjektif pada edisi lengkap}
+\else
+  \newcommand{\OOMultiobjectiveToolsReference}{Bagian~\ref{sec:moo-tools}}
+\fi
+
+% Chapter 6 names the later simplex chapter.  Its bounded reader retains that
+% dependency semantically; the complete book preserves the live reference.
+\ifdefined\OOThroughChapterSixOnly
+  \newcommand{\OOSimplexChapterReference}{bab metode simpleks pada edisi lengkap}
+\else
+  \newcommand{\OOSimplexChapterReference}{Bab~\ref{ch:simplex-dictionary}}
+\fi
+
+% Chapter 3 refers forward to examples and a section that appear in Chapter 4.
+% The cumulative proof names those destinations semantically instead of
+% emitting unresolved reference markers; the complete book keeps live links.
+\ifdefined\OOThroughChapterThreeOnly
+  \newcommand{\OOExcelNetworkFlowExampleReference}{contoh Aliran Jaringan Berbiaya Minimum pada bab lanjutan edisi lengkap}
+  \newcommand{\OOExcelProductionExampleReference}{contoh Perencanaan Produksi dengan 10 Periode pada bab lanjutan edisi lengkap}
+  \newcommand{\OOExcelTransportationSectionReference}{bagian masalah transportasi pada bab lanjutan edisi lengkap}
+\else
+  \newcommand{\OOExcelNetworkFlowExampleReference}{Contoh~\ref{ex:min-cost-flow-warehouses} (Aliran Jaringan Berbiaya Minimum)}
+  \newcommand{\OOExcelProductionExampleReference}{Contoh~\ref{ex:production-10period} (Perencanaan Produksi dengan 10 Periode)}
+  \newcommand{\OOExcelTransportationSectionReference}{\S\ref{sec:transportation-problem}}
+\fi
+
+\usetikzlibrary{tikzmark,decorations.pathreplacing,calc}
+\tcbset{colback=purple!3,colframe=purple!30,boxrule=0.6pt,arc=2pt}
+
+\newtcolorbox[auto counter,number within=section]{learningcheckpoint}[1][]{%
+  title=Cek Pemahaman~\thetcbcounter, #1,
+  label type=learningcheckpoint,
+  fonttitle=\bfseries,
+  coltitle=black
+}
+
+% cleveref-friendly names:
+\usepackage[nameinlink]{cleveref}
+\crefname{learningcheckpoint}{Cek Pemahaman}{Cek Pemahaman}
+\Crefname{learningcheckpoint}{Cek Pemahaman}{Cek Pemahaman}
+
+%% ============================================================================
+%% TIKZ / PDF TOGGLE
+%% Set to true to compile TikZ from source (slower, but editable)
+%% Set to false to use pre-compiled PDF versions (faster, EPUB-compatible)
+%% ============================================================================
+% Legacy toggle (for backward compatibility with existing code)
+\newboolean{usetikz}
+\setboolean{usetikz}{false}
+
+% Define the TeX-level if for TikZ toggle
+\newif\ifOOusetikz
+\ifthenelse{\boolean{usetikz}}{\OOusetikztrue}{\OOusetikzfalse}
+
+% Legacy command (for backward compatibility)
+\newcommand{\includetikz}[2][]{%
+  \ifthenelse{\boolean{usetikz}}{%
+    \includestandalone[#1]{#2}%
+  }{%
+    % Let graphicx select the admitted precompiled format.  Upstream ships
+    % several Book 1 figures as PNG rather than PDF.
+    \includegraphics[#1]{#2}%
+  }%
+}
+
+% New commands from preamble0-biblatex.tex:
+% \includegraphictikz[options]{bibkey}     - inline TikZ with alt text
+% \includefiguretikz[caption][options][placement]{bibkey} - figure with alt text
+% \refincludefiguretikz[caption][options][placement]{bibkey} - figure with autoref
+
+% Note: ../references.bib is now loaded in preamble0-biblatex.tex
+
+\begin{document}
+
+%=============================================================================
+% FRONT MATTER
+%=============================================================================
+\input{frontmatter/cover.tex}
+\input{frontmatter/LP-front-matter.tex}
+\input{frontmatter/preface.tex}
+
+\cleardoublepage
+
+\input{frontmatter/sources-attribution.tex}
+
+\cleardoublepage
+
+\input{frontmatter/ai-usage-disclosure.tex}
+
+\cleardoublepage
+
+% Table of Contents
+{
+  \hypersetup{hidelinks}
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Daftar Isi}
+  \setlength{\parskip}{3.5pt}
+  \addtocontents{toc}{\protect\hypertarget{toc}{}}
+  \tableofcontents
+  \cleardoublepage
+}
+\cleardoublepage
+
+% Notation: unnumbered front-matter chapter (appears before Part I)
+\input{frontmatter/notation.tex}
+\cleardoublepage
+
+\mainmatter
+
+%=============================================================================
+% INTRODUCTION
+%=============================================================================
+\input{part1-linear-programming/ch01-introduction/introduction-book.tex}
+% Note: "Additional Resources" chapter (resources_and_notation.tex) was moved
+% on 2026-05-13 to backmatter/further-reading-and-resources.tex (loaded after
+% the appendices, before the index). The notation chapter is now in front matter
+% via \input{frontmatter/notation.tex} above (introductionNotation.tex remains
+% on disk but is no longer included here).
+\input{part1-linear-programming/ch01-introduction/mathematicalProgramming.tex}
+
+% A deterministic first-boundary build may define \OOFirstUnitOnly before
+% loading this controller.  The default full-book path remains unchanged.
+\ifdefined\OOFirstUnitOnly
+  \def\OOFirstUnitStop{%
+    \cleardoublepage
+    \printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+    \end{document}%
+  }
+\else
+  \def\OOFirstUnitStop{}
+\fi
+\OOFirstUnitStop
+
+% Option B (alternative): place "Further Reading and Resources" at end of
+% Chapter 2 instead of as a back-matter appendix. To use, uncomment the next
+% line AND comment out the corresponding \input{backmatter/...} line further
+% down in this file (after \appendix).
+% \input{backmatter/further-reading-and-resources.tex}
+
+%=============================================================================
+% PART I: LINEAR PROGRAMMING
+%=============================================================================
+\part{Pemrograman Linear}
+
+% Chapter: Modeling Linear Programs
+\input{part1-linear-programming/ch02-modeling/modeling-linear-programming.tex}
+
+% The cumulative Chapter 2 reader includes the chapter's complete manual
+% solutions and the checkpoint answer that has appeared so far, then stops
+% before loading any untranslated source.
+\ifdefined\OOThroughChapterTwoOnly
+  \def\OOChapterTwoStop{%
+    \cleardoublepage
+    \appendix
+    \chapter{Manual Solusi}
+    % The upstream standalone solutions-manual controller defines these two
+    % presentation helpers.  The bounded cumulative reader imports only the
+    % localized Chapter 2 payload, so provide localized equivalents here.
+    \providecommand{\exsol}[3]{\subsection*{Latihan ##1\ifx\relax##2\relax\else\ (##2)\fi\hfill{\normalsize\color{orange!85!black}\ifcase##3\relax\or$\star$\or$\star\star$\or$\star\star\star$\fi}}}
+    \newtcolorbox{qaflag}{colback=red!4,colframe=red!60!black,title=\textbf{Catatan QA},fonttitle=\bfseries}
+    \input{solutions-manual/ch02.tex}
+    \input{backmatter/checkpoint-answers-through-ch02-id.tex}
+    \cleardoublepage
+    \printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+    \end{document}%
+  }
+\else
+  \def\OOChapterTwoStop{}
+\fi
+\OOChapterTwoStop
+
+% Chapter: Software - Excel
+\input{part1-linear-programming/ch03-software/software-excel.tex}
+
+% The cumulative Chapter 3 reader includes the complete localized manuals for
+% Chapters 2 and 3 plus all checkpoint answers encountered so far, then stops
+% before loading untranslated Chapter 4 source.
+\ifdefined\OOThroughChapterThreeOnly
+  \def\OOChapterThreeStop{%
+    \cleardoublepage
+    \appendix
+    \chapter{Manual Solusi}
+    \providecommand{\exsol}[3]{\subsection*{Latihan ##1\ifx\relax##2\relax\else\ (##2)\fi\hfill{\normalsize\color{orange!85!black}\ifcase##3\relax\or$\star$\or$\star\star$\or$\star\star\star$\fi}}}
+    \newtcolorbox{qaflag}{colback=red!4,colframe=red!60!black,title=\textbf{Catatan QA},fonttitle=\bfseries}
+    \input{solutions-manual/ch02.tex}
+    \input{solutions-manual/ch03.tex}
+    \input{backmatter/checkpoint-answers-through-ch02-id.tex}
+    \cleardoublepage
+    \printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+    \end{document}%
+  }
+\else
+  \def\OOChapterThreeStop{}
+\fi
+\OOChapterThreeStop
+
+% Chapter: Modeling with Summations
+\input{part1-linear-programming/ch02-modeling/modeling-sums.tex}
+\input{part1-linear-programming/ch02-modeling/modeling-sums-continued.tex}
+
+% The cumulative Chapter 4 reader includes the complete localized manuals for
+% Chapters 2--4 plus the checkpoint answers encountered so far, then stops
+% before loading Chapter 5 from the legacy ch02-modeling directory.
+\ifdefined\OOThroughChapterFourOnly
+  \def\OOChapterFourStop{%
+    \cleardoublepage
+    \appendix
+    \chapter{Manual Solusi}
+    \providecommand{\exsol}[3]{\subsection*{Latihan ##1\ifx\relax##2\relax\else\ (##2)\fi\hfill{\normalsize\color{orange!85!black}\ifcase##3\relax\or$\star$\or$\star\star$\or$\star\star\star$\fi}}}
+    \newtcolorbox{qaflag}{colback=red!4,colframe=red!60!black,title=\textbf{Catatan QA},fonttitle=\bfseries}
+    \input{solutions-manual/ch02.tex}
+    \input{solutions-manual/ch03.tex}
+    \input{solutions-manual/ch04.tex}
+    \input{backmatter/checkpoint-answers-through-ch04-id.tex}
+    \cleardoublepage
+    \printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+    \end{document}%
+  }
+\else
+  \def\OOChapterFourStop{}
+\fi
+\OOChapterFourStop
+
+% Chapter: More LP Examples (Griffin)
+\input{part1-linear-programming/ch02-modeling/Section2.tex}
+
+% The cumulative Chapter 5 reader includes the complete localized manuals for
+% Chapters 2--5 and every checkpoint answer encountered so far, then stops
+% before loading the untranslated LP-theory chapter.
+\ifdefined\OOThroughChapterFiveOnly
+  \def\OOChapterFiveStop{%
+    \cleardoublepage
+    \appendix
+    \chapter{Manual Solusi}
+    \providecommand{\exsol}[3]{\subsection*{Latihan ##1\ifx\relax##2\relax\else\ (##2)\fi\hfill{\normalsize\color{orange!85!black}\ifcase##3\relax\or$\star$\or$\star\star$\or$\star\star\star$\fi}}}
+    \newtcolorbox{qaflag}{colback=red!4,colframe=red!60!black,title=\textbf{Catatan QA},fonttitle=\bfseries}
+    \input{solutions-manual/ch02.tex}
+    \input{solutions-manual/ch03.tex}
+    \input{solutions-manual/ch04.tex}
+    \input{solutions-manual/ch05.tex}
+    \input{backmatter/checkpoint-answers-through-ch05-id.tex}
+    \cleardoublepage
+    \printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+    \end{document}%
+  }
+\else
+  \def\OOChapterFiveStop{}
+\fi
+\OOChapterFiveStop
+
+% Chapter: Graphical Method
+% (removed 2026-07-08) linearProgrammingGraphicalExample.tex was an empty placeholder;
+% the original external content was cut for copyright reasons.
+
+% Chapter: LP Theory
+\input{part1-linear-programming/ch05-lp-theory/formalize-LP.tex}
+
+% The cumulative Chapter 6 reader includes the complete localized manuals for
+% Chapters 2--6 and every checkpoint answer encountered so far, then stops
+% before loading the untranslated simplex chapter.
+\ifdefined\OOThroughChapterSixOnly
+  \def\OOChapterSixStop{%
+    \cleardoublepage
+    \appendix
+    \chapter{Manual Solusi}
+    \providecommand{\exsol}[3]{\subsection*{Latihan ##1\ifx\relax##2\relax\else\ (##2)\fi\hfill{\normalsize\color{orange!85!black}\ifcase##3\relax\or$\star$\or$\star\star$\or$\star\star\star$\fi}}}
+    \newtcolorbox{qaflag}{colback=red!4,colframe=red!60!black,title=\textbf{Catatan QA},fonttitle=\bfseries}
+    \input{solutions-manual/ch02.tex}
+    \input{solutions-manual/ch03.tex}
+    \input{solutions-manual/ch04.tex}
+    \input{solutions-manual/ch05.tex}
+    \input{solutions-manual/ch06.tex}
+    \input{backmatter/checkpoint-answers-through-ch06-id.tex}
+    \cleardoublepage
+    \printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+    \end{document}%
+  }
+\else
+  \def\OOChapterSixStop{}
+\fi
+\OOChapterSixStop
+
+% Chapter: Simplex Method
+\input{part1-linear-programming/ch06-simplex/simplex-basis-driven.tex}
+\input{part1-linear-programming/ch06-simplex/simplex-matrix-version.tex}
+\input{part1-linear-programming/ch06-simplex/simplex-tableau.tex}
+
+% The cumulative through-simplex reader retains the native chapter order and
+% includes every localized manual chapter admitted so far.  References to the
+% next sensitivity chapter and other later-book destinations remain semantic
+% deferrals rather than unresolved links.
+\ifdefined\OOThroughSimplexOnly
+  \def\OOThroughSimplexStop{%
+    \cleardoublepage
+    \appendix
+    \chapter{Manual Solusi}
+    \providecommand{\exsol}[3]{\subsection*{Latihan ##1\ifx\relax##2\relax\else\ (##2)\fi\hfill{\normalsize\color{orange!85!black}\ifcase##3\relax\or$\star$\or$\star\star$\or$\star\star\star$\fi}}}
+    \newtcolorbox{qaflag}{colback=red!4,colframe=red!60!black,title=\textbf{Catatan QA},fonttitle=\bfseries}
+    \input{solutions-manual/ch02.tex}
+    \input{solutions-manual/ch03.tex}
+    \input{solutions-manual/ch04.tex}
+    \input{solutions-manual/ch05.tex}
+    \input{solutions-manual/ch06.tex}
+    \input{solutions-manual/ch07.tex}
+    \input{solutions-manual/ch08.tex}
+    \clearpage
+    \input{solutions-manual/ch09.tex}
+    % No separate simplex checkpoint-answer payload is admitted in this
+    % bounded unit; retain the complete cumulative payload through Chapter 6.
+    \input{backmatter/checkpoint-answers-through-ch06-id.tex}
+    \cleardoublepage
+    \printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+    \end{document}%
+  }
+\else
+  \def\OOThroughSimplexStop{}
+\fi
+\OOThroughSimplexStop
+
+% Chapter: Sensitivity Analysis
+\input{part1-linear-programming/ch07-sensitivity/sensitivity-LP.tex}
+
+% Chapter: Duality
+\input{part1-linear-programming/ch08-duality/duality.tex}
+\input{part1-linear-programming/ch08-duality/complimentary-slackness.tex}
+
+% Chapter: Software - Python (Book 1 streamlined version)
+% Reduce TOC depth for this chapter (show only sections, not subsections)
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\input{part1-linear-programming/ch03-software/software-python-book1.tex}
+% Restore TOC depth for subsequent chapters
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+
+% The cumulative Chapter 12 reader contains every completed Part I chapter and
+% its manual solutions, but stops before the not-yet-admitted multiobjective,
+% graph-theory, integer-programming, and appendix surfaces.
+\ifdefined\OOThroughChapterTwelveOnly
+  \def\OOThroughChapterTwelveStop{%
+    \cleardoublepage
+    \appendix
+    \chapter{Manual Solusi}
+    \providecommand{\exsol}[3]{\subsection*{Latihan ##1\ifx\relax##2\relax\else\ (##2)\fi\hfill{\normalsize\color{orange!85!black}\ifcase##3\relax\or$\star$\or$\star\star$\or$\star\star\star$\fi}}}
+    \newtcolorbox{qaflag}{colback=red!4,colframe=red!60!black,title=\textbf{Catatan QA},fonttitle=\bfseries}
+    \input{solutions-manual/ch02.tex}
+    \input{solutions-manual/ch03.tex}
+    \input{solutions-manual/ch04.tex}
+    \input{solutions-manual/ch05.tex}
+    \input{solutions-manual/ch06.tex}
+    \input{solutions-manual/ch07.tex}
+    \input{solutions-manual/ch08.tex}
+    \input{solutions-manual/ch09.tex}
+    \input{solutions-manual/ch10.tex}
+    \input{solutions-manual/ch11.tex}
+    \input{solutions-manual/ch12.tex}
+    \input{backmatter/checkpoint-answers-through-ch12-id.tex}
+    \cleardoublepage
+    \printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+    \end{document}%
+  }
+\else
+  \def\OOThroughChapterTwelveStop{}
+\fi
+\OOThroughChapterTwelveStop
+
+% Chapter: Multi-Objective Optimization
+\input{part1-linear-programming/ch09-multi-objective/multi-objective-optimization_updated.tex}
+
+%=============================================================================
+% PART II: DISCRETE ALGORITHMS
+%=============================================================================
+\part{Algoritme Diskret}
+% (removed 2026-07-08) graph_algorithms.tex was an empty placeholder (license header only).
+\input{part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex}
+
+%=============================================================================
+% PART III: INTRODUCTION TO INTEGER PROGRAMMING
+%=============================================================================
+\part{Pengantar Pemrograman Bilangan Bulat}
+\label{part:IntroIntegerProgramming}
+
+% Chapter: IP Formulations (Book 1 version - introductory, excludes QAP/GAP)
+\input{part3-integer-programming/ch11-ip-formulations/integerProgrammingFormulations-book1.tex}
+
+%=============================================================================
+% COMPLETE SOLUTIONS MANUAL
+%=============================================================================
+\appendix
+
+\chapter{Manual Solusi}
+\providecommand{\exsol}[3]{\subsection*{Latihan #1\ifx\relax#2\relax\else\ (#2)\fi\hfill{\normalsize\color{orange!85!black}\ifcase#3\relax\or$\star$\or$\star\star$\or$\star\star\star$\fi}}}
+\newtcolorbox{qaflag}{colback=red!4,colframe=red!60!black,title=\textbf{Catatan QA},fonttitle=\bfseries}
+\input{solutions-manual/ch02.tex}
+\input{solutions-manual/ch03.tex}
+\input{solutions-manual/ch04.tex}
+\input{solutions-manual/ch05.tex}
+\input{solutions-manual/ch06.tex}
+\input{solutions-manual/ch07.tex}
+\input{solutions-manual/ch08.tex}
+\input{solutions-manual/ch09.tex}
+\input{solutions-manual/ch10.tex}
+\input{solutions-manual/ch11.tex}
+\input{solutions-manual/ch12.tex}
+\input{solutions-manual/ch13.tex}
+\input{solutions-manual/ch14.tex}
+\input{solutions-manual/ch15.tex}
+
+%=============================================================================
+% APPENDICES
+%=============================================================================
+
+% Appendix: Equations and Lines
+\input{appendices/equations-and-lines/equations-and-lines-new.tex}
+
+% Appendix: Linear Algebra - Systems of Equations
+\input{appendices/linear-algebra/systemsofequations.tex}
+\input{appendices/linear-algebra/systemsofequationsGeometry.tex}
+\input{appendices/linear-algebra/systemsofequationsAlgebraicProcedures.tex}
+\input{appendices/linear-algebra/systemsofequationsAlgebraicProceduresElementaryOperations.tex}
+\input{appendices/linear-algebra/systemsofequationsAlgebraicProceduresGaussianElimination.tex}
+\input{appendices/linear-algebra/systemsofequationsAlgebraicProceduresUniquenessRREF.tex}
+\input{appendices/linear-algebra/systemsofequationsAlgebraicProceduresRankHomogeneousSystems.tex}
+
+% Appendix: Linear Algebra - Matrices
+\input{appendices/linear-algebra/matrices.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmetic.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmeticAddition.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmeticScalarMultiplication.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmeticMultiplication.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmeticProductEntry.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmeticMultiplicationProperties.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmeticTranspose.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmeticIdentityInverses.tex}
+\input{appendices/linear-algebra/matricesMatrixArithmeticFindingInverse.tex}
+
+% Appendix: Linear Algebra - Vectors
+\input{appendices/linear-algebra/RnVectors.tex}
+\input{appendices/linear-algebra/RnVectorsRn.tex}
+\input{appendices/linear-algebra/RnVectorsAlgebra.tex}
+\input{appendices/linear-algebra/RnVectorsAlgebraAddition.tex}
+\input{appendices/linear-algebra/RnVectorsAlgebraScalarMult.tex}
+\input{appendices/linear-algebra/RnVectorsAdditionMeaning.tex}
+\input{appendices/linear-algebra/RnVectorsLength.tex}
+\input{appendices/linear-algebra/RnVectorsScalarMultMeaning.tex}
+\input{appendices/linear-algebra/RnVectorsDotProduct.tex}
+\input{appendices/linear-algebra/RnVectorsDotProductDot.tex}
+\input{appendices/linear-algebra/RnVectorsDotProductSignificance.tex}
+
+\cleardoublepage
+
+%=============================================================================
+% BACK MATTER
+% Appendix: Optimization Software Resources
+\input{appendices/software-resources.tex}
+
+% Appendix: Answers to Learning Checkpoints
+\input{backmatter/checkpoint-answers.tex}
+
+% Appendix: Further Reading and Resources
+% Moved from Chapter 1 on 2026-05-13. To relocate to end of Chapter 2 instead,
+% comment this line out and uncomment the matching \input line near the top of
+% this file (search for "Option B").
+\input{backmatter/further-reading-and-resources.tex}
+
+%=============================================================================
+% Source-text acknowledgments (compact; full details in the front-matter
+% Sources and Attribution chapter). The former Lyryx marketing page
+% (LyryxOpenTexts.tex) was removed 2026-07-21.
+\input{appendices/linear-algebra/license.tex}
+\input{frontmatter/contributors-foundations.tex}
+
+% Bibliography
+\cleardoublepage
+\printbibliography[heading=bibintoc,title={Daftar Pustaka}]
+
+% Index
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\indexname}
+\printindex
+
+\end{document}

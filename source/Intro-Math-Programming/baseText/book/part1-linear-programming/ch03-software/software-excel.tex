@@ -1,0 +1,391 @@
+\chapter{Perangkat Lunak - Excel}
+
+\begin{outcome}
+\begin{itemize}
+\item Mengenal fungsi-fungsi Excel yang relevan
+\item Menyusun program linear di Excel
+\item Menyelesaikan program linear di Excel
+\end{itemize}
+\end{outcome}
+
+\section{Menggunakan Excel Solver}
+\label{sec:excel-solver}
+
+Excel Solver adalah alat yang andal untuk menyelesaikan masalah optimisasi dengan kendala linear maupun nonlinear. Sebelum menggunakan Solver, kita perlu memahami beberapa fungsi dan teknik dasar Excel yang lazim dipakai ketika menyusun masalah optimisasi. Fungsi-fungsi ini membantu menata data, menghitung nilai antara, serta mendefinisikan fungsi tujuan dan kendala.
+
+\subsection{Fungsi dan Teknik Excel yang Berguna}
+
+\paragraph{Menggunakan Rumus di Dalam Sel}
+Di Excel, rumus diawali dengan tanda sama dengan (\texttt{=}). Sebagai contoh, mengetik \texttt{=A1+B1} di sebuah sel akan menghitung jumlah nilai dalam sel \texttt{A1} dan \texttt{B1}.
+
+\paragraph{\texttt{SUM()}}
+Fungsi \texttt{SUM()} menjumlahkan suatu rentang bilangan. Sebagai contoh, \texttt{=SUM(A1:A10)} menghitung jumlah seluruh nilai dalam rentang \texttt{A1} hingga \texttt{A10}.
+
+\paragraph{\texttt{SUMPRODUCT()}}
+Fungsi \texttt{SUMPRODUCT()} mengalikan elemen-elemen yang bersesuaian dalam dua larik atau lebih, lalu mengembalikan jumlah hasil kali tersebut. Fungsi ini sangat berguna untuk menghitung hasil kali titik atau jumlah berbobot. Sebagai contoh, \texttt{=SUMPRODUCT(A1:A10, B1:B10)} menghitung \( \sum_{i=1}^{10} A_i B_i \).
+
+\paragraph{\texttt{COUNT()}}
+Fungsi \texttt{COUNT()} menghitung banyaknya entri numerik dalam suatu rentang. Sebagai contoh, \texttt{=COUNT(A1:A10)} mengembalikan banyaknya sel numerik dalam rentang \texttt{A1} hingga \texttt{A10}.
+
+\paragraph{\texttt{COUNTIF()}}
+Fungsi \texttt{COUNTIF()} menghitung banyaknya sel dalam suatu rentang yang memenuhi syarat tertentu. Sebagai contoh, \texttt{=COUNTIF(A1:A10, ">5")} menghitung banyaknya sel dalam \texttt{A1:A10} yang nilainya lebih besar dari 5.
+
+\paragraph{Menyalin Rumus Sepanjang Baris atau Kolom}
+Untuk menerapkan sebuah rumus pada beberapa sel, seret gagang isian (\emph{fill handle}), yaitu kotak kecil di sudut kanan bawah sel yang dipilih, melintasi rentang yang diinginkan. Excel secara otomatis menyesuaikan referensi sel menurut posisi relatifnya (referensi relatif). Agar sebuah referensi tetap, gunakan tanda dolar (\texttt{\$}) dalam referensi sel (referensi absolut). Sebagai contoh, \texttt{\$A\$1} selalu merujuk ke sel \texttt{A1}.
+
+\paragraph{Pemformatan Bersyarat}
+Pemformatan bersyarat memungkinkan Anda menyoroti sel yang memenuhi kriteria tertentu. Sebagai contoh, Anda dapat menampilkan sel yang nilainya melampaui suatu ambang dengan huruf tebal atau warna tertentu agar data penting mudah dikenali secara visual.
+
+\paragraph{Validasi Data}
+Validasi data membantu membatasi jenis data yang dapat dimasukkan ke dalam sebuah sel. Sebagai contoh, Anda dapat menetapkan aturan yang hanya menerima bilangan dalam rentang tertentu atau teks dari daftar yang telah ditentukan.
+
+\paragraph{Memberi Nama pada Rentang}
+Rentang bernama membuat rumus lebih mudah dibaca dan dipelihara. Alih-alih menulis \texttt{=SUM(A1:A10)}, Anda dapat menamai rentang tersebut \texttt{"Sales"} dan menulis \texttt{=SUM(Sales)}.
+
+\paragraph{Menggunakan Fungsi Logika}
+
+Fungsi logika seperti \texttt{IF()}, \texttt{AND()}, dan \texttt{OR()} berguna untuk mengambil keputusan di dalam rumus. Sebagai contoh, \texttt{=IF(A1>10, "High", "Low")} mengembalikan \texttt{"High"} (``Tinggi'') jika \texttt{A1} lebih besar dari 10, dan \texttt{"Low"} (``Rendah'') jika tidak.
+
+Dengan perangkat dasar ini, penyusunan masalah optimisasi menjadi jauh lebih mudah. Pada subbagian berikutnya, kita akan melihat cara menggabungkan fungsi-fungsi tersebut dengan Excel Solver untuk mendefinisikan dan menyelesaikan model optimisasi.
+
+\subsection{Cara Menggunakan Excel Solver}
+
+Excel Solver adalah sebuah pengaya (\emph{add-in}) yang memungkinkan pengguna mendefinisikan dan menyelesaikan masalah optimisasi. Subbagian ini memberikan panduan langkah demi langkah untuk menata data dan menggunakan Solver secara efektif.
+
+\paragraph{Langkah 1: Tata Data}
+Penataan data yang jelas sangat penting agar Solver dapat digunakan secara efektif. Gunakan kode warna untuk membedakan jenis-jenis sel:
+\begin{itemize}
+    \item \textbf{Data:} Sel yang memuat nilai masukan tetap, seperti koefisien atau konstanta, sebaiknya diberi warna \textcolor{blue!50!white}{biru muda}.
+    \item \textbf{Variabel:} Sel yang mewakili variabel keputusan sebaiknya diberi warna \textcolor{yellow}{kuning}.
+        \item \textbf{Rumus:} Sel yang memuat rumus, seperti fungsi tujuan atau nilai ringkasan sisi kiri kendala, sebaiknya diberi warna \textcolor{green!50!white}{hijau muda}.
+\end{itemize}
+Kombinasi warna lain juga dapat digunakan, asalkan secara konsisten membedakan ketiga komponen tersebut.
+
+{\centering
+\altincludegraphics[width = 0.85\textwidth]{Figures/excel-solver-layout}{Lembar kerja Excel dengan tata letak Solver yang disarankan: sel data (koefisien dan ruas kanan) berwarna biru muda, sel variabel keputusan berwarna kuning, dan sel rumus (fungsi tujuan dan jumlah pada kendala) berwarna hijau muda.}\par\captionof{figure}{Tata letak Solver yang disarankan, dengan kode warna terpisah untuk data, variabel keputusan, dan rumus.}\label{fig:excel-solver-layout}% fig-num-auto
+\par}
+
+\paragraph{Langkah 2: Definisikan Fungsi Tujuan}
+Tentukan sel yang mewakili fungsi tujuan. Sel ini harus memuat rumus yang menghitung nilai yang akan dimaksimumkan atau diminimumkan, seperti laba atau biaya total.
+
+\paragraph{Langkah 3: Susun Kendala}
+Nyatakan kendala masalah dengan jelas. Hitung ruas kiri setiap kendala dalam sebuah sel rumus menggunakan variabel dan koefisiennya, lalu tetapkan hubungannya dengan ruas kanan di dialog Solver. Sebagai contoh, letakkan \texttt{=SUMPRODUCT(Production, Coefficients)} dalam sel ruas kiri, lalu tambahkan kendala \texttt{<=} terhadap sel \texttt{Capacity} di Solver.
+
+\paragraph{Langkah 4: Buka Solver}
+Pastikan Solver telah diaktifkan di Excel. Jika belum, aktifkan melalui \texttt{File > Options > Add-Ins > Manage Excel Add-ins}, lalu centang kotak \texttt{Solver}.
+
+Setelah Solver aktif, buka \texttt{Data > Solver} untuk menampilkan dialog \texttt{Solver Parameters}.
+{\centering
+\altincludegraphics[width = 0.85\textwidth]{Figures/excel-solver-button}{Tangkapan layar pita Data di Excel dengan tombol Solver disorot di sisi kanan bilah alat, yang menunjukkan tombol untuk membuka dialog Solver Parameters setelah pengaya diaktifkan.}\par\captionof{figure}{Tombol \texttt{Solver} pada pita \texttt{Data} di Excel.}\label{fig:excel-solver-button}% fig-num-auto
+\par}
+
+\paragraph{Langkah 5: Tetapkan Parameter Solver}
+Di dalam dialog \texttt{Solver Parameters}:
+\begin{itemize}
+    \item Tetapkan \textbf{Objective} (Tujuan) ke sel yang memuat fungsi tujuan.
+    \item Pilih \textbf{Max} atau \textbf{Min} untuk menentukan apakah fungsi tujuan akan dimaksimumkan atau diminimumkan.
+    \item Tentukan \textbf{Variable Cells} (Sel Variabel) dengan memilih rentang sel yang mewakili variabel keputusan.
+    \item Tambahkan \textbf{Constraints} (Kendala) dengan menentukan relasi (misalnya \texttt{<=}, \texttt{>=}, atau \texttt{=}) beserta sel-sel yang terlibat.
+    \item Jika semua variabel tidak negatif, Anda dapat mencentang \texttt{Make Unconstrained Variables Non-Negative}.
+\end{itemize}
+
+{\centering
+\altincludegraphics[scale = 0.25]{Figures/excel-solver-solve}{Dialog Solver Parameters yang telah diisi: sel Set Objective (Tetapkan Tujuan), pilihan Max/Min, rentang By Changing Variable Cells (Dengan Mengubah Sel Variabel), daftar Subject to the Constraints (Dengan Kendala), serta kotak Make Unconstrained Variables Non-Negative (Jadikan Variabel Tanpa Kendala Tidak Negatif) yang dicentang.}\par\captionof{figure}{Dialog \texttt{Solver Parameters} dengan fungsi tujuan, sel variabel, kendala, dan opsi ketidaknegatifan.}\label{fig:excel-solver-solve}% fig-num-auto
+\par}
+
+\paragraph{Langkah 6: Pilih Metode Penyelesaian}
+Solver menyediakan tiga metode penyelesaian:
+\begin{itemize}
+    \item \textbf{GRG Nonlinear:} Untuk masalah nonlinear yang mulus.
+    \item \textbf{Simplex LP:} Untuk masalah program linear.
+    \item \textbf{Evolutionary:} Untuk masalah tak mulus atau diskontinu.
+\end{itemize}
+Pilih metode yang sesuai dengan jenis masalah. Untuk model linear dengan kendala bilangan bulat atau biner, tetap pilih \texttt{Simplex LP}, lalu tambahkan kendala \texttt{int} atau \texttt{bin}; Solver menangani syarat kebulatan melalui metode cabang-dan-batas (\emph{branch-and-bound}).
+{\centering
+\altincludegraphics[scale = 0.3]{Figures/excel-solver-method}{Tampilan dekat menu Select a Solving Method dalam dialog Solver Parameters, dengan tiga pilihan GRG Nonlinear, Simplex LP, dan Evolutionary yang dipilih sesuai dengan jenis model.}\par\captionof{figure}{Tiga pilihan pada menu \texttt{Select a Solving Method}.}\label{fig:excel-solver-method}% fig-num-auto
+\par}
+
+\paragraph{Langkah 7: Selesaikan Masalah}
+Klik \texttt{Solve} untuk menjalankan Solver. 
+Jika Solver menemukan solusi, hasilnya akan ditampilkan dan Anda dapat mempertahankan atau membatalkan solusi tersebut. Periksa solusi untuk memastikan bahwa solusi itu memenuhi persyaratan masalah.
+
+{\centering
+\altincludegraphics[scale = 0.32]{Figures/excel-solver-select}{Dialog Solver Results yang muncul setelah penyelesaian, dengan pilihan Keep Solver Solution (Pertahankan Solusi Solver) atau Restore Original Values (Pulihkan Nilai Awal), serta daftar laporan Answer (Jawaban), Sensitivity (Sensitivitas), dan Limits (Batas) di sebelah kanan.}\par\captionof{figure}{Dialog \texttt{Solver Results} untuk mempertahankan solusi dan memilih laporan hasil.}\label{fig:excel-solver-select}% fig-num-auto
+\par}
+
+\paragraph{Langkah 8: Tafsirkan Hasil}
+Tinjau nilai variabel keputusan dan fungsi tujuan. Pastikan semua kendala terpenuhi, lalu nilai kelayakan dan mutu solusi.
+\begin{itemize}
+\item \texttt{Answer Report} (Laporan Jawaban)
+{\centering
+\altincludegraphics[scale = 0.4]{Figures/excel-solver-answer-report}{Lembar kerja Answer Report (Laporan Jawaban) yang dibuat oleh Solver, dengan nilai awal dan akhir sel tujuan, tabel sel variabel beserta nilai akhirnya, serta tabel kendala yang menampilkan nilai sel, rumus, status Binding (aktif) atau Not Binding (tidak aktif), dan slack (kelonggaran).}\par\captionof{figure}{\texttt{Answer Report} yang merangkum fungsi tujuan, variabel, status kendala, dan kelonggaran (\emph{slack}).}\label{fig:excel-solver-answer-report}% fig-num-auto
+\par}
+\item \texttt{Sensitivity Report} (Laporan Sensitivitas)
+{\centering
+\altincludegraphics[scale = 0.4]{Figures/excel-solver-sensitivity}{Lembar kerja Sensitivity Report (Laporan Sensitivitas) dengan tabel Variable Cells (Sel Variabel) yang memuat final value (nilai akhir), reduced cost (biaya tereduksi), objective coefficient (koefisien tujuan), dan allowable increase/decrease (kenaikan/penurunan yang diizinkan), serta tabel Constraints (Kendala) yang memuat shadow price (harga bayangan), right-hand side (ruas kanan), dan rentang perubahan yang diizinkan.}\par\captionof{figure}{\texttt{Sensitivity Report} dengan biaya tereduksi, harga bayangan, dan rentang perubahan yang diizinkan.}\label{fig:excel-solver-sensitivity}% fig-num-auto
+\par}
+\item Solusi pada lembar kerja
+{\centering
+\altincludegraphics[scale = 0.4]{Figures/excel-solver-solution}{Lembar kerja Excel setelah Solver dijalankan: sel variabel berwarna kuning berisi nilai keputusan optimal, sedangkan sel rumus berwarna hijau menampilkan nilai fungsi tujuan dan jumlah pada kendala.}\par\captionof{figure}{Lembar kerja dengan nilai variabel dan rumus setelah Solver menemukan solusi optimal.}\label{fig:excel-solver-solution}% fig-num-auto
+\par}
+\end{itemize}
+
+\begin{resource}
+Contoh dan panduan
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=LKV6fT8xApA&ab_channel=JoshuaEmmanuel}{Memasang Excel Solver pada Windows}
+\item \url{https://www.excel-easy.com/data-analysis/solver.html}
+\item \href{https://www.youtube.com/watch?v=dRm5MEoA3OI&ab_channel=LeilaGharani}{Pengantar Excel Solver di YouTube}
+
+\item \href{https://ocw.mit.edu/courses/sloan-school-of-management/15-053-optimization-methods-in-management-science-spring-2013/tutorials/MIT15_053S13_tut03.pdf}{Catatan dari MIT}
+\end{itemize}
+Beberapa video
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=V5DmekIFenA}{Menyelesaikan program linear}
+\item \href{https://www.youtube.com/watch?v=6xa1x_Iqjzg}{Bauran produk optimal}
+\item \href{https://www.youtube.com/watch?v=vpodCzRtUMU}{Masalah Penutup Himpunan (\emph{Set Cover})}
+
+\item \href{https://www.youtube.com/watch?v=tKV24jzZ10s}{Pengantar Perancangan Model Optimisasi dengan Excel Solver}
+
+\item \href{https://www.youtube.com/watch?v=-E3rSoClgMI}{Masalah Pedagang Keliling (\emph{Traveling Salesman})}
+
+\item \href{https://www.youtube.com/watch?v=UQYJvSjXE6I}{Contoh Lain Masalah Pedagang Keliling (\emph{Traveling Salesman})}
+
+\item \href{https://www.youtube.com/watch?v=owHq3Mbniqo}{Masalah Pedagang Keliling Majemuk (\emph{Multiple Traveling Salesman})}
+
+\item \href{https://www.youtube.com/watch?v=JkZkGxVZ8ao}{Lintasan Terpendek}
+
+\end{itemize}
+Beberapa tautan lain
+\begin{itemize}
+\item \href{https://github.com/lobodemonte/excel-solver-loan-example}{Contoh Pinjaman}
+
+\item \href{https://github.com/Bhargavanarasimhan/Excel-Solver-Files}{Berbagai Contoh, Termasuk TSP}
+\end{itemize}
+\end{resource}
+
+\begin{tryit}
+\vizlink{excel-solver}{Panduan Interaktif Excel Solver}: sel, rumus, dan dialog Solver pada sebuah LP kecil.
+\end{tryit}
+
+
+\section{Latihan}
+
+\exgroup{Pemanasan}
+
+\begin{ex}{Menjalankan Ulang Solver: Aliran Jaringan Berbiaya Minimum}{}
+\label{ex:excel-network-flow-rerun}
+\stars{1} Latihan ini mengulang \OOExcelNetworkFlowExampleReference. Unduh buku kerja Excel yang ditautkan dalam contoh tersebut dan ubah hanya data biayanya: biaya pengiriman sekarang adalah $3$ per unit dari Gudang 1 ke Toko 1, $7$ dari Gudang 1 ke Toko 2, $4$ dari Gudang 2 ke Toko 1, dan $2$ dari Gudang 2 ke Toko 2. Pasokan ($20$ dan $30$), permintaan ($25$ dan $25$), serta kapasitas rute ($15$, $10$, $20$, $20$) tidak berubah.
+\begin{enumerate}
+\item Selesaikan ulang dengan metode \texttt{Simplex LP} dan laporkan aliran optimal pada masing-masing dari empat rute.
+\item Sebagai pemeriksaan, biaya minimum adalah $160$. Rute mana yang mencapai kapasitas?
+\end{enumerate}
+\exrefs{\S\ref{sec:excel-solver}, \OOExcelNetworkFlowExampleReference}
+\end{ex}
+
+\begin{ex}{Menjalankan Ulang Solver: Perencanaan Produksi Selama 10 Periode}{}
+\label{ex:excel-production-rerun}
+\stars{1} Latihan ini mengulang \OOExcelProductionExampleReference. Unduh buku kerja Excel yang ditautkan dalam contoh tersebut. Pertahankan biaya produksi $(10, 12, \dots, 28)$, biaya penyimpanan sebesar $5$, dan persediaan awal $s_0 = 5$, tetapi ganti permintaannya dengan $(6, 9, 7, 8, 5, 10, 7, 6, 8, 4)$.
+\begin{enumerate}
+\item Perbarui sel permintaan dan selesaikan ulang dengan metode \texttt{Simplex LP}. Laporkan rencana produksi dan biaya total. Sebagai pemeriksaan, biaya minimum adalah $1252$.
+\item Rencana optimal tidak menyimpan persediaan antarperiode. Jelaskan alasannya dengan membandingkan biaya penyimpanan dan kenaikan biaya produksi dari satu periode ke periode berikutnya.
+\end{enumerate}
+\exrefs{\S\ref{sec:excel-solver}, \OOExcelProductionExampleReference}
+\end{ex}
+
+\exgroup{Masalah Inti}
+
+\begin{ex}{Masalah Diet di Excel}{}
+\label{ex:excel-diet}
+\stars{2} Seorang mahasiswa dengan anggaran terbatas sedang merencanakan makanan untuk satu hari dari lima bahan pangan pokok berikut. Tabel tersebut memberikan data biaya dan gizi per porsi.
+\begin{center}
+\begin{tabular}%{lccccc}
+{|p{0.17\linewidth} | p{0.13\linewidth} | p{0.13\linewidth} | p{0.12\linewidth} | p{0.12\linewidth} | p{0.15\linewidth} |}
+\hline & Harga $(\$)$ per porsi & Kalori per porsi & Lemak $(\mathrm{g})$ per porsi & Protein $(\mathrm{g})$ per porsi & Karbohidrat $(\mathrm{g})$ per porsi \\
+\hline Havermut & $0.25$ & 150 & $3.0$ & $5.0$ & 27 \\
+Susu murni & $0.30$ & 149 & $8.0$ & $8.0$ & 12 \\
+Nasi merah & $0.18$ & 216 & $1.8$ & $5.0$ & 45 \\
+Kacang hitam & $0.40$ & 227 & $0.9$ & 15 & 41 \\
+Selai almon & $0.45$ & 196 & 18 & $7.0$ & 6 \\
+\hline
+\end{tabular}
+\par\captionof{table}{Data biaya dan kandungan gizi per porsi untuk lima bahan pangan pokok.}\label{tab:software-excel-tab01}% tab-num-auto
+
+\end{center}
+Pilih banyaknya porsi, yang boleh berupa pecahan, dari setiap bahan pangan sehingga jumlah harian memenuhi seluruh persyaratan berikut dengan biaya belanja serendah mungkin:
+\begin{itemize}
+\item kalori sedikitnya 2200,
+\item lemak sedikitnya $60 \mathrm{~g}$,
+\item protein sedikitnya $90 \mathrm{~g}$,
+\item karbohidrat sedikitnya $300 \mathrm{~g}$.
+\end{itemize}
+Formulasikan LP yang menentukan rencana termurah yang memenuhi semua persyaratan tersebut.
+
+Selesaikan masalah ini menggunakan Excel Solver. Sertakan tangkapan layar lembar kerja Anda yang menampilkan solusi optimal.
+\exrefs{\S\ref{sec:excel-solver}}
+\end{ex}
+
+\begin{ex}{Perencanaan Produksi di Excel}{}
+\label{ex:excel-production-planning}
+\stars{2} Sebuah pabrik kecil memproduksi dua produk: widget dan gadget. Setiap widget menghasilkan laba \$8 dan setiap gadget menghasilkan laba \$6. Produksi dibatasi oleh dua sumber daya:
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+ & \textbf{Widget} & \textbf{Gadget} & \textbf{Tersedia} \\
+\hline
+Waktu mesin (jam) & 2 & 1 & 40 \\
+Bahan baku (kg) & 1 & 2 & 30 \\
+\end{tabular}
+\par\captionof{table}{Penggunaan sumber daya per unit serta ketersediaannya untuk widget dan gadget.}\label{tab:software-excel-tab02}% tab-num-auto
+
+\end{center}
+
+Kuantitas produksi kedua produk harus tidak negatif.
+
+\begin{enumerate}
+\item Susun masalah ini di Excel dengan kode warna yang jelas untuk sel data (biru), sel variabel (kuning), dan sel rumus (hijau).
+\item Selesaikan dengan Excel Solver menggunakan metode \texttt{Simplex LP}. Laporkan kuantitas produksi optimal dan laba maksimum.
+\item Buat \texttt{Sensitivity Report}. Dengan menggunakan laporan tersebut, jawab pertanyaan berikut: jika laba per widget meningkat menjadi \$9, apakah rencana produksi optimal berubah?
+\end{enumerate}
+\exrefs{\S\ref{sec:excel-solver}}
+\end{ex}
+
+\begin{ex}{Masalah Transportasi di Excel}{}
+\label{ex:excel-transportation}
+\stars{2} Sebuah perusahaan memiliki dua gudang (W1 dan W2) yang memasok tiga toko ritel (S1, S2, S3). Biaya pengiriman per unit, pasokan di setiap gudang, dan permintaan di setiap toko diberikan berikut ini:
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+ & S1 & S2 & S3 & \textbf{Pasokan} \\
+\hline
+W1 & \$4 & \$8 & \$1 & 60 \\
+W2 & \$6 & \$3 & \$5 & 50 \\
+\hline
+\textbf{Permintaan} & 30 & 40 & 40 & \\
+\end{tabular}
+\par\captionof{table}{Biaya pengiriman per unit, pasokan gudang, dan permintaan toko.}\label{tab:software-excel-tab03}% tab-num-auto
+
+\end{center}
+
+\begin{enumerate}
+\item Susun model transportasi di Excel dengan variabel keputusan yang menyatakan banyaknya unit yang dikirim dari setiap gudang ke setiap toko.
+\item Selesaikan dengan Excel Solver untuk meminimumkan biaya pengiriman total. Laporkan rencana pengiriman optimal dan biaya minimum.
+\end{enumerate}
+\exrefs{\S\ref{sec:excel-solver}, \OOExcelTransportationSectionReference}
+\end{ex}
+
+\begin{ex}{Bauran Produk dengan Laporan Sensitivitas}{}
+\label{ex:excel-furniture-sensitivity}
+\stars{2} Sebuah bengkel mebel membuat meja, kursi, dan meja kerja dengan laba masing-masing \$70, \$50, dan \$90 per unit. Sumber daya mingguan yang tersedia adalah 240 jam pertukangan kayu, 100 jam penyelesaian akhir, dan 2000 kaki papan kayu:
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+ & \textbf{Meja} & \textbf{Kursi} & \textbf{Meja Kerja} & \textbf{Tersedia} \\
+\hline
+Pertukangan kayu (jam) & 4 & 3 & 6 & 240 \\
+Penyelesaian akhir (jam) & 2 & 1 & 3 & 100 \\
+Kayu (kaki papan) & 30 & 20 & 40 & 2000 \\
+\end{tabular}
+\par\captionof{table}{Kebutuhan sumber daya per unit dan ketersediaan mingguan untuk meja, kursi, dan meja kerja.}\label{tab:software-excel-tab04}% tab-num-auto
+
+\end{center}
+
+Kuantitas produksi boleh berupa pecahan.
+\begin{enumerate}
+\item Susun LP di Excel dengan kode warna untuk sel data, variabel, dan rumus, lalu selesaikan dengan metode \texttt{Simplex LP}. Laporkan rencana produksi dan laba maksimum. Sebagai pemeriksaan, laba maksimum adalah \$4100.
+\item Buat \texttt{Sensitivity Report}. Laporkan harga bayangan setiap sumber daya dan nyatakan kendala mana yang aktif.
+\item Dengan hanya menggunakan laporan tersebut, tentukan: apakah layak membayar \$10 per jam untuk tambahan waktu penyelesaian akhir?
+\item Laporan tersebut mencantumkan kenaikan yang diizinkan untuk koefisien laba meja kerja. Jika laba per meja kerja naik menjadi \$100, apakah rencana produksi berubah? Bagaimana jika naik menjadi \$110?
+\end{enumerate}
+\exrefs{\S\ref{sec:excel-solver}}
+\end{ex}
+
+\begin{ex}{Transportasi Tidak Seimbang dengan \texttt{Sensitivity Report} (Laporan Sensitivitas)}{}
+\label{ex:excel-unbalanced-transportation}
+\stars{2} Tiga pabrik memasok tiga kota.  Kapasitas pabrik masing-masing adalah 70, 50, dan 40 unit; permintaan kota masing-masing adalah 50, 60, dan 40 unit, sehingga total pasokan melebihi total permintaan.  Biaya pengiriman per unit adalah:
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+ & C1 & C2 & C3 & \textbf{Pasokan} \\
+\hline
+P1 & \$4 & \$5 & \$7 & 70 \\
+P2 & \$6 & \$3 & \$2 & 50 \\
+P3 & \$5 & \$8 & \$4 & 40 \\
+\hline
+\textbf{Permintaan} & 50 & 60 & 40 & \\
+\end{tabular}
+\par\captionof{table}{Biaya pengiriman per unit, kapasitas pabrik, dan permintaan kota.}\label{tab:software-excel-tab05}% tab-num-auto
+
+\end{center}
+
+\begin{enumerate}
+\item Susun model di Excel dengan kendala pasokan berupa $\leq$ dan kendala permintaan berupa $=$, lalu selesaikan dengan metode Simplex LP.  Laporkan rencana pengiriman dan biaya minimum.  Sebagai pemeriksaan, biaya minimumnya adalah \$560.
+\item Pabrik mana yang tidak mengirimkan seluruh kapasitasnya, dan berapa unit yang tetap berada di sana?
+\item Buat \texttt{Sensitivity Report} (Laporan Sensitivitas).  Laporkan harga bayangan setiap kendala pasokan dan tafsirkan tanda dari harga bayangan yang tidak nol: berapa nilai satu unit tambahan kapasitas di pabrik tersebut?
+\end{enumerate}
+\exrefs{\S\ref{sec:excel-solver}, \OOExcelTransportationSectionReference}
+\end{ex}
+
+\exgroup{Konsep dan keterkaitan}
+
+\begin{ex}{Simplex LP dibandingkan dengan GRG Nonlinear}{}
+\label{ex:excel-solver-methods}
+\stars{2} Kotak dialog Solver menawarkan tiga metode pemecahan: Simplex LP, GRG Nonlinear, dan Evolutionary.
+\begin{enumerate}
+\item Jelaskan kelas masalah yang dirancang untuk masing-masing metode Simplex LP dan GRG Nonlinear.
+\item Jika model Anda adalah program linear, mengapa Anda sebaiknya memilih Simplex LP alih-alih GRG Nonlinear, meskipun keduanya mungkin memberikan jawaban yang sama?  Pertimbangkan jaminan atas solusi (optimum global dibandingkan optimum yang mungkin hanya lokal) dan isi \texttt{Sensitivity Report} (Laporan Sensitivitas).
+\item Misalkan Anda memilih Simplex LP, tetapi salah satu sel kendala memuat rumus \texttt{=B2*B3}, dengan \texttt{B2} dan \texttt{B3} keduanya merupakan sel variabel.  Apa yang akan dilakukan Solver, dan mengapa?
+\item Berikan contoh fungsi tujuan yang sesuai untuk GRG Nonlinear, tetapi tidak sesuai untuk Simplex LP.
+\end{enumerate}
+\exrefs{\S\ref{sec:excel-solver}}
+\end{ex}
+
+\exgroup{Masalah tantangan}
+
+\begin{ex}{Ketika Suatu Variabel Harus Bernilai Negatif}{}
+\label{ex:excel-short-selling}
+\stars{3} Seorang investor memiliki \$100 (dalam ribuan dolar) untuk dibagi antara dana A, yang memberikan imbal hasil 5\%, dan dana B, yang memberikan imbal hasil 12\%.  Pialang mengizinkan \emph{short selling} (jual kosong) atas dana A: investor boleh memiliki jumlah A yang negatif dan menggunakan hasilnya untuk membeli lebih banyak B.  Aturan margin membatasi kepemilikan B pada \$140.  Modelnya adalah
+\begin{align*}
+\max \quad & 0.05\,x_A + 0.12\,x_B\\
+\st & x_A + x_B = 100\\
+& x_B \leq 140, \qquad x_B \geq 0, \qquad x_A \text{ bebas}.
+\end{align*}
+\begin{enumerate}
+\item Susun model di Excel dan selesaikan dengan metode Simplex LP, dengan \texttt{Make Unconstrained Variables Non-Negative} (Jadikan Variabel Tanpa Kendala Tidak Negatif) tetap dicentang.  Laporkan solusinya.
+\item Sekarang, hapus centang pada \texttt{Make Unconstrained Variables Non-Negative} (Jadikan Variabel Tanpa Kendala Tidak Negatif), tambahkan kendala $x_B \geq 0$ secara eksplisit, lalu selesaikan kembali.  Laporkan solusi barunya.
+\item Jelaskan secara tepat fungsi kotak centang tersebut dan mengapa centangnya harus dihapus untuk model ini.  Risiko apa yang timbul bagi variabel lain ketika Anda menghapus centangnya?
+\end{enumerate}
+\exrefs{\S\ref{sec:excel-solver}}
+\end{ex}
+
+\subsubsection*{Solusi Terpilih}
+
+\begin{solution}(Latihan~\ref{ex:excel-production-planning})
+Misalkan $x_1$ dan $x_2$ masing-masing menyatakan jumlah widget dan gadget yang diproduksi.  Program linear (LP) yang mendasari lembar kerja tersebut adalah
+\begin{align*}
+\max \quad & z = 8x_1 + 6x_2\\
+\st & 2x_1 + x_2 \leq 40 && \text{(waktu mesin)}\\
+& x_1 + 2x_2 \leq 30 && \text{(bahan baku)}\\
+& x_1, x_2 \geq 0.
+\end{align*}
+Di Excel, tempatkan kedua variabel di sel kuning, hitung fungsi tujuan dan ruas kiri kedua kendala dengan \texttt{SUMPRODUCT} di sel hijau, lalu tambahkan kendala dalam Solver dengan metode Simplex LP.  Solver menghasilkan $x_1 = 50/3 \approx 16.67$ widget dan $x_2 = 20/3 \approx 6.67$ gadget dengan laba maksimum $520/3 \approx \$173.33$; kedua kendala sumber daya aktif.
+Untuk bagian 3, \texttt{Sensitivity Report} (Laporan Sensitivitas) menunjukkan kenaikan yang diizinkan untuk koefisien laba widget.  Menaikkannya dari \$8 menjadi \$9 masih berada dalam rentang yang diizinkan, sehingga rencana produksi optimal tidak berubah --- hanya labanya yang berubah, naik menjadi \$190.  (Secara geometris, kemiringan fungsi tujuan tetap berada di antara kemiringan kedua kendala aktif, sehingga titik sudut yang sama tetap optimal.)
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:excel-transportation})
+Misalkan $x_{ij} \geq 0$ menyatakan jumlah unit yang dikirim dari gudang $i$ ke toko $j$.  Susunan Excel yang wajar berupa kisi $2 \times 3$ sel variabel kuning yang mencerminkan tabel biaya, dengan jumlah baris dibandingkan dengan pasokan dan jumlah kolom dibandingkan dengan permintaan:
+\begin{align*}
+\min \quad & z = 4x_{11} + 8x_{12} + x_{13} + 6x_{21} + 3x_{22} + 5x_{23}\\
+\st & x_{11} + x_{12} + x_{13} \leq 60 && \text{(pasokan W1)}\\
+& x_{21} + x_{22} + x_{23} \leq 50 && \text{(pasokan W2)}\\
+& x_{11} + x_{21} = 30, \quad x_{12} + x_{22} = 40, \quad x_{13} + x_{23} = 40 && \text{(permintaan)}\\
+& x_{ij} \geq 0.
+\end{align*}
+Total pasokan sama dengan total permintaan (110 unit), sehingga kedua pasokan digunakan sepenuhnya.  Solver menemukan rencana optimal $x_{11} = 20$, $x_{13} = 40$, $x_{21} = 10$, $x_{22} = 40$ (semua rute lain tidak digunakan), dengan biaya minimum \$300: pengiriman dialokasikan terlebih dahulu ke pasangan gudang--toko berbiaya rendah (W1 ke S3, W2 ke S2), lalu permintaan toko S1 dibagi di antara kedua gudang agar seluruh pasokan dan permintaan seimbang.
+\end{solution}
+
+\Needspace{0.34\textheight}
+\begin{solution}(Latihan~\ref{ex:excel-short-selling})
+Ketika kotak tersebut dicentang, Solver secara diam-diam menambahkan $x_A \geq 0$ dan $x_B \geq 0$, sehingga hasil terbaik yang dapat diperolehnya adalah $x_A = 0$, $x_B = 100$, dengan imbal hasil $0.05 \cdot 0 + 0.12 \cdot 100 = 12$ (yaitu \$12{,}000).  Ketika centang dihapus dan $x_B \geq 0$ ditambahkan sebagai kendala eksplisit, Solver menemukan $x_A = -40$, $x_B = 140$: investor melakukan jual kosong sebesar \$40{,}000 pada dana A agar dana B mencapai batas marginnya, sehingga memperoleh $0.05(-40) + 0.12(140) = 14.8$, atau \$14{,}800.
+Kotak centang tersebut menerapkan batas bawah nol pada setiap variabel keputusan yang tidak memiliki batas bawah eksplisit dalam daftar kendala.  Short selling (jual kosong) berarti memegang posisi negatif, sehingga batas tersembunyi itu menyingkirkan solusi optimal.  Risiko ketika centang dihapus adalah semua variabel lain juga kehilangan batas otomatis: setiap variabel yang seharusnya bernilai tidak negatif (di sini $x_B$) kini harus memiliki kendala $\geq 0$ sendiri, atau Solver dapat menghasilkan nilai negatif yang tidak bermakna untuk variabel tersebut.
+\end{solution}

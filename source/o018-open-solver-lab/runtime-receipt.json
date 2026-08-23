@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "observed_at": "2026-08-21T00:22:14+02:00",
+  "platform": {
+    "implementation": "CPython",
+    "python": "3.12.13",
+    "operating_system": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64"
+  },
+  "packages": [
+    {
+      "name": "pyomo",
+      "version": "6.10.1",
+      "license_expression": "BSD-3-Clause",
+      "wheel": "authority/runtime-wheels/windows-cp312-amd64/pyomo-6.10.1-py3-none-any.whl",
+      "wheel_bytes": 4175938,
+      "wheel_sha256": "7a81b5301d4c0389809c1afd12311d23db04522341566332229d8ce4226bccb1"
+    },
+    {
+      "name": "highspy",
+      "version": "1.15.1",
+      "runtime_version": "1.15.1",
+      "license_expression": "MIT",
+      "extras_installed": [],
+      "wheel": "authority/runtime-wheels/windows-cp312-amd64/highspy-1.15.1-cp312-cp312-win_amd64.whl",
+      "wheel_bytes": 2711114,
+      "wheel_sha256": "8c548165270608a40147a7ea6d985fd62a65fabf0f075b3c0c59ea910b724223"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.2",
+      "license_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+      "wheel": "authority/runtime-wheels/windows-cp312-amd64/numpy-2.5.2-cp312-cp312-win_amd64.whl",
+      "wheel_bytes": 12464674,
+      "wheel_sha256": "28ac63476ec7651484215ee7fa15a1f78b57c14621f01e392afe17b9a1390ce4"
+    }
+  ],
+  "license_manifest": "authority/runtime-licenses/MANIFEST.csv",
+  "wheel_manifest": "authority/runtime-wheels/MANIFEST.csv",
+  "verification": {
+    "lab": "o018.ch01.shirt-ordering",
+    "run_exit": 0,
+    "unittest_exit": 0,
+    "tests_passed": 3,
+    "tests_failed": 0,
+    "results_bytes": 775,
+    "results_sha256": "072e0e4fea8dd76a931dae1d2190605be6b015db7d19765a84d775d77fc82dbf",
+    "second_run_byte_identical": true,
+    "offline_hash_locked_install_exit": 0,
+    "offline_hash_locked_unittest_exit": 0,
+    "offline_hash_locked_tests_passed": 3,
+    "offline_hash_locked_disposable_environment_removed": true
+  }
+}

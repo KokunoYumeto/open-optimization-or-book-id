@@ -1,0 +1,3536 @@
+{
+  "authority": {
+    "commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "root": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff",
+    "tree": "209d5de696ebac4e5921b73d6b6b2f539fc23d1c"
+  },
+  "inventory_assertions": {
+    "instructional_notebook_networkx": 2,
+    "operational_non_macro_xlsx": 19,
+    "optimization_notebook_gurobi": 21,
+    "optimization_notebook_pulp": 21,
+    "submodule_archives": 3,
+    "total_machine_witnesses": 63
+  },
+  "machine_witnesses": [
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/bakery_production_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1195,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/bakery_production_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.bakery-production.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "8af36754a8b7e391e5b1eb93865d1bf28371a2d48981752074181e476e496ce3",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/bakery_production_gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/bakery_production_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1562,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/bakery_production_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.bakery-production.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "ac96d8a88ac4c8746300a809407f624e1e3c1938252f0aa6dd735b54a9e856ae",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/bakery_production_pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_next_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 3384,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_next_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.diet-problem-next.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "637cda37ae7d021c6f2a9bc7f08415fee2c5dbfcf8f8028c220ba087ebdb37e0",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_next_gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_next_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 3086,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_next_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.diet-problem-next.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "07e7c2c6e92307a9aa84d37879119b247587ce741782d703748d428d7f6c372a",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_next_pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 4139,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.diet-problem.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "df70450b48eafc1f031d70dfca48a2507eca6f9ca8439103b2224fbc79e9aa45",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 6244,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.diet-problem.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "4a1b15c1a45a18e61c54396f0b09cfb367fabf7e8d1de2d5fe9245ef942e6b0d",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet_problem_pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-capital-allocation-gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 3146,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-capital-allocation-gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.knapsack-capital-allocation.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "2b09207f04efac658de97df2fce19ddfb37ab8150f75a50d5e290bbbf1de957a",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-capital-allocation-gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-capital-allocation-pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 5302,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-capital-allocation-pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.knapsack-capital-allocation.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "1b2ddcf91609988eed236f3136c75c855f67d074d6b418e1ac1a6744817fbe23",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-capital-allocation-pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-three-two-one-gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 3222,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-three-two-one-gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.knapsack-three-two-one.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "0f9964b2e327119f81640518eaf5d0ef067b5b1cd8f1a68aded67184b6f073fc",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-three-two-one-gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-three-two-one-pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 5991,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-three-two-one-pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.knapsack-three-two-one.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "dc5054db069c3ec0ea3c31f45e5693b5bbf6d4a0891e4077fed180465adbcaee",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-three-two-one-pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 924,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.knapsack.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "9ddb70d8c48d7f1ecbf725187c2ec3185103284a3d0166465a2a2799d034d98d",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack_gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1030,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.knapsack.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "1c6bf0018f894d39f440c7b4ca9e18ddc8395c6e415ffa10c4882f849193a8d1",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack_pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/min_coins_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1006,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/min_coins_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.min-coins.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "ab8d3914092ab1f54e50cf1bed0d4273f63573a80b4c648818404ca51d43d0ad",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/min_coins_gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/min_coins_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1111,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/min_coins_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.min-coins.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "91b1f1fbcff915ffc9cca9a9d7eb328082a906b7625461242965e52ff8a42257",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/min_coins_pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_planning_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1210,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production_planning_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.production-planning.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "bfc859ec083e28bd122c58e52ad3d5153ddea94b512af285f2b18eb5cf01f436",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_planning_gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_planning_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1361,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production_planning_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.production-planning.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "3b59d56617731c4881eaa9bbbe1770dfa1cbade520b212093ec2174b4dda351f",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_planning_pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_extended_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 4514,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_extended_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.work-scheduling-extended.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "947458e1c293a22ef28736da92d800812ffb023544fc6ef26643d2da5307cf0b",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_extended_gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_extended_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 6885,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_extended_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.work-scheduling-extended.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "656b3d2a5c63da718071fd5c2d9b50a5cf00a70e32efcb949100d076b31e2b0e",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_extended_pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 4121,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.work-scheduling.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "d5f62ddca350b370f803e9d650bb02cee1aef28e60eeac2fbb0c1b5b80c6c4e3",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_gurobi.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 5371,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch02.notebook.work-scheduling.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "390d6230d1ce2954ad9f2adc2c456e64495c31a070700e4a9234ead2e137a3ea",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_pulp.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/bakery-production-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 5751,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/bakery-production-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch02.workbook.bakery-production",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "1145e5a39bc42b053596f122e54410b7cde36ec039369919355f86a8bb49c46b",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/bakery-production-excel.xlsx",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/capital-allocation-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 12403,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/capital-allocation-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch02.workbook.capital-allocation",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "35626dbac7ac5d116179e55f8d1a33d586fa98a63d28fcbe1971e07b88b68434",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/capital-allocation-excel.xlsx",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet-problem.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 12774,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/diet-problem.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch02.workbook.diet-problem",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "6c92f78c3aa31cbdd8bd6d533de27658aa0f89870cf5a1e085c9a0eb028d22ab",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet-problem.xlsx",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet-problem-next.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 13042,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/diet-problem-next.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch02.workbook.diet-problem-next",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "b1d753ab3559c1aa11670e1688f8bc1404a13a7a22d6a9ae9a45fb1ba5b2007a",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/diet-problem-next.xlsx",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-problem-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 12503,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-problem-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch02.workbook.knapsack-problem",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "c76f97e6860be696c10abcf8ebf7e1364ac6c2a1b9ffabd12d9927f9a932d5bf",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/knapsack-problem-excel.xlsx",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 12568,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch02.workbook.production-planning",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "2fc84cc01480ccd5663c8e2c3bddce472475dab716e8debfd9d2ba3935971294",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-excel.xlsx",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 14983,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch02.workbook.work-scheduling",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "8ddb66890701226d83a162ea527d9a3268339ddea1ae11af552efac6cbccc84c",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_excel.xlsx",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_excel_extended.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 14335,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_excel_extended.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch02.workbook.work-scheduling-extended",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "no_item_level_o018_pyomo_highs_mapping",
+        "mapping_role": "r017_authority_witness_only",
+        "mapping_unit_ids": [],
+        "pyomo_highs_applicability": "not_mapped",
+        "runtime_dependency_ids": [],
+        "scope_note": "The current O018 inventory does not claim a Pyomo+HiGHS replacement for this exact witness; it remains frozen R017 authority evidence only."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "7e31c6e816ddfc3b3d47fe149c711f656cd304ecc5b1616b11d70e940e053995",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/work_scheduling_excel_extended.xlsx",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": 1299,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_gurobi.ipynb",
+        "present": true,
+        "sha256": "2c6b8b787e540679e559338d1b32d1f4ddd3198ffbd6d6ab78a347be7205568d"
+      },
+      "bytes": 1299,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_gurobi.ipynb",
+        "authority_witness_present": true,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch03.notebook.network-flow.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.min-cost-flow-warehouses"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The warehouse/store minimum-cost-flow adaptation is executable and verified."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "2c6b8b787e540679e559338d1b32d1f4ddd3198ffbd6d6ab78a347be7205568d",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_gurobi.ipynb",
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": 1398,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_pulp.ipynb",
+        "present": true,
+        "sha256": "7c85eb044edab8aaa77fe66ef25c2a5e9b6f735f9680d9fad2201cbe3d79afd5"
+      },
+      "bytes": 1398,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_pulp.ipynb",
+        "authority_witness_present": true,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch03.notebook.network-flow.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.min-cost-flow-warehouses"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The warehouse/store minimum-cost-flow adaptation is executable and verified."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "7c85eb044edab8aaa77fe66ef25c2a5e9b6f735f9680d9fad2201cbe3d79afd5",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network_flow_pulp.ipynb",
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": 1214,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_gurobi.ipynb",
+        "present": true,
+        "sha256": "fe1a214e66af204caf5815b456e25feba94c783dd8472effe383b8be735b58b9"
+      },
+      "bytes": 1214,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_gurobi.ipynb",
+        "authority_witness_present": true,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch03.notebook.production-10period.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.production-10period"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The O018 case is executable and verified with maximum violation 0.0."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "fe1a214e66af204caf5815b456e25feba94c783dd8472effe383b8be735b58b9",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_gurobi.ipynb",
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": 1487,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_pulp.ipynb",
+        "present": true,
+        "sha256": "09dd33a58b4e4b609ba08f65eb60d11ae361f57066763c44f5e37d99d241ce37"
+      },
+      "bytes": 1487,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_pulp.ipynb",
+        "authority_witness_present": true,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch03.notebook.production-10period.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.production-10period"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The O018 case is executable and verified with maximum violation 0.0."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "09dd33a58b4e4b609ba08f65eb60d11ae361f57066763c44f5e37d99d241ce37",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_pulp.ipynb",
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": 5545,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network-flow-excel.xlsx",
+        "present": true,
+        "sha256": "5af2897be5ad9b96f20adf1846495f8fda24a249189b0fc4911607b956439210"
+      },
+      "bytes": 5545,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/network-flow-excel.xlsx",
+        "authority_witness_present": true,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/network-flow-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_and_localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch03.workbook.network-flow.id",
+      "localized_derivative_target_presence": {
+        "bytes": 4448,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network-flow-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "fb84d85ee70a612b68e5bcba4e262d7f503905ee4c1a30d4c9e7c46760aab50d"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.min-cost-flow-warehouses"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The warehouse/store minimum-cost-flow adaptation is executable and verified."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "5af2897be5ad9b96f20adf1846495f8fda24a249189b0fc4911607b956439210",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network-flow-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/network-flow-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": 5750,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-10period-excel.xlsx",
+        "present": true,
+        "sha256": "9d80e9a81e0780abdc7ac63791eb5e2bc28bfdddbb15c498515e555b8b8c0f54"
+      },
+      "bytes": 5750,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production-10period-excel.xlsx",
+        "authority_witness_present": true,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production-10period-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_and_localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch03.workbook.production-10period.id",
+      "localized_derivative_target_presence": {
+        "bytes": 4624,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-10period-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "4693bfb6f1471e13a9ed51157ab124d61d95780dd5ee45c59dc0c6f7b96b5e9a"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.production-10period"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The O018 case is executable and verified with maximum violation 0.0."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "9d80e9a81e0780abdc7ac63791eb5e2bc28bfdddbb15c498515e555b8b8c0f54",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-10period-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-10period-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": 9027,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-data.xlsx",
+        "present": true,
+        "sha256": "faffcca55a110f736107e43f4fe7b60037f9953fb3266442f879560a72b04745"
+      },
+      "bytes": 9027,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-data.xlsx",
+        "authority_witness_present": true,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-data-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_and_localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch03.workbook.production-data.id",
+      "localized_derivative_target_presence": {
+        "bytes": 3665,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-data-id-ID.xlsx",
+        "present": true,
+        "sha256": "3b4baa9e9f26653a43a166af24246bceb98881b72bcea55126d9c5ef351ef4ba"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "supporting_parameter_workbook",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.production-10period"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The workbook is supporting input evidence for the verified ten-period production case."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "faffcca55a110f736107e43f4fe7b60037f9953fb3266442f879560a72b04745",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-data.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-data-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1084,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.absolute-value.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.absolute-deviation"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The absolute-deviation linearization is executable and verified."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "da708580320a5bbb69751d8ad87b243fe623422cad0bac6df6c6bbac5d8c3eff",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1331,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.absolute-value.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.absolute-deviation"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The absolute-deviation linearization is executable and verified."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "4fb2c1dea82c42caba14a63bd557d8837f7944a2882eb2484beee48f05a423c0",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/airline_maxflow_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1304,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/airline_maxflow_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.airline-maxflow.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_corrected_adaptation_with_explicit_witness_divergence",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.airline-max-flow"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The frozen workbook/notebooks encode d->e and objective 9; O018 separately implements the printed/corrected d->t network with objective 12 and records the divergence."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "4ede788d9695618b2a156e0138cb8b2edee228c45f69c5aebda2e64f829e3db4",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/airline_maxflow_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/airline_maxflow_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1354,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/airline_maxflow_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.airline-maxflow.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_corrected_adaptation_with_explicit_witness_divergence",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.airline-max-flow"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The frozen workbook/notebooks encode d->e and objective 9; O018 separately implements the printed/corrected d->t network with objective 12 and records the divergence."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "f9ba8ba0cfac56393ec8cf5c42a47c0466db179da3eaa80a532cf19ce3336fca",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/airline_maxflow_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1293,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.assignment-problem.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-generic"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The generic assignment adaptation is executable and verified."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "9234ac83f4a31332b2e726c9df8ec56e020e9ceeb4961d4acde32db02333f722",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1347,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.assignment-problem.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-generic"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The generic assignment adaptation is executable and verified."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "93dc9579b2bbce9cf03fed76ab2c4228548fe926d4e8d845361777f8c8ebe581",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1643,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.machine-assignment.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-machine"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The binary assignment adaptation is executable and verified."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "8c4a8a32d5102355313f1b60e3bed035f51a03e9d356a5174154c2615881130b",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 2024,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.machine-assignment.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-machine"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The binary assignment adaptation is executable and verified."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "f0eb419dc86902b100650178f8c4abb3e9bd34ac4ffd8d693049813b99567321",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multi_period_investment_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1508,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/multi_period_investment_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.multi-period-investment.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "design_unresolved_no_complete_executable_replacement",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.investment-multi-period"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "O018 records the unresolved variable-domain, idle-cash, repeat-choice, and payout-timing questions and does not invent a solver result."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "cfe08d1d59f2eb5a009f31618a00d7539484676ee74d5edf350abc56eb23423d",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multi_period_investment_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multi_period_investment_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1696,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/multi_period_investment_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.multi-period-investment.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "design_unresolved_no_complete_executable_replacement",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.investment-multi-period"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "O018 records the unresolved variable-domain, idle-cash, repeat-choice, and payout-timing questions and does not invent a solver result."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "8c60512d9d5adb4b1348e0626f14a3e3680b2f721f408a5fde89e3dd143e2296",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multi_period_investment_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_flow_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1597,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_flow_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.multicommodity-flow.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.multicommodity-integer"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The integer multicommodity-flow adaptation is executable and verified."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "f53b932fa8550e2ede2fce30341f4d855c43aa7a41ca1472cf4f573f02ae1e45",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_flow_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_flow_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1876,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_flow_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.multicommodity-flow.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.multicommodity-integer"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The integer multicommodity-flow adaptation is executable and verified."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "9ca967f994bda65885f8a9586f2931e8512ea50aea40dbbecb50d75083fb2774",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_flow_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_sourcesink_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1600,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_sourcesink_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.multicommodity-sourcesink.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.multicommodity-fractional"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The fractional source/sink multicommodity adaptation is executable and verified."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "b3409c3972eef05ab1f358c68f7129e43f4e63695a0d02a857e1bbd6a732dd38",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_sourcesink_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_sourcesink_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 2012,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_sourcesink_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.multicommodity-sourcesink.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.multicommodity-fractional"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The fractional source/sink multicommodity adaptation is executable and verified."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "736d792aeb0648cc10d4c724036b68bca5b2586811b560c489e2ea6e27fa1e51",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multicommodity_sourcesink_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1343,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.production-overtime.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "parameter_required_no_complete_executable_replacement",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.production-overtime"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "O018 preserves the missing regular/overtime capacity parameters and does not fabricate an executable optimum."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "55150b739852419ae20fdc904e1f025e6d31011545ca0a511a749a20ebe06382",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1682,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.production-overtime.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "parameter_required_no_complete_executable_replacement",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.production-overtime"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "O018 preserves the missing regular/overtime capacity parameters and does not fabricate an executable optimum."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "112055da5b7af3dc34e40db3f282ec6ab4f9f2ee6792304b2595ce1b64bac76d",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_gurobi.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1469,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_gurobi.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.school-bus.gurobi",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-school-bus"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The school-bus assignment adaptation is executable and verified."
+      },
+      "platform_classification": "python_notebook_requiring_proprietary_gurobi_runtime_and_license",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "gurobipy/Gurobi"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.gurobi"
+      ],
+      "sha256": "c334df3b265fb8c713576328186b54160b6a0bbe6961d2aa50e2805e85de7fa3",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_gurobi.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_gurobi"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_pulp.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 1547,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_pulp.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": true,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch04.notebook.school-bus.pulp",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-school-bus"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The school-bus assignment adaptation is executable and verified."
+      },
+      "platform_classification": "open_source_python_pulp_solver_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "PuLP",
+        "PuLP solver backend"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "8157c7333bbde94f1da70d836dd942227896a2e7957077a0c0876a9b3eee9dc9",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_pulp.ipynb",
+      "status": "source_frozen",
+      "target_path": null,
+      "witness_kind": "optimization_notebook_pulp"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/absolute-value-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 6074,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute-value-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute-value-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_pruned; localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch04.workbook.absolute-value.id",
+      "localized_derivative_target_presence": {
+        "bytes": 5316,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/absolute-value-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "7157f7371a8c01cd677274a778f642757793c7608537fb42e215019504da0314"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.absolute-deviation"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The absolute-deviation linearization is executable and verified."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "90043d4b467d9b306b641800f48f394333028e8fd96c5af4c0153c4f1704b849",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/absolute-value-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/absolute-value-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/airline-maxflow-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 5695,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/airline-maxflow-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/airline-maxflow-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_pruned; localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch04.workbook.airline-maxflow.id",
+      "localized_derivative_target_presence": {
+        "bytes": 5021,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/airline-maxflow-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "ab86e3214ab7a23a2953b6f14e29ec0314eb95ae8bf84d51f38d387690e0c2d4"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_corrected_adaptation_with_explicit_witness_divergence",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.airline-max-flow"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The frozen workbook/notebooks encode d->e and objective 9; O018 separately implements the printed/corrected d->t network with objective 12 and records the divergence."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "24e488445d85a4659544ce5947d0510cad5029af0616c60c345b5c6e05ffb81f",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/airline-maxflow-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/airline-maxflow-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 8324,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_pruned; localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch04.workbook.assignment-problem.id",
+      "localized_derivative_target_presence": {
+        "bytes": 7378,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "e8c94638c1184ecf6bf3cc035ce03c5da43a923b57806c5863aba81f8a7b1dc0"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-generic"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The generic assignment adaptation is executable and verified."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "a9d7ee6d5b706028fbd908a0e43710e1dbb51d9b9c4a4466ba6c075e9a270f63",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/machine-assignment-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 6177,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/machine-assignment-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/machine-assignment-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_pruned; localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch04.workbook.machine-assignment.id",
+      "localized_derivative_target_presence": {
+        "bytes": 5437,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/machine-assignment-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "b3e04ca23a1c9733b753abf5bf52bd1250f9fb12257c95fc390088eb4a52cd87"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-machine"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The binary assignment adaptation is executable and verified."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "d9cc018faecbd4bea27b270f250dd935c5c2fdbc1f3638d96b53869daf0b0a2b",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/machine-assignment-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/machine-assignment-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multi-period-investment-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 5844,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/multi-period-investment-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/multi-period-investment-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_pruned; localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch04.workbook.multi-period-investment.id",
+      "localized_derivative_target_presence": {
+        "bytes": 5164,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multi-period-investment-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "4d39ea77ced22ae340105af2a0cdc4a5c50a75064262c30ea4a421195d626a32"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "design_unresolved_no_complete_executable_replacement",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.investment-multi-period"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "O018 records the unresolved variable-domain, idle-cash, repeat-choice, and payout-timing questions and does not invent a solver result."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "a4a9a97b023912693900c60c455494d351c549441f4d8315ac4453c24a0d93f7",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multi-period-investment-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/multi-period-investment-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_costs.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 8726,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production_costs.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production_costs-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_pruned; localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch04.workbook.production-costs.id",
+      "localized_derivative_target_presence": {
+        "bytes": 4734,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_costs-id-ID.xlsx",
+        "present": true,
+        "sha256": "8823222afd833338383f43eeec24225d4d94768ef1db6905eda71d17cfd6a0fb"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "parameter_required_no_complete_executable_replacement",
+        "mapping_role": "supporting_parameter_workbook",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.production-overtime"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The costs/demand workbook is preserved as support evidence, but the capacity omission leaves the O018 case parameter_required."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "5a9de5019d617e1193ee165785cbd751b26305977a56deb203dc5b3f14ea805e",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_costs.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production_costs-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-overtime-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 5898,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production-overtime-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/production-overtime-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_pruned; localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch04.workbook.production-overtime.id",
+      "localized_derivative_target_presence": {
+        "bytes": 5198,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-overtime-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "9901d7a37b0cffe3c0a5ba3ec149e3738ce51b10e9d21eae2f5f36d76148774e"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "parameter_required_no_complete_executable_replacement",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.production-overtime"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "O018 preserves the missing regular/overtime capacity parameters and does not fabricate an executable optimum."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "e89c7f6d84f5b182ee4f4432c1378976c36a9cd269d8a70b04b72cedc836f957",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-overtime-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/production-overtime-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/school-bus-excel.xlsx",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 5785,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/school-bus-excel.xlsx",
+        "authority_witness_present": false,
+        "localized_derivative_path": "source/Intro-Math-Programming/baseText/optimization/optimization-examples/school-bus-excel-id-ID.xlsx",
+        "localized_derivative_present": true
+      },
+      "distribution_disposition": "authority_original_pruned; localized_derivative_present_in_target_and_current_public_source_package",
+      "existing_backend_record": true,
+      "format_classification": "openxml_non_macro_xlsx",
+      "id": "asset.r017.ch04.workbook.school-bus.id",
+      "localized_derivative_target_presence": {
+        "bytes": 5055,
+        "path": "Intro-Math-Programming/baseText/optimization/optimization-examples/school-bus-excel-id-ID.xlsx",
+        "present": true,
+        "sha256": "0bf8e0b7e52214d19e2965a0f5b0a5ab7fe667f43e461f09910ff293e332adde"
+      },
+      "o018_pyomo_highs": {
+        "disposition": "verified_separately_attributed_pyomo_highs_adaptation",
+        "mapping_role": "direct_model_family_witness",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch04.assignment-school-bus"
+        ],
+        "pyomo_highs_applicability": "applicable",
+        "runtime_dependency_ids": [
+          "dependency.pyomo",
+          "dependency.highs"
+        ],
+        "scope_note": "The school-bus assignment adaptation is executable and verified."
+      },
+      "platform_classification": "cross-application OOXML file; the R017 operational Excel/Excel Solver workflow is proprietary and external",
+      "proprietary_runtime_required_for_r017_workflow": true,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_proprietary_runtime_not_shipped",
+      "runtime_dependencies": [
+        "Microsoft Excel",
+        "Excel Solver where modeled"
+      ],
+      "runtime_dependency_ids": [
+        "dependency.excel"
+      ],
+      "sha256": "fd5cdd08e941801acc5b0c16ab98620680ba83142565387ab3e8eadb06795f85",
+      "source_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/school-bus-excel.xlsx",
+      "status": "verified",
+      "target_path": "Intro-Math-Programming/baseText/optimization/optimization-examples/school-bus-excel-id-ID.xlsx",
+      "witness_kind": "operational_non_macro_xlsx"
+    },
+    {
+      "active_source_references": [
+        "source/Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex:387",
+        "source/Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex:726"
+      ],
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "instructive-code/networkx example - Dijkstra's Algorithm.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 389723,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/instructive-code/networkx example - Dijkstra's Algorithm.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch14.notebook.networkx-dijkstra",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "separately_authored_standard_library_graph_replacement",
+        "mapping_role": "algorithmic_open_runtime_replacement",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch14.ex-14-2",
+          "unit.o018.lab.ch14.ex-14-4"
+        ],
+        "pyomo_highs_applicability": "not_applicable",
+        "runtime_dependency_ids": [],
+        "scope_note": "O018 supplies a separately authored standard-library Python companion and shortest-path verification; its locked runtime does not include NetworkX."
+      },
+      "platform_classification": "open_source_python_networkx_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "NetworkX"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "9f704e6dd8c7f8b68ea8690195831b65175fffd90fc76b41b9fdc04e4f0b6399",
+      "source_linkage": "active_chapter_14_intro_and_dijkstra_witness",
+      "source_path": "instructive-code/networkx example - Dijkstra's Algorithm.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "instructional_notebook_networkx"
+    },
+    {
+      "active_source_references": [],
+      "authority_witness_target_presence": {
+        "bytes": null,
+        "path": "instructive-code/networkx example - Kruskal's algorithm.ipynb",
+        "present": false,
+        "sha256": null
+      },
+      "bytes": 428268,
+      "current_public_source_package_presence": {
+        "authority_witness_path": "source/instructive-code/networkx example - Kruskal's algorithm.ipynb",
+        "authority_witness_present": false,
+        "localized_derivative_path": null,
+        "localized_derivative_present": false
+      },
+      "distribution_disposition": "authority_original_pruned_from_target_and_current_public_source_package; frozen_authority_only",
+      "existing_backend_record": false,
+      "format_classification": "jupyter_notebook_json",
+      "id": "asset.r017.ch14.notebook.networkx-kruskal",
+      "localized_derivative_target_presence": {
+        "bytes": null,
+        "path": null,
+        "present": false,
+        "sha256": null
+      },
+      "o018_pyomo_highs": {
+        "disposition": "separately_authored_standard_library_graph_replacement",
+        "mapping_role": "algorithmic_open_runtime_replacement",
+        "mapping_unit_ids": [
+          "unit.o018.lab.ch14.ex-14-1"
+        ],
+        "pyomo_highs_applicability": "not_applicable",
+        "runtime_dependency_ids": [],
+        "scope_note": "O018 verifies Kruskal with a separately authored standard-library implementation and exhaustive spanning-tree cross-check; its locked runtime does not include NetworkX."
+      },
+      "platform_classification": "open_source_python_networkx_workflow",
+      "proprietary_runtime_required_for_r017_workflow": false,
+      "rights_component_id": "rights.r017.code",
+      "runtime_closure_disposition": "external_runtime_not_frozen_or_shipped_for_this_witness",
+      "runtime_dependencies": [
+        "Python",
+        "Jupyter",
+        "NetworkX"
+      ],
+      "runtime_dependency_ids": [],
+      "sha256": "a878d8fe040cf4c0d00335d43a28102c280a66f66ce309f098a59254eaaddc1d",
+      "source_linkage": "instructional_source_witness_not_linked_from_active_translated_build",
+      "source_path": "instructive-code/networkx example - Kruskal's algorithm.ipynb",
+      "status": "authority_frozen_target_pruned",
+      "target_path": null,
+      "witness_kind": "instructional_notebook_networkx"
+    }
+  ],
+  "public_distribution_probe": {
+    "bytes": 20087248,
+    "path": "release/out/pemrograman-matematis-dan-riset-operasi-buku-1-source-id-ID.zip",
+    "scope_note": "Read-only local snapshot probe used only to distinguish public-package presence from authority and target-tree presence.",
+    "sha256": "ef82f47b6af669bfa95a1f101f825861bcc76806b0fbf0b3e85fee02c8ca260c"
+  },
+  "schema_name": "interlanguage.machine-backend-evidence",
+  "schema_version": "0.1.0",
+  "snapshot_at": "2026-08-22",
+  "submodule_archives": [
+    {
+      "archive_bytes": 110834,
+      "archive_entry_count": 18,
+      "archive_file_count": 12,
+      "archive_path": "authority/archives/open-optimization-bibliography-f8516c2c252fda30a8d3239da05cd07c55d2631b.zip",
+      "archive_sha256": "ad4943584bdbd761a9b8ee6b6dda7db1e5e549c31b0f7b1e4f17a0e442879cf5",
+      "archive_uncompressed_file_bytes": 425102,
+      "build_admission_disposition": "frozen_local_gitlink_authority_only; contents remain excluded from the admitted Book 1 build unless a bounded dependency trace proves use",
+      "commit": "f8516c2c252fda30a8d3239da05cd07c55d2631b",
+      "extracted_closure_sha256": "da685ddfbc05072d88d16a72a90897f0ef601084d1a1eff340431a5b2fb9955e",
+      "extracted_file_bytes": 425102,
+      "extracted_file_count": 12,
+      "extracted_path": "authority/submodules/open-optimization-bibliography-f8516c2c252fda30a8d3239da05cd07c55d2631b",
+      "id": "artifact.authority.submodule-archive.open-optimization-bibliography",
+      "repository": "open-optimization-bibliography"
+    },
+    {
+      "archive_bytes": 363369,
+      "archive_entry_count": 25,
+      "archive_file_count": 22,
+      "archive_path": "authority/archives/open-optimization-common-dee882b717018318689f4b373ea1bfc82ddaed6c.zip",
+      "archive_sha256": "d52fbb0f9ad7a83f01766b4b635e3686c123b0d9ea2c421d8a8ba7bf3bc33d84",
+      "archive_uncompressed_file_bytes": 429557,
+      "build_admission_disposition": "frozen_local_gitlink_authority_only; contents remain excluded from the admitted Book 1 build unless a bounded dependency trace proves use",
+      "commit": "dee882b717018318689f4b373ea1bfc82ddaed6c",
+      "extracted_closure_sha256": "ffb61b3d33e4c1541fc4b635b3e047197ad41026bf12910a2aab15f8cf4f811f",
+      "extracted_file_bytes": 429557,
+      "extracted_file_count": 22,
+      "extracted_path": "authority/submodules/open-optimization-common-dee882b717018318689f4b373ea1bfc82ddaed6c",
+      "id": "artifact.authority.submodule-archive.open-optimization-common",
+      "repository": "open-optimization-common"
+    },
+    {
+      "archive_bytes": 181859,
+      "archive_entry_count": 37,
+      "archive_file_count": 33,
+      "archive_path": "authority/archives/open-optimization-or-examples-dc866da8b04bc89289c87afbea649da2044c7799.zip",
+      "archive_sha256": "cc8f5471b5be3b0af417eaff1cb11ff9a8add7fcb4e7bdc02234164452c43f1f",
+      "archive_uncompressed_file_bytes": 449165,
+      "build_admission_disposition": "frozen_local_gitlink_authority_only; contents remain excluded from the admitted Book 1 build unless a bounded dependency trace proves use",
+      "commit": "dc866da8b04bc89289c87afbea649da2044c7799",
+      "extracted_closure_sha256": "a74ecffed0d96f511af80ad5e82651f7861956c56e26544cad96bcea3b7c80df",
+      "extracted_file_bytes": 449165,
+      "extracted_file_count": 33,
+      "extracted_path": "authority/submodules/open-optimization-or-examples-dc866da8b04bc89289c87afbea649da2044c7799",
+      "id": "artifact.authority.submodule-archive.open-optimization-or-examples",
+      "repository": "open-optimization-or-examples"
+    }
+  ],
+  "terminal_state": "complete when the deterministic backend exporter validates this receipt, emits every item, and passes required-target write/check",
+  "visualization_runtime_closure": {
+    "adverse_ledger_event_id": "R017-ADV-0006",
+    "closure_bytes": 123965,
+    "closure_sha256": "d29018b17bcf12f2e1a698f7c49cf05634a27184e4e8b49c8500786884611fe0",
+    "file_count": 12,
+    "files": [
+      {
+        "asset_id": "asset.r017.ch03.interactive-excel-solver",
+        "asset_type": "localized_interactive_source",
+        "bytes": 28407,
+        "closure_role": "demo_entry_module",
+        "existing_backend_record": true,
+        "path": "excel_solver_demo.jsx",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "89f2997de2b97b559a2e7d8180ac3ae6f6bd8436fea5e74d9670653c5bdc71c1",
+        "status": "built",
+        "target_path": "visualizations/source/excel_solver_demo.jsx"
+      },
+      {
+        "asset_id": "asset.r017.ch04.interactive-math-import",
+        "asset_type": "source_javascript_dependency",
+        "bytes": 533,
+        "closure_role": "shared_source_dependency",
+        "existing_backend_record": true,
+        "path": "math.jsx",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "c285197295c484b967f243d58057cff9e894bbd61918f62a6d29e0d32bc5b5d1",
+        "status": "verified",
+        "target_path": "visualizations/source/math.jsx"
+      },
+      {
+        "asset_id": "asset.r017.ch04.interactive-network-flow",
+        "asset_type": "localized_jsx_interactive",
+        "bytes": 32978,
+        "closure_role": "demo_entry_module",
+        "existing_backend_record": true,
+        "path": "network_flow_demo.jsx",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "110af1e063e78a0cb26b8abd3f9df2e3201ad8b361756a38314f33d9de6a3c4b",
+        "status": "verified",
+        "target_path": "visualizations/source/network_flow_demo.jsx"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.app-entry",
+        "asset_type": "react_application_entrypoint",
+        "bytes": 1913,
+        "closure_role": "application_router",
+        "existing_backend_record": false,
+        "path": "src/App.jsx",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "31368b1c0e9628ce48b6b184e57411810b25d9aba112bb059c760e3a598681f4",
+        "status": "verified",
+        "target_path": "visualizations/source/src/App.jsx"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.gitignore",
+        "asset_type": "source_exclusion_configuration",
+        "bytes": 20,
+        "closure_role": "generated_directory_exclusion",
+        "existing_backend_record": false,
+        "path": ".gitignore",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "58aea3d6b4b0f8799c1e00c3b023898516997f6369ee8e13d8d4b4215f70a62b",
+        "status": "verified",
+        "target_path": "visualizations/source/.gitignore"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.index-html",
+        "asset_type": "html_application_entrypoint",
+        "bytes": 332,
+        "closure_role": "browser_entrypoint",
+        "existing_backend_record": false,
+        "path": "index.html",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "470196395ae5c93e9daab7b25b3c389b69bdb2e47efa9dae49c49f8bbb3079f7",
+        "status": "verified",
+        "target_path": "visualizations/source/index.html"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.main-entry",
+        "asset_type": "react_dom_entrypoint",
+        "bytes": 253,
+        "closure_role": "react_dom_bootstrap",
+        "existing_backend_record": false,
+        "path": "src/main.jsx",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "dd9408c4ee02984c76a4d32baf9c6d31cff7eed7395432d49c0aa2a9df041eb1",
+        "status": "verified",
+        "target_path": "visualizations/source/src/main.jsx"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.package-json",
+        "asset_type": "javascript_package_manifest",
+        "bytes": 442,
+        "closure_role": "pinned_runtime_manifest",
+        "existing_backend_record": false,
+        "path": "package.json",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "6f47b8ca6edba0a37f9a3207cc72e1583146c5199c559fe13ad6a7858fa3321f",
+        "status": "verified",
+        "target_path": "visualizations/source/package.json"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.package-lock",
+        "asset_type": "javascript_dependency_lockfile",
+        "bytes": 57641,
+        "closure_role": "pinned_transitive_dependency_lock",
+        "existing_backend_record": false,
+        "path": "package-lock.json",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "14949fd4426d3e342124b6da0199279ed7c5d7a33c3043d79494cac712c87525",
+        "status": "verified",
+        "target_path": "visualizations/source/package-lock.json"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.readme",
+        "asset_type": "runtime_build_instructions",
+        "bytes": 608,
+        "closure_role": "offline_build_instructions",
+        "existing_backend_record": false,
+        "path": "README.md",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "8da8773015a0c4d21a9015159bf0e38394024421af6d3a126a93e307b5795650",
+        "status": "verified",
+        "target_path": "visualizations/source/README.md"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.third-party-notices",
+        "asset_type": "third_party_notice",
+        "bytes": 688,
+        "closure_role": "runtime_rights_notice",
+        "existing_backend_record": false,
+        "path": "THIRD_PARTY-NOTICES.md",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "3b9b5a4610ad93826e98ad17b5e9f1d40be1377c0bbc7d3780079b2a3bd7833e",
+        "status": "verified",
+        "target_path": "visualizations/source/THIRD_PARTY-NOTICES.md"
+      },
+      {
+        "asset_id": "asset.r017.visualization-runtime.vite-config",
+        "asset_type": "javascript_build_configuration",
+        "bytes": 150,
+        "closure_role": "build_configuration",
+        "existing_backend_record": false,
+        "path": "vite.config.js",
+        "rights_component_id": "rights.r017.code",
+        "sha256": "645d255dc2c536b38cb0c1e2aaa5754263715388b612aed407ef1818b24bd9dd",
+        "status": "verified",
+        "target_path": "visualizations/source/vite.config.js"
+      }
+    ],
+    "generated_directories": [
+      {
+        "disposition": "generated_for_offline_QA_then_removed_not_shipped",
+        "path": "visualizations/source/node_modules"
+      },
+      {
+        "disposition": "generated_for_build_QA_then_removed_not_shipped",
+        "path": "visualizations/source/dist"
+      }
+    ],
+    "qa_commands": [
+      {
+        "command": "npm ci --ignore-scripts --offline",
+        "note": "The offline flag proves the pinned package-lock closure was sufficient without network access.",
+        "result": "pass"
+      },
+      {
+        "command": "npm run build",
+        "note": "Vite 5.4.11 transformed 1,580 modules and completed the production build.",
+        "result": "pass"
+      }
+    ],
+    "status": "verified_runnable_pinned_source_closure",
+    "target_root": "visualizations/source"
+  }
+}

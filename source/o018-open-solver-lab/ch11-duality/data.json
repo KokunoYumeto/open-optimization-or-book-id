@@ -1,0 +1,518 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "cases": {
+    "case2_corrected": {
+      "dual": {
+        "constraints": [{"a": [1], "rhs": 1, "sense": "<="}],
+        "objective": [3],
+        "sense": "max",
+        "variables": [{"lb": 0, "name": "y1", "ub": null}]
+      },
+      "primal": {
+        "constraints": [{"a": [1], "rhs": 3, "sense": ">="}],
+        "objective": [1],
+        "sense": "min",
+        "variables": [{"lb": 0, "name": "x1", "ub": null}]
+      }
+    },
+    "complicated_corrected": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 2, 1], "rhs": 2, "sense": ">="},
+          {"a": [1, -1, -1], "rhs": 1, "sense": "="}
+        ],
+        "objective": [2, 3, 1],
+        "sense": "min",
+        "variables": [
+          {"lb": null, "name": "y1", "ub": null},
+          {"lb": null, "name": "y2", "ub": 0},
+          {"lb": 0, "name": "y3", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 1], "rhs": 2, "sense": "="},
+          {"a": [2, -1], "rhs": 3, "sense": ">="},
+          {"a": [1, -1], "rhs": 1, "sense": "<="}
+        ],
+        "objective": [2, 1],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": null, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_1": {
+      "dual": {
+        "constraints": [
+          {"a": [2, 1], "rhs": 5, "sense": ">="},
+          {"a": [3, 1], "rhs": 4, "sense": ">="}
+        ],
+        "objective": [12, 5],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [2, 3], "rhs": 12, "sense": "<="},
+          {"a": [1, 1], "rhs": 5, "sense": "<="}
+        ],
+        "objective": [5, 4],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_10": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 2], "rhs": 4, "sense": ">="},
+          {"a": [1, 1], "rhs": 3, "sense": ">="}
+        ],
+        "objective": [6, 10],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 1], "rhs": 6, "sense": "<="},
+          {"a": [2, 1], "rhs": 10, "sense": "<="}
+        ],
+        "objective": [4, 3],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_11": {
+      "dual": {
+        "constraints": [
+          {"a": [5, 1, 1], "rhs": 90, "sense": ">="},
+          {"a": [4, 1, 1], "rhs": 40, "sense": ">="},
+          {"a": [1, 1, "1/2"], "rhs": 70, "sense": ">="}
+        ],
+        "objective": [40, 10, 7],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null},
+          {"lb": 0, "name": "y3", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [5, 4, 1], "rhs": 40, "sense": "<="},
+          {"a": [1, 1, 1], "rhs": 10, "sense": "<="},
+          {"a": [1, 1, "1/2"], "rhs": 7, "sense": "<="}
+        ],
+        "objective": [90, 40, 70],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null},
+          {"lb": 0, "name": "x3", "ub": null}
+        ]
+      }
+    },
+    "ex11_12": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 0, 0, 0, 1], "rhs": 1, "sense": ">="},
+          {"a": [0, 1, 0, 0, 2], "rhs": 4, "sense": ">="},
+          {"a": [0, 0, 1, 0, 3], "rhs": 9, "sense": ">="},
+          {"a": [0, 0, 0, 1, 4], "rhs": 16, "sense": ">="}
+        ],
+        "objective": [1, 1, 1, 1, 8],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null},
+          {"lb": 0, "name": "y3", "ub": null},
+          {"lb": 0, "name": "y4", "ub": null},
+          {"lb": 0, "name": "y5", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 0, 0, 0], "rhs": 1, "sense": "<="},
+          {"a": [0, 1, 0, 0], "rhs": 1, "sense": "<="},
+          {"a": [0, 0, 1, 0], "rhs": 1, "sense": "<="},
+          {"a": [0, 0, 0, 1], "rhs": 1, "sense": "<="},
+          {"a": [1, 2, 3, 4], "rhs": 8, "sense": "<="}
+        ],
+        "objective": [1, 4, 9, 16],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null},
+          {"lb": 0, "name": "x3", "ub": null},
+          {"lb": 0, "name": "x4", "ub": null}
+        ]
+      }
+    },
+    "ex11_13": {
+      "dual": {
+        "constraints": [
+          {"a": [2, 1], "rhs": 5, "sense": ">="},
+          {"a": [1, 3], "rhs": 4, "sense": ">="}
+        ],
+        "objective": [8, 9],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [2, 1], "rhs": 8, "sense": "<="},
+          {"a": [1, 3], "rhs": 9, "sense": "<="}
+        ],
+        "objective": [5, 4],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_15": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 2], "rhs": 3, "sense": ">="},
+          {"a": [1, 1], "rhs": 2, "sense": ">="}
+        ],
+        "objective": [4, 5],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 1], "rhs": 4, "sense": "<="},
+          {"a": [2, 1], "rhs": 5, "sense": "<="}
+        ],
+        "objective": [3, 2],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_16": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 2], "rhs": 3, "sense": ">="},
+          {"a": [2, 0], "rhs": 2, "sense": ">="},
+          {"a": [1, 0], "rhs": 4, "sense": ">="},
+          {"a": [0, 1], "rhs": 1, "sense": ">="},
+          {"a": [1, 3], "rhs": 5, "sense": ">="},
+          {"a": [0, 1], "rhs": 2, "sense": ">="}
+        ],
+        "objective": [10, 12],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 2, 1, 0, 1, 0], "rhs": 10, "sense": "<="},
+          {"a": [2, 0, 0, 1, 3, 1], "rhs": 12, "sense": "<="}
+        ],
+        "objective": [3, 2, 4, 1, 5, 2],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null},
+          {"lb": 0, "name": "x3", "ub": null},
+          {"lb": 0, "name": "x4", "ub": null},
+          {"lb": 0, "name": "x5", "ub": null},
+          {"lb": 0, "name": "x6", "ub": null}
+        ]
+      }
+    },
+    "ex11_17": {
+      "dual": {
+        "constraints": [
+          {"a": [2, 4, 6], "rhs": 4, "sense": ">="},
+          {"a": [4, 6, 9], "rhs": 6, "sense": ">="},
+          {"a": [3, 4, 8], "rhs": 5, "sense": ">="}
+        ],
+        "objective": [140, 240, 80],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": null, "name": "y2", "ub": null},
+          {"lb": null, "name": "y3", "ub": 0}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [2, 4, 3], "rhs": 140, "sense": "<="},
+          {"a": [4, 6, 4], "rhs": 240, "sense": "="},
+          {"a": [6, 9, 8], "rhs": 80, "sense": ">="}
+        ],
+        "objective": [4, 6, 5],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null},
+          {"lb": 0, "name": "x3", "ub": null}
+        ]
+      }
+    },
+    "ex11_2": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 3], "rhs": 4, "sense": ">="},
+          {"a": [2, 1], "rhs": 5, "sense": ">="},
+          {"a": [1, 2], "rhs": 3, "sense": ">="}
+        ],
+        "objective": [10, 12],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 2, 1], "rhs": 10, "sense": "<="},
+          {"a": [3, 1, 2], "rhs": 12, "sense": "<="}
+        ],
+        "objective": [4, 5, 3],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null},
+          {"lb": 0, "name": "x3", "ub": null}
+        ]
+      }
+    },
+    "ex11_3": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 2], "rhs": 3, "sense": ">="},
+          {"a": [1, 1], "rhs": 2, "sense": ">="}
+        ],
+        "objective": [4, 5],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 1], "rhs": 4, "sense": "<="},
+          {"a": [2, 1], "rhs": 5, "sense": "<="}
+        ],
+        "objective": [3, 2],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_4": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 2], "rhs": 3, "sense": ">="},
+          {"a": [1, 1], "rhs": 2, "sense": ">="}
+        ],
+        "objective": [4, 6],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 1], "rhs": 4, "sense": "<="},
+          {"a": [2, 1], "rhs": 6, "sense": "<="}
+        ],
+        "objective": [3, 2],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_5": {
+      "dual": {
+        "constraints": [
+          {"a": [1, 1], "rhs": 2, "sense": ">="},
+          {"a": [1, -1], "rhs": 3, "sense": "="}
+        ],
+        "objective": [5, 2],
+        "sense": "min",
+        "variables": [
+          {"lb": null, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, 1], "rhs": 5, "sense": "="},
+          {"a": [1, -1], "rhs": 2, "sense": "<="}
+        ],
+        "objective": [2, 3],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": null, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_6": {
+      "dual": {
+        "constraints": [
+          {"a": [2, 1, 1], "rhs": 5, "sense": ">="},
+          {"a": [1, 2, 1], "rhs": 4, "sense": ">="}
+        ],
+        "objective": [20, 18, 13],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null},
+          {"lb": 0, "name": "y3", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [2, 1], "rhs": 20, "sense": "<="},
+          {"a": [1, 2], "rhs": 18, "sense": "<="},
+          {"a": [1, 1], "rhs": 13, "sense": "<="}
+        ],
+        "objective": [5, 4],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null}
+        ]
+      }
+    },
+    "ex11_8": {
+      "dual": {
+        "constraints": [
+          {"a": [1, -1], "rhs": 1, "sense": ">="},
+          {"a": [-1, 1], "rhs": 1, "sense": ">="}
+        ],
+        "objective": [1, -3],
+        "sense": "min",
+        "variables": [
+          {"lb": 0, "name": "y1", "ub": null},
+          {"lb": 0, "name": "y2", "ub": null}
+        ]
+      },
+      "primal": {
+        "constraints": [
+          {"a": [1, -1], "rhs": 1, "sense": "<="},
+          {"a": [-1, 1], "rhs": -3, "sense": "<="}
+        ],
+        "objective": [1, 1],
+        "sense": "max",
+        "variables": [
+          {"lb": 0, "name": "x1", "ub": null},
+          {"lb": 0, "name": "x2", "ub": null}
+        ]
+      }
+    }
+  },
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "corrections": [
+    {
+      "certificate": "Kasus minimisasi simetris yang sah adalah min b^T x dengan Ax>=c dan x>=0, berdual max c^T y dengan A^T y<=b dan y>=0; contoh satu variabel terkoreksi memberi 3=3, sedangkan bentuk lama memberi klaim 3<=0 yang salah.",
+      "id": "CORR-CH11-CASE2-GEQ",
+      "source_location": "translated duality.tex lines 556-584; translated manual ch11.tex line 16",
+      "type": "source_math_correction"
+    },
+    {
+      "certificate": "Pada maksimisasi campuran, kendala >= memberi pengali <=0, kendala <= memberi pengali >=0, dan variabel bebas memberi persamaan dual; contoh terkoreksi memiliki primal taklayak dan dual takterbatas.",
+      "id": "CORR-CH11-MIXED-SIGNS-FREE",
+      "source_location": "translated duality.tex lines 902-1038; translated manual ch11.tex line 17",
+      "type": "source_math_correction"
+    },
+    {
+      "certificate": "Titik (1,1) hanya kandidat: 2(1)+1=3<5, sehingga tidak layak dual; pasangan optimum adalah x=(3,2), y=(11/5,3/5), bernilai 23.",
+      "id": "CORR-CH11-EX11-13-CANDIDATE",
+      "source_location": "translated complimentary-slackness.tex line 360; translated manual ch11.tex line 18",
+      "type": "source_wording_correction"
+    }
+  ],
+  "exercise_order": [
+    "11.1", "11.2", "11.3", "11.4", "11.5", "11.6", "11.7", "11.8", "11.9",
+    "11.10", "11.11", "11.12", "11.13", "11.14", "11.15", "11.16", "11.17"
+  ],
+  "exercises": {
+    "11.1": {"case": "ex11_1", "difficulty": 1, "method": "explicit_dual_resource_prices_and_highs", "title": "Masalah Dual Toko Roti Kecil"},
+    "11.2": {"case": "ex11_2", "difficulty": 1, "method": "explicit_matrix_transpose_dual_and_highs", "title": "Rumuskan Masalah Dual"},
+    "11.3": {"case": "ex11_3", "difficulty": 1, "method": "weak_duality_sandwich_and_highs", "title": "Memverifikasi Dualitas Lemah"},
+    "11.4": {"case": "ex11_4", "difficulty": 2, "method": "coincident_weak_bounds_and_highs", "title": "Batas Dualitas Lemah"},
+    "11.5": {"case": "ex11_5", "difficulty": 2, "method": "mixed_equality_free_variable_dual_and_highs", "title": "Masalah Dual dengan Kendala Campuran"},
+    "11.6": {"case": "ex11_6", "difficulty": 2, "method": "strong_duality_shadow_price_and_highs", "title": "Harga Bayangan dan Variabel Dual"},
+    "11.7": {"difficulty": 2, "method": "general_weak_duality_certificate_proof", "title": "Sertifikat dengan Kata-kata Anda Sendiri"},
+    "11.8": {"case": "ex11_8", "difficulty": 2, "method": "double_infeasibility_certificates_and_highs", "title": "Dualitas Kuat dan Ketaklayakan"},
+    "11.9": {"difficulty": 3, "method": "symbolic_dual_of_dual_involution_proof", "title": "Dual dari Dual adalah Primal"},
+    "11.10": {"case": "ex11_10", "difficulty": 1, "method": "termwise_complementary_slackness_and_highs", "title": "Memeriksa Syarat-syarat"},
+    "11.11": {"case": "ex11_11", "difficulty": 2, "method": "bakery_shadow_prices_perturbations_and_highs", "title": "Produksi Toko Roti dan Interpretasi Dualitas"},
+    "11.12": {"case": "ex11_12", "difficulty": 2, "method": "box_constraint_dual_certificate_and_highs", "title": "Kendala Kotak dan Sertifikat Dual"},
+    "11.13": {"case": "ex11_13", "correction_refs": ["CORR-CH11-EX11-13-CANDIDATE"], "difficulty": 2, "method": "candidate_feasibility_gate_cs_recovery_and_highs", "title": "Menurunkan Solusi Primal dari Tebakan Dual"},
+    "11.14": {"difficulty": 2, "method": "general_positive_price_slack_contradiction", "title": "Harga Positif pada Kendala yang Longgar"},
+    "11.15": {"case": "ex11_15", "difficulty": 2, "method": "claimed_optimum_cs_contradiction_and_highs", "title": "Menyangkal Klaim Solusi Optimal"},
+    "11.16": {"case": "ex11_16", "difficulty": 3, "method": "meal_kit_dual_geometry_cs_and_highs", "title": "Optimisasi Paket Makanan dan Dualitas"},
+    "11.17": {"case": "ex11_17", "correction_refs": ["CORR-CH11-MIXED-SIGNS-FREE"], "difficulty": 3, "method": "mixed_constraint_startup_duality_cs_and_highs", "title": "Dualitas dengan Jenis Kendala Campuran: Perusahaan Rintisan Kemasan Ramah Lingkungan"}
+  },
+  "lab_id": "o018.ch11.duality",
+  "proof_only_exercises": ["11.7", "11.9", "11.14"],
+  "provenance": {
+    "source_files": [
+      {"bytes": 52217, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/duality.tex", "role": "authority_duality_chapter", "sha256": "627b34388b3ce2a3058298c4beb8e76f7c621ae435c8de1b12aca8bc9648f685"},
+      {"bytes": 26931, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/complimentary-slackness.tex", "role": "authority_complementary_slackness_chapter", "sha256": "4623cc1ac31689d782f57714bc6778ddc5bae655f30f6b70d88764a20dd4d8f8"},
+      {"bytes": 31219, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch11.tex", "role": "authority_manual", "sha256": "a813d9dbfbd735dcea4747c15042b7e25eb58d06cfca2dda29cd6a4b7c3f0249"},
+      {"bytes": 54574, "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/duality.tex", "role": "translated_duality_chapter", "sha256": "ce71b6225b7c96fd52bb9c5df2718d6a2355a0482c4aec4350b0b1f0d5d34ec1"},
+      {"bytes": 28658, "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/complimentary-slackness.tex", "role": "translated_complementary_slackness_chapter", "sha256": "acf99fe82812fc9ad487bdeb4d8a4e2e46918e0e40bb48edcd1a75d075ebc69a"},
+      {"bytes": 34607, "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch11.tex", "role": "translated_manual", "sha256": "6688bdb15e34fba8f412815979df92494ff9018d15f4c8b8661e0ada9b607d2d"}
+    ]
+  },
+  "schema_version": "1.0.0",
+  "underdetermined_exercises": [],
+  "upstream_defects": [
+    {
+      "certificate": "Latihan 11.8 memberi primal dan dual yang sama-sama taklayak: penjumlahan kendala primal memaksa 0<=-2 dan penjumlahan kendala dual memaksa 0>=2.",
+      "confidence": "high",
+      "id": "UPSTREAM-DEFECT-CH11-STRONG-DUALITY-OMITS-BOTH-INFEASIBLE",
+      "source_location": "translated duality.tex lines 219-243; translated manual ch11.tex lines 156-158",
+      "status": "reported_not_modified",
+      "type": "upstream_theorem_completeness_defect"
+    },
+    {
+      "certificate": "Dari 4x1+6x2+4x3=240 dan x3>=0 diperoleh 6x1+9x2+8x3=(3/2)(240)+2x3=360+2x3>=360, sehingga kendala retail >=80 selalu redundan.",
+      "confidence": "high",
+      "id": "UPSTREAM-DEFECT-CH11-EX11-17-RETAIL-REDUNDANT",
+      "source_location": "translated complimentary-slackness.tex lines 539-570; translated manual ch11.tex lines 316-346",
+      "status": "reported_not_modified",
+      "type": "upstream_modeling_redundancy_defect"
+    }
+  ]
+}

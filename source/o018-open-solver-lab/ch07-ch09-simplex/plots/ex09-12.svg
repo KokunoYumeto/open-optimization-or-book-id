@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="680" viewBox="0 0 960 680" role="img" lang="id" xml:lang="id-ID" aria-labelledby="title-9-12 desc-9-12">
+  <title id="title-9-12">Latihan 9.12 — sinar ketakterbatasan</title>
+  <desc id="desc-9-12">Daerah layak berupa pita diagonal tak terbatas. Sinar merah berawal di 1,0 dengan arah 1,1; kedua slack tetap 0 dan 3, sementara objektif tumbuh sebagai 1 tambah 2t.</desc>
+  <metadata>{&quot;alternative_text&quot;:{&quot;base_point&quot;:[1,0],&quot;direction&quot;:[1,1],&quot;objective&quot;:&quot;1+2t&quot;,&quot;visible_window_is_not_a_model_constraint&quot;:true},&quot;content_license&quot;:&quot;CC BY-SA 4.0&quot;,&quot;exercise&quot;:&quot;9.12&quot;,&quot;language&quot;:&quot;id-ID&quot;,&quot;renderer&quot;:&quot;o018-local-svg-1.0&quot;}</metadata>
+  <defs>
+    <marker id="arrow-9-12" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b42318"/></marker>
+    <style><![CDATA[
+      .axis{stroke:#334155;stroke-width:2}.grid{stroke:#dbe5ee;stroke-width:1}.line{fill:none;stroke:#345995;stroke-width:3}.secondary{fill:none;stroke:#6b7280;stroke-width:2;stroke-dasharray:8 6}.region{fill:#b8d8f0;fill-opacity:.62;stroke:#176b87;stroke-width:2}.ray{fill:none;stroke:#b42318;stroke-width:4}.point{fill:#fff;stroke:#13293d;stroke-width:3}.tie{fill:#f4b942;stroke:#7c4a03;stroke-width:3}.label{font:600 20px 'DejaVu Sans',sans-serif;fill:#13293d}.small{font:16px 'DejaVu Sans',sans-serif;fill:#334155}.heading{font:700 27px 'DejaVu Sans',sans-serif;fill:#102a43}.note{font:17px 'DejaVu Sans',sans-serif;fill:#475569}
+    ]]></style>
+  </defs>
+  <rect width="960" height="680" fill="#fbfdff"/>
+  <text x="58" y="48" class="heading">Latihan 9.12 — sinar ketakterbatasan</text>
+  <line class="axis" x1="163.11" y1="610.00" x2="628.89" y2="610.00"/>
+  <line class="axis" x1="163.11" y1="610.00" x2="163.11" y2="86.00"/>
+  <line class="grid" x1="221.33" y1="610.00" x2="221.33" y2="86.00"/>
+  <text class="small" x="216.33" y="635.00">1</text>
+  <line class="grid" x1="279.56" y1="610.00" x2="279.56" y2="86.00"/>
+  <text class="small" x="274.56" y="635.00">2</text>
+  <line class="grid" x1="337.78" y1="610.00" x2="337.78" y2="86.00"/>
+  <text class="small" x="332.78" y="635.00">3</text>
+  <line class="grid" x1="396.00" y1="610.00" x2="396.00" y2="86.00"/>
+  <text class="small" x="391.00" y="635.00">4</text>
+  <line class="grid" x1="454.22" y1="610.00" x2="454.22" y2="86.00"/>
+  <text class="small" x="449.22" y="635.00">5</text>
+  <line class="grid" x1="512.44" y1="610.00" x2="512.44" y2="86.00"/>
+  <text class="small" x="507.44" y="635.00">6</text>
+  <line class="grid" x1="570.67" y1="610.00" x2="570.67" y2="86.00"/>
+  <text class="small" x="565.67" y="635.00">7</text>
+  <line class="grid" x1="628.89" y1="610.00" x2="628.89" y2="86.00"/>
+  <text class="small" x="623.89" y="635.00">8</text>
+  <line class="grid" x1="163.11" y1="551.78" x2="628.89" y2="551.78"/>
+  <text class="small" x="135.11" y="557.78">1</text>
+  <line class="grid" x1="163.11" y1="493.56" x2="628.89" y2="493.56"/>
+  <text class="small" x="135.11" y="499.56">2</text>
+  <line class="grid" x1="163.11" y1="435.33" x2="628.89" y2="435.33"/>
+  <text class="small" x="135.11" y="441.33">3</text>
+  <line class="grid" x1="163.11" y1="377.11" x2="628.89" y2="377.11"/>
+  <text class="small" x="135.11" y="383.11">4</text>
+  <line class="grid" x1="163.11" y1="318.89" x2="628.89" y2="318.89"/>
+  <text class="small" x="135.11" y="324.89">5</text>
+  <line class="grid" x1="163.11" y1="260.67" x2="628.89" y2="260.67"/>
+  <text class="small" x="135.11" y="266.67">6</text>
+  <line class="grid" x1="163.11" y1="202.44" x2="628.89" y2="202.44"/>
+  <text class="small" x="135.11" y="208.44">7</text>
+  <line class="grid" x1="163.11" y1="144.22" x2="628.89" y2="144.22"/>
+  <text class="small" x="135.11" y="150.22">8</text>
+  <line class="grid" x1="163.11" y1="86.00" x2="628.89" y2="86.00"/>
+  <text class="small" x="135.11" y="92.00">9</text>
+  <text class="label" x="642.89" y="617.00">x₁</text>
+  <text class="label" x="154.11" y="71.00">x₂</text>
+  <polygon class="region" points="163.11,610.00 221.33,610.00 628.89,202.44 628.89,86.00 570.67,86.00 163.11,493.56"/>
+  <line class="line" x1="221.33" y1="610.00" x2="628.89" y2="202.44"/>
+  <line class="line" x1="163.11" y1="493.56" x2="570.67" y2="86.00"/>
+  <line class="ray" x1="221.33" y1="610.00" x2="570.67" y2="260.67" marker-end="url(#arrow-9-12)"/>
+  <circle class="point" cx="221.33" cy="610.00" r="7"/>
+  <text class="label" x="204.33" y="594.00">(1,0)</text>
+  <rect x="724" y="118" width="205" height="238" rx="14" fill="#fff0ed" stroke="#d47a6a"/>
+  <text x="744" y="154" class="label">Sinar sertifikat</text>
+  <text x="744" y="194" class="small">x(t)=(1+t,t)</text>
+  <text x="744" y="226" class="small">d=(1,1)</text>
+  <text x="744" y="258" class="small">s=(0,3)</text>
+  <text x="744" y="303" class="small">z(t)=1+2t → ∞</text>
+  <text x="92" y="650" class="note">Biru menunjukkan bagian daerah layak yang terlihat; panah berlanjut melewati jendela.</text>
+</svg>

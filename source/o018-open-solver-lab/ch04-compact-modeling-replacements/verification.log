@@ -1,0 +1,17 @@
+VERIFIKASI O018 BAB 4 -- PENGGANTI PEMODELAN RINGKAS
+Platform: Windows AMD64; CPython 3.12.13
+Runtime: Pyomo 6.10.1; highspy/HiGHS 1.15.1; NumPy 2.5.2; appsi_highs
+Instalasi: offline, --no-index, --require-hashes, --only-binary=:all:, berhasil
+Authority: commit 1745df89b608899f66983834fa4ec8c8910d18ff; tree 209d5de696ebac4e5921b73d6b6b2f539fc23d1c
+Closure sumber: 36 berkas; 2 TeX, 11 XLSX, 22 IPYNB, 1 CSV; semua ukuran dan SHA-256 cocok
+Keluaran: WRITE_OK bytes=5492 sha256=6e7eb96529ba2d7a3f66f89cda8ca34305b52c542cd5e2c0f0cc3564cf817954
+Pemeriksaan: CHECK_OK bytes=5492 sha256=6e7eb96529ba2d7a3f66f89cda8ca34305b52c542cd5e2c0f0cc3564cf817954
+Pemutaran ulang kedua: byte-identik=true
+Uji unit: dua pemutaran ulang; masing-masing 19 dijalankan, 19 lulus, 0 gagal, 0 galat
+Kasus laboratorium: 12; 10 pemecahan optimal; pelanggaran maksimum=0.0; 2 sengaja tidak dijalankan
+Tidak dijalankan: produksi lembur=parameter_required; investasi multiperiodik=design_unresolved
+Divergensi: 6 catatan deduplikasi; d->b, d->t/maksimum 12, multikomoditas/biaya 45, kapasitas lembur, semantik investasi, laporan workbook 129 vs hasil benar 98
+Degenerasi: kontrak aliran maksimum memakai nilai/cut/kelayakan; kontrak multikomoditas pecahan memakai aliran agregat
+Konvensi tanda: pasokan positif keluar-masuk; permintaan positif masuk-keluar; keduanya diuji terpisah
+Dependensi berpemilik: tidak ada; jaringan, Excel, PuLP, dan Gurobi tidak diperlukan
+Hak: prosa/data CC BY-SA 4.0; kode Python baru MIT; runtime pihak ketiga tetap menurut lisensinya

@@ -1,0 +1,240 @@
+% ============================================================================
+% Bab 5: Menyelesaikan Program Linier secara Grafis
+% Sumber buku: part1-linear-programming/ch02-modeling/Section2.tex
+% Penomoran latihan diselaraskan dengan urutan \begin{ex} per 2026-07-13.
+% Semua jawaban numerik diverifikasi dengan scipy.optimize.linprog (HiGHS).
+% ============================================================================
+\section{Bab 5: Menyelesaikan Program Linier secara Grafis}
+
+\textbf{Penilaian cakupan.} Ketujuh belas latihan mengikuti empat capaian pembelajaran bab ini dengan saksama: latihan pemanasan (5.1--5.4) melatih pembuatan sketsa dan penyapuan kurva aras dasar, soal-soal inti (5.5--5.10) mencakup setiap capaian kualitatif (optimum jamak, ketaklayakan, optimum berhingga, ketakberbatasan, serta satu formulasi pemodelan), sedangkan kelompok konsep dan tantangan (5.11--5.17) meminta mahasiswa menalar dan menyusun setiap fenomena tersebut. Tingkat kesulitan meningkat secara wajar dari satu hingga tiga bintang. Redundansi utamanya ialah bahwa Latihan 5.12, 5.13, dan 5.17 sama-sama meminta mahasiswa menyusun fungsi tujuan dengan tak hingga banyak optimum; masing-masing menggunakan daerah layak yang berbeda dan 5.17 menambahkan perubahan untuk memutus kesamaan nilai, sehingga tumpang-tindih ini masih dapat diterima, tetapi penulis mungkin ingin menghapus salah satunya. Beberapa latihan (5.2, 5.7, 5.8, 5.10, 5.15) berasal dari teks Kevin Cheung berlisensi CC BY-SA 4.0; atribusinya ditampilkan sebagai catatan kaki pada judul bab. Dua galat data dalam buku ditemukan dan diperbaiki secara langsung (lihat penanda pada Latihan 5.10 dan 5.16).
+
+\begin{qaflag}
+Lisensi: catatan kaki pada judul bab menampilkan atribusi Kevin Cheung, lisensi CC BY-SA 4.0, dan keterangan modifikasi oleh Robert Hildebrand. Karena beberapa latihan dan contoh Penjual Limun diadaptasi dari sumber tersebut, atribusi yang terlihat ini harus dipertahankan. Kredit dan URL sumber konstruksi TikZ ditampilkan langsung di bawah gambar terkait. Tidak ditemukan konten yang menyerupai teks verbatim dari buku berlisensi tertutup.
+\end{qaflag}
+
+\exsol{5.1}{Analisis Daerah Layak}{1}
+Pernyataan yang benar adalah (b): daerah layaknya merupakan daerah tak berbatas.
+
+Daerah tersebut adalah himpunan titik pada atau di atas garis $x + y = 5$ yang juga terletak di kuadran pertama. Daerah ini tak kosong (misalnya $(5,0)$ dan $(3,2)$ layak), sehingga (d) salah, dan memuat lebih dari satu titik, sehingga (c) salah. Daerah ini tidak terbatas: sinar $(t,t)$ untuk $t \geq 2.5$ memenuhi $t + t \geq 5$ dan $t \geq 0$, sehingga titik-titik layak berlanjut tanpa batas dalam arah $(1,1)$ (bahkan dalam sembarang arah nonnegatif). Jadi, (a) salah dan (b) benar.
+
+\exsol{5.2}{Sketsa Daerah Layak}{1}
+Garis batas $x - 2y = 2$ melalui $(2,0)$ dan $(0,-1)$. Dengan menulis kendala sebagai $y \geq \tfrac{1}{2}x - 1$, himpunan layaknya adalah setengah bidang tertutup yang terdiri atas garis batas beserta seluruh bagian di atasnya. Untuk memeriksa sisinya, uji titik asal: $0 - 0 = 0 \leq 2$, sehingga sisi yang memuat titik asal (di atas garis) adalah sisi layak. Sketsanya berupa garis melalui $(2,0)$ dan $(0,-1)$ dengan setengah bidang atas diarsir. (Ini sesuai dengan Solusi Terpilih dalam buku.)
+
+\exsol{5.3}{Latihan Metode Grafis 1}{1}
+Dengan mengikuti Metode Grafis 1:
+
+\emph{Daerah layak.} Kendala $x+y \leq 4$, $x \leq 3$, $x,y \geq 0$ membentuk segi empat dengan titik-titik ekstrem
+\[
+(0,0), \quad (3,0), \quad (3,1), \quad (0,4).
+\]
+Titik ekstrem $(3,1)$ adalah perpotongan $x + y = 4$ dan $x = 3$.
+
+\emph{Kurva aras.} Garis $3x + 2y = z$ memiliki kemiringan $-3/2$ dan bergerak dalam arah gradien $(3,2)$ (ke atas dan ke kanan) ketika $z$ meningkat.
+
+\emph{Penyapuan.} Nilai fungsi tujuan pada titik-titik ekstrem adalah $z(0,0)=0$, $z(3,0)=9$, $z(3,1)=11$, $z(0,4)=8$. Ketika kurva aras disapu dalam arah $(3,2)$, garis terakhir yang menyentuh daerah melewati $(3,1)$, tempat kendala $x+y \leq 4$ dan $x \leq 3$ sama-sama aktif.
+
+\emph{Jawaban.} Solusi optimal tunggal adalah $(x^*,y^*) = (3,1)$ dengan nilai optimal $z^* = 11$. (Diverifikasi secara numerik; sesuai dengan Solusi Terpilih dalam buku.)
+
+\exsol{5.4}{Metode Grafis untuk Penjual Limun}{1}
+Daerah layak dari
+\[
+\max\; 3x + 2y \quad \st x + 3y \leq 6, \;\; 2x + y \leq 4, \;\; x, y \geq 0
+\]
+adalah segi empat dengan titik-titik ekstrem $(0,0)$, $(2,0)$, $(1.2, 1.6)$, dan $(0,2)$; titik ekstrem $(1.2,1.6)$ menyelesaikan $x + 3y = 6$ dan $2x + y = 4$ secara simultan (dari persamaan kedua, $y = 4 - 2x$; dengan menyubstitusikannya, $x + 12 - 6x = 6$ menghasilkan $x = 1.2$, $y = 1.6$).
+
+Kurva aras $3x + 2y = z$ memiliki kemiringan $-3/2$; nilai fungsi tujuan pada titik-titik ekstrem adalah
+\[
+z(0,0) = 0, \quad z(2,0) = 6, \quad z(1.2,1.6) = 6.8, \quad z(0,2) = 4.
+\]
+Ketika garis aras disapu dalam arah gradien $(3,2)$, garis terakhir hanya menyentuh daerah di $(1.2, 1.6)$. Rencana optimalnya adalah $1.2$ unit limun dan $1.6$ unit sari lemon, dengan laba maksimum sebesar $z^* = 6.8$ dolar.
+
+\exsol{5.5}{Metode Grafis}{2}
+Perhatikan terlebih dahulu bahwa kendala kedua adalah $6x_1 + 10x_2 \geq 90$, yang setelah dibagi $2$ menjadi $3x_1 + 5x_2 \geq 45$: garis batasnya sejajar dengan kurva aras fungsi tujuan $3x_1 + 5x_2$. Ini merupakan tanda adanya optimum jamak.
+
+\emph{Daerah.} Kendala $3x_1 + 2x_2 \geq 36$, $6x_1 + 10x_2 \geq 90$, $x_1, x_2 \geq 0$ menghasilkan daerah tak berbatas yang terletak di atas kedua garis. Titik-titik ekstremnya adalah
+\[
+(0,18), \qquad (10,3), \qquad (15,0),
+\]
+dengan $(10,3)$ sebagai perpotongan $3x_1+2x_2=36$ dan $6x_1+10x_2=90$, sedangkan $(15,0)$ adalah titik pertemuan $6x_1 + 10x_2 = 90$ dengan sumbu $x_1$ (perhatikan bahwa $3(15)+2(0) = 45 \geq 36$, sehingga titik itu layak).
+
+\emph{Penyapuan.} Karena kita meminimumkan, garis aras $3x_1 + 5x_2 = z$ disapu berlawanan dengan arah gradien $(3,5)$, yaitu ke bawah dan ke kiri. Posisi terakhir tempat garis aras masih menyentuh daerah adalah $z = 45$, dan di sana garis aras berhimpit dengan seluruh rusuk kendala $6x_1 + 10x_2 = 90$ di antara $(10,3)$ dan $(15,0)$.
+
+\emph{Dua solusi optimal.} $(x_1, x_2) = (10, 3)$ dan $(x_1, x_2) = (15, 0)$, keduanya dengan $z^* = 3(10) + 5(3) = 3(15) + 5(0) = 45$. (Diverifikasi secara numerik.) Bahkan, setiap titik pada ruas garis di antara keduanya, $\{(10 + 5t,\, 3 - 3t) : t \in [0,1]\}$, bersifat optimal.
+
+\exsol{5.6}{Grafik Daerah Tak Layak}{2}
+Dengan menggambar kendala-kendalanya: $x_1 + x_2 \leq 6$ mengarsir daerah di bawah garis melalui $(6,0)$ dan $(0,6)$; $x_1 - x_2 \geq 1$ mengarsir daerah di bawah dan di sebelah kanan garis $x_2 = x_1 - 1$; $x_2 - x_1 \geq 3$ mengarsir daerah di atas dan di sebelah kiri garis sejajar $x_2 = x_1 + 3$. Garis batas kedua dan ketiga sejajar (keduanya memiliki kemiringan $1$), dan setengah bidang layaknya mengarah saling menjauh.
+
+Secara aljabar, menjumlahkan $x_1 - x_2 \geq 1$ dan $x_2 - x_1 \geq 3$ menghasilkan $0 \geq 4$, suatu kontradiksi, sehingga tidak ada titik yang dapat memenuhi keduanya. Terdapat \textbf{nol} solusi layak: masalahnya tak layak, apa pun fungsi tujuannya. (Diverifikasi secara numerik: solver melaporkan ketaklayakan. Ini sesuai dengan, sekaligus sedikit memperluas, Solusi Terpilih dalam buku.)
+
+\exsol{5.7}{Menentukan Nilai Optimal}{2}
+Perhatikan bahwa tidak ada kendala nonnegativitas, sehingga daerahnya hanyalah perpotongan dua setengah bidang $2x + y \geq 4$ dan $x + 3y \geq 1$, yaitu sebuah ``baji'' tak berbatas dengan satu-satunya titik ekstrem pada perpotongan kedua garis batas: dari $y = 4 - 2x$ dan $x + 3y = 1$ diperoleh $x + 12 - 6x = 1$, sehingga $x = \tfrac{11}{5}$, $y = -\tfrac{2}{5}$.
+
+Dengan menyapu garis aras $x + y = z$ berlawanan dengan arah gradien $(1,1)$, garis terakhir yang menyentuh baji melewati titik ekstrem ini, sehingga
+\[
+z^* = \tfrac{11}{5} - \tfrac{2}{5} = \tfrac{9}{5}.
+\]
+
+Untuk menyertifikasinya tanpa gambar (seperti dalam Solusi Terpilih buku): mengalikan kendala pertama dengan $\tfrac{2}{5}$ dan kendala kedua dengan $\tfrac{1}{5}$, lalu menjumlahkannya, menghasilkan
+\[
+\tfrac{2}{5}(2x + y) + \tfrac{1}{5}(x + 3y) = x + y \geq \tfrac{2}{5}(4) + \tfrac{1}{5}(1) = \tfrac{9}{5},
+\]
+sehingga tidak ada titik layak yang dapat memberikan nilai lebih baik daripada $\tfrac{9}{5}$, dan titik layak $(\tfrac{11}{5}, -\tfrac{2}{5})$ mencapainya. Nilai optimalnya adalah $\tfrac{9}{5}$. (Diverifikasi secara numerik: optimum $1.8$ di $(2.2, -0.4)$.) Pengali $\tfrac25, \tfrac15$ memberi gambaran awal tentang dualitas.
+
+\exsol{5.8}{Menunjukkan Masalah Tak Berbatas}{2}
+Pertimbangkan keluarga titik $(x, y) = (t, 0)$ untuk $t \geq 3$. Titik-titik tersebut layak: $2t - 0 = 2t \geq 0$ dan $t + 0 = t \geq 3$. Nilai fungsi tujuan di sana adalah $-t + 0 = -t$, dan ketika $t \to \infty$, fungsi tujuan menuju $-\infty$. Karena kita meminimumkan, fungsi tujuan tidak memiliki batas bawah pada daerah layak, sehingga masalahnya tak berbatas. (Diverifikasi secara numerik: solver melaporkan ketakberbatasan. Solusi Terpilih buku memberikan sinar yang sama dengan parameter nilai aras $z$.)
+
+Secara geometris, $(1,0)$ adalah arah daerah layak yang memungkinkan garis aras $-x + y = z$ disapu tanpa henti sementara $z$ menurun.
+
+\exsol{5.9}{Berhingga atau Tak Berbatas?}{2}
+\textbf{Tidak, masalah ini tidak memiliki solusi berhingga; masalahnya tak berbatas.}
+
+Dengan mengikuti Metode Grafis Lengkap: daerah tersebut ($x_1 - x_2 \leq 3$, $x_1 + 2x_2 \geq 4$, $x_1, x_2 \geq 0$) adalah daerah tak berbatas dari Contoh~\ref{ex:LPUnboundFeasibleRegion1}, yang memanjang tanpa batas ke atas dan ke kanan. Gradien fungsi tujuan adalah $\nabla z = (-2, 1)$, yang mengarah ke atas dan ke kiri, masuk ke bagian ``atas'' daerah yang tak berbatas. Secara konkret, sinar vertikal
+\[
+(x_1, x_2) = (0,\, 2 + t), \qquad t \geq 0,
+\]
+layak untuk setiap $t \geq 0$ (periksa: $0 - (2+t) = -2 - t \leq 3$ dan $0 + 2(2+t) = 4 + 2t \geq 4$), dan sepanjang sinar tersebut
+\[
+z = -2(0) + (2 + t) = 2 + t \longrightarrow \infty.
+\]
+Kurva aras dapat disapu tanpa batas sambil tetap memotong daerah, sehingga menurut langkah 5(a) Metode Grafis Lengkap, masalah ini tak berbatas. (Diverifikasi secara numerik.)
+
+\begin{qaflag}
+Judul authority mengisyaratkan optimum berhingga, tetapi jawaban yang benar untuk $\max\,(-2x_1+x_2)$ ialah bahwa masalahnya \emph{tak berbatas}. Edisi Indonesia memakai judul netral ``Berhingga atau Tak Berbatas?'' dan mempertahankan fungsi tujuan serta semua kendala sebagaimana tertulis.
+\end{qaflag}
+
+\exsol{5.10}{Masalah Diet}{2}
+Misalkan $x_i \geq 0$ menyatakan jumlah Produk $i$ yang dibeli, $i = 1, 2, 3$. Setiap kolom tabel memberikan jumlah zat gizinya, dan kebutuhannya adalah $0.40$ mg $M$ dan $0.30$ mg $N$:
+\begin{align*}
+\min \quad & 27x_1 + 31x_2 + 24x_3 \\
+\st & 0.16x_1 + 0.21x_2 + 0.11x_3 \geq 0.40 && (\text{zat gizi } M)\\
+& 0.19x_1 + 0.13x_2 + 0.15x_3 \geq 0.30 && (\text{zat gizi } N)\\
+& x_1, x_2, x_3 \geq 0.
+\end{align*}
+Jika hanya unit utuh yang dapat dibeli, tambahkan $x_1, x_2, x_3 \in \mathbb{Z}$, sehingga model menjadi program bilangan bulat.
+
+Walaupun latihan hanya meminta formulasi, optimum LP-nya (diverifikasi secara numerik) adalah $x^* = (\tfrac{110}{191},\, \tfrac{280}{191},\, 0) \approx (0.576,\, 1.466,\, 0)$ dengan biaya $\tfrac{11650}{191} \approx \$60.99$; kedua kendala zat gizi aktif dan Produk 3 tidak dibeli.
+
+\begin{qaflag}
+Telah diperbaiki dalam buku: Solusi Terpilih untuk latihan ini menukar ruas kanan ($\geq 0.30$ pada baris $M$ dan $\geq 0.40$ pada baris $N$), bertentangan dengan pernyataan soal yang mensyaratkan $0.40$ mg $M$ dan $0.30$ mg $N$. Kedua formulasi yang ditampilkan dalam Solusi Terpilih buku diperbaiki menjadi $\geq 0.40$ (baris $M$) dan $\geq 0.30$ (baris $N$) pada 2026-07-13 dan diverifikasi kembali.
+\end{qaflag}
+
+\exsol{5.11}{Mengapa Optimum Harus Berada di Titik Ekstrem?}{2}
+\begin{enumerate}
+\item Bayangkan garis aras $z = c_1 x_1 + c_2 x_2$ menyapu daerah dalam arah gradien.
+\begin{itemize}
+\item \emph{Titik interior.} Jika $\x$ benar-benar berada di dalam daerah, sebuah cakram kecil di sekitar $\x$ bersifat layak. Bergerak dari $\x$ sejauh satu langkah kecil dalam arah gradien $(c_1, c_2)$ akan tetap layak dan secara tegas meningkatkan $z$ (untuk masalah maksimisasi). Jadi, titik interior tidak pernah secara tegas lebih baik daripada semua titik batas; kita dapat terus bergerak hingga mencapai batas.
+\item \emph{Titik yang benar-benar berada di dalam suatu rusuk.} Sepanjang sebuah rusuk, fungsi tujuan merupakan fungsi linier dari satu parameter yang menelusuri rusuk itu. Fungsi linier satu variabel pada suatu ruas garis mencapai maksimum di salah satu titik ujung ruas tersebut. Titik-titik ujung sebuah rusuk adalah titik ekstrem, sehingga suatu titik ekstrem pada rusuk itu memiliki nilai fungsi tujuan yang sekurang-kurangnya sama besar dengan nilai di setiap titik interior rusuk. (Jika fungsi tujuan konstan sepanjang rusuk, kedua titik ujung bernilai sama dengan titik-titik interior.)
+\end{itemize}
+Dengan menggabungkan kedua pengamatan tersebut: dari sembarang titik layak, kita dapat bergerak ke batas tanpa menurunkan $z$, dan dari sembarang titik pada rusuk, kita dapat bergerak ke titik ujung (sebuah titik ekstrem) tanpa menurunkan $z$. Jadi, suatu titik ekstrem sekurang-kurangnya sama baiknya dengan sembarang titik layak tertentu, sehingga terdapat titik ekstrem yang optimal.
+\item Keterbatasan digunakan ketika kita menyatakan bahwa rusuk merupakan \emph{ruas garis dengan titik-titik ujung}: pada daerah terbatas, setiap rusuk memiliki dua titik ujung dan pergerakan sepanjang batas selalu berakhir di sebuah titik ekstrem. Pada daerah tak berbatas, sebuah ``rusuk'' dapat berupa sinar tanpa titik ujung di sisi jauhnya, dan jalur perbaikan dapat berlanjut tanpa henti. Contoh tanpa solusi optimal sama sekali: maksimalkan $z = x + y$ dengan kendala $x, y \geq 0$. Daerahnya (seluruh kuadran pertama) tak berbatas, dan sepanjang sinar layak $(t,t)$, fungsi tujuan $2t \to \infty$; tidak ada titik layak yang optimal karena setiap titik layak dikalahkan oleh titik lain.
+\end{enumerate}
+Ini sengaja merupakan argumen berbasis gambar; versi ketatnya adalah bukti aljabar dalam bab berikutnya, sesuai dengan perlakuan pembuktian yang lebih ringan dalam bab ini.
+
+\exsol{5.12}{Tak Hingga Banyak Solusi Optimal}{2}
+Ambil fungsi tujuan $\min\; z = x_1 + 2x_2$ pada daerah $x_1 - x_2 \leq 3$, $x_1 + 2x_2 \geq 4$, $x_1, x_2 \geq 0$.
+
+Kurva aras $x_1 + 2x_2 = z$ sejajar dengan batas kendala $x_1 + 2x_2 \geq 4$. Ketika kurva tersebut disapu ke bawah (berlawanan dengan gradien $(1,2)$ karena kita meminimumkan), posisi terakhir yang memotong daerah adalah $z = 4$, tempat garis aras berhimpit dengan seluruh rusuk antara titik ekstrem $(0, 2)$ dan $(\tfrac{10}{3}, \tfrac{1}{3})$.
+
+Himpunan optimum tepat sama dengan rusuk tersebut:
+\[
+\{ (x_1, x_2) : x_1 + 2x_2 = 4,\; 0 \leq x_1 \leq \tfrac{10}{3} \},
+\]
+dengan nilai optimal $z^* = 4$ (diverifikasi secara numerik). Perhatikan bahwa arahnya penting: \emph{memaksimumkan} $x_1 + 2x_2$ pada daerah ini bersifat tak berbatas. Setiap kelipatan positif dari $(1,2)$ yang diminimumkan memberikan jawaban yang sama.
+
+\exsol{5.13}{Tak Hingga Banyak Solusi Optimal}{2}
+Pilih fungsi tujuan yang sejajar dengan salah satu kendala sumber daya. Dua pilihan alami adalah:
+
+\emph{Pilihan 1.} $\max\; z = x + 3y$ (sejajar dengan kendala lemon $x + 3y \leq 6$). Garis aras terakhir menyentuh daerah sepanjang seluruh rusuk antara $(0,2)$ dan $(1.2, 1.6)$, sehingga
+\[
+z^* = 6, \qquad \text{himpunan optimal} = \{ (x, y) : x + 3y = 6,\; 0 \leq x \leq 1.2 \},
+\]
+yaitu ruas garis dari $(0,2)$ ke $(1.2, 1.6)$.
+
+\emph{Pilihan 2.} $\max\; z = 2x + y$ (sejajar dengan kendala air $2x + y \leq 4$). Dalam hal ini, $z^* = 4$ dan himpunan optimal adalah ruas garis dari $(1.2, 1.6)$ ke $(2, 0)$, yaitu $\{ (x,y) : 2x + y = 4,\; 1.2 \leq x \leq 2 \}$.
+
+(Keduanya diverifikasi secara numerik: solver masing-masing mengembalikan $z^* = 6$ dan $z^* = 4$ pada titik ekstrem dari rusuk yang bersangkutan.) Dalam kedua kasus, kurva aras optimal berhimpit dengan sebuah rusuk daerah layak, yang tepat merupakan kondisi nilai sama dalam Metode Grafis 2, sehingga terdapat tak hingga banyak solusi optimal.
+
+\exsol{5.14}{Optimum Berhingga pada Daerah Tak Berbatas}{2}
+\emph{Daerah.} Kendala $-x_1 + x_2 \leq 5$, $x_1 + x_2 \geq 2$, $x_1, x_2 \geq 0$ menghasilkan daerah tak berbatas dengan titik-titik ekstrem $(0,5)$, $(0,2)$, dan $(2,0)$; daerah tersebut memanjang tanpa batas ke atas dan ke kanan (setiap arah $\mathbf d = (d_1, d_2) \geq 0$ dengan $d_2 \leq d_1$ merupakan arah layak, misalnya $(1,0)$ dan $(1,1)$).
+
+\emph{Fungsi tujuan.} Ambil
+\[
+\max\; z = -2x_1 - x_2.
+\]
+Gradiennya $(-2,-1)$ mengarah ke bawah dan ke kiri, menjauhi setiap arah tak berbatas daerah: untuk setiap arah layak $\mathbf d \geq 0$, berlaku $-2d_1 - d_2 \leq 0$, sehingga bergerak menuju bagian tak berbatas tidak pernah meningkatkan $z$.
+
+\emph{Penyapuan.} Ketika garis aras $-2x_1 - x_2 = z$ disapu dalam arah $(-2,-1)$, garis terakhir yang menyentuh daerah melewati titik ekstrem $(0,2)$. Nilai fungsi tujuan pada titik-titik ekstrem: $z(0,5) = -5$, $z(0,2) = -2$, $z(2,0) = -4$. Optimum berhingganya adalah
+\[
+z^* = -2 \quad \text{di} \quad (x_1^*, x_2^*) = (0, 2),
+\]
+dan telah diverifikasi secara numerik. Sketsa menunjukkan garis aras meninggalkan daerah di $(0,2)$ walaupun daerah itu sendiri tak berbatas. (Setiap fungsi tujuan $\max\; c_1 x_1 + c_2 x_2$ dengan $c_1, c_2 < 0$ dan $(c_1,c_2)$ tidak sejajar dengan $(1,1)$ menghasilkan optimum berhingga tunggal dengan cara yang sama; $\max\, (-x_1 - x_2)$ menghasilkan optimum berhingga yang dicapai pada seluruh rusuk dari $(0,2)$ ke $(2,0)$.)
+
+\exsol{5.15}{Arah Fungsi Tujuan Tak Berbatas}{3}
+\begin{enumerate}
+\item Untuk $(x_1, x_2) = (t, t)$ dengan $t \geq 0$:
+\[
+-t + t = 0 \leq 3, \qquad t - 2t = -t \leq 2, \qquad t \geq 0,\; t \geq 0,
+\]
+sehingga keempat kendala terpenuhi untuk setiap $t \geq 0$. Nilai fungsi tujuannya adalah
+\[
+z(t) = -2t + t = -t,
+\]
+dan $z(t) \to -\infty$ ketika $t \to \infty$. Karena kita meminimumkan, fungsi tujuan tak berbatas ke bawah sepanjang sinar ini.
+\item Untuk $(x_1, x_2) = (2t + 2, t)$ dengan $t \geq 0$:
+\[
+-(2t+2) + t = -t - 2 \leq 3, \qquad (2t + 2) - 2t = 2 \leq 2 \;(\text{aktif}), \qquad 2t + 2 \geq 0,\; t \geq 0,
+\]
+sehingga titik tersebut layak untuk setiap $t \geq 0$; titik itu bergerak sepanjang garis batas $x_1 - 2x_2 = 2$. Nilai fungsi tujuannya adalah
+\[
+z(t) = -2(2t + 2) + t = -3t - 4,
+\]
+yang juga menuju $-\infty$ ketika $t \to \infty$. Ini memberikan sertifikat ketakberbatasan kedua sepanjang sinar yang berbeda. (Ketakberbatasan diverifikasi secara numerik.)
+\end{enumerate}
+Kedua sinar tersebut memiliki arah $(1,1)$ dan $(2,1)$; setiap arah layak $\mathbf d$ dengan $\c^\top \mathbf d < 0$ menyertifikasi ketakberbatasan suatu masalah minimisasi.
+
+\exsol{5.16}{Optimisasi Terbatas dan Tak Berbatas}{3}
+\begin{enumerate}
+\item \emph{Minimum.} Daerah tersebut memiliki titik-titik ekstrem $(0,6)$, $(0,4)$, $(1,2)$, dan $(5,0)$, dengan $(1,2)$ sebagai perpotongan $2x + y = 4$ dan $x + 2y = 5$, dan daerahnya tak berbatas ke kanan atas. Nilai fungsi tujuan: $z(0,6) = 12$, $z(0,4) = 8$, $z(1,2) = 6$, $z(5,0) = 10$. Ketika garis aras $2x + 2y = z$ disapu ke bawah (kita meminimumkan, dengan gradien $(2,2)$), persentuhan terakhir terjadi pada titik ekstrem $(1,2)$. Nilai minimumnya adalah
+\[
+z^* = 2(1) + 2(2) = 6 \quad \text{di } (x, y) = (1, 2),
+\]
+sebuah titik layak terbatas tempat $2x + y \geq 4$ dan $x + 2y \geq 5$ aktif. (Diverifikasi secara numerik.)
+\item Untuk $(x, y) = (5 + t, 0)$ dengan $t \geq 0$: $-(5+t) + 0 \leq 12$, $2(5+t) = 10 + 2t \geq 4$, $(5+t) + 0 = 5 + t \geq 5$, dan $x, y \geq 0$. Jadi, sinar tersebut layak, dan
+\[
+z(t) = 2(5 + t) + 0 = 10 + 2t \to \infty \quad \text{ketika } t \to \infty,
+\]
+sehingga masalah maksimisasi tak berbatas.
+\item Untuk $(x, y) = (0, 6) + t(2, 1) = (2t,\, 6 + t)$ dengan $t \geq 0$:
+\[
+\begin{aligned}
+-2t + 2(6 + t) &= 12 \leq 12
+  &&(\text{aktif untuk semua } t),\\
+2(2t) + (6+t) &= 6 + 5t \geq 4,\\
+2t + 2(6+t) &= 12 + 4t \geq 5,
+\end{aligned}
+\]
+serta $x = 2t \geq 0$, $y = 6 + t \geq 0$. Sinar tersebut bergerak sepanjang batas $-x + 2y = 12$. Nilai fungsi tujuannya adalah
+\[
+z(t) = 2(2t) + 2(6 + t) = 12 + 6t \to \infty \quad \text{ketika } t \to \infty,
+\]
+yang merupakan demonstrasi kedua ketakberbatasan. (Semua bagian diverifikasi secara numerik.)
+\end{enumerate}
+
+\begin{qaflag}
+Telah diperbaiki dalam buku: bagian (c) semula menggunakan arah $\begin{bmatrix}1\\2\end{bmatrix}$ dari $(0,6)$, tetapi $(t, 6+2t)$ melanggar $-x + 2y \leq 12$ untuk setiap $t > 0$ (ruas kirinya adalah $12 + 3t$), sehingga klaim kelayakan tersebut salah. Arah batas kendala itu adalah $(2,1)$; buku diperbaiki menjadi $\begin{bmatrix}2\\1\end{bmatrix}$ pada 2026-07-13 dan diverifikasi kembali (sinar $(2t, 6+t)$ mempertahankan $-x+2y = 12$ sebagai kendala aktif dan memenuhi semua kendala lainnya). Tidak ada Solusi Terpilih dalam buku yang perlu diselaraskan.
+\end{qaflag}
+
+\exsol{5.17}{Dari Rusuk Optimal ke Optimum Tunggal}{3}
+\begin{enumerate}
+\item Pertimbangkan
+\[
+\max\; z = x + y \quad \st x + y \leq 4, \;\; x \leq 3, \;\; x, y \geq 0,
+\]
+yaitu daerah layak Latihan 5.3, dengan titik-titik ekstrem $(0,0)$, $(3,0)$, $(3,1)$, $(0,4)$. Kurva aras $x + y = z$ sejajar dengan batas kendala $x + y = 4$. Ketika disapu dalam arah gradien $(1,1)$, kurva aras terakhir yang menyentuh daerah adalah $x + y = 4$, dan kurva itu memuat seluruh rusuk dari $(0,4)$ hingga $(3,1)$. Menurut langkah pemeriksaan kesamaan nilai dalam Metode Grafis 2 (kurva aras optimal sejajar dengan rusuk yang bersebelahan dengan titik ekstrem optimal), setiap titik dalam
+\[
+\{ (x, y) : x + y = 4,\; 0 \leq x \leq 3 \}
+\]
+bersifat optimal, dengan $z^* = 4$: himpunan optimalnya adalah seluruh rusuk, bukan satu titik ekstrem.
+\item Ubah koefisien $y$ dari $1$ menjadi $2$, sehingga diperoleh $\max\; z = x + 2y$ pada daerah yang sama. Kini kurva aras memiliki kemiringan $-1/2$ dan tidak lagi sejajar dengan rusuk mana pun pada daerah tersebut. Nilai pada titik-titik ekstrem: $z(0,0)=0$, $z(3,0)=3$, $z(3,1)=5$, $z(0,4)=8$. Optimum tunggalnya adalah $(0,4)$ dengan $z^* = 8$. Kesamaan nilai menghilang karena sepanjang rusuk yang sebelumnya optimal, $x + y = 4$, fungsi tujuan baru $x + 2y = x + 2(4 - x) = 8 - x$ menurun secara tegas terhadap $x$, sehingga titik ujung rusuk $(0,4)$ secara tegas mengungguli setiap titik lain pada rusuk tersebut.
+\end{enumerate}
+Setiap konstruksi dengan kedua ciri ini (fungsi tujuan sejajar dengan rusuk aktif, lalu satu koefisien diubah) memperoleh nilai penuh.

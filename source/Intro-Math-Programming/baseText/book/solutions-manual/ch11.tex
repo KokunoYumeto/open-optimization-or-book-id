@@ -1,0 +1,349 @@
+% ============================================================================
+% BAB 11: DUALITAS
+% Solusi diselaraskan dengan book/part1-linear-programming/ch08-duality/duality.tex
+% (Latihan 11.1--11.9) dan ch08-duality/complimentary-slackness.tex
+% (Latihan 11.10--11.17); kedua berkas memakai satu pencacah bab yang sama.
+% Semua nilai optimum, masalah dual, dan pemeriksaan KK diverifikasi dengan
+% scipy.optimize.linprog (HiGHS).
+% ============================================================================
+\section{Bab 11: Dualitas}
+
+Bab ini memuat 17 latihan yang berasal dari dua berkas buku yang memakai satu pencacah latihan bersama: bagian dualitas menyumbangkan Latihan 11.1 sampai 11.9 (pemanasan untuk menuliskan masalah dual dan dualitas lemah, soal inti mengenai campuran bentuk kendala dan harga bayangan, soal konsep mengenai sertifikat dan ketaklayakan, serta pembuktian dual-dari-dual), sedangkan bagian kelonggaran komplementer menyumbangkan Latihan 11.10 sampai 11.17 (pemeriksaan syarat, memperoleh kembali salah satu sisi pasangan primal--dual dari sisi lainnya, menyangkal klaim optimum, dan dua soal pemodelan yang lebih besar). Masalah dual dituliskan lengkap dan setiap syarat kelonggaran komplementer diperiksa satu per satu. Latihan 11.2, 11.4, 11.9, 11.11, 11.12, dan 11.15 memiliki Solusi Pilihan di dalam buku; solusi-solusi itu disajikan kembali di sini dan diperluas apabila bermanfaat. Semua klaim numerik diverifikasi dengan \texttt{scipy}.
+
+\begin{qaflag}
+Perbaikan buku yang dilakukan selama tahap QA ini (semuanya diverifikasi secara numerik dan tidak ada yang mengubah data latihan ataupun Solusi Pilihan):
+\begin{itemize}
+\item \texttt{duality.tex}, kotak ``Kasus 2'': masalah primal sebelumnya tertulis $\min \b^\top \x$ dengan kendala $A\x \le \c$ dan masalah dual $\max \c^\top \y$ dengan kendala $A^\top\y \le \b$, $\y \ge 0$, yang melanggar dualitas lemah (contoh uji: $\min x$ dengan kendala $x \le 3$, $x \ge 0$ bernilai $0$, tetapi masalah dual yang dinyatakan bernilai $3$). Bentuk tersebut diperbaiki menjadi cerminan Kasus 1 yang dimaksudkan: minimisasi dengan kendala $\geq$.
+\item \texttt{duality.tex}, contoh ``Masalah Dual yang Rumit'' (kedua penurunan): pembatasan tanda pada $y_2$ dan $y_3$ tertukar. Untuk masalah primal maksimisasi, kendala $\geq$ harus memiliki $y_2 \le 0$ dan kendala $\leq$ harus memiliki $y_3 \ge 0$. Pemeriksaan penentu: masalah primal itu taklayak, tetapi masalah dual sebagaimana tercetak sebelumnya memiliki nilai optimal hingga $11/3$, yang dilarang oleh dualitas kuat; dengan tanda yang diperbaiki, masalah dual takterbatas, sebagaimana seharusnya. Sebuah catatan tentang ketaklayakan (yang tidak menimbulkan masalah) pada contoh primal itu juga ditambahkan. Selain itu, penurunan dengan ``cara pandang kedua'' melalui agregasi memperlakukan variabel bebas $x_2$ sebagai taknegatif, sehingga menghasilkan $y_1 - y_2 - y_3 \ge 1$, padahal penurunan pertama menghasilkan $= 1$; keduanya dibuat konsisten ($x_2$ bebas, sehingga berupa persamaan).
+\item \texttt{complimentary-slackness.tex}, Latihan 11.13: frasa ``suatu solusi dual $\y^* = (1,1)$'' sekarang berbunyi ``suatu kandidat solusi dual,'' sebab $(1,1)$ sengaja tidak layak bagi masalah dual (menemukan fakta itu merupakan inti bagian (b) dan (c)).
+\end{itemize}
+\end{qaflag}
+
+% ----------------------------------------------------------------------------
+\exsol{11.1}{Masalah Dual Toko Roti Kecil}{1}
+
+Primal: $\max 5x_1 + 4x_2$ dengan kendala $2x_1 + 3x_2 \le 12$ (tepung), $x_1 + x_2 \le 5$ (gula), $x_1, x_2 \ge 0$.
+
+\begin{enumerate}
+\item Satu variabel dual untuk setiap sumber daya: $y_1$ untuk tepung dan $y_2$ untuk gula. Masalah dualnya adalah
+\[
+\begin{aligned}
+\min \quad & 12y_1 + 5y_2 \\
+\st & 2y_1 + y_2 \ge 5 \quad \text{(roti tawar)} \\
+& 3y_1 + y_2 \ge 4 \quad \text{(roti gulung)} \\
+& y_1, y_2 \ge 0 .
+\end{aligned}
+\]
+\item Tafsirkan $y_1$ sebagai harga per satuan tepung dan $y_2$ sebagai harga per satuan gula. Kendala dual pertama menyatakan bahwa tawaran pesaing untuk bahan-bahan dalam satu roti tawar (2 tepung, 1 gula) harus sedikitnya sama dengan $\$5$ yang dapat diperoleh toko roti dengan memanggang sendiri roti tersebut; kendala kedua menyatakan bahwa bahan-bahan dalam satu roti gulung (3 tepung, 1 gula) harus dihargai sedikitnya $\$4$. Fungsi tujuan dual menggambarkan pesaing yang mencari pembayaran total termurah, $12y_1 + 5y_2$, yang masih dapat meyakinkan pembuat roti untuk menjual bahan-bahannya.
+\item Ruas kanan primal $(12, 5)$ (jumlah sumber daya) menjadi koefisien fungsi tujuan dual, sedangkan koefisien fungsi tujuan primal $(5, 4)$ (laba per satuan) menjadi ruas kanan dual. Matriks kendalanya ditransposisikan.
+\end{enumerate}
+
+\emph{Verifikasi.} Optimum primal $(5, 0)$ dengan $z^* = 25$ (kendala tepung memiliki kelonggaran $2$); optimum dual $\y^* = (0, 5)$ dengan nilai $25$, konsisten dengan kelonggaran komplementer ($y_1 = 0$ pada kendala tepung yang longgar).
+
+% ----------------------------------------------------------------------------
+\exsol{11.2}{Rumuskan Masalah Dual}{1}
+
+Latihan ini memiliki Solusi Pilihan di dalam buku; solusi tersebut disajikan kembali di sini. Ada dua kendala, sehingga masalah dual memiliki dua variabel $y_1, y_2 \geq 0$, satu untuk setiap kendala. Masing-masing dari ketiga variabel primal menghasilkan sebuah kendala dual dengan ruas kanan berupa koefisien fungsi tujuan variabel tersebut:
+\[
+\begin{aligned}
+\min \quad & 10y_1 + 12y_2 \\
+\st & y_1 + 3y_2 \ge 4 \\
+& 2y_1 + y_2 \ge 5 \\
+& y_1 + 2y_2 \ge 3 \\
+& y_1, y_2 \ge 0 .
+\end{aligned}
+\]
+
+% ----------------------------------------------------------------------------
+\exsol{11.3}{Memverifikasi Dualitas Lemah}{1}
+
+Primal: $\max 3x_1 + 2x_2$ dengan kendala $x_1 + x_2 \le 4$, $2x_1 + x_2 \le 5$, $x_1, x_2 \ge 0$; dual: $\min 4y_1 + 5y_2$ dengan kendala $y_1 + 2y_2 \ge 3$, $y_1 + y_2 \ge 2$, $y_1, y_2 \ge 0$.
+
+\begin{enumerate}
+\item $\x = (1, 2)$: $1 + 2 = 3 \le 4$ dan $2(1) + 2 = 4 \le 5$, dengan $x_1, x_2 \ge 0$, sehingga $\x$ layak bagi masalah primal. Nilainya adalah $\c^\top\x = 3(1) + 2(2) = 7$.
+\item $\y = (2, 1)$: $2 + 2(1) = 4 \ge 3$ dan $2 + 1 = 3 \ge 2$, dengan $y_1, y_2 \ge 0$, sehingga $\y$ layak bagi masalah dual. Nilainya adalah $\b^\top\y = 4(2) + 5(1) = 13$.
+\item Dualitas lemah memberi $\c^\top\x \le z^* \le \b^\top\y$ untuk pasangan ini, yaitu batas apit
+\[
+7 \le z^* \le 13 .
+\]
+Optimum sebenarnya, $\x^* = (1, 3)$ dengan $z^* = 9$, memang memenuhi $7 \le 9 \le 13$. (Hasil verifikasi: \texttt{linprog} mengembalikan $z^* = 9$ pada $(1,3)$ dengan variabel dual $(1,1)$.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{11.4}{Batas Dualitas Lemah}{2}
+
+Latihan ini memiliki Solusi Pilihan di dalam buku; solusi tersebut disajikan kembali di sini.
+
+Masalah dualnya adalah $\min\, 4y_1 + 6y_2$ dengan kendala $y_1 + 2y_2 \geq 3$, $y_1 + y_2 \geq 2$, $y_1, y_2 \geq 0$.
+Untuk $\y = (1,1)$: $1 + 2 = 3 \geq 3$ dan $1 + 1 = 2 \geq 2$, sehingga $\y$ layak bagi masalah dual dengan nilai tujuan $4(1) + 6(1) = 10$.
+Untuk $\x = (2,2)$: $2 + 2 = 4 \leq 4$ dan $4 + 2 = 6 \leq 6$, sehingga $\x$ layak bagi masalah primal dengan nilai tujuan $3(2) + 2(2) = 10$.
+Menurut dualitas lemah, setiap nilai primal tidak melebihi setiap nilai dual, sehingga nilai optimal $z^*$ memenuhi $10 \leq z^* \leq 10$. Karena kedua batas berimpit, kedua solusi tersebut sebenarnya optimal dan $z^* = 10$. (Hasil verifikasi: \texttt{linprog} mengembalikan $z^* = 10$ pada $(2,2)$ dengan variabel dual $(1,1)$.)
+
+% ----------------------------------------------------------------------------
+\exsol{11.5}{Masalah Dual dengan Kendala Campuran}{2}
+
+Primal: $\max 2x_1 + 3x_2$ dengan kendala $x_1 + x_2 = 5$, $x_1 - x_2 \le 2$, $x_1 \ge 0$, dan $x_2$ bebas.
+
+Pasangkan $y_1$ dengan persamaan dan $y_2$ dengan pertidaksamaan. Untuk masalah primal maksimisasi: kendala persamaan tidak memberlakukan pembatasan tanda ($y_1$ bebas), sedangkan kendala $\leq$ memiliki pengali taknegatif ($y_2 \ge 0$). Kendala dual berasal dari variabel primal: $x_1 \ge 0$ menghasilkan pertidaksamaan ($\ge$), sedangkan $x_2$ yang bebas memaksa sebuah persamaan. Masalah dualnya adalah
+\[
+\begin{aligned}
+\min \quad & 5y_1 + 2y_2 \\
+\st & y_1 + y_2 \ge 2 \quad \text{(dari } x_1 \ge 0\text{)} \\
+& y_1 - y_2 = 3 \quad \text{(dari } x_2 \text{ yang bebas)} \\
+& y_1 \text{ bebas}, \quad y_2 \ge 0 .
+\end{aligned}
+\]
+Ringkasan pemetaannya: kendala persamaan $\to$ variabel dual bebas; kendala $\leq$ $\to$ $y_2 \ge 0$; variabel primal taknegatif $\to$ kendala dual $\geq$; variabel primal bebas $\to$ persamaan dual.
+
+\emph{Verifikasi.} Optimum primal: dari $x_2 = 5 - x_1$, fungsi tujuannya menjadi $15 - x_1$, yang dimaksimumkan pada $x_1 = 0$, sehingga $\x^* = (0, 5)$ dan $z^* = 15$. Dual: substitusi $y_1 = 3 + y_2$ memberi fungsi tujuan $15 + 7y_2$, yang diminimumkan pada $y_2 = 0$, sehingga $\y^* = (3, 0)$ dengan nilai $15 = z^*$; \texttt{linprog} mengonfirmasi keduanya.
+
+% ----------------------------------------------------------------------------
+\exsol{11.6}{Harga Bayangan dan Variabel Dual}{2}
+
+Primal: $\max 5x_1 + 4x_2$ dengan kendala $2x_1 + x_2 \le 20$ (tepung), $x_1 + 2x_2 \le 18$ (gula), $x_1 + x_2 \le 13$ (oven); $\x^* = (7\tfrac13, 5\tfrac13)$, $z^* = 58$; $\y^* = (2, 1, 0)$.
+
+\begin{enumerate}
+\item $\b^\top\y^* = 20(2) + 18(1) + 13(0) = 40 + 18 + 0 = 58 = z^*$, sehingga dualitas kuat berlaku.
+\item Dengan menyubstitusikan $\x^* = (\tfrac{22}{3}, \tfrac{16}{3})$:
+\[
+\begin{aligned}
+2\!\left(\tfrac{22}{3}\right) + \tfrac{16}{3} &= \tfrac{60}{3} = 20 && (\text{tepung, ketat}), \\
+\tfrac{22}{3} + 2\!\left(\tfrac{16}{3}\right) &= \tfrac{54}{3} = 18 && (\text{gula, ketat}), \\
+\tfrac{22}{3} + \tfrac{16}{3} &= \tfrac{38}{3} \approx 12.67 < 13 && (\text{oven, tidak ketat}).
+\end{aligned}
+\]
+\item Kelonggaran komplementer, syarat demi syarat:
+\[
+\begin{aligned}
+y_1^*\,(2x_1^* + x_2^* - 20) &= 2 \cdot 0 = 0 \checkmark
+& y_2^*\,(x_1^* + 2x_2^* - 18) &= 1 \cdot 0 = 0 \checkmark \\
+y_3^*\,(x_1^* + x_2^* - 13) &= 0 \cdot \left(-\tfrac13\right) = 0 \checkmark
+& x_1^*\,(5 - 2y_1^* - y_2^* - y_3^*) &= \tfrac{22}{3}\,(5 - 5) = 0 \checkmark \\
+x_2^*\,(4 - y_1^* - 2y_2^* - y_3^*) &= \tfrac{16}{3}\,(4 - 4) = 0 \checkmark &&
+\end{aligned}
+\]
+Kedua kendala dual ketat (sebagaimana seharusnya karena $x_1^*, x_2^* > 0$), dan satu-satunya kendala primal yang longgar (oven) memiliki harga dual $0$. Semua syarat berlaku, sehingga pasangan tersebut optimal menurut Teorema Keoptimalan Primal--Dual dalam buku (kelayakan pada kedua sisi beserta kelonggaran komplementer).
+\item Harga bayangan tepung adalah $y_1^* = 2$: satu kg tepung tambahan meningkatkan laba sekitar $\$2$. Nilai marjinal gula adalah $\$1$ per kg, sedangkan kapasitas oven bernilai $\$0$ (kapasitas tersebut tidak digunakan sepenuhnya, sehingga penambahannya tidak menghasilkan apa-apa). Untuk satu kg tepung tambahan, laba meningkat sekitar $\$2$, dari $58$ menjadi $60$. (Hasil verifikasi: $z^*(b_1 = 21) = 60$ tepat.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{11.7}{Sertifikat dengan Kata-kata Anda Sendiri}{2}
+
+\begin{enumerate}
+\item Suatu $\y$ yang layak bagi masalah dual menyertifikasi sebuah \emph{batas atas} bagi setiap nilai primal yang layak: vektor tersebut merupakan sekumpulan pengali yang menggabungkan kendala primal menjadi satu pertidaksamaan sah, $\c^\top\x \le \b^\top\y$. Untuk meyakinkan teman yang skeptis bahwa tidak ada rencana yang menghasilkan lebih dari suatu nilai $M$, Anda tidak perlu mendaftar semua rencana; cukup serahkan bilangan $y_1, \dots, y_m \ge 0$, minta teman tersebut memeriksa $n$ pertidaksamaan dominasi $A^\top\y \ge \c$ (satu untuk setiap produk), lalu menghitung $\b^\top\y \le M$. Mengalikan dan menjumlahkan kendala hanyalah aritmetika yang dapat diperiksa teman tersebut dalam hitungan menit, tanpa optimisasi dan tanpa harus memercayai siapa pun.
+\item Mengalikan suatu pertidaksamaan dengan bilangan negatif membalik arahnya. Kendala primal berarah $\leq$, dan sertifikat memerlukan agar kendala gabungan tetap berarah $\leq$ supaya membatasi fungsi tujuan dari atas; hal itu hanya terjamin apabila setiap pengali taknegatif. (Kendala persamaan dapat digabungkan menggunakan pengali bertanda apa pun; itulah sebabnya variabel dualnya bersifat bebas.)
+\item Himpunan sertifikat yang sah ditentukan oleh syarat-syarat linear pada $\y$: syarat tanda $\y \ge \mathbf{0}$ dan syarat dominasi $A^\top\y \ge \c$. Meminimumkan batas linear $\b^\top\y$ atas himpunan polihedral ini merupakan sebuah program linear, yaitu masalah dual. Dualitas lemah menyatakan bahwa setiap sertifikat merupakan taksiran berlebih atau tepat; dualitas kuat menyatakan bahwa pencarian tersebut berhasil sempurna: sertifikat terbaik bukan sekadar mendekati, melainkan \emph{tepat} sama dengan nilai primal optimal. Dengan demikian, sebuah rencana optimal dan sebuah sertifikat optimal secara bersama-sama membuktikan keoptimalan satu sama lain.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{11.8}{Dualitas Kuat dan Ketaklayakan}{2}
+
+Primal: $\max x_1 + x_2$ dengan kendala $x_1 - x_2 \le 1$, $-x_1 + x_2 \le -3$, $x_1, x_2 \ge 0$.
+
+\begin{enumerate}
+\item Dua kendala menghasilkan dua variabel dual $y_1, y_2 \ge 0$; masalah dualnya adalah
+\[
+\begin{aligned}
+\min \quad & y_1 - 3y_2 \\
+\st & y_1 - y_2 \ge 1 \quad \text{(dari } x_1\text{)} \\
+& -y_1 + y_2 \ge 1 \quad \text{(dari } x_2\text{)} \\
+& y_1, y_2 \ge 0 .
+\end{aligned}
+\]
+\item Jumlahkan kedua kendala primal: $(x_1 - x_2) + (-x_1 + x_2) = 0$, sedangkan ruas kanannya berjumlah $1 + (-3) = -2$. Jadi, setiap titik layak harus memenuhi $0 \le -2$, yang mustahil. Masalah primal taklayak (tidak ada $(x_1, x_2) \ge 0$, atau bahkan sebarang $(x_1, x_2)$, yang memenuhi keduanya).
+\item Masalah dual juga \emph{taklayak}: dengan menjumlahkan kedua kendala dual diperoleh $(y_1 - y_2) + (-y_1 + y_2) = 0 \ge 2$, yang mustahil. Hal ini konsisten dengan teorema dualitas kuat: karena masalah primal taklayak, teorema tersebut menutup kemungkinan bahwa masalah dual memiliki solusi optimal (kasus 3 memerlukan keduanya layak) dan, jika dibaca melalui kontraposisinya, masalah primal yang taklayak hanya menyisakan dua kemungkinan bagi masalah dual, yakni takterbatas atau taklayak. Pemeriksaan langsung di sini menunjukkan bahwa masalah dual taklayak. Pasangan ini merupakan contoh standar bahwa \emph{kedua} masalah dalam suatu pasangan primal--dual dapat taklayak secara bersamaan; kemungkinan keempat itu konsisten dengan teorema walaupun tidak termasuk dalam tiga kasus yang dicantumkan. (Hasil verifikasi: HiGHS melaporkan kedua masalah taklayak.)
+\end{enumerate}
+
+\begin{qaflag}
+Keputusan editorial, tanpa perubahan: Teorema Dualitas Kuat dalam \texttt{duality.tex} mencantumkan tiga kasus dan tidak pernah menyebutkan bahwa masalah primal dan dual dapat sama-sama taklayak, padahal bagian (c) latihan ini bertumpu tepat pada kemungkinan keempat tersebut. Instruksi pada bagian (c), ``jelaskan dengan menggunakan teorema dualitas kuat,'' juga dapat mendorong mahasiswa menuju jawaban keliru ``takterbatas.'' Disarankan untuk menambahkan satu kalimat catatan setelah teorema (misalnya, ``Mungkin pula (P) dan (D) sama-sama taklayak; lihat latihan.'').
+\end{qaflag}
+
+% ----------------------------------------------------------------------------
+\exsol{11.9}{Dual dari Dual adalah Primal}{3}
+
+Latihan ini memiliki Solusi Pilihan di dalam buku; solusi tersebut disajikan kembali di sini.
+
+Tuliskan kembali (D) dalam bentuk maksimisasi simetris. Meminimumkan $\b^\top \y$ sama dengan memaksimumkan $(-\b)^\top \y$, sedangkan kendala $A^\top \y \geq \c$ setara dengan $(-A^\top)\y \leq -\c$. Jadi, (D) adalah
+\[
+\max \; (-\b)^\top \y \quad \st \quad (-A^\top)\y \leq -\c, \quad \y \geq 0,
+\]
+yang merupakan bentuk simetris dengan vektor tujuan $\tilde{\c} = -\b$, matriks $\tilde{A} = -A^\top$, dan ruas kanan $\tilde{\b} = -\c$. Menurut definisi, masalah dualnya adalah
+\[
+\min \; \tilde{\b}^\top \mathbf{z} \quad \st \quad \tilde{A}^\top \mathbf{z} \geq \tilde{\c}, \quad \mathbf{z} \geq 0,
+\]
+yaitu $\min\, (-\c)^\top \mathbf{z}$ dengan kendala $(-A)\mathbf{z} \geq -\b$, $\mathbf{z} \geq 0$. Mengalikan fungsi tujuan dan kendalanya dengan $-1$ mengubah masalah ini menjadi
+\[
+\max \; \c^\top \mathbf{z} \quad \st \quad A\mathbf{z} \leq \b, \quad \mathbf{z} \geq 0,
+\]
+yang tepat sama dengan (P), dengan $\mathbf{z}$ menggantikan $\x$. Jadi, dual dari dual adalah primal.
+
+% ----------------------------------------------------------------------------
+\exsol{11.10}{Memeriksa Syarat-syarat}{1}
+
+Pasangan: $\max 4x_1 + 3x_2$ dengan kendala $x_1 + x_2 \le 6$, $2x_1 + x_2 \le 10$, $\x \ge \mathbf{0}$; dual $\min 6y_1 + 10y_2$ dengan kendala $y_1 + 2y_2 \ge 4$, $y_1 + y_2 \ge 3$, $\y \ge \mathbf{0}$. Kandidat $\x^* = (4, 2)$, $\y^* = (2, 1)$.
+
+\begin{enumerate}
+\item Kelayakan primal: $4 + 2 = 6 \le 6$ dan $2(4) + 2 = 10 \le 10$, dengan $\x^* \ge \mathbf{0}$. Kelayakan dual: $2 + 2(1) = 4 \ge 4$ dan $2 + 1 = 3 \ge 3$, dengan $\y^* \ge \mathbf{0}$. Keduanya layak (bahkan keempat kendalanya ketat).
+\item Keempat syarat:
+\[
+\begin{aligned}
+y_1^*\,(x_1^* + x_2^* - 6) &= 2\,(6 - 6) = 0 \checkmark
+& y_2^*\,(2x_1^* + x_2^* - 10) &= 1\,(10 - 10) = 0 \checkmark \\
+x_1^*\,(4 - y_1^* - 2y_2^*) &= 4\,(4 - 4) = 0 \checkmark
+& x_2^*\,(3 - y_1^* - y_2^*) &= 2\,(3 - 3) = 0 \checkmark
+\end{aligned}
+\]
+\item Kelayakan pada kedua sisi beserta kelonggaran komplementer tepat merupakan sertifikat keoptimalan dalam Teorema Keoptimalan Primal--Dual pada buku, sehingga keduanya optimal. Pemeriksaan fungsi tujuan: $4(4) + 3(2) = 22$ dan $6(2) + 10(1) = 22$; nilai yang sama menegaskan kembali keoptimalan berdasarkan dualitas kuat. (Hasil verifikasi dengan \texttt{linprog}: $z^* = 22$, dengan variabel dual $(2,1)$.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{11.11}{Produksi Toko Roti dan Interpretasi Dualitas}{2}
+
+Latihan ini memiliki Solusi Pilihan di dalam buku; solusi tersebut disajikan kembali di sini.
+
+\begin{enumerate}
+\item \textbf{Kelayakan:} Dengan menyubstitusikan $(x_1, x_2, x_3) = (4, 0, 6)$: tepung $5(4) + 4(0) + 6 = 26 \leq 40$, gula $4 + 0 + 6 = 10 \leq 10$, waktu pemanggangan $4 + 0 + 0.5(6) = 7 \leq 7$, sehingga solusi primal layak. Dengan menyubstitusikan $(y_1, y_2, y_3) = (0, 50, 40)$: kendala dual bernilai $90 \geq 90$, $90 \geq 40$, dan $70 \geq 70$, sehingga solusi dual layak.
+\item \textbf{Kelonggaran komplementer:} Dalam masalah primal, kendala gula dan waktu pemanggangan ketat, sedangkan kendala tepung longgar ($26 < 40$); sesuai dengan itu, $y_1 = 0$, sementara $y_2, y_3 > 0$. Dalam masalah dual, kendala 1 dan 3 ketat, sedangkan kendala 2 longgar ($90 > 40$); sesuai dengan itu, $x_2 = 0$, sementara $x_1, x_3 > 0$. Setiap syarat $y_i(\mathbf{a}_i^\top \x - b_i) = 0$ dan $x_j(c_j - (A^\top \y)_j) = 0$ dipenuhi.
+\item \textbf{Nilai fungsi tujuan:} Primal: $90(4) + 40(0) + 70(6) = 780$. Dual: $40(0) + 10(50) + 7(40) = 780$. Nilainya sama, sehingga mengonfirmasi keoptimalan berdasarkan dualitas kuat.
+\item \textbf{Harga bayangan:} Tepung memiliki harga bayangan $y_1 = 0$: karena masih tersisa 14 kg, tepung tambahan tidak bernilai. Gula memiliki harga bayangan $y_2 = 50$: satu kg gula tambahan akan meningkatkan laba sebesar \$50. Waktu pemanggangan memiliki harga bayangan $y_3 = 40$: satu jam oven tambahan bernilai \$40.
+\item \textbf{Sensitivitas:} (a) Satu kg tepung tambahan: tidak ada perubahan (\$0). (b) Satu kg gula tambahan: laba meningkat sebesar \$50. (c) Satu jam waktu pemanggangan tambahan: laba meningkat sebesar \$40. Taksiran ini berlaku untuk perubahan kecil pada ruas kanan (selama basis optimal tidak berubah).
+\end{enumerate}
+
+\begin{qaflag}
+Keputusan editorial, tanpa perubahan: latihan ini nyaris mengulang kata demi kata contoh ``Toko Roti 2.0'' yang telah dikerjakan serta Contoh ``Memverifikasi Keoptimalan dengan Kelonggaran Komplementer'' dan ``Memperoleh Kembali Variabel Dual melalui Kelonggaran Komplementer'' dalam bab yang sama; setiap perhitungan yang diminta muncul dengan bilangan yang sama dalam isi bab, dan buku juga mencetak Solusi Pilihan. Sebagai latihan yang dinilai, seluruh jawabannya dapat disalin. Pertimbangkan untuk mengubah datanya (misalnya, laba atau jumlah sumber daya yang baru) atau menghapus optimum dual yang dicetak agar mahasiswa harus memperolehnya sendiri.
+\end{qaflag}
+
+% ----------------------------------------------------------------------------
+\exsol{11.12}{Kendala Kotak dan Sertifikat Dual}{2}
+
+Latihan ini memiliki Solusi Pilihan di dalam buku; solusi tersebut disajikan kembali di sini.
+
+(a) Masalah dualnya adalah
+\[
+\begin{aligned}
+\min \quad & y_1 + y_2 + y_3 + y_4 + 8y_5 \\
+\st & y_1 + y_5 \geq 1, \quad y_2 + 2y_5 \geq 4, \quad y_3 + 3y_5 \geq 9, \quad y_4 + 4y_5 \geq 16, \\
+& y_1, \dots, y_5 \geq 0.
+\end{aligned}
+\]
+
+(b) Menurut dualitas lemah, setiap $\y$ yang layak bagi masalah dual memberi batas atas $\b^\top \y$ bagi fungsi tujuan primal. Jika kita dapat menunjukkan suatu $\x$ yang layak bagi masalah primal dan suatu $\y$ yang layak bagi masalah dual dengan nilai fungsi tujuan yang sama, keduanya pasti optimal.
+
+(c) Pada $\x^* = (0, \tfrac{1}{2}, 1, 1)$, kendala 1 dan 2 longgar ($0 < 1$ dan $\tfrac12 < 1$), sehingga $y_1 = y_2 = 0$. Karena $x_2, x_3, x_4 > 0$, kendala dual 2, 3, dan 4 harus ketat: $2y_5 = 4$ memberi $y_5 = 2$; kemudian $y_3 = 9 - 3(2) = 3$ dan $y_4 = 16 - 4(2) = 8$. Kendala dual yang tersisa berlaku dengan pertidaksamaan ketat: $y_1 + y_5 = 2 \geq 1$, konsisten dengan $x_1 = 0$. Jadi, $\y^* = (0, 0, 3, 8, 2)$ layak bagi masalah dual dengan nilai tujuan $3 + 8 + 8(2) = 27$, sama dengan nilai primal $4(\tfrac12) + 9 + 16 = 27$. Berdasarkan bagian (b), kedua solusi tersebut optimal.
+
+\emph{Verifikasi.} \texttt{linprog} mengembalikan $z^* = 27$ pada $(0, 0.5, 1, 1)$ dengan variabel dual $(0, 0, 3, 8, 2)$, tepat sama dengan sertifikat di atas. Kelayakan $\x^*$: kendala 5 memberi $0 + 2(\tfrac12) + 3(1) + 4(1) = 8 \le 8$, ketat, konsisten dengan $y_5 = 2 > 0$.
+
+% ----------------------------------------------------------------------------
+\exsol{11.13}{Menurunkan Solusi Primal dari Tebakan Dual}{2}
+
+Pasangan: $\max 5x_1 + 4x_2$ dengan kendala $2x_1 + x_2 \le 8$, $x_1 + 3x_2 \le 9$, $\x \ge \mathbf{0}$; dual $\min 8y_1 + 9y_2$ dengan kendala $2y_1 + y_2 \ge 5$, $y_1 + 3y_2 \ge 4$, $\y \ge \mathbf{0}$. Kandidat: $\y^* = (1, 1)$.
+
+\begin{enumerate}
+\item[(a)] Karena $y_1^* = 1 > 0$ dan $y_2^* = 1 > 0$, kelonggaran komplementer akan memaksa kedua kendala primal menjadi ketat:
+\[
+2x_1 + x_2 = 8, \qquad x_1 + 3x_2 = 9
+\qquad\Longrightarrow\qquad
+x_1^* = 3, \quad x_2^* = 2 .
+\]
+\item[(b)] Ya: $(3, 2) \ge \mathbf{0}$ memenuhi $2(3) + 2 = 8 \le 8$ dan $3 + 3(2) = 9 \le 9$, sehingga titik tersebut layak bagi masalah primal, dengan nilai $5(3) + 4(2) = 23$.
+\item[(c)] Tidak, pasangan ini bukan pasangan optimal yang sah. Saksi paling langsung diberikan oleh dualitas lemah: ``nilai dual'' dari $\y^* = (1,1)$ adalah $8(1) + 9(1) = 17 < 23$, sedangkan tidak ada titik yang sungguh layak bagi masalah dual yang dapat mencapai nilai tersebut. Memang, $\y^*$ \emph{tidak layak bagi masalah dual}: kendala dual pertama gagal, $2(1) + 1 = 3 < 5$. Kelonggaran komplementer juga gagal sebagai pemeriksaan diagnostik: $x_1^* = 3 > 0$ mengharuskan kendala dual pertama ketat, tetapi $3 \neq 5$. Pelajarannya: kelonggaran komplementer hanya menjadi sertifikat apabila \emph{kedua} titik layak (Teorema Keoptimalan Primal--Dual dalam buku mensyaratkan kelayakan primal, kelayakan dual, dan semua syarat kelonggaran komplementer secara bersamaan).
+
+Menariknya, titik primal $(3, 2)$ yang diperoleh dari tebakan keliru tersebut kebetulan merupakan optimum primal yang sebenarnya: menyelesaikan kembali sistem kendala ketat untuk masalah dual yang \emph{benar}, dengan $x_1^*, x_2^* > 0$ yang memaksa kedua kendala dual ketat, memberi $2y_1 + y_2 = 5$, $y_1 + 3y_2 = 4$, sehingga $\y^{\text{opt}} = \left(\tfrac{11}{5}, \tfrac{3}{5}\right)$ dengan nilai dual $8\left(\tfrac{11}{5}\right) + 9\left(\tfrac{3}{5}\right) = \tfrac{115}{5} = 23$, sama dengan nilai primal. (Hasil verifikasi: \texttt{linprog} memberi $z^* = 23$ pada $(3,2)$ dengan variabel dual $(2.2, 0.6)$.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{11.14}{Harga Positif pada Kendala yang Longgar}{2}
+
+\begin{enumerate}
+\item Berdasarkan Teorema Keoptimalan Primal--Dual dalam buku, jika $\x^*$ dan $\y^*$ keduanya optimal, maka, karena keduanya layak, keduanya harus memenuhi kelonggaran komplementer: $y_2^*\,(\mathbf{a}_2^\top\x^* - b_2) = 0$. Di sini $\mathbf{a}_2^\top\x^* < b_2$ (longgar) dan $y_2^* = 3 > 0$, sehingga hasil kalinya benar-benar negatif, bukan nol. Oleh karena itu, klaim tersebut salah: $\x^*$ dan $\y^*$ tidak mungkin keduanya optimal.
+\item Perhatikan dengan cermat apa yang disangkal: hanya keoptimalan \emph{bersama} pasangan khusus ini. Argumen tersebut tidak menunjukkan titik mana yang bermasalah. Mungkin saja $\x^*$ optimal dan $\y^*$ sekadar titik dual layak yang suboptimal; mungkin pula $\y^*$ optimal dan $\x^*$ suboptimal; dan mungkin keduanya tidak optimal. (Jika keduanya optimal, sebarang solusi primal optimal yang dipasangkan dengan sebarang solusi dual optimal akan memenuhi kelonggaran komplementer. Jadi, pelanggaran yang diamati membuktikan sedikitnya salah satu dari keduanya bermasalah, tanpa menunjukkan yang mana.) Cara cepat untuk memperoleh informasi lebih lanjut adalah membandingkan $\c^\top\x^*$ dengan $\b^\top\y^*$; berdasarkan dualitas kuat, selisih antara keduanya membatasi seberapa jauh masing-masing dari nilai optimal.
+\item Secara ekonomi, $y_2^*$ adalah harga yang diberikan pesaing (atau pasar) kepada satu satuan sumber daya 2. Membayar harga yang benar-benar positif untuk tambahan satuan sumber daya yang sebagian stoknya masih tidak terpakai tidaklah masuk akal: satuan tambahan tersebut hanya akan menambah sisa persediaan dan tidak menghasilkan laba tambahan, sehingga nilai marjinalnya adalah $0$. Dengan kata lain, pada keseimbangan ekonomi, barang yang kelebihan pasokan memiliki harga nol; harga positif pada sumber daya yang longgar menandakan bahwa harga dan rencana yang dilaporkan tidak mungkin menggambarkan keseimbangan yang sama.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{11.15}{Menyangkal Klaim Solusi Optimal}{2}
+
+Latihan ini memiliki Solusi Pilihan di dalam buku; solusi tersebut disajikan kembali di sini.
+
+(a) Syarat-syaratnya adalah $y_1(x_1 + x_2 - 4) = 0$, $y_2(2x_1 + x_2 - 5) = 0$, $x_1(y_1 + 2y_2 - 3) = 0$, dan $x_2(y_1 + y_2 - 2) = 0$.
+
+(b) Pada $(x_1, x_2) = (2, 0)$: kendala primal pertama memberi $2 < 4$ (longgar), sehingga memaksa $y_1 = 0$; kendala kedua memberi $4 < 5$ (longgar), sehingga memaksa $y_2 = 0$. Namun, $x_1 = 2 > 0$ mengharuskan kendala dual pertama ketat: $y_1 + 2y_2 = 3$.
+
+(c) Dengan $y_1 = y_2 = 0$, diperoleh $0 = 3$, suatu kontradiksi: tidak ada solusi dual yang kompatibel, sehingga $(2,0)$ tidak optimal. (Titik tersebut layak, tetapi kedua kendalanya longgar, sehingga masih dapat diperbaiki.) Optimum yang sebenarnya adalah $(x_1, x_2) = (1, 3)$ dengan nilai $9$: kedua kendala primal ketat, dan penyelesaian $y_1 + 2y_2 = 3$, $y_1 + y_2 = 2$ memberi optimum dual $\y^* = (1,1)$ dengan nilai yang sama, $4(1) + 5(1) = 9$. (Diverifikasi dengan \texttt{linprog}.)
+
+% ----------------------------------------------------------------------------
+\exsol{11.16}{Optimisasi Paket Makanan dan Dualitas}{3}
+
+Primal: $\max 3x_1 + 2x_2 + 4x_3 + x_4 + 5x_5 + 2x_6$ dengan kendala waktu dapur $x_1 + 2x_2 + x_3 + x_5 \le 10$, waktu pengemasan $2x_1 + x_4 + 3x_5 + x_6 \le 12$, $\x \ge \mathbf{0}$.
+
+\begin{enumerate}
+\item Dua sumber daya menghasilkan dua variabel dual: $y_1$ = nilai marjinal satu jam dapur, $y_2$ = nilai marjinal satu jam pengemasan. Setiap paket menghasilkan satu kendala dual (nilai paket sumber dayanya, berdasarkan harga $y$, harus sedikitnya sama dengan labanya):
+\[
+\begin{aligned}
+\min \quad & 10y_1 + 12y_2 \\
+\st & y_1 + 2y_2 \ge 3 \quad (x_1 \text{ Classic Chicken}) \\
+& 2y_1 \phantom{{}+2y_2} \ge 2 \quad (x_2 \text{ Vegan Delight}) \\
+& y_1 \phantom{{}+2y_2} \ge 4 \quad (x_3 \text{ Protein Boost}) \\
+& \phantom{y_1 + {}} y_2 \ge 1 \quad (x_4 \text{ Quick \& Light}) \\
+& y_1 + 3y_2 \ge 5 \quad (x_5 \text{ Gourmet Chef Special}) \\
+& \phantom{y_1 + {}} y_2 \ge 2 \quad (x_6 \text{ Breakfast Box}) \\
+& y_1, y_2 \ge 0 .
+\end{aligned}
+\]
+\item Pada bidang $(y_1, y_2)$, keenam kendala menyusut menjadi dua: $y_1 \ge 4$ (Protein Boost; kendala ini mendominasi $2y_1 \ge 2$) dan $y_2 \ge 2$ (Breakfast Box; kendala ini mendominasi $y_2 \ge 1$). Kedua kendala yang mengaitkan variabel kemudian terpenuhi secara otomatis: $y_1 + 2y_2 \ge 4 + 4 = 8 \ge 3$ dan $y_1 + 3y_2 \ge 4 + 6 = 10 \ge 5$. Daerah layaknya adalah ``kuadran timur laut'' $\{y_1 \ge 4,\ y_2 \ge 2\}$, dan garis level $10y_1 + 12y_2$ menurun ke arah barat daya, sehingga optimumnya adalah titik sudut
+\[
+\y^* = (4, 2), \qquad \text{nilai dual } 10(4) + 12(2) = 64 .
+\]
+\item Satu jam dapur bernilai $\$4$ dan satu jam pengemasan bernilai $\$2$ pada tingkat marjinal: dengan satu jam dapur tambahan, perusahaan rintisan dapat memperoleh sekitar $\$4$ lebih banyak (dengan membuat satu Protein Boost lagi), sedangkan satu jam pengemasan tambahan bernilai $\$2$ (satu Breakfast Box lagi). Seluruh ketersediaan sumber daya, jika diberi harga demikian, bernilai $\$64$, dan tidak ada paket yang mengungguli tagihan sumber dayanya sendiri pada harga-harga tersebut.
+\item Karena $y_1^* = 4 > 0$ dan $y_2^* = 2 > 0$, kelonggaran komplementer memaksa \emph{kedua} kendala primal menjadi ketat. Dari sisi variabel, kendala dual yang longgar pada $\y^*$ memaksa variabel-variabel terkait bernilai nol:
+\[
+\begin{aligned}
+x_1&: & 4 + 2(2) &= 8 > 3 &&\Rightarrow x_1 = 0, &
+x_2&: & 2(4) &= 8 > 2 &&\Rightarrow x_2 = 0, \\
+x_4&: & 2 &> 1 &&\Rightarrow x_4 = 0, &
+x_5&: & 4 + 3(2) &= 10 > 5 &&\Rightarrow x_5 = 0,
+\end{aligned}
+\]
+sedangkan kendala untuk $x_3$ ($y_1 \ge 4$, ketat) dan $x_6$ ($y_2 \ge 2$, ketat) memungkinkan $x_3, x_6 > 0$. Variabel basisnya adalah $x_3$ dan $x_6$.
+\item Dengan $x_3, x_6$ sebagai satu-satunya variabel taknol, kedua kendala sumber daya yang ketat menjadi $x_3 = 10$ dan $x_6 = 12$, sehingga
+\[
+\x^* = (0, 0, 10, 0, 0, 12), \qquad z^* = 4(10) + 2(12) = 64,
+\]
+sama dengan nilai dual. Jadi, kedua solusi tersebut optimal berdasarkan dualitas kuat. (Hasil verifikasi: \texttt{linprog} mengembalikan $z^* = 64$ tepat pada $\x^*$ ini dengan variabel dual $(4, 2)$.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{11.17}{Dualitas dengan Jenis Kendala Campuran: Perusahaan Rintisan Kemasan Ramah Lingkungan}{3}
+
+Primal: $\max 4x_1 + 6x_2 + 5x_3$ dengan kendala tenaga kerja $2x_1 + 4x_2 + 3x_3 \le 140$, bahan $4x_1 + 6x_2 + 4x_3 = 240$, ritel $6x_1 + 9x_2 + 8x_3 \ge 80$, $\x \ge \mathbf{0}$.
+
+\begin{enumerate}
+\item Variabel dual, dengan tanda yang ditentukan oleh jenis kendala dalam masalah primal \emph{maksimisasi} ini: $y_1 \ge 0$ untuk kendala tenaga kerja $\leq$ (harga per jam kerja), $y_2$ \emph{bebas} untuk persamaan bahan (harga per satuan bahan; nilainya dapat negatif karena keharusan menggunakan tepat 240 satuan pada prinsipnya dapat merugikan), dan $y_3 \le 0$ untuk komitmen ritel $\geq$ (kendala $\geq$ dalam masalah maksimisasi memiliki pengali takpositif; ``harganya'' hanya dapat bersifat menghukum, yang mencerminkan bahwa komitmen tersebut membatasi perusahaan rintisan). Setiap variabel primal taknegatif menghasilkan kendala dual $\geq$:
+\[
+\begin{aligned}
+\min \quad & 140y_1 + 240y_2 + 80y_3 \\
+\st & 2y_1 + 4y_2 + 6y_3 \ge 4 \quad (x_1 \text{ FreshBox Standard}) \\
+& 4y_1 + 6y_2 + 9y_3 \ge 6 \quad (x_2 \text{ FreshBox Premium}) \\
+& 3y_1 + 4y_2 + 8y_3 \ge 5 \quad (x_3 \text{ Market Crate}) \\
+& y_1 \ge 0, \quad y_2 \text{ bebas}, \quad y_3 \le 0 .
+\end{aligned}
+\]
+\item Masalah dual berdimensi tiga, sehingga salah satu masalah dapat diselesaikan menggunakan perangkat lunak. \texttt{linprog} pada masalah primal mengembalikan
+\[
+\x^* = (40, 0, 20), \qquad z^* = 4(40) + 5(20) = 260,
+\]
+dengan kendala tenaga kerja ketat ($2(40) + 3(20) = 140$), bahan tepat ($4(40) + 4(20) = 240$), dan ritel longgar ($6(40) + 8(20) = 400 > 80$). Menyelesaikan masalah dual secara langsung memberi $\y^* = (1, \tfrac12, 0)$ dengan nilai $140(1) + 240(\tfrac12) + 80(0) = 260$. (Sebagai pilihan lain: menebak $y_3 = 0$ dari kelonggaran kendala ritel menyusutkan masalah dual menjadi dua variabel, dan optimum grafis dari $\min 140y_1 + 240y_2$ atas ketiga kendala pada bidang $(y_1, y_2)$ adalah perpotongan kendala $x_1$ dan $x_3$, yakni $2y_1 + 4y_2 = 4$ dan $3y_1 + 4y_2 = 5$, yaitu $(1, \tfrac12)$.)
+\item Kelonggaran komplementer, dalam kedua arah:
+\begin{itemize}
+\item Kendala ritel longgar ($400 > 80$) $\Rightarrow y_3^* = 0$. Konsisten. Kendala tenaga kerja ketat, sehingga $y_1^* = 1 > 0$ diperbolehkan; persamaan bahan selalu ``ketat,'' sehingga $y_2^* = \tfrac12$ yang bebas tidak memiliki syarat tersebut.
+\item Pada $\y^* = (1, \tfrac12, 0)$: kendala $x_1$ ketat ($2 + 2 + 0 = 4$), kendala $x_3$ ketat ($3 + 2 + 0 = 5$), dan kendala $x_2$ longgar ($4 + 3 + 0 = 7 > 6$) $\Rightarrow x_2^* = 0$. Jadi, kandidat variabel basis adalah $x_1$ dan $x_3$.
+\end{itemize}
+\item Dengan $x_2 = 0$, kedua kendala sumber daya yang ketat memberi sistem persegi
+\[
+2x_1 + 3x_3 = 140, \qquad 4x_1 + 4x_3 = 240
+\quad\Longrightarrow\quad x_1 = 40, \ x_3 = 20,
+\]
+(dari persamaan kedua, $x_1 + x_3 = 60$; substitusi $x_1 = 60 - x_3$ ke persamaan pertama memberi $120 + x_3 = 140$). Laba total: $z^* = 4(40) + 6(0) + 5(20) = 260$, sama dengan nilai dual, sehingga pasangan tersebut optimal berdasarkan dualitas kuat. Interpretasinya: satu jam kerja bernilai $\$1$, satu satuan kuota bahan bernilai $\$0.50$, dan komitmen ritel tidak menimbulkan biaya karena dipenuhi dengan jauh melebihi batas.
+\end{enumerate}
+
+\emph{Catatan.} Tanda variabel dual di atas mengikuti konvensi tanda yang telah diperbaiki dalam \texttt{duality.tex} (lihat kotak QA di bagian atas bab ini); sebelum perbaikan, contoh ``Masalah Dual yang Rumit'' dalam buku akan menyiratkan $y_3 \ge 0$ bagi kendala ritel, yang keliru untuk masalah primal maksimisasi (di sini kekeliruan itu tidak berpengaruh hanya karena $y_3^* = 0$).

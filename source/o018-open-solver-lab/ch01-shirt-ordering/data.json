@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "lab_id": "o018.ch01.shirt-ordering",
+  "source": {
+    "repository": "https://github.com/open-optimization/open-optimization-or-book",
+    "commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "path": "Intro-Math-Programming/baseText/book/part1-linear-programming/ch01-introduction/mathematicalProgramming.tex",
+    "label": "ex:shirt-full-lp"
+  },
+  "periods": [
+    {
+      "id": "friday",
+      "display_id": "Jumat",
+      "order_day_id": "thursday",
+      "order_day_display_id": "Kamis",
+      "demand": 5,
+      "order_cost": 8.0,
+      "holding_cost": 0.5
+    },
+    {
+      "id": "saturday",
+      "display_id": "Sabtu",
+      "order_day_id": "friday",
+      "order_day_display_id": "Jumat",
+      "demand": 10,
+      "order_cost": 9.0,
+      "holding_cost": 0.5
+    },
+    {
+      "id": "sunday",
+      "display_id": "Minggu",
+      "order_day_id": "saturday",
+      "order_day_display_id": "Sabtu",
+      "demand": 7,
+      "order_cost": 10.0,
+      "holding_cost": 0.0
+    }
+  ],
+  "initial_inventory": 0.0,
+  "allow_final_inventory": true,
+  "currency": "USD"
+}
+

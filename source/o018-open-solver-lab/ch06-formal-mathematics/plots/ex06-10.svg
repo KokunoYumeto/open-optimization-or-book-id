@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="720" height="520" viewBox="0 0 720 520"
+  role="img" aria-labelledby="ex06-10-title ex06-10-desc" lang="id"
+  xml:lang="id-ID" focusable="false">
+  <title id="ex06-10-title">Latihan 6.10 — Gabungan dua cakram konveks</title>
+  <desc id="ex06-10-desc">Dua cakram satuan berpusat di (-2,0) dan (2,0) terpisah. Kedua pusat berada dalam gabungan, tetapi titik tengahnya (0,0) berada di luar kedua cakram; gabungan karena itu tidak konveks.</desc>
+  <metadata>Adaptasi latihan O018 Bab 6; CC BY-SA 4.0.</metadata>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+      orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 z" fill="#1c2430"/>
+    </marker>
+    <style><![CDATA[
+      .background { fill: #ffffff; }
+      .frame { fill: none; stroke: #697386; stroke-width: 1; }
+      .axis { stroke: #1c2430; stroke-width: 1.5; }
+      .tick { stroke: #1c2430; stroke-width: 1; }
+      .tick-label { fill: #1c2430; font: 13px sans-serif; text-anchor: middle; }
+      .tick-label.y { text-anchor: end; }
+      .axis-label { fill: #1c2430; font: 16px sans-serif; font-weight: 700; }
+      .region { fill: #dcecff; stroke: #174a7e; stroke-width: 2.5; }
+      .boundary { fill: none; stroke: #174a7e; stroke-width: 3; }
+      .secondary { fill: none; stroke: #8a3f00; stroke-width: 2.5; stroke-dasharray: 8 5; }
+      .point { fill: #ffffff; stroke: #111111; stroke-width: 2.5; }
+      .point-filled { fill: #111111; stroke: #ffffff; stroke-width: 1.5; }
+      .point-alert { fill: #ffffff; stroke: #a32020; stroke-width: 3; }
+      .point-label { fill: #111111; font: 14px sans-serif; font-weight: 600; }
+      .annotation { fill: #111111; font: 14px sans-serif; }
+      .annotation-strong { fill: #111111; font: 14px sans-serif; font-weight: 700; }
+      .optimal { stroke: #111111; stroke-width: 4; }
+      .guide { stroke: #697386; stroke-width: 1.5; stroke-dasharray: 4 4; }
+    ]]></style>
+  </defs>
+  <rect class="background" x="0" y="0" width="720" height="520"/>
+  <rect class="frame" x="70" y="90" width="620" height="310"/>
+<circle class="region" cx="207.777778" cy="245" r="86.111111"/>
+<circle class="region" cx="552.222222" cy="245" r="86.111111"/>
+<line class="axis" x1="70" y1="245" x2="690" y2="245" marker-end="url(#arrow)"/>
+<line class="axis" x1="380" y1="400" x2="380" y2="90" marker-end="url(#arrow)"/>
+<line class="tick" x1="121.666667" y1="241" x2="121.666667" y2="249"/>
+<text class="tick-label" x="121.666667" y="265">-3</text>
+<line class="tick" x1="207.777778" y1="241" x2="207.777778" y2="249"/>
+<text class="tick-label" x="207.777778" y="265">-2</text>
+<line class="tick" x1="293.888889" y1="241" x2="293.888889" y2="249"/>
+<text class="tick-label" x="293.888889" y="265">-1</text>
+<line class="tick" x1="466.111111" y1="241" x2="466.111111" y2="249"/>
+<text class="tick-label" x="466.111111" y="265">1</text>
+<line class="tick" x1="552.222222" y1="241" x2="552.222222" y2="249"/>
+<text class="tick-label" x="552.222222" y="265">2</text>
+<line class="tick" x1="638.333333" y1="241" x2="638.333333" y2="249"/>
+<text class="tick-label" x="638.333333" y="265">3</text>
+<line class="tick" x1="376" y1="331.111111" x2="384" y2="331.111111"/>
+<text class="tick-label y" x="370" y="335.111111">-1</text>
+<line class="tick" x1="376" y1="158.888889" x2="384" y2="158.888889"/>
+<text class="tick-label y" x="370" y="162.888889">1</text>
+<text class="axis-label" x="694" y="419">x₁</text>
+<text class="axis-label" x="50" y="85">x₂</text>
+<circle class="point-filled" cx="207.777778" cy="245" r="6"/><text class="point-label" x="216.777778" y="236">pusat C₁</text>
+<circle class="point-filled" cx="552.222222" cy="245" r="6"/><text class="point-label" x="561.222222" y="236">pusat C₂</text>
+<circle class="point-alert" cx="380" cy="245" r="6"/><text class="point-label" x="389" y="236">titik tengah, luar</text>
+<text class="annotation-strong" x="138.888889" y="128.75">C₁</text>
+<text class="annotation-strong" x="552.222222" y="128.75">C₂</text>
+</svg>

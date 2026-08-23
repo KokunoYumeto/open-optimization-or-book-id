@@ -1,0 +1,248 @@
+\subsection{Identitas dan Invers}
+
+Ada sebuah matriks khusus, yang dinyatakan dengan $I$, dan disebut
+\index{matriks!identitas} \textbf{matriks identitas}. Matriks identitas selalu merupakan matriks
+persegi, dan memiliki
+sifat bahwa diagonal utamanya berisi angka satu dan semua posisi lainnya
+berisi nol. Berikut beberapa matriks identitas dengan berbagai ukuran.
+\begin{equation*}
+\leftB 1\rightB ,\leftB
+\begin{array}{cc}
+1 & 0 \\
+0 & 1
+\end{array}
+\rightB ,\leftB
+\begin{array}{ccc}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{array}
+\rightB ,\leftB
+\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{array}
+\rightB 
+\end{equation*}
+Matriks pertama adalah matriks identitas $1\times 1$, matriks kedua adalah matriks identitas $2\times 2$,
+dan seterusnya. Dengan memperluas pola ini, Anda mungkin dapat melihat
+bentuk matriks identitas $n\times n$. Jika perlu dibedakan
+ukuran matriks identitas yang sedang dibahas, kita akan menggunakan
+notasi $I_n$ untuk matriks identitas $n \times n$. 
+
+Matriks identitas begitu penting sehingga terdapat
+simbol khusus untuk menyatakan entri pada posisi $(i,j)$ dari matriks identitas. Simbol ini diberikan oleh
+$I_{ij}=\delta _{ij}$, dengan $\delta _{ij}$ sebagai \textbf{simbol Kronecker}
+yang didefinisikan
+\index{simbol Kronecker} oleh
+\begin{equation*}
+\delta _{ij}=\left\{
+\begin{array}{c}
+1
+\text{ jika }i=j \\
+0\text{ jika }i\neq j
+\end{array}
+\right.
+\end{equation*}
+
+$I_n$ disebut \textbf{matriks identitas} karena merupakan \textbf{identitas perkalian} dalam pengertian berikut.
+
+\begin{lemma}{Perkalian dengan Matriks Identitas}\label{lem:multbyidentity}
+Misalkan $A$ adalah matriks $m\times n$ dan $I_{n}$ adalah matriks identitas
+$n\times n$\textbf{.} Maka $AI_{n}=A.$ Jika $I_{m}$ adalah matriks identitas
+$m\times m$, berlaku pula $I_{m}A=A.$
+\end{lemma}
+
+\ifdefined\showproofs
+\begin{proof}
+Entri $(i,j)$ dari $AI_n$ diberikan oleh:
+\begin{equation*}
+\sum_{k}a_{ik}\delta _{kj}=a_{ij}
+\end{equation*}
+sehingga $AI_{n}=A.$ Kasus lainnya diserahkan sebagai latihan untuk Anda. 
+\end{proof}
+\fi
+Sekarang kita mendefinisikan operasi matriks yang dalam beberapa hal berperan seperti pembagian. 
+
+\begin{definition}{Invers Suatu Matriks}\label{def:invertiblematrix}
+Matriks persegi $n\times n$, yaitu $A$, dikatakan memiliki \textbf{invers} $A^{-1}$
+jika dan hanya jika
+\begin{equation*}
+AA^{-1}=A^{-1}A=I_n
+\end{equation*}
+Dalam hal ini, matriks $A$ disebut
+\index{matriks!invers} \textbf{invertibel}.
+\index{matriks!invertibel}
+\end{definition}
+
+Matriks $A^{-1}$ tersebut memiliki ukuran yang sama dengan matriks $A$.
+Sangat penting untuk diperhatikan bahwa invers suatu matriks, jika ada,
+bersifat unik. Cara lain untuk memahaminya adalah: jika suatu matriks bertindak seperti invers,
+maka matriks itu $\textbf{memang}$ inversnya.
+
+\begin{theorem}{Ketunggalan Invers}\label{thm:uniqueinverse}
+Misalkan $A$ adalah matriks $n \times\ n$ sedemikian sehingga invers $A^{-1}$ ada. Maka hanya ada satu
+matriks invers semacam itu.
+Artinya, untuk setiap matriks $B$ sedemikian sehingga $AB=BA=I$, berlaku $B=A^{-1}$.
+\end{theorem}
+
+\ifdefined\showproofs
+\begin{proof} Dalam bukti ini, diasumsikan bahwa $I$ adalah matriks identitas $n \times n$.
+Misalkan $A, B$ adalah matriks $n \times n$ sedemikian sehingga $A^{-1}$ ada dan $AB=BA=I$.
+Kita ingin menunjukkan bahwa $A^{-1} = B$.
+Sekarang, dengan menggunakan sifat-sifat yang telah kita lihat, diperoleh:
+\begin{equation*}
+A^{-1}=A^{-1}I=A^{-1}\left( AB\right) =\left( A^{-1}A\right) B=IB=B
+\end{equation*}
+Jadi, $A^{-1} = B$, yang menunjukkan bahwa invers tersebut tunggal.
+\end{proof}
+\fi
+Contoh berikut menunjukkan cara memeriksa invers suatu matriks. 
+
+\begin{example}{Memeriksa Invers Suatu Matriks}\label{exa:verifyinginverse}
+Misalkan $A=\leftB
+\begin{array}{rr}
+1 & 1 \\
+1 & 2
+\end{array}
+\rightB .$ Tunjukkan bahwa $\leftB
+\begin{array}{rr}
+2 & -1 \\
+-1 & 1
+\end{array}
+\rightB $ adalah invers dari $A.$
+\end{example}
+
+\begin{solution} Untuk memeriksanya, kalikan
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+1 & 1 \\
+1 & 2
+\end{array}
+\rightB \leftB
+\begin{array}{rr}
+2 & -1 \\
+-1 & 1
+\end{array}
+\rightB =\allowbreak \leftB
+\begin{array}{rr}
+1 & 0 \\
+0 & 1
+\end{array}
+\rightB = I 
+\end{equation*}
+dan
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+2 & -1 \\
+-1 & 1
+\end{array}
+\rightB \leftB
+\begin{array}{rr}
+1 & 1 \\
+1 & 2
+\end{array}
+\rightB =\allowbreak \leftB
+\begin{array}{rr}
+1 & 0 \\
+0 & 1
+\end{array}
+\rightB = I 
+\end{equation*}
+yang menunjukkan bahwa matriks ini memang invers dari $A.$
+\end{solution}
+
+Berbeda dengan perkalian bilangan biasa, dapat terjadi bahwa $A\neq 0$, tetapi
+$A$ tidak memiliki invers. Hal ini diilustrasikan dalam contoh berikut.
+
+\begin{example}{Matriks Taknol yang Tidak Memiliki Invers}\label{exa:noninvertiblematrix}
+Misalkan $A=\leftB
+\begin{array}{rr}
+1 & 1 \\
+1 & 1
+\end{array}
+\rightB .$ Tunjukkan bahwa $A$ tidak memiliki invers.
+\end{example}
+
+\begin{solution} Kita mungkin mengira $A$ memiliki invers karena tidak sama dengan nol.
+Namun, perhatikan bahwa
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+1 & 1 \\
+1 & 1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+-1 \\
+1
+\end{array}
+\rightB =\leftB
+\begin{array}{r}
+0 \\
+0
+\end{array}
+\rightB
+\end{equation*}
+Jika $A^{-1}$ ada, kita akan memperoleh
+\begin{eqnarray*}
+\leftB
+\begin{array}{r}
+0 \\
+0
+\end{array}
+\rightB &=& A^{-1}\left( \leftB
+\begin{array}{r}
+0 \\
+0
+\end{array}
+\rightB \right) \\
+&=& A^{-1}\left( A\leftB
+\begin{array}{r}
+-1 \\
+1
+\end{array}
+\rightB \right) \\
+&=&\left( A^{-1}A\right) \leftB
+\begin{array}{r}
+-1 \\
+1
+\end{array}
+\rightB \\
+&=&I\leftB
+\begin{array}{r}
+-1 \\
+1
+\end{array}
+\rightB \\
+&=&\leftB
+\begin{array}{r}
+-1 \\
+1
+\end{array}
+\rightB
+\end{eqnarray*}
+Ini menyatakan bahwa
+\begin{equation*}
+\leftB
+\begin{array}{r}
+0 \\
+0
+\end{array}
+\rightB
+=
+\leftB
+\begin{array}{r}
+-1 \\
+1
+\end{array}
+\rightB
+\end{equation*}
+yang mustahil! Oleh karena itu, $A$ tidak memiliki invers. 
+\end{solution}
+
+Pada bagian berikutnya, kita akan membahas cara mencari invers suatu matriks, jika invers tersebut ada. 

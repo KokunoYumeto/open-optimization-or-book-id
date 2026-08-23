@@ -1,0 +1,259 @@
+{
+  "artifacts": [
+    {
+      "bytes": 4021,
+      "path": "ATTRIBUTION.md",
+      "sha256": "768296e796ce9ed348226b9470cd551da6f57602e0eaf0364702d0662d3fcb73"
+    },
+    {
+      "bytes": 1325,
+      "path": "LICENSE-CODE.txt",
+      "sha256": "0d0676d29717b661ea219a8100b02dabd4cdf631ae0dceedb2640e754822fbca"
+    },
+    {
+      "bytes": 3027,
+      "path": "README.md",
+      "sha256": "dd7005e38dc8654870ef386ce3b0935070183b08abfdd130a8322cf34020bfa2"
+    },
+    {
+      "bytes": 16509,
+      "path": "data.json",
+      "sha256": "2c479ecc217985d901ee029a5e18f1e3d93527bde772b5290a14047a386f0224"
+    },
+    {
+      "bytes": 9043,
+      "path": "expected-results.json",
+      "sha256": "928da99205ec849ef3abd9ab9a8e041a711f02e8261bf31b856dbf663b283625"
+    },
+    {
+      "bytes": 49669,
+      "path": "model.py",
+      "sha256": "a20fbffe87b200f05532101c7276228f9f7c9d44c486027644dc532546a920ab"
+    },
+    {
+      "bytes": 11050,
+      "path": "plot_svg.py",
+      "sha256": "27ab8f0d16a4c3495e8b7667684273f7fee57173364e60dbecaa03a4179aa5f2"
+    },
+    {
+      "bytes": 110132,
+      "path": "results.json",
+      "sha256": "0d33eda2ba7d99fde16519aed4920d7c6d478a2f2cb7d376a5e77f82968151e6"
+    },
+    {
+      "bytes": 3754,
+      "path": "run_lab.py",
+      "sha256": "47afecce8881a04d06cb578a8b375781a649ac71be97403d2bc3d54cf2f7634e"
+    },
+    {
+      "bytes": 18667,
+      "path": "test_models.py",
+      "sha256": "d5bc10a854cc3ab027c0a1f116149fb77ccfab809aa2d83f9c687a2d63517dde"
+    },
+    {
+      "bytes": 1370,
+      "path": "verification.log",
+      "sha256": "a9183efac44f864bf5b590c97b60be8b0cc19113c4dc40eadaeafdffe4cf1a41"
+    },
+    {
+      "bytes": 8229,
+      "path": "verify_receipt.py",
+      "sha256": "5ed56bb1644e4ea29638073ea50fc68d645dde46854d10a9e904db60d8d15f31"
+    },
+    {
+      "bytes": 5221,
+      "path": "plots/ex07-15.svg",
+      "sha256": "78d59b12e48cb1ced8ad6e3898d3c340748f5e3ae81fb0d140e4cd258b21aefa"
+    },
+    {
+      "bytes": 4315,
+      "path": "plots/ex07-17.svg",
+      "sha256": "30c6258a53f350fccdde72955f79e55319f59434ea2d1433c2bea68572d4a09b"
+    },
+    {
+      "bytes": 5254,
+      "path": "plots/ex09-12.svg",
+      "sha256": "74f01264976f86ed7e7d7eadd52e2110f121b3b01585249ae424ee236feff731"
+    }
+  ],
+  "content_license": "CC-BY-SA-4.0",
+  "lab_id": "o018.ch07-ch09.simplex",
+  "provenance": {
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "source_files": [
+      {
+        "bytes": 132627,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-basis-driven.tex",
+        "role": "authority_ch07_chapter",
+        "sha256": "925e23f06a5c5900f4e61c416d6f624b57ab6581ae42696e09cf2e9892c19021"
+      },
+      {
+        "bytes": 20547,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch07.tex",
+        "role": "authority_ch07_manual",
+        "sha256": "e2068bcaf5538f47009f2e420907baabbc559d3c175ddb2443c352e1513f0b4b"
+      },
+      {
+        "bytes": 37596,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-matrix-version.tex",
+        "role": "authority_ch08_chapter",
+        "sha256": "f012408ddcc285dc717c4156338fc9f315be9290122efdd0bad0cde704e5cec4"
+      },
+      {
+        "bytes": 12614,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch08.tex",
+        "role": "authority_ch08_manual",
+        "sha256": "7e374e3f0282398ee5150582735978637490d4d95328fe309bfed5580edc7fa6"
+      },
+      {
+        "bytes": 30290,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-tableau.tex",
+        "role": "authority_ch09_chapter",
+        "sha256": "a99da17f6820e2e955f34c9db08f354c211b90ebf87cb2027bcf6660caca7b0b"
+      },
+      {
+        "bytes": 14072,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch09.tex",
+        "role": "authority_ch09_manual",
+        "sha256": "d5f7d7296e1b162ab74031a86d4d1e45da2a07891c992b50b2ab9fe57271ca65"
+      },
+      {
+        "bytes": 136847,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-basis-driven.tex",
+        "role": "translated_ch07_chapter",
+        "sha256": "b18eac29969fdce112da5ceb83b74518138d1bcaa22efe52aeee2411676b9b7c"
+      },
+      {
+        "bytes": 21264,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch07.tex",
+        "role": "translated_ch07_manual",
+        "sha256": "bff78cc451540559fa73eb619ae0f71e86bfd0df9575e3dd50cea0faf56ae98d"
+      },
+      {
+        "bytes": 39468,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-matrix-version.tex",
+        "role": "translated_ch08_chapter",
+        "sha256": "1e0ac6ecd971c245bf090c82dcc4779b06cdd9e716004632138c4094c0430bf2"
+      },
+      {
+        "bytes": 12946,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch08.tex",
+        "role": "translated_ch08_manual",
+        "sha256": "c19558f01e860afdf475157fda8af00ca3e5a08314cb188a5b3c9bc7046a7885"
+      },
+      {
+        "bytes": 30803,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch06-simplex/simplex-tableau.tex",
+        "role": "translated_ch09_chapter",
+        "sha256": "6fe55f1e5eac82caf2128f7cae220bb29ff9537802465cb9b28feb6bab1330de"
+      },
+      {
+        "bytes": 15079,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch09.tex",
+        "role": "translated_ch09_manual",
+        "sha256": "f563b1aabe4d56830afbfb882e677d65ad890145c2a668d7dc31631d8baa7cb4"
+      }
+    ]
+  },
+  "runtime": {
+    "closure_files": [
+      {
+        "bytes": 2313,
+        "path": "authority/runtime-licenses/MANIFEST.csv",
+        "sha256": "71451702ae6d014eb1e59fbd8ac950fa9f26b0bab47661817b5fe65daf41b329"
+      },
+      {
+        "bytes": 407,
+        "path": "authority/runtime-wheels/MANIFEST.csv",
+        "sha256": "326fc250a9b3b17f523a67672f1f38eae48d4f868239c5eaa273644ab0ec6e04"
+      },
+      {
+        "bytes": 602,
+        "path": "source/o018-open-solver-lab/requirements.lock",
+        "sha256": "2172e05818e66089772851294c4143497616b17bbe449e1a38f5aeb7a54418a0"
+      },
+      {
+        "bytes": 1952,
+        "path": "source/o018-open-solver-lab/runtime-receipt.json",
+        "sha256": "627cc1a3cbeec61635f61adff047478616e8d1de59161d632acf15372467fe7d"
+      }
+    ],
+    "highspy": "1.15.1",
+    "numpy": "2.5.2",
+    "pyomo": "6.10.1",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13",
+    "solver_interface": "appsi_highs"
+  },
+  "schema_version": "1.0.0",
+  "verification": {
+    "artifact_count_excluding_receipt": 15,
+    "chapter_counts": {
+      "7": 17,
+      "8": 9,
+      "9": 12
+    },
+    "correction_count": 0,
+    "exercise_count": 38,
+    "implementation_corrections": [
+      "escaped_css_braces_before_first_successful_svg_render"
+    ],
+    "maximum_solver_violation": 0.0,
+    "method_counts": {
+      "direct_dictionary_certificate": 1,
+      "direct_infeasible_big_m_certificate": 1,
+      "direct_matrix_identity_proof": 1,
+      "direct_sign_convention_proof": 1,
+      "direct_tableau_sign_proof": 1,
+      "direct_unbounded_tableau_certificate": 1,
+      "direct_unique_optimum_proof": 1,
+      "exact_basis_enumeration": 1,
+      "exact_basis_matrix": 3,
+      "exact_dictionary_and_highs": 1,
+      "exact_dictionary_path_and_highs": 5,
+      "exact_dictionary_reconstruction_and_highs": 1,
+      "exact_geometry_basis_and_highs": 1,
+      "exact_reduced_costs_and_highs": 1,
+      "exact_standardization": 5,
+      "exact_tableau_path_and_highs": 2,
+      "exact_tableau_pivot": 1,
+      "exact_tableau_ratio_test": 1,
+      "exact_tableau_reading": 2,
+      "exact_tableau_to_dictionary": 1,
+      "exact_tie_paths_proof_and_highs": 1,
+      "exact_unbounded_ray_and_highs": 1,
+      "exact_wrong_pivot_certificate": 1,
+      "symbolic_big_m_path_and_highs": 2,
+      "symbolic_big_m_tableau_and_highs": 1
+    },
+    "plot_accessibility_contract": {
+      "generated_svg_count": 3,
+      "language": "id-ID",
+      "required_svg_elements": [
+        "title",
+        "desc",
+        "metadata"
+      ],
+      "structured_alternatives": true,
+      "uniform_coordinate_aspect_ratio": true
+    },
+    "plots_combined_sha256": "7acdcf34f64743574ddee1e9432b98a736a172e57ced2d467de14d54d53489f4",
+    "results_bytes": 110132,
+    "results_regeneration_runs": 2,
+    "results_sha256": "0d33eda2ba7d99fde16519aed4920d7c6d478a2f2cb7d376a5e77f82968151e6",
+    "solver_call_count_per_run": 16,
+    "solver_termination_counts": {
+      "optimal": 15,
+      "unbounded": 1
+    },
+    "source_manual_title_divergence_count": 3,
+    "tests_failed_per_run": 0,
+    "tests_passed_per_run": 28,
+    "underdetermined_count": 0,
+    "unittest_runs": 2,
+    "verification_date": "2026-08-22",
+    "verified_count": 38,
+    "visual_qa_raster": "1440x1020",
+    "visual_qa_svg_count": 3
+  }
+}

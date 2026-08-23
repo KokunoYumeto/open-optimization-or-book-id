@@ -1,0 +1,49 @@
+
+\chapter*{Pendahuluan}
+\section*{Surat kepada pengajar}
+
+Buku ini merupakan buku pengantar bagi mahasiswa untuk mempelajari teori, alat, dan penerapan optimisasi.  Dua tujuan utamanya adalah (1) mahasiswa mampu menerapkan alat-alat optimisasi dalam pekerjaan atau penelitian mereka kelak, dan (2) mahasiswa memahami konsep-konsep yang mendasari solver optimisasi serta menggunakan pengetahuan tersebut agar dapat memanfaatkan solver secara efektif.
+
+Buku ini disusun berdasarkan serangkaian mata kuliah di Departemen Teknik Industri dan Sistem, Virginia Tech.   Mata kuliah tersebut adalah \emph{Riset Operasi Deterministik I} dan \emph{Riset Operasi Deterministik II}.   Mata kuliah pertama berfokus pada pemrograman linear, sedangkan mata kuliah kedua membahas pemrograman bilangan bulat dan pemrograman nonlinier.  Oleh karena itu, isi buku ini dimaksudkan untuk mencakup dua mata kuliah penuh atau lebih dalam bidang optimisasi.
+
+Buku ini dirancang untuk dibaca secara berurutan. Meskipun demikian, banyak bab yang sebagian besar berdiri sendiri dan dapat diurutkan ulang, dihilangkan, atau dipersingkat sesuai kebutuhan.  Buku ini merupakan buku teks sumber terbuka, jadi gunakanlah sesuai keperluan Anda.  Anda dianjurkan untuk membagikan adaptasi dan penyempurnaan agar karya ini dapat terus berkembang seiring waktu.
+
+\paragraph{Tentang metode simpleks.}
+Buku ini menyajikan metode simpleks dengan tiga cara, dalam tiga bab: versi \emph{kamus}, versi \emph{aljabar} (matriks), dan versi \emph{tableau}.  Sebagai pengajar, Anda dapat memilih untuk mengajarkan semuanya, beberapa di antaranya, atau bahkan hanya salah satunya.  Saya selalu merasa bahwa versi kamus memberikan gambaran paling jelas tentang apa yang sebenarnya terjadi; sebagian pemahaman itu tampaknya tidak tersampaikan kepada mahasiswa ketika mereka mengerjakan tableau.  Di sisi lain, mahasiswa cenderung menyukai operasi baris pada tableau yang lebih sederhana.  Versi matriks menyajikan aljabar linear yang mendasari keduanya dan paling langsung berkaitan dengan cara solver diimplementasikan.  Salah satu saja dari ketiga versi tersebut sudah cukup untuk melanjutkan ke bagian-bagian buku berikutnya.
+
+\paragraph{Tentang perangkat lunak.}
+Excel merupakan alat yang baik untuk menyelesaikan program linear sederhana dan dapat menjadi lingkungan yang nyaman bagi mahasiswa untuk menyusun serta menyelesaikan beberapa model pertama mereka.  Namun, sejak hadirnya asisten kecerdasan buatan (AI), pemodelan dan penulisan kode dalam Python menjadi jauh lebih mudah, dan AI mengubah pemodelan itu sendiri ke arah penyampaian kendala dalam teks biasa.  Sayangnya, AI sulit digunakan untuk membangun model-model ini di Excel.  Jadi, terus terang, bagi saya saat ini belum jelas alat mana yang paling berguna untuk diajarkan.  Buku ini menyediakan contoh dalam keduanya, sehingga Anda dapat memberi bobot pada masing-masing sesuai kebutuhan mata kuliah Anda.
+
+\section*{Surat kepada mahasiswa}
+
+Buku ini dirancang sebagai sumber belajar bagi mahasiswa yang ingin memahami apa itu optimisasi, bagaimana cara kerjanya, dan bagaimana Anda dapat menerapkannya dalam karier Anda kelak.  Fokus utamanya adalah kemampuan menerapkan teknik optimisasi pada berbagai masalah dengan menggunakan teknologi komputer, sambil memahami (setidaknya pada tingkat tinggi) apa yang dilakukan komputer dan apa yang dapat Anda nyatakan berdasarkan keluaran komputer tersebut.
+
+Yang sangat penting, ingatlah bahwa ketika seseorang menyatakan telah \emph{mengoptimalkan} suatu masalah, kita ingin mengetahui jaminan apa yang mereka miliki mengenai mutu solusinya.  Terlalu sering, mutu solusi yang diberikan 10\%, 20\%, atau bahkan lebih buruk daripada optimum.  Hal ini dapat berarti pengeluaran uang, waktu, atau energi berlebih yang sebenarnya dapat dihemat. Ketika masalahnya berskala besar, penghematan tersebut dapat dengan mudah mencapai jutaan dolar.
+
+Karena alasan inilah kita akan mempelajari sudut pandang \emph{pemrograman matematis} (alias optimisasi matematis).  Inti kajian ini adalah bahwa kita memberikan jaminan mengenai mutu suatu solusi bagi masalah tertentu.  Kita juga akan mempelajari seberapa sulit suatu masalah diselesaikan.  Hal ini akan membantu kita mengetahui (a) berapa lama waktu yang mungkin dibutuhkan untuk menyelesaikannya dan (b) seberapa baik solusi yang dapat kita harapkan untuk ditemukan dalam waktu yang wajar. Kelak kita akan mempelajari metode \emph{heuristik}---metode ini biasanya tidak disertai jaminan, tetapi cenderung membantu menemukan solusi bermutu.
+
+Catatan: Meskipun buku ini memerlukan sedikit pemrograman komputer, buku ini bukan buku tentang pemrograman.   Berkat paket-paket pemodelan luar biasa yang tersedia saat ini, kita dapat menyelesaikan masalah rumit dengan sedikit upaya pemrograman.   Keterampilan utama yang perlu kita pelajari adalah \emph{pemodelan matematis}: mengubah kata-kata dan gagasan menjadi bilangan dan variabel untuk menyampaikan masalah kepada komputer agar komputer dapat menyelesaikannya bagi Anda.  
+
+Salah satu unsur utama buku ini adalah upaya untuk membuat proses penggunaan kode dan perangkat lunak semudah mungkin.  Pada sebagian besar contoh dalam buku ini akan tersedia tautan menuju kode yang mengimplementasikan dan menyelesaikan masalah dengan menggunakan beberapa alat berbeda dalam Excel dan Python.  Contoh-contoh tersebut seharusnya memudahkan penyelesaian masalah serupa dengan data yang berbeda atau, secara lebih umum, dapat menjadi dasar untuk menyelesaikan masalah terkait yang memiliki struktur serupa.
+
+\subsubsection*{Cara menggunakan buku ini}
+
+\emph{Baca sekilas lebih dahulu.} Sebelum suatu topik dibahas dalam perkuliahan, kami menyarankan agar Anda membaca sekilas bagian-bagian yang relevan terlebih dahulu untuk memperoleh gambaran umum tentang materi yang akan datang.   Waktu yang diperlukan mungkin hanya sebagian kecil dari waktu yang dibutuhkan untuk membacanya secara saksama.
+
+\emph{Baca capaian yang diharapkan.} Pada awal setiap bagian akan terdapat daftar capaian yang diharapkan dari bagian tersebut.  Tinjaulah capaian ini sebelum membaca bagian itu agar Anda terbantu dalam mengenali hal-hal terpenting yang perlu dipetik dari materi.  Daftar tersebut juga memberikan gambaran singkat mengenai isi yang akan dibahas dalam bagian itu.
+
+\emph{Baca teksnya.} Bacalah teks dengan saksama untuk memahami masalah dan teknik yang dibahas.  Kami akan berusaha menyediakan banyak contoh; bergantung pada pemahaman Anda tentang suatu topik, Anda mungkin perlu menelaah semua contoh dengan saksama.
+
+\emph{Kerjakan latihan.} Setiap bab diakhiri dengan bagian latihan berjenjang: \emph{Pemanasan} melatih satu keterampilan dan menyebutkan contoh yang sudah dikerjakan sebagai acuannya, \emph{Soal inti} merupakan soal pemodelan dan komputasi lengkap, \emph{Konsep dan keterkaitan} meminta Anda menjelaskan mengapa sesuatu bekerja, dan \emph{Soal tantangan} membawa Anda melampaui cakupan bab. Tingkat kesulitan ditandai dengan bintang ($\star$ hingga $\star\star\star$), dan setiap latihan diakhiri dengan tag kecil berwarna abu-abu yang menunjukkan bagian atau contoh yang perlu ditinjau jika Anda mengalami kesulitan. Solusi terpilih terdapat pada akhir setiap bagian latihan; cobalah mengerjakan soal sebelum membacanya.
+
+\emph{Jelajahi sumber belajar.} Terakhir, kami menyadari bahwa tersedia banyak metode belajar alternatif berkat banyaknya informasi dan sumber belajar daring.   Karena itu, pada akhir setiap bagian akan terdapat sejumlah sumber belajar bermutu tinggi yang tersedia di internet dalam berbagai format.   Tersedia buku teks bebas lainnya, situs web informatif, dan juga sejumlah video luar biasa yang diunggah ke YouTube.  Kami menganjurkan Anda menjelajahi sumber-sumber tersebut untuk memperoleh sudut pandang lain tentang materi atau untuk mendengar maupun membaca penjelasan materi dari sudut pandang atau gaya penyajian yang berbeda.  
+
+\subsubsection*{Garis besar buku ini}
+Buku ini dibagi menjadi 3 Bagian:
+
+\begin{enumerate}
+\item[Bagian I] Pemrograman Linear,
+\item[Bagian II] Algoritme Diskret,
+\item[Bagian III] Pengantar Pemrograman Bilangan Bulat.
+\end{enumerate}
+Terdapat pula sejumlah bab berisi materi latar belakang dalam Lampiran.  Topik-topik tambahan, termasuk pemrograman bilangan bulat tingkat lanjut dan pemrograman nonlinier, dibahas dalam Buku~2.

@@ -1,0 +1,54 @@
+{
+  "owner": "KokunoYumeto",
+  "description": "Edisi Bahasa Indonesia (id-ID) dari Mathematical Programming and Operations Research, Book 1, dengan laboratorium Pyomo+HiGHS dan backend modular.",
+  "visibility": "public",
+  "default_branch": "main",
+  "has_discussions": false,
+  "has_issues": true,
+  "has_projects": false,
+  "has_wiki": false,
+  "homepage_template": "https://{owner}.github.io/open-optimization-or-book-id/",
+  "pages": {
+    "source": {
+      "branch": "main",
+      "path": "/docs"
+    }
+  },
+  "repository_name": "open-optimization-or-book-id",
+  "publication_version": "2026.08.23-id.5",
+  "release_tag": "v2026.08.23-id.5",
+  "release_name": "Book 1 Bahasa Indonesia — 2026.08.23-id.5",
+  "repository_tree_plan": "qa/github-publication-plan.json",
+  "publication_script": "release/publish_github.py",
+  "release_assets": [
+    "pemrograman-matematis-dan-riset-operasi-buku-1-id-ID.pdf",
+    "pemrograman-matematis-dan-riset-operasi-buku-1-source-id-ID.zip",
+    "pemrograman-matematis-dan-riset-operasi-buku-1-o018-open-solver-labs-id-ID.zip",
+    "pemrograman-matematis-dan-riset-operasi-buku-1-modular-backend-v0.zip",
+    "README.md",
+    "CITATION.cff",
+    "LICENSES-README.md",
+    "NOTICE-EDITION.md",
+    "RELEASE-NOTES.md",
+    "MIT-NEW-CODE.txt",
+    "MIT-UPSTREAM-CODE.txt",
+    "RELEASE-MANIFEST.json",
+    "SHA256SUMS.txt"
+  ],
+  "verification": {
+    "repository_tree": "exact paths and Git blob SHA-1 plus anonymous SHA-256 readback of every committed file",
+    "release_assets": "exact 13-file inventory and anonymous byte/SHA-256 readback",
+    "pages": "id-ID HTML plus CSS and exact 13-file anonymous byte/SHA-256 readback",
+    "receipt": "release/receipts/github-publication-receipt.json"
+  },
+  "topics": [
+    "bahasa-indonesia",
+    "operations-research",
+    "mathematical-programming",
+    "linear-programming",
+    "integer-programming",
+    "open-textbook",
+    "pyomo",
+    "highs"
+  ]
+}

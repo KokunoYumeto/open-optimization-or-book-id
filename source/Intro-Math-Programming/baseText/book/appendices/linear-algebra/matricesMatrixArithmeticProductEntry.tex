@@ -1,0 +1,285 @@
+\subsection{Entri \texorpdfstring{$(i,j)$}{(i,j)} dari Suatu Hasil Kali}
+
+Pada bagian-bagian sebelumnya, kita menggunakan entri suatu matriks untuk menjelaskan cara kerja penjumlahan matriks dan perkalian skalar.
+Kita juga dapat mempelajari perkalian matriks dengan menggunakan entri-entri matriks. 
+
+Apa entri pada posisi $(i,j)$ dari $AB$? Entri tersebut berada pada baris $i$
+dan kolom $j$ dari hasil kali $AB$.
+ 
+Sekarang, jika $A$ berukuran $m \times n$ dan $B$ berukuran $n \times p$, kita mengetahui bahwa hasil kali $AB$ berbentuk
+\begin{equation*}
+\leftB
+\begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &  \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{array}
+\rightB \leftB
+\begin{array}{cccccc}
+b_{11} & b_{12} & \cdots & b_{1j} & \cdots & b_{1p} \\
+b_{21} & b_{22} & \cdots & b_{2j} & \cdots & b_{2p} \\
+\vdots & \vdots &  & \vdots & & \vdots\\
+b_{n1} & b_{n2} & \cdots & b_{nj} & \cdots & b_{np}
+\end{array}
+\rightB 
+\end{equation*}
+
+Kolom $j$ dari $AB$ berbentuk
+\begin{equation*}
+\leftB
+\begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{array}
+\rightB \leftB
+\begin{array}{c}
+b_{1j} \\
+b_{2j} \\
+\vdots \\
+b_{nj}
+\end{array}
+\rightB
+\end{equation*}
+yang merupakan vektor kolom $m\times 1$. Vektor ini dihitung dengan
+\begin{equation*}
+b_{1j}
+\leftB
+\begin{array}{c}
+a_{11} \\
+a_{21} \\
+\vdots \\
+a_{m1}
+\end{array}
+\rightB + b_{2j}\leftB
+\begin{array}{c}
+a_{12} \\
+a_{22} \\
+\vdots \\
+a_{m2}
+\end{array}
+\rightB +\cdots + b_{nj}\leftB
+\begin{array}{c}
+a_{1n} \\
+a_{2n} \\
+\vdots \\
+a_{mn}
+\end{array}
+\rightB 
+\end{equation*}
+
+Oleh karena itu, entri pada posisi $(i,j)$ adalah entri pada baris $i$ dari vektor ini.
+Entri tersebut dihitung dengan
+\begin{equation*}
+a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots + a_{in}b_{nj}=\sum_{k=1}^{n}a_{ik}b_{kj}
+\end{equation*}
+
+Berikut adalah definisi formal entri pada posisi $(i,j)$ dari hasil kali matriks. 
+
+\begin{definition}{Entri $(i,j)$ dari Suatu Hasil Kali}\label{def:ijentryofproduct}
+Misalkan $A=\leftB a_{ij}\rightB $ adalah matriks $m\times n$ dan
+$B=\leftB b_{ij}\rightB $ adalah matriks $n\times p$. Maka $AB$ adalah matriks
+$m\times p$ dan entri-$\left( i, j \right)$ dari $AB$ \index{perkalian matriks!entri (i,j)} didefinisikan sebagai
+\begin{equation*}
+(AB)_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}  
+\label{mat12}
+\end{equation*}
+Cara lain untuk menuliskannya adalah
+\begin{equation*}
+(AB)_{ij}=\leftB
+\begin{array}{cccc}
+a_{i1} & a_{i2} & \cdots & a_{in}
+\end{array}
+\rightB \leftB
+\begin{array}{c}
+b_{1j} \\
+b_{2j} \\
+\vdots \\
+b_{nj}
+\end{array}
+\rightB
+= 
+a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj}
+\end{equation*}
+\end{definition}
+
+Dengan kata lain, untuk mencari entri-$\left( i, j \right)$ dari hasil kali $AB$, atau $(AB)_{ij}$,
+Anda mengalikan baris $i$ dari
+$A,$ di sebelah kiri dengan kolom $j$ dari $B$. Untuk menyatakan $AB$ berdasarkan entri-entrinya, kita menulis $AB = \leftB (AB)_{ij} \rightB$.
+
+Perhatikan contoh berikut. 
+
+\begin{example}{Entri-Entri Suatu Hasil Kali}\label{exa:entriesofproduct1}
+Hitung $AB$ jika memungkinkan. Jika dapat dilakukan, carilah entri-$\left( 3,2 \right)$ dari $AB$ menggunakan Definisi \ref{def:ijentryofproduct}.
+\begin{equation*}
+A = \leftB
+\begin{array}{cc}
+1 & 2 \\
+3 & 1 \\
+2 & 6
+\end{array}
+\rightB, B = \leftB
+\begin{array}{ccc}
+2 & 3 & 1 \\
+7 & 6 & 2
+\end{array}
+\rightB
+\end{equation*}
+\end{example}
+
+\begin{solution} Pertama, periksa apakah hasil kali dapat dilakukan. Bentuknya adalah $\left( 3\times
+2\right) \left( 2\times 3\right) $, dan karena kedua bilangan di dalam sama, perkalian dapat dilakukan. Hasilnya seharusnya berupa matriks $3\times 3$.
+Kita dapat terlebih dahulu menghitung $AB$:
+\begin{equation*}
+\leftB \leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 1 \\
+2 & 6
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+2 \\
+7
+\end{array}
+\rightB ,\leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 1 \\
+2 & 6
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+3 \\
+6
+\end{array}
+\rightB ,\leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 1 \\
+2 & 6
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+1 \\
+2
+\end{array}
+\rightB \rightB
+\end{equation*}
+dengan tanda koma memisahkan kolom-kolom pada hasil kali yang diperoleh. Jadi,
+hasil kali di atas sama dengan
+\begin{equation*}
+ \leftB
+\begin{array}{rrr}
+16 & 15 & 5 \\
+13 & 15 & 5 \\
+46 & 42 & 14
+\end{array}
+\rightB 
+\end{equation*}
+yang merupakan matriks $3\times 3$, seperti yang diinginkan. Dengan demikian, entri-$\left( 3,2 \right)$ sama dengan 42.
+
+Sekarang, dengan menggunakan Definisi
+\ref{def:ijentryofproduct}, kita dapat memperoleh bahwa entri-$\left( 3,2 \right)$ sama dengan
+\begin{eqnarray*}
+\sum_{k=1}^{2}a_{3k}b_{k2} &=&a_{31}b_{12}+a_{32}b_{22} \\
+&=&2\times 3+6\times 6=42\\
+\end{eqnarray*}
+Bila dibandingkan dengan hasil $AB$ di atas, nilai ini benar! 
+
+Anda dapat menggunakan metode ini untuk memeriksa bahwa entri-entri $AB$ lainnya juga benar.
+\end{solution}
+
+Berikut contoh lainnya.
+
+\begin{example}{Menentukan Entri-Entri Suatu Hasil Kali}\label{exa:entriesofproduct2}
+Tentukan apakah hasil kali $AB$ terdefinisi. Jika ya, carilah entri-$\left( 2, 1 \right)$ dari hasil kali tersebut.
+\begin{equation*}
+A=
+\leftB
+\begin{array}{rrr}
+2 & 3 & 1 \\
+7 & 6 & 2 \\
+0 & 0 & 0
+\end{array}
+\rightB,  B =\leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 1 \\
+2 & 6
+\end{array}
+\rightB 
+\end{equation*}
+\end{example}
+
+\begin{solution} Hasil kali ini berbentuk $\left( 3\times
+3\right) \left( 3\times 2\right) $. Kedua bilangan di tengah sama, sehingga
+matriks-matriks tersebut konformabel dan hasil kalinya dapat dihitung.  
+
+Kita ingin mencari entri-$\left( 2, 1 \right)$ dari $AB$, yaitu entri pada baris kedua dan kolom pertama hasil kali.
+Kita akan menggunakan Definisi \ref{def:ijentryofproduct}, yang menyatakan
+\begin{equation*}
+(AB)_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}
+\end{equation*}
+Dalam hal ini, $n=3$, $i=2$, dan $j=1$. Jadi, entri-$\left( 2, 1 \right)$ diperoleh dengan menghitung
+\begin{equation*}
+ (AB)_{21} = \sum_{k=1}^{3}a_{2k}b_{k1} = 
+ \leftB
+\begin{array}{ccc}
+a_{21} & a_{22} & a_{23}
+\end{array}
+\rightB \leftB
+\begin{array}{c}
+b_{11} \\
+b_{21} \\
+b_{31}
+\end{array}
+\rightB  
+\end{equation*}
+Dengan menyubstitusikan nilai-nilai yang sesuai, hasil kali ini menjadi
+\begin{equation*}
+\leftB
+\begin{array}{ccc}
+a_{21} & a_{22} & a_{23}
+\end{array}
+\rightB \leftB
+\begin{array}{c}
+b_{11} \\
+b_{21} \\
+b_{31}
+\end{array}
+\rightB 
+=
+\leftB
+\begin{array}{ccc}
+7 & 6 & 2
+\end{array}
+\rightB \leftB
+\begin{array}{c}
+1 \\
+3 \\
+2
+\end{array}
+\rightB
+=
+1 \times 7 + 3 \times 6 + 2 \times 2
+=
+29
+\end{equation*}
+
+Jadi, $(AB)_{21} = 29$.
+
+Luangkan waktu sejenak untuk mencari beberapa entri $AB$ lainnya. Anda dapat mengalikan matriks-matriks tersebut untuk memeriksa bahwa jawaban Anda benar.
+Hasil kali $AB$ diberikan oleh
+\begin{equation*}
+AB = \leftB
+\begin{array}{cc}
+13 & 13 \\
+29 & 32 \\
+0 & 0
+\end{array}
+\rightB 
+\end{equation*}
+\end{solution}

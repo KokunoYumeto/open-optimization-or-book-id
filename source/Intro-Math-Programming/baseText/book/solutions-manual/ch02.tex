@@ -1,0 +1,195 @@
+% ============================================================================
+% Manual Solusi, Bab 2: Pemodelan: Pemrograman Linear
+% Disinkronkan dengan book/part1-linear-programming/ch02-modeling/modeling-linear-programming.tex
+% 14 latihan. Jawaban numerik pada versi otoritas yang dipinkan telah ditelaah;
+% riwayat koreksi terdahulu dicatat terpisah dan tidak disimpulkan dari file ini.
+% ============================================================================
+\section{Bab 2: Pemodelan: Pemrograman Linear}
+
+\textbf{Penilaian cakupan.} Keempat belas latihan melatih dua keterampilan yang diajarkan bab ini: mengenali linearitas (2.1, 2.2, 2.11, terkait dengan Definisi 2.1 dan asumsi-asumsi pada Bagian 2.2) dan merumuskan soal cerita sebagai LP (2.3 sampai 2.10 dan 2.14, terkait dengan contoh-contoh yang dikerjakan pada Bagian 2.3: bauran produksi, diet, penjadwalan kerja). Asumsi-asumsi pada Bagian 2.2.1 dibahas secara langsung dalam 2.12 (kepastian) dan 2.13 (keempatnya), sedangkan 2.10(c) memperkenalkan gagasan bahwa batas LP menyiratkan batas bilangan bulat, yang akan berguna dalam bab-bab pemrograman bilangan bulat. Urutannya mengalir dengan baik: pencocokan pola berbintang satu dengan contoh yang dikerjakan, perumusan baru berbintang dua, dan satu variasi berbintang tiga (sumber daya yang dapat dibeli). Kekurangan: subbagian ransel, alokasi modal, transportasi, dan penugasan (2.3.1 sampai 2.3.4) tidak memiliki latihan yang sepadan dalam bab ini, sehingga jenis-jenis model tersebut tidak dilatih di sini; agaknya model-model itu muncul kembali dalam bab pemrograman bilangan bulat, tetapi satu latihan ransel biner dan satu latihan transportasi kecil akan melengkapi himpunan ini. Bagian latihan memuat catatan kaki atribusi tingkat-bagian kepada Sekhon dan Bloom (LibreTexts, CC BY 4.0); karena otoritas yang dipinkan tidak menyediakan pemetaan asal-usul per latihan, pemetaan yang lebih rinci tidak disimpulkan di sini.
+
+\exsol{2.1}{Mengidentifikasi Fungsi Linier}{1}
+
+Hanya butir (4) yang linear.
+\begin{enumerate}
+\item $x^2 + 3y + 2z$: tidak linear; suku $x^2$ memuat variabel yang dipangkatkan selain satu.
+\item $\sqrt{x_1 x_2 x_3}$: tidak linear; variabel-variabelnya dikalikan satu sama lain dan ditempatkan di bawah tanda akar.
+\item $\sum_{i=1}^n a_i 2^{x_i}$: tidak linear; setiap variabel muncul sebagai eksponen, dan $2^{x_i}$ adalah fungsi eksponensial dari $x_i$.
+\item $\sum_{i=1}^n a_i x_i$: linear; bentuknya tepat $c_1 x_1 + \dots + c_n x_n$ dari Definisi 2.1, dengan koefisien konstan $a_i$.
+\end{enumerate}
+Uji yang berlaku di seluruh bagian ini: setiap suku harus berupa suatu konstanta dikalikan satu variabel berpangkat satu.
+
+\exsol{2.2}{Mengidentifikasi Fungsi Linier}{1}
+
+Fungsi (2) linear.
+\begin{enumerate}
+\item $2x_1 + x_2 x_3 - 7x_3$: tidak linear karena adanya hasil kali $x_2 x_3$ dari dua variabel keputusan.
+\item $\sqrt{2}\,x_1 + x_2 + 3^{1.6} x_3$: linear. Koefisien $\sqrt{2}$ dan $3^{1.6}$ mungkin tampak tidak biasa, tetapi keduanya adalah \emph{konstanta}; setiap suku tetap berupa konstanta dikalikan satu variabel. Linearitas ditentukan oleh cara \emph{variabel} muncul, bukan oleh bagus-tidaknya bentuk koefisien.
+\end{enumerate}
+
+\begin{qaflag}
+Agak berulang (jenis masalah d): Latihan 2.2 mengulang keterampilan dari Latihan 2.1 dengan dua butir tambahan. Latihan ini memang menambahkan satu pelajaran baru (koefisien konstan irasional diperbolehkan) yang tidak diuji dalam 2.1. Rekomendasi: gabungkan kedua butir ini ke dalam Latihan 2.1 sebagai bagian (5) dan (6), lalu hapus 2.2, atau pertahankan sebagaimana adanya jika pengulangan itu memang dimaksudkan sebagai latihan.
+\end{qaflag}
+
+\exsol{2.3}{Hoodie dan Poster}{1}
+
+Misalkan $x_1$ adalah jumlah hoodie dan $x_2$ adalah jumlah poster yang diproduksi per minggu. Koefisien laba adalah pendapatan dikurangi biaya bahan: $\$30 - \$18 = \$12$ per hoodie dan $\$8 - \$3 = \$5$ per poster. LP-nya, mengikuti contoh sablon, adalah
+\begin{align*}
+\max \quad & z = 12x_1 + 5x_2\\
+\st \quad & 3x_1 + x_2 \leq 120 && \text{(jam pencetakan)}\\
+& x_1 + x_2 \leq 70 && \text{(jam penyelesaian)}\\
+& x_1 \leq 35 && \text{(batas pasar)}\\
+& x_1, x_2 \geq 0.
+\end{align*}
+Solusi optimalnya adalah $x_1 = 25$ hoodie dan $x_2 = 45$ poster, yaitu pada perpotongan kendala pencetakan dan penyelesaian, dengan laba mingguan $12(25) + 5(45) = \$525$ (diverifikasi dengan solver). Perhatikan bahwa memproduksi jumlah maksimum 35 hoodie tidak optimal: hanya tersisa $120 - 105 = 15$ jam pencetakan untuk poster, dan laba turun menjadi $12(35) + 5(15) = \$495$.
+
+\exsol{2.4}{Bubuk Smoothie}{1}
+
+Misalkan $x_A, x_B, x_C \geq 0$ adalah jumlah sendok takar bubuk A, B, C dalam campuran harian. Dengan mengikuti pola masalah diet:
+\begin{align*}
+\min \quad & z = 1.20x_A + 0.80x_B + 0.60x_C\\
+\st \quad & 6x_A + 4x_B + 2x_C \geq 24 && \text{(protein, g)}\\
+& 3x_A + 2x_B + 4x_C \geq 18 && \text{(serat, g)}\\
+& 2x_A + 3x_B + x_C \geq 12 && \text{(zat besi, mg)}\\
+& x_A, x_B, x_C \geq 0.
+\end{align*}
+Biaya minimum adalah \$5.20, tetapi campuran optimalnya tidak unik. Seluruh keluarga solusi optimal dapat ditulis sebagai
+\[
+x_C=2,\qquad 3x_A+2x_B=10,\qquad 2\leq x_B\leq 5,
+\]
+dengan $x_A=(10-2x_B)/3$. Pada keluarga ini, kendala protein dan serat aktif dan biaya selalu $0.4(3x_A+2x_B)+1.20=\$5.20$; kendala zat besi juga terpenuhi. Titik $(x_A,x_B,x_C)=(2,2,2)$ memang optimal, tetapi $(0,5,2)$ adalah contoh optimal lain.
+
+\exsol{2.5}{Pembuatan Bahan Kimia}{2}
+
+Keputusannya adalah lama operasi, bukan jumlah bahan kimia: misalkan $x_1, x_2 \ge 0$ adalah jumlah jam operasi harian Jalur 1 dan Jalur 2. Biayanya adalah $5x_1 + 2x_2$; setiap kontrak memberikan batas bawah untuk keluaran:
+\begin{align*}
+\min \quad & 5x_1 + 2x_2\\
+\st \quad & 2x_1 + x_2 \geq 8 && \text{(drum A)}\\
+& 3x_1 \geq 6 && \text{(drum B)}\\
+& x_1 + 2x_2 \geq 5 && \text{(drum C)}\\
+& x_1, x_2 \geq 0.
+\end{align*}
+Hanya Jalur 1 yang memproduksi B, sehingga kontrak B memaksa $x_1 \ge 2$. Solusi optimalnya adalah $x_1 = 2$, $x_2 = 4$, dengan biaya $\$18$ (diverifikasi dengan \texttt{linprog}): kebutuhan A dan B dipenuhi tepat, sedangkan C dikirim melebihi kontrak, yaitu sebanyak $10$ drum.
+
+\exsol{2.6}{Ruang Pamer Sepeda Listrik}{2}
+
+Misalkan $x_1, x_2, x_3 \geq 0$ adalah jumlah sepeda komuter, kargo, dan gunung yang terjual per bulan:
+\begin{align*}
+\max \quad & z = 150x_1 + 300x_2 + 240x_3\\
+\st \quad & 2x_1 + 4x_2 + 3x_3 \leq 60 && \text{(luas lantai, m$^2$)}\\
+& 2x_1 + 3x_2 + 2x_3 \leq 120 && \text{(jam kerja staf)}\\
+& x_1 + 3x_2 + 2x_3 \leq 75 && \text{(jam perakitan)}\\
+& x_1, x_2, x_3 \geq 0.
+\end{align*}
+Luas lantai adalah sumber daya yang langka: laba per meter persegi adalah $150/2 = 75$ untuk sepeda komuter, $300/4 = 75$ untuk sepeda kargo, dan $240/3 = 80$ untuk sepeda gunung, sehingga ruang pamer sebaiknya mengisi seluruh ruang lantainya dengan sepeda gunung. Solver mengonfirmasi solusi optimal $x_1 = x_2 = 0$, $x_3 = 20$ dengan laba maksimum $\$4800$ (diverifikasi dengan solver). Kendala jam kerja staf (40 dari 120 jam) dan kendala perakitan (40 dari 75 jam) jauh dari aktif; hanya kendala luas lantai yang aktif.
+
+\begin{qaflag}
+Catatan editorial: edisi Indonesia mengikuti data Latihan 2.6 pada otoritas sumber yang dipinkan. Otoritas tersebut tidak menyediakan bukti asal-usul tingkat-butir yang cukup untuk menyatakan sumber atau status lisensi versi latihan terdahulu, sehingga klaim semacam itu tidak dibuat di sini.
+\end{qaflag}
+
+\exsol{2.7}{Masalah Laba Manufaktur}{2}
+
+Misalkan $x_1, x_2, x_3 \geq 0$ adalah produksi bulanan rak buku, meja, dan lemari. Jam bulanan pada setiap stasiun kerja menghasilkan satu kendala:
+\begin{align*}
+\max \quad & z = 25x_1 + 40x_2 + 55x_3\\
+\st \quad & x_1 + 2x_2 + 3x_3 \leq 200 && \text{(mesin router)}\\
+& 2x_1 + 2x_2 + 4x_3 \leq 240 && \text{(penyelesaian)}\\
+& x_1, x_2, x_3 \geq 0.
+\end{align*}
+Solusi optimalnya adalah $x_1 = 40$, $x_2 = 80$, $x_3 = 0$ dengan laba maksimum \$4200 (diverifikasi dengan solver). Kedua kendala aktif: $40 + 160 = 200$ dan $80 + 160 = 240$. Lemari tidak layak diproduksi: satu lemari menggunakan waktu mesin router dan penyelesaian yang kurang lebih sama dengan gabungan satu rak buku dan satu meja ($3 = 1+2$ jam mesin router, $4 = 2+2$ jam penyelesaian), tetapi hanya menghasilkan \$55 dibandingkan dengan \$65 yang dihasilkan keduanya.
+
+\begin{qaflag}
+Catatan editorial: edisi Indonesia mengikuti data Latihan 2.7 pada otoritas sumber yang dipinkan. Otoritas tersebut tidak menyediakan bukti asal-usul tingkat-butir yang cukup untuk menyatakan sumber atau status lisensi versi latihan terdahulu, sehingga klaim semacam itu tidak dibuat di sini.
+\end{qaflag}
+
+\exsol{2.8}{Pabrik Pembotolan Jus}{2}
+
+Misalkan $x_1$ dan $x_2$ adalah jumlah hari operasi Pabrik 1 dan Pabrik 2. Minimumkan biaya operasi dengan kendala pesanan harus terpenuhi:
+\begin{align*}
+\min \quad & z = 3000x_1 + 4500x_2\\
+\st \quad & 30x_1 + 10x_2 \geq 300 && \text{(apel)}\\
+& 20x_1 + 20x_2 \geq 320 && \text{(jeruk)}\\
+& 10x_1 + 30x_2 \geq 180 && \text{(anggur)}\\
+& x_1, x_2 \geq 0.
+\end{align*}
+Solusi optimalnya adalah $x_1 = 15$ hari dan $x_2 = 1$ hari dengan biaya minimum $3000(15) + 4500(1) = \$49{,}500$ (diverifikasi dengan solver). Kendala jeruk ($300 + 20 = 320$) dan anggur ($150 + 30 = 180$) aktif, sedangkan jus apel diproduksi berlebih ($450 + 10 = 460 \geq 300$).
+
+\begin{qaflag}
+Catatan editorial: edisi Indonesia mengikuti data Latihan 2.8 pada otoritas sumber yang dipinkan. Otoritas tersebut tidak menyediakan bukti asal-usul tingkat-butir yang cukup untuk menyatakan sumber atau status lisensi versi latihan terdahulu, sehingga klaim semacam itu tidak dibuat di sini.
+\end{qaflag}
+
+\exsol{2.9}{Meminimumkan Waktu Penilaian Kuis}{2}
+
+Misalkan $x_1, x_2, x_3 \geq 0$ adalah jumlah kuis objektif, kuis ingatan, dan kuis ingatan-plus. Waktu penilaian per kuis masing-masing adalah 1, 2, dan 3 menit:
+\begin{align*}
+\min \quad & z = x_1 + 2x_2 + 3x_3 && \text{(menit penilaian)}\\
+\st \quad & x_1 + x_2 + x_3 \geq 20 && \text{(setidaknya 20 kuis)}\\
+& 10x_1 + 30x_2 + 60x_3 \geq 720 && \text{(menit persiapan)}\\
+& 5x_1 + 6x_2 + 7x_3 \geq 130 && \text{(jumlah poin nilai)}\\
+& x_1, x_2, x_3 \geq 0.
+\end{align*}
+Solver menghasilkan solusi optimal $x_1 = 12$ kuis objektif, $x_2 = 0$ kuis ingatan, dan $x_3 = 10$ kuis ingatan-plus, dengan waktu penilaian minimum $12 + 0 + 30 = 42$ menit. Pemeriksaan: jumlah kuis $12 + 10 = 22 \geq 20$ (longgar), persiapan $120 + 600 = 720$ (aktif), nilai $60 + 70 = 130$ (aktif). Intuisinya: kuis objektif adalah cara termurah untuk menambah nilai dan jumlah kuis, sedangkan kuis ingatan-plus adalah cara yang paling efisien dari segi penilaian untuk menghasilkan waktu persiapan; pilihan tengah didominasi oleh campuran kedua pilihan ekstrem tersebut.
+
+\exsol{2.10}{Penjadwalan Kaf\'e Kampus}{2}
+
+\begin{enumerate}
+\item Misalkan $x_i \geq 0$ adalah jumlah barista yang memulai empat hari kerja berturut-turut pada hari $i$, untuk $i = 1$ (Sen) sampai $7$ (Min), dengan pekan yang diperlakukan secara siklis. Barista yang mulai pada hari $i$ bekerja pada hari $i, i+1, i+2, i+3$ (mod 7), sehingga kebutuhan pada hari $d$ dipenuhi oleh mereka yang mulai pada hari $d-3, d-2, d-1, d$:
+\begin{align*}
+\min \quad & z = x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7\\
+\st \quad & x_5 + x_6 + x_7 + x_1 \geq 5 && \text{(Sen)}\\
+& x_6 + x_7 + x_1 + x_2 \geq 4 && \text{(Sel)}\\
+& x_7 + x_1 + x_2 + x_3 \geq 3 && \text{(Rab)}\\
+& x_1 + x_2 + x_3 + x_4 \geq 4 && \text{(Kam)}\\
+& x_2 + x_3 + x_4 + x_5 \geq 6 && \text{(Jum)}\\
+& x_3 + x_4 + x_5 + x_6 \geq 8 && \text{(Sab)}\\
+& x_4 + x_5 + x_6 + x_7 \geq 7 && \text{(Min)}\\
+& x_1, \dots, x_7 \geq 0.
+\end{align*}
+\item Solver melaporkan nilai optimal LP $z_{LP} = 28/3 \approx 9.33$, yang, misalnya, dicapai pada titik pecahan $(x_1,\dots,x_7) = (0,\, 2/3,\, 5/3,\, 5/3,\, 2,\, 8/3,\, 2/3)$.
+\item Setiap rencana penugasan dengan bilangan bulat layak bagi LP, sehingga totalnya tidak mungkin mengungguli optimum LP: setiap rencana bilangan bulat menggunakan setidaknya $28/3$ barista dan, karena jumlahnya bilangan bulat, setidaknya $\lceil 28/3 \rceil = 10$. Rencana yang mencapai 10 (diverifikasi layak dan optimal oleh solver bilangan bulat): $x_3 = 3$ (mulai Rab), $x_4 = 1$ (Kam), $x_5 = 2$ (Jum), $x_6 = 2$ (Sab), $x_7 = 2$ (Min), dan semua yang lain 0. Cakupan per hari: Sen $6 \geq 5$, Sel $4 \geq 4$, Rab $5 \geq 3$, Kam $4 \geq 4$, Jum $6 \geq 6$, Sab $8 \geq 8$, Min $7 \geq 7$.
+\end{enumerate}
+
+\exsol{2.11}{Mengidentifikasi Kendala Linier}{2}
+
+Hanya (4) dan (5) yang linear sebagaimana ditulis: (4) adalah persamaan linear dan (5) adalah pertidaksamaan linear, keduanya dengan ruas kiri berbentuk $\sum_i a_i x_i$. Persamaan (4) diperbolehkan dalam program linear; persamaan tersebut setara dengan pasangan pertidaksamaan $\sum_i a_i x_i \geq b$ dan $\sum_i a_i x_i \leq b$.
+
+Kendala (1), $\frac{x_1}{x_1 + x_2 + x_3} \geq 0.5$, tidak linear karena variabel-variabel muncul dalam rasio, tetapi kendala itu \emph{dapat} diubah menjadi linear: jika kita mengetahui $x_1 + x_2 + x_3 > 0$ (misalnya ketika semua variabel nonnegatif dan setidaknya satu variabel positif), mengalikan kedua ruas dengan penyebut menghasilkan $x_1 \geq 0.5(x_1 + x_2 + x_3)$, yaitu, $0.5x_1 - 0.5x_2 - 0.5x_3 \geq 0$.
+
+Kendala (2) dan (3) tidak dapat diperbaiki: $\sin x_1$ dan $2^{x_i}$ benar-benar merupakan fungsi nonlinier dari variabel, dan tidak ada penataan ulang secara aljabar yang dapat menghilangkannya.
+
+\exsol{2.12}{Biaya Acak dalam Fungsi Tujuan}{2}
+
+Ganti setiap koefisien biaya acak dengan nilai harapannya, lalu optimalkan fungsi tujuan harapan. Jika $c_i$ memiliki distribusi yang diketahui dengan rataan $\bar{c}_i = \mathbb{E}[c_i]$, maka, berdasarkan linearitas nilai harapan, biaya harapan setiap solusi $\x$ adalah
+\[
+\mathbb{E}\Big[\sum_i c_i x_i\Big] = \sum_i \mathbb{E}[c_i]\, x_i = \sum_i \bar{c}_i x_i ,
+\]
+yang kembali merupakan fungsi linear dari $\x$ dengan koefisien konstan. Dengan demikian, LP
+\[
+\min\ \Big\{ \sum_i \bar{c}_i x_i \; : \; A\x \leq \b, \; \x \geq 0 \Big\}
+\]
+menemukan solusi dengan biaya harapan minimum. Seperti dalam petunjuk, pembayaran acak berdistribusi seragam antara \$1 dan \$2 memiliki nilai harapan \$1.50, dan satu angka itu saja yang dibutuhkan LP. (Hal ini berlaku karena keacakan hanya terdapat dalam fungsi tujuan; koefisien acak di dalam \emph{kendala} jauh lebih rumit, dan itulah pokok bahasan pemrograman stokastik.)
+
+\exsol{2.13}{Asumsi Mana yang Dilanggar?}{2}
+
+\begin{enumerate}
+\item \textbf{Proporsionalitas.} Biaya per unit berubah dari \$5 menjadi \$4 pada 100 unit, sehingga kontribusi biaya dari variabel pembelian tidak proporsional terhadap nilainya; kontribusi itu linear sesepenggal.
+\item \textbf{Aditivitas.} Efek gabungan kedua kampanye lebih kecil daripada jumlah efeknya secara terpisah, sehingga kontribusinya tidak independen dan aditif; terdapat suku interaksi.
+\item \textbf{Keterbagian.} 3.6 truk bukan keputusan yang dapat diterapkan; truk hanya tersedia dalam jumlah utuh, sehingga jawaban pecahan menandakan bahwa keterbagian tidak terpenuhi dan model bilangan bulat mungkin diperlukan.
+\item \textbf{Kepastian.} Koefisien hasil panen bergantung pada curah hujan mendatang, sehingga data model tidak diketahui secara pasti.
+\end{enumerate}
+Tindak lanjut untuk (a): pada dasarnya tidak menimbulkan masalah. Jika pembelian selalu melebihi 100 unit, biayanya adalah $5(100) + 4(q - 100) = 4q + 100$ dalam rentang itu: fungsi linear dari $q$ ditambah suatu konstanta. Konstanta tersebut tidak memengaruhi solusi mana yang optimal, sehingga LP yang menggunakan biaya marginal \$4 (ditambah biaya tetap \$100 dalam nilai fungsi tujuan yang dilaporkan) berlaku tepat pada wilayah penggunaan model tersebut. Pelanggaran asumsi hanya berpengaruh di tempat model benar-benar dievaluasi.
+
+\exsol{2.14}{Produksi dengan Tenaga Kerja Sewa}{3}
+
+\begin{enumerate}
+\item Misalkan $x_1, x_2, x_3 \geq 0$ adalah produksi mingguan A, B, C, dan $r$ adalah jumlah jam tenaga kerja yang disewa. Jam sewaan muncul dalam fungsi tujuan sebagai biaya ($-9r$) dan dalam kendala tenaga kerja sebagai kapasitas tambahan:
+\begin{align*}
+\max \quad & z = 30x_1 + 45x_2 + 24x_3 - 9r\\
+\st \quad & 2x_1 + 4x_2 + x_3 \leq 160 && \text{(jam mesin)}\\
+& 3x_1 + 3x_2 + 2x_3 \leq 180 + r && \text{(jam tenaga kerja)}\\
+& 0 \leq r \leq 30\\
+& x_1, x_2, x_3 \geq 0.
+\end{align*}
+\item Solver menghasilkan $x_1 = 0$, $x_2 = 22$, $x_3 = 72$, $r = 30$, dengan laba bersih $45(22) + 24(72) - 9(30) = 990 + 1728 - 270 = \$2448$. Kedua kendala sumber daya aktif: mesin $4(22) + 72 = 160$ dan tenaga kerja $3(22) + 2(72) = 210 = 180 + 30$.
+\item Kendala mesin harus diperhitungkan bersama kendala tenaga kerja. Untuk setiap tambahan satu jam tenaga kerja, perubahan $\Delta x_2=-0.2$ dan $\Delta x_3=0.8$ mempertahankan penggunaan mesin karena $4(-0.2)+0.8=0$, memakai tepat satu jam tenaga kerja tambahan, dan menaikkan laba kotor sebesar $45(-0.2)+24(0.8)=\$10.20$. Setelah biaya sewa \$9, kenaikan laba bersih masih \$1.20 per jam; arah fisibel ini dapat diteruskan sampai batas 30 jam sewaan, sehingga batas tersebut aktif pada solusi optimal.
+\end{enumerate}

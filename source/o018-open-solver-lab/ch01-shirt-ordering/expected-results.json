@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "lab_id": "o018.ch01.shirt-ordering",
+  "tolerance": 1e-07,
+  "modes": {
+    "integer": {
+      "objective": 188.0,
+      "orders": {
+        "thursday": 22.0,
+        "friday": 0.0,
+        "saturday": 0.0
+      },
+      "inventory": {
+        "friday": 17.0,
+        "saturday": 7.0,
+        "sunday": 0.0
+      }
+    },
+    "lp": {
+      "objective": 188.0,
+      "orders": {
+        "thursday": 22.0,
+        "friday": 0.0,
+        "saturday": 0.0
+      },
+      "inventory": {
+        "friday": 17.0,
+        "saturday": 7.0,
+        "sunday": 0.0
+      }
+    }
+  }
+}

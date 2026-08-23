@@ -1,0 +1,1262 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "exercises": {
+    "13.1": {
+      "book_label": "ex:pareto-def",
+      "certificate": {
+        "definition": "Tidak ada titik layak lain yang tidak lebih buruk pada kedua tujuan dan secara tegas lebih baik pada sedikitnya satu tujuan.",
+        "formal_conditions": [
+          "f_i(x_bar)<=f_i(x) untuk i=1,2",
+          "f_i(x_bar)<f_i(x) untuk sedikitnya satu i"
+        ],
+        "maximization_conversion": "Balik kedua pertidaksamaan untuk bentuk maksimisasi.",
+        "pareto_frontier": "Himpunan semua titik optimal Pareto."
+      },
+      "difficulty": 1,
+      "manual_mapping": {
+        "manual_id": "13.1",
+        "status": "aligned"
+      },
+      "method": "definition_equivalence_certificate",
+      "plot": {
+        "reason": "Latihan ini memiliki alternatif terstruktur dalam sertifikat JSON; SVG tambahan tidak diperlukan.",
+        "status": "not_required"
+      },
+      "solver_checks": [],
+      "status": "verified",
+      "title": "Mendefinisikan Optimalitas Pareto"
+    },
+    "13.10": {
+      "book_label": "ex:lex-vs-weighted",
+      "certificate": {
+        "alpha_1_not_lexicographic": "Bobot nol pada limbah tidak memutus seri pendapatan.",
+        "alpha_1_optimal_edge": "80x+20y=960, dari (10,8) ke (12,0)",
+        "general_finite_vertex_claim": "Selisih positif hingga pada tujuan primer memungkinkan bobot sekunder yang cukup kecil mereproduksi optimum leksikografis.",
+        "lexicographic_solution": [
+          10,
+          8
+        ],
+        "raw_revenue_unique_threshold": "19/14019",
+        "status_without_manual_solution": "verified_from_book_statement_and_independent_derivation"
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": null,
+        "note": "Latihan buku ini tidak memiliki entri dalam manual otoritas maupun manual terjemahan.",
+        "status": "missing_from_manual"
+      },
+      "method": "lexicographic_two_stage_and_extreme_weight_highs",
+      "plot": {
+        "reason": "Latihan ini memiliki alternatif terstruktur dalam sertifikat JSON; SVG tambahan tidak diperlukan.",
+        "status": "not_required"
+      },
+      "solver_checks": [
+        {
+          "case": "furniture",
+          "maximum_violation": 0,
+          "objective": 96000,
+          "point": {
+            "x": 10,
+            "y": 8
+          },
+          "purpose": "lexicographic_primary_revenue_pyomo_highs",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "lexicographic_stage1"
+        },
+        {
+          "case": "furniture",
+          "maximum_violation": 0,
+          "objective": 116,
+          "point": {
+            "x": 10,
+            "y": 8
+          },
+          "purpose": "lexicographic_secondary_waste_pyomo_highs",
+          "revenue_lock": 96000,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "lexicographic_stage2"
+        },
+        {
+          "alpha": 1,
+          "case": "furniture",
+          "maximum_violation": 0,
+          "point": {
+            "x": 10,
+            "y": 8
+          },
+          "purpose": "independent_furniture_pyomo_highs_corroboration",
+          "revenue_raw": 96000,
+          "revenue_scale": "raw",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "raw_alpha_1",
+          "waste": 116,
+          "weighted_objective": 96000
+        },
+        {
+          "alpha": "1/2",
+          "case": "furniture",
+          "maximum_violation": 0,
+          "point": {
+            "x": 10,
+            "y": 8
+          },
+          "purpose": "independent_furniture_pyomo_highs_corroboration",
+          "revenue_raw": 96000,
+          "revenue_scale": "raw",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "raw_alpha_1_2",
+          "waste": 116,
+          "weighted_objective": 47942
+        }
+      ],
+      "status": "verified_without_manual_solution",
+      "title": "Leksikografis versus Jumlah Berbobot"
+    },
+    "13.11": {
+      "book_label": "ex:furniture-weights",
+      "certificate": {
+        "breakpoint_optimal_faces": {
+          "1": "sisi pendapatan-optimal dari (10,8) ke (12,0)",
+          "1/2": "seluruh sisi x=0 dari (0,0) ke (0,20)",
+          "19/33": "seluruh sisi rosewood dari (0,20) ke (10,8)"
+        },
+        "dominated_vertex_at_alpha_1": [
+          12,
+          0
+        ],
+        "raw_dollar_breakpoints": [
+          "1/1001",
+          "19/14019"
+        ],
+        "scaled_intervals": {
+          "(0,0)": [
+            0,
+            "1/2"
+          ],
+          "(0,20)": [
+            "1/2",
+            "19/33"
+          ],
+          "(10,8)": [
+            "19/33",
+            1
+          ]
+        },
+        "vertex_values_scaled": {
+          "(0,0)": "0",
+          "(0,20)": "80*alpha-40",
+          "(10,8)": "212*alpha-116",
+          "(12,0)": "216*alpha-120"
+        },
+        "zero_weight_warning": "Bobot nol dapat menghasilkan titik yang tidak optimal Pareto."
+      },
+      "difficulty": 3,
+      "manual_mapping": {
+        "manual_id": "13.10",
+        "note": "Manual usang: entri 13.10 menjawab latihan buku 13.11 setelah penyisipan ex:lex-vs-weighted.",
+        "status": "manual_stale_alias"
+      },
+      "method": "exact_vertex_weight_intervals_and_highs",
+      "plot": {
+        "reason": "Latihan ini memiliki alternatif terstruktur dalam sertifikat JSON; SVG tambahan tidak diperlukan.",
+        "status": "not_required"
+      },
+      "solver_checks": [
+        {
+          "alpha": "1/4",
+          "case": "furniture",
+          "maximum_violation": 0,
+          "point": {
+            "x": 0,
+            "y": 0
+          },
+          "purpose": "independent_furniture_pyomo_highs_corroboration",
+          "revenue_raw": 0,
+          "revenue_scale": "thousands",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "scaled_alpha_1_4",
+          "waste": 0,
+          "weighted_objective": 0
+        },
+        {
+          "alpha": "11/20",
+          "case": "furniture",
+          "maximum_violation": 0,
+          "point": {
+            "x": 0,
+            "y": 20
+          },
+          "purpose": "independent_furniture_pyomo_highs_corroboration",
+          "revenue_raw": 40000,
+          "revenue_scale": "thousands",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "scaled_alpha_11_20",
+          "waste": 40,
+          "weighted_objective": 4
+        },
+        {
+          "alpha": "4/5",
+          "case": "furniture",
+          "maximum_violation": 0,
+          "point": {
+            "x": 10,
+            "y": 8
+          },
+          "purpose": "independent_furniture_pyomo_highs_corroboration",
+          "revenue_raw": 96000,
+          "revenue_scale": "thousands",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "scaled_alpha_4_5",
+          "waste": 116,
+          "weighted_objective": 53.6
+        },
+        {
+          "alpha": "11/10000",
+          "case": "furniture",
+          "maximum_violation": 0,
+          "point": {
+            "x": 0,
+            "y": 20
+          },
+          "purpose": "independent_furniture_pyomo_highs_corroboration",
+          "revenue_raw": 40000,
+          "revenue_scale": "raw",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "raw_alpha_11_10000",
+          "waste": 40,
+          "weighted_objective": 4.044
+        },
+        {
+          "alpha": "1/500",
+          "case": "furniture",
+          "maximum_violation": 0,
+          "point": {
+            "x": 10,
+            "y": 8
+          },
+          "purpose": "independent_furniture_pyomo_highs_corroboration",
+          "revenue_raw": 96000,
+          "revenue_scale": "raw",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "raw_alpha_1_500",
+          "waste": 116,
+          "weighted_objective": 76.232
+        }
+      ],
+      "status": "verified",
+      "title": "Bobot yang Memilih Setiap Titik Sudut"
+    },
+    "13.2": {
+      "book_label": "ex:moo-dominance",
+      "certificate": {
+        "dominators": {
+          "I": [
+            "H"
+          ]
+        },
+        "pareto_order_increasing_f1": [
+          "G",
+          "H",
+          "K",
+          "J"
+        ],
+        "solver_epsilon_selection": [
+          "G",
+          "H",
+          "K",
+          "J"
+        ],
+        "unique_f1_minimizer_claim": true,
+        "uniqueness_note": "Tanpa keunikan, alternatif yang seri pada f1 tetapi memiliki f2 lebih besar dapat terdominasi."
+      },
+      "difficulty": 1,
+      "manual_mapping": {
+        "manual_id": "13.2",
+        "status": "aligned"
+      },
+      "method": "exact_dominance_enumeration_and_highs",
+      "plot": {
+        "reason": "Latihan ini memiliki alternatif terstruktur dalam sertifikat JSON; SVG tambahan tidak diperlukan.",
+        "status": "not_required"
+      },
+      "solver_checks": [
+        {
+          "alpha": 1,
+          "case": "contracts",
+          "f1": 2,
+          "f1_upper": null,
+          "f2": 9,
+          "f2_upper": 9,
+          "maximum_violation": 0,
+          "objective": 2,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "G",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_f2_9"
+        },
+        {
+          "alpha": 1,
+          "case": "contracts",
+          "f1": 4,
+          "f1_upper": null,
+          "f2": 7,
+          "f2_upper": 7,
+          "maximum_violation": 0,
+          "objective": 4,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "H",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_f2_7"
+        },
+        {
+          "alpha": 1,
+          "case": "contracts",
+          "f1": 6,
+          "f1_upper": null,
+          "f2": 5,
+          "f2_upper": 5,
+          "maximum_violation": 0,
+          "objective": 6,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "K",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_f2_5"
+        },
+        {
+          "alpha": 1,
+          "case": "contracts",
+          "f1": 7,
+          "f1_upper": null,
+          "f2": 3,
+          "f2_upper": 3,
+          "maximum_violation": 0,
+          "objective": 7,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "J",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_f2_3"
+        }
+      ],
+      "status": "verified",
+      "title": "Menemukan Desain Terdominasi"
+    },
+    "13.3": {
+      "book_label": "ex:moo-weighted-scores",
+      "certificate": {
+        "dominance_gap_I_minus_H": "w1+w2",
+        "positive_weights_exclude_I": true,
+        "weights_1_5_4_5": {
+          "scores": {
+            "G": "38/5",
+            "H": "32/5",
+            "I": "37/5",
+            "J": "19/5",
+            "K": "26/5"
+          },
+          "winner": "J"
+        },
+        "weights_3_5_2_5": {
+          "scores": {
+            "G": "24/5",
+            "H": "26/5",
+            "I": "31/5",
+            "J": "27/5",
+            "K": "28/5"
+          },
+          "winner": "G"
+        }
+      },
+      "difficulty": 1,
+      "manual_mapping": {
+        "manual_id": "13.3",
+        "status": "aligned"
+      },
+      "method": "exact_weighted_scores_and_highs",
+      "plot": {
+        "reason": "Latihan ini memiliki alternatif terstruktur dalam sertifikat JSON; SVG tambahan tidak diperlukan.",
+        "status": "not_required"
+      },
+      "solver_checks": [
+        {
+          "alpha": "3/5",
+          "case": "contracts",
+          "f1": 2,
+          "f1_upper": null,
+          "f2": 9,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 4.8,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "G",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weights_3_5_2_5"
+        },
+        {
+          "alpha": "1/5",
+          "case": "contracts",
+          "f1": 7,
+          "f1_upper": null,
+          "f2": 3,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 3.8,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "J",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weights_1_5_4_5"
+        }
+      ],
+      "status": "verified",
+      "title": "Menghitung Skor Jumlah Berbobot"
+    },
+    "13.4": {
+      "book_label": "ex:pareto-table",
+      "certificate": {
+        "dominated": {
+          "B": [
+            "D"
+          ],
+          "E": [
+            "D"
+          ]
+        },
+        "epsilon_5_selection": "A",
+        "pareto_frontier": [
+          "A",
+          "C",
+          "D",
+          "F"
+        ],
+        "supported_by_weighted_sum": [
+          "D",
+          "C",
+          "F"
+        ],
+        "unsupported_pareto": [
+          "A"
+        ],
+        "weighted_intervals": {
+          "C": [
+            "1/4",
+            "1/3"
+          ],
+          "D": [
+            "1/3",
+            1
+          ],
+          "F": [
+            0,
+            "1/4"
+          ]
+        }
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "13.4",
+        "status": "aligned"
+      },
+      "method": "pareto_supported_set_epsilon_and_highs",
+      "plot": {
+        "bytes": 5796,
+        "language": "id-ID",
+        "path": "plots/ex13-04.svg",
+        "sha256": "9b777a93dcd50d241a927c788d3b71def4d86e37cf4ab22dd4e4914f6f70a98e",
+        "status": "generated"
+      },
+      "solver_checks": [
+        {
+          "alpha": 0,
+          "case": "designs",
+          "f1": 10,
+          "f1_upper": null,
+          "f2": 3,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 3,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "F",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weighted_alpha_0"
+        },
+        {
+          "alpha": "1/5",
+          "case": "designs",
+          "f1": 10,
+          "f1_upper": null,
+          "f2": 3,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 4.4,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "F",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weighted_alpha_1_5"
+        },
+        {
+          "alpha": "3/10",
+          "case": "designs",
+          "f1": 7,
+          "f1_upper": null,
+          "f2": 4,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 4.9,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "C",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weighted_alpha_3_10"
+        },
+        {
+          "alpha": "1/2",
+          "case": "designs",
+          "f1": 3,
+          "f1_upper": null,
+          "f2": 6,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 4.5,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "D",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weighted_alpha_1_2"
+        },
+        {
+          "alpha": 1,
+          "case": "designs",
+          "f1": 6,
+          "f1_upper": null,
+          "f2": 5,
+          "f2_upper": 5,
+          "maximum_violation": 0,
+          "objective": 6,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "A",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_f2_5"
+        }
+      ],
+      "status": "verified",
+      "title": "Batas Pareto, Jumlah Berbobot, dan Kendala-ε"
+    },
+    "13.5": {
+      "book_label": "ex:weighted-sum-projects",
+      "certificate": {
+        "P3_minus_P1_score": "w1+w2",
+        "P3_selectable_by_nonnegative_weights": false,
+        "dominated": {
+          "P3": [
+            "P1"
+          ]
+        },
+        "equal_weight_scores": {
+          "P1": "-5/2",
+          "P2": -2,
+          "P3": "-3/2"
+        },
+        "equal_weight_winner": "P1",
+        "pareto_frontier": [
+          "P1",
+          "P2"
+        ]
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "13.5",
+        "status": "aligned"
+      },
+      "method": "project_dominance_weighted_sum_and_highs",
+      "plot": {
+        "reason": "Latihan ini memiliki alternatif terstruktur dalam sertifikat JSON; SVG tambahan tidak diperlukan.",
+        "status": "not_required"
+      },
+      "solver_checks": [
+        {
+          "alpha": "1/2",
+          "case": "projects",
+          "f1": 2,
+          "f1_upper": null,
+          "f2": -7,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": -2.5,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "P1",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "equal_weights"
+        },
+        {
+          "alpha": 1,
+          "case": "projects",
+          "f1": 2,
+          "f1_upper": null,
+          "f2": -7,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 2,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "P1",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "cost_only"
+        },
+        {
+          "alpha": 0,
+          "case": "projects",
+          "f1": 5,
+          "f1_upper": null,
+          "f2": -9,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": -9,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "P2",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "accessibility_only"
+        }
+      ],
+      "status": "verified",
+      "title": "Metode Jumlah Berbobot"
+    },
+    "13.6": {
+      "book_label": "ex:eps-constraint-lp",
+      "certificate": {
+        "epsilon_10": {
+          "f1": 5,
+          "f2": 10,
+          "point": [
+            3,
+            1
+          ]
+        },
+        "epsilon_10_pareto": true,
+        "epsilon_6": {
+          "f1": 7,
+          "f2": 6,
+          "point": [
+            1,
+            3
+          ]
+        },
+        "epsilon_6_pareto": true,
+        "epsilon_at_least_12": {
+          "f1": 4,
+          "f2": 12,
+          "point": [
+            4,
+            0
+          ],
+          "status": "kendala_epsilon_tidak_aktif"
+        },
+        "epsilon_below_4": "infeasible",
+        "epsilon_feasible_range": [
+          4,
+          12
+        ],
+        "f2_individual_minimum": {
+          "f2": 4,
+          "point": [
+            0,
+            4
+          ]
+        },
+        "frontier_objective_endpoints": [
+          [
+            4,
+            12
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "single_objective_lp": {
+          "constraints": [
+            "3*x1+x2<=epsilon",
+            "x1+x2>=4",
+            "0<=x1<=5",
+            "0<=x2<=5"
+          ],
+          "objective": "min x1+2*x2"
+        },
+        "solution_affine": {
+          "f1": "10-epsilon/2",
+          "x1": "(epsilon-4)/2",
+          "x2": "(12-epsilon)/2"
+        }
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "13.6",
+        "status": "aligned"
+      },
+      "method": "continuous_epsilon_sweep_and_highs",
+      "plot": {
+        "reason": "Latihan ini memiliki alternatif terstruktur dalam sertifikat JSON; SVG tambahan tidak diperlukan.",
+        "status": "not_required"
+      },
+      "solver_checks": [
+        {
+          "case": "epsilon_lp",
+          "epsilon": 10,
+          "f1": 5,
+          "f2": 10,
+          "maximum_violation": 0,
+          "point": {
+            "x1": 3,
+            "x2": 1
+          },
+          "purpose": "independent_continuous_pyomo_highs_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_10"
+        },
+        {
+          "case": "epsilon_lp",
+          "epsilon": 6,
+          "f1": 7,
+          "f2": 6,
+          "maximum_violation": 0,
+          "point": {
+            "x1": 1,
+            "x2": 3
+          },
+          "purpose": "independent_continuous_pyomo_highs_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_6"
+        },
+        {
+          "case": "epsilon_lp",
+          "epsilon": 12,
+          "f1": 4,
+          "f2": 12,
+          "maximum_violation": 0,
+          "point": {
+            "x1": 4,
+            "x2": 0
+          },
+          "purpose": "independent_continuous_pyomo_highs_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_12"
+        },
+        {
+          "case": "epsilon_lp",
+          "epsilon": 4,
+          "f1": 8,
+          "f2": 4,
+          "maximum_violation": 0,
+          "point": {
+            "x1": 0,
+            "x2": 4
+          },
+          "purpose": "independent_continuous_pyomo_highs_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_4"
+        }
+      ],
+      "status": "verified",
+      "title": "Metode Kendala-Epsilon"
+    },
+    "13.7": {
+      "book_label": "ex:eps-triangle",
+      "certificate": {
+        "epsilon_greater_than_18": "infeasible",
+        "epsilon_table": [
+          {
+            "epsilon": 6,
+            "f1": 18,
+            "f2": 6,
+            "point": [
+              6,
+              0
+            ]
+          },
+          {
+            "epsilon": 10,
+            "f1": 14,
+            "f2": 10,
+            "point": [
+              4,
+              2
+            ]
+          },
+          {
+            "epsilon": 14,
+            "f1": 10,
+            "f2": 14,
+            "point": [
+              2,
+              4
+            ]
+          },
+          {
+            "epsilon": 18,
+            "f1": 6,
+            "f2": 18,
+            "point": [
+              0,
+              6
+            ]
+          }
+        ],
+        "f1_individual_maximizer": [
+          6,
+          0
+        ],
+        "f2_individual_maximizer": [
+          0,
+          6
+        ],
+        "frontier_decision_edge": "x1+x2=6, dari (6,0) ke (0,6)",
+        "objective_parameterization": {
+          "f1": "18-2t",
+          "f2": "6+2t",
+          "x2": "t"
+        },
+        "tradeoff_rate_delta_f1_per_delta_f2": -1,
+        "vertex_objectives": {
+          "(0,0)": [
+            0,
+            0
+          ],
+          "(0,6)": [
+            6,
+            18
+          ],
+          "(6,0)": [
+            18,
+            6
+          ]
+        }
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "13.7",
+        "status": "aligned"
+      },
+      "method": "triangle_epsilon_frontier_and_highs",
+      "plot": {
+        "bytes": 4762,
+        "language": "id-ID",
+        "path": "plots/ex13-07.svg",
+        "sha256": "391caf4fa28797bbfe27276523b723becbde869e597a7c2f6bcf9cdc6594342b",
+        "status": "generated"
+      },
+      "solver_checks": [
+        {
+          "case": "triangle",
+          "epsilon": 6,
+          "f1": 18,
+          "f2": 6,
+          "maximum_violation": 0,
+          "point": {
+            "x1": 6,
+            "x2": 0
+          },
+          "purpose": "independent_continuous_pyomo_highs_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_6"
+        },
+        {
+          "case": "triangle",
+          "epsilon": 10,
+          "f1": 14,
+          "f2": 10,
+          "maximum_violation": 0,
+          "point": {
+            "x1": 4,
+            "x2": 2
+          },
+          "purpose": "independent_continuous_pyomo_highs_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_10"
+        },
+        {
+          "case": "triangle",
+          "epsilon": 14,
+          "f1": 10,
+          "f2": 14,
+          "maximum_violation": 0,
+          "point": {
+            "x1": 2,
+            "x2": 4
+          },
+          "purpose": "independent_continuous_pyomo_highs_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_14"
+        },
+        {
+          "case": "triangle",
+          "epsilon": 18,
+          "f1": 6,
+          "f2": 18,
+          "maximum_violation": 0,
+          "point": {
+            "x1": 0,
+            "x2": 6
+          },
+          "purpose": "independent_continuous_pyomo_highs_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_18"
+        }
+      ],
+      "status": "verified",
+      "title": "Kendala-Epsilon secara Manual"
+    },
+    "13.8": {
+      "book_label": "ex:tradeoff-analysis",
+      "certificate": {
+        "budget_50_choice": "S2",
+        "budget_feasible": [
+          "S1",
+          "S2"
+        ],
+        "largest_reduction_per_dollar_step": "S1->S2",
+        "marginal_tradeoffs": [
+          {
+            "delta_cost": 5,
+            "delta_emissions": -6,
+            "emissions_reduced_per_1000_dollars": "6/5",
+            "from": "S1",
+            "to": "S2"
+          },
+          {
+            "delta_cost": 10,
+            "delta_emissions": -4,
+            "emissions_reduced_per_1000_dollars": "2/5",
+            "from": "S2",
+            "to": "S3"
+          },
+          {
+            "delta_cost": 15,
+            "delta_emissions": -2,
+            "emissions_reduced_per_1000_dollars": "2/15",
+            "from": "S3",
+            "to": "S4"
+          }
+        ],
+        "natural_knee": "S2",
+        "objective_space_polyline": [
+          [
+            40,
+            20
+          ],
+          [
+            45,
+            14
+          ],
+          [
+            55,
+            10
+          ],
+          [
+            70,
+            8
+          ]
+        ],
+        "pareto_frontier": [
+          "S1",
+          "S2",
+          "S3",
+          "S4"
+        ],
+        "plot_improvement_direction": "kiri_bawah"
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "13.8",
+        "status": "aligned"
+      },
+      "method": "exact_marginal_tradeoffs_budget_and_highs",
+      "plot": {
+        "reason": "Latihan ini memiliki alternatif terstruktur dalam sertifikat JSON; SVG tambahan tidak diperlukan.",
+        "status": "not_required"
+      },
+      "solver_checks": [
+        {
+          "alpha": 0,
+          "case": "tradeoff",
+          "f1": 45,
+          "f1_upper": 50,
+          "f2": 14,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 14,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "S2",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "budget_50_min_emissions"
+        }
+      ],
+      "status": "verified",
+      "title": "Analisis Kompromi"
+    },
+    "13.9": {
+      "book_label": "ex:nonconvex-weights",
+      "certificate": {
+        "Q_supported_by_weighted_sum": false,
+        "epsilon_3_selection": "Q",
+        "lower_convex_hull": [
+          "P",
+          "R"
+        ],
+        "pareto_frontier": [
+          "P",
+          "Q",
+          "R"
+        ],
+        "score_functions": {
+          "P": "4-4*alpha",
+          "Q": 3,
+          "R": "4*alpha"
+        },
+        "strict_bound": "min(S_P,S_R)<=2<3=S_Q untuk semua alpha dalam [0,1]"
+      },
+      "difficulty": 2,
+      "manual_mapping": {
+        "manual_id": "13.9",
+        "status": "aligned"
+      },
+      "method": "unsupported_pareto_proof_epsilon_and_highs",
+      "plot": {
+        "bytes": 4177,
+        "language": "id-ID",
+        "path": "plots/ex13-09.svg",
+        "sha256": "ea5c4c71b925ff4b1e0b271c8d4421d4b01093b0952b1f9944f2584ef2e99dce",
+        "status": "generated"
+      },
+      "solver_checks": [
+        {
+          "alpha": 0,
+          "case": "nonconvex",
+          "f1": 4,
+          "f1_upper": null,
+          "f2": 0,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 0,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "R",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weighted_alpha_0"
+        },
+        {
+          "alpha": "1/2",
+          "case": "nonconvex",
+          "f1": 4,
+          "f1_upper": null,
+          "f2": 0,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 2,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "R",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weighted_alpha_1_2"
+        },
+        {
+          "alpha": 1,
+          "case": "nonconvex",
+          "f1": 0,
+          "f1_upper": null,
+          "f2": 4,
+          "f2_upper": null,
+          "maximum_violation": 0,
+          "objective": 0,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "P",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "weighted_alpha_1"
+        },
+        {
+          "alpha": 1,
+          "case": "nonconvex",
+          "f1": 3,
+          "f1_upper": null,
+          "f2": 3,
+          "f2_upper": 3,
+          "maximum_violation": 0,
+          "objective": 3,
+          "purpose": "independent_discrete_pyomo_highs_corroboration",
+          "selected": "Q",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "epsilon_f2_3"
+        }
+      ],
+      "status": "verified",
+      "title": "Hal yang Tidak Dapat Dilihat oleh Jumlah Berbobot"
+    }
+  },
+  "lab_id": "o018.ch13.multiobjective",
+  "manual_alignment": {
+    "book_primary_ids": [
+      "13.1",
+      "13.2",
+      "13.3",
+      "13.4",
+      "13.5",
+      "13.6",
+      "13.7",
+      "13.8",
+      "13.9",
+      "13.10",
+      "13.11"
+    ],
+    "manual_status_counts": {
+      "aligned": 9,
+      "manual_stale_alias": 1,
+      "missing_from_manual": 1
+    },
+    "missing_book_exercise_in_manual": "13.10",
+    "stale_manual_alias": {
+      "book_id": "13.11",
+      "manual_id": "13.10"
+    }
+  },
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 40340,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch09-multi-objective/multi-objective-optimization_updated.tex",
+        "role": "authority_chapter",
+        "sha256": "d3d83cb13eb0b34433551b1ed228c51dcbc062ab90f125049c7f323a3cf065b3"
+      },
+      {
+        "bytes": 18634,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch13.tex",
+        "role": "authority_manual",
+        "sha256": "ac488fb2021c8b9a561afca4ab409c2584b2f4acec0e05928cd85da3bf781a15"
+      },
+      {
+        "bytes": 43484,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch09-multi-objective/multi-objective-optimization_updated.tex",
+        "role": "translated_chapter",
+        "sha256": "fff540c73cf9f90fd0915f6cd65a4a02f330e60f01d89a14f72557aff0d6d274"
+      },
+      {
+        "bytes": 20251,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch13.tex",
+        "role": "translated_manual",
+        "sha256": "2988e24b31d3c3acf0a86908cef02298237c9df4b2fd6e184ff2fe77aa4f5680"
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "source_defects": [
+    {
+      "certificate": "Buku memuat 11 latihan; manual memuat 10 dan melewatkan ex:lex-vs-weighted. Entri manual 13.10 menjawab ex:furniture-weights, yaitu latihan buku 13.11.",
+      "id": "DEF-CH13-MANUAL-OMISSION",
+      "source_location": "urutan latihan bab otoritas dibandingkan inventaris exsol manual otoritas",
+      "type": "source_manual_alignment"
+    },
+    {
+      "certificate": "Titik poligon (8.5,0) dan (5,14) memenuhi pendapatan 68000, sedangkan 70% dari 96000 adalah 67200; perpotongan tepatnya (8.4,0) dan (34/7,496/35).",
+      "id": "DEF-CH13-70PCT-FIGURE",
+      "source_location": "bab otoritas baris 143--151 dan 179--185",
+      "type": "source_figure_data"
+    },
+    {
+      "certificate": "Fungsi 8000x+2000y diperkenalkan sebagai pendapatan tetapi kemudian disebut laba tanpa suku biaya.",
+      "id": "DEF-CH13-REVENUE-PROFIT-TERMS",
+      "source_location": "bab otoritas baris 127--148",
+      "type": "source_terminology"
+    }
+  ],
+  "summary": {
+    "exercise_count": 11,
+    "manual_discrepancy_count": 2,
+    "maximum_solver_violation": 0,
+    "method_counts": {
+      "continuous_epsilon_sweep_and_highs": 1,
+      "definition_equivalence_certificate": 1,
+      "exact_dominance_enumeration_and_highs": 1,
+      "exact_marginal_tradeoffs_budget_and_highs": 1,
+      "exact_vertex_weight_intervals_and_highs": 1,
+      "exact_weighted_scores_and_highs": 1,
+      "lexicographic_two_stage_and_extreme_weight_highs": 1,
+      "pareto_supported_set_epsilon_and_highs": 1,
+      "project_dominance_weighted_sum_and_highs": 1,
+      "triangle_epsilon_frontier_and_highs": 1,
+      "unsupported_pareto_proof_epsilon_and_highs": 1
+    },
+    "o018_math_correction_count": 0,
+    "plot_count": 3,
+    "solver_call_count": 36,
+    "solver_termination_counts": {
+      "optimal": 36
+    },
+    "source_defect_count": 3,
+    "unresolved_count": 0,
+    "verified_count": 11
+  },
+  "unresolved_exercises": []
+}

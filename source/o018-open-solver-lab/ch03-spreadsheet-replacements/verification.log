@@ -1,0 +1,15 @@
+VERIFIKASI O018 BAB 3 -- PENGGANTI LEMBAR KERJA
+Platform: Windows AMD64; CPython 3.12.13
+Runtime: Pyomo 6.10.1; highspy/HiGHS 1.15.1; NumPy 2.5.2; appsi_highs
+Instalasi: offline, --no-index, --require-hashes, --only-binary=:all:, berhasil
+Sumber Bab 3: a38b55c6ffd45a60b0b225c5fd9807628c17bbc39201efac588fbe760dae5a70
+Manual solusi Bab 3: 847c8b25bcca57a0d20c15f7b46ce81ddb72e4a76a8d2421cd057b4c765eed15
+Keluaran: WRITE_OK bytes=7239 sha256=54a1cd703958ec880e653354b67b3bb0629014343159884c5a05d63725170ede
+Pemeriksaan: CHECK_OK bytes=7239 sha256=54a1cd703958ec880e653354b67b3bb0629014343159884c5a05d63725170ede
+Pemutaran ulang kedua: byte-identik=true
+Uji unit: 16 dijalankan; 16 lulus; 0 gagal; 0 galat
+Kasus pemecahan: 13; semuanya optimal; pelanggaran maksimum=0.0
+Cakupan: Latihan 3.1--3.9; Latihan 3.8 bersifat konseptual dan tidak menambah model numerik
+Batas: Latihan 3.7 mempunyai banyak solusi primal optimal; keluaran hanya menyimpan besaran yang tidak berubah
+Dependensi proprieter: tidak ada; jaringan, Excel, dan Gurobi tidak diperlukan
+Hak: prosa/data CC BY-SA 4.0; kode Python baru MIT; runtime pihak ketiga tetap menurut lisensinya

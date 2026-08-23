@@ -1,0 +1,163 @@
+% ============================================================================
+% Bab 3: Perangkat Lunak -- Excel (book/part1-linear-programming/ch03-software/software-excel.tex)
+% 9 latihan. Semua jawaban numerik diverifikasi dengan scipy.optimize.linprog (HiGHS)
+% pada 2026-07-13.
+% ============================================================================
+\section{Bab 3: Perangkat Lunak -- Excel}
+
+\textbf{Cakupan dan alur.} Bab ini hanya memiliki satu bagian materi (Menggunakan Excel Solver, yang membahas fungsi lembar kerja, tata letak berkode warna yang disarankan, dialog Solver, metode penyelesaian, serta laporan Answer/Sensitivity), dan sembilan latihannya mengulas materi itu secara menyeluruh. Dua latihan pemanasan menjalankan ulang buku kerja dari contoh-contoh Bab 4 dengan data baru; soal-soal inti memandu penyusunan model diet, produksi, dan transportasi dari awal; dua latihan secara khusus melatih penggunaan Sensitivity Report (harga bayangan dan rentang yang diizinkan); satu latihan konsep menyoroti menu tarik turun metode penyelesaian; dan latihan tantangan secara khusus membahas kotak centang Make Unconstrained Variables Non-Negative. Setiap bagian alur kerja Solver yang dijelaskan dalam teks dibahas setidaknya sekali; interpretasi sensitivitas dilatih paling intensif, dan hal ini tepat karena menjadi pengantar untuk Bab 7. Penilaian apa adanya: cakupannya lengkap dan memiliki gradasi kesulitan yang baik dari satu hingga tiga bintang; satu-satunya titik lemah ialah tidak ada latihan yang meminta mahasiswa menggunakan fungsi Excel biasa (SUMPRODUCT, COUNTIF, referensi absolut) di luar model Solver. (Tabel makanan pada latihan diet dibuat ulang pada 2026-07-15 setelah data aslinya dilacak berasal dari buku teks berhak cipta; lihat catatan di bawah Latihan 3.3.)
+
+% ----------------------------------------------------------------------------
+\exsol{3.1}{Menjalankan Ulang Solver: Aliran Jaringan Berbiaya Minimum}{1}
+
+Model ini adalah LP aliran jaringan biaya minimum dari contoh gudang dalam buku, dengan hanya koefisien fungsi tujuan yang diubah. Dengan $x_{ij}$ sebagai aliran dari gudang $i$ ke toko $j$:
+\begin{align*}
+\min \quad & 3x_{11} + 7x_{12} + 4x_{21} + 2x_{22}\\
+\st & x_{11} + x_{12} \leq 20, \qquad x_{21} + x_{22} \leq 30,\\
+& x_{11} + x_{21} = 25, \qquad x_{12} + x_{22} = 25,\\
+& 0 \leq x_{11} \leq 15, \quad 0 \leq x_{12} \leq 10, \quad 0 \leq x_{21} \leq 20, \quad 0 \leq x_{22} \leq 20.
+\end{align*}
+\emph{Penyiapan Solver:} sel tujuan memuat \texttt{=SUMPRODUCT(costs, flows)}, sel variabelnya adalah keempat sel aliran, dan kendalanya adalah jumlah baris $\leq$ pasokan, jumlah kolom $=$ permintaan, serta aliran $\leq$ kapasitas; model diselesaikan dengan Simplex LP dan opsi ketidaknegatifan dicentang.
+
+(a) Aliran optimalnya adalah $x_{11} = 15$, $x_{12} = 5$, $x_{21} = 10$, $x_{22} = 20$, dengan biaya $3(15) + 7(5) + 4(10) + 2(20) = 45 + 35 + 40 + 40 = 160$, sesuai dengan nilai pemeriksaan yang diberikan.
+
+(b) Rute $W_1 \to S_1$ (aliran $15$, kapasitas $15$) dan $W_2 \to S_2$ (aliran $20$, kapasitas $20$) mencapai kapasitas. Keduanya merupakan dua rute termurah, sehingga model memanfaatkan keduanya hingga kapasitas penuh terlebih dahulu dan memenuhi sisa permintaan melalui rute yang lebih mahal.
+
+% ----------------------------------------------------------------------------
+\exsol{3.2}{Menjalankan Ulang Solver: Perencanaan Produksi Selama 10 Periode}{1}
+
+(a) Hanya sel permintaan yang berubah; selain itu, modelnya tetap berupa LP produksi sepuluh periode dari buku (biaya produksi $10, 12, \dots, 28$, biaya penyimpanan $5$, persediaan awal $s_0 = 5$, dan kendala keseimbangan persediaan $s_{t-1} + x_t = d_t + s_t$). \emph{Penyiapan Solver:} sel tujuan \texttt{=SUMPRODUCT(prodcost, x) + 5*SUM(s)}, sel variabel $x_1,\dots,x_{10}$ dan $s_1,\dots,s_{10}$, kendala berupa satu persamaan keseimbangan per periode, Simplex LP, dan variabel nonnegatif. Rencana optimalnya adalah produksi yang mengikuti permintaan, dengan persediaan awal digunakan pada periode 1:
+\[
+x = (1, 9, 7, 8, 5, 10, 7, 6, 8, 4), \qquad s_t = 0 \text{ untuk semua } t,
+\]
+dengan biaya total $10(1) + 12(9) + 14(7) + 16(8) + 18(5) + 20(10) + 22(7) + 24(6) + 26(8) + 28(4) = 1252$, sesuai dengan nilai pemeriksaan.
+
+(b) Memproduksi satu unit pada periode $t$ lalu menyimpannya hingga periode $t+1$ menelan biaya $c_t + 5$, sedangkan menunggu dan memproduksinya pada periode $t+1$ menelan biaya $c_{t+1} = c_t + 2$. Karena biaya penyimpanan ($5$) lebih besar daripada kenaikan biaya antara dua periode berurutan ($2$), menyimpan persediaan tidak pernah menguntungkan. Oleh sebab itu, rencana optimal memproduksi sesuai permintaan setiap periode pada periode yang sama ($x_t = d_t$, kecuali periode 1, ketika persediaan awal gratis sebanyak $5$ unit mengimbangi permintaan).
+
+% ----------------------------------------------------------------------------
+\exsol{3.3}{Masalah Diet di Excel}{2}
+
+Misalkan $x_1, \dots, x_5 \geq 0$ adalah jumlah porsi harian havermut, susu murni, nasi merah, kacang hitam, dan selai almon. LP-nya adalah
+\begin{align*}
+\min \quad & 0.25x_1 + 0.30x_2 + 0.18x_3 + 0.40x_4 + 0.45x_5\\
+\st & 150x_1 + 149x_2 + 216x_3 + 227x_4 + 196x_5 \geq 2200 && \text{(kalori)}\\
+& 3x_1 + 8x_2 + 1.8x_3 + 0.9x_4 + 18x_5 \geq 60 && \text{(lemak)}\\
+& 5x_1 + 8x_2 + 5x_3 + 15x_4 + 7x_5 \geq 90 && \text{(protein)}\\
+& 27x_1 + 12x_2 + 45x_3 + 41x_4 + 6x_5 \geq 300 && \text{(karbohidrat)}\\
+& x_1, \dots, x_5 \geq 0.
+\end{align*}
+\emph{Penyiapan Solver:} susun tabel nutrisi sebagai data (biru), satu sel kuning untuk jumlah porsi setiap bahan pangan, satu sel tujuan hijau \texttt{=SUMPRODUCT(prices, servings)}, dan empat sel hijau \texttt{=SUMPRODUCT(nutrientrow, servings)} yang dikendalakan agar $\geq$ persyaratan; selesaikan dengan Simplex LP dan opsi ketidaknegatifan dicentang.
+
+Pola makan optimal hanya menggunakan susu murni, nasi merah, dan kacang hitam:
+\[
+x_2 \approx 6.3205 \text{ porsi susu murni}, \quad x_3 \approx 4.7134 \text{ porsi nasi merah}, \quad x_4 \approx 1.0579 \text{ porsi kacang hitam},
+\]
+dengan $x_1 = x_5 = 0$ dan biaya harian minimum $\approx \$3.17$ (lebih tepatnya $\$2407651/760055 \approx \$3.1677326$). Kendala kalori, lemak, dan protein aktif (tepat $2200$, $60$ g, dan $90$ g); karbohidrat terpenuhi berlebih ($\approx 331.3$ g). Tangkapan layar harus memperlihatkan sel porsi berwarna kuning dengan nilai-nilai tersebut dan sel biaya berwarna hijau bernilai $3.17$.
+
+% Catatan asal-usul data (2026-07-15): versi sebelumnya dari latihan ini menggunakan
+% kembali tabel diet (wortel mentah / kentang panggang / roti gandum / keju cheddar /
+% selai kacang dengan persyaratan 2000/50/100/250) kata demi kata dari Guenin,
+% Konemann, dan Tuncel, "A Gentle Introduction to Optimization" (Cambridge
+% University Press, 2014), Bab 1, Latihan 1 -- sebuah sumber berhak cipta. Tabel
+% dan persyaratannya dibuat ulang dengan data baru dan latihan tersebut ditulis ulang;
+% semua angka di atas diverifikasi dengan scipy.optimize.linprog (HiGHS) pada 2026-07-15.
+
+% ----------------------------------------------------------------------------
+\exsol{3.4}{Perencanaan Produksi di Excel}{2}
+
+Misalkan $x_1$ dan $x_2$ adalah jumlah widget dan gadget yang diproduksi. LP-nya adalah
+\begin{align*}
+\max \quad & z = 8x_1 + 6x_2\\
+\st & 2x_1 + x_2 \leq 40 && \text{(waktu mesin)}\\
+& x_1 + 2x_2 \leq 30 && \text{(bahan baku)}\\
+& x_1, x_2 \geq 0.
+\end{align*}
+
+(a) \emph{Penyiapan Solver:} sel data (biru) memuat vektor laba $(8,6)$, matriks kendala, dan ruas kanan $(40, 30)$; dua sel variabel kuning memuat $x_1, x_2$; sel hijau memuat fungsi tujuan \texttt{=SUMPRODUCT(profits, vars)} dan ruas kiri kedua kendala. Tambahkan kedua kendala $\leq$, pilih Max dan Simplex LP, lalu centang Make Unconstrained Variables Non-Negative.
+
+(b) Solver menghasilkan $x_1 = 50/3 \approx 16.67$ widget dan $x_2 = 20/3 \approx 6.67$ gadget dengan laba maksimum $520/3 \approx \$173.33$. Kedua kendala aktif.
+
+(c) Tabel Variable Cells pada Sensitivity Report memperlihatkan koefisien fungsi tujuan untuk widget sebesar $8$, dengan kenaikan yang diizinkan sebesar $4$ (hingga $12$) dan penurunan yang diizinkan sebesar $5$ (hingga $3$); secara geometris, kemiringan fungsi tujuan harus tetap berada di antara kemiringan kedua kendala aktif. Menaikkan laba widget menjadi $\$9$ masih berada dalam kenaikan yang diizinkan, sehingga rencana optimal tidak berubah; hanya labanya yang meningkat menjadi $9(50/3) + 6(20/3) = \$190$. (Tabel Constraints pada laporan memperlihatkan harga bayangan $10/3$ untuk waktu mesin dan $4/3$ untuk bahan baku, yang berguna sebagai pemeriksaan silang.)
+
+% ----------------------------------------------------------------------------
+\exsol{3.5}{Masalah Transportasi di Excel}{2}
+
+(a) Misalkan $x_{ij} \geq 0$ adalah jumlah unit yang dikirim dari gudang $i$ ke toko $j$. Susun kisi sel variabel kuning berukuran $2 \times 3$ yang mencerminkan tabel biaya biru, dengan jumlah baris hijau (dibandingkan dengan pasokan) dan jumlah kolom hijau (dibandingkan dengan permintaan):
+\begin{align*}
+\min \quad & 4x_{11} + 8x_{12} + x_{13} + 6x_{21} + 3x_{22} + 5x_{23}\\
+\st & x_{11} + x_{12} + x_{13} \leq 60, \qquad x_{21} + x_{22} + x_{23} \leq 50,\\
+& x_{11} + x_{21} = 30, \qquad x_{12} + x_{22} = 40, \qquad x_{13} + x_{23} = 40,\\
+& x_{ij} \geq 0.
+\end{align*}
+\emph{Penyiapan Solver:} sel tujuan \texttt{=SUMPRODUCT(costgrid, shipgrid)}, sel variabel berupa keenam sel kisi, kendala jumlah baris $\leq (60, 50)$ dan jumlah kolom $= (30, 40, 40)$, Simplex LP, serta opsi ketidaknegatifan dicentang.
+
+(b) Total pasokan sama dengan total permintaan ($110$), sehingga kedua gudang mengirimkan seluruh pasokannya. Rencana optimalnya adalah
+\[
+x_{11} = 20, \quad x_{13} = 40, \quad x_{21} = 10, \quad x_{22} = 40, \quad x_{12} = x_{23} = 0,
+\]
+dengan biaya minimum $4(20) + 1(40) + 6(10) + 3(40) = 80 + 40 + 60 + 120 = \$300$. W1 mengirim $40$ unit ke S3 melalui rute termurahnya dan W2 mengirim $40$ unit ke S2 melalui rute termurahnya; sisa permintaan S1 dibagi $20/10$ agar seluruh pasokan dan permintaan seimbang. Model ini tidak menetapkan kapasitas per rute.
+
+% ----------------------------------------------------------------------------
+\exsol{3.6}{Bauran Produk dengan Laporan Sensitivitas}{2}
+
+Misalkan $x_1, x_2, x_3 \geq 0$ adalah jumlah meja, kursi, dan meja kerja yang dibuat per minggu:
+\begin{align*}
+\max \quad & 70x_1 + 50x_2 + 90x_3\\
+\st & 4x_1 + 3x_2 + 6x_3 \leq 240 && \text{(pertukangan kayu)}\\
+& 2x_1 + x_2 + 3x_3 \leq 100 && \text{(penyelesaian akhir)}\\
+& 30x_1 + 20x_2 + 40x_3 \leq 2000 && \text{(kayu)}.
+\end{align*}
+
+(a) \emph{Penyiapan Solver:} tiga sel variabel kuning, fungsi tujuan hijau \texttt{=SUMPRODUCT(profits, vars)}, tiga sel hijau penggunaan sumber daya yang dikendalakan agar $\leq (240, 100, 2000)$, Max, dan Simplex LP. Solusi optimalnya adalah $x_1 = 30$ meja, $x_2 = 40$ kursi, $x_3 = 0$ meja kerja, dengan laba maksimum $70(30) + 50(40) = \$4100$, sesuai dengan nilai pemeriksaan.
+
+(b) Pada tabel Constraints dalam Sensitivity Report, harga bayangannya adalah $\$15$ per jam pertukangan kayu, $\$5$ per jam penyelesaian akhir, dan $\$0$ per kaki papan kayu. Kendala pertukangan kayu ($4 \cdot 30 + 3 \cdot 40 = 240$) dan penyelesaian akhir ($2 \cdot 30 + 40 = 100$) aktif; kendala kayu tidak aktif ($1700$ dari $2000$ digunakan, dengan kelonggaran $300$).
+
+(c) Tidak. Selama penambahan tidak melebihi kenaikan ruas kanan yang diizinkan, yaitu $20$ jam, satu jam penyelesaian akhir tambahan bernilai sebesar harga bayangannya, yaitu $\$5$, yang lebih rendah daripada harga yang diminta sebesar $\$10$. Jadi, masing-masing dari paling banyak $20$ jam pertama akan menimbulkan kerugian bersih sebesar $\$5$; perubahan yang lebih besar harus diselesaikan ulang.
+
+(d) Biaya tereduksi meja kerja adalah $90 - (6 \cdot 15 + 3 \cdot 5) = 90 - 105 = -15$, sehingga laporan mencantumkan kenaikan yang diizinkan sebesar $15$ untuk koefisien meja kerja (hingga $\$105$). Pada $\$100$, rencananya tidak berubah (tetap $30$ meja, $40$ kursi, tanpa meja kerja, dan laba $\$4100$). Pada $\$110$, yang melampaui kenaikan yang diizinkan, rencananya berubah: setelah diselesaikan ulang, diperoleh $x_1 = 0$, $x_2 = 40$, $x_3 = 20$ dengan laba $\$4200$, sehingga meja kerja masuk ke dalam bauran.
+
+% ----------------------------------------------------------------------------
+\exsol{3.7}{Transportasi Tak Seimbang dengan Laporan Sensitivitas}{2}
+
+(a) Misalkan $x_{ij} \geq 0$ adalah jumlah unit yang dikirim dari pabrik $i$ ke kota $j$. Pasokannya $160$ dan permintaannya $150$, sehingga kendala pasokan berbentuk $\leq$ dan kendala permintaan berbentuk $=$:
+\begin{align*}
+\min \quad & 4x_{11} + 5x_{12} + 7x_{13} + 6x_{21} + 3x_{22} + 2x_{23} + 5x_{31} + 8x_{32} + 4x_{33}\\
+\st & x_{11}+x_{12}+x_{13} \leq 70, \quad x_{21}+x_{22}+x_{23} \leq 50, \quad x_{31}+x_{32}+x_{33} \leq 40,\\
+& x_{11}+x_{21}+x_{31} = 50, \quad x_{12}+x_{22}+x_{32} = 60, \quad x_{13}+x_{23}+x_{33} = 40, \quad x_{ij} \geq 0.
+\end{align*}
+\emph{Penyiapan Solver:} kisi kuning berukuran $3 \times 3$, fungsi tujuan \texttt{=SUMPRODUCT(costs, flows)}, jumlah baris $\leq$ pasokan, jumlah kolom $=$ permintaan, dan Simplex LP. Rencana optimalnya adalah
+\[
+x_{11} = 50, \quad x_{12} = 10, \quad x_{22} = 50, \quad x_{33} = 40 \quad \text{(semua rute lainnya 0)},
+\]
+dengan biaya minimum $4(50) + 5(10) + 3(50) + 4(40) = 200 + 50 + 150 + 160 = \$560$, sesuai dengan nilai pemeriksaan.
+
+(b) Pabrik 1 hanya mengirim $60$ dari $70$ unitnya, sehingga $10$ unit tetap berada di P1. (P2 dan P3 mengirimkan seluruh kapasitasnya.)
+
+(c) Harga bayangan pada kendala pasokan dalam Sensitivity Report: P1 bernilai $0$, P2 bernilai $-2$, dan P3 bernilai $0$ (kendala P3 aktif tetapi degenerat di sini, sehingga harga yang dilaporkan adalah $0$). Harga tak nol itu berarti satu unit kapasitas tambahan di pabrik 2 akan mengurangi biaya total sebesar $\$2$: P2 memiliki rute termurah menuju kota 2, dan kapasitas P2 tambahan akan menggantikan satu unit pengiriman P1 seharga $\$5$ dengan pengiriman seharga $\$3$. Tandanya negatif karena ini masalah minimisasi: melonggarkan kendala pasokan $\leq$ yang aktif hanya dapat membantu, yaitu menurunkan nilai fungsi tujuan.
+
+% ----------------------------------------------------------------------------
+\exsol{3.8}{Simplex LP versus GRG Nonlinear}{2}
+
+(a) Simplex LP dirancang untuk masalah dengan sel fungsi tujuan dan sel kendala yang semuanya merupakan fungsi linear dari sel variabel (program linear). GRG Nonlinear (gradien tereduksi umum) dirancang untuk masalah yang fungsi-fungsi tersebut mulus (terdiferensialkan), tetapi nonlinear.
+
+(b) Untuk program linear, Simplex LP menjamin solusi optimal global dan menghasilkan Sensitivity Report LP standar yang berisi harga bayangan, biaya tereduksi, serta rentang kenaikan/penurunan yang diizinkan. GRG merupakan metode pencarian lokal: pada masalah nonlinear umum, metode ini hanya menjamin titik optimal lokal (kebetulan untuk LP, optimum lokal dan global berimpit, tetapi Solver tidak memanfaatkan hal itu); metode ini bisa lebih lambat dan bergantung pada titik awal; dan keluaran sensitivitasnya melaporkan pengali Lagrange serta gradien tereduksi tanpa informasi rentang yang diizinkan yang membuat laporan LP berguna.
+
+(c) Solver menjalankan uji linearitas pada model sebelum (dan sesudah) menyelesaikannya. Karena \texttt{=B2*B3} mengalikan dua sel variabel, kendala itu bukan fungsi linear dari variabel, dan Solver berhenti dengan pesan ``the linearity conditions required by this LP Solver are not satisfied'' (syarat linearitas yang diwajibkan Solver LP ini tidak terpenuhi). Perbaikannya adalah merumuskan ulang model secara linear atau beralih ke GRG Nonlinear.
+
+(d) Fungsi tujuan nonlinear mulus apa pun dapat digunakan, misalnya meminimumkan varians portofolio $f(\x) = \x^{\mathsf T} Q \x$ (suatu fungsi kuadratik), atau memaksimumkan $\sqrt{x_1} + \sqrt{x_2}$ dengan batas bawah positif $x_1,x_2 \geq \varepsilon > 0$. Pada domain tersebut fungsi-fungsi ini terdiferensialkan, sehingga GRG dapat diterapkan, tetapi tidak linear, sehingga Simplex LP menolaknya.
+
+% ----------------------------------------------------------------------------
+\Needspace{0.50\textheight}
+\exsol{3.9}{Ketika Variabel Harus Bernilai Negatif}{3}
+
+Modelnya adalah
+\[
+\max \; 0.05x_A + 0.12x_B \quad \st \; x_A + x_B = 100, \quad 0 \leq x_B \leq 140, \quad x_A \text{ bebas}.
+\]
+\emph{Penyiapan Solver:} dua sel kuning untuk $x_A, x_B$, fungsi tujuan \texttt{=0.05*xA+0.12*xB}, kendala \texttt{xA+xB=100} dan \texttt{xB<=140}, serta Simplex LP.
+
+(a) Dengan Make Unconstrained Variables Non-Negative dicentang, Solver secara diam-diam memberlakukan $x_A \geq 0$ dan $x_B \geq 0$, sehingga hasil terbaik yang dapat diperolehnya adalah $x_A = 0$, $x_B = 100$, dengan imbal hasil $0.05(0) + 0.12(100) = 12$, yaitu \$12{,}000.
+
+(b) Dengan kotak centang tersebut dikosongkan dan $x_B \geq 0$ ditambahkan secara eksplisit, Solver menemukan $x_A = -40$, $x_B = 140$: artinya mengambil posisi short senilai \$40{,}000 pada dana A untuk menambah investasi pada dana B hingga batas marginnya. Imbal hasilnya adalah $0.05(-40) + 0.12(140) = -2 + 16.8 = 14.8$, yaitu \$14{,}800.
+
+(c) Kotak centang tersebut menambahkan batas bawah nol pada setiap variabel keputusan yang belum memiliki batas bawah eksplisit dalam daftar kendala. Short selling pada hakikatnya merupakan kepemilikan negatif, sehingga batas tersembunyi itu menyingkirkan optimum sejati; kotaknya harus dikosongkan agar $x_A$ dapat bernilai negatif. Risikonya, mengosongkan kotak tersebut menghapus batas otomatis dari semua variabel sekaligus: setiap variabel yang seharusnya nonnegatif (di sini $x_B$) kini harus diberi kendala $\geq 0$ eksplisitnya sendiri, atau Solver mungkin menghasilkan nilai negatif yang tidak bermakna untuk variabel tersebut.

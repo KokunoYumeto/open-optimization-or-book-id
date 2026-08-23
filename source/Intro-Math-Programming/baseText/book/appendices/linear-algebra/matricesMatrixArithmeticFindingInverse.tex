@@ -1,0 +1,538 @@
+
+\subsection{Mencari Invers Suatu Matriks}
+
+Dalam Contoh \ref{exa:verifyinginverse}, kita diberi $A^{-1}$ dan diminta memeriksa bahwa matriks ini
+memang invers dari $A$. Pada bagian ini, kita membahas cara mencari $A^{-1}$. 
+
+Misalkan
+\begin{equation*}
+A=\leftB
+\begin{array}{rr}
+1 & 1 \\
+1 & 2
+\end{array}
+\rightB
+\end{equation*}
+seperti dalam Contoh \ref{exa:verifyinginverse}.
+Untuk mencari $A^{-1}$, kita perlu mencari
+matriks $\leftB
+\begin{array}{rr}
+x & z \\
+y & w
+\end{array}
+\rightB $ sedemikian sehingga
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+1 & 1 \\
+1 & 2
+\end{array}
+\rightB \leftB
+\begin{array}{rr}
+x & z \\
+y & w
+\end{array}
+\rightB =\leftB
+\begin{array}{rr}
+1 & 0 \\
+0 & 1
+\end{array}
+\rightB 
+\end{equation*}
+Kita dapat mengalikan kedua matriks ini dan melihat bahwa agar persamaan tersebut benar, kita harus mencari solusi untuk sistem-sistem persamaan
+\begin{equation*}
+\begin{array}{c}
+x+y=1 \\
+x+2y=0
+\end{array}
+\end{equation*}
+dan
+\begin{equation*}
+\begin{array}{c}
+z+w=0 \\
+z+2w=1
+\end{array}
+\end{equation*}
+Menuliskan matriks diperbesar untuk kedua sistem ini menghasilkan
+\begin{equation*}
+\leftB
+\begin{array}{rr|r}
+1 & 1 & 1 \\
+1 & 2 & 0
+\end{array}
+\rightB  
+\label{inverse1a}
+\end{equation*}
+untuk sistem pertama dan
+\begin{equation}
+\leftB
+\begin{array}{rr|r}
+1 & 1 & 0 \\
+1 & 2 & 1
+\end{array}
+\rightB  \label{inverse2a}
+\end{equation}
+untuk sistem kedua. 
+
+Mari selesaikan sistem pertama. Kalikan baris pertama dengan $-1$,
+lalu tambahkan hasilnya ke baris kedua untuk memperoleh
+\begin{equation*}
+\leftB
+\begin{array}{rr|r}
+1 & 1 & 1 \\
+0 & 1 & -1
+\end{array}
+\rightB
+\end{equation*}
+Sekarang, kalikan baris kedua dengan $-1$, lalu tambahkan hasilnya ke baris pertama untuk
+memperoleh
+\begin{equation*}
+\leftB
+\begin{array}{rr|r}
+1 & 0 & 2 \\
+0 & 1 & -1
+\end{array}
+\rightB 
+\end{equation*}
+Jika ditulis berdasarkan variabel, ini menyatakan $x=2$ dan $y=-1.$
+
+Sekarang, selesaikan sistem kedua, \ref{inverse2a}, untuk mencari $z$ dan $w.$ Anda akan memperoleh bahwa
+$z = -1$ dan $w = 1$.
+
+Jika nilai-nilai $x,y,z,$ dan $w$ yang diperoleh
+dimasukkan ke dalam matriks invers, kita melihat bahwa inversnya
+adalah
+\begin{equation*}
+A^{-1} = 
+\leftB
+\begin{array}{rr}
+x & z \\
+y & w
+\end{array}
+\rightB
+=
+\leftB
+\begin{array}{rr}
+2 & -1 \\
+-1 & 1
+\end{array}
+\rightB 
+\end{equation*}
+
+Setelah meluangkan waktu untuk menyelesaikan sistem kedua, Anda mungkin memperhatikan bahwa operasi baris yang persis sama
+digunakan untuk menyelesaikan kedua sistem. Dalam setiap kasus, hasil akhirnya berbentuk
+$\leftB I|X\rightB $, dengan $I$ sebagai
+identitas dan $X$ memberikan satu kolom invers. Pada pembahasan di atas,
+\begin{equation*}
+\leftB
+\begin{array}{c}
+x \\
+y
+\end{array}
+\rightB
+\end{equation*}
+yang merupakan kolom pertama invers diperoleh dengan menyelesaikan sistem pertama, lalu
+kolom kedua
+\begin{equation*}
+\leftB
+\begin{array}{c}
+z \\
+w
+\end{array}
+\rightB 
+\end{equation*}
+
+Untuk menyederhanakan prosedur ini, kita sebenarnya dapat menyelesaikan kedua sistem sekaligus!
+Untuk melakukannya, kita dapat menulis
+\begin{equation*}
+\leftB
+\begin{array}{rr|rr}
+1 & 1 & 1 & 0 \\
+1 & 2 & 0 & 1
+\end{array}
+\rightB
+\end{equation*}
+
+dan melakukan reduksi baris hingga diperoleh
+\begin{equation*}
+\leftB
+\begin{array}{rr|rr}
+1 & 0 & 2 & -1 \\
+0 & 1 & -1 & 1
+\end{array}
+\rightB
+\end{equation*}
+lalu membaca inversnya sebagai matriks $2\times 2$ di sisi kanan.
+
+Pembahasan ini memotivasi algoritma penting berikut.
+
+\begin{algorithm}{Algoritma Invers Matriks}{matrixinversionalgorithm}
+Misalkan $A$ adalah matriks $n\times n$. \index{matriks!mencari invers} Untuk mencari $A^{-1}$ jika ada, bentuklah
+matriks diperbesar $n\times 2n$
+\begin{equation*}
+\leftB A|I\rightB
+\end{equation*}
+Jika memungkinkan, lakukan operasi baris hingga diperoleh matriks $n\times 2n$
+berbentuk
+\begin{equation*}
+\leftB I|B\rightB  
+\end{equation*}
+Jika hal ini berhasil dilakukan, $B=A^{-1}.$ Dalam kasus ini, kita mengatakan bahwa $A$ \textbf{invertibel}.
+Jika reduksi baris menjadi
+matriks berbentuk $\leftB I|B\rightB ,$ tidak mungkin dilakukan, maka $A$ tidak memiliki invers.
+\end{algorithm}
+
+Algoritma ini menunjukkan cara mencari invers jika invers tersebut ada. Algoritma ini juga akan memberi tahu Anda jika
+$A$ tidak memiliki invers. 
+
+Perhatikan contoh berikut.
+
+\begin{example}{Mencari Invers}\label{exa:findinginverse}
+Misalkan $A=\leftB
+\begin{array}{rrr}
+1 & 2 & 2 \\
+1 & 0 & 2 \\
+3 & 1 & -1
+\end{array}
+\rightB $. Carilah $A^{-1}$ jika ada.
+\end{example}
+
+\begin{solution} Bentuk matriks diperbesar
+\begin{equation*}
+\leftB A|I\rightB =  
+\leftB
+\begin{array}{rrr|rrr}
+1 & 2 & 2 & 1 & 0 & 0 \\
+1 & 0 & 2 & 0 & 1 & 0 \\
+3 & 1 & -1 & 0 & 0 & 1
+\end{array}
+\rightB
+\end{equation*}
+
+Sekarang kita melakukan reduksi baris dengan tujuan memperoleh matriks identitas $3 \times 3$ di sisi kiri.
+Pertama, kalikan baris pertama dengan $-1 $, lalu tambahkan hasilnya ke baris kedua;
+setelah itu, kalikan baris pertama dengan $-3 $ dan tambahkan hasilnya ke baris ketiga. Proses ini
+menghasilkan
+\begin{equation*}
+\allowbreak \leftB
+\begin{array}{rrr|rrr}
+1 & 2 & 2 & 1 & 0 & 0 \\
+0 & -2 & 0 & -1 & 1 & 0 \\
+0 & -5 & -7 & -3 & 0 & 1
+\end{array}
+\rightB 
+\end{equation*}
+Kemudian, kalikan baris kedua dengan 5 dan tambahkan hasilnya ke baris ketiga yang dikalikan dengan -2.
+\begin{equation*}
+\leftB
+\begin{array}{rrr|rrr}
+1 & 2 & 2 & 1 & 0 & 0 \\
+0 & -10 & 0 & -5 & 5 & 0 \\
+0 & 0 & 14 & 1 & 5 & -2
+\end{array}
+\rightB
+\end{equation*}
+Selanjutnya, tambahkan baris ketiga ke baris pertama yang dikalikan dengan $ -7$.
+Ini menghasilkan
+\begin{equation*}
+\leftB 
+\begin{array}{rrr|rrr}
+-7 & -14 & 0 & -6 & 5 & -2 \\
+0 & -10 & 0 & -5 & 5 & 0 \\
+0 & 0 & 14 & 1 & 5 & -2
+\end{array}
+\rightB 
+\end{equation*}
+Sekarang, kalikan baris kedua dengan $ -\frac{7}{5}$, lalu tambahkan hasilnya ke baris pertama.
+\begin{equation*}
+ \leftB
+\begin{array}{rrr|rrr}
+-7 & 0 & 0 & 1 & -2 & -2 \\
+0 & -10 & 0 & -5 & 5 & 0 \\
+0 & 0 & 14 & 1 & 5 & -2
+\end{array}
+\rightB 
+\end{equation*}
+Terakhir, bagi baris pertama dengan -7, baris kedua dengan -10, dan baris ketiga
+dengan 14 sehingga diperoleh
+\begin{equation*}
+\leftB 
+\begin{array}{rrr|rrr}
+1 & 0 & 0 & -\vspace{0.05in}\frac{1}{7} & \vspace{0.05in}\frac{2}{7} & \vspace{0.05in}\frac{2}{7} \\
+0 & 1 & 0 & \vspace{0.05in}\frac{1}{2} & -\vspace{0.05in}\frac{1}{2} & 0
+\\
+0 & 0 & 1 & \vspace{0.05in}\frac{1}{14} & \vspace{0.05in}\frac{5}{14} & -
+\vspace{0.05in}\frac{1}{7}
+\end{array}
+\rightB 
+\end{equation*}
+Perhatikan bahwa sisi kiri matriks ini kini merupakan matriks identitas $3 \times 3$, yaitu $I_3$.
+Oleh karena itu, inversnya adalah matriks $3 \times 3$ di sisi kanan, yang diberikan oleh
+\begin{equation*}
+\leftB
+\begin{array}{rrr}
+-\vspace{0.05in}\frac{1}{7} & \vspace{0.05in}\frac{2}{7} & \vspace{0.05in}
+\frac{2}{7} \\
+\vspace{0.05in}\frac{1}{2} & -\vspace{0.05in}\frac{1}{2} & 0 \\
+\vspace{0.05in}\frac{1}{14} & \vspace{0.05in}\frac{5}{14} & -\vspace{0.05in}
+\frac{1}{7}
+\end{array}
+\rightB
+\end{equation*}
+\end{solution}
+
+Melalui algoritma ini, mungkin saja Anda menemukan bahwa sisi kiri tidak dapat
+direduksi baris menjadi matriks identitas. Perhatikan contoh situasi ini berikut. 
+
+\begin{example}{Matriks yang Tidak Memiliki Invers}\label{exa:matrixnoinverse}
+Misalkan $A=\leftB
+\begin{array}{rrr}
+1 & 2 & 2 \\
+1 & 0 & 2 \\
+2 & 2 & 4
+\end{array}
+\rightB $. Carilah $A^{-1}$ jika ada.
+\end{example}
+
+\begin{solution} Tuliskan matriks diperbesar $\leftB A|I\rightB $
+\begin{equation*}
+\leftB
+\begin{array}{rrr|rrr}
+1 & 2 & 2 & 1 & 0 & 0 \\
+1 & 0 & 2 & 0 & 1 & 0 \\
+2 & 2 & 4 & 0 & 0 & 1
+\end{array}
+\rightB
+\end{equation*}
+dan lanjutkan dengan operasi baris untuk mencoba memperoleh $\leftB
+I|A^{-1}\rightB .$ Kalikan baris pertama dengan $-1$, lalu tambahkan hasilnya ke
+baris kedua. Kemudian, kalikan baris pertama dengan $ -2 $ dan tambahkan hasilnya ke
+baris ketiga.
+\begin{equation*}
+\leftB 
+\begin{array}{rrr|rrr}
+1 & 2 & 2 & 1 & 0 & 0 \\
+0 & -2 & 0 & -1 & 1 & 0 \\
+0 & -2 & 0 & -2 & 0 & 1
+\end{array}
+\rightB
+\end{equation*}
+Selanjutnya, tambahkan $-1 $ kali baris kedua ke baris ketiga.
+\begin{equation*}
+\leftB 
+\begin{array}{rrr|rrr}
+1 & 2 & 2 & 1 & 0 & 0 \\
+0 & -2 & 0 & -1 & 1 & 0 \\
+0 & 0 & 0 & -1 & -1 & 1
+\end{array}
+\rightB
+\end{equation*}
+Pada titik ini, Anda dapat melihat bahwa tidak ada cara untuk memperoleh $I$ di
+sisi kiri matriks diperbesar ini. Jadi, algoritma ini tidak mungkin
+diselesaikan, sehingga invers dari $A$ tidak
+ada. Dalam hal ini, kita mengatakan bahwa $A$ tidak invertibel.
+\end{solution}
+
+Jika algoritma menghasilkan invers untuk matriks semula, jawaban selalu dapat diperiksa.
+Untuk melakukannya, gunakan metode yang ditunjukkan dalam Contoh \ref{exa:verifyinginverse}. Periksa bahwa hasil kali $AA^{-1}$ dan $A^{-1}A$ keduanya sama dengan
+matriks identitas. Dengan metode ini, Anda selalu dapat memastikan bahwa $A^{-1}$ telah dihitung dengan benar!
+
+Salah satu kegunaan invers matriks adalah mencari solusi suatu sistem persamaan linear.
+Ingat dari Definisi \ref{def:matrixform} bahwa kita dapat menulis suatu sistem persamaan dalam bentuk matriks,
+yaitu berbentuk $AX=B$. Misalkan Anda telah mencari
+invers matriks, yaitu $A^{-1}$. Anda kemudian dapat mengalikan kedua sisi
+persamaan ini di sebelah kiri dengan $A^{-1}$ dan menyederhanakannya untuk memperoleh
+\begin{equation*}
+\begin{array}{c}
+\left( A^{-1} \right) AX =A^{-1}B \\
+\left(A^{-1}A\right) X = A^{-1}B \\
+IX = A^{-1}B \\
+X = A^{-1}B
+\end{array}
+\end{equation*}
+Oleh karena itu, kita dapat mencari $X$, yaitu solusi sistem, dengan menghitung $X=A^{-1}B$.
+Perhatikan bahwa setelah
+$A^{-1}$ diperoleh, Anda dapat dengan mudah memperoleh solusi untuk ruas kanan yang berbeda
+($B$ yang berbeda). Solusinya selalu $A^{-1}B$.
+ 
+Kita akan membahas metode pencarian solusi sistem ini dalam contoh berikut. 
+
+\begin{example}{Menggunakan Invers untuk Menyelesaikan Sistem Persamaan}\label{exa:inversetosolvesystem}
+ Perhatikan sistem
+persamaan berikut. Gunakan invers dari matriks yang sesuai untuk memperoleh solusi
+sistem ini.
+\begin{equation*}
+\begin{array}{c}
+x+z=1 \\
+x-y+z=3 \\
+x+y-z=2
+\end{array}
+\end{equation*}
+\end{example}
+
+\begin{solution} Pertama, kita dapat menuliskan sistem persamaan dalam bentuk matriks
+\begin{equation}
+AX = 
+\leftB
+\begin{array}{rrr}
+1 & 0 & 1 \\
+1 & -1 & 1 \\
+1 & 1 & -1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+x \\
+y \\
+z
+\end{array}
+\rightB =\leftB
+\begin{array}{r}
+1 \\
+3 \\
+2
+\end{array}
+\rightB  = B  \label{inversesystem1}
+\end{equation}
+
+Invers dari matriks
+\begin{equation*}
+A = \leftB
+\begin{array}{rrr}
+1 & 0 & 1 \\
+1 & -1 & 1 \\
+1 & 1 & -1
+\end{array}
+\rightB
+\end{equation*}
+adalah
+\begin{equation*}
+A^{-1} = \leftB
+\begin{array}{rrr}
+0 & \vspace{0.05in}\frac{1}{2} & \vspace{0.05in}\frac{1}{2} \\
+1 & -1 & 0 \\
+1 & -\vspace{0.05in}\frac{1}{2} & -\vspace{0.05in}\frac{1}{2}
+\end{array}
+\rightB
+\end{equation*}
+
+Pemeriksaan invers ini diserahkan sebagai latihan.
+
+Dari sini, solusi sistem \ref{inversesystem1} yang diberikan
+diperoleh melalui
+\begin{equation*}
+\leftB
+\begin{array}{r}
+x \\
+y \\
+z
+\end{array}
+\rightB = A^{-1}B = \leftB
+\begin{array}{rrr}
+0 & \vspace{0.05in}\frac{1}{2} & \vspace{0.05in}\frac{1}{2} \\
+1 & -1 & 0 \\
+1 & -\vspace{0.05in}\frac{1}{2} & -\vspace{0.05in}\frac{1}{2}
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+1 \\
+3 \\
+2
+\end{array}
+\rightB =\leftB
+\begin{array}{r}
+\vspace{0.05in}\frac{5}{2} \\
+-2 \\
+-\vspace{0.05in}\frac{3}{2}
+\end{array}
+\rightB 
+\end{equation*}
+\end{solution}
+
+Bagaimana jika ruas kanan, yaitu $B$, dari \ref{inversesystem1} adalah $\leftB
+\begin{array}{r}
+0 \\
+1 \\
+3
+\end{array}
+\rightB ?$ Dengan kata lain, apa solusi dari
+\begin{equation*}
+\leftB
+\begin{array}{rrr}
+1 & 0 & 1 \\
+1 & -1 & 1 \\
+1 & 1 & -1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+x \\
+y \\
+z
+\end{array}
+\rightB =\leftB
+\begin{array}{r}
+0 \\
+1 \\
+3
+\end{array}
+\rightB ?
+\end{equation*}
+Berdasarkan pembahasan di atas, solusinya diberikan oleh
+\begin{equation*}
+\leftB
+\begin{array}{r}
+x \\
+y \\
+z
+\end{array}
+\rightB = A^{-1}B = \leftB
+\begin{array}{rrr}
+0 & \vspace{0.05in}\frac{1}{2} & \vspace{0.05in}\frac{1}{2} \\
+1 & -1 & 0 \\
+1 & -\vspace{0.05in}\frac{1}{2} & -\vspace{0.05in}\frac{1}{2}
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+0 \\
+1 \\
+3
+\end{array}
+\rightB =\leftB
+\begin{array}{r}
+2 \\
+-1 \\
+-2
+\end{array}
+\rightB 
+\end{equation*}
+Ini menunjukkan bahwa untuk sistem $AX=B$ dengan $A^{-1}$ yang ada,
+solusi mudah dicari ketika vektor $B$ diubah.
+%
+%We conclude this section with some important properties of the inverse. 
+%
+\begin{theorem}{Invers dari Transpos dan Hasil Kali}\label{thm:inversetransposeprod}
+%Let $A, B$, and $A_i$ for $i=1,...,k$ be $n \times n$ matrices. 
+\begin{enumerate}
+\item
+%If $A$ is an invertible matrix, then $(A^{T})^{-1} = (A^{-1})^{T}$
+\item
+%If $A$ and $B$ are invertible matrices, then $AB$ is invertible and $(AB)^{-1} = B^{-1}A^{-1}$
+\item
+%If $A_1, A_2, ..., A_k$ are invertible, then the product $A_1A_2 \cdots A_k$ is invertible, and $(A_1A_2 \cdots A_k)^{-1} = A_k^{-1}A_{k-1}^{-1} \cdots A_2^{-1}A_1^{-1}$
+\end{enumerate}
+\end{theorem}
+%
+%Consider the following theorem.
+%
+\begin{theorem}{Sifat-Sifat Invers}\label{thm:inverseproperties}
+%Let $A$ be an $n \times n$ matrix and $I$ the usual identity matrix. 
+\begin{enumerate}
+\item
+%$I$ is invertible and $I^{-1} = I$
+\item
+%If $A$ is invertible then so is $A^{-1}$, and $(A^{-1})^{-1} = A$
+\item
+%If $A$ is invertible then so is $A^k$, and $(A^k)^{-1} = (A^{-1})^k$
+\item
+%If $A$ is invertible and $p$ is a nonzero real number, then $pA$ is invertible and $(pA)^{-1} = \frac{1}{p}A^{-1}$
+\end{enumerate}
+\end{theorem}

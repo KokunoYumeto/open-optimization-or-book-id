@@ -1,0 +1,28 @@
+
+%\documentclass[../open-optimization/open-optimization.tex]{subfiles}
+
+%%%%%%%%%
+%\begin{document}
+%%%%%%%%%
+
+\begin{general}{Penutupan Himpunan -- Deskripsi Matriks}{\npcomplete}
+\label{general:set-covering-alternate}
+Diberikan matriks nonnegatif $A \in \{0,1\}^{m \times n}$, sebuah vektor nonnegatif, dan vektor objektif $c \in \R^n$, masalah penutupan himpunan adalah
+\begin{equation}
+\begin{split}
+\min \ \ & c^\top x\\
+\text{s.t.} \ \ & Ax \geq \one \\
+& x \in \{0,1\}^n.
+\end{split}
+\end{equation}
+\end{general}
+\begin{examplewithoutcode}{Penutupan Simpul dengan Matriks}{code:vertex-cover-matrix}
+Cara lain untuk menyelesaikan \nameref{ex:vertex-cover} adalah dengan mendefinisikan \emph{matriks insidensi} $A$ dari graf tersebut. Matriks insidensi adalah matriks berukuran $|E| \times |V|$ dengan entri $\{0,1\}$. Setiap baris bersesuaian dengan sebuah sisi $e$, dan setiap kolom bersesuaian dengan sebuah simpul $v$. Untuk sisi $e = (u,v)$, baris yang bersesuaian memiliki nilai $1$ pada kolom-kolom yang bersesuaian dengan simpul $u$ dan $v$, serta nilai 0 di semua tempat lainnya. Dengan demikian, setiap baris memiliki tepat dua nilai 1. Penerapan rumusan di atas dalam \nameref{general:set-covering-alternate} memodelkan masalah tersebut.
+\end{examplewithoutcode}
+
+
+
+
+%%%%%%%%%
+%\end{document}
+%%%%%%%%%

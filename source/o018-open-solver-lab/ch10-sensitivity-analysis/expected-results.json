@@ -1,0 +1,107 @@
+{
+  "10.1": {
+    "basic_values": [4, 5, 3],
+    "basis": ["x", "y", "s2"],
+    "nonbinding_constraints": [2],
+    "offer": {
+      "accept": true,
+      "allowed_additional_quantity": 4,
+      "maximum_unit_price": 1,
+      "net_gain": "1/4"
+    },
+    "reduced_costs": {"s1": -1, "s3": -1},
+    "shadow_prices": [1, 0, 1]
+  },
+  "10.2": {
+    "basis_inverse": [[-1, 1], [2, -1]],
+    "delta_range": [-2, 6],
+    "objective": "36+2*delta",
+    "rhs_range": [8, 16],
+    "shadow_price": 2,
+    "solution_affine": [[16, -1], [-16, 2]]
+  },
+  "10.3": {
+    "coefficient_range": [3, 6],
+    "delta_range": [-1, 2],
+    "dual_affine": [[6, -1], [-3, 1]],
+    "objective": "12+6*c1",
+    "solution": [6, 4]
+  },
+  "10.4": {
+    "basis_inverse": [["-1/2", "1/2"], ["3/4", "-1/4"]],
+    "coefficient_ranges": {"c1": [3, 9], "c2": ["10/3", 10]},
+    "objective": 56,
+    "rhs_ranges": {"b1": [8, 24], "b2": [16, 48]},
+    "shadow_prices": [2, 1],
+    "solution": [4, 6]
+  },
+  "10.5": {
+    "basis": ["x1", "s2"],
+    "basis_inverse": [["1/2", 0], ["-1/2", 1]],
+    "basic_values": [5, 10],
+    "coefficient_ranges": {"c1": [4, "infinity"], "c2": ["-infinity", "5/2"]},
+    "reduced_costs": {"s1": "-5/2", "x2": "-1/2"}
+  },
+  "10.6": {
+    "basis_inverse": [[-2, 1], [3, -1]],
+    "coefficient_range_c1": [4, 6],
+    "rhs_range_b1": [5, "15/2"],
+    "shadow_prices": [2, 1],
+    "solution": [3, 3]
+  },
+  "10.7": {
+    "changed_objective": 80,
+    "current_objective": 68,
+    "missing_for_solver": [
+      "constraint_coefficient_matrix",
+      "constraint_senses",
+      "complete_primal_model"
+    ],
+    "new_objective_from_shadow_price": 73,
+    "nonbinding_constraint": 2,
+    "status": "verified_fail_closed"
+  },
+  "10.8": {
+    "objective": 525,
+    "objective_after_two_more_wood": "1095/2",
+    "rhs_range_wood": [20, 60],
+    "shadow_prices": ["45/4", "5/2"],
+    "solution": ["15/2", 5]
+  },
+  "10.9": {
+    "dictionary_example": {
+      "objective": 23,
+      "rhs_range_b2": [13, "infinity"],
+      "shadow_price_b2": 0,
+      "slack_b2": 3
+    },
+    "status": "verified_general_proof"
+  },
+  "10.10": {
+    "cost_condition": "cN-cB*A_B^-1*A_N<=0",
+    "rhs_condition": "A_B^-1*b>=0",
+    "status": "verified_general_certificate",
+    "value_formula": "cB*A_B^-1*b"
+  },
+  "10.11": {
+    "dual_family": ["1-t", "1-t", "t"],
+    "dual_parameter_range": [0, 1],
+    "left_derivative": 1,
+    "right_derivative": 0,
+    "values": {"b3=1": 1, "b3=2": 2, "b3=3": 2}
+  },
+  "10.12": {
+    "actual_at_b1_14": 24,
+    "allowable_rhs_range": [7, 10],
+    "predicted_at_b1_14": 28,
+    "shadow_price": 1,
+    "values": {"b1=10": 24, "b1=14": 24, "b1=9": 23}
+  },
+  "summary": {
+    "correction_count": 3,
+    "exercise_count": 12,
+    "solver_call_count": 29,
+    "underdetermined_count": 1,
+    "verified_count": 12
+  }
+}

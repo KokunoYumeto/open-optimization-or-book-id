@@ -1,0 +1,746 @@
+\subsection{Perkalian Matriks}
+
+Operasi matriks penting berikutnya yang akan kita pelajari adalah perkalian
+matriks. Operasi
+perkalian matriks merupakan salah satu operasi matriks yang paling penting dan
+bermanfaat. Di sepanjang bagian ini, kita juga akan
+menunjukkan hubungan perkalian matriks dengan sistem
+persamaan linear.
+
+Pertama, kita memberikan definisi formal vektor baris dan vektor kolom. 
+
+\begin{definition}{Vektor Baris dan Vektor Kolom}\label{def:rowandcolumnvectors}
+Matriks berukuran $n\times 1$ atau $1\times n$ disebut \textbf{vektor}. Jika $\x$ adalah matriks semacam itu, kita menulis $x_{i}$ untuk
+menyatakan entri $\x$ pada baris $i$ dari matriks kolom, atau kolom $i$ dari matriks baris.
+\index{vektor}
+\index{vektor!kolom} 
+
+Matriks $n\times 1$
+\begin{equation*}
+\x=\leftB
+\begin{array}{c}
+x_{1} \\
+\vdots \\
+x_{n}
+\end{array}
+\rightB
+\end{equation*}
+disebut
+\index{vektor!vektor baris} \textbf{vektor kolom.} Matriks $1\times n$
+\begin{equation*}
+\x = \leftB
+\begin{array}{ccc}
+x_{1} & \cdots & x_{n}
+\end{array}
+\rightB
+\end{equation*}
+disebut \textbf{vektor baris}.
+\end{definition}
+
+Di seluruh teks ini, kita dapat menggunakan istilah \textbf{vektor} saja untuk menyebut vektor kolom maupun vektor baris.
+Jika demikian, konteks akan memperjelas jenis vektor yang dimaksud.
+
+Dalam bab ini, kita kembali menggunakan konsep kombinasi linear
+vektor seperti dalam Definisi \ref{def:linearcombination}. Dalam konteks ini, kombinasi linear adalah suatu jumlah
+yang terdiri atas vektor-vektor yang dikalikan dengan skalar. Sebagai contoh,
+\begin{equation*}
+\leftB
+\begin{array}{r}
+50 \\
+122
+\end{array}
+\rightB
+=
+7\leftB
+\begin{array}{r}
+1 \\
+4
+\end{array}
+\rightB +8\leftB
+\begin{array}{r}
+2 \\
+5
+\end{array}
+\rightB +9\leftB
+\begin{array}{r}
+3 \\
+6
+\end{array}
+\rightB
+\end{equation*}
+adalah kombinasi linear dari tiga vektor. 
+
+Ternyata, kita dapat menyatakan sistem persamaan linear apa pun sebagai kombinasi linear vektor. Bahkan,
+vektor-vektor yang akan kita gunakan hanyalah kolom-kolom matriks diperbesar yang bersesuaian! 
+
+\begin{definition}{Bentuk Vektor Sistem Persamaan Linear}\label{def:vectorform}
+Misalkan kita memiliki sistem persamaan yang diberikan oleh
+\begin{equation*}
+\begin{array}{c}
+a_{11}x_{1}+\cdots +a_{1n}x_{n}=b_{1} \\
+\vdots \\
+a_{m1}x_{1}+\cdots +a_{mn}x_{n}=b_{m}
+\end{array}
+\end{equation*}
+Kita dapat menyatakan sistem ini dalam \textbf{bentuk vektor} \index{sistem persamaan!bentuk vektor} sebagai berikut:
+\begin{equation*}
+x_1
+\leftB
+\begin{array}{c}
+a_{11}\\
+a_{21}\\
+\vdots \\
+a_{m1}
+\end{array}
+\rightB
++
+x_2
+\leftB
+\begin{array}{c}
+a_{12}\\
+a_{22}\\
+\vdots \\
+a_{m2}
+\end{array}
+\rightB
++
+\cdots
++
+x_n
+\leftB
+\begin{array}{c}
+a_{1n}\\
+a_{2n}\\
+\vdots \\
+a_{mn}
+\end{array}
+\rightB
+=
+\leftB
+\begin{array}{c}
+b_1\\
+b_2\\
+\vdots \\
+b_m
+\end{array}
+\rightB
+\end{equation*}
+\end{definition}
+
+Perhatikan bahwa setiap vektor yang digunakan di sini merupakan satu kolom dari matriks diperbesar yang bersesuaian. Ada satu vektor untuk setiap variabel dalam sistem,
+beserta vektor konstanta. 
+
+Bentuk penting pertama dari perkalian matriks adalah mengalikan matriks dengan vektor.
+Perhatikan hasil kali
+\begin{equation*}
+\leftB
+\begin{array}{rrr}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+7 \\
+8 \\
+9
+\end{array}
+\rightB
+\end{equation*}
+Kita akan segera melihat bahwa hasil ini sama dengan
+\begin{equation*}
+7\leftB
+\begin{array}{c}
+1 \\
+4
+\end{array}
+\rightB +8\leftB
+\begin{array}{c}
+2 \\
+5
+\end{array}
+\rightB +9\leftB
+\begin{array}{c}
+3 \\
+6
+\end{array}
+\rightB =\leftB
+\begin{array}{c}
+50 \\
+122
+\end{array}
+\rightB
+\end{equation*}
+
+Secara umum,
+\begin{eqnarray*}
+\leftB
+\begin{array}{ccc}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{array}
+\rightB \leftB
+\begin{array}{c}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{array}
+\rightB &=&\allowbreak x_{1}\leftB
+\begin{array}{c}
+a_{11} \\
+a_{21}
+\end{array}
+\rightB +x_{2}\leftB
+\begin{array}{c}
+a_{12} \\
+a_{22}
+\end{array}
+\rightB +x_{3}\leftB
+\begin{array}{c}
+a_{13} \\
+a_{23}
+\end{array}
+\rightB \\
+&=&\leftB
+\begin{array}{c}
+a_{11}x_{1}+a_{12}x_{2}+a_{13}x_{3} \\
+a_{21}x_{1}+a_{22}x_{2}+a_{23}x_{3}
+\end{array}
+\rightB 
+\end{eqnarray*}
+Jadi, Anda mengambil $x_{1}$ kali kolom pertama, menambahkannya dengan $x_{2}$ kali
+kolom kedua, lalu akhirnya menambahkan $x_{3}$ kali kolom ketiga. Jumlah di atas adalah kombinasi linear dari kolom-kolom matriks tersebut.
+Ketika Anda mengalikan sebuah matriks di sebelah kiri dengan sebuah vektor di sebelah kanan,
+bilangan-bilangan pembentuk vektor itu merupakan skalar-skalar yang digunakan dalam
+kombinasi linear kolom seperti diilustrasikan di atas.
+
+Berikut adalah definisi formal cara mengalikan matriks $m\times
+n $ dengan vektor kolom $ n\times 1 $.
+
+\begin{definition}{Perkalian Matriks dengan Vektor}\label{def:multiplicationvectormatrix}
+Misalkan $A=\leftB a_{ij} \rightB$ adalah matriks $m\times n$ dan $\x$
+adalah matriks $n\times 1$ yang diberikan oleh
+\begin{equation*}
+A=\leftB A_{1} \cdots A_{n}\rightB, \quad \x = \leftB
+\begin{array}{r}
+x_{1} \\
+\vdots \\
+x_{n}
+\end{array}
+\rightB 
+\end{equation*}
+
+Maka hasil kali $A\x$ adalah vektor kolom $m\times 1$
+\index{perkalian matriks!vektor} yang sama dengan kombinasi linear
+kolom-kolom $A$ berikut:
+\begin{equation*}
+x_{1}A_{1}+x_{2}A_{2}+\cdots +x_{n}A_{n} = 
+\sum_{j=1}^{n}x_{j}A_{j}  
+\end{equation*}
+\end{definition}
+
+Jika kita menuliskan kolom-kolom $A$ berdasarkan entri-entrinya, kolom-kolom tersebut berbentuk
+\begin{equation*}
+A_{j}  =
+\leftB
+\begin{array}{c}
+a_{1j} \\
+a_{2j} \\
+\vdots \\
+a_{mj}
+\end{array}
+\rightB 
+\end{equation*}
+Maka kita dapat menuliskan hasil kali $A\x$ sebagai
+\begin{equation*}
+A\x = 
+x_{1}\leftB
+\begin{array}{c}
+a_{11} \\
+a_{21} \\
+\vdots \\
+a_{m1}
+\end{array}
+\rightB + x_{2}\leftB
+\begin{array}{c}
+a_{12} \\
+a_{22} \\
+\vdots \\
+a_{m2}
+\end{array}
+\rightB +\cdots + x_{n}\leftB
+\begin{array}{c}
+a_{1n} \\
+a_{2n} \\
+\vdots \\
+a_{mn}
+\end{array}
+\rightB 
+\end{equation*}
+
+Perhatikan bahwa perkalian matriks $m \times n$ dengan vektor $n \times 1$ menghasilkan vektor $m \times 1$.
+
+Berikut sebuah contoh.
+
+\begin{example}{Perkalian Matriks dengan Vektor}\label{exa:vectormultbymatrix}
+Hitung hasil kali $A\x$ untuk
+\begin{equation*}
+A = \leftB
+\begin{array}{rrrr}
+1 & 2 & 1 & 3 \\
+0 & 2 & 1 & -2 \\
+2 & 1 & 4 & 1
+\end{array}
+\rightB,\,  \x =  \leftB
+\begin{array}{r}
+1 \\
+2 \\
+0 \\
+1
+\end{array}
+\rightB 
+\end{equation*}
+\end{example}
+
+\begin{solution} Kita akan menggunakan Definisi \ref{def:multiplicationvectormatrix} untuk menghitung hasil kali tersebut.
+Oleh karena itu, kita menghitung hasil kali $A\x$ sebagai berikut. 
+\begin{eqnarray*}
+& 1\leftB
+\begin{array}{r}
+1 \\
+0 \\
+2
+\end{array}
+\rightB + 2\leftB
+\begin{array}{r}
+2 \\
+2 \\
+1
+\end{array}
+\rightB + 0\leftB
+\begin{array}{r}
+1 \\
+1 \\
+4
+\end{array}
+\rightB + 1 \leftB
+\begin{array}{r}
+3 \\
+-2\\
+1
+\end{array} 
+\rightB \\ 
+&=
+\leftB
+\begin{array}{r}
+1 \\
+0 \\
+2
+\end{array}
+\rightB + \leftB
+\begin{array}{r}
+4 \\
+4 \\
+2
+\end{array}
+\rightB + \leftB
+\begin{array}{r}
+0 \\
+0 \\
+0
+\end{array}
+\rightB +  \leftB
+\begin{array}{r}
+3 \\
+-2\\
+1
+\end{array} 
+\rightB \\
+&=
+\leftB
+\begin{array}{r}
+8 \\
+2 \\
+5
+\end{array}
+\rightB
+\end{eqnarray*}
+\end{solution}
+
+Dengan menggunakan operasi di atas, kita juga dapat menuliskan sistem persamaan linear dalam \textbf{bentuk matriks}. Dalam bentuk ini,
+kita menyatakan sistem sebagai matriks yang dikalikan dengan vektor. Perhatikan definisi berikut.
+
+\begin{definition}{Bentuk Matriks Sistem Persamaan Linear}\label{def:matrixform}
+Misalkan kita memiliki sistem persamaan yang diberikan oleh
+\begin{equation*}
+\begin{array}{c}
+a_{11}x_{1}+\cdots +a_{1n}x_{n}=b_{1} \\
+a_{21}x_{1}+ \cdots + a_{2n}x_{n} = b_{2} \\
+\vdots \\
+a_{m1}x_{1}+\cdots +a_{mn}x_{n}=b_{m}
+\end{array}
+\end{equation*}
+Maka kita dapat menyatakan sistem ini dalam \textbf{bentuk matriks} \index{sistem persamaan!bentuk matriks} sebagai berikut.
+\begin{equation*}
+\leftB
+\begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{array}
+\rightB
+\leftB
+\begin{array}{c}
+x_{1} \\
+x_{2} \\
+\vdots \\
+x_{n}
+\end{array}
+\rightB
+=
+\leftB
+\begin{array}{c}
+b_{1}\\
+b_{2}\\
+\vdots \\
+b_{m}
+\end{array}
+\rightB
+\end{equation*}
+ 
+\end{definition}
+
+Ekspresi $A\x=B$ juga dikenal sebagai \textbf{Bentuk Matriks} dari
+sistem persamaan linear yang bersesuaian. \index{bentuk matriks $A\x=B$} Matriks
+$A$ adalah matriks koefisien dari sistem, vektor
+$\x$ adalah vektor kolom yang dibentuk dari variabel-variabel sistem,
+dan akhirnya vektor $B$ adalah vektor kolom yang dibentuk dari konstanta-konstanta
+sistem. Penting untuk diperhatikan bahwa setiap sistem persamaan linear
+dapat ditulis dalam bentuk ini.
+
+Perhatikan bahwa jika sistem persamaan homogen ditulis dalam bentuk matriks, bentuknya adalah
+$A\x=0$, untuk vektor nol $0$.
+
+Dari definisi ini dapat dilihat bahwa suatu vektor
+\begin{equation*}
+\x =
+\leftB
+\begin{array}{c}
+x_{1} \\
+x_{2} \\
+\vdots \\
+x_{n}
+\end{array}
+\rightB
+\end{equation*}
+akan memenuhi persamaan $A\x=B$
+hanya jika entri-entri $x_{1}, x_{2}, \cdots, x_{n}$ dari vektor $\x$ merupakan solusi sistem semula.
+
+Setelah menelaah cara mengalikan matriks dengan vektor, kini kita
+ingin membahas kasus ketika kita mengalikan dua matriks dengan ukuran yang lebih
+umum, meskipun ukurannya tetap harus sesuai sebagaimana akan kita
+lihat. Sebagai contoh, dalam Contoh \ref{exa:vectormultbymatrix}, kita
+mengalikan matriks $3 \times 4$ dengan vektor $4 \times 1$. Kita ingin
+menyelidiki cara mengalikan matriks-matriks berukuran lain.
+
+Kita belum memberikan syarat apa pun mengenai kapan perkalian matriks
+dapat dilakukan! Untuk matriks $A$ dan $B$, agar hasil kali
+$AB$ dapat dibentuk, banyaknya kolom $A$ harus sama dengan banyaknya baris
+$B.$ Perhatikan hasil kali $AB$, dengan $A$ berukuran $m\times n$ dan $B$
+berukuran $n \times p$. Maka hasil kali berdasarkan ukuran matriks
+diberikan oleh
+\begin{equation*}
+(m\times\overset{\text{harus sama!}}{\widehat{n)\;(n}\times p})=m\times p
+\end{equation*}
+
+Perhatikan bahwa dua bilangan terluar memberikan ukuran hasil kali. Salah satu aturan terpenting tentang perkalian matriks adalah sebagai berikut.
+Jika kedua bilangan di tengah tidak sama, matriks-matriks tersebut tidak dapat dikalikan!
+
+Jika banyaknya kolom $A$ sama dengan banyaknya baris
+$B$, kedua matriks disebut \textbf{konformabel}
+\index{matriks!konformabel} dan hasil kali $AB$ diperoleh
+\index{perkalian matriks} sebagai berikut.
+
+\begin{definition}{Perkalian Dua Matriks}\label{def:multiplicationoftwomatrices}
+ Misalkan $A$ adalah matriks $m\times n$
+dan $B$ adalah matriks $n\times p$ berbentuk
+\begin{equation*}
+B=\leftB B_{1} \cdots  B_{p}\rightB
+\end{equation*}
+dengan $B_{1},...,B_{p}$ sebagai kolom-kolom $n\times 1$ dari $B$. Maka
+matriks $m\times p$, yaitu $AB$, didefinisikan sebagai berikut:
+\begin{equation*}
+AB = A \leftB B_{1} \cdots  B_{p}\rightB =  \leftB (A B)_{1} \cdots  (AB)_{p}\rightB 
+\end{equation*}
+dengan $(AB)_{k}$ sebagai matriks $m\times 1$ atau vektor kolom yang
+memberikan kolom $k$ dari $AB$.
+\end{definition}
+
+Perhatikan contoh berikut.
+
+\begin{example}{Mengalikan Dua Matriks}\label{exa:multiplicationoftwomatrices}
+Tentukan $AB$ jika memungkinkan.
+\begin{equation*}
+A = \leftB
+\begin{array}{rrr}
+1 & 2 & 1 \\
+0 & 2 & 1
+\end{array}
+\rightB, B = \leftB
+\begin{array}{rrr}
+1 & 2 & 0 \\
+0 & 3 & 1 \\
+-2 & 1 & 1
+\end{array}
+\rightB
+\end{equation*}
+\end{example}
+
+\begin{solution} Hal pertama yang perlu Anda periksa ketika menghitung suatu
+hasil kali adalah apakah perkalian tersebut dapat dilakukan. Matriks pertama
+berukuran $2\times 3$ dan matriks kedua berukuran $3\times 3$. Kedua
+bilangan di dalam sama, sehingga $A$ dan $B$ merupakan matriks konformabel.
+Berdasarkan pembahasan di atas, $AB$ akan berupa matriks $2\times 3$.
+Definisi \ref{def:multiplicationoftwomatrices} memberi kita cara untuk
+menghitung setiap kolom $AB$ sebagai berikut.
+\begin{equation*}
+\leftB \overset{
+\text{Kolom pertama}}{\overbrace{\leftB
+\begin{array}{rrr}
+1 & 2 & 1 \\
+0 & 2 & 1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+1 \\
+0 \\
+-2
+\end{array}
+\rightB }},\overset{\text{Kolom kedua}}{\overbrace{\leftB
+\begin{array}{rrr}
+1 & 2 & 1 \\
+0 & 2 & 1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+2 \\
+3 \\
+1
+\end{array}
+\rightB }},\overset{\text{Kolom ketiga}}{\overbrace{\leftB
+\begin{array}{rrr}
+1 & 2 & 1 \\
+0 & 2 & 1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+0 \\
+1 \\
+1
+\end{array}
+\rightB }}\rightB
+\end{equation*}
+Anda telah mengetahui cara mengalikan matriks dengan vektor, yaitu dengan menggunakan Definisi \ref{def:multiplicationvectormatrix} untuk
+masing-masing dari ketiga kolom tersebut. Jadi,
+\begin{equation*}
+\leftB
+\begin{array}{rrr}
+1 & 2 & 1 \\
+0 & 2 & 1
+\end{array}
+\rightB \leftB
+\begin{array}{rrr}
+1 & 2 & 0 \\
+0 & 3 & 1 \\
+-2 & 1 & 1
+\end{array}
+\rightB =\allowbreak \leftB
+\begin{array}{rrr}
+-1 & 9 & 3 \\
+-2 & 7 & 3
+\end{array}
+\rightB 
+\end{equation*}
+\end{solution}
+
+Karena vektor hanyalah matriks $ n \times 1$ atau $1 \times m$,
+kita juga dapat mengalikan suatu vektor dengan vektor lain. 
+
+\begin{example}{Perkalian Vektor dengan Vektor}\label{exa:vectormultiplication}
+Kalikan, jika memungkinkan, $\leftB
+\begin{array}{r}
+1 \\
+2 \\
+1
+\end{array}
+\rightB \leftB
+\begin{array}{rrrr}
+1 & 2 & 1 & 0
+\end{array}
+\rightB .$ 
+\end{example}
+
+\begin{solution} Dalam hal ini, kita mengalikan matriks berukuran $3 \times 1$ dengan matriks berukuran $1 \times
+4.$ Kedua bilangan di dalam sama, sehingga hasil kali tersebut terdefinisi. Perhatikan bahwa hasil kalinya berupa matriks berukuran $3 \times 4$.
+Dengan menggunakan Definisi \ref{def:multiplicationoftwomatrices}, kita dapat menghitung hasil kali ini sebagai berikut $\:$
+\begin{equation*}
+\leftB
+\begin{array}{r}
+1 \\
+2 \\
+1
+\end{array}
+\rightB \leftB
+\begin{array}{rrrr}
+1 & 2 & 1 & 0
+\end{array}
+\rightB = 
+\leftB \overset{
+\text{Kolom pertama}}{\overbrace{\leftB
+\begin{array}{r}
+1 \\
+2 \\
+1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+1
+\end{array}
+\rightB }},\overset{\text{Kolom kedua}}{\overbrace{\leftB
+\begin{array}{r}
+1 \\
+2\\
+1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+2 
+\end{array}
+\rightB }},\overset{\text{Kolom ketiga}}{\overbrace{\leftB
+\begin{array}{r}
+1 \\
+2 \\
+1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+1
+\end{array}
+\rightB }}, \overset {\text{Kolom keempat}}{\overbrace{\leftB
+\begin{array}{r}
+1\\
+2\\
+1
+\end{array}
+\rightB \leftB
+\begin{array}{r}
+0
+\end{array}
+\rightB}}
+\rightB
+\end{equation*}
+
+Anda dapat menggunakan Definisi \ref{def:multiplicationvectormatrix} untuk memeriksa bahwa hasil kali ini adalah
+\begin{equation*}
+\leftB
+\begin{array}{cccc}
+1 & 2 & 1 & 0 \\
+2 & 4 & 2 & 0 \\
+1 & 2 & 1 & 0
+\end{array}
+\rightB
+\end{equation*}
+\end{solution}
+
+\begin{example}{Perkalian yang Tidak Terdefinisi}\label{exa:undefinedmatrixmultiplication}
+Tentukan $BA$ jika memungkinkan.
+\begin{equation*}
+B = \leftB
+\begin{array}{ccc}
+1 & 2 & 0 \\
+0 & 3 & 1 \\
+-2 & 1 & 1
+\end{array}
+\rightB,  A = \leftB
+\begin{array}{ccc}
+1 & 2 & 1 \\
+0 & 2 & 1
+\end{array}
+\rightB
+\end{equation*}
+\end{example}
+
+\begin{solution} Pertama, periksa apakah perkalian dapat dilakukan. Hasil kali ini berbentuk $\left( 3\times 3\right)
+\left( 2\times 3\right) .$ Kedua bilangan di dalam tidak sama sehingga perkalian ini tidak dapat
+dilakukan. 
+\end{solution}
+
+Dalam hal ini, kita mengatakan bahwa perkalian tersebut tidak terdefinisi.
+Perhatikan bahwa matriks-matriks ini sama dengan yang kita gunakan dalam Contoh \ref{exa:multiplicationoftwomatrices}.
+Dalam contoh ini, kita mencoba menghitung $BA$, bukan $AB$. Hal ini menunjukkan sifat lain
+dari perkalian matriks. Meskipun hasil kali $AB$ mungkin terdefinisi, kita tidak dapat mengasumsikan bahwa
+hasil kali $BA$ dapat dilakukan. Oleh karena itu, penting untuk selalu memeriksa bahwa hasil kali terdefinisi
+sebelum melakukan perhitungan apa pun.
+
+Sebelumnya, kita mendefinisikan matriks nol $0$ sebagai matriks (dengan
+ukuran yang sesuai) yang seluruh entrinya nol. Perhatikan
+contoh perkalian dengan matriks nol berikut.
+
+\begin{example}{Perkalian dengan Matriks Nol}\label{exa:multbyzeromatrix}
+Hitung hasil kali $A0$ untuk matriks
+\begin{equation*}
+A=
+\leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 4
+\end{array}
+\rightB
+\end{equation*}
+dan matriks nol $2 \times 2$ yang diberikan oleh
+\begin{equation*}
+0=
+\leftB
+\begin{array}{rr}
+0 & 0 \\
+0 & 0
+\end{array}
+\rightB
+\end{equation*}
+\end{example}
+
+\begin{solution} 
+Dalam hasil kali ini, kita menghitung
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 4
+\end{array}
+\rightB
+\leftB
+\begin{array}{rr}
+0 & 0 \\
+0 & 0
+\end{array}
+\rightB
+=
+\leftB
+\begin{array}{rr}
+0 & 0 \\
+0 & 0
+\end{array}
+\rightB
+\end{equation*}
+
+Jadi, $A0=0$. 
+\end{solution}
+
+Perhatikan bahwa kita juga dapat mengalikan $A$ dengan vektor nol $2 \times 1 $ yang diberikan oleh $\leftB
+\begin{array}{r}
+0 \\
+0
+\end{array}
+\rightB$.
+Hasilnya adalah vektor nol $2 \times 1$.
+Oleh karena itu, selalu berlaku $A0=0$ untuk matriks atau vektor nol dengan ukuran yang sesuai.

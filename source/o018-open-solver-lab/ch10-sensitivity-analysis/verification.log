@@ -1,0 +1,26 @@
+O018 VERIFICATION LOG — CHAPTER 10 SENSITIVITY ANALYSIS
+verification_date: 2026-08-22
+runtime: CPython 3.12.13; Pyomo 6.10.1; highspy/HiGHS 1.15.1; NumPy 2.5.2
+network_used: no
+proprietary_solver_used: no
+
+REPLAY_1
+CHECK_OK results_bytes=26015 results_sha256=e80afc3bd38f6373be73a1a5a1da1bc386af99eace13248bec26d6e8bb857db4 plots=3 exercises=12 solver_calls=29
+unittest: 23 passed, 0 failed, 0 errors
+
+REPLAY_2
+CHECK_OK results_bytes=26015 results_sha256=e80afc3bd38f6373be73a1a5a1da1bc386af99eace13248bec26d6e8bb857db4 plots=3 exercises=12 solver_calls=29
+unittest: 23 passed, 0 failed, 0 errors
+
+visual_qa: 3 SVG diperiksa pada raster 1440x1020
+visual_qa_files: ex10-03.svg, ex10-11.svg, ex10-12.svg
+visual_qa_result: lulus; judul/label/panel terbaca, kurva dan titik tidak terpotong, perbedaan aktual/prediksi terlihat, catatan rentang tidak bertumpang tindih
+
+exercise_coverage: 12/12 verified
+solver_terminations: 29 optimal
+maximum_solver_violation: 0
+underdetermined_exercises: 1 (10.7; fail closed)
+source_math_corrections_preserved: 3
+o018_math_corrections: 0
+rights_split: CC BY-SA 4.0 prose/data/oracle/SVG; MIT Python; factual outputs/receipt/log no added creative claim
+source_witnesses: 4 hashes checked live (2 authority + 2 translated)

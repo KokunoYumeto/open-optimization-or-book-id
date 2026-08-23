@@ -1,0 +1,393 @@
+% ============================================================================
+% Bab 13: Optimisasi Multiobjektif
+% Sumber buku: part1-linear-programming/ch09-multi-objective/
+%              multi-objective-optimization_updated.tex
+% Penomoran latihan diselaraskan dengan urutan \begin{ex} per 2026-07-13.
+% Semua perhitungan diverifikasi secara numerik (PuLP 3.3.2/CBC untuk LP).
+% ============================================================================
+
+\section{Bab 13: Optimisasi Multiobjektif}
+
+Bab ini memiliki sepuluh latihan. Bagian pemanasan (13.1--13.3) mencakup
+definisi optimalitas Pareto, pemeriksaan dominasi dalam sebuah tabel kecil, dan
+penilaian jumlah berbobot. Soal inti (13.4--13.8) menerapkan metode-metode utama
+bab ini pada data konkret: identifikasi batas, jumlah berbobot, metode
+kendala-$\varepsilon$ (pada sebuah tabel, pada dua LP kecil, dan secara manual),
+serta analisis kompromi. Soal konsep (13.9--13.10, dengan 13.10 sebagai soal
+tantangan) menyelidiki titik buta jumlah berbobot yang telah dikenal pada batas
+tak konveks dan menghitung interval bobot tepat yang memilih setiap titik sudut
+dalam contoh furnitur bab ini. Setiap pernyataan numerik di bawah diverifikasi
+dengan perhitungan langsung; latihan berbasis LP (13.6 dan penyapuan furnitur)
+juga diselesaikan ulang dengan PuLP/CBC, dan keluaran yang ditampilkan adalah
+keluaran aktual. Solusi Terpilih buku untuk 13.1, 13.4, 13.7, dan 13.10 telah
+diperiksa dan terbukti benar; solusi-solusi itu digunakan kembali dan diperluas
+di sini.
+
+% ----------------------------------------------------------------------------
+\exsol{13.1}{Mendefinisikan Optimalitas Pareto}{1}
+
+Untuk masalah yang meminimumkan $f_1$ dan $f_2$ pada himpunan layak $P$, sebuah
+titik $\x \in P$ bersifat \emph{optimal Pareto} jika tidak ada
+$\overline{\x} \in P$ dengan $f_i(\overline{\x}) \leq f_i(\x)$ untuk kedua
+$i = 1, 2$ dan $f_i(\overline{\x}) < f_i(\x)$ untuk sedikitnya satu $i$.
+Dengan kata lain: tidak ada titik layak lain yang sedikitnya sama baik dalam
+kedua tujuan dan secara tegas lebih baik dalam salah satunya. (Secara ekuivalen,
+sesuaikan definisi maksimisasi buku dengan membalik pertidaksamaan.) Batas
+Pareto adalah himpunan semua titik tersebut.
+
+% ----------------------------------------------------------------------------
+\exsol{13.2}{Menemukan Desain Terdominasi}{1}
+
+Datanya (kedua tujuan diminimumkan):
+$G = (2,9)$, $H = (4,7)$, $I = (5,8)$, $J = (7,3)$, $K = (6,5)$.
+
+\begin{enumerate}
+\item Hanya kontrak $I$ yang terdominasi: $H = (4,7)$ mengalahkan
+$I = (5,8)$ dalam biaya maupun waktu pengiriman. Dengan memeriksa setiap
+pasangan lain, satu kontrak selalu lebih murah sedangkan yang lain lebih cepat,
+sehingga tidak ada dominasi lain (misalnya, $K = (6,5)$ versus $J = (7,3)$:
+$K$ lebih murah, $J$ lebih cepat).
+\item Menurut urutan $f_1$ yang meningkat, batas Paretonya adalah
+\[
+G = (2,9), \quad H = (4,7), \quad K = (6,5), \quad J = (7,3).
+\]
+Perhatikan bahwa nilai $f_2$ turun secara tegas di sepanjang daftar ini,
+sebagaimana mestinya pada batas masalah minimisasi dua tujuan.
+\item Benar. Jika $G$ adalah peminimum \emph{unik} $f_1$, setiap kontrak lain
+memiliki $f_1$ yang secara tegas lebih besar, sehingga tidak ada kontrak yang
+dapat sedikitnya sama baik dengan $G$ dalam kedua tujuan; oleh karena itu,
+tidak ada yang mendominasi $G$. (Keunikan penting: jika dua kontrak memiliki
+nilai minimum $f_1$ yang sama, kontrak dengan $f_2$ lebih besar terdominasi
+oleh kontrak lainnya.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{13.3}{Menghitung Skor Jumlah Berbobot}{1}
+
+\begin{enumerate}
+\item Dengan $(w_1, w_2) = (0.6, 0.4)$, $S = 0.6 f_1 + 0.4 f_2$:
+\begin{center}
+\begin{tabular}{c|ccccc}
+Kontrak & G & H & I & J & K \\\hline
+$S$ & $\mathbf{4.8}$ & $5.2$ & $6.2$ & $5.4$ & $5.6$ \\
+\end{tabular}
+\end{center}
+Sebagai contoh, $S_G = 0.6(2) + 0.4(9) = 1.2 + 3.6 = 4.8$. Pemenangnya adalah
+kontrak $G$.
+\item Dengan $(w_1, w_2) = (0.2, 0.8)$:
+\begin{center}
+\begin{tabular}{c|ccccc}
+Kontrak & G & H & I & J & K \\\hline
+$S$ & $7.6$ & $6.4$ & $7.4$ & $\mathbf{3.8}$ & $5.2$ \\
+\end{tabular}
+\end{center}
+Pemenangnya kini kontrak $J$. Pemenang berubah karena bobot menyandikan nilai
+tukar pengambil keputusan di antara tujuan-tujuan: dengan sebagian besar bobot
+pada waktu pengiriman ($w_2 = 0.8$), kontrak dengan waktu pengiriman yang jauh
+terbaik ($J$, yaitu 3 hari) mengatasi biayanya yang tinggi, sedangkan dengan
+bobot yang sebagian besar pada biaya, kontrak termurah ($G$) menang. Secara
+geometris, kedua vektor bobot bersesuaian dengan garis pendukung yang memiliki
+kemiringan berbeda dan menyentuh batas di titik-titik yang berbeda.
+\item $S_I - S_H = w_1(5 - 4) + w_2(8 - 7) = w_1 + w_2 > 0$ setiap kali
+$w_1, w_2 > 0$. Jadi, skor $I$ secara tegas lebih buruk daripada $H$ untuk
+setiap pasangan bobot positif, dan secara umum sebuah titik terdominasi kalah
+dari setiap titik yang mendominasinya: selisih skor merupakan kombinasi tak
+negatif dari selisih per koordinat, dengan sedikitnya satu selisih yang secara
+tegas positif.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{13.4}{Batas Pareto, Jumlah Berbobot, dan Kendala-$\varepsilon$}{2}
+
+Kandidatnya (kedua tujuan diminimumkan):
+$A = (6,5)$, $B = (4,8)$, $C = (7,4)$, $D = (3,6)$, $E = (5,6)$,
+$F = (10,3)$.
+
+\begin{enumerate}
+\item Bandingkan pasangan untuk menentukan dominasi. $D = (3,6)$ mendominasi
+$B = (4,8)$, dan $E = (5,6)$ terdominasi oleh $D$ ($3 \leq 5$, $6 \leq 6$,
+dengan pertidaksamaan pertama tegas). $A$, $C$, dan $F$ tidak terdominasi oleh
+titik mana pun. Batas Paretonya adalah $\{D, A, C, F\}$ dengan vektor tujuan
+$(3,6)$, $(6,5)$, $(7,4)$, $(10,3)$.
+\item Sebuah desain menjadi optimum jumlah berbobot untuk suatu $\alpha$ tepat
+ketika desain tersebut berada pada selubung konveks kiri bawah dari titik-titik
+batas. Dengan menggambarkan $(3,6)$, $(6,5)$, $(7,4)$, $(10,3)$: selubung dibentuk
+oleh $D$, $C$, dan $F$, sedangkan $A$ berada di atasnya. Memang, $D$ ($f_1$
+terbaik) dan $F$ ($f_2$ terbaik) selalu dapat diperoleh pada bobot ekstrem;
+$C$ berada pada selubung di antara keduanya (ruas $D \to F$ memiliki kemiringan
+$-3/7$, dan pada $f_1 = 7$ ruas itu berada pada
+$6 - 4 \cdot \tfrac{3}{7} \approx 4.29 > 4$, sehingga $C$ berada di bawah ruas
+itu dan karenanya pada selubung); tetapi $A = (6,5)$ berada di atas ruas dari
+$D$ ke $C$ (ruas tersebut pada $f_1 = 6$ bernilai
+$6 - \tfrac{2}{4}(6-3) = 4.5 < 5$). Jadi, $D$, $C$, dan $F$ dapat diperoleh
+dengan jumlah berbobot, sedangkan $A$ tidak.
+\item Pilih $\varepsilon = 5$: meminimumkan $f_1$ dengan syarat
+$f_2 \leq 5$ menyisakan kandidat $A = (6,5)$, $C = (7,4)$, dan $F = (10,3)$,
+serta memilih $A = (6,5)$, tepat titik batas yang tidak dapat dicapai dengan
+jumlah berbobot mana pun. (Setiap $\varepsilon \in [5, 6)$ berhasil.)
+\item Deskripsi sketsa: gambarkan keenam titik pada bidang $(f_1, f_2)$. Tandai $B$
+dan $E$ sebagai terdominasi ($B$ berada di atas dan di kanan $D$; $E$ berada
+tepat di kanan $D$). Batasnya adalah ``tangga'' titik-titik $D, A, C, F$ yang
+membentang dari kiri atas ke kanan bawah; anak panah perbaikan mengarah ke kiri
+(biaya lebih rendah) dan ke bawah (emisi lebih rendah), menuju wilayah kosong
+di kiri bawah. Sketsa yang benar menunjukkan bahwa tidak ada titik batas yang
+memiliki titik lain di kuadran kiri bawahnya.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{13.5}{Metode Jumlah Berbobot}{2}
+
+Dalam bentuk minimisasi: $P1 = (f_1, f_2) = (2, -7)$, $P2 = (5, -9)$,
+$P3 = (3, -6)$.
+
+\begin{enumerate}
+\item $P1$ dan $P2$ optimal Pareto; $P3$ tidak. $P1$ mendominasi $P3$: biayanya
+lebih rendah ($2 < 3$) \emph{dan} skor aksesibilitasnya lebih tinggi ($7 > 6$).
+Di antara $P1$ dan $P2$ terdapat kompromi yang nyata ($P1$ lebih murah,
+$P2$ lebih mudah diakses), sehingga keduanya tidak saling mendominasi.
+\item Skor $S = 0.5 f_1 + 0.5 f_2$:
+\begin{align*}
+S_{P1} &= 0.5(2) + 0.5(-7) = -2.5, \\
+S_{P2} &= 0.5(5) + 0.5(-9) = -2.0, \\
+S_{P3} &= 0.5(3) + 0.5(-6) = -1.5.
+\end{align*}
+Skor terendah menang: proyek $P1$ dipilih.
+\item Tidak. Karena $P1$ mendominasi $P3$,
+$S_{P3} - S_{P1} = w_1(3-2) + w_2(-6+7) = w_1 + w_2 > 0$ untuk semua
+$w_1, w_2 > 0$, sehingga skor $P3$ selalu secara tegas lebih buruk daripada
+$P1$. Bahkan bobot batas degenerat gagal memilih $P3$: dengan $w = (1,0)$
+(hanya biaya), $P1$ menang, dan dengan $w = (0,1)$ (hanya aksesibilitas), $P2$
+menang. Alternatif terdominasi tidak pernah dapat dipilih dengan metode jumlah
+berbobot yang menggunakan bobot positif.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{13.6}{Metode Kendala-Epsilon}{2}
+
+\begin{enumerate}
+\item Dengan mempertahankan $f_1$ sebagai tujuan dan membatasi $f_2$:
+\begin{align*}
+\min \quad & x_1 + 2x_2 \\
+\st & 3x_1 + x_2 \leq \varepsilon, \\
+& x_1 + x_2 \geq 4, \\
+& 0 \leq x_1 \leq 5, \quad 0 \leq x_2 \leq 5.
+\end{align*}
+\item Untuk $\varepsilon = 10$: optimumnya adalah $(x_1, x_2) = (3, 1)$ dengan
+$f_1 = 5$ dan $f_2 = 10$. Untuk $\varepsilon = 6$: optimumnya adalah $(1, 3)$
+dengan $f_1 = 7$ dan $f_2 = 6$. Dalam kedua kasus, optimum merupakan
+perpotongan $3x_1 + x_2 = \varepsilon$ dengan $x_1 + x_2 = 4$ (di sepanjang
+$x_1 + x_2 = 4$, kita memiliki $f_1 = 8 - x_1$, sehingga LP mendorong $x_1$
+setinggi yang diizinkan batas $\varepsilon$: $2x_1 = \varepsilon - 4$). Kedua
+solusi optimal Pareto: masing-masing adalah peminimum unik $f_1$ dengan syarat
+$f_2 \leq \varepsilon$, dan batas $\varepsilon$ aktif, sehingga tidak ada titik
+layak yang memperbaiki salah satu tujuan tanpa memperburuk yang lain.
+Telah diverifikasi dengan PuLP:
+
+\begin{verbatim}
+import pulp
+
+for eps in [10, 6]:
+    prob = pulp.LpProblem("biobj", pulp.LpMinimize)
+    x1 = pulp.LpVariable("x1", lowBound=0, upBound=5)
+    x2 = pulp.LpVariable("x2", lowBound=0, upBound=5)
+    prob += x1 + 2*x2                 # f1 (tujuan utama)
+    prob += x1 + x2 >= 4
+    prob += 3*x1 + x2 <= eps          # f2 <= epsilon
+    prob.solve(pulp.PULP_CBC_CMD(msg=0))
+    print(f"eps={eps}: x=({x1.value()}, {x2.value()}), "
+          f"f1={x1.value() + 2*x2.value()}, "
+          f"f2={3*x1.value() + x2.value()}")
+\end{verbatim}
+
+Keluaran aktual:
+\begin{verbatim}
+eps=10: x=(3.0, 1.0), f1=5.0, f2=10.0
+eps=6: x=(1.0, 3.0), f1=7.0, f2=6.0
+\end{verbatim}
+
+\item Meminimumkan $f_2$ saja menghasilkan $f_2^* = 4$ pada $(0, 4)$;
+meminimumkan $f_1$ saja menghasilkan $f_1 = 4$ pada $(4, 0)$, tempat
+$f_2 = 12$. Jadi: untuk $\varepsilon \geq 12$, batas tidak aktif dan solusi
+tetap pada $(4,0)$ dengan $(f_1, f_2) = (4, 12)$. Ketika $\varepsilon$ menurun
+dari $12$ menuju $f_2^* = 4$, optimum bergeser di sepanjang sisi
+$x_1 + x_2 = 4$ dari $(4,0)$ ke $(0,4)$, dengan
+$x_1 = (\varepsilon - 4)/2$ dan
+$f_1 = 8 - (\varepsilon - 4)/2$ yang meningkat secara linear dari $4$ ke $8$:
+setiap unit pengetatan $f_2$ mengorbankan tepat $\tfrac12$ unit $f_1$.
+Penyapuan menelusuri seluruh batas Pareto, yaitu ruas dari $(4,12)$ ke $(8,4)$
+di ruang tujuan. Untuk $\varepsilon < 4$, LP tidak layak, sehingga penyapuan
+berhenti pada $f_2^*$.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{13.7}{Kendala-Epsilon secara Manual}{2}
+
+\begin{enumerate}
+\item Pada $(0,0)$: $(f_1, f_2) = (0,0)$. Pada $(6,0)$: $(18, 6)$. Pada
+$(0,6)$: $(6, 18)$. Jadi, $(6,0)$ memaksimumkan $f_1$ saja dan $(0,6)$
+memaksimumkan $f_2$ saja.
+\item Untuk $\varepsilon > 6$, kendala $x_1 + 3x_2 \geq \varepsilon$ aktif
+pada optimum, dan solusinya berada di perpotongan kendala itu dengan sisi
+$x_1 + x_2 = 6$: penyelesaian kedua persamaan menghasilkan
+$x_2 = (\varepsilon - 6)/2$ dan $x_1 = (18 - \varepsilon)/2$. (Untuk
+$\varepsilon = 6$, titik sudut $(6,0)$ sendiri optimal.) Dalam bentuk tabel:
+\begin{center}
+\begin{tabular}{c|cccc}
+$\varepsilon$ & $x_1$ & $x_2$ & $f_1$ & $f_2$ \\\hline
+6  & 6 & 0 & 18 & 6 \\
+10 & 4 & 2 & 14 & 10 \\
+14 & 2 & 4 & 10 & 14 \\
+18 & 0 & 6 & 6  & 18 \\
+\end{tabular}
+\end{center}
+Setiap baris mudah dikonfirmasi secara grafis: wilayah yang diiris adalah
+segitiga yang dipotong oleh garis $x_1 + 3x_2 = \varepsilon$, dan tujuan
+$3x_1 + x_2$ meningkat ke arah kanan bawah, sehingga optimum berada di sudut
+irisan pada hipotenusa.
+\item Setiap solusi yang ditabulasikan memiliki tepat $f_2 = \varepsilon$ dan
+$f_1$ terbesar yang dimungkinkan dengan batas tersebut, sehingga setiap solusi
+optimal Pareto. Batas Pareto di ruang keputusan adalah sisi $x_1 + x_2 = 6$
+dari $(6,0)$ ke $(0,6)$: parameterisasi dengan $x_2 = t$ menghasilkan
+$f_1 = 18 - 2t$ dan $f_2 = 6 + 2t$, sehingga laju komprominya satu banding satu
+($\Delta f_1 / \Delta f_2 = -1$): setiap unit yang diperoleh dalam $f_2$
+mengorbankan tepat satu unit $f_1$.
+\item Nilai maksimum $f_2$ di atas $X$ adalah $18$ (pada $(0,6)$), sehingga
+untuk $\varepsilon > 18$, LP berkendala tersebut \emph{tidak layak}; penyapuan
+harus berhenti pada $\varepsilon = 18$. (Pelajaran praktis bagi implementasi:
+pertama-tama hitung optimum individual setiap tujuan untuk menetapkan rentang
+penyapuan.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{13.8}{Analisis Kompromi}{2}
+
+\begin{enumerate}
+\item Deskripsi grafik: keempat titik $(40,20)$, $(45,14)$, $(55,10)$, $(70,8)$
+pada bidang (biaya, emisi) membentuk rantai menurun; menghubungkannya dari kiri
+atas ke kanan bawah menghasilkan batas Pareto (diskret dan konveks). Tidak ada
+titik yang berada di kiri bawah titik lain, sehingga keempatnya berada pada
+batas; arah perbaikan adalah menuju kiri bawah.
+\item Tingkat substitusi marginal (emisi yang dikurangi per \$1000 biaya
+tambahan):
+\begin{center}
+\begin{tabular}{l|ccc}
+Langkah & $\Delta f_1$ & $\Delta f_2$ & ton per \$1000 \\\hline
+S1 $\to$ S2 & $+5$  & $-6$ & $6/5 = 1.20$ \\
+S2 $\to$ S3 & $+10$ & $-4$ & $4/10 = 0.40$ \\
+S3 $\to$ S4 & $+15$ & $-2$ & $2/15 \approx 0.13$ \\
+\end{tabular}
+\end{center}
+Langkah S1 $\to$ S2 memberikan pengurangan emisi per dolar yang jauh terbesar
+(1.2 ton per \$1000). Rasio yang terus memburuk ($1.20 \to 0.40 \to 0.13$)
+berarti S2 adalah siku (titik lutut) alami batas ini.
+\item Dengan anggaran paling banyak $\$50{,}000$, solusi Pareto yang layak adalah
+S1 ($\$40$ ribu) dan S2 ($\$45$ ribu); perusahaan sebaiknya memilih \textbf{S2}:
+solusi itu sesuai anggaran dan memiliki emisi yang lebih rendah (14 versus
+20 ton) daripada S1, sedangkan S3 ($\$55$ ribu) tidak terjangkau. (Selaras dengan
+bagian (2), S2 juga kebetulan menjadi langkah dengan nilai terbaik pada batas.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{13.9}{Hal yang Tidak Dapat Dilihat oleh Jumlah Berbobot}{2}
+
+Titik-titiknya, dengan kedua tujuan diminimumkan: $P = (0,4)$, $Q = (3,3)$,
+$R = (4,0)$.
+
+\begin{enumerate}
+\item Secara berpasangan: $P$ versus $Q$: $P$ lebih baik dalam $f_1$ ($0 < 3$),
+$Q$ lebih baik dalam $f_2$ ($3 < 4$). $Q$ versus $R$: $Q$ lebih baik dalam
+$f_1$, $R$ lebih baik dalam $f_2$. $P$ versus $R$: $P$ lebih baik dalam $f_1$,
+$R$ lebih baik dalam $f_2$. Tidak ada dominasi pada pasangan mana pun, sehingga
+ketiga titik optimal Pareto.
+\item Skor berbobot dengan bobot $(\alpha, 1-\alpha)$:
+\[
+S_P(\alpha) = 4(1-\alpha) = 4 - 4\alpha, \qquad
+S_Q(\alpha) = 3\alpha + 3(1-\alpha) = 3, \qquad
+S_R(\alpha) = 4\alpha.
+\]
+Untuk setiap $\alpha \in [0,1]$,
+$\min\{S_P, S_R\} = \min\{4 - 4\alpha, \, 4\alpha\} \leq 2$, karena kedua
+nilai berjumlah $4$ (nilai minimum keduanya dimaksimumkan pada
+$\alpha = \tfrac12$, saat keduanya sama dengan $2$). Karena itu,
+$\min\{S_P, S_R\} \leq 2 < 3 = S_Q$ untuk setiap $\alpha$: $P$ atau $R$ selalu
+memiliki skor yang secara tegas lebih baik daripada $Q$, sehingga $Q$ tidak
+pernah menjadi optimum jumlah berbobot, bahkan sebagai nilai seri.
+\item Secara geometris, metode jumlah berbobot meminimumkan fungsi linear di
+atas titik-titik di ruang tujuan, sehingga optimumnya tepat merupakan titik
+pada selubung konveks kiri bawah, tempat suatu garis pendukung dengan normal
+$(\alpha, 1-\alpha) \geq 0$ menyentuh. Di sini batas bawah selubung adalah ruas
+dari $P = (0,4)$ ke $R = (4,0)$; titik tengahnya adalah $(2,2)$, dan
+$Q = (3,3)$ berada secara tegas di atas ruas tersebut (garis yang melalui $P$
+dan $R$ adalah $f_1 + f_2 = 4$, sedangkan $Q$ memiliki $f_1 + f_2 = 6$).
+Setiap garis pendukung hanya menyentuh $P$, $R$, atau seluruh ruas, tidak pernah
+$Q$. Inilah tepatnya entri ``Kekurangan'' untuk metode jumlah berbobot pada
+Tabel~13.1: metode ini dapat melewatkan solusi optimal Pareto di wilayah tak
+konveks pada batas, dan batas tiga titik ini tak konveks pada $Q$.
+\item Metode kendala-$\varepsilon$ memperoleh kembali $Q$: minimumkan $f_1$
+dengan syarat $f_2 \leq \varepsilon$ menggunakan $\varepsilon = 3$. Titik-titik
+yang layak kemudian adalah $Q$ (dengan $f_2 = 3$) dan $R$ (dengan $f_2 = 0$),
+dan $Q$ menang karena $f_1 = 3 < 4$. (Pemrograman sasaran dengan sasaran $(3,3)$
+dan sembarang bobot positif juga memilih $Q$, yang memiliki simpangan total $0$.)
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{13.10}{Bobot yang Memilih Setiap Titik Sudut}{3}
+
+Solusi Terpilih buku benar sebagaimana tercetak dan diperluas di sini;
+semua titik pisah di bawah diverifikasi ulang baik secara aljabar maupun dengan
+penyapuan PuLP terhadap $\alpha$.
+
+\begin{enumerate}
+\item Tujuan berbobot
+$\alpha(8x + 2y) - (1-\alpha)(10x + 2y)$ pada setiap titik sudut $P$:
+\[
+(0,0): \; 0, \qquad
+(0,20): \; 80\alpha - 40, \qquad
+(10,8): \; 212\alpha - 116, \qquad
+(12,0): \; 216\alpha - 120.
+\]
+(Sebagai contoh, $(10,8)$ memiliki $f_1 = 96$ dan $f_2 = 116$, yang memberikan
+$96\alpha - 116(1 - \alpha) = 212\alpha - 116$.)
+\item Nilai optimal merupakan selubung atas dari keempat fungsi linear
+$\alpha$ ini. Dengan membandingkan pasangan: $(0,20)$ mengalahkan $(0,0)$ jika
+dan hanya jika $80\alpha - 40 \geq 0$, yaitu $\alpha \geq \tfrac12$; $(10,8)$
+mengalahkan $(0,20)$ jika dan hanya jika
+$212\alpha - 116 \geq 80\alpha - 40$, yaitu $132\alpha \geq 76$, yakni
+$\alpha \geq \tfrac{19}{33} \approx 0.576$; dan $(10,8)$ mengalahkan $(12,0)$
+jika dan hanya jika $4 \geq 4\alpha$, yang berlaku untuk semua
+$\alpha \leq 1$. Jadi,
+\[
+(0,0) \text{ optimal untuk } \alpha \in [0, \tfrac12], \qquad
+(0,20) \text{ untuk } \alpha \in [\tfrac12, \tfrac{19}{33}], \qquad
+(10,8) \text{ untuk } \alpha \in [\tfrac{19}{33}, 1],
+\]
+dengan titik pisah $\alpha = \tfrac12$ dan $\alpha = \tfrac{19}{33}$.
+Penyapuan numerik mengonfirmasi peralihan tersebut (keluaran aktual PuLP/CBC
+dari LP berbobot): $\alpha = 0.4999$ menghasilkan $(0,0)$;
+$\alpha = 0.5001$ dan $\alpha = 0.5757$ menghasilkan $(0,20)$;
+$\alpha = 0.5758$ menghasilkan $(10,8)$.
+\item Pada $\alpha = \tfrac12$, seluruh sisi $x = 0$ optimal (setiap rencana
+$(0, y)$, $0 \leq y \leq 20$, berskor $0$); pada
+$\alpha = \tfrac{19}{33}$, seluruh sisi sonokeling dari $(0,20)$ hingga $(10,8)$
+optimal. Pada $\alpha = 1$, limbah diabaikan, sehingga semua rencana yang
+optimal menurut pendapatan bersifat optimal: seluruh sisi dari $(10,8)$ hingga
+$(12,0)$, \emph{termasuk titik sudut terdominasi} $(12,0)$, yang menghasilkan
+$\$96{,}000$ sama seperti $(10,8)$ tetapi membuang $120 > 116$ bdft. Pelajarannya:
+jumlah berbobot dengan bobot nol dapat menghasilkan titik yang tidak optimal
+Pareto; sembarang bobot yang secara tegas positif pada limbah memutus seri
+untuk memenangkan $(10,8)$.
+\item Dengan pendapatan dalam dolar tanpa penskalaan,
+$f_1 = 8000x + 2000y$, nilai-nilai titik sudut menjadi $0$,
+$40040\alpha - 40$, $96116\alpha - 116$, dan $96120\alpha - 120$, dan
+perbandingan yang sama menghasilkan titik pisah
+\[
+\alpha = \tfrac{40}{40040} = \tfrac{1}{1001} \approx 0.001
+\qquad\text{dan}\qquad
+\alpha = \tfrac{76}{56076} = \tfrac{19}{14019} \approx 0.00136 :
+\]
+hampir setiap bobot dalam $[0,1]$ kini memilih $(10,8)$, dan seluruh struktur
+kompromi dipampatkan ke dalam $0.14\%$ pertama dari rentang bobot. Ketika tujuan
+berada pada skala yang sangat berbeda, bobot kehilangan makna yang dimaksudkan
+sebagai kepentingan relatif, sehingga tujuan harus dinormalisasi sebelum
+dibobotkan (Bagian 13.2).
+\end{enumerate}

@@ -1,0 +1,990 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "corrections": [
+    {
+      "certificate": "Dengan slack baru s1' pada Ax+s1'=b1+Delta, slack lama memenuhi s1=s1'-Delta; substitusi ini menghasilkan x=4+2Delta, y=5-Delta, s2=3-3Delta.",
+      "id": "CORR-CH10-RHS-B1-SLACK",
+      "source_location": "authority chapter lines 214-215",
+      "target_location": "translated chapter line 218",
+      "type": "source_math_correction"
+    },
+    {
+      "certificate": "Dengan slack baru s3' pada Ax+s3'=b3+Delta, slack lama memenuhi s3=s3'-Delta; substitusi ini menghasilkan x=4-Delta, y=5+Delta, s2=3+Delta.",
+      "id": "CORR-CH10-RHS-B3-SLACK",
+      "source_location": "authority chapter line 283",
+      "target_location": "translated chapter line 286",
+      "type": "source_math_correction"
+    },
+    {
+      "certificate": "Untuk basis [x,y,s2], A_B^{-1}A_N=[[2,-1],[-1,1],[-3,1]], sehingga x_B=b'-A_N'x_N tepat mereproduksi kamus akhir.",
+      "id": "CORR-CH10-MATRIX-AN-SIGNS",
+      "source_location": "authority chapter lines 509-515",
+      "target_location": "translated chapter lines 501-522",
+      "type": "source_math_correction"
+    }
+  ],
+  "exercises": {
+    "10.1": {
+      "certificate": {
+        "basic_values": [
+          4,
+          5,
+          3
+        ],
+        "basis": [
+          "x",
+          "y",
+          "s2"
+        ],
+        "basis_inverse": [
+          [
+            2,
+            0,
+            -1
+          ],
+          [
+            -1,
+            0,
+            1
+          ],
+          [
+            -3,
+            1,
+            1
+          ]
+        ],
+        "matrix_sign_correction": {
+          "A_B_inverse_A_N": [
+            [
+              2,
+              -1
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              -3,
+              1
+            ]
+          ],
+          "dictionary_form": "x_B=b_prime-A_N_prime*x_N",
+          "verified": true
+        },
+        "nonbinding_constraints": [
+          2
+        ],
+        "offer": {
+          "accept": true,
+          "allowed_additional_quantity": 4,
+          "maximum_unit_price": 1,
+          "net_gain": "1/4"
+        },
+        "reduced_costs": {
+          "s1": -1,
+          "s3": -1
+        },
+        "shadow_prices": [
+          1,
+          0,
+          1
+        ]
+      },
+      "correction_refs": [
+        "CORR-CH10-RHS-B3-SLACK",
+        "CORR-CH10-MATRIX-AN-SIGNS"
+      ],
+      "difficulty": 1,
+      "method": "exact_dictionary_matrix_dual_and_highs",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "main",
+          "maximum_violation": 0,
+          "objective": 23,
+          "point": {
+            "x": 4,
+            "y": 5
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "base"
+        },
+        {
+          "case": "main",
+          "maximum_violation": 0,
+          "objective": 24,
+          "point": {
+            "x": 3,
+            "y": 6
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b3_plus_1"
+        }
+      ],
+      "status": "verified",
+      "title": "Harga Bayangan dari Kamus Akhir"
+    },
+    "10.10": {
+      "certificate": {
+        "cost_condition": "cN-cB*A_B^-1*A_N<=0",
+        "endpoint_events": [
+          "variabel_basis_mencapai_nol",
+          "biaya_tereduksi_mencapai_nol"
+        ],
+        "rhs_condition": "A_B^-1*b>=0",
+        "status": "verified_general_certificate",
+        "value_formula": "cB*A_B^-1*b"
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "general_basis_range_certificate",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [],
+      "status": "verified",
+      "title": "Mengapa Rentang Itu Ada"
+    },
+    "10.11": {
+      "certificate": {
+        "dual_family": [
+          "1-t",
+          "1-t",
+          "t"
+        ],
+        "dual_parameter_range": [
+          0,
+          1
+        ],
+        "left_derivative": 1,
+        "right_derivative": 0,
+        "values": {
+          "b3=1": 1,
+          "b3=2": 2,
+          "b3=3": 2
+        }
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "exact_degeneracy_dual_family_and_highs",
+      "plot": {
+        "bytes": 3765,
+        "path": "plots/ex10-11.svg",
+        "sha256": "03830b99e1f9512e5b0df5ded4708135d0cfba300f3aeb6b6b48a6a7f0929676",
+        "status": "generated"
+      },
+      "solver_checks": [
+        {
+          "case": "degenerate",
+          "maximum_violation": 0,
+          "objective": 1,
+          "point": {
+            "x1": 0,
+            "x2": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b3_1"
+        },
+        {
+          "case": "degenerate",
+          "maximum_violation": 0,
+          "objective": 2,
+          "point": {
+            "x1": 1,
+            "x2": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b3_2"
+        },
+        {
+          "case": "degenerate",
+          "maximum_violation": 0,
+          "objective": 2,
+          "point": {
+            "x1": 1,
+            "x2": 1
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b3_3"
+        }
+      ],
+      "status": "verified",
+      "title": "Ketika Prediksi Harga Bayangan Gagal"
+    },
+    "10.12": {
+      "certificate": {
+        "actual_at_b1_14": 24,
+        "allowable_rhs_range": [
+          7,
+          10
+        ],
+        "piecewise_value": [
+          {
+            "domain": "0<=b1<=7",
+            "formula": "3*b1"
+          },
+          {
+            "domain": "7<=b1<=10",
+            "formula": "b1+14"
+          },
+          {
+            "domain": "b1>=10",
+            "formula": "24"
+          }
+        ],
+        "predicted_at_b1_14": 28,
+        "shadow_price": 1,
+        "values": {
+          "b1=10": 24,
+          "b1=14": 24,
+          "b1=9": 23
+        }
+      },
+      "correction_refs": [
+        "CORR-CH10-RHS-B1-SLACK"
+      ],
+      "difficulty": 3,
+      "method": "exact_piecewise_value_and_highs",
+      "plot": {
+        "bytes": 5277,
+        "path": "plots/ex10-12.svg",
+        "sha256": "0461922193e1ddef4852650aaa83b888c4a4f8c7baacee0cdb6c3dcc6a37aaeb",
+        "status": "generated"
+      },
+      "solver_checks": [
+        {
+          "case": "main",
+          "maximum_violation": 0,
+          "objective": 23,
+          "point": {
+            "x": 4,
+            "y": 5
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_9"
+        },
+        {
+          "case": "main",
+          "maximum_violation": 0,
+          "objective": 24,
+          "point": {
+            "x": 6,
+            "y": 4
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_10"
+        },
+        {
+          "case": "main",
+          "maximum_violation": 0,
+          "objective": 24,
+          "point": {
+            "x": 6,
+            "y": 4
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_14"
+        }
+      ],
+      "status": "verified",
+      "title": "Melampaui Rentang"
+    },
+    "10.2": {
+      "certificate": {
+        "basis_inverse": [
+          [
+            -1,
+            1
+          ],
+          [
+            2,
+            -1
+          ]
+        ],
+        "delta_range": [
+          -2,
+          6
+        ],
+        "objective": "36+2*delta",
+        "rhs_range": [
+          8,
+          16
+        ],
+        "shadow_price": 2,
+        "solution_affine": [
+          [
+            16,
+            -1
+          ],
+          [
+            -16,
+            2
+          ]
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 1,
+      "method": "exact_rhs_range_and_highs",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "rhs_cost",
+          "maximum_violation": 0,
+          "objective": 32,
+          "point": {
+            "x1": 8,
+            "x2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_8"
+        },
+        {
+          "case": "rhs_cost",
+          "maximum_violation": 0,
+          "objective": 48,
+          "point": {
+            "x1": 0,
+            "x2": 16
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_16"
+        },
+        {
+          "case": "rhs_cost",
+          "maximum_violation": 0,
+          "objective": 31.6,
+          "point": {
+            "x1": 7.9,
+            "x2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_7_9"
+        },
+        {
+          "case": "rhs_cost",
+          "maximum_violation": 0,
+          "objective": 48,
+          "point": {
+            "x1": 0,
+            "x2": 16
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_16_1"
+        }
+      ],
+      "status": "verified",
+      "title": "Rentang Sensitivitas Ruas Kanan"
+    },
+    "10.3": {
+      "certificate": {
+        "coefficient_range": [
+          3,
+          6
+        ],
+        "delta_range": [
+          -1,
+          2
+        ],
+        "dual_affine": [
+          [
+            6,
+            -1
+          ],
+          [
+            -3,
+            1
+          ]
+        ],
+        "objective": "12+6*c1",
+        "solution": [
+          6,
+          4
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "exact_cost_range_and_highs",
+      "plot": {
+        "bytes": 5271,
+        "path": "plots/ex10-03.svg",
+        "sha256": "cd5b47e0453834f02c516f2090958623064118cdea3a236732ea8728638d0760",
+        "status": "generated"
+      },
+      "solver_checks": [
+        {
+          "case": "rhs_cost",
+          "maximum_violation": 0,
+          "objective": 30,
+          "point": {
+            "x1": 0,
+            "x2": 10
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "c1_3"
+        },
+        {
+          "case": "rhs_cost",
+          "maximum_violation": 0,
+          "objective": 48,
+          "point": {
+            "x1": 6,
+            "x2": 4
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "c1_6"
+        },
+        {
+          "case": "rhs_cost",
+          "maximum_violation": 0,
+          "objective": 30,
+          "point": {
+            "x1": 0,
+            "x2": 10
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "c1_2_99"
+        },
+        {
+          "case": "rhs_cost",
+          "maximum_violation": 0,
+          "objective": 48.08,
+          "point": {
+            "x1": 8,
+            "x2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "c1_6_01"
+        }
+      ],
+      "status": "verified",
+      "title": "Sensitivitas Koefisien Objektif"
+    },
+    "10.4": {
+      "certificate": {
+        "basis_inverse": [
+          [
+            "-1/2",
+            "1/2"
+          ],
+          [
+            "3/4",
+            "-1/4"
+          ]
+        ],
+        "coefficient_ranges": {
+          "c1": [
+            3,
+            9
+          ],
+          "c2": [
+            "10/3",
+            10
+          ]
+        },
+        "objective": 56,
+        "rhs_ranges": {
+          "b1": [
+            8,
+            24
+          ],
+          "b2": [
+            16,
+            48
+          ]
+        },
+        "shadow_prices": [
+          2,
+          1
+        ],
+        "solution": [
+          4,
+          6
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "complete_exact_sensitivity_and_highs",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "complete",
+          "maximum_violation": 0,
+          "objective": 56,
+          "point": {
+            "x1": 4,
+            "x2": 6
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "base"
+        },
+        {
+          "case": "complete",
+          "maximum_violation": 0,
+          "objective": 40,
+          "point": {
+            "x1": 8,
+            "x2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_8"
+        },
+        {
+          "case": "complete",
+          "maximum_violation": 0,
+          "objective": 72,
+          "point": {
+            "x1": 0,
+            "x2": 12
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_24"
+        },
+        {
+          "case": "complete",
+          "maximum_violation": 0,
+          "objective": 48,
+          "point": {
+            "x1": 0,
+            "x2": 8
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b2_16"
+        },
+        {
+          "case": "complete",
+          "maximum_violation": 0,
+          "objective": 80,
+          "point": {
+            "x1": 16,
+            "x2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b2_48"
+        }
+      ],
+      "status": "verified",
+      "title": "Analisis Sensitivitas Lengkap"
+    },
+    "10.5": {
+      "certificate": {
+        "basic_values": [
+          5,
+          10
+        ],
+        "basis": [
+          "x1",
+          "s2"
+        ],
+        "basis_inverse": [
+          [
+            "1/2",
+            0
+          ],
+          [
+            "-1/2",
+            1
+          ]
+        ],
+        "coefficient_ranges": {
+          "c1": [
+            4,
+            "infinity"
+          ],
+          "c2": [
+            "-infinity",
+            "5/2"
+          ]
+        },
+        "reduced_costs": {
+          "s1": "-5/2",
+          "x2": "-1/2"
+        }
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "exact_basic_nonbasic_cost_ranges_and_highs",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "basis_nonbasis",
+          "maximum_violation": 0,
+          "objective": 25,
+          "point": {
+            "x1": 5,
+            "x2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "base"
+        },
+        {
+          "case": "basis_nonbasis",
+          "maximum_violation": 0,
+          "objective": 25.04,
+          "point": {
+            "x1": 3,
+            "x2": 4
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "c2_2_51"
+        },
+        {
+          "case": "basis_nonbasis",
+          "maximum_violation": 0,
+          "objective": 19.97,
+          "point": {
+            "x1": 3,
+            "x2": 4
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "c1_3_99"
+        }
+      ],
+      "status": "verified",
+      "title": "Menentukan Rentang Koefisien Basis dan Nonbasis"
+    },
+    "10.6": {
+      "certificate": {
+        "basis_inverse": [
+          [
+            -2,
+            1
+          ],
+          [
+            3,
+            -1
+          ]
+        ],
+        "coefficient_range_c1": [
+          4,
+          6
+        ],
+        "rhs_range_b1": [
+          5,
+          "15/2"
+        ],
+        "shadow_prices": [
+          2,
+          1
+        ],
+        "solution": [
+          3,
+          3
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "exact_basis_inverse_ranges_and_highs",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "inverse_basis",
+          "maximum_violation": 0,
+          "objective": 27,
+          "point": {
+            "x1": 3,
+            "x2": 3
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "base"
+        },
+        {
+          "case": "inverse_basis",
+          "maximum_violation": 0,
+          "objective": 25,
+          "point": {
+            "x1": 5,
+            "x2": 0
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_5"
+        },
+        {
+          "case": "inverse_basis",
+          "maximum_violation": 0,
+          "objective": 30,
+          "point": {
+            "x1": 0,
+            "x2": 7.5
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "b1_7_5"
+        }
+      ],
+      "status": "verified",
+      "title": "Sensitivitas dari Invers Basis"
+    },
+    "10.7": {
+      "certificate": {
+        "changed_objective": 80,
+        "current_objective": 68,
+        "fail_closed_reason": "matriks koefisien kendala tidak tersedia; model Pyomo tidak dibuat",
+        "missing_for_solver": [
+          "constraint_coefficient_matrix",
+          "constraint_senses",
+          "complete_primal_model"
+        ],
+        "new_objective_from_shadow_price": 73,
+        "nonbinding_constraint": 2
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "fail_closed_report_arithmetic",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [],
+      "status": "verified_fail_closed",
+      "title": "Membaca Laporan Sensitivitas"
+    },
+    "10.8": {
+      "certificate": {
+        "objective": 525,
+        "objective_after_two_more_wood": "1095/2",
+        "rhs_range_wood": [
+          20,
+          60
+        ],
+        "shadow_prices": [
+          "45/4",
+          "5/2"
+        ],
+        "solution": [
+          "15/2",
+          5
+        ]
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "exact_shadow_price_interpretation_and_highs",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [
+        {
+          "case": "furniture",
+          "maximum_violation": 0,
+          "objective": 525,
+          "point": {
+            "x1": 7.5,
+            "x2": 5
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "base"
+        },
+        {
+          "case": "furniture",
+          "maximum_violation": 0,
+          "objective": 547.5,
+          "point": {
+            "x1": 8.25,
+            "x2": 4.5
+          },
+          "purpose": "independent_lp_corroboration",
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal",
+          "variant": "wood_plus_2"
+        }
+      ],
+      "status": "verified",
+      "title": "Penafsiran Harga Bayangan"
+    },
+    "10.9": {
+      "certificate": {
+        "dictionary_example": {
+          "objective": 23,
+          "rhs_range_b2": [
+            13,
+            "infinity"
+          ],
+          "shadow_price_b2": 0,
+          "slack_b2": 3
+        },
+        "proof_steps": [
+          "slack_basis_positif_menyatakan_sumber_daya_tidak_terpakai",
+          "perubahan_rhs_kecil_hanya_mengubah_konstanta_baris_slack",
+          "baris_objektif_tidak_berubah",
+          "turunan_nilai_optimal_terhadap_rhs_adalah_nol"
+        ],
+        "status": "verified_general_proof"
+      },
+      "correction_refs": [],
+      "difficulty": 2,
+      "method": "general_nonbinding_shadow_price_proof",
+      "plot": {
+        "reason": "visual tidak menambah informasi material pada sertifikat eksak atau laporan",
+        "status": "not_generated"
+      },
+      "solver_checks": [],
+      "status": "verified",
+      "title": "Mengapa Kendala Berslack Berharga Nol"
+    }
+  },
+  "lab_id": "o018.ch10.sensitivity-analysis",
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 49842,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch07-sensitivity/sensitivity-LP.tex",
+        "role": "authority_chapter",
+        "sha256": "5a112881cdab43e0509ef39ea48656f45f7228488ef8af9ce1fdba2f3d8fbfc5"
+      },
+      {
+        "bytes": 20937,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch10.tex",
+        "role": "authority_manual",
+        "sha256": "b0c7bbfca422954e1593b71ec4b55cbed40c918fc4a3d4058cbe24fdf9561597"
+      },
+      {
+        "bytes": 52340,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch07-sensitivity/sensitivity-LP.tex",
+        "role": "translated_chapter",
+        "sha256": "27125508e85609361382af200e24d33d5f979cb68f78c5eee94c06acd6a9c64c"
+      },
+      {
+        "bytes": 22264,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch10.tex",
+        "role": "translated_manual",
+        "sha256": "6abe9524a7052068e1d5931356d43f24ec5fde441af4080a347124e1088b6ca5"
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "summary": {
+    "correction_count": 3,
+    "exercise_count": 12,
+    "maximum_solver_violation": 0,
+    "method_counts": {
+      "complete_exact_sensitivity_and_highs": 1,
+      "exact_basic_nonbasic_cost_ranges_and_highs": 1,
+      "exact_basis_inverse_ranges_and_highs": 1,
+      "exact_cost_range_and_highs": 1,
+      "exact_degeneracy_dual_family_and_highs": 1,
+      "exact_dictionary_matrix_dual_and_highs": 1,
+      "exact_piecewise_value_and_highs": 1,
+      "exact_rhs_range_and_highs": 1,
+      "exact_shadow_price_interpretation_and_highs": 1,
+      "fail_closed_report_arithmetic": 1,
+      "general_basis_range_certificate": 1,
+      "general_nonbinding_shadow_price_proof": 1
+    },
+    "o018_math_correction_count": 0,
+    "plot_count": 3,
+    "solver_call_count": 29,
+    "solver_termination_counts": {
+      "optimal": 29
+    },
+    "underdetermined_count": 1,
+    "verified_count": 12
+  },
+  "underdetermined_exercises": [
+    {
+      "exercise_id": "10.7",
+      "reason": "Laporan sensitivitas tidak memuat matriks koefisien atau model primal lengkap; hanya aritmetika dan implikasi lokal laporan yang dapat diverifikasi."
+    }
+  ]
+}

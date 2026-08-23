@@ -1,0 +1,133 @@
+{
+  "schema_name": "interlanguage.terminology-qa",
+  "schema_version": "0.1.0",
+  "recorded_at": "2026-08-22T00:00:00+02:00",
+  "locale": "id-ID",
+  "field": "mathematical programming, linear programming, and operations research",
+  "preferred_route": {
+    "requirement": "representative Indonesian field source with downloadable TeX from arXiv",
+    "result": "no_suitable_source_found",
+    "candidates": [
+      {
+        "identifier": "arXiv:1207.5130v1",
+        "title": "The Ontology of Knowledge Based Optimization",
+        "authors": [
+          "Mahyuddin K. M. Nasution"
+        ],
+        "url": "https://arxiv.org/abs/1207.5130",
+        "source_url": "https://arxiv.org/src/1207.5130v1",
+        "source_format": "gzip containing TeX",
+        "source_bytes": 22112,
+        "source_sha256": "e82e33a0c1d9c27991b2cb832260ae9a92d2bfe2a0606c02d433ba0d2de3d17a",
+        "tex_member_bytes": 67718,
+        "tex_member_sha256": "7739647353e945fb92c0725f7f1ae77b366a3560759397ad6fd68366d943ed31",
+        "decision": "rejected_as_Indonesian_terminology_evidence",
+        "reason": "The field-matched TeX prose is English."
+      },
+      {
+        "identifier": "arXiv:1506.00091v1",
+        "title": "Sistem penunjang keputusan kelayakan pemberian pinjaman dengna metode fuzzy tsukamoto",
+        "authors": [
+          "Tri Murti",
+          "Leon Andretti Abdillah",
+          "Muhammad Sobri"
+        ],
+        "url": "https://arxiv.org/abs/1506.00091",
+        "source_url": "https://arxiv.org/src/1506.00091v1",
+        "source_format": "PDF-only source endpoint",
+        "source_bytes": 927606,
+        "source_sha256": "c155f4efd57db9ddc2cce74fc0f9e63a0e4783e2adc555bb79d7c0a117946c41",
+        "decision": "rejected_as_primary_field_source",
+        "reason": "The item is Indonesian but only adjacent to the target field and supplies no TeX source."
+      }
+    ]
+  },
+  "field_fallback": {
+    "identifier": "UNY eprints 28253, Bab II",
+    "title": "Model De Novo Programming Menggunakan Pendekatan Min-Max Goal Programming dan Penerapannya pada Optimisasi Perencanaan Produksi Bakpia 716 Annur Yogyakarta",
+    "author": "Desi Analisa Nababan",
+    "institution": "Universitas Negeri Yogyakarta",
+    "year": 2015,
+    "record_url": "https://eprints.uny.ac.id/28253/",
+    "source_url": "https://eprints.uny.ac.id/28253/2/BAB%20II.pdf",
+    "source_format": "PDF",
+    "pages": 30,
+    "source_bytes": 478782,
+    "source_sha256": "93e28050ca432e5f9947bb6d648b77e80e93db09c7a281e53a88ea07100ad3f7",
+    "inspection": "full text extraction and representative visual inspection of linear-programming, simplex, canonical/standard-form, pivot, objective, constraint, decision-variable, and feasibility terminology"
+  },
+  "modern_crosscheck": {
+    "identifier": "doi:10.21831/jktm.v11i1.21643",
+    "title": "Penerapan Metode Fuzzy Goal Programming untuk Mengoptimalkan Perencanaan Produksi Kerupuk Ikan",
+    "authors": [
+      "Afifah Hidayatun Rosidah",
+      "Husna Arifah"
+    ],
+    "year": 2025,
+    "url": "https://doi.org/10.21831/jktm.v11i1.21643",
+    "source_format": "PDF",
+    "pages": 15,
+    "source_bytes": 606467,
+    "source_sha256": "beb3055435030a31f234dff10c261ab5fc3a413a1472b14050eb88462533ec1b",
+    "identity_caveat": "The stale embedded PDF title metadata was rejected; identity was verified from the visible first page and official journal record."
+  },
+  "decisions": {
+    "target_correction": {
+      "from": "solusi layak dasar",
+      "to": "solusi basis layak",
+      "segment_id": "segment.r017.book1.ch05.text.block-020",
+      "correction_id": "correction.r017.ch05-basic-feasible-solution-word-order"
+    },
+    "glossary_record_expansions": [
+      {
+        "term_id": "term.objective-function.id",
+        "added_variants": [
+          "fungsi objektif"
+        ]
+      },
+      {
+        "term_id": "term.linear-programming.id",
+        "added_variants": [
+          "pemrograman linier",
+          "program linier"
+        ]
+      },
+      {
+        "term_id": "term.standard-form.id",
+        "added_variants": [
+          "bentuk baku"
+        ]
+      },
+      {
+        "term_id": "term.basic-feasible-solution.id",
+        "added_variants": [
+          "pemecahan dasar yang layak"
+        ],
+        "rejected_variants": [
+          "solusi layak dasar"
+        ]
+      }
+    ],
+    "retained_policies": [
+      "optimisasi preferred with optimasi retained as a variant",
+      "daerah fisibel preferred with daerah layak retained as a variant",
+      "algoritma simpleks preferred with metode simpleks retained as a variant",
+      "no mass replacement of linear/linier, algoritma/algoritme, or layak/fisibel",
+      "protect product names, URLs, cited titles, package names, and code identifiers"
+    ],
+    "mathematical_content_changed": false
+  },
+  "affected_paths": [
+    "source/Intro-Math-Programming/baseText/book/frontmatter/ai-usage-disclosure.tex",
+    "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch02-modeling/Section2.tex",
+    "backend/input/backend-input.json",
+    "scripts/update_backend_full_book.py"
+  ],
+  "translation_provenance": {
+    "assistant": "OpenAI Codex gpt-5.6-sol, Ultra",
+    "requester": "the user",
+    "role": "translation and production assistance",
+    "authorship": "not an author"
+  },
+  "rights_note": "The external source files are local QA evidence only. Their identities and hashes do not extend R017/O018 licensing to those third-party works, and the release package does not redistribute those PDFs or the arXiv source package."
+}

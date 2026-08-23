@@ -1,0 +1,252 @@
+{
+  "content_license": "CC-BY-SA-4.0",
+  "exercises": {
+    "5.1": {
+      "scenarios": {
+        "region": {
+          "classification": "feasible_region_unbounded"
+        }
+      }
+    },
+    "5.2": {
+      "scenarios": {
+        "region": {
+          "classification": "feasible_region_unbounded"
+        }
+      }
+    },
+    "5.3": {
+      "scenarios": {
+        "original": {
+          "classification": "optimal_unique",
+          "objective": 11.0,
+          "point": [
+            3.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "5.4": {
+      "scenarios": {
+        "original": {
+          "classification": "optimal_unique",
+          "objective": 6.8,
+          "point": [
+            1.2,
+            1.6
+          ]
+        }
+      }
+    },
+    "5.5": {
+      "scenarios": {
+        "original": {
+          "classification": "optimal_nonunique",
+          "objective": 45.0,
+          "segment": [
+            [
+              10.0,
+              3.0
+            ],
+            [
+              15.0,
+              0.0
+            ]
+          ]
+        }
+      }
+    },
+    "5.6": {
+      "scenarios": {
+        "original": {
+          "classification": "infeasible"
+        }
+      }
+    },
+    "5.7": {
+      "scenarios": {
+        "original": {
+          "classification": "optimal_unique",
+          "objective": 1.8,
+          "objective_exact": "9/5",
+          "point": [
+            2.2,
+            -0.4
+          ],
+          "point_exact": [
+            "11/5",
+            "-2/5"
+          ]
+        }
+      }
+    },
+    "5.8": {
+      "scenarios": {
+        "original": {
+          "classification": "unbounded"
+        }
+      }
+    },
+    "5.9": {
+      "scenarios": {
+        "as_written": {
+          "classification": "unbounded"
+        }
+      }
+    },
+    "5.10": {
+      "scenarios": {
+        "fractional_lp": {
+          "classification": "optimal_unique",
+          "objective": 60.9947643979,
+          "objective_exact": "11650/191",
+          "point": [
+            0.5759162304,
+            1.4659685864,
+            0.0
+          ],
+          "point_exact": [
+            "110/191",
+            "280/191",
+            "0"
+          ]
+        }
+      }
+    },
+    "5.11": {
+      "execution": {
+        "reason": "parameter_required",
+        "status": "not_run"
+      },
+      "scenarios": {}
+    },
+    "5.12": {
+      "scenarios": {
+        "manual_construction": {
+          "classification": "optimal_nonunique",
+          "objective": 4.0,
+          "segment": [
+            [
+              0.0,
+              2.0
+            ],
+            [
+              3.3333333333,
+              0.3333333333
+            ]
+          ]
+        }
+      }
+    },
+    "5.13": {
+      "scenarios": {
+        "lemon_edge": {
+          "classification": "optimal_nonunique",
+          "objective": 6.0,
+          "segment": [
+            [
+              0.0,
+              2.0
+            ],
+            [
+              1.2,
+              1.6
+            ]
+          ]
+        },
+        "water_edge": {
+          "classification": "optimal_nonunique",
+          "objective": 4.0,
+          "segment": [
+            [
+              1.2,
+              1.6
+            ],
+            [
+              2.0,
+              0.0
+            ]
+          ]
+        }
+      }
+    },
+    "5.14": {
+      "scenarios": {
+        "manual_construction": {
+          "classification": "optimal_unique",
+          "objective": -2.0,
+          "point": [
+            0.0,
+            2.0
+          ]
+        }
+      }
+    },
+    "5.15": {
+      "scenarios": {
+        "original": {
+          "classification": "unbounded"
+        }
+      }
+    },
+    "5.16": {
+      "scenarios": {
+        "maximum": {
+          "classification": "unbounded"
+        },
+        "minimum": {
+          "classification": "optimal_unique",
+          "objective": 6.0,
+          "point": [
+            1.0,
+            2.0
+          ]
+        }
+      }
+    },
+    "5.17": {
+      "scenarios": {
+        "edge_tie": {
+          "classification": "optimal_nonunique",
+          "objective": 4.0,
+          "segment": [
+            [
+              0.0,
+              4.0
+            ],
+            [
+              3.0,
+              1.0
+            ]
+          ]
+        },
+        "unique_after_change": {
+          "classification": "optimal_unique",
+          "objective": 8.0,
+          "point": [
+            0.0,
+            4.0
+          ]
+        }
+      }
+    }
+  },
+  "lab_id": "o018.ch05.graphical-lp",
+  "numerical_tolerance": 1e-07,
+  "schema_version": "1.0.0",
+  "summary": {
+    "classification_counts": {
+      "feasible_region_unbounded": 2,
+      "infeasible": 1,
+      "optimal_nonunique": 5,
+      "optimal_unique": 7,
+      "unbounded": 4
+    },
+    "exercise_count": 17,
+    "executable_exercise_count": 16,
+    "parameter_required_count": 1,
+    "plot_count": 18,
+    "scenario_solve_count": 19
+  }
+}

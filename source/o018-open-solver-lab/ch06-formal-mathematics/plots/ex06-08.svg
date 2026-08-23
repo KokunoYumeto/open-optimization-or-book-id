@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="720" height="520" viewBox="0 0 720 520"
+  role="img" aria-labelledby="ex06-08-title ex06-08-desc" lang="id"
+  xml:lang="id-ID" focusable="false">
+  <title id="ex06-08-title">Latihan 6.8 — Titik sudut dan titik non-ekstrem</title>
+  <desc id="ex06-08-desc">Potongan polihedron tak berbatas memperlihatkan titik sudut (0,0), (0,1), dan (2,3). Titik (2,3) mempunyai dua kendala aktif bebas linier. Titik (1,2) adalah titik tengah (0,1) dan (2,3), sehingga bukan titik ekstrem. Daerah berlanjut ke kanan melewati jendela.</desc>
+  <metadata>Adaptasi latihan O018 Bab 6; CC BY-SA 4.0.</metadata>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+      orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 z" fill="#1c2430"/>
+    </marker>
+    <style><![CDATA[
+      .background { fill: #ffffff; }
+      .frame { fill: none; stroke: #697386; stroke-width: 1; }
+      .axis { stroke: #1c2430; stroke-width: 1.5; }
+      .tick { stroke: #1c2430; stroke-width: 1; }
+      .tick-label { fill: #1c2430; font: 13px sans-serif; text-anchor: middle; }
+      .tick-label.y { text-anchor: end; }
+      .axis-label { fill: #1c2430; font: 16px sans-serif; font-weight: 700; }
+      .region { fill: #dcecff; stroke: #174a7e; stroke-width: 2.5; }
+      .boundary { fill: none; stroke: #174a7e; stroke-width: 3; }
+      .secondary { fill: none; stroke: #8a3f00; stroke-width: 2.5; stroke-dasharray: 8 5; }
+      .point { fill: #ffffff; stroke: #111111; stroke-width: 2.5; }
+      .point-filled { fill: #111111; stroke: #ffffff; stroke-width: 1.5; }
+      .point-alert { fill: #ffffff; stroke: #a32020; stroke-width: 3; }
+      .point-label { fill: #111111; font: 14px sans-serif; font-weight: 600; }
+      .annotation { fill: #111111; font: 14px sans-serif; }
+      .annotation-strong { fill: #111111; font: 14px sans-serif; font-weight: 700; }
+      .optimal { stroke: #111111; stroke-width: 4; }
+      .guide { stroke: #697386; stroke-width: 1.5; stroke-dasharray: 4 4; }
+    ]]></style>
+  </defs>
+  <rect class="background" x="0" y="0" width="720" height="520"/>
+  <rect class="frame" x="135" y="35" width="490" height="420"/>
+<polygon class="region" points="170,420 170,350 310,210 625,52.5 625,306.25"/>
+<line class="axis" x1="135" y1="420" x2="625" y2="420" marker-end="url(#arrow)"/>
+<line class="axis" x1="170" y1="455" x2="170" y2="35" marker-end="url(#arrow)"/>
+<line class="tick" x1="240" y1="416" x2="240" y2="424"/>
+<text class="tick-label" x="240" y="440">1</text>
+<line class="tick" x1="310" y1="416" x2="310" y2="424"/>
+<text class="tick-label" x="310" y="440">2</text>
+<line class="tick" x1="380" y1="416" x2="380" y2="424"/>
+<text class="tick-label" x="380" y="440">3</text>
+<line class="tick" x1="450" y1="416" x2="450" y2="424"/>
+<text class="tick-label" x="450" y="440">4</text>
+<line class="tick" x1="520" y1="416" x2="520" y2="424"/>
+<text class="tick-label" x="520" y="440">5</text>
+<line class="tick" x1="590" y1="416" x2="590" y2="424"/>
+<text class="tick-label" x="590" y="440">6</text>
+<line class="tick" x1="166" y1="350" x2="174" y2="350"/>
+<text class="tick-label y" x="160" y="354">1</text>
+<line class="tick" x1="166" y1="280" x2="174" y2="280"/>
+<text class="tick-label y" x="160" y="284">2</text>
+<line class="tick" x1="166" y1="210" x2="174" y2="210"/>
+<text class="tick-label y" x="160" y="214">3</text>
+<line class="tick" x1="166" y1="140" x2="174" y2="140"/>
+<text class="tick-label y" x="160" y="144">4</text>
+<line class="tick" x1="166" y1="70" x2="174" y2="70"/>
+<text class="tick-label y" x="160" y="74">5</text>
+<text class="axis-label" x="629" y="474">x₁</text>
+<text class="axis-label" x="115" y="30">x₂</text>
+<circle class="point-filled" cx="170" cy="420" r="6"/><text class="point-label" x="179" y="411">(0,0)</text>
+<circle class="point-filled" cx="170" cy="350" r="6"/><text class="point-label" x="179" y="341">(0,1)</text>
+<circle class="point-filled" cx="310" cy="210" r="6"/><text class="point-label" x="319" y="201">(2,3), rank aktif 2</text>
+<line class="secondary" x1="170" y1="350" x2="310" y2="210"/>
+<circle class="point" cx="240" cy="280" r="6"/><text class="point-label" x="249" y="271">(1,2), titik tengah</text>
+<text class="annotation" x="418.5" y="381.5">P berlanjut ke kanan →</text>
+</svg>

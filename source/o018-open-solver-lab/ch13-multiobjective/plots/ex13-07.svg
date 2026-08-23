@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" role="img" xml:lang="id-ID" aria-labelledby="title-13-7 desc-13-7">
+<title id="title-13-7">Latihan 13.7 — penyapuan kendala-epsilon</title>
+<desc id="desc-13-7">Segitiga layak dengan sisi Pareto x1 tambah x2 sama dengan 6. Empat titik ungu menunjukkan solusi untuk epsilon 6, 10, 14, dan 18.</desc>
+<metadata>{&quot;alternative_text&quot;: &quot;Segitiga layak dengan sisi Pareto x1 tambah x2 sama dengan 6. Empat titik ungu menunjukkan solusi untuk epsilon 6, 10, 14, dan 18.&quot;, &quot;exercise_id&quot;: &quot;13.7&quot;, &quot;language&quot;: &quot;id-ID&quot;, &quot;structured_data&quot;: {&quot;epsilon_points&quot;: [[6, 6, 0], [10, 4, 2], [14, 2, 4], [18, 0, 6]], &quot;frontier&quot;: &quot;x1+x2=6&quot;}}</metadata>
+<style>
+.background{fill:#fffdf8}.axis{stroke:#25364a;stroke-width:2}.grid{stroke:#dce3ea;stroke-width:1}
+.frontier{fill:none;stroke:#1769aa;stroke-width:4}.hull{fill:none;stroke:#1769aa;stroke-width:4}
+.slice{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:8 6}.supported{fill:#1769aa;stroke:#0b3558;stroke-width:2}
+.unsupported{fill:#f59e0b;stroke:#8a4b00;stroke-width:2}.dominated{fill:#a8b0ba;stroke:#59636f;stroke-width:2}
+.epsilon{fill:#7c3aed;stroke:#3d176d;stroke-width:2}.point-label{font:600 18px sans-serif;fill:#17212b}
+.tick{font:15px sans-serif;fill:#334155}.axis-label{font:600 18px sans-serif;fill:#1e293b}
+.heading{font:700 24px sans-serif;fill:#102a43}.note{font:16px sans-serif;fill:#334155}
+</style>
+<rect class="background" x="0" y="0" width="900" height="640"/>
+<text x="92" y="38" class="heading">Latihan 13.7 — penyapuan kendala-epsilon</text>
+<line x1="92.00" y1="554.00" x2="864.00" y2="554.00" class="axis"/>
+<line x1="92.00" y1="70.00" x2="92.00" y2="554.00" class="axis"/>
+<line x1="92.00" y1="70.00" x2="92.00" y2="554.00" class="grid"/>
+<text x="92.00" y="581" class="tick" text-anchor="middle">0</text>
+<line x1="210.77" y1="70.00" x2="210.77" y2="554.00" class="grid"/>
+<text x="210.77" y="581" class="tick" text-anchor="middle">1</text>
+<line x1="329.54" y1="70.00" x2="329.54" y2="554.00" class="grid"/>
+<text x="329.54" y="581" class="tick" text-anchor="middle">2</text>
+<line x1="448.31" y1="70.00" x2="448.31" y2="554.00" class="grid"/>
+<text x="448.31" y="581" class="tick" text-anchor="middle">3</text>
+<line x1="567.08" y1="70.00" x2="567.08" y2="554.00" class="grid"/>
+<text x="567.08" y="581" class="tick" text-anchor="middle">4</text>
+<line x1="685.85" y1="70.00" x2="685.85" y2="554.00" class="grid"/>
+<text x="685.85" y="581" class="tick" text-anchor="middle">5</text>
+<line x1="804.62" y1="70.00" x2="804.62" y2="554.00" class="grid"/>
+<text x="804.62" y="581" class="tick" text-anchor="middle">6</text>
+<line x1="92.00" y1="554.00" x2="864.00" y2="554.00" class="grid"/>
+<text x="76" y="559.00" class="tick" text-anchor="end">0</text>
+<line x1="92.00" y1="479.54" x2="864.00" y2="479.54" class="grid"/>
+<text x="76" y="484.54" class="tick" text-anchor="end">1</text>
+<line x1="92.00" y1="405.08" x2="864.00" y2="405.08" class="grid"/>
+<text x="76" y="410.08" class="tick" text-anchor="end">2</text>
+<line x1="92.00" y1="330.62" x2="864.00" y2="330.62" class="grid"/>
+<text x="76" y="335.62" class="tick" text-anchor="end">3</text>
+<line x1="92.00" y1="256.15" x2="864.00" y2="256.15" class="grid"/>
+<text x="76" y="261.15" class="tick" text-anchor="end">4</text>
+<line x1="92.00" y1="181.69" x2="864.00" y2="181.69" class="grid"/>
+<text x="76" y="186.69" class="tick" text-anchor="end">5</text>
+<line x1="92.00" y1="107.23" x2="864.00" y2="107.23" class="grid"/>
+<text x="76" y="112.23" class="tick" text-anchor="end">6</text>
+<text x="478.00" y="615" class="axis-label" text-anchor="middle">x1</text>
+<text x="28" y="312.00" class="axis-label" text-anchor="middle" transform="rotate(-90 28 312.00)">x2</text>
+<polygon points="92.00,554.00 804.62,554.00 92.00,107.23 92.00,554.00" fill="#dbeafe" stroke="#6b8fb3" stroke-width="2"/>
+<polyline points="804.62,554.00 92.00,107.23" class="frontier"/>
+<circle cx="804.62" cy="554.00" r="8" class="epsilon"/><text x="816.62" y="544.00" class="point-label">ε=6</text>
+<circle cx="567.08" cy="405.08" r="8" class="epsilon"/><text x="579.08" y="395.08" class="point-label">ε=10</text>
+<circle cx="329.54" cy="256.15" r="8" class="epsilon"/><text x="341.54" y="246.15" class="point-label">ε=14</text>
+<circle cx="92.00" cy="107.23" r="8" class="epsilon"/><text x="104.00" y="97.23" class="point-label">ε=18</text>
+<text x="565" y="95" class="note">Batas Pareto: x1+x2=6</text>
+<text x="565" y="121" class="note">f1=18-2t; f2=6+2t</text>
+<text x="565" y="147" class="note">Δf1/Δf2 = -1</text>
+</svg>

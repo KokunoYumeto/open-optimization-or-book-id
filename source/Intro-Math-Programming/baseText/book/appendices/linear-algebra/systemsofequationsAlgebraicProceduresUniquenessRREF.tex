@@ -1,0 +1,99 @@
+\subsection{Keunikan \RREF}
+
+Seperti yang telah kita lihat pada bagian-bagian sebelumnya, setiap matriks dapat dibawa ke \rref \;melalui serangkaian operasi baris elementer. Di sini kita akan membuktikan bahwa matriks yang dihasilkan bersifat unik; dengan kata lain, matriks dalam \rref\;yang dihasilkan tidak bergantung pada rangkaian operasi baris elementer tertentu maupun urutan pelaksanaannya.
+
+Misalkan $A$ adalah matriks diperbesar dari suatu sistem persamaan linear
+homogen dalam variabel $x_1, x_2, \cdots, x_n$ yang juga berada dalam
+\rref. Matriks $A$ membagi himpunan variabel menjadi dua
+jenis. Kita mengatakan bahwa $x_i$ merupakan {\em variabel dasar} \index{variabel!dasar} apabila $A$ memiliki
+$1$ utama pada kolom nomor $i$; dengan kata lain, apabila kolom $i$ merupakan
+kolom pivot. Jika tidak, kita mengatakan bahwa $x_i$ merupakan {\em variabel
+bebas\em}. \index{variabel!bebas}
+
+Ingat kembali Contoh \ref{exa:twoparametersetofsoln}.
+
+\begin{example}{Variabel Dasar dan Variabel Bebas}\label{exa:basicfree}
+Temukan variabel dasar dan variabel bebas dalam sistem
+\[
+\begin{array}{c}
+x+2y-z+w=3 \\
+x+y-z+w=1 \\
+x+3y-z+w=5
+\end{array}
+\]
+\end{example}
+
+\begin{solution}
+Ingat kembali dari solusi Contoh \ref{exa:twoparametersetofsoln} bahwa \ef \;dari matriks diperbesar sistem ini diberikan oleh
+\[
+\leftB
+\begin{array}{rrrr|r}
+1 & 2 & -1 & 1 & 3 \\
+0 & 1 & 0 & 0 & 2 \\
+0 & 0 & 0 & 0 & 0
+\end{array}
+\rightB  
+\]
+Anda dapat melihat bahwa kolom $1$ dan $2$ merupakan kolom pivot. Kolom-kolom ini bersesuaian dengan variabel $x$ dan $y$, sehingga keduanya merupakan variabel dasar. Kolom $3$ dan $4$ bukan kolom pivot, yang berarti bahwa $z$ dan $w$ merupakan variabel bebas.
+
+Kita dapat menuliskan solusi sistem ini sebagai
+\[
+\begin{array}{c}
+x=-1+s-t \\
+y=2 \\
+z=s \\
+w=t
+\end{array}
+\]
+
+Di sini variabel bebas ditulis sebagai parameter, sedangkan variabel dasar diberikan sebagai fungsi linear dari parameter-parameter tersebut.
+\end{solution}
+
+Secara umum, semua solusi dapat ditulis dalam variabel bebas. Dalam deskripsi semacam itu, variabel bebas dapat mengambil sembarang nilai (variabel tersebut menjadi parameter), sedangkan variabel dasar menjadi fungsi linear sederhana dari parameter-parameter tersebut. Sesungguhnya, suatu variabel dasar $x_i$ merupakan fungsi linear dari {\em hanya \em}variabel-variabel bebas $x_j$ dengan $j>i$. Hal ini menghasilkan pengamatan berikut.
+
+\begin{proposition}{Variabel Dasar dan Variabel Bebas}\label{prop:basicfree}
+Jika $x_i$ merupakan variabel dasar suatu sistem persamaan linear homogen, maka setiap solusi sistem dengan $x_j=0$ untuk semua variabel bebas $x_j$ dengan $j>i$ juga harus memiliki $x_i=0$.
+\end{proposition}
+
+Dengan menggunakan proposisi ini, kita membuktikan sebuah lema yang akan digunakan dalam pembuktian hasil utama bagian ini di bawah.
+
+\begin{lemma}{Solusi dan \RREF \;Suatu Matriks}\label{lem:rrefsolutions}
+Misalkan $A$ dan $B$ merupakan dua matriks diperbesar yang berbeda bagi dua sistem homogen yang terdiri atas $m$ persamaan dalam $n$ variabel, sedemikian sehingga $A$ dan $B$ masing-masing berada dalam \rref. Maka kedua sistem tersebut tidak memiliki solusi yang persis sama.
+\end{lemma}
+\ifdefined\showproofs
+\begin{proof}
+Sehubungan dengan sistem linear yang bersesuaian dengan matriks $A$ dan $B$, terdapat dua kasus yang perlu dibahas:
+\begin{itemize}
+\item Kasus $1$: kedua sistem memiliki variabel dasar yang sama
+\item Kasus $2$: kedua sistem tidak memiliki variabel dasar yang sama
+\end{itemize}
+Dalam kasus $1$, kedua matriks memiliki posisi pivot yang persis sama. Namun, karena $A$ dan $B$ tidak identik, terdapat suatu baris $A$ yang berbeda dari baris $B$ yang bersesuaian, meskipun masing-masing baris memiliki pivot pada posisi kolom yang sama. Misalkan $i$ adalah indeks posisi kolom tersebut. Karena kedua matriks berada dalam \rref, kedua baris harus berbeda pada suatu entri dalam kolom $j>i$. Misalkan entri-entri tersebut adalah $a$ dalam $A$ dan $b$ dalam $B$, dengan $a \neq b$. Karena $A$ berada dalam \rref, jika $x_j$ merupakan variabel dasar bagi sistem linearnya, kita akan memiliki $a=0$. Demikian pula, jika $x_j$ merupakan variabel dasar bagi sistem linear matriks $B$, kita akan memiliki $b=0$. Karena $a$ dan $b$ tidak sama, keduanya tidak mungkin sama-sama bernilai $0$, sehingga $x_j$ tidak mungkin merupakan variabel dasar bagi kedua sistem linear. Namun, karena kedua sistem memiliki variabel dasar yang sama, $x_j$ harus merupakan variabel bebas bagi masing-masing sistem. Sekarang kita memperhatikan solusi sistem ketika $x_j$ ditetapkan sama dengan $1$ dan semua variabel bebas lainnya ditetapkan sama dengan $0$. Untuk pilihan parameter ini, solusi sistem bagi matriks $A$ memiliki $x_j=-a$, sedangkan solusi sistem bagi matriks $B$ memiliki $x_j=-b$, sehingga kedua sistem memiliki solusi yang berbeda.
+
+Dalam kasus $2$, terdapat suatu variabel $x_i$ yang merupakan variabel dasar bagi salah satu matriks, misalkan $A$, dan variabel bebas bagi matriks lainnya, yaitu $B$. Sistem bagi matriks $B$ memiliki solusi dengan $x_i=1$ dan $x_j=0$ untuk semua variabel bebas lain $x_j$. Namun, menurut Proposisi \ref{prop:basicfree}, solusi ini tidak mungkin merupakan solusi sistem bagi matriks $A$. Hal ini menyelesaikan pembuktian kasus $2$.
+\end{proof}
+\fi
+Sekarang, kita mengatakan bahwa matriks $B$ \textbf{ekuivalen} \index{matriks!ekuivalen} dengan matriks $A$ apabila $B$ dapat diperoleh dari $A$ dengan melakukan serangkaian operasi baris elementer yang dimulai dari $A$. Pentingnya konsep ini terletak pada hasil berikut.
+
+\begin{theorem}{Matriks Ekuivalen}\label{thm:equivalent}
+Kedua sistem persamaan linear yang bersesuaian dengan dua matriks diperbesar yang ekuivalen memiliki solusi yang persis sama.
+\end{theorem}
+
+Pembuktian teorema ini diserahkan sebagai latihan.
+
+Sekarang kita dapat menggunakan Lema \ref{lem:rrefsolutions} dan Teorema \ref{thm:equivalent} untuk membuktikan hasil utama bagian ini.
+
+\begin{theorem}{Keunikan \RREF}\label{thm:uniquerref}
+Setiap matriks $A$ ekuivalen dengan tepat satu matriks dalam \rref.
+\end{theorem}
+
+\ifdefined\showproofs
+\begin{proof}
+Misalkan $A$ merupakan matriks $m \times n$, dan misalkan $B$ dan $C$ merupakan matriks dalam \rref{} yang masing-masing ekuivalen dengan $A$. Cukup ditunjukkan bahwa $B=C$.
+
+Misalkan $A^{+}$ adalah matriks $A$ yang diperbesar dengan kolom baru paling kanan yang seluruhnya terdiri atas nol. Dengan cara serupa, perbesar masing-masing matriks $B$ dan $C$ dengan kolom nol paling kanan untuk memperoleh $B^{+}$ dan $C^{+}$. Perhatikan bahwa $B^{+}$ dan $C^{+}$
+merupakan matriks dalam \rref \;yang diperoleh dari $A^{+}$ dengan menerapkan masing-masing rangkaian operasi baris elementer yang sama dengan rangkaian yang digunakan untuk memperoleh $B$ dan $C$ dari $A$.
+
+Sekarang, $A^{+}$, $B^{+}$, dan $C^{+}$ semuanya dapat dianggap sebagai matriks diperbesar dari sistem linear homogen dalam variabel $x_1, x_2, \cdots, x_n$. Karena $B^{+}$ dan $C^{+}$ masing-masing ekuivalen dengan $A^{+}$, Teorema \ref{thm:equivalent} menjamin bahwa ketiga sistem linear homogen tersebut memiliki solusi yang persis sama. Berdasarkan Lema \ref{lem:rrefsolutions}, kita menyimpulkan bahwa $B^{+}=C^{+}$. Berdasarkan konstruksinya, kita juga harus memiliki $B=C$.
+\end{proof}
+\fi
+Berdasarkan teorema ini, kita dapat mengatakan bahwa setiap matriks $A$ memiliki \rref{} yang unik.

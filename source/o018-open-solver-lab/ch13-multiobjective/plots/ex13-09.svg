@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" role="img" xml:lang="id-ID" aria-labelledby="title-13-9 desc-13-9">
+<title id="title-13-9">Latihan 13.9 — titik Pareto yang tidak didukung</title>
+<desc id="desc-13-9">Titik P dan R membentuk selubung konveks bawah. Q berada di atas ruas P–R, sehingga tetap optimal Pareto tetapi tidak pernah memenangi jumlah berbobot.</desc>
+<metadata>{&quot;alternative_text&quot;: &quot;Titik P dan R membentuk selubung konveks bawah. Q berada di atas ruas P–R, sehingga tetap optimal Pareto tetapi tidak pernah memenangi jumlah berbobot.&quot;, &quot;exercise_id&quot;: &quot;13.9&quot;, &quot;language&quot;: &quot;id-ID&quot;, &quot;structured_data&quot;: {&quot;lower_convex_hull&quot;: [&quot;P&quot;, &quot;R&quot;], &quot;pareto&quot;: [&quot;P&quot;, &quot;Q&quot;, &quot;R&quot;], &quot;unsupported&quot;: [&quot;Q&quot;]}}</metadata>
+<style>
+.background{fill:#fffdf8}.axis{stroke:#25364a;stroke-width:2}.grid{stroke:#dce3ea;stroke-width:1}
+.frontier{fill:none;stroke:#1769aa;stroke-width:4}.hull{fill:none;stroke:#1769aa;stroke-width:4}
+.slice{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:8 6}.supported{fill:#1769aa;stroke:#0b3558;stroke-width:2}
+.unsupported{fill:#f59e0b;stroke:#8a4b00;stroke-width:2}.dominated{fill:#a8b0ba;stroke:#59636f;stroke-width:2}
+.epsilon{fill:#7c3aed;stroke:#3d176d;stroke-width:2}.point-label{font:600 18px sans-serif;fill:#17212b}
+.tick{font:15px sans-serif;fill:#334155}.axis-label{font:600 18px sans-serif;fill:#1e293b}
+.heading{font:700 24px sans-serif;fill:#102a43}.note{font:16px sans-serif;fill:#334155}
+</style>
+<rect class="background" x="0" y="0" width="900" height="640"/>
+<text x="92" y="38" class="heading">Latihan 13.9 — titik Pareto yang tidak didukung</text>
+<line x1="92.00" y1="554.00" x2="864.00" y2="554.00" class="axis"/>
+<line x1="92.00" y1="70.00" x2="92.00" y2="554.00" class="axis"/>
+<line x1="92.00" y1="70.00" x2="92.00" y2="554.00" class="grid"/>
+<text x="92.00" y="581" class="tick" text-anchor="middle">0</text>
+<line x1="263.56" y1="70.00" x2="263.56" y2="554.00" class="grid"/>
+<text x="263.56" y="581" class="tick" text-anchor="middle">1</text>
+<line x1="435.11" y1="70.00" x2="435.11" y2="554.00" class="grid"/>
+<text x="435.11" y="581" class="tick" text-anchor="middle">2</text>
+<line x1="606.67" y1="70.00" x2="606.67" y2="554.00" class="grid"/>
+<text x="606.67" y="581" class="tick" text-anchor="middle">3</text>
+<line x1="778.22" y1="70.00" x2="778.22" y2="554.00" class="grid"/>
+<text x="778.22" y="581" class="tick" text-anchor="middle">4</text>
+<line x1="92.00" y1="554.00" x2="864.00" y2="554.00" class="grid"/>
+<text x="76" y="559.00" class="tick" text-anchor="end">0</text>
+<line x1="92.00" y1="446.44" x2="864.00" y2="446.44" class="grid"/>
+<text x="76" y="451.44" class="tick" text-anchor="end">1</text>
+<line x1="92.00" y1="338.89" x2="864.00" y2="338.89" class="grid"/>
+<text x="76" y="343.89" class="tick" text-anchor="end">2</text>
+<line x1="92.00" y1="231.33" x2="864.00" y2="231.33" class="grid"/>
+<text x="76" y="236.33" class="tick" text-anchor="end">3</text>
+<line x1="92.00" y1="123.78" x2="864.00" y2="123.78" class="grid"/>
+<text x="76" y="128.78" class="tick" text-anchor="end">4</text>
+<text x="478.00" y="615" class="axis-label" text-anchor="middle">f1 (diminimumkan)</text>
+<text x="28" y="312.00" class="axis-label" text-anchor="middle" transform="rotate(-90 28 312.00)">f2 (diminimumkan)</text>
+<line x1="92.00" y1="123.78" x2="778.22" y2="554.00" class="hull"/>
+<circle cx="92.00" cy="123.78" r="8" class="supported"/><text x="104.00" y="113.78" class="point-label">P</text>
+<circle cx="606.67" cy="231.33" r="8" class="unsupported"/><text x="618.67" y="221.33" class="point-label">Q</text>
+<circle cx="778.22" cy="554.00" r="8" class="supported"/><text x="790.22" y="544.00" class="point-label">R</text>
+<text x="550" y="95" class="note">Selubung bawah: ruas P–R</text>
+<text x="550" y="121" class="note">Q optimal Pareto, tetapi tidak didukung</text>
+<text x="550" y="147" class="note">Kendala ε=3 memperoleh kembali Q</text>
+</svg>

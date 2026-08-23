@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://interlanguage.local/schema/full-corpus-supplement-v0.schema.json",
+  "title": "R017/O018 full-corpus modular-backend supplement v0",
+  "type": "object",
+  "required": [
+    "schema_name",
+    "schema_version",
+    "snapshot_at",
+    "binding_state",
+    "machine_backend_evidence",
+    "updates",
+    "append",
+    "concept_terms",
+    "r017_file_units",
+    "r017_asset_directories",
+    "o018_labs"
+  ],
+  "properties": {
+    "schema_name": {
+      "const": "interlanguage.modular-backend-supplement"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "snapshot_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "binding_state": {
+      "anyOf": [
+        {"const": "provisional"},
+        {"const": "final"}
+      ]
+    },
+    "machine_backend_evidence": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256", "schema_path"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "schema_path": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "updates": {
+      "type": "object",
+      "properties": {
+        "editions": {"type": "array", "items": {"$ref": "#/$defs/id_patch"}},
+        "root_units": {"type": "array", "items": {"$ref": "#/$defs/id_patch"}},
+        "file_units": {"type": "array", "items": {"$ref": "#/$defs/id_patch"}},
+        "term_status_updates": {"type": "array", "items": {"$ref": "#/$defs/id_patch"}},
+        "concept_additions": {"type": "array", "items": {"$ref": "#/$defs/concept"}},
+        "term_additions": {"type": "array", "items": {"$ref": "#/$defs/term"}},
+        "assets": {"type": "array", "items": {"$ref": "#/$defs/id_patch"}},
+        "rights": {"type": "array", "items": {"$ref": "#/$defs/id_patch"}}
+      },
+      "additionalProperties": false
+    },
+    "append": {
+      "type": "object",
+      "properties": {
+        "root_units": {"type": "array", "items": {"$ref": "#/$defs/root_unit"}},
+        "concepts": {"type": "array", "items": {"$ref": "#/$defs/concept"}},
+        "terms": {"type": "array", "items": {"$ref": "#/$defs/term"}},
+        "assets": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+        "rights": {"type": "array", "items": {"$ref": "#/$defs/right"}},
+        "corrections": {"type": "array", "items": {"$ref": "#/$defs/correction"}},
+        "qa_events": {"type": "array", "items": {"$ref": "#/$defs/qa_event"}},
+        "relations": {"type": "array", "items": {"$ref": "#/$defs/relation"}}
+      },
+      "additionalProperties": false
+    },
+    "concept_terms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "name_en", "preferred"],
+        "properties": {
+          "slug": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+          "name_en": {"type": "string", "minLength": 1},
+          "preferred": {"type": "string", "minLength": 1},
+          "prerequisite_concept_ids": {"$ref": "#/$defs/id_array"},
+          "variants": {"$ref": "#/$defs/string_array"},
+          "rejected": {"$ref": "#/$defs/string_array"},
+          "scope": {"type": "string"},
+          "evidence": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "r017_file_units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "unit_type", "parent_id", "order", "path", "source_sha256", "expected_target_sha256"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+          "unit_type": {"type": "string", "minLength": 1},
+          "parent_id": {"type": "string", "minLength": 1},
+          "order": {"type": "integer"},
+          "path": {"type": "string", "minLength": 1},
+          "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "expected_target_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "r017_asset_directories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["key", "path", "rights_component_id", "source_file_count", "source_closure_bytes", "source_closure_sha256", "target_file_count", "target_closure_bytes", "target_closure_sha256"],
+        "properties": {
+          "key": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+          "path": {"type": "string", "minLength": 1},
+          "rights_component_id": {"type": "string", "minLength": 1},
+          "source_file_count": {"type": "integer"},
+          "source_closure_bytes": {"type": "integer"},
+          "source_closure_sha256": {"$ref": "#/$defs/sha256"},
+          "target_file_count": {"type": "integer"},
+          "target_closure_bytes": {"type": "integer"},
+          "target_closure_sha256": {"$ref": "#/$defs/sha256"},
+          "rights_overrides": {"type": "object"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "final_pdf": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256", "replay_path", "replay_bytes", "replay_sha256", "qa_report_path", "qa_report_bytes", "qa_report_sha256", "build_entrypoint_path", "build_entrypoint_bytes", "build_entrypoint_sha256", "toolchain", "build_artifacts"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "replay_path": {"type": "string", "minLength": 1},
+        "replay_bytes": {"type": "integer"},
+        "replay_sha256": {"$ref": "#/$defs/sha256"},
+        "qa_report_path": {"type": "string", "minLength": 1},
+        "qa_report_bytes": {"type": "integer"},
+        "qa_report_sha256": {"$ref": "#/$defs/sha256"},
+        "build_entrypoint_path": {"type": "string", "minLength": 1},
+        "build_entrypoint_bytes": {"type": "integer"},
+        "build_entrypoint_sha256": {"$ref": "#/$defs/sha256"},
+        "toolchain": {"type": "string", "minLength": 1},
+        "build_artifacts": {"type": "array", "items": {"$ref": "#/$defs/build_artifact"}},
+        "page_count": {"type": "integer"},
+        "outlines": {"type": "integer"},
+        "named_destinations": {"type": "integer"},
+        "links": {"type": "integer"},
+        "type3_fonts": {"type": "integer"}
+      },
+      "additionalProperties": false
+    },
+    "o018_labs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["key", "directory", "order", "title_target", "concept_ids", "file_count", "closure_bytes", "closure_sha256"],
+        "properties": {
+          "key": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+          "directory": {"type": "string", "minLength": 1},
+          "order": {"type": "integer"},
+          "title_target": {"type": "string", "minLength": 1},
+          "concept_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "file_count": {"type": "integer"},
+          "closure_bytes": {"type": "integer"},
+          "closure_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "id_array": {"type": "array", "items": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"}},
+    "string_array": {"type": "array", "items": {"type": "string"}},
+    "id_patch": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {"id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"}},
+      "additionalProperties": true
+    },
+    "root_unit": {
+      "type": "object",
+      "required": ["id", "unit_type", "resource_id", "edition_id", "parent_id", "order", "locale", "translation_state", "rights_component_id", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "unit_type": {"type": "string", "minLength": 1},
+        "resource_id": {"type": "string", "minLength": 1},
+        "edition_id": {"type": "string", "minLength": 1},
+        "parent_id": {"type": "string", "minLength": 1},
+        "order": {"type": "integer"},
+        "locale": {"type": "string", "minLength": 1},
+        "translation_state": {"type": "string", "minLength": 1},
+        "rights_component_id": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "concept": {
+      "type": "object",
+      "required": ["id", "name_en", "prerequisite_concept_ids", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "name_en": {"type": "string", "minLength": 1},
+        "prerequisite_concept_ids": {"$ref": "#/$defs/id_array"},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "term": {
+      "type": "object",
+      "required": ["id", "concept_id", "source_locale", "source_term", "target_locale", "preferred", "variants", "rejected", "scope", "register", "evidence", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "concept_id": {"type": "string", "minLength": 1},
+        "source_locale": {"type": "string", "minLength": 1},
+        "source_term": {"type": "string", "minLength": 1},
+        "target_locale": {"type": "string", "minLength": 1},
+        "preferred": {"type": "string", "minLength": 1},
+        "variants": {"$ref": "#/$defs/string_array"},
+        "rejected": {"$ref": "#/$defs/string_array"},
+        "scope": {"type": "string", "minLength": 1},
+        "register": {"type": "string", "minLength": 1},
+        "evidence": {},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "required": ["id", "asset_type", "rights_component_id", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "asset_type": {"type": "string", "minLength": 1},
+        "source_path": {"anyOf": [{"type": "null"}, {"type": "string"}]},
+        "target_path": {"anyOf": [{"type": "null"}, {"type": "string"}]},
+        "source_sha256": {"$ref": "#/$defs/sha256"},
+        "expected_target_sha256": {"$ref": "#/$defs/sha256"},
+        "rights_component_id": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "right": {
+      "type": "object",
+      "required": ["id", "component_scope", "license_expression", "attribution_required", "share_alike_required", "changes_disclosed", "non_endorsement", "third_party_status", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "component_scope": {"type": "string", "minLength": 1},
+        "license_expression": {"type": "string", "minLength": 1},
+        "attribution_required": {"anyOf": [{"type": "null"}, {"type": "boolean"}]},
+        "share_alike_required": {"anyOf": [{"type": "null"}, {"type": "boolean"}]},
+        "changes_disclosed": {"type": "boolean"},
+        "non_endorsement": {"type": "boolean"},
+        "third_party_status": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "correction": {
+      "type": "object",
+      "required": ["id", "correction_type", "affected_unit_ids", "source_defect", "target_action", "rationale", "evidence", "upstream_report_disposition", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "correction_type": {"type": "string", "minLength": 1},
+        "affected_unit_ids": {"$ref": "#/$defs/id_array"},
+        "source_defect": {}, "target_action": {}, "rationale": {}, "evidence": {},
+        "upstream_report_disposition": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "qa_event": {
+      "type": "object",
+      "required": ["id", "qa_type", "result", "witness", "affected_ids", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "qa_type": {"type": "string", "minLength": 1},
+        "result": {"type": "string", "minLength": 1},
+        "witness": {},
+        "affected_ids": {"$ref": "#/$defs/id_array"},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "relation": {
+      "type": "object",
+      "required": ["id", "relation_type", "from_id", "to_id", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "relation_type": {"type": "string", "minLength": 1},
+        "from_id": {"type": "string", "minLength": 1},
+        "to_id": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "build_artifact": {
+      "type": "object",
+      "required": ["id", "artifact_type", "path", "bytes", "sha256", "toolchain", "rights_component_ids"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        "artifact_type": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "toolchain": {"type": "string", "minLength": 1},
+        "rights_component_ids": {"$ref": "#/$defs/id_array"},
+        "owner_unit_id": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

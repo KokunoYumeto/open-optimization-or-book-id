@@ -1,0 +1,31 @@
+O018 VERIFICATION LOG — BAB 15 PEMROGRAMAN BILANGAN BULAT
+verification_date: 2026-08-22
+runtime: CPython 3.12.13; Pyomo 6.10.1; highspy/HiGHS 1.15.1; NumPy 2.5.2
+solver_interface: appsi_highs
+network_used: no
+proprietary_solver_used: no
+excel_used: no
+
+REPLAY_1
+CHECK_OK results_bytes=23043 results_sha256=00617ba0cc79ea0f78c7dd1ac8efff8513660b0fa2764966a0b7882a45cbfeb3 plots=2 exercises=16 solver_calls=20 maximum_violation=0.0
+unittest: 32 passed, 0 failed, 0 errors
+
+REPLAY_2
+CHECK_OK results_bytes=23043 results_sha256=00617ba0cc79ea0f78c7dd1ac8efff8513660b0fa2764966a0b7882a45cbfeb3 plots=2 exercises=16 solver_calls=20 maximum_violation=0.0
+unittest: 32 passed, 0 failed, 0 errors
+
+visual_qa: 2 SVG diperiksa pada raster selebar 1440 piksel
+visual_qa_files: plots/ex15-09.svg; plots/ex15-16.svg
+visual_qa_result: lulus setelah satu perbaikan tata letak; judul, subjudul, simpul, sisi, legenda, sumbu waktu, label batang, serta nilai jadwal terbaca tanpa tumpang-tindih atau pemotongan
+accessibility_qa: setiap SVG memuat title, desc, metadata terstruktur, role=img, dan xml:lang=id-ID
+exercise_coverage: 16/16 terverifikasi
+solver_terminations: 20 optimal per replay
+maximum_solver_violation: 0
+manual_alignment: 16/16 satu-ke-satu; 15.10 mempertahankan qaflag semantik atau-inklusif
+source_defects_recorded: 2
+source_defect_ids: DEF-CH15-FIRE-PLACEMENTS; DEF-CH15-EITHER-OR-SEMANTICS
+o018_math_corrections: 0
+unresolved_exercises: 0
+source_witnesses: 4 berkas otoritas/terjemahan diperiksa langsung terhadap ukuran byte dan SHA-256 yang dibekukan
+rights_split: prosa/data/orakel/SVG CC BY-SA 4.0; kode Python baru MIT
+sanitization: tidak ada kredensial, token, variabel lingkungan, atau keluaran jaringan yang dicatat

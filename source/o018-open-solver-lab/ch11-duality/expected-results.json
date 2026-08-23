@@ -1,0 +1,131 @@
+{
+  "11.1": {
+    "dual_constraint_matrix": [[2, 1], [3, 1]],
+    "dual_objective": [12, 5],
+    "optimal_dual": [0, 5],
+    "optimal_primal": [5, 0],
+    "optimum": 25
+  },
+  "11.10": {
+    "complementary_products": [0, 0, 0, 0],
+    "dual_objective": 22,
+    "optimal_dual": [2, 1],
+    "optimal_primal": [4, 2],
+    "primal_objective": 22
+  },
+  "11.11": {
+    "dual_surpluses": [0, 50, 0],
+    "optimal_dual": [0, 50, 40],
+    "optimal_primal": [4, 0, 6],
+    "optimum": 780,
+    "primal_slacks": [14, 0, 0],
+    "unit_rhs_values": {"baking_time": 820, "flour": 780, "sugar": 830}
+  },
+  "11.12": {
+    "dual_surpluses": [1, 0, 0, 0],
+    "optimal_dual": [0, 0, 3, 8, 2],
+    "optimal_primal": [0, "1/2", 1, 1],
+    "optimum": 27,
+    "primal_slacks": [1, "1/2", 0, 0, 0]
+  },
+  "11.13": {
+    "candidate_dual": [1, 1],
+    "candidate_dual_surpluses": [-2, 0],
+    "candidate_dual_value": 17,
+    "candidate_is_dual_feasible": false,
+    "correct_dual": ["11/5", "3/5"],
+    "optimum": 23,
+    "recovered_primal": [3, 2]
+  },
+  "11.14": {
+    "conclusion": "joint_optimality_ruled_out",
+    "individual_culprit_identified": false,
+    "status": "verified_conceptual_proof"
+  },
+  "11.15": {
+    "actual_dual": [1, 1],
+    "actual_optimum": 9,
+    "actual_primal": [1, 3],
+    "claimed_primal": [2, 0],
+    "contradiction": "y1=y2=0 tetapi y1+2*y2=3"
+  },
+  "11.16": {
+    "dual_surpluses": [5, 6, 0, 1, 5, 0],
+    "optimal_dual": [4, 2],
+    "optimal_primal": [0, 0, 10, 0, 0, 12],
+    "optimum": 64,
+    "positive_primal_variables": ["x3", "x6"]
+  },
+  "11.17": {
+    "dual_surpluses": [0, 1, 0],
+    "optimal_dual": [1, "1/2", 0],
+    "optimal_primal": [40, 0, 20],
+    "optimum": 260,
+    "primal_row_residuals": [0, 0, 320],
+    "retail_implied_lower_bound": 360
+  },
+  "11.2": {
+    "dual_constraint_matrix": [[1, 3], [2, 1], [1, 2]],
+    "optimal_dual": ["11/5", "3/5"],
+    "optimal_primal": ["14/5", "18/5", 0],
+    "optimum": "146/5"
+  },
+  "11.3": {
+    "candidate_dual_feasible": true,
+    "candidate_dual_value": 13,
+    "candidate_primal_feasible": true,
+    "candidate_primal_value": 7,
+    "optimum": 9,
+    "sandwich": [7, 9, 13]
+  },
+  "11.4": {
+    "coincident_bound": 10,
+    "dual_candidate": [1, 1],
+    "primal_candidate": [2, 2],
+    "status": "verified_exact_weak_duality_certificate"
+  },
+  "11.5": {
+    "dual_constraint_senses": [">=", "="],
+    "dual_variable_domains": ["free", "nonnegative"],
+    "optimal_dual": [3, 0],
+    "optimal_primal": [0, 5],
+    "optimum": 15
+  },
+  "11.6": {
+    "complementary_products": [0, 0, 0, 0, 0],
+    "optimal_dual": [2, 1, 0],
+    "optimal_primal": ["22/3", "16/3"],
+    "optimum": 58,
+    "primal_slacks": [0, 0, "1/3"],
+    "value_with_one_more_flour": 60
+  },
+  "11.7": {
+    "certificate_conditions": ["y>=0", "A^T*y>=c", "b^T*y<=M"],
+    "inequality_chain": "c^T*x<=x^T*A^T*y=y^T*A*x<=b^T*y",
+    "status": "verified_conceptual_proof"
+  },
+  "11.8": {
+    "dual_status": "infeasible",
+    "dual_sum_certificate": "0>=2",
+    "primal_status": "infeasible",
+    "primal_sum_certificate": "0<=-2"
+  },
+  "11.9": {
+    "dual_of_dual_constraint_matrix": "A",
+    "dual_of_dual_objective": "c^T*z",
+    "intermediate_matrix": "-A^T",
+    "status": "verified_symbolic_involution"
+  },
+  "summary": {
+    "correction_count": 3,
+    "exercise_count": 17,
+    "high_confidence_upstream_defect_count": 2,
+    "maximum_solver_violation": 0,
+    "plot_count": 1,
+    "proof_only_count": 3,
+    "solver_call_count": 36,
+    "solver_termination_counts": {"infeasible": 3, "optimal": 32, "unbounded": 1},
+    "underdetermined_count": 0,
+    "verified_count": 17
+  }
+}

@@ -1,0 +1,1155 @@
+% Copyright 2026 by Robert Hildebrand
+%This work is licensed under a
+%Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+%See http://creativecommons.org/licenses/by-sa/4.0/
+
+\chapter{Analisis Sensitivitas}
+\label{ch:sensitivity}
+\begin{outcome}
+\begin{itemize}
+\item Memahami apa yang terjadi pada solusi optimal ketika parameter sedikit diubah
+\item Menghitung rentang parameter yang mempertahankan keoptimalan solusi optimal (atau basis optimal).
+\item Memahami perubahan nilai fungsi objektif ketika parameter diubah.
+\end{itemize}
+\end{outcome}
+
+\begin{tryit}
+\vizlink{sensitivity-walkthrough}{Panduan Langkah demi Langkah Analisis Sensitivitas}: harga bayangan, rentang yang diizinkan, dan biaya tereduksi yang diturunkan tahap demi tahap.
+
+\vizlink{duality-sensitivity}{Eksplorasi Dualitas dan Sensitivitas}: ubah data dan amati respons solusi optimal serta harga bayangan.
+\end{tryit}
+
+
+
+\begin{quote}
+\itshape Rencana produksi toko roti Anda telah ditetapkan, dan labanya sebesar \$23. Kemudian telepon berdering dua kali. Sebuah toko tetangga menawarkan satu jam tambahan waktu pemakaian oven untuk disewa; seorang pemasok menawarkan tepung tambahan dengan harga khusus. Haruskah salah satu tawaran diterima, dan berapa harga tertinggi yang patut dibayar? Analisis sensitivitas memberikan jawabannya sebelum Anda mengeluarkan uang: jam tambahan itu akan menaikkan laba tepat \$1, sedangkan tepung tambahan sama sekali tidak bernilai bagi Anda karena masih ada tiga unit yang belum digunakan.
+\end{quote}
+
+Setiap sumber daya dalam program linier memiliki semacam label harga yang menyatakan nilai satu unit tambahannya terhadap hasil akhir. Setiap label harga tersebut juga memiliki masa berlaku: nilainya hanya sah sampai data berubah cukup jauh sehingga rencana optimalnya sendiri berubah. Menyelesaikan program linier berarti menjawab satu pertanyaan untuk satu kumpulan angka. Dalam praktik, angka-angka itu (koefisien objektif dan batas sumber daya) merupakan taksiran: harga berubah, mesin rusak, atau pemasok mengirimkan tepung lebih banyak daripada yang dijanjikan. \emph{Analisis sensitivitas} menanyakan bagaimana solusi optimal dan nilai optimal merespons perubahan data, serta \emph{seberapa jauh} data dapat berubah sebelum jawabannya berubah secara struktural. Semua informasi ini, termasuk kedua pernyataan dalam cerita di atas, dapat dibaca dari kamus simpleks akhir. Itulah sebabnya perangkat lunak optimisasi seperti Excel Solver melaporkannya bersama solusi.
+
+Kita kembali ke program linier yang diselesaikan dengan kamus pada Bab~\ref{ch:simplex-dictionary} dan dengan tableau pada Bab~\ref{ch:simplex-tableau},
+\begin{tcolorbox}[colback=algslate!6, colframe=algslate, coltitle=white, fonttitle=\bfseries, sharp corners,
+    title=\textbf{Contoh Utama}]
+\[
+\begin{aligned}
+\max \quad & z = 2x + 3y \\
+\st \quad
+& x + y \leq 9 \quad & \text{(jam)} \\
+& 2x + y \leq 16 \quad & \text{(tepung)} \\
+& x + 2y \leq 14 \quad & \text{(gula)} \\
+& x, y \geq 0,
+\end{aligned}
+\]
+\end{tcolorbox}
+\noindent sehingga setiap rentang yang dihitung di sini dapat diperiksa terhadap kamus dan tableau yang dihitung di sana. Setelah menerapkan metode simpleks, kita memperoleh kamus optimal berikut:
+
+\begin{tcolorbox}[colback=algopt!6, colframe=algopt, coltitle=white, fonttitle=\bfseries, sharp corners,
+    title=\textbf{Kamus Akhir}]
+\[
+\begin{aligned}
+\max \quad
+& z = 23 - s_1 - s_3 \\
+\st \quad
+& x = 4 - 2s_1 + s_3, \\
+& y = 5 + s_1 - s_3, \\
+& s_2 = 3 + 3s_1 - s_3, \\
+& x, y, s_1, s_2, s_3 \geq 0.
+\end{aligned}
+\]
+Basis saat ini adalah \( B = \{x, y, s_2\} \), dengan variabel nonbasis \( N = \{s_1, s_3\} \).
+
+Solusi optimalnya adalah:
+\[
+(x, y, s_2, s_1, s_3) = (4, 5, 3, 0, 0) \quad \text{dengan} \quad z = 23.
+\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=sensbox!6, colframe=sensbox, coltitle=white, fonttitle=\bfseries, sharp corners,
+    title={\ding{228}\ Interaktif: geser kendalanya}]
+Sebelum melakukan aljabar, bangun intuisi dengan menggeser ruas kanan dan kemiringan objektif pada \href{https://www.desmos.com/calculator/xz1f0tdjf9}{eksplorasi sensitivitas Desmos} (\href{https://open-optimization.github.io/open-optimization-or-book/interactive-figures/lp-sensitivity-explorer.html}{eksplorasi interaktif cadangan}), lalu amati kapan titik sudut optimal meloncat ke sudut lain pada daerah layak.
+\end{tcolorbox}
+
+\section{Apa yang dapat berubah dan apa akibatnya}
+\label{sec:sensitivity-overview}
+
+Tiga jenis data muncul dalam program linier: koefisien objektif \(c\), ruas kanan \(\mathbf{b}\), dan matriks kendala \(A\). Sebelum menghitung rentang secara eksak, ada baiknya kita memahami secara kualitatif bagaimana masing-masing data tersebut masuk ke dalam kamus akhir.
+
+\subsection{Mengubah koefisien objektif \( c_i \)}
+
+Baris objektif pada kamus terevisi adalah
+\[
+z = \mathbf{c}_B^\top A_B^{-1} \mathbf{b} + (\mathbf{c}_N^\top - \mathbf{c}_B^\top A_B^{-1} A_N) \mathbf{x}_N,
+\]
+di mana koefisien \( \mathbf{x}_N \), yaitu \( \mathbf{c}_N^\top - \mathbf{c}_B^\top A_B^{-1} A_N \), merupakan \emph{biaya tereduksi}. Perubahan \(c_i\) masuk ke salah satu dari dua tempat. Jika \(i\) merupakan variabel \textbf{basis}, maka \(c_i\) berada di dalam \(\mathbf{c}_B\), sehingga suku konstanta \(\mathbf{c}_B^\top A_B^{-1}\mathbf{b}\) ikut berubah: nilai optimal berubah secara \emph{linier} terhadap \(c_i\) selama basis tetap optimal. Jika \(i\) merupakan variabel \textbf{nonbasis}, maka \(c_i\) hanya muncul dalam biaya tereduksinya sendiri: solusi saat ini dan nilai objektif tidak berubah sama sekali sampai perubahannya cukup besar untuk membalik tanda biaya tereduksi tersebut. Pada saat itu, variabel \(i\) ingin masuk ke basis dan kamus saat ini tidak lagi optimal.
+
+\subsection{Mengubah ruas kanan \( b_i \)}
+
+Solusi basis adalah \( \mathbf{x}_B = A_B^{-1}\mathbf{b} \), sehingga perubahan pada \(\mathbf{b}\) menggeser variabel basis secara langsung. Perubahan kecil mengubah skala \(\mathbf{x}_B\) sambil mempertahankannya tetap nonnegatif, dan nilai objektif \( z^* = \mathbf{c}_B^\top A_B^{-1}\mathbf{b} \) ikut berubah secara linier. Perubahan yang cukup besar membuat suatu variabel basis menjadi negatif: kamus menjadi tak layak, dan pemulihan kelayakan memerlukan pivot ke basis lain (atau menunjukkan bahwa masalahnya telah menjadi tak layak sama sekali).
+
+\subsection{Mengubah koefisien kendala \( a_{ij} \)}
+
+Secara geometris, mengubah \(a_{ij}\) \emph{memiringkan} kendala yang bersesuaian dan membentuk ulang daerah layak. Secara aljabar, pengaruhnya bergantung pada kolom yang disentuh. Jika kolom \(j\) bersifat \textbf{nonbasis}, maka \(A_B^{-1}\) tidak berubah; hanya biaya tereduksi variabel \(j\) yang berubah, dan solusi saat ini bertahan kecuali biaya tereduksi tersebut berganti tanda. Jika kolom \(j\) bersifat \textbf{basis}, perubahan itu mengubah \(A_B\) sendiri. Karena seluruh kamus dibangun dari \(A_B^{-1}\), perubahan kecil sekalipun dapat sekaligus menggeser solusi basis, semua biaya tereduksi, dan nilai optimal.
+
+\subsection{Ringkasan}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Perubahan & Solusi basis & Nilai objektif & Basis berubah ketika\ldots\\
+\midrule
+$c_i$ (objektif) & tetap & berubah jika $i$ basis & biaya tereduksi berganti tanda\\
+$b_i$ (ruas kanan) & selalu berubah & berubah linier & variabel basis mencapai $0$\\
+$a_{ij}$ (matriks) & berubah jika $j$ basis & melalui biaya tereduksi & kelayakan atau keoptimalan gagal\\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Pengaruh setiap jenis perubahan data terhadap solusi basis dan nilai objektif.}\label{tab:sensitivity-LP-tab01}% tab-num-auto
+
+\end{center}
+
+Pada bagian selanjutnya, kita membuat pernyataan-pernyataan ini kuantitatif untuk contoh utama. Untuk setiap parameter, kita menghitung \emph{rentang} nilai yang mempertahankan keoptimalan basis saat ini \( B = \{x,y,s_2\} \), serta perubahan \(z\) di dalam rentang tersebut. Pertama kita membahas ruas kanan, kemudian koefisien objektif, lalu mengulangi kedua perhitungan dengan notasi matriks.
+
+\section{Menentukan rentang ruas kanan}
+\label{sec:sensitivity-rhs}
+
+Dalam bentuk standar, program linier ditulis sebagai \( A\mathbf{x} = \mathbf{b}, \ \mathbf{x} \geq 0 \). Kita mengusik satu entri \( \mathbf{b} \) pada satu waktu sambil mempertahankan koefisien objektif dan matriks kendala, lalu menjawab tiga pertanyaan:
+\begin{enumerate}
+    \item Untuk perubahan ruas kanan yang mana basis saat ini tetap optimal?
+    \item Bagaimana solusi optimal berubah akibat perubahan tersebut?
+    \item Bagaimana nilai objektif berubah?
+\end{enumerate}
+Setiap kasus mengikuti tiga langkah yang sama: mengusik bentuk standar, menyesuaikan kamus akhir, dan membaca rentangnya.
+
+\subsection{Mengusik \( b_2 \): Variabel Slack Basis}
+
+Kendala kedua (yang bersesuaian dengan variabel slack \( s_2 \)) semula memiliki nilai ruas kanan \( b_2 = 16 \). Sekarang kita mengusiknya menjadi \( 16 + \Delta \), dengan \( \Delta \in \mathbb{R} \), lalu menyelidiki pengaruhnya.
+
+\begin{sensdisplay}{Bentuk Standar Terusik (Ruas Kanan Kendala 2)}
+\[
+\begin{aligned}
+\max \quad & 2x + 3y \\
+\st \quad
+& x + y + s_1 = 9 \quad & \text{(jam)} \\
+& 2x + y + s_2 = 16 + \Delta \quad & \text{(tepung)} \\
+& x + 2y + s_3 = 14 \quad & \text{(gula)} \\
+& x, y, s_1, s_2, s_3 \geq 0
+\end{aligned}
+\]
+
+Untuk mengisolasi pengaruh \( \Delta \), definisikan variabel baru:
+\[
+s_2:= s_2' + \Delta \quad \Rightarrow \quad s_2' = s_2 - \Delta.
+\]
+
+Substitusi ke dalam sistem menghasilkan:
+\[
+\begin{aligned}
+\max \quad & 2x + 3y \\
+\st \quad
+& x + y + s_1 = 9 \\
+& 2x + y + s_2= 16 + \Delta  & \Rightarrow &&  2x + y + s_2'= 16\\
+& x + 2y + s_3 = 14 \\
+& x, y, s_1, s_2', s_3 \geq 0
+\end{aligned}
+\]
+\end{sensdisplay}
+
+\begin{steppanel}{sensbox}
+\sslab{Sesuaikan kamus akhir}
+Karena struktur masalah tetap sama ketika dinyatakan dengan variabel baru \( s_2' \), kita dapat melakukan substitusi ke dalam kamus akhir:
+\[
+\begin{aligned}
+\max \quad
+& z = 23 - s_1 - s_3 \\
+\st \quad
+& x = 4 - 2s_1 + s_3 \\
+& y = 5 + s_1 - s_3 \\
+& s_2'  = 3 + 3s_1 - s_3
+\quad \Rightarrow \quad
+s_2 - \Delta = 3  + 3s_1 - s_3 \\
+& x, y, s_1, s_2', s_3 \geq 0
+\end{aligned}
+\]
+Hanya baris \( s_2 \) yang terpengaruh: \( s_2 = (3 + \Delta) + 3s_1 - s_3 \).
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\sslab{Baca rentangnya}
+Agar tetap optimal, kamus masih harus memenuhi kelayakan: semua variabel basis harus tetap nonnegatif ketika \( s_1 = s_3 = 0 \). Hanya \( s_2 \) yang bergantung pada \( \Delta \), sehingga:
+\[
+s_2 = 3 + \Delta \geq 0
+\quad\Longleftrightarrow\quad
+\boxed{\Delta \geq -3}
+\quad\Longleftrightarrow\quad
+b_2 \geq 13.
+\]
+Karena \( s_2 \) merupakan variabel \emph{slack}, nilai objektif \( z = 23 \) sama sekali tidak berubah di dalam rentang ini. Di luarnya, \( s_2 < 0 \) dan kamus saat ini menjadi tak layak sehingga memicu pivot baru dalam metode simpleks.
+\end{steppanel}
+
+\subsection{Mengusik \( b_1 \): Variabel Slack Nonbasis}
+
+Kendala pertama bersesuaian dengan variabel slack \( s_1 \), yang saat ini bersifat \emph{nonbasis} dan bernilai 0 pada solusi optimal. Ruas kanan semulanya adalah \( b_1 = 9 \). Sekarang kita mengusiknya menjadi \( 9 + \Delta \), dengan \( \Delta \in \mathbb{R} \), lalu memeriksa pengaruhnya terhadap kamus.
+
+\begin{sensdisplay}{Bentuk Standar Terusik (Ruas Kanan Kendala 1)}
+\[
+\begin{aligned}
+\max \quad & 2x + 3y \\
+\st \quad
+& x + y + s_1 = 9 + \Delta \quad & \text{(jam)} \\
+& 2x + y + s_2 = 16 \quad & \text{(tepung)} \\
+& x + 2y + s_3 = 14 \quad & \text{(gula)} \\
+& x, y, s_1, s_2, s_3 \geq 0
+\end{aligned}
+\]
+
+Untuk mengisolasi pengaruh \( \Delta \), definisikan variabel baru:
+\[
+s_1 := s_1' - \Delta \quad \Rightarrow \quad s_1' = s_1 + \Delta.
+\]
+
+Hubungan ini memetakan slack lama ke slack pada masalah terusik. Jika slack baru diberi nama \(s_1'\), persamaan terusik dan hubungannya dengan slack lama adalah:
+\[
+\begin{aligned}
+ x + y + s_1' &= 9 + \Delta, \\
+ s_1 &= s_1' - \Delta,
+\end{aligned}
+\]
+sehingga nilai slack dalam kamus lama dapat diganti dengan \(s_1' - \Delta\). Bentuk ini menjaga identitas aljabar antara kedua koordinat slack tanpa mengubah kendala terusik.
+Sebagai koreksi terhadap sumber, penyederhanaan menjadi \(x+y+s_1'=9\) tidak mengikuti substitusi di atas: memasukkan relasi tersebut ke persamaan yang ditulis sebagai \(x+y+s_1=9+\Delta\) menghasilkan faktor \(\Delta\) tambahan. Karena itu, perhitungan berikut memakai pemetaan koordinat slack yang konsisten.
+\end{sensdisplay}
+
+\begin{steppanel}{sensbox}
+\sslab{Sesuaikan kamus akhir}
+Kita menyubstitusikan \( s_1 = s_1' - \Delta \) ke dalam kamus optimal:
+\[
+\begin{aligned}
+\max \quad
+z &= 23 - s_1 - s_3 = 23 - (s_1' - \Delta) - s_3 = (23 + \Delta) - s_1' - s_3 \\
+x &= 4 - 2s_1 + s_3 = 4 - 2(s_1' - \Delta) + s_3 = (4 + 2\Delta) - 2s_1' + s_3 \\
+y &= 5 + s_1 - s_3 = 5 + (s_1' - \Delta) - s_3 = (5 - \Delta) + s_1' - s_3 \\
+s_2 &= 3 + 3s_1 - s_3 = 3 + 3(s_1' - \Delta) - s_3 = (3 - 3\Delta) + 3s_1' - s_3
+\end{aligned}
+\]
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\sslab{Baca rentangnya}
+Untuk memastikan basis tetap layak, tetapkan \( s_1' = s_3 = 0 \) dan periksa bahwa variabel basis tetap nonnegatif:
+\[
+x = 4 + 2\Delta, \quad
+y = 5 - \Delta, \quad
+s_2 = 3 - 3\Delta.
+\]
+Syarat kelayakan:
+\[
+\begin{aligned}
+x \geq 0 &\Rightarrow \Delta \geq -2 \\
+y \geq 0 &\Rightarrow \Delta \leq 5 \\
+s_2 \geq 0 &\Rightarrow \Delta \leq 1
+\end{aligned}
+\]
+Dengan demikian, semua syarat terpenuhi ketika:
+\[
+\boxed{-2 \leq \Delta \leq 1}
+\quad\Longleftrightarrow\quad
+7 \leq b_1 \leq 10.
+\]
+Di dalam rentang ini, nilai objektif berubah secara linier sebagai \( z = 23 + \Delta \). Di luar rentang ini, satu atau beberapa variabel basis menjadi negatif dan solusi saat ini menjadi tak layak, sehingga diperlukan pivot baru dalam metode simpleks.
+\end{steppanel}
+
+\subsection{Mengusik \( b_3 \): Variabel Slack Nonbasis Lainnya}
+
+Kendala ketiga bersesuaian dengan variabel slack \( s_3 \), yang saat ini bersifat \emph{nonbasis} dan bernilai 0 pada solusi optimal. Ruas kanan semulanya adalah \( b_3 = 14 \). Sekarang kita mengusiknya menjadi \( 14 + \Delta \), dengan \( \Delta \in \mathbb{R} \), lalu memeriksa pengaruhnya terhadap kamus.
+
+\begin{sensdisplay}{Bentuk Standar Terusik (Ruas Kanan Kendala 3)}
+\[
+\begin{aligned}
+\max \quad & 2x + 3y \\
+\st \quad
+& x + y + s_1 = 9 \quad & \text{(jam)} \\
+& 2x + y + s_2 = 16 \quad & \text{(tepung)} \\
+& x + 2y + s_3 = 14 + \Delta \quad & \text{(gula)} \\
+& x, y, s_1, s_2, s_3 \geq 0
+\end{aligned}
+\]
+
+Untuk mengisolasi pengaruh \( \Delta \), definisikan variabel baru:
+\[
+s_3 := s_3' - \Delta \quad \Rightarrow \quad s_3' = s_3 + \Delta.
+\]
+
+Jika slack baru pada kendala terusik diberi nama \(s_3'\), maka persamaan terusiknya adalah
+\[
+x + 2y + s_3' = 14 + \Delta,
+\]
+dan slack dalam kamus lama memenuhi \(s_3=s_3'-\Delta\). Karena itu, substitusi berikut memindahkan kamus lama secara konsisten ke koordinat slack baru.
+Sebagai koreksi terhadap sumber, bentuk \(x+2y+s_3'=14\) tidak mengikuti persamaan terusik tersebut; hubungan koordinat di ataslah yang menghasilkan pergeseran konstanta pada kamus secara benar.
+\end{sensdisplay}
+
+\begin{steppanel}{sensbox}
+\sslab{Sesuaikan kamus akhir}
+Substitusikan \( s_3 = s_3' - \Delta \) ke dalam kamus optimal:
+\[
+\begin{aligned}
+\max \quad
+z &= 23 - s_1 - s_3 = 23 - s_1 - (s_3' - \Delta) = (23 + \Delta) - s_1 - s_3' \\
+x &= 4 - 2s_1 + s_3 = 4 - 2s_1 + (s_3' - \Delta) = (4 - \Delta) - 2s_1 + s_3' \\
+y &= 5 + s_1 - s_3 = 5 + s_1 - (s_3' - \Delta) = (5 + \Delta) + s_1 - s_3' \\
+s_2 &= 3 + 3s_1 - s_3 = 3 + 3s_1 - (s_3' - \Delta) = (3 + \Delta) + 3s_1 - s_3'
+\end{aligned}
+\]
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\sslab{Baca rentangnya}
+Sekarang uji kelayakan pada solusi basis \( s_1 = s_3' = 0 \):
+\[
+x = 4 - \Delta, \quad
+y = 5 + \Delta, \quad
+s_2 = 3 + \Delta.
+\]
+Kelayakan mensyaratkan:
+\[
+\begin{aligned}
+x \geq 0 &\Rightarrow \Delta \leq 4 \\
+s_2 \geq 0 &\Rightarrow \Delta \geq -3
+\end{aligned}
+\]
+Dengan demikian, rentang \( \Delta \) yang diizinkan adalah:
+\[
+\boxed{-3 \leq \Delta \leq 4}
+\quad\Longleftrightarrow\quad
+11 \leq b_3 \leq 18.
+\]
+Di dalam rentang ini, nilai objektif berubah secara linier sebagai \( z = 23 + \Delta \). Di luar rentang ini, \( x < 0 \) atau \( s_2 < 0 \), dan kamus menjadi tak layak.
+\end{steppanel}
+
+\begin{algocard}{Resep: Menentukan Rentang Ruas Kanan dalam Kamus}
+\algostep{sensbox}{\ding{228}}{Usik}{Ganti $b_i$ dengan $b_i + \Delta$ dan serap $\Delta$ ke dalam koordinat variabel slack kendala: hubungan $s_i=s_i'-\Delta$ memetakan slack lama ke slack baru.}
+\algostep{sensbox}{\ding{228}}{Substitusikan}{Tulis ulang kamus optimal dalam $s_i'$; hanya kolom konstanta yang berubah, dan setiap konstanta bergeser sebesar kelipatan $\Delta$.}
+\algostep{sensbox}{\ding{228}}{Terapkan kelayakan}{Syaratkan setiap variabel basis $\ge 0$ pada $\mathbf{x}_N = \mathbf{0}$; setiap baris memberikan satu pertidaksamaan linier dalam $\Delta$.}
+\algostep{algopt}{\ding{52}}{Baca rentangnya}{Iris semua pertidaksamaan. Di dalam rentang, $z$ berubah secara linier terhadap $\Delta$; pada sebuah titik ujung, suatu variabel basis mencapai $0$, dan perubahan lebih lanjut memicu pivot.}
+\end{algocard}
+
+\begin{remark}{Harga Bayangan}{}
+Laju perubahan $z$ terhadap $b_i$ disebut \emph{harga bayangan} kendala $i$. Untuk kendala yang mengikat, kita memperoleh $z = 23 + \Delta$: satu jam tambahan atau satu unit gula tambahan bernilai tepat $1$ pada nilai objektif, selama $\Delta$ tetap berada dalam rentang yang diizinkan. Untuk kendala tepung yang tidak mengikat ($s_2 = 3 > 0$), nilai objektif tidak berubah sama sekali: harga bayangannya adalah $0$. Ini menjawab kedua telepon pada awal bab: bayarlah paling banyak \$1 untuk satu jam tambahan oven (dan tidak lebih dari \$1 seluruhnya untuk penambahan sampai satu jam, sebab harga itu berakhir pada $b_1 = 10$), dan tolaklah tepung tambahan dengan sopan. Harga bayangan menjadi objek utama bab berikutnya, tempat besaran ini muncul kembali sebagai variabel program linier \emph{dual} (Bab~\ref{ch:duality}).
+\end{remark}
+
+\begin{learningcheckpoint}[label={lc:shadow-price-b1}]
+Kamus optimal memberikan \( z = 23 + \Delta \) ketika \( b_1 = 9 + \Delta \). Berapakah harga bayangan kendala 1, dan pada rentang \( b_1 \) mana harga tersebut berlaku? Apa yang terjadi pada harga bayangan ketika \( b_1 = 10 \)?
+\end{learningcheckpoint}
+
+\section{Menentukan rentang koefisien objektif}
+\label{sec:sensitivity-cost}
+
+Sekarang kita memeriksa bagaimana perubahan koefisien fungsi objektif memengaruhi keoptimalan basis saat ini. Pada masalah semula, objektifnya adalah:
+\[
+\max \quad 2x + 3y.
+\]
+Sekarang kita mengusik koefisien tersebut menjadi:
+\[
+\max \quad (2 + \delta_1)x + (3 + \delta_2)y,
+\]
+dengan \( \delta_1, \delta_2 \in \mathbb{R} \). Ingat kembali kamus akhir:
+\[
+\begin{aligned}
+z &= 23 - s_1 - s_3 \\
+x &= 4 - 2s_1 + s_3 \\
+y &= 5 + s_1 - s_3 \\
+s_2 &= 3 + 3s_1 - s_3,
+\end{aligned}
+\]
+dengan basis \( B = \{x, y, s_2\} \) dan variabel nonbasis \( N = \{s_1, s_3\} \). Berbeda dengan perubahan ruas kanan, perubahan biaya tidak pernah mengancam \emph{kelayakan} (solusinya tetap berada di tempat yang sama), tetapi dapat merusak \emph{keoptimalan} dengan membuat suatu biaya tereduksi menjadi positif.
+
+\subsection{Mengusik \( c_1 \): Koefisien Objektif \( x \)}
+
+\begin{steppanel}{sensbox}
+\sslab{Sesuaikan kamus akhir}
+Misalkan \( c_1 = 2 + \delta_1 \). Karena \( x \) bersifat basis, kita menyatakan suku tambahan \( \delta_1 x \) dalam variabel nonbasis dengan menggunakan baris kamus untuk \( x \):
+\[
+z = 23 + \delta_1 \cdot x = 23 + \delta_1(4 - 2s_1 + s_3)
+= (23 + 4\delta_1) + (-2\delta_1)s_1 + \delta_1 s_3.
+\]
+Dengan menambahkannya ke kamus semula \( z = 23 - s_1 - s_3 \), kita memperoleh:
+\[
+z = (23 + 4\delta_1) + (-1 - 2\delta_1)s_1 + (-1 + \delta_1)s_3.
+\]
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\sslab{Baca rentangnya}
+Untuk mempertahankan keoptimalan, biaya tereduksi variabel nonbasis \( s_1 \) dan \( s_3 \) harus tetap \( \leq 0 \). Dengan demikian:
+\[
+\begin{aligned}
+-1 - 2\delta_1 &\leq 0 \quad \Rightarrow \quad \delta_1 \geq -\tfrac{1}{2}, \\
+-1 + \delta_1 &\leq 0 \quad \Rightarrow \quad \delta_1 \leq 1.
+\end{aligned}
+\]
+Jadi, rentang \( \delta_1 \) yang diizinkan adalah:
+\[
+\boxed{-\tfrac{1}{2} \leq \delta_1 \leq 1}
+\quad\Longleftrightarrow\quad
+1.5 \leq c_1 \leq 3.
+\]
+Di dalam rentang ini, nilai objektif berubah secara linier sebagai \( z = 23 + 4\delta_1 \).
+\end{steppanel}
+
+\subsection{Mengusik \( c_2 \): Koefisien Objektif \( y \)}
+
+\begin{steppanel}{sensbox}
+\sslab{Sesuaikan kamus akhir}
+Misalkan \( c_2 = 3 + \delta_2 \). Karena \( y \) juga bersifat basis, objektif terusik menjadi:
+\[
+z = 23 + \delta_2 \cdot y = 23 + \delta_2(5 + s_1 - s_3)
+= (23 + 5\delta_2) + \delta_2 s_1 - \delta_2 s_3.
+\]
+Dengan menambahkannya ke kamus semula \( z = 23 - s_1 - s_3 \), kita memperoleh:
+\[
+z = (23 + 5\delta_2) + (-1 + \delta_2)s_1 + (-1 - \delta_2)s_3.
+\]
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\sslab{Baca rentangnya}
+Untuk mempertahankan keoptimalan:
+\[
+\begin{aligned}
+-1 + \delta_2 &\leq 0 \quad \Rightarrow \quad \delta_2 \leq 1, \\
+-1 - \delta_2 &\leq 0 \quad \Rightarrow \quad \delta_2 \geq -1.
+\end{aligned}
+\]
+Jadi, rentang \( \delta_2 \) yang diizinkan adalah:
+\[
+\boxed{-1 \leq \delta_2 \leq 1}
+\quad\Longleftrightarrow\quad
+2 \leq c_2 \leq 4.
+\]
+Di dalam rentang ini, nilai objektif berubah secara linier sebagai \( z = 23 + 5\delta_2 \).
+\end{steppanel}
+
+\subsection{Ringkasan}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Koefisien terusik & Rentang yang diizinkan & Pengaruh pada objektif \\
+\midrule
+\( c_1 = 2 + \delta_1 \) & \( 1.5 \leq c_1 \leq 3 \) & \( z = 23 + 4\delta_1 \) \\
+\( c_2 = 3 + \delta_2 \) & \( 2 \leq c_2 \leq 4 \)   & \( z = 23 + 5\delta_2 \) \\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Rentang pengusikan yang diizinkan dan pengaruhnya terhadap nilai objektif.}\label{tab:sensitivity-LP-tab02}% tab-num-auto
+
+\end{center}
+
+Di luar rentang ini, biaya tereduksi variabel nonbasis menjadi positif sehingga melanggar keoptimalan. Dalam kasus seperti itu, metode simpleks memerlukan pivot baru.
+
+\begin{algocard}{Resep: Menentukan Rentang Koefisien Objektif dalam Kamus}
+\algostep{sensbox}{\ding{228}}{Usik}{Ganti $c_i$ dengan $c_i + \delta$. Jika variabel $i$ nonbasis, hanya biaya tereduksinya sendiri yang bergeser sebesar $\delta$; lanjutkan langsung ke langkah terakhir.}
+\algostep{sensbox}{\ding{228}}{Substitusikan}{Jika variabel $i$ basis, nyatakan suku tambahan $\delta\, x_i$ dalam variabel nonbasis dengan menggunakan baris kamus untuk $x_i$, lalu tambahkan ke baris objektif.}
+\algostep{sensbox}{\ding{228}}{Terapkan keoptimalan}{Syaratkan setiap biaya tereduksi $\le 0$ (untuk masalah maksimisasi); setiap variabel nonbasis memberikan satu pertidaksamaan linier dalam $\delta$.}
+\algostep{algopt}{\ding{52}}{Baca rentangnya}{Iris semua pertidaksamaan. Di dalam rentang, solusinya tidak bergeser, dan $z$ berubah secara linier jika $i$ basis (tidak berubah sama sekali jika $i$ nonbasis).}
+\end{algocard}
+
+\begin{learningcheckpoint}[label={lc:nonbasic-cost}]
+Mengubah koefisien objektif suatu variabel \emph{nonbasis} tidak pernah mengubah solusi optimal saat ini, tetapi perubahan yang cukup besar tetap dapat mengubah \emph{basis optimal}. Selaraskan kedua pernyataan ini.
+\end{learningcheckpoint}
+
+\section{Sensitivitas dengan Notasi Matriks}
+\label{sec:sensitivity-matrix}
+
+Manipulasi kamus di atas dapat ditata dengan matriks, sebagaimana perangkat lunak melaksanakannya. Dengan menulis contoh utama dalam bentuk standar,
+\[
+\begin{aligned}
+\max \quad & \mathbf{c}^\top \mathbf{x} \\
+\st \quad & A_x\mathbf{x} + I\mathbf{s}  = \mathbf{b}, \\
+& \mathbf{x}, \mathbf{s} \geq \mathbf{0},
+\end{aligned}
+\qquad\text{dengan}\qquad
+A_x =
+\begin{bmatrix}
+1 & 1 \\
+2 & 1 \\
+1 & 2
+\end{bmatrix},
+\quad
+\mathbf{x} =
+\begin{bmatrix}
+x \\
+y \\
+\end{bmatrix},
+\quad
+\mathbf{s} =
+\begin{bmatrix}
+s_1 \\
+s_2 \\
+s_3
+\end{bmatrix}.
+\]
+
+\begin{tcolorbox}[colback=algopt!6, colframe=algopt, coltitle=white, fonttitle=\bfseries, sharp corners,
+    title=\textbf{Kamus Akhir dalam Notasi Matriks}]
+Misalkan variabel basis adalah $\mathbf{x}_B = \begin{bmatrix} x \\ y \\ s_2 \end{bmatrix}$,
+dan variabel nonbasis adalah $\mathbf{x}_N = \begin{bmatrix} s_1 \\ s_3 \end{bmatrix}$.
+Kamus tersebut dapat ditulis sebagai:
+
+$$
+\mathbf{x}_B = \mathbf{b}' - A_N' \mathbf{x}_N,
+$$
+
+Sebagai koreksi terhadap sumber, tanda minus pada bentuk ini mengharuskan
+kolom-kolom \(A_N'\) menjadi negatif dari koefisien \(s_1\) dan \(s_3\)
+yang tampak pada baris-baris kamus. Matriks bertanda sebaliknya yang dicetak
+dalam sumber akan menghasilkan kamus yang berlawanan tanda dengan kamus akhir
+di atas.
+
+Dengan demikian:
+
+$$
+\mathbf{b}' =
+\begin{bmatrix}
+4 \\
+5 \\
+3
+\end{bmatrix}, \quad
+A_N' =
+\begin{bmatrix}
+2 & -1 \\
+-1 & 1 \\
+-3 & 1
+\end{bmatrix}.
+$$
+
+Jadi, secara eksplisit:
+
+$$
+\begin{bmatrix}
+x \\
+y \\
+s_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 \\
+5 \\
+3
+\end{bmatrix}
+-
+\begin{bmatrix}
+2 & -1 \\
+-1 & 1 \\
+-3 & 1
+\end{bmatrix}
+\begin{bmatrix}
+s_1 \\
+s_3
+\end{bmatrix}.
+$$
+atau secara ekuivalen
+$$
+\begin{bmatrix}
+x \\
+y \\
+s_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 \\
+5 \\
+3
+\end{bmatrix}
++
+s_1
+\begin{bmatrix}
+-2  \\
+1  \\
+3
+\end{bmatrix}
+ +s_3
+\begin{bmatrix}
+ 1 \\
+ -1 \\
+ -1
+\end{bmatrix}.$$
+\end{tcolorbox}
+
+Matriks basisnya adalah
+$$
+A_B = \begin{bmatrix}
+1 & 1 & 0\\
+2 & 1 & 1\\
+1 & 2 & 0
+\end{bmatrix}
+\quad \text{ dan } \quad
+A_B^{-1} = \begin{bmatrix}
+2 & 0 & -1\\
+-1 & 0 & 1\\
+-3 & 1 & 1
+\end{bmatrix}.
+$$
+
+\begin{remark}{Memperoleh Kembali $A_B^{-1}$}{}
+\[
+A(x, s) =
+\begin{bmatrix}
+1 & 0 & 2 & 0 & -1 \\
+0 & 1 & -1 & 0 & 1 \\
+0 & 0 & -3 & 1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x \\ y \\ s_1 \\ s_2 \\ s_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 \\ 5 \\ 3
+\end{bmatrix}
+\]
+
+Dengan mempartisi variabel keputusan \( x = (x, y) \) dan variabel slack \( s = (s_1, s_2, s_3) \), kita menulis:
+\[
+A_x x + A_s s = b
+\quad \text{dengan} \quad
+A_x =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+0 & 0
+\end{bmatrix}, \quad
+A_s =
+\begin{bmatrix}
+2 & 0 & -1 \\
+-1 & 0 & 1 \\
+-3 & 1 & 1
+\end{bmatrix}, \quad
+b =
+\begin{bmatrix}
+4 \\ 5 \\ 3
+\end{bmatrix}
+\]
+
+\text{Karena kolom slack berasal dari matriks identitas pada \( A \) semula, kita menyimpulkan:}
+\[
+A_s = A_B^{-1}
+\]
+
+\end{remark}
+
+\subsection{Menentukan rentang \( b_1 \) dengan invers basis}
+
+Kita mengubah ruas kanan kendala pertama dan menganalisis pengaruhnya terhadap kelayakan:
+\[
+\mathbf{b} \quad \Rightarrow \quad \begin{bmatrix} b_1 \\ 16 \\ 14 \end{bmatrix}.
+\]
+
+\begin{steppanel}{sensbox}
+\cstep{1}{Perbarui solusi basis}
+Dengan menggunakan invers matriks basis \( A_B^{-1} \), solusi basisnya adalah \( \mathbf{x}_B = A_B^{-1} \mathbf{b} \):
+\[
+A_B^{-1} \mathbf{b} = \begin{bmatrix}
+2 & 0 & -1\\
+-1 & 0 & 1\\
+-3 & 1 & 1
+\end{bmatrix} \begin{bmatrix} b_1\\ 16\\ 14 \end{bmatrix}
+=
+\begin{bmatrix}
+2b_1 - 14\\
+-b_1 + 14\\
+-3b_1 + 30
+\end{bmatrix}.
+\]
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\cstep{2}{Terapkan kelayakan}
+Kita memastikan bahwa semua variabel basis tetap nonnegatif:
+\[
+\begin{bmatrix}
+2b_1 - 14\\
+-b_1 + 14\\
+-3b_1 + 30
+\end{bmatrix} \geq
+\begin{bmatrix}
+0\\
+0\\
+0
+\end{bmatrix}
+\quad\Longleftrightarrow\quad
+\begin{bmatrix}
+b_1 \\
+14\\
+10
+\end{bmatrix} \geq
+\begin{bmatrix}
+7\\
+b_1\\
+b_1
+\end{bmatrix}.
+\]
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\cstep{3}{Baca rentangnya}
+\[
+\boxed{7 \leq b_1 \leq 10}
+\]
+adalah rentang layak untuk \( b_1 \) yang mempertahankan basis optimal, sesuai dengan rentang \( -2 \le \Delta \le 1 \) yang diperoleh melalui kamus pada Bagian~\ref{sec:sensitivity-rhs}.
+\end{steppanel}
+
+Gambar di bawah memperlihatkan kendala \( x + y \le b_1 \) untuk tiga nilai \( b_1 = 7, 9, 10 \).
+\begin{center}
+% --- TikZ recreation of Figures/sensitivity-changing-b ---
+% Original LP:  max 2x + 3y  s.t.  x + y <= b_1, 2x + y <= 16, x + 2y <= 14, x, y >= 0
+% The plot shows the feasible region (for b_1 = 9) shaded and the constraint
+% x + y <= b_1 drawn for the three values b_1 = 7, 9, 10.
+\begin{tikzpicture}[scale=0.55, >=Stealth,
+    every node/.style={font=\small}]
+  % Axes
+  \draw[->] (-1,0) -- (15,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,11) node[above] {$y$};
+  % Grid
+  \draw[help lines, gray!30, very thin, step=1] (-1,-0.5) grid (14.5,10.5);
+  % Tick labels
+  \foreach \x in {2,4,6,8,10,12,14}
+    \draw (\x,0.1) -- (\x,-0.1) node[below, font=\scriptsize] {\x};
+  \foreach \y in {2,4,6,8,10}
+    \draw (0.1,\y) -- (-0.1,\y) node[left, font=\scriptsize] {\y};
+
+  % Constraint  2x + y = 16  (passes through (8,0) and (0,16))
+  \draw[green!60!black, thick] (4,8) -- (8.5,-1) node[pos=0.1, sloped, above, font=\scriptsize] {$2x+y=16$};
+
+  % Constraint  x + 2y = 14  (passes through (14,0) and (0,7))
+  \draw[brown!80!black, thick] (-0.5,7.25) -- (14.5,-0.25);
+
+  % Three values of b_1: x + y = 7, 9, 10
+  \draw[red, thick] (-0.5,7.5) -- (8,-1) node[pos=0.05, above right, font=\scriptsize] {$x+y=7$};
+  \draw[red, thick] (-0.5,9.5) -- (10,-1) node[pos=0.05, above right, font=\scriptsize] {$x+y=9$};
+  \draw[red, thick] (-0.5,10.5) -- (11,-1) node[pos=0.05, above right, font=\scriptsize] {$x+y=10$};
+
+  % Feasible region for b_1 = 9: vertices (0,0), (8,0), (7,2), (4,5), (0,7)
+  \fill[blue!30, opacity=0.45]
+        (0,0) -- (8,0) -- (7,2) -- (4,5) -- (0,7) -- cycle;
+
+  % Vertex markers and labels
+  \fill[blue] (0,0) circle (3pt) node[below left, font=\scriptsize, fill=none] {$(0,0)$};
+  \fill[blue] (8,0) circle (3pt) node[below, font=\scriptsize, fill=none] {$(8,0)$};
+  \fill[blue] (4,5) circle (3pt) node[above right, font=\scriptsize, fill=none] {$(4,5)$};
+  \fill[red]  (0,7) circle (3pt) node[above left, font=\scriptsize, fill=none] {$(0,7)$};
+  \fill[green!50!black] (7,2) circle (3pt) node[right, font=\scriptsize, fill=none] {$(7,2)$};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Menentukan rentang \( c_x \) melalui biaya tereduksi}
+
+Untuk menentukan rentang nilai \( c_x \) (koefisien \( x \) dalam fungsi objektif) yang mempertahankan keoptimalan basis saat ini, kita menganalisis syarat keoptimalan simpleks.
+
+\begin{steppanel}{sensbox}
+\cstep{1}{Susun biaya tereduksi}
+Fungsi objektif semula adalah:
+\[
+    z = 2x + 3y.
+\]
+Vektor biaya untuk semua variabel adalah:
+\[
+    c = \begin{bmatrix} c_x \\ 3 \\ 0 \\ 0 \\ 0 \end{bmatrix}.
+\]
+Vektor biaya yang bersesuaian dengan variabel basis \( x, y, s_2 \) (yaitu basis) adalah:
+\[
+    c_B = \begin{bmatrix} c_x & 3 & 0 \end{bmatrix}.
+\]
+Biaya tereduksi untuk setiap variabel nonbasis \( j \) diberikan oleh:
+\[
+    \bar{c}_j = c_j - c_B A_B^{-1} A_j.
+\]
+Variabel nonbasisnya adalah \( s_1 \) dan \( s_3 \). Kita perlu memastikan bahwa biaya tereduksinya tetap nonpositif.
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\cstep{2}{Hitung biaya tereduksi untuk \( s_1 \) dan \( s_3 \)}
+Matriks kendalanya adalah:
+\[
+    A = \begin{bmatrix}
+    1 & 1 & 1 & 0 & 0 \\
+    2 & 1 & 0 & 1 & 0 \\
+    1 & 2 & 0 & 0 & 1
+    \end{bmatrix}.
+\]
+Dengan mengambil kolom yang bersesuaian dengan \( s_1 \) dan \( s_3 \), diperoleh:
+\[
+    A_{s_1} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad
+    A_{s_3} = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}.
+\]
+Dengan menggunakan invers matriks basis:
+\[
+    A_B^{-1} A_{s_1} =
+    \begin{bmatrix}
+    2 & 0 & -1 \\
+    -1 & 0 & 1 \\
+    -3 & 1 & 1
+    \end{bmatrix}
+    \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} =
+    \begin{bmatrix} 2 \\ -1 \\ -3 \end{bmatrix}.
+\]
+\[
+    A_B^{-1} A_{s_3} =
+    \begin{bmatrix}
+    2 & 0 & -1 \\
+    -1 & 0 & 1 \\
+    -3 & 1 & 1
+    \end{bmatrix}
+    \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} =
+    \begin{bmatrix} -1 \\ 1 \\ 1 \end{bmatrix}.
+\]
+Dengan demikian, biaya tereduksinya adalah:
+\[
+    \bar{c}_{s_1} = 0 - \begin{bmatrix} c_x & 3 & 0 \end{bmatrix} \cdot \begin{bmatrix} 2 \\ -1 \\ -3 \end{bmatrix}
+    = 0 - (2c_x - 3).
+\]
+\[
+    \bar{c}_{s_3} = 0 - \begin{bmatrix} c_x & 3 & 0 \end{bmatrix} \cdot \begin{bmatrix} -1 \\ 1 \\ 1 \end{bmatrix}
+    = 0 - (-c_x + 3).
+\]
+\end{steppanel}
+
+\begin{steppanel}{sensbox}
+\cstep{3}{Baca rentangnya}
+Untuk mempertahankan keoptimalan, kita mensyaratkan $\bar{c}_{s_1}$ dan $\bar{c}_{s_3}$ bernilai $\leq 0$:
+\[
+    -2c_x + 3 \leq 0 \quad \Rightarrow \quad c_x \geq \frac{3}{2} = 1.5,
+\]
+\[
+    c_x - 3 \leq 0 \quad \Rightarrow \quad c_x \leq 3.
+\]
+Agar basis saat ini tetap optimal, \( c_x \) harus memenuhi:
+\[
+    \boxed{1.5 \leq c_x \leq 3},
+\]
+sesuai dengan rentang yang diperoleh melalui kamus pada Bagian~\ref{sec:sensitivity-cost}.
+\end{steppanel}
+
+\begin{center}
+\altincludegraphics[scale = 0.3]{Figures/sensitivity-objective}{Daerah layak pada bidang x-y dengan beberapa kurva aras objektif z = c_x x + 3y yang digambar untuk kemiringan berbeda. Gambar menunjukkan bahwa selama c_x berada dalam interval [1.5, 3], kurva aras miring di dalam kerucut yang ditentukan oleh kendala aktif pada optimum saat ini, sehingga titik sudut optimal (dan basis) tidak berubah.}\par\captionof{figure}{Daerah layak pada bidang x-y dengan beberapa kurva aras objektif z = c\_x x + 3y.}\label{fig:sensitivity-objective}% fig-num-auto
+
+\end{center}
+
+\section{Laporan Sensitivitas dalam Perangkat Lunak}
+\label{sec:sensitivity-software}
+
+Ketika menyelesaikan masalah di Excel, Anda dapat meminta analisis sensitivitas.
+
+\begin{center}
+\altincludegraphics[scale =0.3]{Figures/excel-sensitivity}{Tangkapan layar dialog Solver Results di Excel dengan opsi pembuatan laporan Sensitivity yang dipilih, yang memperlihatkan cara meminta keluaran sensitivitas pascaoptimal setelah menyelesaikan program linier.}\par\captionof{figure}{Dialog Solver Results di Excel dengan opsi pembuatan laporan Sensitivity.}\label{fig:excel-sensitivity}% fig-num-auto
+
+\end{center}
+Tindakan ini menghasilkan laporan yang menampilkan hal-hal berikut:
+\begin{itemize}
+\item \textbf{Kenaikan/Penurunan yang Diizinkan:} Untuk koefisien setiap variabel keputusan dalam fungsi objektif, laporan memberikan rentang (kenaikan dan penurunan yang diizinkan) tempat koefisien dapat berubah tanpa mengubah basis optimal saat ini. Rentang ini menunjukkan kestabilan solusi optimal terhadap perubahan koefisien tersebut.
+
+\item \textbf{Nilai Ruas Kanan:} Untuk setiap kendala, laporan sensitivitas mencantumkan \emph{harga bayangan} (atau nilai dual), yang menyatakan laju perubahan fungsi objektif per satu unit kenaikan ruas kanan kendala tersebut. Laporan juga memberikan kenaikan dan penurunan ruas kanan yang diizinkan. Nilai-nilai ini menunjukkan ketahanan kendala; perubahan kecil yang diizinkan dapat menandakan bahwa solusi peka terhadap fluktuasi sumber daya yang tersedia atau tingkat permintaan.
+
+\item \textbf{Status Kendala:} Laporan menunjukkan kendala mana yang mengikat (aktif) dan mana yang tidak mengikat. Kendala yang tidak mengikat memiliki harga bayangan nol; kendala yang mengikat dapat memiliki harga bayangan positif, tetapi degenerasi dapat membuatnya nol.
+\end{itemize}
+
+Besaran-besaran inilah yang dihitung secara manual pada Bagian~\ref{sec:sensitivity-rhs} dan~\ref{sec:sensitivity-cost}: kolom kenaikan/penurunan yang diizinkan adalah rentang dari kedua kartu resep, dan harga bayangan adalah lajunya dari catatan Harga Bayangan.
+
+Sebagai contoh konkret, gambar di bawah memperlihatkan lembar kerja yang disiapkan
+untuk Solver serta laporan sensitivitas yang dihasilkannya. Gambar~\ref{fig:excel-setup}
+menunjukkan tata letak model---sel variabel keputusan, sel objektif SUMPRODUCT, dan
+rumus kendala---sedangkan Gambar~\ref{fig:excel-sensitivity-report} menunjukkan
+laporan hasilnya dengan rentang yang diizinkan, harga bayangan, dan status mengikat
+yang dijelaskan di atas.
+
+\begin{figure}[h!]
+\centering
+\altincludegraphics[scale = 0.3]{Figures/excel-setup}{Tangkapan layar lembar kerja Excel yang disiapkan untuk program linier: sel variabel keputusan, sel fungsi objektif yang menggunakan SUMPRODUCT, dan rumus ruas kiri kendala beserta nilai ruas kanannya, siap digunakan oleh Solver.}
+\caption{Lembar kerja Excel yang ditata untuk Solver, dengan sel variabel keputusan, objektif SUMPRODUCT, dan rumus kendala.}
+\label{fig:excel-setup}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\altincludegraphics[scale = 0.3]{Figures/excel-sensitivity-report}{Tangkapan layar laporan sensitivitas Excel Solver. Tabel Variable Cells mencantumkan nilai akhir, biaya tereduksi, koefisien objektif, serta kenaikan/penurunan yang diizinkan untuk setiap variabel keputusan; tabel Constraints mencantumkan nilai akhir, harga bayangan, ruas kanan, serta kenaikan/penurunan yang diizinkan untuk setiap kendala, sehingga kendala mengikat dapat dibedakan dari kendala yang tidak mengikat.}
+\caption{Laporan sensitivitas Solver: sel variabel (nilai akhir, biaya tereduksi, koefisien objektif, kenaikan/penurunan yang diizinkan) dan kendala (nilai akhir, harga bayangan, ruas kanan, kenaikan/penurunan yang diizinkan).}
+\label{fig:excel-sensitivity-report}
+\end{figure}
+
+\section{Latihan}
+
+\exgroup{Pemanasan}
+
+\begin{ex}{Harga Bayangan dari Kamus Akhir}{}
+\stars{1} Ingat kembali kamus akhir contoh utama bab ini:
+\[
+\begin{aligned}
+z &= 23 - s_1 - s_3 \\
+x &= 4 - 2s_1 + s_3 \\
+y &= 5 + s_1 - s_3 \\
+s_2 &= 3 + 3s_1 - s_3.
+\end{aligned}
+\]
+\begin{enumerate}
+\item Baca harga bayangan masing-masing dari ketiga kendala (jam, tepung, gula) langsung dari baris objektif.
+\item Kendala mana yang tidak mengikat pada optimum? Bagaimana hal itu terlihat dalam kamus, dan bagaimana hal itu tercermin pada harga bayangan kendala tersebut?
+\item Toko roti ditawari satu unit gula tambahan seharga \$0.75. Haruskah tawaran tersebut diterima? Berapa harga tertinggi yang patut dibayar?
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-rhs}}
+\end{ex}
+
+\begin{ex}{Rentang Sensitivitas Ruas Kanan}{}
+\label{ex:sensitivity-rhs-range}
+\stars{1} Perhatikan program linier berikut beserta kamus optimalnya:
+\[
+\begin{aligned}
+\max \quad & 4x_1 + 3x_2 \\
+\st \quad
+& x_1 + x_2 \leq 10 \\
+& 2x_1 + x_2 \leq 16 \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\]
+Kamus optimalnya adalah:
+\[
+\begin{aligned}
+z &= 36 - 2s_1 - s_2 \\
+x_1 &= 6 + s_1 - s_2 \\
+x_2 &= 4 - 2s_1 + s_2 \\
+\end{aligned}
+\]
+dengan basis $B = \{x_1, x_2\}$ dan variabel nonbasis $N = \{s_1, s_2\}$.
+
+Tentukan rentang nilai $b_1$ (ruas kanan kendala pertama) yang mempertahankan keoptimalan basis saat ini.
+\exrefs{\S\ref{sec:sensitivity-rhs}}
+\end{ex}
+
+\exgroup{Soal inti}
+
+\begin{ex}{Sensitivitas Koefisien Objektif}{}
+\stars{2} Dengan menggunakan program linier dan kamus optimal yang sama seperti pada Latihan~\ref{ex:sensitivity-rhs-range}, tentukan rentang nilai koefisien objektif $c_1$ (koefisien $x_1$ dalam fungsi objektif) yang mempertahankan keoptimalan basis saat ini. Bagaimana nilai objektif optimal berubah ketika $c_1$ bervariasi di dalam rentang ini?
+\exrefs{\S\ref{sec:sensitivity-cost}}
+\end{ex}
+
+\begin{ex}{Analisis Sensitivitas Lengkap}{}
+\label{ex:sensitivity-workup-2x2}
+\stars{2} Sebuah bengkel merakit dua produk dengan laba \$5 dan \$6 per unit:
+\[
+\begin{aligned}
+\max \quad & 5x_1 + 6x_2 \\
+\st \quad
+& x_1 + 2x_2 \leq 16 \quad \text{(jam perakitan)} \\
+& 3x_1 + 2x_2 \leq 24 \quad \text{(jam mesin)} \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\]
+\begin{enumerate}
+\item Selesaikan PL tersebut (secara grafis atau dengan metode simpleks), lalu laporkan solusi optimal dan nilai objektifnya.
+\item Hitung harga bayangan setiap kendala.
+\item Tentukan rentang $b_1$ dan $b_2$ yang diizinkan dan mempertahankan keoptimalan basis saat ini, lalu nyatakan perubahan $z$ di dalam masing-masing rentang.
+\item Tentukan rentang $c_1$ dan $c_2$ yang diizinkan dan mempertahankan keoptimalan basis saat ini.
+\item Periksa jawaban Anda dengan perangkat lunak (misalnya \texttt{scipy.optimize.linprog} atau Excel Solver).
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-rhs}, \S\ref{sec:sensitivity-cost}, \S\ref{sec:sensitivity-matrix}}
+\end{ex}
+
+\begin{ex}{Menentukan Rentang Koefisien Basis dan Nonbasis}{}
+\label{ex:sensitivity-obj-nonbasic}
+\stars{2} Perhatikan PL
+\[
+\begin{aligned}
+\max \quad & 5x_1 + 2x_2 \\
+\st \quad
+& 2x_1 + x_2 \leq 10 \\
+& x_1 + 3x_2 \leq 15 \\
+& x_1, x_2 \geq 0,
+\end{aligned}
+\]
+yang memiliki solusi optimal $(x_1, x_2) = (5, 0)$ dengan $z^* = 25$ dan basis $B = \{x_1, s_2\}$.
+\begin{enumerate}
+\item Pastikan bahwa $(5,0)$ optimal dengan menghitung biaya tereduksi variabel nonbasis $x_2$ dan $s_1$.
+\item Tentukan rentang koefisien $c_2$ dari variabel \emph{nonbasis} $x_2$ yang mempertahankan keoptimalan basis saat ini. Bagaimana $z^*$ berubah ketika $c_2$ bergerak di dalam rentang ini?
+\item Tentukan rentang koefisien $c_1$ dari variabel \emph{basis} $x_1$ yang mempertahankan keoptimalan basis saat ini. Bagaimana $z^*$ berubah di dalam rentang ini?
+\item Jelaskan perbedaan struktural antara kedua kasus: mengapa salah satu rentang memiliki satu titik ujung berhingga yang ditentukan oleh satu biaya tereduksi, sedangkan yang lain melibatkan setiap biaya tereduksi?
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-cost}, \S\ref{sec:sensitivity-overview}}
+\end{ex}
+
+\begin{ex}{Sensitivitas dari Invers Basis}{}
+\label{ex:sensitivity-basis-inverse}
+\stars{2} Perhatikan PL berikut:
+\[
+\begin{aligned}
+\max \quad & 5x_1 + 4x_2 \\
+\st \quad
+& x_1 + x_2 + s_1 = 6 \\
+& 3x_1 + 2x_2 + s_2 = 15 \\
+& x_1, x_2, s_1, s_2 \geq 0
+\end{aligned}
+\]
+Basis optimalnya adalah $B = \{x_1, x_2\}$ dengan matriks basis dan inversnya:
+\[
+A_B = \begin{bmatrix} 1 & 1 \\ 3 & 2 \end{bmatrix}, \quad
+A_B^{-1} = \begin{bmatrix} -2 & 1 \\ 3 & -1 \end{bmatrix}.
+\]
+\begin{enumerate}
+\item Hitung $\mathbf{x}_B = A_B^{-1}\mathbf{b}$ dan pastikan bahwa hasilnya merupakan solusi basis layak.
+\item Untuk vektor ruas kanan $\mathbf{b} = \begin{bmatrix} 6 \\ 15 \end{bmatrix}$, tentukan rentang $b_1$ yang mempertahankan kelayakan basis saat ini.
+\item Hitung biaya tereduksi variabel nonbasis. Untuk rentang $c_1$ mana basis saat ini tetap optimal?
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-matrix}}
+\end{ex}
+
+\begin{ex}{Membaca Laporan Sensitivitas}{}
+\stars{2} Berikut adalah laporan sensitivitas dari Excel Solver untuk PL maksimisasi dengan dua variabel keputusan $x_1$ dan $x_2$ serta tiga kendala:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Variabel} & \textbf{Nilai} & \textbf{Koef.\ Obj.} & \textbf{Kenaikan Diizinkan} & \textbf{Penurunan Diizinkan} \\
+\midrule
+$x_1$ & 8 & 6 & 2 & 3 \\
+$x_2$ & 4 & 5 & 4 & 1 \\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Bagian variabel pada laporan sensitivitas Solver.}\label{tab:sensitivity-LP-tab03}% tab-num-auto
+
+\end{center}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Kendala} & \textbf{Harga Bayangan} & \textbf{Ruas Kanan} & \textbf{Kenaikan Diizinkan} & \textbf{Penurunan Diizinkan} \\
+\midrule
+1 & 2.5 & 20 & 4 & 6 \\
+2 & 0 & 30 & $\infty$ & 5 \\
+3 & 1.0 & 12 & 3 & 2 \\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Bagian kendala pada laporan sensitivitas Solver.}\label{tab:sensitivity-LP-tab04}% tab-num-auto
+
+\end{center}
+
+\begin{enumerate}
+\item Berapakah nilai objektif optimal saat ini?
+\item Jika koefisien objektif $x_1$ berubah dari 6 menjadi 7.5, apakah basis optimal berubah?
+\item Kendala mana yang tidak mengikat? Bagaimana Anda mengetahuinya dari laporan?
+\item Jika tersedia 2 unit tambahan sumber daya pertama (ruas kanan meningkat dari 20 menjadi 22), berapakah perkiraan nilai objektif optimal yang baru?
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-software}}
+\end{ex}
+
+\exgroup{Konsep dan keterkaitan}
+
+\begin{ex}{Penafsiran Harga Bayangan}{}
+\label{ex:shadow-price-workshop}
+\stars{2} Sebuah bengkel mebel memproduksi meja dan kursi. Program liniernya adalah:
+\[
+\begin{aligned}
+\max \quad & 50x_1 + 30x_2 \quad \text{(laba dalam dolar)}\\
+\st \quad
+& 4x_1 + 2x_2 \leq 40 \quad \text{(kayu dalam board-foot)} \\
+& 2x_1 + 3x_2 \leq 30 \quad \text{(tenaga kerja dalam jam)} \\
+& x_1, x_2 \geq 0
+\end{aligned}
+\]
+Solusi optimalnya adalah $x_1 = 7.5$, $x_2 = 5$, dengan laba optimal $z^* = 525$. Solusi dualnya adalah $y_1 = 11.25$, $y_2 = 2.50$.
+
+\begin{enumerate}
+\item Tafsirkan setiap harga bayangan dalam konteks sumber daya (kayu dan tenaga kerja).
+\item Jika bengkel dapat memperoleh 2 board-foot kayu tambahan, kira-kira berapa besar kenaikan laba optimal?
+\item Sumber daya mana yang lebih bernilai pada margin? Jelaskan.
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-rhs}}
+\end{ex}
+
+\begin{ex}{Mengapa Kendala Berslack Berharga Nol}{}
+\stars{2} Jelaskan dengan kata-kata Anda sendiri mengapa kendala yang tidak mengikat pada solusi optimal harus memiliki harga bayangan $0$. Berikan dua argumen:
+\begin{enumerate}
+\item Argumen geometris atau ekonomis: apa yang terjadi pada solusi optimal ketika Anda menambahkan sedikit sumber daya yang belum digunakan sepenuhnya?
+\item Argumen kamus: jika variabel slack kendala $i$ bersifat basis dan positif dalam kamus akhir, mengapa pengusikan $b_i$ sebesar $\Delta$ kecil membiarkan baris objektif tetap? (Pengusikan $b_2$ pada \S\ref{sec:sensitivity-rhs} merupakan contoh yang dikerjakan.)
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-rhs}, \S\ref{sec:sensitivity-overview}}
+\end{ex}
+
+\begin{ex}{Mengapa Rentang Itu Ada}{}
+\stars{2} Setiap besaran dalam laporan sensitivitas disertai rentang yang diizinkan. Jelaskan alasannya.
+\begin{enumerate}
+\item Objek tunggal apa yang tetap selama perhitungan sensitivitas, dan dua jenis syarat apa (satu untuk perubahan ruas kanan, satu untuk perubahan biaya) yang harus terus dipenuhinya?
+\item Mengapa pengaruh perubahan data terhadap $z^*$ bersifat \emph{linier} di dalam rentang?
+\item Dalam konteks metode simpleks, apa yang terjadi tepat ketika pengusikan melintasi titik ujung rentangnya?
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-overview}, \S\ref{sec:sensitivity-rhs}, \S\ref{sec:sensitivity-cost}}
+\end{ex}
+
+\begin{ex}{Ketika Prediksi Harga Bayangan Gagal}{}
+\stars{2} Perhatikan PL
+\[
+\max \; x_1 + x_2 \quad \st \quad x_1 \leq 1, \quad x_2 \leq 1, \quad x_1 + x_2 \leq 2, \quad x_1, x_2 \geq 0,
+\]
+yang memiliki solusi optimal $(1,1)$ dengan $z^* = 2$. Perhatikan bahwa ketiga kendala sama-sama ketat di titik itu, tetapi hanya dua yang diperlukan untuk menentukan titik sudut tersebut: solusi optimalnya bersifat \emph{degenerat}.
+\begin{enumerate}
+\item Tunjukkan bahwa menaikkan $b_3$ dari $2$ menjadi $3$ tidak mengubah $z^*$, sedangkan menurunkan $b_3$ dari $2$ menjadi $1$ menurunkan $z^*$ sebesar $1$.
+\item Lalu, apakah ``harga bayangan'' kendala ketiga? Jelaskan secara informal mengapa satu angka tidak dapat menggambarkan kedua arah dalam kasus ini.
+\item Mengapa Anda harus berhati-hati ketika membaca harga bayangan PL degenerat dari laporan solver?
+\end{enumerate}
+\exrefs{\S\ref{sec:sensitivity-rhs}, \S\ref{sec:sensitivity-software}}
+\end{ex}
+
+\exgroup{Soal tantangan}
+
+\begin{ex}{Melampaui Rentang}{}
+\label{ex:sensitivity-range-boundary}
+\stars{3} Susun sebuah program linier dengan suatu kendala yang harga bayangannya bernilai $p > 0$, sedemikian sehingga menaikkan ruas kanan kendala tersebut sebesar $1$ meningkatkan nilai optimal tepat sebesar $p$, tetapi menaikkannya sebesar $5$ meningkatkan nilai optimal dengan jumlah yang benar-benar kurang dari $5p$. Jelaskan apa yang terjadi pada batas rentang yang diizinkan sehingga prediksi tersebut gagal, lalu verifikasi konstruksi Anda dengan menyelesaikan PL yang terusik. (Petunjuk: contoh utama bab ini sudah memuat kendala seperti itu.)
+\exrefs{\S\ref{sec:sensitivity-rhs}, \S\ref{sec:sensitivity-overview}}
+\end{ex}
+
+\subsubsection*{Solusi Terpilih}
+
+\begin{solution}(Latihan~\ref{ex:sensitivity-workup-2x2})
+\begin{enumerate}
+\item Kedua kendala mengikat pada optimum: penyelesaian $x_1 + 2x_2 = 16$ dan $3x_1 + 2x_2 = 24$ menghasilkan $(x_1, x_2) = (4, 6)$ dengan $z^* = 5(4) + 6(6) = 56$.
+\item Basisnya adalah $B = \{x_1, x_2\}$ dengan
+\[
+A_B = \begin{bmatrix} 1 & 2 \\ 3 & 2 \end{bmatrix}, \qquad
+A_B^{-1} = \begin{bmatrix} -\tfrac12 & \tfrac12 \\[2pt] \tfrac34 & -\tfrac14 \end{bmatrix},
+\]
+sehingga harga bayangannya adalah $\mathbf{y}^\top = \mathbf{c}_B^\top A_B^{-1} = [5, 6]\,A_B^{-1} = [2, 1]$: satu jam perakitan bernilai \$2 dan satu jam mesin bernilai \$1.
+\item Dengan $\mathbf{b} = (b_1, 24)$, kelayakan $\mathbf{x}_B = A_B^{-1}\mathbf{b} = \left(-\tfrac{b_1}{2} + 12,\ \tfrac{3b_1}{4} - 6\right) \geq \mathbf{0}$ memberikan $8 \leq b_1 \leq 24$, dengan $z = 56 + 2(b_1 - 16)$ di dalam rentang. Dengan $\mathbf{b} = (16, b_2)$, kelayakan $\left(\tfrac{b_2}{2} - 8,\ 12 - \tfrac{b_2}{4}\right) \geq \mathbf{0}$ memberikan $16 \leq b_2 \leq 48$, dengan $z = 56 + (b_2 - 24)$.
+\item Dengan $\mathbf{c}_B = (c_1, 6)$, harga dualnya adalah $\left(-\tfrac{c_1}{2} + \tfrac92,\ \tfrac{c_1}{2} - \tfrac32\right)$; keduanya nonnegatif tepat ketika $3 \leq c_1 \leq 9$. Dengan $\mathbf{c}_B = (5, c_2)$, harga dualnya adalah $\left(\tfrac{3c_2}{4} - \tfrac52,\ \tfrac52 - \tfrac{c_2}{4}\right)$, sehingga $\tfrac{10}{3} \leq c_2 \leq 10$.
+\item Perangkat lunak menegaskan: pada $b_1 = 8$, solusinya adalah $(8,0)$ dengan $z = 40 = 56 + 2(-8)$; pada $b_1 = 24$, solusinya adalah $(0,12)$ dengan $z = 72 = 56 + 2(8)$; dan tepat di luar nilai-nilai tersebut, variabel dual berubah sehingga menandai basis baru.
+\end{enumerate}
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:sensitivity-basis-inverse})
+\begin{enumerate}
+\item
+\[
+\mathbf{x}_B = A_B^{-1}\mathbf{b} = \begin{bmatrix} -2 & 1 \\ 3 & -1 \end{bmatrix}\begin{bmatrix} 6 \\ 15 \end{bmatrix} = \begin{bmatrix} 3 \\ 3 \end{bmatrix},
+\]
+sehingga $(x_1, x_2) = (3, 3) \geq \mathbf{0}$ merupakan solusi basis layak dengan nilai objektif $z = 5(3) + 4(3) = 27$.
+\item Dengan mengganti $b_1$ dengan suatu nilai variabel,
+\[
+\mathbf{x}_B(b_1) = A_B^{-1}\begin{bmatrix} b_1 \\ 15 \end{bmatrix} = \begin{bmatrix} -2b_1 + 15 \\ 3b_1 - 15 \end{bmatrix} \geq \mathbf{0}
+\quad\Longleftrightarrow\quad 5 \leq b_1 \leq 7.5.
+\]
+\item Harga dualnya adalah $\mathbf{y}^\top = \mathbf{c}_B^\top A_B^{-1} = [5, 4]\, A_B^{-1} = [2, 1]$, sehingga biaya tereduksi slack nonbasis adalah $\bar{c}_{s_1} = -y_1 = -2$ dan $\bar{c}_{s_2} = -y_2 = -1$; keduanya nonpositif, yang menegaskan keoptimalan (secara ekuivalen, $z = 27 - 2s_1 - s_2$). Dengan $c_1$ bervariasi, $\mathbf{y}(c_1)^\top = [c_1, 4]\, A_B^{-1} = [-2c_1 + 12,\ c_1 - 4]$, dan basis tetap optimal selama kedua komponennya nonnegatif:
+\[
+-2c_1 + 12 \geq 0 \ \text{ dan } \ c_1 - 4 \geq 0
+\quad\Longleftrightarrow\quad 4 \leq c_1 \leq 6.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:shadow-price-workshop})
+Pada solusi optimal $(x_1, x_2) = (7.5, 5)$, kedua kendala mengikat: $4(7.5) + 2(5) = 40$ dan $2(7.5) + 3(5) = 30$.
+
+\begin{enumerate}
+\item Harga bayangan kayu adalah $y_1 = 11.25$: satu board-foot kayu tambahan meningkatkan laba optimal sebesar \$11.25 (selama basis tidak berubah). Harga bayangan tenaga kerja adalah $y_2 = 2.50$: satu jam tenaga kerja tambahan bernilai \$2.50 pada margin.
+\item Dua board-foot tambahan meningkatkan laba sekitar $2 \times 11.25 = \$22.50$, dari \$525 menjadi \$547.50. (Nilai ini eksak dalam kasus ini: ruas kanan kayu dapat berkisar dari $20$ hingga $60$ sebelum basis berubah, dan $42$ berada jauh di dalam rentang tersebut.)
+\item Kayu lebih bernilai pada margin karena $11.25 > 2.50$: satu unit kayu menghasilkan tambahan laba yang lebih besar daripada satu unit tenaga kerja.
+\end{enumerate}
+\end{solution}
+
+\begin{solution}(Latihan~\ref{ex:sensitivity-range-boundary})
+Contoh utama bab ini memenuhi permintaan tersebut. Kendala jamnya $x + y \leq 9$ memiliki harga bayangan $p = 1$, yang berlaku untuk $7 \leq b_1 \leq 10$ (kenaikan yang diizinkan sebesar $1$). Menaikkan $b_1$ sebesar $1$ menjadi $10$ meningkatkan nilai optimal dari $23$ menjadi $24$, tepat sebesar $p$. Menaikkan $b_1$ sebesar $5$ menjadi $14$ hanya meningkatkannya menjadi $24$, bukan menjadi $23 + 5 = 28$: penyelesaian PL dengan $b_1 = 14$ memberikan optimum $(x, y) = (6, 4)$ yang ditentukan oleh kendala tepung dan gula, dengan $z^* = 2(6) + 3(4) = 24$. Pada batas rentang $b_1 = 10$, variabel basis $s_2$ mencapai $0$ dan basis berubah; di luar batas itu, kendala jam tidak lagi mengikat, sehingga harga bayangannya turun menjadi $0$ dan penambahan $b_1$ selanjutnya tidak memberikan manfaat. Secara umum, nilai optimal merupakan fungsi konkaf linier-sepotong dari $b_1$, dan harga bayangan hanyalah kemiringannya pada potongan saat ini.
+\end{solution}

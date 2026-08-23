@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://interlanguage.local/schema/machine-backend-evidence-v0.schema.json",
+  "title": "R017/O018 machine-backend authority and disposition evidence v0",
+  "type": "object",
+  "required": [
+    "schema_name",
+    "schema_version",
+    "snapshot_at",
+    "authority",
+    "public_distribution_probe",
+    "inventory_assertions",
+    "submodule_archives",
+    "machine_witnesses",
+    "visualization_runtime_closure",
+    "terminal_state"
+  ],
+  "properties": {
+    "schema_name": {"const": "interlanguage.machine-backend-evidence"},
+    "schema_version": {"const": "0.1.0"},
+    "snapshot_at": {"type": "string", "minLength": 1},
+    "authority": {
+      "type": "object",
+      "required": ["commit", "tree", "root"],
+      "properties": {
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "tree": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "root": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "public_distribution_probe": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256", "scope_note"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "scope_note": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "inventory_assertions": {
+      "type": "object",
+      "required": [
+        "operational_non_macro_xlsx",
+        "optimization_notebook_pulp",
+        "optimization_notebook_gurobi",
+        "instructional_notebook_networkx",
+        "total_machine_witnesses",
+        "submodule_archives"
+      ],
+      "properties": {
+        "operational_non_macro_xlsx": {"const": 19},
+        "optimization_notebook_pulp": {"const": 21},
+        "optimization_notebook_gurobi": {"const": 21},
+        "instructional_notebook_networkx": {"const": 2},
+        "total_machine_witnesses": {"const": 63},
+        "submodule_archives": {"const": 3}
+      },
+      "additionalProperties": false
+    },
+    "submodule_archives": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/submodule_archive"}
+    },
+    "machine_witnesses": {
+      "type": "array",
+      "minItems": 63,
+      "maxItems": 63,
+      "items": {"$ref": "#/$defs/machine_witness"}
+    },
+    "visualization_runtime_closure": {
+      "$ref": "#/$defs/visualization_runtime_closure"
+    },
+    "terminal_state": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+    "nullable_string": {"anyOf": [{"type": "null"}, {"type": "string"}]},
+    "nullable_integer": {"anyOf": [{"type": "null"}, {"type": "integer"}]},
+    "nullable_sha256": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/sha256"}]},
+    "string_array": {"type": "array", "items": {"type": "string"}},
+    "id_array": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+    "presence": {
+      "type": "object",
+      "required": ["present", "path", "bytes", "sha256"],
+      "properties": {
+        "present": {"type": "boolean"},
+        "path": {"$ref": "#/$defs/nullable_string"},
+        "bytes": {"$ref": "#/$defs/nullable_integer"},
+        "sha256": {"$ref": "#/$defs/nullable_sha256"}
+      },
+      "additionalProperties": false
+    },
+    "public_presence": {
+      "type": "object",
+      "required": [
+        "authority_witness_path",
+        "authority_witness_present",
+        "localized_derivative_path",
+        "localized_derivative_present"
+      ],
+      "properties": {
+        "authority_witness_path": {"type": "string", "minLength": 1},
+        "authority_witness_present": {"type": "boolean"},
+        "localized_derivative_path": {"$ref": "#/$defs/nullable_string"},
+        "localized_derivative_present": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "o018_disposition": {
+      "type": "object",
+      "required": [
+        "pyomo_highs_applicability",
+        "disposition",
+        "mapping_unit_ids",
+        "mapping_role",
+        "runtime_dependency_ids",
+        "scope_note"
+      ],
+      "properties": {
+        "pyomo_highs_applicability": {
+          "enum": ["applicable", "not_mapped", "not_applicable"]
+        },
+        "disposition": {"type": "string", "minLength": 1},
+        "mapping_unit_ids": {"$ref": "#/$defs/id_array"},
+        "mapping_role": {"type": "string", "minLength": 1},
+        "runtime_dependency_ids": {"$ref": "#/$defs/id_array"},
+        "scope_note": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "submodule_archive": {
+      "type": "object",
+      "required": [
+        "id",
+        "repository",
+        "commit",
+        "archive_path",
+        "archive_entry_count",
+        "archive_file_count",
+        "archive_uncompressed_file_bytes",
+        "archive_bytes",
+        "archive_sha256",
+        "extracted_path",
+        "extracted_file_count",
+        "extracted_file_bytes",
+        "extracted_closure_sha256",
+        "build_admission_disposition"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "repository": {"type": "string", "minLength": 1},
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "archive_path": {"type": "string", "minLength": 1},
+        "archive_entry_count": {"type": "integer", "minimum": 1},
+        "archive_file_count": {"type": "integer", "minimum": 1},
+        "archive_uncompressed_file_bytes": {"type": "integer", "minimum": 1},
+        "archive_bytes": {"type": "integer", "minimum": 1},
+        "archive_sha256": {"$ref": "#/$defs/sha256"},
+        "extracted_path": {"type": "string", "minLength": 1},
+        "extracted_file_count": {"type": "integer", "minimum": 1},
+        "extracted_file_bytes": {"type": "integer", "minimum": 1},
+        "extracted_closure_sha256": {"$ref": "#/$defs/sha256"},
+        "build_admission_disposition": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "machine_witness": {
+      "type": "object",
+      "required": [
+        "id",
+        "source_path",
+        "bytes",
+        "sha256",
+        "witness_kind",
+        "format_classification",
+        "platform_classification",
+        "proprietary_runtime_required_for_r017_workflow",
+        "runtime_dependencies",
+        "runtime_dependency_ids",
+        "runtime_closure_disposition",
+        "rights_component_id",
+        "existing_backend_record",
+        "target_path",
+        "authority_witness_target_presence",
+        "localized_derivative_target_presence",
+        "current_public_source_package_presence",
+        "distribution_disposition",
+        "o018_pyomo_highs",
+        "status"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "source_path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "witness_kind": {
+          "enum": [
+            "operational_non_macro_xlsx",
+            "optimization_notebook_pulp",
+            "optimization_notebook_gurobi",
+            "instructional_notebook_networkx"
+          ]
+        },
+        "format_classification": {"type": "string", "minLength": 1},
+        "platform_classification": {"type": "string", "minLength": 1},
+        "proprietary_runtime_required_for_r017_workflow": {"type": "boolean"},
+        "runtime_dependencies": {"$ref": "#/$defs/string_array"},
+        "runtime_dependency_ids": {"$ref": "#/$defs/id_array"},
+        "runtime_closure_disposition": {"type": "string", "minLength": 1},
+        "rights_component_id": {"$ref": "#/$defs/id"},
+        "existing_backend_record": {"type": "boolean"},
+        "target_path": {"$ref": "#/$defs/nullable_string"},
+        "authority_witness_target_presence": {"$ref": "#/$defs/presence"},
+        "localized_derivative_target_presence": {"$ref": "#/$defs/presence"},
+        "current_public_source_package_presence": {"$ref": "#/$defs/public_presence"},
+        "distribution_disposition": {"type": "string", "minLength": 1},
+        "active_source_references": {"$ref": "#/$defs/string_array"},
+        "source_linkage": {"type": "string", "minLength": 1},
+        "o018_pyomo_highs": {"$ref": "#/$defs/o018_disposition"},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "visualization_runtime_closure": {
+      "type": "object",
+      "required": [
+        "target_root",
+        "file_count",
+        "closure_bytes",
+        "closure_sha256",
+        "files",
+        "qa_commands",
+        "generated_directories",
+        "adverse_ledger_event_id",
+        "status"
+      ],
+      "properties": {
+        "target_root": {"const": "visualizations/source"},
+        "file_count": {"const": 12},
+        "closure_bytes": {"type": "integer", "minimum": 1},
+        "closure_sha256": {"$ref": "#/$defs/sha256"},
+        "files": {
+          "type": "array",
+          "minItems": 12,
+          "maxItems": 12,
+          "items": {"$ref": "#/$defs/visualization_runtime_file"}
+        },
+        "qa_commands": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"$ref": "#/$defs/qa_command"}
+        },
+        "generated_directories": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["path", "disposition"],
+            "properties": {
+              "path": {"type": "string", "minLength": 1},
+              "disposition": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "adverse_ledger_event_id": {"const": "R017-ADV-0006"},
+        "status": {"const": "verified_runnable_pinned_source_closure"}
+      },
+      "additionalProperties": false
+    },
+    "visualization_runtime_file": {
+      "type": "object",
+      "required": [
+        "asset_id",
+        "path",
+        "asset_type",
+        "existing_backend_record",
+        "status",
+        "closure_role",
+        "target_path",
+        "bytes",
+        "sha256",
+        "rights_component_id"
+      ],
+      "properties": {
+        "asset_id": {"$ref": "#/$defs/id"},
+        "path": {"type": "string", "minLength": 1},
+        "asset_type": {"type": "string", "minLength": 1},
+        "existing_backend_record": {"type": "boolean"},
+        "status": {"type": "string", "minLength": 1},
+        "closure_role": {"type": "string", "minLength": 1},
+        "target_path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "rights_component_id": {"$ref": "#/$defs/id"}
+      },
+      "additionalProperties": false
+    },
+    "qa_command": {
+      "type": "object",
+      "required": ["command", "result", "note"],
+      "properties": {
+        "command": {"type": "string", "minLength": 1},
+        "result": {"const": "pass"},
+        "note": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

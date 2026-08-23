@@ -1,0 +1,169 @@
+{
+  "schema": "r017-o018-backend-final-qa-v1",
+  "generated_at": "2026-08-23T16:45:00+02:00",
+  "status": "passed_with_retained_historical_events",
+  "commands": [
+    {
+      "command": "python scripts/export_backend.py --require-bound-targets",
+      "exit_code": 0
+    },
+    {
+      "command": "python scripts/export_backend.py --require-bound-targets --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python scripts/export_backend.py --require-bound-targets --output-dir backend/.final-replay",
+      "exit_code": 0
+    }
+  ],
+  "canonical_export": {
+    "directory": "backend/dist",
+    "file_count": 32,
+    "total_bytes": 62168873,
+    "aggregate_inventory_sha256": "00e253afa0228aee8c0a79017e47d7a489f23b74a5ae460be214ca220db09597",
+    "aggregate_algorithm": "SHA-256 of compact JSON array sorted by path; each entry is {path,bytes,sha256}",
+    "backend_json": {
+      "path": "backend/dist/backend-v0.json",
+      "bytes": 26022240,
+      "sha256": "7c2ec930a7472021b37101f860b2b1846503fd52f4b495f863508cd91d741804"
+    },
+    "manifest": {
+      "path": "backend/dist/manifest.json",
+      "bytes": 4853,
+      "sha256": "f800590f07fafa47c7eb900dddc8cf99bbf5cb892218fa4ab1722677b7b2efa4"
+    },
+    "checksums": {
+      "path": "backend/dist/SHA256SUMS.txt",
+      "bytes": 2623,
+      "sha256": "1dabfdb58c910fc5c1e659356361c51056c6084a214f7b20583a42e9750e6515"
+    }
+  },
+  "clean_replay": {
+    "directory": "backend/.final-replay",
+    "file_count": 32,
+    "total_bytes": 62168873,
+    "aggregate_inventory_sha256": "00e253afa0228aee8c0a79017e47d7a489f23b74a5ae460be214ca220db09597",
+    "aggregate_algorithm": "SHA-256 of compact JSON array sorted by path; each entry is {path,bytes,sha256}",
+    "byte_identical_to_canonical": true
+  },
+  "inputs": [
+    {
+      "path": "backend/input/backend-input.json",
+      "bytes": 448536,
+      "sha256": "c70da303e2feade5dd52092b8e15b722d0ea8cd5e26be63d8cb001739b55daba"
+    },
+    {
+      "path": "backend/input/full-corpus-supplement.json",
+      "bytes": 77111,
+      "sha256": "e547e414ad2f2e4d7b20766f102014a8d3ef17d06d5e6bcd7c4aa7b108b7d010"
+    },
+    {
+      "path": "backend/schema/backend-input-v0.schema.json",
+      "bytes": 4474,
+      "sha256": "b579477e0af7e099604e60f37ea1765d5b68233f3983d9d8793e22ca7eab5244"
+    },
+    {
+      "path": "backend/schema/full-corpus-supplement-v0.schema.json",
+      "bytes": 14019,
+      "sha256": "c967446a5e9ee3f9472001653f32f3632074d3a0eb56515fd2ac4a58ed2ca66f"
+    },
+    {
+      "path": "backend/schema/machine-backend-evidence-v0.schema.json",
+      "bytes": 11339,
+      "sha256": "cdcf8db1b8d21dc0b816134712253033a07bdf09f4e79d7921f6c75ffe39bacc"
+    },
+    {
+      "path": "backend/schema/modular-backend-v0.schema.json",
+      "bytes": 12923,
+      "sha256": "f786a22f386f0fead99a6788c7c7d76396739aeeb14d2ad5c75bf059cb1015ae"
+    },
+    {
+      "path": "scripts/export_backend.py",
+      "bytes": 152116,
+      "sha256": "3edee807a41c766c84efbda2a67b209b3d41a8afa7dbf00252ee3cdd846eedb9"
+    },
+    {
+      "path": "scripts/build_machine_backend_evidence.py",
+      "bytes": 36163,
+      "sha256": "ce7a18a50321ea0a54a5b17eba6b23a99271895e9501d018abe65b1f7af6db5c"
+    },
+    {
+      "path": "00_control/MACHINE_BACKEND_EVIDENCE.json",
+      "bytes": 163890,
+      "sha256": "60d81807fd9874b227ec5e0f343d2d30d50b1c6e22b0dc9f66b5e97212bd8691"
+    }
+  ],
+  "collection_counts": {
+    "programs": 1,
+    "courses": 1,
+    "resources": 4,
+    "editions": 5,
+    "units": 1993,
+    "segments": 5525,
+    "concepts": 128,
+    "terms": 140,
+    "assets": 346,
+    "rights": 21,
+    "corrections": 94,
+    "qa_events": 101,
+    "artifacts": 83,
+    "relations": 9545
+  },
+  "guard_audit": {
+    "require_bound_targets": true,
+    "assets_with_passed_target_guards": 289,
+    "assets_not_requiring_target_guards": 57,
+    "unbound_target_guards": 0,
+    "open_qa_events": 0,
+    "all_qa_events_complete": true
+  },
+  "global_open_records": {
+    "note": "Four source-authority/accessibility corrections and their five typed relations remain open by design. They are disclosed constraints, not failed guards or unfinished translation units, and no author contact was made.",
+    "corrections": [
+      {
+        "id": "correction.r017.exercise-ladder-metadata",
+        "disposition": "The source lacks exercise-level difficulty metadata; the edition preserves the exercises without inventing levels."
+      },
+      {
+        "id": "correction.r017.missing-excel-solver-layout",
+        "disposition": "The pinned source references an absent Figures/excel-solver-layout asset; the edition preserves the baseline evidence and does not invent the file."
+      },
+      {
+        "id": "correction.r017.pdf-tagging",
+        "disposition": "The upstream toolchain disables tagging because of a tagpdf/amsmath conflict; the release discloses that the PDF is untagged and makes no PDF/UA claim."
+      },
+      {
+        "id": "correction.r017.preface-grant-attribution",
+        "disposition": "Exact private-email grant wording is absent from the public authority; the edition translates only the public acknowledgment and does not invent wording."
+      }
+    ],
+    "open_correction_count": 4,
+    "open_corrects_relation_count": 5
+  },
+  "historical_event_disclosure": {
+    "note": "The event ledger intentionally retains completed historical failures and limitations; these are not open release failures.",
+    "events": [
+      {
+        "id": "qa.r017.baseline-pdf-build",
+        "result": "fail",
+        "status": "complete",
+        "disposition": "Retained as provenance for the upstream baseline build failure; the final localized reader and clean replay pass."
+      },
+      {
+        "id": "qa.r017.tagged-pdf-toolchain-probe",
+        "result": "blocked",
+        "status": "complete",
+        "disposition": "Retained accessibility limitation: the final PDF is honestly disclosed as untagged and is not claimed as PDF/UA."
+      }
+    ]
+  },
+  "reader_binding": {
+    "pdf_path": "output/book1-pdf/book1-id.pdf",
+    "pdf_bytes": 26425739,
+    "pdf_sha256": "daa9b79df3684729cc204b563669f400866d8fbd12c0977d32ff9897276a7a49",
+    "replay_byte_identical": true,
+    "qa_report_path": "qa/book1-final-qa-report.json",
+    "qa_report_bytes": 30770,
+    "qa_report_sha256": "d914ab157350571779a9e4bca62a1b02031560ccda19f00b08c4d61fda5b15b0"
+  }
+}

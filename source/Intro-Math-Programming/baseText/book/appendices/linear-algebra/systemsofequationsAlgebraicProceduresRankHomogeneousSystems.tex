@@ -1,0 +1,409 @@
+\subsection{Rank dan Sistem Homogen}
+
+Terdapat jenis sistem khusus yang memerlukan kajian tambahan. Jenis sistem ini disebut sistem persamaan
+homogen, yang telah kita definisikan dalam Definisi \ref{def:homogeneoussystem} di atas.
+Fokus kita dalam bagian ini adalah membahas jenis-jenis solusi yang mungkin bagi suatu sistem persamaan homogen.
+
+Perhatikan definisi berikut.
+
+\begin{definition}{Solusi Trivial}\label{def:trivialsolution}
+Perhatikan sistem persamaan homogen yang diberikan oleh
+\begin{equation*}
+\begin{array}{c}
+a_{11}x_{1}+a_{12}x_{2}+\cdots +a_{1n}x_{n}= 0 \\
+a_{21}x_{1}+a_{22}x_{2}+\cdots +a_{2n}x_{n}= 0  \\
+\vdots \\
+a_{m1}x_{1}+a_{m2}x_{2}+\cdots +a_{mn}x_{n}= 0 
+\end{array}
+\end{equation*}
+Maka $x_{1} = 0, x_{2} = 0, \cdots, x_{n} =0$ selalu merupakan
+solusi sistem ini. Kita menyebutnya \textbf{solusi trivial} \index{solusi trivial}.
+\end{definition}
+
+Jika sistem memiliki solusi yang tidak membuat semua $x_1, \cdots, x_n$ sama dengan nol,
+kita menyebut solusi tersebut \textbf{nontrivial} \index{solusi nontrivial}. Solusi trivial
+tidak memberi banyak informasi tentang sistem karena hanya menyatakan bahwa $0=0$.
+Oleh karena itu, ketika bekerja dengan sistem persamaan
+homogen, kita ingin mengetahui kapan sistem tersebut memiliki solusi nontrivial.
+
+Misalkan kita memiliki suatu sistem homogen yang terdiri atas $m$ persamaan dan menggunakan $n$ variabel, serta misalkan
+$n > m$. Dengan kata lain, terdapat lebih banyak variabel daripada persamaan.
+Ternyata sistem ini selalu memiliki solusi nontrivial. Sistem tersebut bukan saja
+memiliki solusi nontrivial, melainkan juga memiliki tak berhingga banyak solusi.
+Solusi nontrivial juga mungkin, tetapi tidak harus, ada jika $n=m$ dan $n<m$.
+
+Perhatikan contoh berikut.
+
+\begin{example}{Solusi Sistem Persamaan Homogen}\label{exa:homogeneoussolution}
+Temukan solusi nontrivial sistem persamaan homogen berikut
+\begin{equation*}
+\begin{array}{cccccccc}
+2x &+& y &-& z &=& 0 \\
+x &+& 2y &-& 2z &=& 0
+\end{array}
+\end{equation*}
+\end{example}
+
+\begin{solution}
+Perhatikan bahwa sistem ini memiliki $m = 2$ persamaan dan $n = 3$ variabel, sehingga $n>m$.
+Oleh karena itu, berdasarkan pembahasan sebelumnya, kita memperkirakan bahwa sistem ini memiliki tak berhingga banyak solusi.
+
+Proses yang kita gunakan untuk menemukan solusi sistem persamaan homogen
+sama dengan proses yang digunakan pada bagian sebelumnya.
+Pertama, kita menyusun matriks diperbesar, yaitu
+\begin{equation*}
+\leftB
+\begin{array}{rrr|r}
+2 & 1 & -1 & 0 \\ 
+1 & 2 & -2 & 0
+\end{array}
+\rightB
+\end{equation*}
+Kemudian, kita membawa matriks ini ke \rref-nya, yang diberikan di bawah.
+\begin{equation*}
+\leftB
+\begin{array}{rrr|r}
+1 & 0 & 0 & 0 \\ 
+0 & 1 & -1 & 0
+\end{array}
+\rightB
+\end{equation*}
+Sistem persamaan yang bersesuaian adalah
+\begin{equation*}
+\begin{array}{c}
+x = 0 \\
+y - z =0 \\
+\end{array}
+\end{equation*}
+Karena $z$ tidak dibatasi oleh persamaan mana pun, kita mengetahui bahwa variabel ini akan menjadi parameter.
+Misalkan $z=t$, dengan $t$ berupa sembarang bilangan.
+Oleh karena itu, solusi kita berbentuk
+\begin{equation*}
+\begin{array}{c}
+x = 0 \\
+y = z = t \\
+z = t
+\end{array}
+\end{equation*}
+Jadi, sistem ini memiliki tak berhingga banyak solusi dengan satu parameter $t$.
+\end{solution}
+
+Misalkan kita menuliskan solusi contoh sebelumnya dalam bentuk lain.
+Secara khusus,
+\begin{equation*}
+\begin{array}{c}
+x = 0 \\
+y = 0 + t \\
+z = 0 + t
+\end{array}
+\end{equation*}
+dapat ditulis sebagai
+\begin{equation*}
+\leftB
+\begin{array}{r}
+x\\
+y\\
+z
+\end{array}
+\rightB
+ =
+\leftB
+\begin{array}{r}
+0\\
+0\\
+0
+\end{array}
+\rightB
+ +
+t
+\leftB
+\begin{array}{r}
+0\\
+1\\
+1
+\end{array}
+\rightB
+\end{equation*}
+Perhatikan bahwa kita telah menyusun sebuah kolom dari konstanta-konstanta dalam solusi (semuanya sama dengan $0$),
+ serta sebuah kolom yang bersesuaian dengan
+koefisien $t$ dalam setiap persamaan. Meskipun bentuk solusi ini akan dibahas lebih lanjut pada bab-bab berikutnya,
+untuk saat ini perhatikan kolom koefisien
+parameter $t$. Dalam hal ini, kolom tersebut adalah
+$\leftB
+\begin{array}{r}
+0\\
+1\\
+1
+\end{array}
+\rightB$. 
+
+Kolom ini memiliki nama khusus, yaitu \textbf{solusi dasar}\index{solusi dasar}. Solusi dasar suatu sistem
+adalah kolom yang disusun dari koefisien parameter dalam solusi. Kita sering menyatakan solusi dasar
+dengan $X_1, X_2$, dan seterusnya, bergantung pada banyaknya solusi yang muncul. Oleh karena itu, Contoh \ref{exa:homogeneoussolution}
+memiliki solusi dasar $X_1 = \leftB
+\begin{array}{r}
+0\\
+1\\
+1
+\end{array}
+\rightB$. 
+
+Kita membahasnya lebih lanjut dalam contoh berikut.
+
+\begin{example}{Solusi Dasar Sistem Homogen}\label{exa:basicsolutions}
+Perhatikan sistem persamaan homogen berikut.
+\begin{equation*}
+\begin{array}{cccccccc}
+x &+& 4y &+& 3z &=& 0 \\
+3x &+& 12y &+& 9z &=& 0
+\end{array}
+\end{equation*}
+Temukan solusi dasar sistem ini.
+\end{example}
+
+\begin{solution}
+Matriks diperbesar sistem ini dan \rref \;yang dihasilkan adalah
+\begin{equation*}
+\leftB
+\begin{array}{rrr|r}
+1 & 4 & 3 & 0 \\
+3 & 12 & 9 & 0
+\end{array}
+\rightB
+\rightarrow \cdots \rightarrow
+\leftB
+\begin{array}{rrr|r}
+1 & 4 & 3 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\rightB
+\end{equation*}
+Jika ditulis sebagai persamaan, sistem ini diberikan oleh
+\begin{equation*}
+x + 4y +3z=0
+\end{equation*}
+Perhatikan bahwa hanya $x$ yang bersesuaian dengan kolom pivot. Dalam hal ini, kita akan memiliki dua parameter,
+satu untuk $y$ dan satu untuk $z$. Misalkan $y = s$ dan $z=t$ untuk sembarang bilangan $s$ dan $t$. Maka solusi kita menjadi
+\begin{equation*}
+\begin{array}{c}
+x = -4s - 3t \\
+y = s \\
+z = t
+\end{array}
+\end{equation*}
+yang dapat ditulis sebagai
+\begin{equation*}
+\leftB
+\begin{array}{r}
+x\\
+y\\
+z
+\end{array}
+\rightB
+=
+\leftB
+\begin{array}{r}
+0\\
+0\\
+0
+\end{array}
+\rightB
++
+s
+\leftB
+\begin{array}{r}
+-4 \\
+1 \\
+0
+\end{array}
+\rightB
++ 
+t
+\leftB
+\begin{array}{r}
+-3 \\
+0 \\
+1
+\end{array}
+\rightB
+\end{equation*}
+Di sini Anda dapat melihat bahwa kita memiliki dua kolom koefisien yang bersesuaian dengan parameter, yaitu satu untuk $s$ dan satu untuk $t$.
+Oleh karena itu, sistem ini memiliki dua solusi dasar, yaitu
+\begin{equation*}
+X_1=
+\leftB
+\begin{array}{r}
+-4 \\
+1 \\
+0
+\end{array}
+\rightB, X_2 = \leftB
+\begin{array}{r}
+-3 \\
+0 \\
+1
+\end{array}
+\rightB
+\end{equation*} 
+\end{solution}
+
+Sekarang kita menyajikan definisi baru.
+
+\begin{definition}{Kombinasi Linear}\label{def:linearcombination-columns}
+Misalkan $X_1,\cdots ,X_n,V$ merupakan matriks kolom. Maka
+$V$ disebut \textbf{kombinasi linear}
+\index{kombinasi linear}dari kolom-kolom $X_1,\cdots , X_n $
+jika terdapat skalar $a_{1},\cdots ,a_{n}$ sedemikian
+sehingga
+\begin{equation*}
+V = a_1 X_1 + \cdots + a_n X_n
+\end{equation*}
+\end{definition}
+
+Salah satu hasil penting bagian ini adalah bahwa kombinasi linear dari solusi-solusi dasar kembali merupakan solusi sistem.
+Yang lebih menarik lagi, setiap solusi dapat ditulis sebagai kombinasi linear dari solusi-solusi tersebut.
+Oleh karena itu, jika kita mengambil kombinasi linear dari kedua solusi pada Contoh \ref{exa:basicsolutions},
+hasilnya juga merupakan solusi.
+Sebagai contoh, kita dapat mengambil kombinasi linear berikut
+\begin{equation*}
+3
+\leftB
+\begin{array}{r}
+-4 \\
+1 \\
+0
+\end{array}
+\rightB
++
+2
+\leftB
+\begin{array}{r}
+-3 \\
+0\\
+1
+\end{array}
+\rightB
+ =
+\leftB
+\begin{array}{r}
+-18 \\
+3 \\
+2
+\end{array}
+\rightB
+\end{equation*}
+Luangkan waktu sejenak untuk memverifikasi bahwa
+\begin{equation*}
+\leftB
+\begin{array}{r}
+x \\
+y \\
+z
+\end{array}
+\rightB
+=
+\leftB
+\begin{array}{r}
+-18 \\
+3 \\
+2
+\end{array}
+\rightB
+\end{equation*}
+memang merupakan solusi sistem pada Contoh \ref{exa:basicsolutions}.
+
+Cara lain untuk memperoleh lebih banyak informasi mengenai solusi
+suatu sistem homogen adalah dengan memperhatikan \textbf{rank} matriks koefisien yang bersesuaian. Sekarang kita
+mendefinisikan arti rank suatu matriks.
+
+\begin{definition}{Rank Suatu Matriks}\label{def:rank}
+Misalkan $A$ merupakan suatu matriks dan perhatikan sembarang \ef \;dari $A$.
+Maka banyaknya $r$ entri utama $A$ tidak bergantung pada \ef \;yang Anda pilih dan disebut \textbf{rank} \index{matriks!rank} dari $A$. Kita menyatakannya dengan $\func{rank}(A)$.
+\end{definition}
+
+Dengan cara serupa, kita dapat menghitung banyaknya posisi pivot (atau kolom pivot)
+untuk menentukan rank $A$.
+
+\begin{example}{Menentukan Rank Suatu Matriks}\label{exa:rankofamatrix}
+Perhatikan matriks
+\begin{equation*}
+\leftB
+\begin{array}{rrr}
+1 & 2 & 3 \\
+1 & 5 & 9 \\
+2 & 4 & 6 
+\end{array}
+\rightB
+\end{equation*}
+Berapakah rank-nya?
+\end{example}
+
+\begin{solution}
+Pertama, kita perlu menemukan \rref \;dari $A$. Dengan algoritme yang biasa, kita memperoleh
+\begin{equation*}
+\leftB
+\begin{array}{rrr}
+\fbox{1} & 0 & -1 \\
+0 & \fbox{1} & 2 \\
+0 & 0 & 0
+\end{array}
+\rightB
+\end{equation*}
+Di sini kita memiliki dua entri utama, atau dua posisi pivot, yang diperlihatkan dalam kotak di atas. Rank $A$ adalah $r = 2.$
+\end{solution}
+
+Perhatikan bahwa kita akan memperoleh jawaban yang sama jika kita menemukan \ef \;dari $A$, bukan \rref-nya.
+
+Misalkan kita memiliki suatu sistem homogen yang terdiri atas $m$ persamaan dalam $n$ variabel, dan misalkan
+$n > m$. Dari pembahasan di atas, kita mengetahui bahwa sistem ini memiliki tak berhingga banyak solusi. Jika kita memperhatikan rank matriks
+ koefisien sistem ini, kita dapat memperoleh lebih banyak informasi mengenai solusinya. Perhatikan bahwa kita hanya melihat matriks koefisien, bukan seluruh
+matriks diperbesar.
+
+\begin{theorem}{Rank dan Solusi Sistem Homogen}\label{thm:rankhomogeneoussolutions}
+Misalkan $A$ merupakan matriks koefisien $m \times n$ yang bersesuaian dengan suatu sistem persamaan homogen, dan misalkan $A$ memiliki rank $r$.
+Maka solusi sistem yang bersesuaian memiliki $n-r$ parameter.
+\end{theorem}
+
+Perhatikan Contoh \ref{exa:basicsolutions} di atas dalam konteks
+teorema ini. Sistem dalam contoh tersebut memiliki $m = 2$ persamaan dalam $n =
+3$ variabel. Pertama, karena $n>m$, kita mengetahui bahwa sistem tersebut memiliki
+solusi nontrivial, dan karena itu memiliki tak berhingga banyak solusi. Hal ini
+memberi tahu kita bahwa solusi akan memuat sedikitnya satu parameter. Rank
+matriks koefisien dapat memberikan lebih banyak informasi mengenai
+solusi. Rank matriks koefisien sistem tersebut adalah $1$ karena
+matriks itu memiliki satu entri utama dalam \ef. Teorema \ref{thm:rankhomogeneoussolutions} memberi tahu kita bahwa
+solusi akan memiliki $n-r = 3-1 = 2$ parameter. Anda dapat memeriksa bahwa hal ini
+benar dalam solusi Contoh \ref{exa:basicsolutions}.
+
+Perhatikan bahwa jika $n=m$ atau $n<m$, sistem dapat memiliki solusi unik (yang merupakan solusi trivial) atau tak berhingga banyak solusi.
+
+Di sini kita tidak terbatas pada sistem persamaan homogen. Rank suatu matriks dapat digunakan untuk memperoleh informasi mengenai
+solusi sembarang sistem persamaan linear.
+Pada bagian sebelumnya, kita membahas bahwa suatu sistem persamaan dapat tidak memiliki solusi, memiliki solusi unik, atau memiliki tak berhingga banyak solusi.
+Misalkan sistem tersebut konsisten, baik homogen maupun tidak. Teorema berikut memberi tahu kita
+cara menggunakan rank untuk mengetahui jenis solusi yang kita miliki.
+
+\begin{theorem}{Rank dan Solusi Sistem Persamaan Konsisten}\label{thm:rankconsistentsolutions}
+Misalkan $A$ merupakan matriks diperbesar $m \times \left( n+1 \right) $ yang bersesuaian dengan suatu sistem persamaan konsisten dalam $n$ variabel, dan misalkan $A$ memiliki rank $r$.
+Maka
+\begin{enumerate}
+\item sistem memiliki solusi unik jika $r = n $
+\item sistem memiliki tak berhingga banyak solusi jika $r < n$
+\end{enumerate}
+\end{theorem}
+
+Kita tidak akan menyajikan pembuktian formal untuk hasil ini, tetapi perhatikan pembahasan berikut.
+
+\begin{enumerate}
+\item {\em Tidak Ada Solusi \em}
+Teorema di atas mengasumsikan bahwa sistem tersebut konsisten, yaitu bahwa sistem memiliki solusi. Ternyata matriks
+diperbesar dari suatu sistem tanpa solusi dapat memiliki sembarang rank $r$ asalkan $r>1$. Oleh karena itu, kita harus mengetahui
+bahwa sistem tersebut konsisten agar dapat menggunakan teorema ini.
+
+\item {\em Solusi Unik \em}
+Misalkan $r=n$. Maka terdapat posisi pivot pada setiap kolom matriks koefisien $A$. Jadi, terdapat solusi unik.
+
+\item {\em Tak Berhingga Banyak Solusi \em}
+Misalkan $r<n$. Maka terdapat tak berhingga banyak solusi. Banyaknya posisi pivot (dan karena itu banyaknya entri utama) lebih kecil daripada banyaknya kolom, yang berarti bahwa tidak setiap kolom merupakan kolom pivot. Kolom-kolom yang tidak merupakan kolom pivot bersesuaian dengan parameter. Bahkan,
+dalam hal ini kita memiliki $n-r$ parameter.
+\end{enumerate}

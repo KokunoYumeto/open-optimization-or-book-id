@@ -1,0 +1,116 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "cases": {
+    "airfare": {
+      "edges": [["Seattle", "Honolulu", 159], ["Seattle", "London", 370], ["Seattle", "Moscow", 654], ["Seattle", "Cairo", 684], ["Honolulu", "London", 830], ["Honolulu", "Moscow", 854], ["Honolulu", "Cairo", 801], ["London", "Moscow", 245], ["London", "Cairo", 323], ["Moscow", "Cairo", 329]],
+      "unit": "USD"
+    },
+    "buildings": {
+      "edges": [["C", "D", 56], ["C", "A", 51], ["C", "B", 60], ["D", "B", 43], ["D", "A", 47], ["D", "E", 58], ["B", "A", 59], ["B", "E", 52], ["A", "E", 44], ["C", "E", 40]],
+      "scale": "bobot integer = 10 x ribuan dolar"
+    },
+    "connectivity_five": {
+      "graphs": [
+        [["a", "b"], ["b", "d"], ["c", "d"], ["b", "e"]],
+        [["b", "d"], ["b", "e"], ["d", "e"], ["a", "c"]],
+        [["a", "b"], ["b", "d"], ["c", "d"], ["b", "e"], ["d", "e"], ["a", "c"]]
+      ],
+      "nodes": ["a", "b", "c", "d", "e"]
+    },
+    "connectivity_eight": {
+      "graphs": [
+        [["a", "b"], ["b", "c"], ["d", "e"], ["f", "g"], ["g", "h"]],
+        [["a", "b"], ["b", "e"], ["d", "e"], ["d", "f"], ["g", "h"], ["e", "h"], ["c", "e"]],
+        [["a", "b"], ["b", "e"], ["e", "d"], ["d", "f"], ["f", "a"], ["g", "h"], ["h", "c"]]
+      ],
+      "nodes": ["a", "b", "c", "d", "e", "f", "g", "h"]
+    },
+    "dallas": {
+      "edges": [["Fort Worth", "Plano", 54], ["Fort Worth", "Mesquite", 52], ["Fort Worth", "Arlington", 19], ["Fort Worth", "Denton", 42], ["Plano", "Mesquite", 38], ["Plano", "Arlington", 53], ["Plano", "Denton", 41], ["Mesquite", "Arlington", 43], ["Mesquite", "Denton", 56], ["Arlington", "Denton", 50]],
+      "unit": "menit"
+    },
+    "degree_first": {
+      "edges": [["A", "B"], ["B", "D"], ["B", "C"], ["C", "D"], ["D", "E"], ["E", "B"]],
+      "nodes": ["A", "B", "C", "D", "E"]
+    },
+    "degree_second": {
+      "edges": [["A", "B"], ["A", "C"], ["B", "C"], ["B", "D"], ["C", "E"]],
+      "nodes": ["A", "B", "C", "D", "E"]
+    },
+    "eurail": {
+      "edges": [["Paris", "Amsterdam", 85], ["Paris", "Lyon", 115], ["Lyon", "Bern", 230], ["Bern", "Frankfurt", 235], ["Frankfurt", "München", 190], ["Frankfurt", "Amsterdam", 240], ["München", "Berlin", 345], ["Berlin", "Amsterdam", 370]],
+      "unit": "menit"
+    },
+    "in_chapter_mst": {
+      "edges": [["A", "B", 11], ["A", "C", 33], ["A", "E", 14], ["A", "F", 41], ["A", "G", 15], ["B", "C", 25], ["B", "E", 43], ["B", "F", 23], ["B", "G", 13], ["C", "E", 17], ["C", "F", 37], ["C", "G", 36], ["E", "F", 16], ["E", "G", 45], ["F", "G", 19]],
+      "unit": "bobot"
+    },
+    "in_chapter_shortest": {
+      "edges": [["A", "B", 1], ["A", "C", 4], ["B", "D", 3], ["C", "D", 2], ["D", "E", 2], ["D", "F", 4], ["E", "G", 7], ["F", "G", 6], ["B", "E", 6], ["C", "F", 5], ["E", "F", 2]],
+      "unit": "bobot"
+    },
+    "negative_dijkstra_counterexample": {
+      "directed": true,
+      "edges": [["A", "B", 2], ["A", "C", 3], ["C", "B", -2]]
+    },
+    "social": {
+      "edges": [["A", "B"], ["A", "C"], ["A", "F"], ["A", "G"], ["B", "C"], ["B", "E"], ["C", "E"], ["D", "E"], ["D", "I"], ["E", "G"], ["E", "I"], ["F", "H"], ["F", "I"], ["G", "H"], ["H", "I"]],
+      "nodes": ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+    },
+    "spelling": {
+      "center": "moke",
+      "costs": {"deletion": 2, "insertion": 2, "substitution": 1},
+      "words": ["moke", "make", "mike", "mode", "mole", "more", "mote", "move", "coke", "joke", "poke", "woke", "yoke", "toke", "smoke"]
+    },
+    "virginia": {
+      "edges": [["Bristol", "Roanoke", 145], ["Roanoke", "Lynchburg", 55], ["Roanoke", "Charlottesville", 120], ["Lynchburg", "Charlottesville", 70], ["Lynchburg", "Richmond", 125], ["Charlottesville", "Washington", 140], ["Richmond", "Washington", 115]],
+      "unit": "menit"
+    }
+  },
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "exercise_order": ["14.1", "14.2", "14.3", "14.4", "14.skill.1", "14.skill.2", "14.skill.3", "14.skill.4", "14.skill.5", "14.skill.6", "14.skill.7", "14.skill.8", "14.skill.9", "14.skill.10", "14.skill.11", "14.skill.12", "14.skill.13", "14.skill.14", "14.concept.15", "14.concept.16", "14.concept.17", "14.exploration.18", "14.exploration.19"],
+  "exercises": {
+    "14.1": {"book_label": "ex:kruskal_exercise", "case": "in_chapter_mst", "method": "kruskal_and_exhaustive_certificate", "title": "Pohon Merentang Biaya Minimum (Kruskal)"},
+    "14.2": {"book_label": null, "case": "in_chapter_mst", "method": "stdlib_replacement_for_networkx", "title": "Pendamping Python Terbuka"},
+    "14.3": {"book_label": "ex:prim_exercise", "case": "in_chapter_mst", "method": "prim_and_kruskal_crosscheck", "title": "Algoritme Prim"},
+    "14.4": {"book_label": "ex:shortest-path", "case": "in_chapter_shortest", "method": "dijkstra_and_bellman_ford_crosscheck", "title": "Masalah Lintasan Terpendek"},
+    "14.skill.1": {"book_label": null, "method": "image_dependent_rubric", "title": "Graf Petugas Pos"},
+    "14.skill.2": {"book_label": null, "method": "image_dependent_multigraph_rubric", "title": "Graf Tujuh Jembatan"},
+    "14.skill.3": {"book_label": null, "case": "dallas", "method": "weighted_graph_construction", "title": "Graf Waktu Berkendara Dallas"},
+    "14.skill.4": {"book_label": null, "case": "airfare", "method": "weighted_graph_construction", "title": "Graf Harga Tiket Pesawat"},
+    "14.skill.5": {"book_label": null, "case": "degree_first", "method": "degree_and_handshake_certificate", "title": "Derajat pada Graf Pertama"},
+    "14.skill.6": {"book_label": null, "case": "degree_second", "method": "degree_and_handshake_certificate", "title": "Derajat pada Graf Kedua"},
+    "14.skill.7": {"book_label": null, "case": "connectivity_five", "method": "connected_components", "title": "Keterhubungan Graf Lima Simpul"},
+    "14.skill.8": {"book_label": null, "case": "connectivity_eight", "method": "connected_components", "title": "Keterhubungan Graf Delapan Simpul"},
+    "14.skill.9": {"book_label": "ex:dijkstra-eurail", "case": "eurail", "method": "dijkstra_and_bellman_ford_crosscheck", "title": "Eurail: Bern ke Berlin"},
+    "14.skill.10": {"book_label": null, "case": "eurail", "method": "dijkstra_and_bellman_ford_crosscheck", "title": "Eurail: Paris ke München"},
+    "14.skill.11": {"book_label": null, "case": "dallas", "method": "kruskal_and_exhaustive_certificate", "title": "MST Graf Dallas"},
+    "14.skill.12": {"book_label": "ex:mst-sonet-ring", "case": "buildings", "method": "kruskal_and_exhaustive_certificate", "title": "MST Lima Bangunan"},
+    "14.skill.13": {"book_label": "ex:dijkstra-warmup-rail", "case": "virginia", "method": "dijkstra_and_bellman_ford_crosscheck", "title": "Kereta Virginia"},
+    "14.skill.14": {"book_label": "ex:kruskal-airfare", "case": "airfare", "method": "kruskal_and_exhaustive_certificate", "title": "MST Harga Tiket Pesawat"},
+    "14.concept.15": {"book_label": null, "method": "handshake_lemma_certificate", "title": "Simpul Berderajat Ganjil"},
+    "14.concept.16": {"book_label": "ex:mst-greedy", "method": "exchange_argument_and_negative_edge_check", "title": "Mengapa Kruskal Bersifat Optimal"},
+    "14.concept.17": {"book_label": "ex:dijkstra-nonneg", "case": "negative_dijkstra_counterexample", "method": "negative_counterexample_and_bellman_ford", "title": "Mengapa Dijkstra Memerlukan Bobot Tak Negatif"},
+    "14.exploration.18": {"book_label": null, "case": "social", "method": "all_unweighted_shortest_paths_and_rubric", "title": "Jejaring Sosial"},
+    "14.exploration.19": {"book_label": null, "case": "spelling", "method": "levenshtein_graph_weighted_example_and_rubric", "title": "Jarak Levenshtein"}
+  },
+  "lab_id": "o018.ch14.graph-algorithms",
+  "learning_checkpoint": {"case": "airfare", "id": "lc:graph-5cities", "title": "Graf harga tiket pesawat lima kota"},
+  "provenance": {
+    "source_files": [
+      {"bytes": 153603, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex", "role": "authority_chapter", "sha256": "3dd0d46fdebb5794dd3597b387fd116cd5c12bcc1320453f0b053c8a3875b2bf"},
+      {"bytes": 20192, "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch14.tex", "role": "authority_manual", "sha256": "6b16c6ca1aac795f83c74fa5f128926b1edbac94b7dc086dc81067df5f6945e8"},
+      {"bytes": 160224, "path": "source/Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex", "role": "translated_chapter", "sha256": "4353255f2fe5ddc304a57e9f38be20d54de2b1d2f365fbb78166a5d33e74482a"},
+      {"bytes": 22169, "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch14.tex", "role": "translated_manual", "sha256": "ce143e1c44694c9d47d00870fc31d1e63c70c1fe9d679e32593bc5eef9b7689a"}
+    ]
+  },
+  "schema_version": "1.0.0",
+  "source_notes": [
+    {"id": "NOTE-CH14-BERN-TIME", "status": "corrected_in_id_source", "text": "Saksi hulu menampilkan Bern--Frankfurt sebagai 3.55; edisi id-ID memakai 3:55 sesuai solusi terpilih."},
+    {"id": "NOTE-CH14-LOWRES-EXERCISES", "status": "preserved_with_rubric", "text": "Keterampilan 1--2 bergantung pada raster beresolusi rendah; rincian konstruksi tidak dipaksakan melampaui yang terlihat."},
+    {"id": "NOTE-CH14-PRIM-FLOAT", "status": "preserved_and_disambiguated", "text": "Gambar Prim tujuh simpul setelah Latihan 14.3 bukan graf latihan enam simpul; lab memakai data latihan yang eksplisit."},
+    {"id": "NOTE-CH14-HARDCODED-REFS", "status": "recorded", "text": "Keterampilan 11 dan 14 merujuk nomor soal secara manual, sehingga rentan terhadap penyisipan atau pengurutan ulang."}
+  ],
+  "unresolved_exercises": []
+}

@@ -1,0 +1,312 @@
+{
+  "artifacts": [
+    {
+      "bytes": 3329,
+      "path": "ATTRIBUTION.md",
+      "sha256": "2db7ad010e32f75d4b3da7c34f56b952fad089e16ffc01302a43714fd0f628fd"
+    },
+    {
+      "bytes": 1091,
+      "path": "LICENSE-CODE.txt",
+      "sha256": "3af65c07da546f32647333f84eb682f040ed45cabfa14ce5e1650f6a67f00ceb"
+    },
+    {
+      "bytes": 3501,
+      "path": "README.md",
+      "sha256": "cf36db828493aeb130ab275cb677414e8d9e91c21b217e9e0a0bc75482f861c1"
+    },
+    {
+      "bytes": 40532,
+      "path": "data.json",
+      "sha256": "debeaeecf9d0f4eab2a30ee0a4a4e02bdbfdedb7919a7f73d538b25b80233e2f"
+    },
+    {
+      "bytes": 4925,
+      "path": "expected-results.json",
+      "sha256": "3b1557e996af699c471ce7f25a96023bc5191a681746d62a6e4520a55a3ec3af"
+    },
+    {
+      "bytes": 19699,
+      "path": "model.py",
+      "sha256": "7d7520e981cbd6800659d123041b71e986dbc97d9d1e3217845fbb3f9b7ab96c"
+    },
+    {
+      "bytes": 15449,
+      "path": "plot_svg.py",
+      "sha256": "4573b4e0e2a8b4583fbb9178b3259c555fe82620567361cf47dca70d008de3d1"
+    },
+    {
+      "bytes": 30221,
+      "path": "results.json",
+      "sha256": "6d019b95409f1c1d78200a49ee9cf42754e5e698ad15d1eddac699ec23806e40"
+    },
+    {
+      "bytes": 4485,
+      "path": "run_lab.py",
+      "sha256": "8e2642945fd57de8de56fa2b5db594518f0acb834f1091a196953b52fc2c89b1"
+    },
+    {
+      "bytes": 16237,
+      "path": "test_models.py",
+      "sha256": "9aa934ce3e305a55b798e6ea96c7b26a2d0aecbcb3289ba0b885808d7e233fce"
+    },
+    {
+      "bytes": 1338,
+      "path": "verification.log",
+      "sha256": "008ebeb116a7478a4db91ddd9a4cbfe5b4ab6ccff7b11f95705bc4dc3011a8b7"
+    },
+    {
+      "bytes": 8375,
+      "path": "verify_receipt.py",
+      "sha256": "fa8389919cdf8d9595fddef877194c8d052bcafa27687d23ee639234317d4f59"
+    },
+    {
+      "bytes": 3689,
+      "path": "plots/ex05_01_region.svg",
+      "sha256": "97c43c38d68d5b477f468961be1a3aa66d3ec166154e781a5828125cdcbb057e"
+    },
+    {
+      "bytes": 3709,
+      "path": "plots/ex05_02_region.svg",
+      "sha256": "10bc71db3fd737be48274bf24629f26610c471d401dfc84b702a6f1d8c42f785"
+    },
+    {
+      "bytes": 3804,
+      "path": "plots/ex05_03_original.svg",
+      "sha256": "5e70613ff5550fbbd49f4b2e419e0338f29bd116d87a113953169ad62e6ce85e"
+    },
+    {
+      "bytes": 3702,
+      "path": "plots/ex05_04_original.svg",
+      "sha256": "fd24872eac462f4d453ae58628a9cbcfb06372b7073cba11cbdd84dc8012cb9f"
+    },
+    {
+      "bytes": 4020,
+      "path": "plots/ex05_05_original.svg",
+      "sha256": "089a82e264fb1a01c92853e06fb6ffb8ba0e5ec68e6a1ba28e97d5bc040e2b50"
+    },
+    {
+      "bytes": 3565,
+      "path": "plots/ex05_06_original.svg",
+      "sha256": "2df38efb0d89cca29634d0c5fb35d90721b98cca7ba00e8a93d310237434c35c"
+    },
+    {
+      "bytes": 4026,
+      "path": "plots/ex05_07_original.svg",
+      "sha256": "4569a2f6816f744511e0987b348309a98e1c4595514b6f0d50c1ca6113804a4c"
+    },
+    {
+      "bytes": 3917,
+      "path": "plots/ex05_08_original.svg",
+      "sha256": "5224cfa1ab56752c6184275846c66e22db3988fe11eb231efaf593edcaa5baa4"
+    },
+    {
+      "bytes": 3880,
+      "path": "plots/ex05_09_as_written.svg",
+      "sha256": "df27872e6995108057f3a0634ba6ca606282220e0d6f9667e6e3e78bb3694454"
+    },
+    {
+      "bytes": 3961,
+      "path": "plots/ex05_12_manual_construction.svg",
+      "sha256": "29310a982d69a33b26300a99f3d5013f6066bab60b8892fba7b77b95033b3cd1"
+    },
+    {
+      "bytes": 3748,
+      "path": "plots/ex05_13_lemon_edge.svg",
+      "sha256": "53f1c0a755043f26e0e1294eb10766eb5ab52b82508ddff49a5dba55a82594a1"
+    },
+    {
+      "bytes": 3718,
+      "path": "plots/ex05_13_water_edge.svg",
+      "sha256": "e46e7614209a9286d429502d7a64ad368d93fc78e65614fb451f03109a11f7f0"
+    },
+    {
+      "bytes": 3976,
+      "path": "plots/ex05_14_manual_construction.svg",
+      "sha256": "93dd40df51b933777f07c0513e1d36e827dc6678bd73742e834a98d72fbe6673"
+    },
+    {
+      "bytes": 3917,
+      "path": "plots/ex05_15_original.svg",
+      "sha256": "a6aded8ef9405513994b760268f10606893a71b33d0f339d6d573d1cad0a596a"
+    },
+    {
+      "bytes": 4216,
+      "path": "plots/ex05_16_maximum.svg",
+      "sha256": "ef9f87503462d7d57ffe006446c47b39be99723efe626af2bf6571f821abb0f4"
+    },
+    {
+      "bytes": 4272,
+      "path": "plots/ex05_16_minimum.svg",
+      "sha256": "dad461ca3534e2f4356d2e7ba3ac9cde36d0b70f24a70df6e40ebe862066108f"
+    },
+    {
+      "bytes": 3864,
+      "path": "plots/ex05_17_edge_tie.svg",
+      "sha256": "b6f564d06cf07710203ddb06128e160fc86e0d7d77082aff0182ac16449052ab"
+    },
+    {
+      "bytes": 3964,
+      "path": "plots/ex05_17_unique_after_change.svg",
+      "sha256": "8a4ac4b30e6b4d381d37b7e9144b63d19560b2e359fe00139fda1fed5a5dffec"
+    }
+  ],
+  "bootstrap": {
+    "environment_disposition": "task_local_disposable_after_replay",
+    "offline_conda_archives": [
+      {
+        "bytes": 56115,
+        "path": "conda-cache/bzip2-1.0.8-h0ad9c76_9.conda",
+        "sha256": "76dfb71df5e8d1c4eded2dbb5ba15bb8fb2e2b0fe42d94145d5eed4c75c35902"
+      },
+      {
+        "bytes": 71280,
+        "path": "conda-cache/libexpat-2.8.1-hac47afa_0.conda",
+        "sha256": "a65e518c20d1482182bc0f1f6dd5d992f25ca44c3b32307be39ae8310db8f060"
+      },
+      {
+        "bytes": 45831,
+        "path": "conda-cache/libffi-3.5.2-h3d046cb_0.conda",
+        "sha256": "59d01f2dfa8b77491b5888a5ab88ff4e1574c9359f7e229da254cdfe27ddc190"
+      },
+      {
+        "bytes": 106486,
+        "path": "conda-cache/liblzma-5.8.3-hfd05255_0.conda",
+        "sha256": "d636d1a25234063642f9c531a7bb58d84c1c496411280a36ea000bd122f078f1"
+      },
+      {
+        "bytes": 1313306,
+        "path": "conda-cache/libsqlite-3.53.2-hf5d6505_0.conda",
+        "sha256": "4cd81319dcc58fb758da20a6d5595950c021adc2c18d7cffeadcfb590529629f"
+      },
+      {
+        "bytes": 65950,
+        "path": "conda-cache/libzlib-1.3.1-h02ab6af_0.conda",
+        "sha256": "0478d0e08e9737e6680343cd26380d8faf4f038bb59170818868cd2fb69e5481"
+      },
+      {
+        "bytes": 9410183,
+        "path": "conda-cache/openssl-3.6.2-hf411b9b_0.conda",
+        "sha256": "feb5815125c60f2be4a411e532db1ed1cd2d7261a6a43c54cb6ae90724e2e154"
+      },
+      {
+        "bytes": 15840187,
+        "path": "conda-cache/python-3.12.13-h0159041_0_cpython.conda",
+        "sha256": "a02b446d8b7b167b61733a3de3be5de1342250403e72a63b18dac89e99e6180e"
+      },
+      {
+        "bytes": 3526350,
+        "path": "conda-cache/tk-8.6.13-h6ed50ae_3.conda",
+        "sha256": "0e79810fae28f3b69fe7391b0d43f5474d6bd91d451d5f2bde02f55ae481d5e3"
+      },
+      {
+        "bytes": 119135,
+        "path": "conda-cache/tzdata-2025c-hc9c84f9_1.conda",
+        "sha256": "1d30098909076af33a35017eed6f2953af1c769e273a0626a04722ac4acaba3c"
+      },
+      {
+        "bytes": 694692,
+        "path": "conda-cache/ucrt-10.0.26100.0-h57928b3_0.conda",
+        "sha256": "3005729dce6f3d3f5ec91dfc49fc75a0095f9cd23bab49efb899657297ac91a5"
+      },
+      {
+        "bytes": 19506,
+        "path": "conda-cache/vc-14.3-h2df5915_10.conda",
+        "sha256": "d427b27e553a5caa78284a995ff9c3720b0f213a0e650fe9d3b54b4b4a65f241"
+      },
+      {
+        "bytes": 845189,
+        "path": "conda-cache/vc14_runtime-14.44.35208-h4927774_10.conda",
+        "sha256": "747f5d55439e327d3b035c0078be59991ffa5683542fbcecbcc6abcfff50588a"
+      }
+    ],
+    "package_cache_at_verification": "<user-home>/miniconda3/pkgs",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13"
+  },
+  "content_license": "CC-BY-SA-4.0",
+  "lab_id": "o018.ch05.graphical-lp",
+  "provenance": {
+    "authority_branch": "master",
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "source_files": [
+      {
+        "bytes": 62475,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch02-modeling/Section2.tex",
+        "role": "authority_chapter",
+        "sha256": "9a095760e4983e71bc2cf840142aea3f1121f2236ff45f0248d3ca13970281d1"
+      },
+      {
+        "bytes": 21346,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch05.tex",
+        "role": "authority_manual",
+        "sha256": "e58a3b4fca24c1bc765b22c2db18b125e92731dd759bfd706d4028dd8d2eadaa"
+      },
+      {
+        "bytes": 65226,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch02-modeling/Section2.tex",
+        "role": "translated_chapter",
+        "sha256": "35c058e6af26b699a1cca70906f9ac41da804940b668101613f6994b9d8b00ff"
+      },
+      {
+        "bytes": 22684,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch05.tex",
+        "role": "translated_manual",
+        "sha256": "ee6db2bb15936c83159d0e97eafb19dc34e4914dd379bd774cf681fb961e640c"
+      }
+    ]
+  },
+  "runtime": {
+    "closure_files": [
+      {
+        "bytes": 2313,
+        "path": "authority/runtime-licenses/MANIFEST.csv",
+        "sha256": "71451702ae6d014eb1e59fbd8ac950fa9f26b0bab47661817b5fe65daf41b329"
+      },
+      {
+        "bytes": 407,
+        "path": "authority/runtime-wheels/MANIFEST.csv",
+        "sha256": "326fc250a9b3b17f523a67672f1f38eae48d4f868239c5eaa273644ab0ec6e04"
+      },
+      {
+        "bytes": 602,
+        "path": "source/o018-open-solver-lab/requirements.lock",
+        "sha256": "2172e05818e66089772851294c4143497616b17bbe449e1a38f5aeb7a54418a0"
+      },
+      {
+        "bytes": 1952,
+        "path": "source/o018-open-solver-lab/runtime-receipt.json",
+        "sha256": "627cc1a3cbeec61635f61adff047478616e8d1de59161d632acf15372467fe7d"
+      }
+    ],
+    "highspy": "1.15.1",
+    "numpy": "2.5.2",
+    "pyomo": "6.10.1",
+    "solver_interface": "appsi_highs"
+  },
+  "schema_version": "1.0.0",
+  "verification": {
+    "executable_exercise_count": 16,
+    "exercise_count": 17,
+    "maximum_solver_violation": 0.0,
+    "parameter_required_count": 1,
+    "plot_accessibility_contract": {
+      "generated_svg_count": 18,
+      "language": "id-ID",
+      "required_svg_elements": [
+        "title",
+        "desc"
+      ],
+      "structured_alternatives": true
+    },
+    "plots_combined_sha256": "aabb41ed429f4d2fe86f84812a309a427362fcf137fbe447691d8f070fb21764",
+    "results_bytes": 30221,
+    "results_regeneration_runs": 2,
+    "results_sha256": "6d019b95409f1c1d78200a49ee9cf42754e5e698ad15d1eddac699ec23806e40",
+    "scenario_solve_count": 19,
+    "tests_failed_per_run": 0,
+    "tests_passed_per_run": 18,
+    "unittest_runs": 2,
+    "verification_date": "2026-08-22"
+  }
+}

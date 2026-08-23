@@ -1,0 +1,348 @@
+% ============================================================================
+% Chapter 9 solutions: Simplex Method in Tableau Form
+% Book source: part1-linear-programming/ch06-simplex/simplex-tableau.tex
+% Exercise numbering follows \begin{ex} order in that file (12 exercises).
+% All pivots and optima verified with exact-fraction basis algebra and
+% scipy.optimize.linprog, July 2026.
+% ============================================================================
+\section{Bab 9: Metode Simpleks dalam Bentuk Tableau}
+
+Bab 9 menyajikan kembali metode simpleks sebagai operasi baris pada satu
+tableau. Kedua belas latihannya mencakup pembacaan tableau (9.1 sampai 9.3),
+pelaksanaan pivot dan penyelesaian lengkap, termasuk penyusunan Big-M (9.4 sampai
+9.7), konvensi tanda dan korespondensi tableau--kamus (9.8, 9.9), pengenalan
+ketakterbatasan dan ketaklayakan dari sebuah tableau (9.10, 9.11), serta satu
+soal tantangan yang mengubah tableau tak terbatas menjadi sinar sertifikat yang
+eksplisit (9.12). Ingat selalu konvensi tanda bab ini: baris $z$ menyimpan
+$z - \c^\top\x = 0$, sehingga variabel masuk memiliki entri baris $z$ yang
+\emph{negatif}, dan tableau optimal ketika setiap entri baris $z$ tak negatif.
+Semua aritmetika di bawah ini diverifikasi dengan aljabar basis menggunakan
+pecahan eksak, dan setiap optimum dikonfirmasi dengan pemecah program linier. Solusi
+pilihan dalam buku tersedia untuk 9.2, 9.3, 9.5, dan 9.6 serta direproduksi di
+sini.
+
+\exsol{9.1}{Membaca tableau di tengah proses penyelesaian}{1}
+
+\textbf{(a)} Variabel basis adalah label baris: $s_1, s_2, y$. Variabel
+nonbasis adalah $x$ dan $s_3$.
+
+\textbf{(b)} Tetapkan $x = s_3 = 0$, lalu baca kolom RHS:
+\[
+x = 0,\quad y = 7,\quad s_1 = 2,\quad s_2 = 9,\quad s_3 = 0,
+\qquad z = 21.
+\]
+
+\textbf{(c)} Entri baris $z$ untuk variabel nonbasis adalah
+$-\tfrac12$ (untuk $x$) dan $\tfrac32$ (untuk $s_3$). Dalam konvensi bab
+ini, keduanya adalah biaya tereduksi yang dicatat; karena tandanya dibalik saat
+disimpan, menaikkan $x$ satu unit akan \emph{menaikkan} $z$ sebesar $\tfrac12$,
+sedangkan menaikkan $s_3$ akan menurunkannya sebesar $\tfrac32$.
+
+\textbf{(d)} Belum optimal: baris $z$ memiliki entri negatif $-\tfrac12$
+di bawah $x$, sehingga $x$ masuk berikutnya. (Uji rasio sesudahnya memberikan
+$2/\tfrac12 = 4$, $9/\tfrac32 = 6$, $7/\tfrac12 = 14$, sehingga $s_1$ akan
+keluar dan menghasilkan tableau optimal dengan $z = 23$.)
+
+\exsol{9.2}{Membaca tableau}{1}
+
+(Solusi pilihan dalam buku, telah diverifikasi.) Variabel basis adalah label
+baris $x_1$ dan $x_2$; variabel nonbasis adalah $s_1$ dan $s_2$. Menetapkan
+variabel nonbasis sama dengan nol dan membaca kolom RHS memberikan solusi basis
+layak
+\[
+x_1 = 6, \quad x_2 = 4, \quad s_1 = s_2 = 0, \qquad z = 40.
+\]
+Entri baris objektif untuk variabel nonbasis adalah $3$ dan $1$, keduanya tak
+negatif. Dalam konvensi ini, entri positif berarti bahwa menaikkan variabel
+nonbasis yang bersangkutan akan \emph{menurunkan} $z$, sehingga tidak ada pivot
+yang dapat memperbaiki objektif dan tableau tersebut optimal.
+
+\exsol{9.3}{Variabel masuk, uji rasio, dan elemen pivot}{1}
+
+(Solusi pilihan dalam buku, telah diverifikasi.) Entri baris objektif yang
+paling negatif adalah $-4$, sehingga $x_1$ masuk. Uji rasio membagi setiap RHS
+dengan entri positif pada kolom $x_1$:
+\[
+\frac{6}{2} = 3, \qquad \frac{8}{4} = 2, \qquad \frac{12}{3} = 4.
+\]
+Rasio minimum $2$ terjadi pada baris $s_2$, sehingga $s_2$ keluar dan elemen
+pivotnya adalah $4$ pada baris $s_2$ di kolom $x_1$.
+
+\exsol{9.4}{Melakukan satu pivot}{2}
+
+Lakukan pivot pada $4$ di baris $s_2$, kolom $x_1$. Kalikan baris pivot dengan
+$\tfrac14$ untuk memperoleh baris $x_1$ yang baru,
+$[\,1,\ \tfrac14,\ 0,\ \tfrac14,\ 0 \mid 2\,]$, lalu nolkan kolom $x_1$:
+$\text{baris }s_1 \leftarrow \text{baris }s_1 - 2(\text{baris }x_1)$,
+$\text{baris }s_3 \leftarrow \text{baris }s_3 - 3(\text{baris }x_1)$,
+$\text{baris }z \leftarrow \text{baris }z + 4(\text{baris }x_1)$. Hasilnya adalah:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|ccccc|c}
+Basis & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & RHS\\
+\hline
+$z$   & $0$ & $-2$ & $0$ & $1$ & $0$ & $8$\\
+\hline
+$s_1$ & $0$ & $\tfrac52$  & $1$ & $-\tfrac12$ & $0$ & $2$\\
+$x_1$ & $1$ & $\tfrac14$  & $0$ & $\tfrac14$  & $0$ & $2$\\
+$s_3$ & $0$ & $\tfrac{13}{4}$ & $0$ & $-\tfrac34$ & $1$ & $6$\\
+\end{tabular}
+\end{center}
+Kolom $x_1$ sekarang merupakan kolom satuan $(0; 0, 1, 0)$, dan nilai
+objektif pada RHS baris $z$ telah meningkat dari $0$ menjadi $8$ (solusi basis
+layak yang baru adalah $x_1 = 2$, $x_2 = 0$ dengan
+$z = 4 \cdot 2 = 8$). Tableau tersebut belum optimal ($-2$ di bawah $x_2$),
+tetapi latihan hanya meminta satu pivot ini.
+
+\exsol{9.5}{Menyelesaikan program linier dalam bentuk tableau}{2}
+
+(Solusi pilihan dalam buku, telah diverifikasi, dengan tableau awal
+ditampilkan.) Setelah menambahkan variabel slack $s_1, s_2$, tableau awalnya
+adalah
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|cccc|c|c}
+Basis & $x$ & $y$ & $s_1$ & $s_2$ & RHS & Rasio\\
+\hline
+$z$   & $-1$ & $\mathbf{-2}$ & $0$ & $0$ & $0$ & \\
+\hline
+$s_1$ & $1$ & $1$ & $1$ & $0$ & $4$ & $4/1 = 4$\\
+$s_2$ & $1$ & $\fbox{3}$ & $0$ & $1$ & $6$ & $6/3 = 2$ (min)\\
+\end{tabular}
+\end{center}
+
+\textbf{Pivot 1:} $y$ masuk ($-2$ adalah yang paling negatif); rasionya $4$
+dan $2$, sehingga $s_2$ keluar; lakukan pivot pada $3$ yang diberi kotak.
+Membagi baris pivot dengan $3$ dan menolkan kolom $y$ memberikan
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|cccc|c|c}
+Basis & $x$ & $y$ & $s_1$ & $s_2$ & RHS & Rasio\\
+\hline
+$z$   & $\mathbf{-\tfrac13}$ & $0$ & $0$ & $\tfrac23$ & $4$ & \\
+\hline
+$s_1$ & $\fbox{$\tfrac23$}$ & $0$ & $1$ & $-\tfrac13$ & $2$ & $2/\tfrac23 = 3$ (min) \\
+$y$   & $\tfrac13$ & $1$ & $0$ & $\tfrac13$  & $2$ & $2/\tfrac13 = 6$\\
+\end{tabular}
+\end{center}
+
+\textbf{Pivot 2:} $x$ masuk ($-\tfrac13$); rasionya $3$ dan $6$, sehingga
+$s_1$ keluar; lakukan pivot pada $\tfrac23$ yang diberi kotak:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|cccc|c}
+Basis & $x$ & $y$ & $s_1$ & $s_2$ & RHS\\
+\hline
+$z$   & $0$ & $0$ & $\tfrac12$ & $\tfrac12$ & $5$\\
+\hline
+$x$ & $1$ & $0$ & $\tfrac32$  & $-\tfrac12$ & $3$\\
+$y$ & $0$ & $1$ & $-\tfrac12$ & $\tfrac12$  & $1$\\
+\end{tabular}
+\end{center}
+Setiap entri baris $z$ tak negatif, sehingga tableau tersebut optimal:
+$(x, y) = (3, 1)$ dengan $z^* = 5$ (kedua kendala aktif).
+
+\exsol{9.6}{Penyelesaian lengkap dengan dua pivot}{2}
+
+(Solusi pilihan dalam buku, telah diverifikasi.) Setelah menambahkan variabel
+slack $s_1, s_2$, tableau awalnya adalah
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|cccc|c|c}
+Basis & $x$ & $y$ & $s_1$ & $s_2$ & RHS & Rasio\\
+\hline
+$z$   & $\mathbf{-3}$ & $-2$ & $0$ & $0$ & $0$ & \\
+\hline
+$s_1$ & $\fbox{2}$ & $1$ & $1$ & $0$ & $10$ & $10/2 = 5$ (min)\\
+$s_2$ & $1$ & $3$ & $0$ & $1$ & $15$ & $15/1 = 15$\\
+\end{tabular}
+\end{center}
+
+\textbf{Pivot 1:} $x$ masuk ($-3$ adalah yang paling negatif); $s_1$ keluar;
+lakukan pivot pada $2$ yang diberi kotak. Kalikan baris pivot dengan
+$\tfrac12$, lalu nolkan kolom $x$:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|cccc|c|c}
+Basis & $x$ & $y$ & $s_1$ & $s_2$ & RHS & Rasio\\
+\hline
+$z$   & $0$ & $\mathbf{-\tfrac12}$ & $\tfrac32$ & $0$ & $15$ & \\
+\hline
+$x$   & $1$ & $\tfrac12$ & $\tfrac12$ & $0$ & $5$ & $5/\tfrac12 = 10$\\
+$s_2$ & $0$ & $\fbox{$\tfrac52$}$ & $-\tfrac12$ & $1$ & $10$ & $10/\tfrac52 = 4$ (min) \\
+\end{tabular}
+\end{center}
+
+\textbf{Pivot 2:} $y$ masuk ($-\tfrac12$); rasionya $10$ dan $4$, sehingga
+$s_2$ keluar; lakukan pivot pada $\tfrac52$ yang diberi kotak:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|cccc|c}
+Basis & $x$ & $y$ & $s_1$ & $s_2$ & RHS\\
+\hline
+$z$   & $0$ & $0$ & $\tfrac75$ & $\tfrac15$ & $17$\\
+\hline
+$x$ & $1$ & $0$ & $\tfrac35$ & $-\tfrac15$ & $3$\\
+$y$ & $0$ & $1$ & $-\tfrac15$ & $\tfrac25$ & $4$\\
+\end{tabular}
+\end{center}
+Setiap entri baris $z$ tak negatif, sehingga tableau tersebut optimal:
+$(x, y) = (3, 4)$ dengan $z^* = 17$ dan $s_1 = s_2 = 0$ (kedua kendala
+aktif pada optimum).
+
+\exsol{9.7}{Menyusun tableau Big-M}{2}
+
+Kendala yang diperluas adalah
+\[
+x + y - e_1 + a_1 = 4,
+\qquad
+x + 2y + s_2 = 10,
+\qquad
+x, y, e_1, s_2, a_1 \geq 0,
+\]
+dengan objektif $z - 4x - 3y + M a_1 = 0$. Jika dituliskan secara langsung,
+tableau tersebut adalah
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|ccccc|c}
+Basis & $x$ & $y$ & $e_1$ & $s_2$ & $a_1$ & RHS\\
+\hline
+$z$   & $-4$ & $-3$ & $0$ & $0$ & $M$ & $0$\\
+\hline
+$a_1$ & $1$ & $1$ & $-1$ & $0$ & $1$ & $4$\\
+$s_2$ & $1$ & $2$ & $0$  & $1$ & $0$ & $10$\\
+\end{tabular}
+\end{center}
+Ini belum merupakan tableau yang benar: variabel \emph{basis} $a_1$ memiliki
+entri tak nol ($M$) pada baris $z$. Menolkan entri tersebut
+($\text{baris }z \leftarrow \text{baris }z - M \cdot \text{baris }a_1$) memberikan
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|ccccc|c|c}
+Basis & $x$ & $y$ & $e_1$ & $s_2$ & $a_1$ & RHS & Rasio\\
+\hline
+$z$   & $\mathbf{-4-M}$ & $-3-M$ & $M$ & $0$ & $0$ & $-4M$ & \\
+\hline
+$a_1$ & $\fbox{1}$ & $1$ & $-1$ & $0$ & $1$ & $4$ & $4/1 = 4$ (min) \\
+$s_2$ & $1$ & $2$ & $0$  & $1$ & $0$ & $10$ & $10/1 = 10$\\
+\end{tabular}
+\end{center}
+Sekarang entri objektif $a_1$ bernilai nol, sebagaimana diperlukan. Entri baris
+$z$ yang paling negatif adalah $-4 - M$ (untuk $M$ besar, nilainya lebih kecil
+daripada $-3 - M$), sehingga \emph{$x$ masuk terlebih dahulu}. Uji rasio
+memberikan $4/1 = 4$ pada baris $a_1$, dibandingkan dengan $10/1 = 10$ pada
+baris $s_2$, sehingga \emph{ya: variabel artifisial $a_1$ keluar pada pivot
+pertama}, dan metode dilanjutkan dengan tableau layak biasa (pivot tersebut
+menghasilkan $(x, y) = (4, 0)$ dengan $z = 16$).
+
+\exsol{9.8}{Konvensi tanda pada baris $z$}{2}
+
+\textbf{(a)} Sebuah kamus menampilkan
+$z = \bar z + \sum_j \bar c_j x_j$ dalam variabel nonbasis. Tableau justru
+menyimpan persamaan ini dengan semua suku di ruas kiri:
+$z - \sum_j \bar c_j x_j = \bar z$. Setiap koefisien $\bar c_j$ berpindah
+melewati tanda sama dengan sehingga tandanya berbalik. Karena itu, variabel yang
+menarik dalam kamus ($\bar c_j$ positif) muncul dalam tableau dengan entri
+negatif $-\bar c_j$. Dengan demikian, aturan masuk ``koefisien kamus paling
+positif'' dan ``entri baris $z$ paling negatif'' memilih variabel yang sama.
+
+\textbf{(b)} Dari $z = 12 + 3x_1 - 2x_2$, pindahkan suku-suku variabel ke kiri:
+$z - 3x_1 + 2x_2 = 12$. Baris $z$ adalah
+\[
+\begin{array}{c|cc|c}
+ & x_1 & x_2 & \text{RHS} \\
+\hline
+z & -3 & 2 & 12
+\end{array}
+\]
+(Entri $0$ di bawah kolom slack atau kolom basis tidak ditampilkan.)
+
+\textbf{(c)} Persamaan yang disimpan adalah
+$z - \sum_j \bar c_j x_j = \bar z$, dan selain $z$, persamaan ini hanya
+melibatkan variabel \emph{nonbasis}. Pada solusi basis saat ini, setiap variabel
+nonbasis sama dengan nol, sehingga persamaan menyusut menjadi $z = \bar z$:
+entri RHS adalah nilai objektif saat ini. Suku konstanta tidak pernah berpindah
+melewati tanda sama dengan (suku itu sudah berada di kanan), sehingga inilah
+satu-satunya bilangan pada baris tersebut yang tandanya tidak dibalik.
+
+\exsol{9.9}{Dari tableau ke kamus}{2}
+
+Setiap baris tableau merupakan persamaan. Baris $x_1$ menyatakan
+$x_1 + 2s_1 - s_2 = 6$ dan baris $x_2$ menyatakan $x_2 - s_1 + s_2 = 4$;
+baris $z$ menyatakan $z + 3s_1 + s_2 = 40$. Dengan menyelesaikan setiap
+persamaan terhadap variabel basisnya (dan terhadap $z$), diperoleh:
+\[
+\begin{aligned}
+\max\quad & z = 40 - 3s_1 - s_2 \\
+\st\quad & x_1 = 6 - 2s_1 + s_2, \\
+& x_2 = 4 + s_1 - s_2, \\
+& x_1, x_2, s_1, s_2 \geq 0.
+\end{aligned}
+\]
+Menetapkan variabel nonbasis $s_1 = s_2 = 0$ menghasilkan $x_1 = 6$,
+$x_2 = 4$, $z = 40$: solusi basis layak yang sama seperti pada tableau.
+(Kedua koefisien kamus dalam objektif bernilai negatif, sesuai dengan
+optimalitas tableau.)
+
+\exsol{9.10}{Mengenali masalah tak terbatas}{2}
+
+Satu-satunya entri negatif pada baris $z$ adalah $-2$ di bawah $x_1$, sehingga
+$x_1$ harus masuk. Uji rasio mencari entri \emph{positif} pada kolom $x_1$,
+tetapi entrinya adalah $-1$ (pada baris $x_2$) dan $-3$ (pada baris $s_1$):
+tidak ada entri positif, sehingga uji rasio gagal; tidak ada baris yang membatasi
+kenaikan $x_1$. Menaikkan $x_1 = t$ sambil mempertahankan $s_2 = 0$ memberikan
+$x_2 = 3 + t$ dan $s_1 = 5 + 3t$, yang tetap tidak negatif untuk semua
+$t \geq 0$, sedangkan $z = 10 + 2t \to \infty$. Program linier tersebut
+\textbf{tak terbatas}: program ini memiliki solusi layak dengan nilai objektif
+sebesar apa pun dan tidak memiliki solusi optimal.
+
+\exsol{9.11}{Membaca ketaklayakan}{2}
+
+Ya, tableau tersebut optimal untuk masalah berpenalti (Big-M): untuk $M$ besar,
+setiap entri baris $z$ ($0, 0, M, 2, 0$) tak negatif, sehingga tidak ada pivot
+yang dapat memperbaiki objektif berpenalti. Namun, variabel artifisial masih
+menjadi variabel basis dengan nilai positif $a_1 = 3$ (dibaca dari RHS). Solusi
+layak bagi masalah asli harus memungkinkan semua variabel artifisial ditetapkan
+sama dengan nol. Jadi, jika hasil terbaik masalah berpenalti masih mempertahankan
+$a_1 = 3 > 0$, tidak ada solusi layak bagi program asli: program linier asli
+tersebut \textbf{tak layak}.
+
+Nilai objektif $8 - 3M$ menyampaikan hal yang sama: nilai ini memuat penalti
+yang tidak dapat dihindari, $-M a_1 = -3M$. Karena $M$ menyatakan konstanta
+yang besarnya sembarang, $8 - 3M$ dapat menjadi seburuk apa pun; masalah
+berpenalti tidak dapat menghindari penalti tersebut. Inilah tepatnya ciri
+aljabar dari ketaklayakan.
+
+\exsol{9.12}{Menyertifikasi ketakterbatasan dari tableau}{3}
+
+\textbf{(a)} Satu-satunya entri negatif pada baris $z$ adalah $-2$ di bawah
+$x_2$, sehingga $x_2$ masuk. Entri kolomnya adalah $-1$ (pada baris $x_1$)
+dan $0$ (pada baris $s_2$); uji rasio memerlukan entri \emph{positif}, tetapi
+tidak menemukannya. Karena itu, tidak ada baris yang membatasi kenaikan $x_2$:
+masalah tersebut tak terbatas.
+
+\textbf{(b)} Tetapkan $x_2 = t \geq 0$ dan pertahankan variabel nonbasis
+lainnya, $s_1 = 0$. Baris $x_1$ ($x_1 - x_2 + s_1 = 1$) memberikan
+$x_1 = 1 + t$,
+dan baris $s_2$ ($s_1 + s_2 = 3$) memberikan $s_2 = 3$. Jadi
+\[
+\x(t) = (x_1, x_2, s_1, s_2) = (1 + t,\ t,\ 0,\ 3), \qquad t \geq 0.
+\]
+Substitusi langsung ke dalam kendala asli memberikan:
+\[
+x_1 - x_2 = (1 + t) - t = 1 \leq 1 \quad\checkmark
+\qquad
+-x_1 + x_2 = -(1 + t) + t = -1 \leq 2 \quad\checkmark
+\]
+dan $x_1 = 1 + t \geq 0$, $x_2 = t \geq 0$, $s_1 = 0 \geq 0$,
+$s_2 = 2 - (-1) = 3 \geq 0$. Jadi, $\x(t)$ layak untuk setiap
+$t \geq 0$.
+
+\textbf{(c)} Sepanjang sinar tersebut,
+$z(t) = x_1 + x_2 = 1 + 2t \to \infty$ ketika $t \to \infty$. Secara
+geometris, daerah layak adalah pita di antara dua garis sejajar
+$x_1 - x_2 = 1$ dan $-x_1 + x_2 = 2$ pada kuadran pertama; daerah ini tak
+terbatas dalam arah $\mathbf{d} = (1, 1)$. Sinar sertifikat berawal di titik
+sudut $(1, 0)$ dan mengarah sepanjang $(1, 1)$, mengikuti batas
+$x_1 - x_2 = 1$; karena $\c^\top \mathbf{d} = 1 + 1 = 2 > 0$, objektif tumbuh
+tanpa batas di sepanjang sinar itu.

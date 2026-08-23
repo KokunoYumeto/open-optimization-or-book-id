@@ -1,0 +1,555 @@
+% ============================================================================
+% Chapter 12: Software - Python
+% Book source: part1-linear-programming/ch03-software/software-python-book1.tex
+% Exercise numbering synced to \begin{ex} order as of 2026-07-13.
+% All code executed with Python 3.10, PuLP 3.3.2, bundled CBC solver.
+% ============================================================================
+
+\section{Bab 12: Perangkat Lunak -- Python}
+
+Bab ini memiliki sembilan latihan yang semuanya dibangun berdasarkan dua
+contoh PuLP berkelanjutan pada bagian PuLP dalam bab (Bagian 12.12): LP bauran
+produk dan LP transportasi lengkap. Latihan pemanasan (12.1--12.3) mengubah
+data pada contoh yang telah dikerjakan; soal inti (12.4--12.6) membangun model
+dari awal, mengekstrak dual dan slack, serta menjalankan sapuan kendala
+$\varepsilon$; soal konsep (12.7--12.8) mendiagnosis dua kutu pemodelan PuLP
+yang klasik (kendala yang hilang dan arah optimisasi yang salah); sedangkan
+soal tantangan (12.9) menelusuri laba optimal sebagai fungsi ruas kanan.
+Setiap solusi di bawah ini dihasilkan dengan benar-benar menjalankan kode yang
+ditampilkan (PuLP 3.3.2 dengan pemecah CBC bawaan); keluaran tercetak disalin
+persis. Solusi Terpilih buku untuk 12.2, 12.5, dan 12.9 dijalankan ulang dan
+dikonfirmasi; solusi tersebut digunakan kembali dan diperluas di sini.
+
+% ----------------------------------------------------------------------------
+\exsol{12.1}{Margin Laba Baru}{1}
+
+Hanya baris fungsi tujuan yang berubah: koefisien laba $X_1$ menjadi 5.
+
+\begin{verbatim}
+from pulp import *
+
+prob = LpProblem("Bauran_Produk", LpMaximize)
+x1 = LpVariable("X1", lowBound=0)
+x2 = LpVariable("X2", lowBound=0)
+
+prob += 5*x1 + 2*x2, "Laba_Total"       # sebelumnya 3*x1 + 2*x2
+prob += 10*x1 + 5*x2 <= 300, "Bahan"
+prob += 4*x1 + 4*x2 <= 160, "Tenaga_Kerja"
+prob += 2*x1 + 6*x2 <= 180, "Mesin"
+
+prob.solve(PULP_CBC_CMD(msg=0))
+print(f"Status: {LpStatus[prob.status]}")
+print(f"Laba Maksimum: ${value(prob.objective)}")
+print(f"X1 = {x1.varValue}")
+print(f"X2 = {x2.varValue}")
+for name, c in prob.constraints.items():
+    print(name, "kelonggaran =", c.slack)
+\end{verbatim}
+
+Keluaran sebenarnya:
+
+\begin{verbatim}
+Status: Optimal
+Laba Maksimum: $150.0
+X1 = 30.0
+X2 = 0.0
+Bahan kelonggaran = -0.0
+Tenaga_Kerja kelonggaran = 40.0
+Mesin kelonggaran = 120.0
+\end{verbatim}
+
+Rencana baru adalah $(X_1, X_2) = (30, 0)$ dengan laba $\$150$. Produk 1 kini
+memberikan laba per unit bahan langka yang begitu tinggi (laba $5$ per $10$
+unit bahan, dibandingkan $2$ per $5$ unit untuk Produk 2, dan bahan merupakan
+sumber daya yang pertama kali habis) sehingga perusahaan sepenuhnya
+berspesialisasi. Hanya kendala \textbf{Bahan} yang mengikat
+($10 \cdot 30 + 5 \cdot 0 = 300$); Tenaga Kerja memiliki slack $40$ dan Mesin
+memiliki slack $120$ (batas nonnegativitas $X_2 \geq 0$ juga aktif). Sesuai
+yang dijanjikan, jawabannya bukan lagi $(20,20)$.
+
+% ----------------------------------------------------------------------------
+\exsol{12.2}{Dari Matematika ke PuLP}{1}
+
+Solusi Terpilih dalam buku sudah benar sebagaimana tercetak; kode di bawah
+dijalankan ulang untuk mengonfirmasinya. Dengan mengikuti pola enam langkah:
+
+\begin{verbatim}
+from pulp import *
+
+# Langkah 1: masalah
+prob = LpProblem("Three_Var", LpMaximize)
+# Langkah 2: variabel
+x1 = LpVariable("X1", lowBound=0)
+x2 = LpVariable("X2", lowBound=0)
+x3 = LpVariable("X3", lowBound=0)
+
+# Langkah 3: objektif
+prob += 4*x1 + 6*x2 + 5*x3, "Objective"
+prob += 2*x1 + x2 + x3 <= 9, "C1"                # Langkah 4: kendala
+prob += x1 + 3*x2 + 2*x3 <= 14, "C2"
+prob += x1 + x2 + 2*x3 <= 10, "C3"
+
+# Langkah 5: selesaikan
+prob.solve(PULP_CBC_CMD(msg=0))
+print(LpStatus[prob.status], value(prob.objective))
+for v in prob.variables():                         # Langkah 6: hasil
+    print(v.name, "=", v.varValue)
+\end{verbatim}
+
+Keluaran sebenarnya:
+
+\begin{verbatim}
+Optimal 35.0
+X1 = 2.0
+X2 = 2.0
+X3 = 3.0
+\end{verbatim}
+
+Nilai tujuan optimal adalah $35$ pada $(x_1, x_2, x_3) = (2, 2, 3)$.
+Ketiga kendala mengikat ($4+2+3 = 9$, $2+6+6 = 14$, $2+2+6 = 10$);
+
+\begin{qaflag}
+Diselesaikan 2026-07-10: data semula untuk latihan ini cocok koefisien demi
+koefisien dengan sebuah contoh buku ajar berhak cipta yang terkenal. Data
+tersebut diganti dengan kasus orisinal (optimum terverifikasi $(2,2,3)$,
+nilai $35$), baik dalam buku maupun dalam manual ini.
+\end{qaflag}
+
+% ----------------------------------------------------------------------------
+\exsol{12.3}{Data Permintaan Baru}{1}
+
+Hanya kamus \texttt{demand} yang berubah.
+
+\begin{verbatim}
+from pulp import *
+
+plants = ['Chicago', 'Denver']
+markets = ['NYC', 'LA', 'Houston']
+
+supply = {'Chicago': 100, 'Denver': 150}
+# Permintaan diperbarui
+demand = {'NYC': 100, 'LA': 80, 'Houston': 70}
+
+cost = {
+    ('Chicago', 'NYC'): 3,
+    ('Chicago', 'LA'): 5,
+    ('Chicago', 'Houston'): 2,
+    ('Denver', 'NYC'): 4,
+    ('Denver', 'LA'): 2,
+    ('Denver', 'Houston'): 3,
+}
+
+prob = LpProblem("Transportation", LpMinimize)
+routes = [(p, m) for p in plants for m in markets]
+x = LpVariable.dicts("Ship", routes, lowBound=0)
+prob += lpSum([cost[r] * x[r] for r in routes]), "Total_Cost"
+for p in plants:
+    prob += (
+        lpSum([x[p,m] for m in markets]) <= supply[p],
+        f"Supply_{p}",
+    )
+for m in markets:
+    prob += (
+        lpSum([x[p,m] for p in plants]) >= demand[m],
+        f"Demand_{m}",
+    )
+
+prob.solve(PULP_CBC_CMD(msg=0))
+print(f"Status: {LpStatus[prob.status]}")
+print(f"Biaya Total: ${value(prob.objective)}")
+for p in plants:
+    for m in markets:
+        if x[p,m].varValue > 0:
+            print(f"  {p} -> {m}: {x[p,m].varValue}")
+\end{verbatim}
+
+Keluaran sebenarnya:
+
+\begin{verbatim}
+Status: Optimal
+Biaya Total: $670.0
+  Chicago -> NYC: 100.0
+  Denver -> LA: 80.0
+  Denver -> Houston: 70.0
+\end{verbatim}
+
+Biaya total baru adalah $\$670$ (naik dari $\$610$). Rencana CBC mengirimkan
+seluruh persediaan Chicago ke NYC dan memenuhi LA serta Houston dari Denver.
+(Ada optimum alternatif dengan biaya yang sama, misalnya Denver melayani LA
+dan NYC sementara Chicago memenuhi Houston serta sebagian NYC; mahasiswa
+dapat melaporkan rencana berbeda dengan biaya $670$.)
+
+Penjelasan satu kalimat: permintaan total meningkat dari $240$ menjadi $250$
+unit dan bergeser dari LA (yang dilayani Denver dengan tarif termurah dalam
+sistem, $\$2$) menuju NYC (tarif masuk termurah $\$3$), sehingga jaringan
+harus mengirim lebih banyak unit melalui rute yang lebih mahal. Perhatikan
+pula bahwa permintaan kini tepat sama dengan persediaan total ($250 = 250$),
+sehingga tidak ada kapasitas cadangan di kedua pabrik yang dapat dimanfaatkan
+untuk memilih rute yang lebih murah.
+
+% ----------------------------------------------------------------------------
+\exsol{12.4}{Model Transportasi Tiga Pabrik}{2}
+
+\begin{verbatim}
+from pulp import *
+
+# === DATA ===
+plants = ['A', 'B', 'C']
+markets = ['M1', 'M2', 'M3']
+supply = {'A': 60, 'B': 70, 'C': 80}
+demand = {'M1': 50, 'M2': 60, 'M3': 70}
+cost = {
+    ('A','M1'): 4, ('A','M2'): 6, ('A','M3'): 8,
+    ('B','M1'): 5, ('B','M2'): 4, ('B','M3'): 3,
+    ('C','M1'): 6, ('C','M2'): 7, ('C','M3'): 5
+}
+
+# === MODEL ===
+prob = LpProblem("Three_Plant_Transport", LpMinimize)
+routes = [(p, m) for p in plants for m in markets]
+x = LpVariable.dicts("Ship", routes, lowBound=0)
+
+prob += lpSum([cost[r] * x[r] for r in routes]), "Biaya_Total"
+for p in plants:
+    prob += (
+        lpSum([x[p,m] for m in markets]) <= supply[p],
+        f"Supply_{p}",
+    )
+for m in markets:
+    prob += (
+        lpSum([x[p,m] for p in plants]) >= demand[m],
+        f"Demand_{m}",
+    )
+
+# === PENYELESAIAN / HASIL ===
+prob.solve(PULP_CBC_CMD(msg=0))
+print(f"Status: {LpStatus[prob.status]}")
+print(f"Biaya Total: {value(prob.objective)}")
+for p in plants:
+    shipped = sum(x[p,m].varValue for m in markets)
+    print(f"Pabrik {p}: mengirim {shipped} dari {supply[p]}"
+          f" (tak terpakai {supply[p]-shipped})")
+for p in plants:
+    for m in markets:
+        if x[p,m].varValue > 0:
+            print(f"  {p} -> {m}: {x[p,m].varValue}")
+\end{verbatim}
+
+Keluaran sebenarnya:
+
+\begin{verbatim}
+Status: Optimal
+Biaya Total: 770.0
+Pabrik A: mengirim 50.0 dari 60 (tak terpakai 10.0)
+Pabrik B: mengirim 70.0 dari 70 (tak terpakai 0.0)
+Pabrik C: mengirim 60.0 dari 80 (tak terpakai 20.0)
+  A -> M1: 50.0
+  B -> M2: 60.0
+  B -> M3: 10.0
+  C -> M3: 60.0
+\end{verbatim}
+
+Biaya total minimum: $\$770$. Rencana: A memasok seluruh M1 (50 unit dengan
+biaya 4), B memasok seluruh M2 (60 dengan biaya 4) ditambah 10 unit M3 (dengan
+biaya 3), dan C memasok 60 unit M3 yang tersisa (dengan biaya 5). Pabrik A
+dan C memiliki kapasitas tak terpakai (masing-masing 10 dan 20 unit); B, yang
+rutenya menuju M2 dan M3 merupakan rute termurah pada kolom masing-masing,
+digunakan sampai kapasitas penuh. Pemeriksaan kewajaran secara manual:
+penetapan serakah M1$\leftarrow$A, M2$\leftarrow$B, M3$\leftarrow$B lalu C
+menghasilkan $200 + 240 + 30 + 300 = 770$, dan LP memastikan tidak ada rencana
+yang lebih murah.
+
+% ----------------------------------------------------------------------------
+\exsol{12.5}{Dual dan Slack dari Model yang Telah Diselesaikan}{2}
+
+Skrip lengkap (data bauran produk semula, laba $3X_1 + 2X_2$):
+
+\begin{verbatim}
+from pulp import *
+
+prob = LpProblem("Product_Mix", LpMaximize)
+x1 = LpVariable("X1", lowBound=0)
+x2 = LpVariable("X2", lowBound=0)
+prob += 3*x1 + 2*x2, "Total_Profit"
+prob += 10*x1 + 5*x2 <= 300, "Material"
+prob += 4*x1 + 4*x2 <= 160, "Labor"
+prob += 2*x1 + 6*x2 <= 180, "Machine"
+prob.solve(PULP_CBC_CMD(msg=0))
+
+print(
+    LpStatus[prob.status], value(prob.objective),
+    x1.varValue, x2.varValue,
+)
+for name, c in prob.constraints.items():
+    print(name, "dual =", c.pi, "slack =", c.slack)
+\end{verbatim}
+
+Keluaran sebenarnya:
+
+\begin{verbatim}
+Optimal 100.0 20.0 20.0
+Material dual = 0.2 slack = -0.0
+Labor dual = 0.25 slack = -0.0
+Machine dual = -0.0 slack = 20.0
+\end{verbatim}
+
+\begin{enumerate}
+\item Bahan: dual $0.2$, slack $0$. Tenaga Kerja: dual $0.25$, slack $0$.
+Mesin: dual $0$, slack $20$. (CBC mencetak $-0.0$; ini adalah nol titik
+mengambang bertanda, yakni $0$.) Pemeriksaan dual secara manual: baris yang
+mengikat memberikan $10y_1 + 4y_2 = 3$ dan $5y_1 + 4y_2 = 2$, sehingga
+$y_1 = 0.2$, $y_2 = 0.25$.
+\item Kendala Mesin memiliki nilai dual $0$ dan slack $20$: pada optimum
+$(20,20)$, penggunaan mesin adalah $2(20) + 6(20) = 160 < 180$. Sumber daya
+dengan kapasitas tersisa tidak bernilai pada margin, sehingga harga bayangannya
+nol. Inilah kondisi kelonggaran komplementer: untuk setiap kendala, nilai dual atau slack
+(atau keduanya) harus nol.
+\item Nilai dual Tenaga Kerja adalah $0.25$, sehingga satu jam tenaga kerja
+tambahan meningkatkan laba optimal sebesar $\$0.25$, dari $\$100$ menjadi
+$\$100.25$ (berlaku selama basis saat ini tetap optimal; Latihan 12.9
+menunjukkan bahwa laju ini berlaku hingga $b = 168$).
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{12.6}{Sapuan Kendala Epsilon}{2}
+
+Dengan mengikuti templat dari bab multiobjektif (Bagian 13.3), kita
+menyelesaikan kembali LP bauran produk dengan batas tambahan
+$2X_1 + 6X_2 \leq \varepsilon$.
+
+\begin{verbatim}
+from pulp import *
+
+print(f"{'eps':>4} {'X1':>6} {'X2':>6} {'laba':>7}")
+for eps in [60, 90, 120, 150, 180]:
+    prob = LpProblem("Product_Mix_Eps", LpMaximize)
+    x1 = LpVariable("X1", lowBound=0)
+    x2 = LpVariable("X2", lowBound=0)
+    prob += 3*x1 + 2*x2
+    prob += 10*x1 + 5*x2 <= 300, "Material"
+    prob += 4*x1 + 4*x2 <= 160, "Labor"
+    prob += 2*x1 + 6*x2 <= 180, "Machine"
+    prob += 2*x1 + 6*x2 <= eps, "Machine_cap"
+    prob.solve(PULP_CBC_CMD(msg=0))
+    print(f"{eps:>4} {x1.varValue:>6.1f} {x2.varValue:>6.1f}"
+          f" {value(prob.objective):>7.1f}")
+\end{verbatim}
+
+Keluaran sebenarnya:
+
+\begin{verbatim}
+ eps     X1     X2    laba
+  60   30.0    0.0    90.0
+  90   27.0    6.0    93.0
+ 120   24.0   12.0    96.0
+ 150   21.0   18.0    99.0
+ 180   20.0   20.0   100.0
+\end{verbatim}
+
+Komprominya: memperketat batas mesin mengurangi laba, tetapi biayanya kecil.
+Dari $\varepsilon = 160$ (tempat optimum tanpa kendala tambahan $(20,20)$
+menggunakan tepat $160$ jam mesin) hingga $\varepsilon = 60$, batas tersebut
+mengikat dan setiap jam mesin yang dikorbankan mengurangi laba tepat
+$\$0.10$ (harga bayangan batas): laba turun secara linear
+$100 \to 99 \to 96 \to 93 \to 90$ ketika $\varepsilon$ turun
+$160 \to 150 \to 120 \to 90 \to 60$. Untuk $\varepsilon \geq 160$
+(termasuk $\varepsilon = 180$ yang tercetak), batas memiliki slack dan
+solusinya adalah optimum semula. Sepanjang sapuan, rencana beralih secara
+bertahap dari bauran yang sarat penggunaan mesin menuju Produk 1 saja:
+perusahaan dapat memangkas penggunaan mesin hampir dua pertiga (dari $160$
+menjadi $60$ jam) dengan kehilangan laba hanya $10\%$. Setiap baris merupakan
+satu titik pada garis depan Pareto (laba, penggunaan mesin).
+
+% ----------------------------------------------------------------------------
+\exsol{12.7}{Kendala yang Tidak Ada}{2}
+
+\begin{enumerate}
+\item Perkiraan dan percobaan memberikan hasil yang sama: PuLP tidak
+menimbulkan galat ataupun mencetak peringatan; PuLP dengan senang hati
+menyelesaikan model yang Anda berikan. PuLP tidak dapat mengetahui bahwa suatu
+kendala hilang; LP dengan dua kendala merupakan masalah yang sepenuhnya sah.
+Eksekusi tersebut mengembalikan status \texttt{Optimal}.
+
+\begin{verbatim}
+from pulp import *
+
+prob = LpProblem("Product_Mix_NoLabor", LpMaximize)
+x1 = LpVariable("X1", lowBound=0)
+x2 = LpVariable("X2", lowBound=0)
+prob += 3*x1 + 2*x2, "Total_Profit"
+prob += 10*x1 + 5*x2 <= 300, "Material"
+# Baris tenaga kerja hilang
+prob += 2*x1 + 6*x2 <= 180, "Machine"
+prob.solve(PULP_CBC_CMD(msg=0))
+print(
+    LpStatus[prob.status], value(prob.objective),
+    x1.varValue, x2.varValue,
+)
+print("Tenaga kerja terpakai:", 4*x1.varValue + 4*x2.varValue)
+\end{verbatim}
+
+Keluaran sebenarnya:
+\begin{verbatim}
+Optimal 102.0 18.0 24.0
+Tenaga kerja terpakai: 168.0
+\end{verbatim}
+
+\item Solusi yang dikembalikan adalah $(18, 24)$ dengan laba $\$102$, yaitu
+perpotongan garis Bahan dan Mesin ($10x_1 + 5x_2 = 300$,
+$2x_1 + 6x_2 = 180$). Labanya melebihi $\$100$ karena menghapus suatu kendala
+memperbesar daerah layak, sementara pada optimum sebenarnya $(20,20)$ kendala
+Tenaga Kerja mengikat sehingga melonggarkannya benar-benar membantu. Rencana
+ini \emph{tidak} dapat dilaksanakan: diperlukan
+$4(18) + 4(24) = 168$ jam tenaga kerja, tetapi yang tersedia hanya $160$.
+
+\item Dengan \texttt{prob += 4*x1 + 4*x2} (tanpa \texttt{<= 160}), PuLP
+memperlakukan ekspresi itu sebagai \emph{fungsi tujuan} baru dan mengganti
+$3x_1 + 2x_2$ dengan $4x_1 + 4x_2$. PuLP versi terbaru mencetak
+\begin{verbatim}
+UserWarning: Overwriting previously set objective.
+\end{verbatim}
+tetapi model tetap dapat diselesaikan dan melaporkan \texttt{Optimal}
+(eksekusi kami menghasilkan $(18, 24)$ dengan nilai tujuan $168$, yaitu nilai
+$4x_1 + 4x_2$, bukan laba). Kutu ini lebih berbahaya daripada baris yang
+hilang karena melakukan dua hal buruk sekaligus tanpa terlihat: kendala tenaga
+kerja tetap hilang \emph{dan} fungsi tujuannya kini salah, tetapi setiap
+pemeriksaan status tetap lolos. Baris yang hilang setidaknya tidak mengubah
+fungsi tujuan. Kebiasaan defensif: cetak \texttt{prob} (atau
+\texttt{prob.objective}) sebelum menyelesaikan model, dan perlakukan setiap
+\texttt{UserWarning} dari PuLP sebagai galat.
+\end{enumerate}
+
+\begin{qaflag}
+Perbaikan buku diterapkan (catatan sinkronisasi): kotak peringatan dalam
+contoh bauran produk (Subbagian 12.12.3, Langkah 4) menyatakan bahwa PuLP
+menimpa fungsi tujuan \emph{tanpa pemberitahuan}. Pengujian dengan PuLP 3.3.2
+memastikan bahwa \texttt{UserWarning} dicetak. Teks buku diperbarui untuk
+menyatakan bahwa peringatan dicetak, tetapi model tetap dapat diselesaikan.
+Redaksi latihan itu sendiri tidak perlu diubah; bagian (1) latihan ini merujuk
+pada kasus baris yang hilang, yang memang benar-benar tanpa pemberitahuan.
+\end{qaflag}
+
+% ----------------------------------------------------------------------------
+\exsol{12.8}{Meminimumkan atau Memaksimumkan?}{2}
+
+\begin{enumerate}
+\item Meminimumkan $3x_1 + 2x_2$ pada daerah layak menghasilkan
+$(x_1, x_2) = (0, 0)$ dengan nilai tujuan $0$ dan status
+\texttt{Optimal}. Terverifikasi:
+
+\begin{verbatim}
+from pulp import *
+# Arah optimisasi salah
+prob = LpProblem("Product_Mix", LpMinimize)
+x1 = LpVariable("X1", lowBound=0)
+x2 = LpVariable("X2", lowBound=0)
+prob += 3*x1 + 2*x2, "Total_Profit"
+prob += 10*x1 + 5*x2 <= 300, "Material"
+prob += 4*x1 + 4*x2 <= 160, "Labor"
+prob += 2*x1 + 6*x2 <= 180, "Machine"
+prob.solve(PULP_CBC_CMD(msg=0))
+print(
+    LpStatus[prob.status], value(prob.objective),
+    x1.varValue, x2.varValue,
+)
+\end{verbatim}
+
+Keluaran: \texttt{Optimal 0.0 0.0 0.0}. Model ini tidak taklayak karena semua
+kendalanya berupa kendala $\leq$ dengan data nonnegatif: titik asal memenuhi
+semuanya. Meminimumkan fungsi tujuan nonnegatif pada daerah yang memuat titik
+asal memberikan jawaban yang tidak berguna tetapi sepenuhnya sah, yaitu
+``jangan memproduksi apa pun.''
+
+\item Dua perbaikan satu baris, keduanya terverifikasi menghasilkan rencana
+$(20, 20)$:
+\begin{itemize}
+\item Ubah arah optimisasi:
+\texttt{prob = LpProblem("Product\_Mix", LpMaximize)}. \\
+Keluaran: \texttt{Optimal 100.0 20.0 20.0}.
+\item Ubah fungsi tujuan (pertahankan \texttt{LpMinimize}): minimumkan
+negatif laba, \texttt{prob += -3*x1 - 2*x2}. \\
+Keluaran: \texttt{Optimal -100.0 20.0 20.0}; rencana optimalnya tetap sama,
+$(20,20)$, dan laba adalah negatif dari nilai tujuan yang dilaporkan, yaitu
+$\$100$.
+\end{itemize}
+
+\item \texttt{LpStatus[prob.status]} hanya melaporkan apakah pemecah berhasil
+menyelesaikan \emph{model yang Anda bangun}; model dengan arah yang salah
+merupakan LP sah dengan optimum yang sah pula, sehingga statusnya
+\texttt{Optimal}, baik pada eksekusi yang berkutu maupun yang benar.
+Pemeriksaan kewajaran yang berguna: tegaskan bahwa nilai tujuan benar-benar
+positif (laba \$0 dari perusahaan yang ingin menghasilkan uang patut
+dicurigai); tegaskan bahwa solusi tidak identik nol; bandingkan fungsi tujuan
+dengan rencana layak yang diketahui (misalnya, $(10,10)$ menghasilkan \$50,
+sehingga optimum setidaknya harus \$50); atau periksa bahwa setidaknya satu
+kendala sumber daya mengikat, sebab maksimum laba ketika setiap sumber daya
+memiliki slack merupakan hal yang mencurigakan.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{12.9}{Laba sebagai Fungsi Tenaga Kerja}{3}
+
+Solusi Terpilih dalam buku sudah benar sebagaimana tercetak; berikut skrip
+lengkap dan keluaran sebenarnya (rencana ditambahkan untuk pembahasan bagian 2).
+
+\begin{verbatim}
+from pulp import *
+
+def solve_mix(b):
+    prob = LpProblem("Bauran_Produk", LpMaximize)
+    x1 = LpVariable("X1", lowBound=0)
+    x2 = LpVariable("X2", lowBound=0)
+    prob += 3*x1 + 2*x2
+    prob += 10*x1 + 5*x2 <= 300, "Bahan"
+    prob += 4*x1 + 4*x2 <= b, "Tenaga_Kerja"
+    prob += 2*x1 + 6*x2 <= 180, "Mesin"
+    prob.solve(PULP_CBC_CMD(msg=0))
+    laba = value(prob.objective)
+    dual = prob.constraints["Tenaga_Kerja"].pi
+    return laba, dual, x1.varValue, x2.varValue
+
+for b in range(100, 200, 10):
+    laba, dual, v1, v2 = solve_mix(b)
+    print(f"b={b}: laba={laba}; dual tenaga kerja={dual}; "
+          f"rencana=({v1},{v2})")
+\end{verbatim}
+
+Keluaran sebenarnya:
+
+\begin{verbatim}
+b=100: laba=75.0; dual tenaga kerja=0.75; rencana=(25.0,0.0)
+b=110: laba=82.5; dual tenaga kerja=0.75; rencana=(27.5,0.0)
+b=120: laba=90.0; dual tenaga kerja=0.75; rencana=(30.0,0.0)
+b=130: laba=92.5; dual tenaga kerja=0.25; rencana=(27.5,5.0)
+b=140: laba=95.0; dual tenaga kerja=0.25; rencana=(25.0,10.0)
+b=150: laba=97.5; dual tenaga kerja=0.25; rencana=(22.5,15.0)
+b=160: laba=100.0; dual tenaga kerja=0.25; rencana=(20.0,20.0)
+b=170: laba=102.0; dual tenaga kerja=-0.0; rencana=(18.0,24.0)
+b=180: laba=102.0; dual tenaga kerja=-0.0; rencana=(18.0,24.0)
+b=190: laba=102.0; dual tenaga kerja=-0.0; rencana=(18.0,24.0)
+\end{verbatim}
+
+\begin{enumerate}
+\item Kesepuluh labanya adalah
+$75, 82.5, 90, 92.5, 95, 97.5, 100, 102, 102, 102$. Kurva tersebut linear
+sepotong-sepotong dan cekung, dengan perubahan kemiringan pada $b = 120$ dan
+$b = 168$ (nilai terakhir terletak di antara titik tercetak $160$ dan $170$;
+di sanalah rencana $(18,24)$, yaitu perpotongan Bahan dan Mesin, menggunakan
+tepat $4(18) + 4(24) = 168$ jam tenaga kerja).
+\item Kemiringan kurva laba pada setiap $b$ sama dengan harga bayangan
+\texttt{c.pi} yang tercetak untuk kendala Tenaga Kerja. Untuk $b \leq 120$,
+hanya Tenaga Kerja yang membatasi produksi, rencananya $(b/4, 0)$, dan setiap
+jam bernilai $0.75$ (laba naik $7.5$ per $10$ jam:
+$75 \to 82.5 \to 90$). Untuk $120 \leq b \leq 168$, Bahan dan Tenaga Kerja
+sama-sama mengikat, rencana bergerak sepanjang garis Bahan, dan satu jam
+tambahan hanya bernilai $0.25$ (laba naik $2.5$ per $10$ jam). Urutan harga
+bayangan yang menurun ketat, $0.75 \to 0.25 \to 0$, tepat mencerminkan
+kecekungan kurva.
+\item Untuk $b \geq 168$, optimum tertahan pada $(18, 24)$, tempat Bahan dan
+Mesin mengikat sementara Tenaga Kerja memiliki slack; tenaga kerja tambahan
+memiliki harga bayangan $0$ dan laba tetap datar pada $\$102$. Membeli lebih
+banyak sumber daya yang tidak mengikat tidaklah bernilai. Inilah analisis
+sensitivitas ruas kanan Bab 10 yang dihitung melalui enumerasi langsung: perulangan
+mereproduksi harga bayangan dan rentang yang diizinkannya (dual tetap $0.25$
+tepat untuk $120 \leq b \leq 168$) tanpa pengerjaan tableau.
+\end{enumerate}

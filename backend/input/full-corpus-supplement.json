@@ -1,0 +1,807 @@
+{
+  "schema_name": "interlanguage.modular-backend-supplement",
+  "schema_version": "0.1.0",
+  "snapshot_at": "2026-08-23T00:00:00+02:00",
+  "binding_state": "final",
+  "machine_backend_evidence": {
+    "path": "00_control/MACHINE_BACKEND_EVIDENCE.json",
+    "bytes": 163890,
+    "sha256": "60d81807fd9874b227ec5e0f343d2d30d50b1c6e22b0dc9f66b5e97212bd8691",
+    "schema_path": "backend/schema/machine-backend-evidence-v0.schema.json"
+  },
+  "updates": {
+    "editions": [
+      {
+        "id": "edition.r017.id-id.draft",
+        "status": "visually_checked"
+      },
+      {
+        "id": "edition.o018.id-id.draft",
+        "status": "mathematically_reviewed"
+      }
+    ],
+    "root_units": [
+      {"id": "unit.r017.book1", "translation_state": "visually_checked", "status": "verified"},
+      {"id": "unit.r017.book1.frontmatter", "translation_state": "language_reviewed", "status": "verified"},
+      {"id": "unit.r017.book1.introduction", "translation_state": "mathematically_reviewed", "status": "verified"},
+      {"id": "unit.r017.book1.ch01", "translation_state": "mathematically_reviewed", "status": "verified"},
+      {"id": "unit.r017.book1.ch02", "translation_state": "mathematically_reviewed", "status": "verified"},
+      {"id": "unit.r017.book1.ch03", "translation_state": "mathematically_reviewed", "status": "verified"}
+    ],
+    "term_status_updates": [
+      {"id": "term.additivity.id", "status": "approved"},
+      {"id": "term.assignment.id", "status": "approved"},
+      {"id": "term.binary-integer-programming.id", "status": "approved"},
+      {"id": "term.binding-constraint.id", "status": "approved"},
+      {"id": "term.cell.id", "status": "approved"},
+      {"id": "term.certainty.id", "status": "approved"},
+      {"id": "term.conditional-formatting.id", "status": "approved"},
+      {"id": "term.constraint.id", "status": "approved"},
+      {"id": "term.convex.id", "status": "approved"},
+      {"id": "term.data-validation.id", "status": "approved"},
+      {"id": "term.decision-variable.id", "status": "approved"},
+      {"id": "term.divisibility.id", "status": "approved"},
+      {"id": "term.excel-solver.id", "status": "approved"},
+      {"id": "term.feasible-region.id", "status": "approved"},
+      {"id": "term.free-variable.id", "status": "approved"},
+      {"id": "term.knapsack.id", "status": "approved"},
+      {"id": "term.learning-outcomes.id", "concept_id": "concept.learning-outcomes", "status": "approved"},
+      {"id": "term.linear-programming.id", "status": "approved"},
+      {"id": "term.loss-function.id", "concept_id": "concept.loss-function", "status": "approved"},
+      {"id": "term.lp-relaxation.id", "status": "approved"},
+      {"id": "term.mathematical-programming.id", "status": "approved"},
+      {"id": "term.mixed-integer-linear-programming.id", "status": "approved"},
+      {"id": "term.modeling.id", "concept_id": "concept.modeling", "status": "approved"},
+      {"id": "term.nonconvex.id", "status": "approved"},
+      {"id": "term.nonlinear-programming.id", "status": "approved"},
+      {"id": "term.np-hard.id", "status": "approved"},
+      {"id": "term.objective-function.id", "status": "approved"},
+      {"id": "term.operations-research.id", "status": "approved"},
+      {"id": "term.optimization.id", "concept_id": "concept.optimization", "status": "approved"},
+      {"id": "term.proportionality.id", "status": "approved"},
+      {"id": "term.range.id", "status": "approved"},
+      {"id": "term.robust-optimization.id", "status": "approved"},
+      {"id": "term.shadow-price.id", "status": "approved"},
+      {"id": "term.slack.id", "status": "approved"},
+      {"id": "term.solver.id", "concept_id": "concept.solver", "status": "approved"},
+      {"id": "term.stochastic-optimization.id", "status": "approved"},
+      {"id": "term.transportation.id", "status": "approved"},
+      {"id": "term.worksheet.id", "status": "approved"}
+    ],
+    "rights": [
+      {
+        "id": "rights.thirdparty.foundations",
+        "compatibility_note": "The pinned attribution names CC BY 3.0 US, retains the source and authors, and records the adapter's-license provision used for the CC BY-SA 4.0 edition; the exact source notice remains included.",
+        "status": "verified_from_pinned_attribution"
+      }
+    ],
+    "file_units": [
+      {
+        "id": "unit.r017.book1.sources",
+        "expected_target_sha256": "192be142382caa6a7eac6aad0c2bb2830ca36e9713179d2ad0be4b24a11bc017",
+        "target_only_blocks": [
+          {
+            "target_block_index": 19,
+            "id": "segment.r017.book1.sources.target-only-cleardoublepage",
+            "segment_type": "layout_control",
+            "provenance": "Target-native final verso boundary retained by the localized reader assembly; it adds no reader-visible attribution prose.",
+            "native_reason": "Preserve the final frontmatter page boundary after the independently repaired attribution block."
+          }
+        ]
+      },
+      {
+        "id": "unit.r017.book1.ch04.text-b",
+        "expected_target_sha256": "cb07632203302bd695426880f491a496e67cf2f9504a25231988a8ea6a767eb4"
+      },
+      {
+        "id": "unit.r017.book1.ch06.text",
+        "expected_target_sha256": "4e08b0c7d3b5e89a868800569eeb57b9128d6b1b009301ce0cd2fcae9c2e75ca"
+      },
+      {
+        "id": "unit.r017.book1.ch07.text",
+        "expected_target_sha256": "42c1640cd736a36e55d812fa58c696edbaa56958b02a2cd17c2cc301d0b30179"
+      }
+    ],
+    "concept_additions": [
+      {"id": "concept.learning-outcomes", "name_en": "learning outcomes", "prerequisite_concept_ids": [], "status": "active"},
+      {"id": "concept.loss-function", "name_en": "loss function", "prerequisite_concept_ids": [], "status": "active"},
+      {"id": "concept.modeling", "name_en": "modeling", "prerequisite_concept_ids": [], "status": "active"},
+      {"id": "concept.optimization", "name_en": "optimization", "prerequisite_concept_ids": [], "status": "active"},
+      {"id": "concept.solver", "name_en": "solver", "prerequisite_concept_ids": ["concept.optimization"], "status": "active"}
+    ],
+    "term_additions": [
+      {"id": "term.absolute-value-linearization.id", "concept_id": "concept.absolute-value-linearization", "source_locale": "en", "source_term": "absolute-value linearization", "target_locale": "id-ID", "preferred": "linearisasi nilai mutlak", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.capital-allocation.id", "concept_id": "concept.capital-allocation", "source_locale": "en", "source_term": "capital-allocation model", "target_locale": "id-ID", "preferred": "model alokasi modal", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.diet-problem.id", "concept_id": "concept.diet-problem", "source_locale": "en", "source_term": "diet problem", "target_locale": "id-ID", "preferred": "masalah diet", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.expected-value-objective.id", "concept_id": "concept.expected-value-objective", "source_locale": "en", "source_term": "expected-value objective", "target_locale": "id-ID", "preferred": "fungsi tujuan nilai harapan", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.integer-linear-programming.id", "concept_id": "concept.integer-linear-programming", "source_locale": "en", "source_term": "integer linear programming", "target_locale": "id-ID", "preferred": "pemrograman linear bilangan bulat", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.machine-learning-optimization.id", "concept_id": "concept.machine-learning-optimization", "source_locale": "en", "source_term": "optimization in machine learning", "target_locale": "id-ID", "preferred": "optimisasi dalam pembelajaran mesin", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.mixed-integer-nonlinear-programming.id", "concept_id": "concept.mixed-integer-nonlinear-programming", "source_locale": "en", "source_term": "mixed-integer nonlinear programming", "target_locale": "id-ID", "preferred": "pemrograman nonlinier bilangan bulat campuran", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.model-development-cycle.id", "concept_id": "concept.model-development-cycle", "source_locale": "en", "source_term": "model development cycle", "target_locale": "id-ID", "preferred": "siklus pengembangan model", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.optimization-model.id", "concept_id": "concept.optimization-model", "source_locale": "en", "source_term": "optimization model", "target_locale": "id-ID", "preferred": "model optimisasi", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.partitioned-variables.id", "concept_id": "concept.partitioned-variables", "source_locale": "en", "source_term": "basic and nonbasic variable partition", "target_locale": "id-ID", "preferred": "pemartisian variabel basis dan nonbasis", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.production-planning.id", "concept_id": "concept.production-planning", "source_locale": "en", "source_term": "production-planning model", "target_locale": "id-ID", "preferred": "model perencanaan produksi", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.representation-theorem.id", "concept_id": "concept.representation-theorem", "source_locale": "en", "source_term": "polyhedral representation theorem", "target_locale": "id-ID", "preferred": "teorema representasi polihedral", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.simplex-optimality-condition.id", "concept_id": "concept.simplex-optimality-condition", "source_locale": "en", "source_term": "simplex reduced-cost optimality condition", "target_locale": "id-ID", "preferred": "syarat optimalitas biaya tereduksi simpleks", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.spreadsheet-formula.id", "concept_id": "concept.spreadsheet-formula", "source_locale": "en", "source_term": "spreadsheet formula", "target_locale": "id-ID", "preferred": "rumus lembar kerja", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.unbounded-simplex.id", "concept_id": "concept.unbounded-simplex", "source_locale": "en", "source_term": "simplex unboundedness certificate", "target_locale": "id-ID", "preferred": "sertifikat ketakterbatasan simpleks", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.vector-operations.id", "concept_id": "concept.vector-operations", "source_locale": "en", "source_term": "vector operations", "target_locale": "id-ID", "preferred": "operasi vektor", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"},
+      {"id": "term.workforce-scheduling.id", "concept_id": "concept.workforce-scheduling", "source_locale": "en", "source_term": "workforce-scheduling model", "target_locale": "id-ID", "preferred": "model penjadwalan tenaga kerja", "variants": [], "rejected": [], "scope": "R017/O018 Book 1 full-corpus edition", "register": "academic", "evidence": "Final id-ID corpus terminology audit", "status": "approved"}
+    ],
+    "assets": [
+      {
+        "id": "asset.r017.controller.book1",
+        "expected_target_sha256": "552e0b020893167c51baffce453dd574404c97c59da1631e43e055b95316a556"
+      },
+      {
+        "id": "asset.r017.build.packages",
+        "expected_target_sha256": "ca5258fa93b13919768cf2fee8032a5c9a63ad88f6160b8d26a2ea3861e0d7d5"
+      },
+      {
+        "id": "asset.r017.build.accessibility",
+        "expected_target_sha256": "8c722a967d797e0ac882a61be787efc89527780ac07db9e7d2dfce26b686d864"
+      },
+      {
+        "id": "asset.r017.build.optimization-preamble",
+        "expected_target_sha256": "fcbc112b153548f356754b6fd4ca3d2344599c58d75e08b9172459dfbbacd460"
+      },
+      {
+        "id": "asset.r017.build.biblatex-preamble",
+        "expected_target_sha256": "937cccad8f1da4d109ccf1109160d3e284448ba4841f6aaacfe4ec447e33cf76"
+      }
+    ]
+  },
+  "append": {
+    "root_units": [
+      {
+        "id": "unit.r017.book1.ch10",
+        "unit_type": "chapter",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 12,
+        "source_local_id": "chapter-10",
+        "title_source": "Sensitivity Analysis",
+        "title_target": "Analisis Sensitivitas",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.sensitivity-analysis", "concept.shadow-price", "concept.reduced-cost"],
+        "prerequisite_concept_ids": ["concept.simplex-algorithm", "concept.basis-matrix"],
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.ch11",
+        "unit_type": "chapter",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 13,
+        "source_local_id": "chapter-11",
+        "title_source": "Duality",
+        "title_target": "Dualitas",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.dual-formulation", "concept.weak-duality", "concept.strong-duality", "concept.complementary-slackness"],
+        "prerequisite_concept_ids": ["concept.linear-programming", "concept.sensitivity-analysis"],
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.ch12",
+        "unit_type": "chapter",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 14,
+        "source_local_id": "chapter-12",
+        "title_source": "Software - Python",
+        "title_target": "Perangkat Lunak -- Python",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.python-optimization-workflow", "concept.pyomo-modeling", "concept.open-source-solver"],
+        "prerequisite_concept_ids": ["concept.optimization-model"],
+        "rights_component_id": "rights.r017.content",
+        "additional_rights_component_ids": ["rights.r017.code"],
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.ch13",
+        "unit_type": "chapter",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 15,
+        "source_local_id": "chapter-13",
+        "title_source": "Multi-Objective Optimization",
+        "title_target": "Optimisasi Multiobjektif",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.multiobjective-optimization", "concept.pareto-optimality", "concept.weighted-sum-method", "concept.epsilon-constraint-method", "concept.lexicographic-optimization"],
+        "prerequisite_concept_ids": ["concept.linear-programming"],
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.ch14",
+        "unit_type": "chapter",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 16,
+        "source_local_id": "chapter-14",
+        "title_source": "Graph Algorithms",
+        "title_target": "Algoritme Graf",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.graph-theory", "concept.shortest-path", "concept.dijkstra-algorithm", "concept.minimum-spanning-tree", "concept.kruskal-algorithm", "concept.prim-algorithm", "concept.euler-circuit", "concept.hamilton-circuit", "concept.traveling-salesperson"],
+        "prerequisite_concept_ids": ["concept.graph-theory"],
+        "rights_component_id": "rights.r017.content",
+        "additional_rights_component_ids": ["rights.thirdparty.lippman"],
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.ch15",
+        "unit_type": "chapter",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 17,
+        "source_local_id": "chapter-15",
+        "title_source": "Introduction to Integer Programming Formulations",
+        "title_target": "Pengantar Formulasi Pemrograman Bilangan Bulat",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.integer-linear-programming", "concept.binary-integer-programming", "concept.facility-location", "concept.set-cover", "concept.graph-coloring", "concept.big-m-modeling", "concept.job-shop-scheduling", "concept.fixed-charge-model", "concept.logical-binary-constraints"],
+        "prerequisite_concept_ids": ["concept.linear-programming"],
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.solutions-manual",
+        "unit_type": "solutions_manual_collection",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 18,
+        "title_source": "Solutions Manual",
+        "title_target": "Manual Solusi",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.appendices",
+        "unit_type": "appendix_collection",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 19,
+        "title_source": "Appendices",
+        "title_target": "Lampiran",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "rights_component_id": "rights.r017.content",
+        "additional_rights_component_ids": ["rights.thirdparty.lyryx-kuttler"],
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.appendix.equations-lines",
+        "unit_type": "appendix",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1.appendices",
+        "order": 1,
+        "title_source": "Equations and Lines",
+        "title_target": "Persamaan dan Garis",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.linear-system"],
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.appendix.linear-systems",
+        "unit_type": "appendix",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1.appendices",
+        "order": 2,
+        "title_source": "Systems of Linear Equations",
+        "title_target": "Sistem Persamaan Linear",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.linear-system", "concept.row-operation", "concept.gaussian-elimination", "concept.reduced-row-echelon-form"],
+        "rights_component_id": "rights.thirdparty.lyryx-kuttler",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.appendix.matrices",
+        "unit_type": "appendix",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1.appendices",
+        "order": 3,
+        "title_source": "Matrices",
+        "title_target": "Matriks",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.matrix-arithmetic", "concept.matrix-inverse"],
+        "rights_component_id": "rights.thirdparty.lyryx-kuttler",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.appendix.vectors",
+        "unit_type": "appendix",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1.appendices",
+        "order": 4,
+        "title_source": "Vectors in Rn",
+        "title_target": "Vektor di Rn",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "concept_ids": ["concept.vector-operations", "concept.vector-norm", "concept.dot-product"],
+        "rights_component_id": "rights.thirdparty.lyryx-kuttler",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.backmatter",
+        "unit_type": "backmatter_collection",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.upstream.1745df89",
+        "parent_id": "unit.r017.book1",
+        "order": 20,
+        "title_source": "Back matter",
+        "title_target": "Materi Akhir",
+        "locale": "mul",
+        "translation_state": "structurally_verified",
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.bibliography",
+        "unit_type": "bibliography",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.id-id.draft",
+        "parent_id": "unit.r017.book1",
+        "order": 21,
+        "title_target": "Daftar Pustaka",
+        "locale": "id-ID",
+        "translation_state": "built",
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "unit.r017.book1.index",
+        "unit_type": "index",
+        "resource_id": "resource.r017.open-optimization-book",
+        "edition_id": "edition.r017.id-id.draft",
+        "parent_id": "unit.r017.book1",
+        "order": 22,
+        "title_target": "Indeks",
+        "locale": "id-ID",
+        "translation_state": "built",
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      }
+    ],
+    "assets": [
+      {
+        "id": "asset.r017.upstream.includegraphics-inventory",
+        "asset_type": "source_asset_inventory_json",
+        "source_path": "Intro-Math-Programming/baseText/book/includegraphics-inventory.json",
+        "source_sha256": "d322e52ccab9dd79c5c6da4275604f671f999f2aa6a7e8a00cc6e2f2ea314331",
+        "rights_component_id": "rights.r017.code",
+        "status": "source_frozen"
+      },
+      {
+        "id": "asset.r017.upstream.alt-text-inventory",
+        "asset_type": "source_accessibility_inventory_csv",
+        "source_path": "Intro-Math-Programming/baseText/book/alt-text-inventory.csv",
+        "source_sha256": "c426188f2f757e070ad18dfacb28797c65290e12890de1dc9397634f106e56db",
+        "rights_component_id": "rights.r017.code",
+        "status": "source_frozen"
+      },
+      {
+        "id": "asset.r017.bibliography.book-references",
+        "asset_type": "bibliography_bib",
+        "source_path": "Intro-Math-Programming/baseText/book/references.bib",
+        "target_path": "Intro-Math-Programming/baseText/book/references.bib",
+        "source_sha256": "0b1a995acfcf281fb7f74ed7b052216dad441e5e63817d3556a759ba7d490789",
+        "expected_target_sha256": "57f0da09bc20a32be20d41039b7bdbd89e6d7a97b9579a534f00927adab6f6f2",
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "asset.r017.bibliography.figure-source-metadata",
+        "asset_type": "bibliography_bib",
+        "source_path": "Intro-Math-Programming/baseText/optimization/figures/figures-source/00_METADATA.bib",
+        "target_path": "Intro-Math-Programming/baseText/optimization/figures/figures-source/00_METADATA.bib",
+        "source_sha256": "685d94b2a195fe88aac15d803d612beef0bc906a4c8278884271a6b48fb11fa6",
+        "expected_target_sha256": "685d94b2a195fe88aac15d803d612beef0bc906a4c8278884271a6b48fb11fa6",
+        "rights_component_id": "rights.r017.content",
+        "status": "verified"
+      },
+      {
+        "id": "asset.r017.bibliography.external-open-optimization",
+        "asset_type": "external_bibliography_bib",
+        "target_path": "open-optimization-bibliography/bib/references.bib",
+        "expected_target_sha256": "ad7251ddac3532af43613979aaede41acd6680a6077c9afd0ba40751666dc5d9",
+        "rights_component_id": "rights.external.open-optimization-bibliography-caveat",
+        "status": "verified_with_caveat"
+      }
+    ],
+    "rights": [
+      {
+        "id": "rights.thirdparty.knapsack-wikimedia",
+        "component_scope": "wiki-File-knapsack.png illustration used in the introductory integer-programming chapter",
+        "license_expression": "CC-BY-SA-2.5",
+        "additional_notice_file": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/figures/figures-static/00_METADATA.bib",
+        "additional_notice_sha256": "d4aea30cb180732126f81989096b35ff938447fe6df9ae0ed408c592c9664aed",
+        "attribution_required": true,
+        "share_alike_required": true,
+        "changes_disclosed": true,
+        "non_endorsement": true,
+        "third_party_status": "third_party_static_figure",
+        "status": "verified_from_upstream_metadata"
+      },
+      {
+        "id": "rights.thirdparty.konigsberg-wikimedia",
+        "component_scope": "Konigsberg_bridges.png historical map used in the graph-algorithms chapter",
+        "license_expression": "CC-BY-SA-3.0",
+        "additional_notice_file": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/frontmatter/sources-attribution.tex",
+        "additional_notice_sha256": "959514a382acfdce47cc3ea8ae2ca69f9744ba01da12e39a9e5396919adaaf41",
+        "attribution_required": true,
+        "share_alike_required": true,
+        "changes_disclosed": true,
+        "non_endorsement": true,
+        "third_party_status": "third_party_static_figure",
+        "status": "verified_from_source_attribution"
+      },
+      {
+        "id": "rights.thirdparty.petersen-public-domain",
+        "component_scope": "wiki-File-Petersen-graph-3-coloring.png figure used in the integer-programming chapter",
+        "license_expression": "LicenseRef-Public-Domain",
+        "additional_notice_file": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/optimization/figures/figures-static/00_METADATA.bib",
+        "additional_notice_sha256": "d4aea30cb180732126f81989096b35ff938447fe6df9ae0ed408c592c9664aed",
+        "attribution_required": false,
+        "share_alike_required": false,
+        "changes_disclosed": true,
+        "non_endorsement": true,
+        "third_party_status": "third_party_public_domain_static_figure",
+        "status": "verified_from_upstream_metadata"
+      },
+      {
+        "id": "rights.external.open-optimization-bibliography-caveat",
+        "component_scope": "external open-optimization-bibliography references.bib build dependency",
+        "license_expression": "LicenseRef-No-Repository-License-Found",
+        "attribution_required": true,
+        "share_alike_required": null,
+        "changes_disclosed": false,
+        "non_endorsement": true,
+        "third_party_status": "included_external_bibliographic_metadata_without_repository_local_license",
+        "compatibility_note": "The exact build input is hash-bound and bibliographic attribution is preserved entry-by-entry; no repository-local license file was present, so the backend records this bounded caveat rather than inferring a license.",
+        "status": "verified_with_caveat"
+      }
+    ],
+    "corrections": [
+      {
+        "id": "correction.r017.ch13.pareto-curve-axis-semantics",
+        "correction_type": "source_figure_metadata",
+        "affected_unit_ids": ["unit.r017.book1.ch13.text"],
+        "source_defect": "The Pareto-curve source geometry places maximum risk cost on the horizontal axis and total cost on the vertical axis, but upstream metadata and the former image ActualText described those axes in the opposite order.",
+        "target_action": "Localize the visible axis labels according to the plotted geometry and replace the Indonesian ActualText with the same correct horizontal/vertical semantics.",
+        "rationale": "Accessible text and visible labels must describe the mathematical geometry actually plotted; reversing the axes changes the meaning of every displayed point.",
+        "evidence": "Pinned multi-objective source figure geometry compared with the localized figure labels and alternative text during the final high-resolution page audit.",
+        "upstream_report_disposition": "not_opened; no author contact during production",
+        "status": "applied_in_target"
+      },
+      {
+        "id": "correction.r017.ch15.knapsack-static-asset-closure",
+        "correction_type": "missing_build_asset",
+        "affected_unit_ids": ["unit.r017.book1.ch15.text"],
+        "source_defect": "The pinned authority carries the wiki-File-knapsack metadata and an active figure reference but omits the corresponding static image file from the frozen figure directory.",
+        "target_action": "Admit wiki-File-knapsack.png as an explicitly inventoried target-only static asset and retain its upstream CC BY-SA 2.5 attribution metadata.",
+        "rationale": "The figure is required for deterministic Book 1 compilation and its third-party rights must remain narrower than the repository-level content license.",
+        "evidence": "Pinned 00_METADATA.bib entry, absence of the authority image path, localized chapter figure reference, and successful final build file-use witness.",
+        "upstream_report_disposition": "not_opened; no author contact during production",
+        "status": "applied_in_target"
+      }
+    ],
+    "qa_events": [
+      {
+        "id": "qa.r017.book1.full-corpus-topology",
+        "qa_type": "topology",
+        "result": "pass",
+        "witness": "The full Book 1 controller order is represented through Chapter 15, the complete solutions manual, and every admitted appendix/back-matter content file as exact source/target hash-bound records. Bibliography inputs and the generated bibliography/index outputs are separately hash-bound as assets/artifacts; no claim is made that generated index entries are source-translated prose segments.",
+        "affected_ids": ["unit.r017.book1", "unit.r017.book1.ch10", "unit.r017.book1.ch11", "unit.r017.book1.ch12", "unit.r017.book1.ch13", "unit.r017.book1.ch14", "unit.r017.book1.ch15", "unit.r017.book1.solutions-manual", "unit.r017.book1.appendices", "unit.r017.book1.backmatter", "unit.r017.book1.bibliography", "unit.r017.book1.index"],
+        "status": "complete"
+      },
+      {
+        "id": "qa.backend.target-projection-integrity",
+        "qa_type": "topology",
+        "result": "pass",
+        "witness": "Later-corpus target blocks are independently selectable and hash-bound while their upstream relationship remains exact at file level; no one-to-one paragraph alignment is invented where Indonesian reflow changed physical block boundaries.",
+        "affected_ids": ["unit.r017.book1.ch10", "unit.r017.book1.ch11", "unit.r017.book1.ch12", "unit.r017.book1.ch13", "unit.r017.book1.ch14", "unit.r017.book1.ch15", "unit.r017.book1.appendices", "unit.r017.book1.backmatter"],
+        "status": "complete"
+      }
+    ],
+    "relations": [
+      {"id": "relation.adapts.unit.o018.lab.ch10.unit.r017.book1.ch10", "relation_type": "adapts", "from_id": "unit.o018.lab.ch10", "to_id": "unit.r017.book1.ch10", "status": "active"},
+      {"id": "relation.adapts.unit.o018.lab.ch11.unit.r017.book1.ch11", "relation_type": "adapts", "from_id": "unit.o018.lab.ch11", "to_id": "unit.r017.book1.ch11", "status": "active"},
+      {"id": "relation.adapts.unit.o018.lab.ch12.unit.r017.book1.ch12", "relation_type": "adapts", "from_id": "unit.o018.lab.ch12", "to_id": "unit.r017.book1.ch12", "status": "active"},
+      {"id": "relation.adapts.unit.o018.lab.ch13.unit.r017.book1.ch13", "relation_type": "adapts", "from_id": "unit.o018.lab.ch13", "to_id": "unit.r017.book1.ch13", "status": "active"},
+      {"id": "relation.adapts.unit.o018.lab.ch14.unit.r017.book1.ch14", "relation_type": "adapts", "from_id": "unit.o018.lab.ch14", "to_id": "unit.r017.book1.ch14", "status": "active"},
+      {"id": "relation.adapts.unit.o018.lab.ch15.unit.r017.book1.ch15", "relation_type": "adapts", "from_id": "unit.o018.lab.ch15", "to_id": "unit.r017.book1.ch15", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch02.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch02.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch03.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch03.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch04.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch04.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch05.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch05.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch06.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch06.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch07.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch07.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch08.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch08.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch09.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch09.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch10.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch10.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch11.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch11.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch12.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch12.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch13.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch13.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch14.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch14.solutions-manual", "status": "active"},
+      {"id": "relation.contains.unit.r017.book1.solutions-manual.unit.r017.book1.ch15.solutions-manual", "relation_type": "contains", "from_id": "unit.r017.book1.solutions-manual", "to_id": "unit.r017.book1.ch15.solutions-manual", "status": "active"},
+      {"id": "relation.answers.unit.r017.book1.backmatter.checkpoint-answers.unit.r017.book1", "relation_type": "answers", "from_id": "unit.r017.book1.backmatter.checkpoint-answers", "to_id": "unit.r017.book1", "status": "active"},
+      {"id": "relation.depends-on.unit.r017.book1.index.unit.r017.book1", "relation_type": "depends-on", "from_id": "unit.r017.book1.index", "to_id": "unit.r017.book1", "status": "active"}
+    ]
+  },
+  "concept_terms": [
+    {"slug": "dual-formulation", "name_en": "dual formulation", "preferred": "formulasi dual", "prerequisite_concept_ids": ["concept.linear-programming"]},
+    {"slug": "weak-duality", "name_en": "weak duality", "preferred": "dualitas lemah", "prerequisite_concept_ids": ["concept.dual-formulation"]},
+    {"slug": "strong-duality", "name_en": "strong duality", "preferred": "dualitas kuat", "prerequisite_concept_ids": ["concept.weak-duality"]},
+    {"slug": "complementary-slackness", "name_en": "complementary slackness", "preferred": "kelonggaran komplementer", "prerequisite_concept_ids": ["concept.strong-duality"]},
+    {"slug": "python-optimization-workflow", "name_en": "Python optimization workflow", "preferred": "alur kerja optimisasi Python", "prerequisite_concept_ids": ["concept.optimization-model"]},
+    {"slug": "pyomo-modeling", "name_en": "Pyomo modeling", "preferred": "pemodelan Pyomo", "prerequisite_concept_ids": ["concept.python-optimization-workflow"]},
+    {"slug": "multiobjective-optimization", "name_en": "multiobjective optimization", "preferred": "optimisasi multiobjektif", "prerequisite_concept_ids": ["concept.optimization-model"]},
+    {"slug": "pareto-optimality", "name_en": "Pareto optimality", "preferred": "optimalitas Pareto", "prerequisite_concept_ids": ["concept.multiobjective-optimization"]},
+    {"slug": "weighted-sum-method", "name_en": "weighted-sum method", "preferred": "metode jumlah berbobot", "prerequisite_concept_ids": ["concept.pareto-optimality"]},
+    {"slug": "epsilon-constraint-method", "name_en": "epsilon-constraint method", "preferred": "metode kendala epsilon", "variants": ["metode kendala ε"], "prerequisite_concept_ids": ["concept.pareto-optimality"]},
+    {"slug": "lexicographic-optimization", "name_en": "lexicographic optimization", "preferred": "optimisasi leksikografis", "prerequisite_concept_ids": ["concept.multiobjective-optimization"]},
+    {"slug": "shortest-path", "name_en": "shortest path", "preferred": "lintasan terpendek", "prerequisite_concept_ids": ["concept.graph-theory"]},
+    {"slug": "dijkstra-algorithm", "name_en": "Dijkstra algorithm", "preferred": "algoritme Dijkstra", "prerequisite_concept_ids": ["concept.shortest-path"]},
+    {"slug": "minimum-spanning-tree", "name_en": "minimum spanning tree", "preferred": "pohon merentang minimum", "prerequisite_concept_ids": ["concept.graph-theory"]},
+    {"slug": "kruskal-algorithm", "name_en": "Kruskal algorithm", "preferred": "algoritme Kruskal", "prerequisite_concept_ids": ["concept.minimum-spanning-tree"]},
+    {"slug": "prim-algorithm", "name_en": "Prim algorithm", "preferred": "algoritme Prim", "prerequisite_concept_ids": ["concept.minimum-spanning-tree"]},
+    {"slug": "euler-circuit", "name_en": "Euler circuit", "preferred": "sirkuit Euler", "prerequisite_concept_ids": ["concept.graph-theory"]},
+    {"slug": "hamilton-circuit", "name_en": "Hamilton circuit", "preferred": "sirkuit Hamilton", "prerequisite_concept_ids": ["concept.graph-theory"]},
+    {"slug": "traveling-salesperson", "name_en": "traveling salesperson problem", "preferred": "masalah wiraniaga keliling", "prerequisite_concept_ids": ["concept.hamilton-circuit"]},
+    {"slug": "facility-location", "name_en": "facility location", "preferred": "penentuan lokasi fasilitas", "prerequisite_concept_ids": ["concept.binary-integer-programming"]},
+    {"slug": "set-cover", "name_en": "set cover", "preferred": "penutupan himpunan", "prerequisite_concept_ids": ["concept.binary-integer-programming"]},
+    {"slug": "graph-coloring", "name_en": "graph coloring", "preferred": "pewarnaan graf", "prerequisite_concept_ids": ["concept.graph-theory", "concept.binary-integer-programming"]},
+    {"slug": "big-m-modeling", "name_en": "Big-M modeling", "preferred": "pemodelan Big-M", "prerequisite_concept_ids": ["concept.mixed-integer-linear-programming"]},
+    {"slug": "job-shop-scheduling", "name_en": "job-shop scheduling", "preferred": "penjadwalan job shop", "prerequisite_concept_ids": ["concept.mixed-integer-linear-programming"]},
+    {"slug": "fixed-charge-model", "name_en": "fixed-charge model", "preferred": "model biaya tetap", "prerequisite_concept_ids": ["concept.binary-integer-programming"]},
+    {"slug": "logical-binary-constraints", "name_en": "logical binary constraints", "preferred": "kendala logis biner", "prerequisite_concept_ids": ["concept.binary-integer-programming"]},
+    {"slug": "linear-system", "name_en": "system of linear equations", "preferred": "sistem persamaan linear", "prerequisite_concept_ids": ["concept.linear-combination"]},
+    {"slug": "row-operation", "name_en": "elementary row operation", "preferred": "operasi baris elementer", "prerequisite_concept_ids": ["concept.linear-system"]},
+    {"slug": "gaussian-elimination", "name_en": "Gaussian elimination", "preferred": "eliminasi Gauss", "prerequisite_concept_ids": ["concept.row-operation"]},
+    {"slug": "reduced-row-echelon-form", "name_en": "reduced row echelon form", "preferred": "bentuk eselon baris tereduksi", "variants": ["RREF"], "prerequisite_concept_ids": ["concept.gaussian-elimination"]},
+    {"slug": "matrix-arithmetic", "name_en": "matrix arithmetic", "preferred": "aritmetika matriks", "prerequisite_concept_ids": ["concept.vector-operations"]},
+    {"slug": "matrix-inverse", "name_en": "matrix inverse", "preferred": "invers matriks", "prerequisite_concept_ids": ["concept.matrix-arithmetic", "concept.gaussian-elimination"]},
+    {"slug": "vector-norm", "name_en": "vector norm", "preferred": "norma vektor", "prerequisite_concept_ids": ["concept.vector-operations"]},
+    {"slug": "dot-product", "name_en": "dot product", "preferred": "hasil kali titik", "prerequisite_concept_ids": ["concept.vector-operations"]}
+  ],
+  "r017_file_units": [
+    {"id":"unit.r017.book1.ch10.text","unit_type":"chapter_text","parent_id":"unit.r017.book1.ch10","order":1,"path":"Intro-Math-Programming/baseText/book/part1-linear-programming/ch07-sensitivity/sensitivity-LP.tex","source_sha256":"5a112881cdab43e0509ef39ea48656f45f7228488ef8af9ce1fdba2f3d8fbfc5","expected_target_sha256":"27125508e85609361382af200e24d33d5f979cb68f78c5eee94c06acd6a9c64c","concept_ids":["concept.sensitivity-analysis","concept.shadow-price","concept.reduced-cost"]},
+    {"id":"unit.r017.book1.ch10.solutions-manual","unit_type":"solutions_manual","parent_id":"unit.r017.book1.ch10","order":2,"path":"Intro-Math-Programming/baseText/book/solutions-manual/ch10.tex","source_sha256":"b0c7bbfca422954e1593b71ec4b55cbed40c918fc4a3d4058cbe24fdf9561597","expected_target_sha256":"6abe9524a7052068e1d5931356d43f24ec5fde441af4080a347124e1088b6ca5","concept_ids":["concept.sensitivity-analysis","concept.shadow-price","concept.reduced-cost"]},
+    {"id":"unit.r017.book1.ch11.text-a","unit_type":"chapter_text","parent_id":"unit.r017.book1.ch11","order":1,"path":"Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/duality.tex","source_sha256":"627b34388b3ce2a3058298c4beb8e76f7c621ae435c8de1b12aca8bc9648f685","expected_target_sha256":"ce71b6225b7c96fd52bb9c5df2718d6a2355a0482c4aec4350b0b1f0d5d34ec1","concept_ids":["concept.dual-formulation","concept.weak-duality","concept.strong-duality"]},
+    {"id":"unit.r017.book1.ch11.text-b","unit_type":"chapter_text","parent_id":"unit.r017.book1.ch11","order":2,"path":"Intro-Math-Programming/baseText/book/part1-linear-programming/ch08-duality/complimentary-slackness.tex","source_sha256":"4623cc1ac31689d782f57714bc6778ddc5bae655f30f6b70d88764a20dd4d8f8","expected_target_sha256":"acf99fe82812fc9ad487bdeb4d8a4e2e46918e0e40bb48edcd1a75d075ebc69a","concept_ids":["concept.complementary-slackness","concept.strong-duality"]},
+    {"id":"unit.r017.book1.ch11.solutions-manual","unit_type":"solutions_manual","parent_id":"unit.r017.book1.ch11","order":3,"path":"Intro-Math-Programming/baseText/book/solutions-manual/ch11.tex","source_sha256":"a813d9dbfbd735dcea4747c15042b7e25eb58d06cfca2dda29cd6a4b7c3f0249","expected_target_sha256":"6688bdb15e34fba8f412815979df92494ff9018d15f4c8b8661e0ada9b607d2d","concept_ids":["concept.dual-formulation","concept.complementary-slackness"]},
+    {"id":"unit.r017.book1.ch12.text","unit_type":"chapter_text","parent_id":"unit.r017.book1.ch12","order":1,"path":"Intro-Math-Programming/baseText/book/part1-linear-programming/ch03-software/software-python-book1.tex","source_sha256":"3570d7199cb26850ae22523c6506324b51685f05ac48969476356b6660bad951","expected_target_sha256":"d4e0649df95b71b4b22c49bb133fb4bd9cf8d3407a8e0d5e3fe0a665c0975261","concept_ids":["concept.python-optimization-workflow","concept.pyomo-modeling","concept.open-source-solver"]},
+    {"id":"unit.r017.book1.ch12.solutions-manual","unit_type":"solutions_manual","parent_id":"unit.r017.book1.ch12","order":2,"path":"Intro-Math-Programming/baseText/book/solutions-manual/ch12.tex","source_sha256":"5ff803126798622edd790e3ad6f962102bbb369f04d355bcd1e5d982855ec905","expected_target_sha256":"349a413041f0bd97a746604b01414e90f93cdbbc9f90d33a0215976a7c42dcf8","concept_ids":["concept.python-optimization-workflow","concept.pyomo-modeling"]},
+    {"id":"unit.r017.book1.ch13.text","unit_type":"chapter_text","parent_id":"unit.r017.book1.ch13","order":1,"path":"Intro-Math-Programming/baseText/book/part1-linear-programming/ch09-multi-objective/multi-objective-optimization_updated.tex","source_sha256":"d3d83cb13eb0b34433551b1ed228c51dcbc062ab90f125049c7f323a3cf065b3","expected_target_sha256":"f03649dc7debed42b616a03bfb64d9a0cca27a00afcd3580cab57c1ba94bde23","concept_ids":["concept.multiobjective-optimization","concept.pareto-optimality","concept.weighted-sum-method","concept.epsilon-constraint-method","concept.lexicographic-optimization"]},
+    {"id":"unit.r017.book1.ch13.solutions-manual","unit_type":"solutions_manual","parent_id":"unit.r017.book1.ch13","order":2,"path":"Intro-Math-Programming/baseText/book/solutions-manual/ch13.tex","source_sha256":"ac488fb2021c8b9a561afca4ab409c2584b2f4acec0e05928cd85da3bf781a15","expected_target_sha256":"e44ff5d9166bd4b8178e805ad0d4945144c1dbf731a911790bab781588b0d91a","concept_ids":["concept.multiobjective-optimization","concept.pareto-optimality"]},
+    {"id":"unit.r017.book1.ch14.text","unit_type":"chapter_text","parent_id":"unit.r017.book1.ch14","order":1,"path":"Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex","source_sha256":"3dd0d46fdebb5794dd3597b387fd116cd5c12bcc1320453f0b053c8a3875b2bf","expected_target_sha256":"bf10472a5ceb75aebe1702ecfb0e90c5d81242174858c28651196c9c169aa6bd","concept_ids":["concept.graph-theory","concept.shortest-path","concept.dijkstra-algorithm","concept.minimum-spanning-tree","concept.kruskal-algorithm","concept.prim-algorithm","concept.euler-circuit","concept.hamilton-circuit","concept.traveling-salesperson"],"rights_component_id":"rights.thirdparty.lippman"},
+    {"id":"unit.r017.book1.ch14.solutions-manual","unit_type":"solutions_manual","parent_id":"unit.r017.book1.ch14","order":2,"path":"Intro-Math-Programming/baseText/book/solutions-manual/ch14.tex","source_sha256":"6b16c6ca1aac795f83c74fa5f128926b1edbac94b7dc086dc81067df5f6945e8","expected_target_sha256":"ce143e1c44694c9d47d00870fc31d1e63c70c1fe9d679e32593bc5eef9b7689a","concept_ids":["concept.graph-theory","concept.shortest-path","concept.minimum-spanning-tree"],"rights_component_id":"rights.thirdparty.lippman"},
+    {"id":"unit.r017.book1.ch15.text","unit_type":"chapter_text","parent_id":"unit.r017.book1.ch15","order":1,"path":"Intro-Math-Programming/baseText/book/part3-integer-programming/ch11-ip-formulations/integerProgrammingFormulations-book1.tex","source_sha256":"1c3ca88201b3ae0a71d08f383611cd2e939700fda44414168447acf8139e4d22","expected_target_sha256":"d5d12875d4841ef4ded4a4d2cf69311070cd9d59a5a1fd34c333ead8f1a26653","concept_ids":["concept.integer-linear-programming","concept.binary-integer-programming","concept.facility-location","concept.set-cover","concept.graph-coloring","concept.big-m-modeling","concept.job-shop-scheduling","concept.fixed-charge-model","concept.logical-binary-constraints"]},
+    {"id":"unit.r017.book1.ch15.solutions-manual","unit_type":"solutions_manual","parent_id":"unit.r017.book1.ch15","order":2,"path":"Intro-Math-Programming/baseText/book/solutions-manual/ch15.tex","source_sha256":"bffcfe89eafd124d42db814d9cce93eac662bd513104e5c8fd9b738c912af081","expected_target_sha256":"85d3a2960c32933717ac172a590085eb510689cc73ab1ec10420ffe2af31e0af","concept_ids":["concept.integer-linear-programming","concept.binary-integer-programming"]},
+    {"id":"unit.r017.book1.appendix.equations-lines.text","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.equations-lines","order":1,"path":"Intro-Math-Programming/baseText/book/appendices/equations-and-lines/equations-and-lines-new.tex","source_sha256":"70751b9d388dc9901b330e967aebbee7f96446e72f84c2ade84cedb97669b59c","expected_target_sha256":"0280e5ab1f45033aa8ea310c39e8df9d1b4d7e648cfeaabc14b0ae42a20eed34","concept_ids":["concept.linear-system"]},
+    {"id":"unit.r017.book1.appendix.linear-systems.controller","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.linear-systems","order":1,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/systemsofequations.tex","source_sha256":"797103e83eeaa27133f7e017d6d052c6baf99f3a674635ae9b0c0ebf3d072b65","expected_target_sha256":"e94f721a06f6f4e236d607bd86b9de96372c8c40f4e1df1f17de771aa8842c2a","concept_ids":["concept.linear-system"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.linear-systems.geometry","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.linear-systems","order":2,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/systemsofequationsGeometry.tex","source_sha256":"39e09cda5265b9991491f370b6c6af0693eee43160b74bcb65e9fd3ec678205c","expected_target_sha256":"51be85f32691a4bdfeee797e30cb033efc26b6acb97cfa91a21e504148460f3d","concept_ids":["concept.linear-system"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.linear-systems.algebraic","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.linear-systems","order":3,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/systemsofequationsAlgebraicProcedures.tex","source_sha256":"c77a440a94ce857bc591a0dec1d2adb10f4045fe90c823b77a00f3f53d139a85","expected_target_sha256":"b7d8f3d92760366d3925219cae646726de0f6403fbb998f5fde5e48ba4ec2811","concept_ids":["concept.linear-system","concept.row-operation"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.linear-systems.row-operations","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.linear-systems","order":4,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/systemsofequationsAlgebraicProceduresElementaryOperations.tex","source_sha256":"b2000d5e4a7992ea95c29bf34b0272d1f46d8b16d62a7b5651b0b36eb3246860","expected_target_sha256":"b22fa26e94a4d89298e166279095d955f1aba478f3800862efa9a4127ff912cc","concept_ids":["concept.row-operation"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.linear-systems.gaussian","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.linear-systems","order":5,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/systemsofequationsAlgebraicProceduresGaussianElimination.tex","source_sha256":"5fd4902efc5bb6c2b181b644d5ea591fe6e7c490b9566992c1c4abbe4475c23f","expected_target_sha256":"ff082d784a2caddec46097f6c12814dd1fbbfd16205e3e93625fed0d345fb173","concept_ids":["concept.gaussian-elimination"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.linear-systems.rref","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.linear-systems","order":6,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/systemsofequationsAlgebraicProceduresUniquenessRREF.tex","source_sha256":"0bd788fdcf5eb39d12c37b407749ffaa00eed677331a0c4f42afb12a37f2849c","expected_target_sha256":"6f39e19ad21413283685c6f044c16fc22f66a3526a3a212a0d021d78660ff3eb","concept_ids":["concept.reduced-row-echelon-form"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.linear-systems.rank","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.linear-systems","order":7,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/systemsofequationsAlgebraicProceduresRankHomogeneousSystems.tex","source_sha256":"6095efcd63e42bed88dd71bdbce15756087b52f0eacb17a5e419e9bf835d2d56","expected_target_sha256":"31c23caadc9190532b9600dce02c5b5ea7fcedc723f535ad5819c503685398e8","concept_ids":["concept.matrix-rank","concept.linear-system"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.controller","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":1,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matrices.tex","source_sha256":"6e0cb61e94e72770d8fc7dac827f3636f1500d4fafc5edf139b50f2ce509b271","expected_target_sha256":"cfb98ae4291ac4df930c99d178456b06756c84f30e08a6310bc9022af3b69df3","concept_ids":["concept.matrix-arithmetic"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.arithmetic","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":2,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmetic.tex","source_sha256":"085fe88ddf56f32bda7f0d493e991dca4681c12a224aa9b1f2fa3f018d6e007e","expected_target_sha256":"cbd535412dd35f21ec41a3bff103ce115a0fc254edcaf422b65a141b7af7ab3f","concept_ids":["concept.matrix-arithmetic"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.addition","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":3,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmeticAddition.tex","source_sha256":"cfd5cea2508d59a5100e28f0389cee3e59764e325f50a1d242bec16f42aa74ef","expected_target_sha256":"54bc8efdc4d09c17bee280493cfc47b7b2309b874a84e951c87e571860747e67","concept_ids":["concept.matrix-arithmetic"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.scalar","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":4,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmeticScalarMultiplication.tex","source_sha256":"5c00e3e01270da4d3c7dcf7f9f429833a710cdf7d1429358a9a095bf220d1011","expected_target_sha256":"063399548743d13bfc4939ca8e2e2f0615563487704ab1a285ea5654932b2d0e","concept_ids":["concept.matrix-arithmetic"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.multiplication","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":5,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmeticMultiplication.tex","source_sha256":"4e6d9c4af0d1b2d5b08ecc6abbe08f0ae5c384d202b595d34826111939c33eae","expected_target_sha256":"1beda3f43065b12a13b9af1c5b18573a1b359d6581a84ced989cf5c4a4bb686e","concept_ids":["concept.matrix-arithmetic"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.product-entry","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":6,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmeticProductEntry.tex","source_sha256":"cb4d584acffe417bcfb50ce940766d171bab988a6d34d2798b8d3c5b2d97cbff","expected_target_sha256":"327123b335e477ea3c70b33463a598bd1f8a1cf1872fd88d12ed6859e5d7aa36","concept_ids":["concept.matrix-arithmetic"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.properties","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":7,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmeticMultiplicationProperties.tex","source_sha256":"8324483b6ba470386a8aadfea2cf8f8cae15cc72af1042dc135a23ad040f348f","expected_target_sha256":"b952efaf462254e7fa458b632cf915e67361587cd5c7add984ae06bbdf1195ba","concept_ids":["concept.matrix-arithmetic"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.transpose","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":8,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmeticTranspose.tex","source_sha256":"31abe330107e4a099445a1ad7379858c2fa21953162ce2ef95185f5d1ac4e2c5","expected_target_sha256":"4f5eb740823ffea9cc2490ed74b6f08ac5a12acc8dff39fdd826e0ca4833d7f6","concept_ids":["concept.matrix-arithmetic"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.identity-inverse","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":9,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmeticIdentityInverses.tex","source_sha256":"bdb5441d495a5daad6c6a3a2a0b7c214d77a99e9c6ac64c4c9a8c00073acfff3","expected_target_sha256":"342e006a6b1d8d6bcfe40d63ed4018bd6759bf8cc9e9a242d7a6fd5b24053f8e","concept_ids":["concept.matrix-inverse"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.matrices.finding-inverse","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.matrices","order":10,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/matricesMatrixArithmeticFindingInverse.tex","source_sha256":"828d5401f0cdd98b4aaa5ed2e4b2bacad497c10ff45ae7c1e815e6a3ab2d8f21","expected_target_sha256":"5070c747ba6ae12fe621eb3f270943b0e3199bffd2974e31890c0f5c0284d7db","concept_ids":["concept.matrix-inverse","concept.gaussian-elimination"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.controller","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":1,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectors.tex","source_sha256":"5f0ebf5fa2fa9f2a65ba249b35f3db09ae36ca1ea690fc5cc66c5d8cd9290658","expected_target_sha256":"643c908b7f0b1c998e9041b86308b53cf370bad9c55c7b29cfbbfc992ad7ff50","concept_ids":["concept.vector-operations"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.rn","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":2,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsRn.tex","source_sha256":"4aaa5ea47360864a9ae5d457c7195a5a4a35ac3d16da93508a62124513a42c5c","expected_target_sha256":"3fb8b907550b91940388df2542aa327d0abcb6b9b89ff0ed8e5fd51eacffa726","concept_ids":["concept.vector-operations"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.algebra","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":3,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsAlgebra.tex","source_sha256":"899a862ff43e8cdc15295ff303c68f9fad170770801a8367db08acbb621b0709","expected_target_sha256":"cf6d7c95ce2ed69afc6766bcaf1e5bcdfb6a50a242c500e77d039fd4709f70fd","concept_ids":["concept.vector-operations"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.addition","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":4,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsAlgebraAddition.tex","source_sha256":"1a84654d8c32c9e9c72629ed38785430aec9e0c595f81b0a8b732d81cb586889","expected_target_sha256":"caa1dffc1ce1e63090ea20437e560483cbdf1c9e06fbb0a6799e76608719104c","concept_ids":["concept.vector-operations"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.scalar","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":5,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsAlgebraScalarMult.tex","source_sha256":"c84b1a393e3c4494e3da3d438ed767d2ae4df5c6c09d33d3f1ea5100c23d68bd","expected_target_sha256":"b416371336d5b7f7f4be9ce495d493b2ac6bb417aa6661e98e17eb8f8218e658","concept_ids":["concept.vector-operations"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.addition-meaning","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":6,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsAdditionMeaning.tex","source_sha256":"e6d38c98acaf09ad39a7a994824babf2603daeb5d5b35ecf9049b36a928172f7","expected_target_sha256":"3bc5962ddd8b72d234460599b237dfa0ed7333e6869cddba5fe8dac108b785b1","concept_ids":["concept.vector-operations"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.length","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":7,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsLength.tex","source_sha256":"ac66adcd1c0bae88f0e65ffb2163f3c9886702b73ba5736edb87a68790ffac8c","expected_target_sha256":"93dfab6430b43b6ff5d3290cd14fee85cbb821961a7b4c36e549df4ae3b5374b","concept_ids":["concept.vector-norm"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.scalar-meaning","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":8,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsScalarMultMeaning.tex","source_sha256":"0d8ceff5aa9ca29a22de52216de9868b25f03a7dd4c3c06ba21379f451fa9bfd","expected_target_sha256":"c24633da77eaba6e6ccffb236cc844cd0afeed7e40912718b14b189df0f45e44","concept_ids":["concept.vector-operations"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.dot-controller","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":9,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsDotProduct.tex","source_sha256":"8bf02fb0adfab942bf28e240ace77e9fbfadef39d477ccfd9a4820e09d27578b","expected_target_sha256":"fdcc0b6c8108b5fa6659dafce745651676bc79463c476748b57488fe88ee7038","concept_ids":["concept.dot-product"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.dot","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":10,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsDotProductDot.tex","source_sha256":"c5c6292e3ffd62f0dbb53caaaa7df023e45b47db807136fa96201f7987d42171","expected_target_sha256":"4c272fad7e55d9464986abb7aa97ecacdf1c210b67f3efd5a5a6e79d745a3ac7","concept_ids":["concept.dot-product"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.appendix.vectors.dot-significance","unit_type":"appendix_text","parent_id":"unit.r017.book1.appendix.vectors","order":11,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/RnVectorsDotProductSignificance.tex","source_sha256":"d3b1aaaa6f3ec937b81547bfbb0c09dfdee8f58ca349553c0516584bd25fea32","expected_target_sha256":"d5860a69ee0e3d38a5766552857ce73a2184b1fbd1fb2b3e83c35ae063e070b8","concept_ids":["concept.dot-product"],"rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.backmatter.software-resources","unit_type":"appendix_text","parent_id":"unit.r017.book1.backmatter","order":1,"path":"Intro-Math-Programming/baseText/book/appendices/software-resources.tex","source_sha256":"22095ec4a853763637d00f33b4bd14d8b9dd9a684a5fa57f67ccc61bf87acec7","expected_target_sha256":"80e830fbd08432fee359e5b7285735e0c74e9d677942552e7ea632bfed2ba5d6","concept_ids":["concept.open-source-solver"]},
+    {"id":"unit.r017.book1.backmatter.checkpoint-answers","unit_type":"answer_collection","parent_id":"unit.r017.book1.backmatter","order":2,"path":"Intro-Math-Programming/baseText/book/backmatter/checkpoint-answers.tex","source_sha256":"e5e0224e51c3f79986200d6bbbabde04191e0747a4d95279f532d56955a1d4bf","expected_target_sha256":"f44ba1eb13329f1bb83be8e3c3fb555f39c244b7f9c85ca1bf3f4a1a716f93fa"},
+    {"id":"unit.r017.book1.backmatter.further-reading","unit_type":"resource_list","parent_id":"unit.r017.book1.backmatter","order":3,"path":"Intro-Math-Programming/baseText/book/backmatter/further-reading-and-resources.tex","source_sha256":"f2293c11ec1e79cd5abf2acd0bff586260a64afe07c6aaef8d64b8e2aa8ce062","expected_target_sha256":"1c109b216cfb6820c718c8920023d9436fe8855aee467efae69feeb60934fb0e"},
+    {"id":"unit.r017.book1.backmatter.linear-algebra-license","unit_type":"attribution","parent_id":"unit.r017.book1.backmatter","order":4,"path":"Intro-Math-Programming/baseText/book/appendices/linear-algebra/license.tex","source_sha256":"4098f9e6a9c59c50c81f52775bc3b8ca773d2f814719b0763d622b5459a0567e","expected_target_sha256":"8e37f84a619a43e378918b0d01e6dd71798d80b3bc915099babcf42cba24d653","rights_component_id":"rights.thirdparty.lyryx-kuttler"},
+    {"id":"unit.r017.book1.backmatter.contributors","unit_type":"attribution","parent_id":"unit.r017.book1.backmatter","order":5,"path":"Intro-Math-Programming/baseText/book/frontmatter/contributors-foundations.tex","source_sha256":"a55231f871074c7c67eff57b46f34725f783ade6798e5ab4d759a1795b807861","expected_target_sha256":"bee05fed267aa7b18f3739b4fbec8f69968a4270fd4dea22b3c759a2e0acc644","rights_component_id":"rights.thirdparty.foundations"}
+  ],
+  "r017_asset_directories": [
+    {
+      "key": "figures",
+      "path": "Intro-Math-Programming/baseText/Figures",
+      "rights_component_id": "rights.r017.content",
+      "source_file_count": 87,
+      "source_closure_bytes": 9740610,
+      "source_closure_sha256": "2ae37580345277574dd8b46ca51536a2fd0bac85ce7529429842e0b63ee6ad13",
+      "target_file_count": 23,
+      "target_closure_bytes": 2046579,
+      "target_closure_sha256": "df708d004ae7baf829187c7ce191e58c4f5bab1bb477995b10b35d5e9e4acf71",
+      "rights_overrides": {
+        "Konigsberg_bridges.png": "rights.thirdparty.konigsberg-wikimedia"
+      }
+    },
+    {
+      "key": "graph-theory",
+      "path": "Intro-Math-Programming/baseText/graph-theory-graphics",
+      "rights_component_id": "rights.thirdparty.lippman",
+      "source_file_count": 20,
+      "source_closure_bytes": 1415995,
+      "source_closure_sha256": "d411e6b5c451005f584312eeb7f2d2e487ac01ac4e52b49814c738e34ac29a0f",
+      "target_file_count": 14,
+      "target_closure_bytes": 1242743,
+      "target_closure_sha256": "54d85a80e0a0380d344dafbcc8d08c7ea9537f00d01dcdca947a6a1e08ec8f0c",
+      "rights_overrides": {
+        "GraphPicture.png": "rights.thirdparty.lippman-sam-beebe",
+        "GraphPictureDot.png": "rights.thirdparty.lippman-sam-beebe",
+        "dijkstra-soln.png": "rights.r017.content",
+        "dijkstra0.png": "rights.r017.content",
+        "dijkstra1.png": "rights.r017.content",
+        "dijkstra2.png": "rights.r017.content",
+        "dijkstra3.png": "rights.r017.content",
+        "dijkstra4.png": "rights.r017.content",
+        "dijkstra5.png": "rights.r017.content",
+        "dijkstra6.png": "rights.r017.content",
+        "dijkstra7.png": "rights.r017.content",
+        "dijkstra8.png": "rights.r017.content"
+      }
+    },
+    {
+      "key": "optimization-static",
+      "path": "Intro-Math-Programming/baseText/optimization/figures/figures-static",
+      "rights_component_id": "rights.r017.content",
+      "source_file_count": 188,
+      "source_closure_bytes": 29419504,
+      "source_closure_sha256": "c415e6178f752c9888ab54875db0bda9775a9621e48697bf6560b059a2479128",
+      "target_file_count": 16,
+      "target_closure_bytes": 16249739,
+      "target_closure_sha256": "5f03a730cceba67a20d4f9aa6f8991979bbc36241b2b5fb3ccdb254bda103167",
+      "rights_overrides": {
+        "wiki-File-knapsack.png": "rights.thirdparty.knapsack-wikimedia",
+        "wiki-File-Petersen-graph-3-coloring.png": "rights.thirdparty.petersen-public-domain"
+      }
+    }
+  ],
+  "final_pdf": {
+    "path": "output/book1-pdf/book1-id.pdf",
+    "bytes": 26425739,
+    "sha256": "daa9b79df3684729cc204b563669f400866d8fbd12c0977d32ff9897276a7a49",
+    "replay_path": "qa/book1-final-replay-id4/book1-id.pdf",
+    "replay_bytes": 26425739,
+    "replay_sha256": "daa9b79df3684729cc204b563669f400866d8fbd12c0977d32ff9897276a7a49",
+    "qa_report_path": "qa/book1-final-qa-report.json",
+    "qa_report_bytes": 30770,
+    "qa_report_sha256": "d914ab157350571779a9e4bca62a1b02031560ccda19f00b08c4d61fda5b15b0",
+    "build_entrypoint_path": "source/Intro-Math-Programming/baseText/book/build-book1-id.ps1",
+    "build_entrypoint_bytes": 3017,
+    "build_entrypoint_sha256": "9d23602d2b1771bd56c72688459ea2b727f8b65288d6bca7fd9477df854c4ec3",
+    "toolchain": "MiKTeX-pdfTeX 4.27.0 (1.40.29); Biber; MakeIndex; PowerShell deterministic build entrypoint",
+    "build_artifacts": [
+      {
+        "id": "artifact.r017.book1.id-id.controller",
+        "artifact_type": "latex_controller",
+        "path": "source/Intro-Math-Programming/baseText/book/book1-main.tex",
+        "bytes": 31847,
+        "sha256": "552e0b020893167c51baffce453dd574404c97c59da1631e43e055b95316a556",
+        "toolchain": "LaTeX",
+        "rights_component_ids": ["rights.r017.code"],
+        "owner_unit_id": "unit.r017.book1"
+      },
+      {
+        "id": "artifact.r017.book1.id-id.final-verifier",
+        "artifact_type": "pdf_verifier",
+        "path": "qa/book1-final-verify.py",
+        "bytes": 12099,
+        "sha256": "78449d8a73fc46715bd9bcb5a4f58c6a890fee3f60a5864c051139e054c4dc31",
+        "toolchain": "Python; pypdf; Poppler",
+        "rights_component_ids": ["rights.r017.code"],
+        "owner_unit_id": "unit.r017.book1"
+      }
+    ],
+    "page_count": 666,
+    "outlines": 320,
+    "named_destinations": 3485,
+    "links": 1354,
+    "type3_fonts": 0
+  },
+  "o018_labs": [
+    {
+      "key": "ch10",
+      "directory": "ch10-sensitivity-analysis",
+      "order": 9,
+      "title_target": "Laboratorium Analisis Sensitivitas",
+      "concept_ids": ["concept.sensitivity-analysis", "concept.shadow-price", "concept.reduced-cost", "concept.open-source-solver", "concept.reproducible-computation"],
+      "prerequisite_concept_ids": ["concept.simplex-algorithm", "concept.basis-matrix"],
+      "file_count": 16,
+      "closure_bytes": 129530,
+      "closure_sha256": "611395a51b62116ca4896980985d8441ae396a253abe755d235ae24be41c12f2"
+    },
+    {
+      "key": "ch11",
+      "directory": "ch11-duality",
+      "order": 10,
+      "title_target": "Laboratorium Dualitas",
+      "concept_ids": ["concept.dual-formulation", "concept.weak-duality", "concept.strong-duality", "concept.complementary-slackness", "concept.open-source-solver", "concept.reproducible-computation"],
+      "prerequisite_concept_ids": ["concept.linear-programming", "concept.sensitivity-analysis"],
+      "file_count": 14,
+      "closure_bytes": 148618,
+      "closure_sha256": "cd231e57dc687ab11da175bb816eaa887ed90eadaf921ca959783757bd2a696a"
+    },
+    {
+      "key": "ch12",
+      "directory": "ch12-python-workflow",
+      "order": 11,
+      "title_target": "Laboratorium Alur Kerja Python dengan Pyomo dan HiGHS",
+      "concept_ids": ["concept.python-optimization-workflow", "concept.pyomo-modeling", "concept.open-source-solver", "concept.reproducible-computation"],
+      "prerequisite_concept_ids": ["concept.optimization-model"],
+      "file_count": 12,
+      "closure_bytes": 80095,
+      "closure_sha256": "5fec4d1ef9e2e18455018dd3d8f3bdff2952fa3a20a27d5f447de31a941bbe0a"
+    },
+    {
+      "key": "ch13",
+      "directory": "ch13-multiobjective",
+      "order": 12,
+      "title_target": "Laboratorium Optimisasi Multiobjektif",
+      "concept_ids": ["concept.multiobjective-optimization", "concept.pareto-optimality", "concept.weighted-sum-method", "concept.epsilon-constraint-method", "concept.lexicographic-optimization", "concept.open-source-solver", "concept.reproducible-computation"],
+      "prerequisite_concept_ids": ["concept.linear-programming"],
+      "file_count": 16,
+      "closure_bytes": 145103,
+      "closure_sha256": "3a23be47c3c4ee571bd84181a8748fe0c70cae21acfe0fc537f7e7619f51d3df"
+    },
+    {
+      "key": "ch14",
+      "directory": "ch14-graph-algorithms",
+      "order": 13,
+      "title_target": "Laboratorium Algoritme Graf",
+      "concept_ids": ["concept.graph-theory", "concept.shortest-path", "concept.dijkstra-algorithm", "concept.minimum-spanning-tree", "concept.kruskal-algorithm", "concept.prim-algorithm", "concept.open-source-solver", "concept.reproducible-computation"],
+      "prerequisite_concept_ids": ["concept.graph-theory"],
+      "file_count": 15,
+      "closure_bytes": 120987,
+      "closure_sha256": "5e29ec17d348cba776bfc8ed93f9dd150801225c801410ccac07a44c7cf0c314"
+    },
+    {
+      "key": "ch15",
+      "directory": "ch15-integer-programming",
+      "order": 14,
+      "title_target": "Laboratorium Pemrograman Bilangan Bulat",
+      "concept_ids": ["concept.integer-linear-programming", "concept.binary-integer-programming", "concept.facility-location", "concept.set-cover", "concept.graph-coloring", "concept.big-m-modeling", "concept.job-shop-scheduling", "concept.fixed-charge-model", "concept.logical-binary-constraints", "concept.open-source-solver", "concept.reproducible-computation"],
+      "prerequisite_concept_ids": ["concept.linear-programming"],
+      "file_count": 15,
+    "closure_bytes": 126140,
+    "closure_sha256": "5d7fc76c3c6497b51901e61c4faa3adc729d1dbe46d91dcbaf3f64927dccc108"
+    }
+  ]
+}

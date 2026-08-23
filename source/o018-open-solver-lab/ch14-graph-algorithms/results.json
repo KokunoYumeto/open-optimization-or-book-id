@@ -1,0 +1,1078 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "exercise_order": [
+    "14.1",
+    "14.2",
+    "14.3",
+    "14.4",
+    "14.skill.1",
+    "14.skill.2",
+    "14.skill.3",
+    "14.skill.4",
+    "14.skill.5",
+    "14.skill.6",
+    "14.skill.7",
+    "14.skill.8",
+    "14.skill.9",
+    "14.skill.10",
+    "14.skill.11",
+    "14.skill.12",
+    "14.skill.13",
+    "14.skill.14",
+    "14.concept.15",
+    "14.concept.16",
+    "14.concept.17",
+    "14.exploration.18",
+    "14.exploration.19"
+  ],
+  "exercises": {
+    "14.1": {
+      "book_label": "ex:kruskal_exercise",
+      "certificate": {
+        "accepted_edges": [
+          [
+            "A",
+            "B",
+            11
+          ],
+          [
+            "B",
+            "G",
+            13
+          ],
+          [
+            "A",
+            "E",
+            14
+          ],
+          [
+            "E",
+            "F",
+            16
+          ],
+          [
+            "C",
+            "E",
+            17
+          ]
+        ],
+        "events_until_completion": [
+          {
+            "action": "tambahkan",
+            "edge": [
+              "A",
+              "B",
+              11
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "B",
+              "G",
+              13
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "A",
+              "E",
+              14
+            ]
+          },
+          {
+            "action": "tolak_siklus",
+            "edge": [
+              "A",
+              "G",
+              15
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "E",
+              "F",
+              16
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "C",
+              "E",
+              17
+            ]
+          }
+        ],
+        "exhaustive_crosscheck": {
+          "minimum_tree_count": 1,
+          "minimum_weight": 71,
+          "spanning_tree_count_checked": 1296
+        },
+        "rejected_before_completion": [
+          [
+            "A",
+            "G",
+            15
+          ]
+        ],
+        "total_weight": 71
+      },
+      "method": "kruskal_and_exhaustive_certificate",
+      "plot": {
+        "bytes": 6544,
+        "language": "id-ID",
+        "path": "plots/ex14-01-mst.svg",
+        "sha256": "a258fff2e13aaf2698d22e646e75d502541c81465d1de51f50bbf549676e27a9",
+        "status": "generated"
+      },
+      "status": "verified",
+      "title": "Pohon Merentang Biaya Minimum (Kruskal)"
+    },
+    "14.2": {
+      "book_label": null,
+      "certificate": {
+        "stdlib_replacement": true,
+        "total_weight": 71,
+        "tree_edges": [
+          [
+            "A",
+            "B",
+            11
+          ],
+          [
+            "A",
+            "E",
+            14
+          ],
+          [
+            "B",
+            "G",
+            13
+          ],
+          [
+            "C",
+            "E",
+            17
+          ],
+          [
+            "E",
+            "F",
+            16
+          ]
+        ]
+      },
+      "method": "stdlib_replacement_for_networkx",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Pendamping Python Terbuka"
+    },
+    "14.3": {
+      "book_label": "ex:prim_exercise",
+      "certificate": {
+        "kruskal_crosscheck": true,
+        "prim_order": [
+          [
+            "A",
+            "B",
+            11
+          ],
+          [
+            "B",
+            "G",
+            13
+          ],
+          [
+            "A",
+            "E",
+            14
+          ],
+          [
+            "E",
+            "F",
+            16
+          ],
+          [
+            "E",
+            "C",
+            17
+          ]
+        ],
+        "total_weight": 71
+      },
+      "method": "prim_and_kruskal_crosscheck",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Algoritme Prim"
+    },
+    "14.4": {
+      "book_label": "ex:shortest-path",
+      "certificate": {
+        "bellman_ford_crosscheck": true,
+        "distance": 13,
+        "path": [
+          "A",
+          "B",
+          "D",
+          "E",
+          "G"
+        ],
+        "settled_order": [
+          [
+            "A",
+            0
+          ],
+          [
+            "B",
+            1
+          ],
+          [
+            "C",
+            4
+          ],
+          [
+            "D",
+            4
+          ],
+          [
+            "E",
+            6
+          ],
+          [
+            "F",
+            8
+          ],
+          [
+            "G",
+            13
+          ]
+        ],
+        "shortest_path_count": 1,
+        "unique_shortest_path": true
+      },
+      "method": "dijkstra_and_bellman_ford_crosscheck",
+      "plot": {
+        "bytes": 5513,
+        "language": "id-ID",
+        "path": "plots/ex14-04-shortest.svg",
+        "sha256": "1e29a6a58f19af2552911cb0bfe2ee43143ff8c4e7e07e4d32604622fe0b7e93",
+        "status": "generated"
+      },
+      "status": "verified",
+      "title": "Masalah Lintasan Terpendek"
+    },
+    "14.concept.15": {
+      "book_label": null,
+      "certificate": {
+        "handshake_identity": "sum_v deg(v) = 2|E|",
+        "odd_degree_count_is_even": true,
+        "simple_graphs_enumerated_up_to_vertices": 5
+      },
+      "method": "handshake_lemma_certificate",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Simpul Berderajat Ganjil"
+    },
+    "14.concept.16": {
+      "book_label": "ex:mst-greedy",
+      "certificate": {
+        "exchange_argument": true,
+        "exhaustive_crosscheck": {
+          "minimum_tree_count": 1,
+          "minimum_weight": -2,
+          "spanning_tree_count_checked": 3
+        },
+        "negative_example_minimum_weight": -2,
+        "negative_weights_allowed_for_mst": true
+      },
+      "method": "exchange_argument_and_negative_edge_check",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Mengapa Kruskal Bersifat Optimal"
+    },
+    "14.concept.17": {
+      "book_label": "ex:dijkstra-nonneg",
+      "certificate": {
+        "bellman_ford_distance": 1,
+        "bellman_ford_path": [
+          "A",
+          "C",
+          "B"
+        ],
+        "finalize_once_dijkstra_wrong_distance": 2,
+        "standard_dijkstra_rejects_negative_edges": true
+      },
+      "method": "negative_counterexample_and_bellman_ford",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Mengapa Dijkstra Memerlukan Bobot Tak Negatif"
+    },
+    "14.exploration.18": {
+      "book_label": null,
+      "certificate": {
+        "distance": 3,
+        "edge_count": 15,
+        "film_extension_status": "open_rubric",
+        "shortest_paths": [
+          [
+            "A",
+            "B",
+            "E",
+            "D"
+          ],
+          [
+            "A",
+            "C",
+            "E",
+            "D"
+          ],
+          [
+            "A",
+            "F",
+            "I",
+            "D"
+          ],
+          [
+            "A",
+            "G",
+            "E",
+            "D"
+          ]
+        ]
+      },
+      "method": "all_unweighted_shortest_paths_and_rubric",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Jejaring Sosial"
+    },
+    "14.exploration.19": {
+      "book_label": null,
+      "certificate": {
+        "center": "moke",
+        "distance_one_candidates": [
+          "coke",
+          "joke",
+          "make",
+          "mike",
+          "mode",
+          "mole",
+          "more",
+          "mote",
+          "move",
+          "poke",
+          "toke",
+          "woke",
+          "yoke"
+        ],
+        "graph_edge_count": 40,
+        "insertion_example": {
+          "cost": 2,
+          "word": "smoke"
+        },
+        "rubric_status": "open_weighting_scheme",
+        "weighted_distances": {
+          "coke": 1,
+          "joke": 1,
+          "make": 1,
+          "mike": 1,
+          "mode": 1,
+          "moke": 0,
+          "mole": 1,
+          "more": 1,
+          "mote": 1,
+          "move": 1,
+          "poke": 1,
+          "smoke": 2,
+          "toke": 1,
+          "woke": 1,
+          "yoke": 1
+        },
+        "weighting_scheme": {
+          "deletion": 2,
+          "insertion": 2,
+          "substitution": 1
+        }
+      },
+      "method": "levenshtein_graph_weighted_example_and_rubric",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Jarak Levenshtein"
+    },
+    "14.skill.1": {
+      "book_label": null,
+      "certificate": {
+        "intersection_count": 12,
+        "required_features": [
+          "simpul_hanya_pada_persimpangan",
+          "satu_sisi_per_segmen_jalan_berumah",
+          "segmen_tanpa_rumah_diabaikan"
+        ],
+        "rubric_status": "image_dependent"
+      },
+      "method": "image_dependent_rubric",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Graf Petugas Pos"
+    },
+    "14.skill.10": {
+      "book_label": null,
+      "certificate": {
+        "bellman_ford_crosscheck": true,
+        "distance_minutes": 515,
+        "path": [
+          "Paris",
+          "Amsterdam",
+          "Frankfurt",
+          "München"
+        ]
+      },
+      "method": "dijkstra_and_bellman_ford_crosscheck",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Eurail: Paris ke München"
+    },
+    "14.skill.11": {
+      "book_label": null,
+      "certificate": {
+        "accepted_edges": [
+          [
+            "Arlington",
+            "Fort Worth",
+            19
+          ],
+          [
+            "Mesquite",
+            "Plano",
+            38
+          ],
+          [
+            "Denton",
+            "Plano",
+            41
+          ],
+          [
+            "Denton",
+            "Fort Worth",
+            42
+          ]
+        ],
+        "events_until_completion": [
+          {
+            "action": "tambahkan",
+            "edge": [
+              "Arlington",
+              "Fort Worth",
+              19
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "Mesquite",
+              "Plano",
+              38
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "Denton",
+              "Plano",
+              41
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "Denton",
+              "Fort Worth",
+              42
+            ]
+          }
+        ],
+        "exhaustive_crosscheck": {
+          "minimum_tree_count": 1,
+          "minimum_weight": 140,
+          "spanning_tree_count_checked": 125
+        },
+        "rejected_before_completion": [],
+        "total_weight": 140
+      },
+      "method": "kruskal_and_exhaustive_certificate",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "MST Graf Dallas"
+    },
+    "14.skill.12": {
+      "book_label": "ex:mst-sonet-ring",
+      "certificate": {
+        "accepted_edges": [
+          [
+            "C",
+            "E",
+            40
+          ],
+          [
+            "B",
+            "D",
+            43
+          ],
+          [
+            "A",
+            "E",
+            44
+          ],
+          [
+            "A",
+            "D",
+            47
+          ]
+        ],
+        "events_until_completion": [
+          {
+            "action": "tambahkan",
+            "edge": [
+              "C",
+              "E",
+              40
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "B",
+              "D",
+              43
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "A",
+              "E",
+              44
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "A",
+              "D",
+              47
+            ]
+          }
+        ],
+        "exhaustive_crosscheck": {
+          "minimum_tree_count": 1,
+          "minimum_weight": 174,
+          "spanning_tree_count_checked": 125
+        },
+        "rejected_before_completion": [],
+        "total_thousand_dollars": "17.4",
+        "total_weight": 174,
+        "total_weight_tenths": 174
+      },
+      "method": "kruskal_and_exhaustive_certificate",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "MST Lima Bangunan"
+    },
+    "14.skill.13": {
+      "book_label": "ex:dijkstra-warmup-rail",
+      "certificate": {
+        "bellman_ford_crosscheck": true,
+        "distance_minutes": 405,
+        "path": [
+          "Washington",
+          "Charlottesville",
+          "Roanoke",
+          "Bristol"
+        ],
+        "settled_order": [
+          [
+            "Washington",
+            0
+          ],
+          [
+            "Richmond",
+            115
+          ],
+          [
+            "Charlottesville",
+            140
+          ],
+          [
+            "Lynchburg",
+            210
+          ],
+          [
+            "Roanoke",
+            260
+          ],
+          [
+            "Bristol",
+            405
+          ]
+        ]
+      },
+      "method": "dijkstra_and_bellman_ford_crosscheck",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Kereta Virginia"
+    },
+    "14.skill.14": {
+      "book_label": "ex:kruskal-airfare",
+      "certificate": {
+        "accepted_edges": [
+          [
+            "Honolulu",
+            "Seattle",
+            159
+          ],
+          [
+            "London",
+            "Moscow",
+            245
+          ],
+          [
+            "Cairo",
+            "London",
+            323
+          ],
+          [
+            "London",
+            "Seattle",
+            370
+          ]
+        ],
+        "events_until_completion": [
+          {
+            "action": "tambahkan",
+            "edge": [
+              "Honolulu",
+              "Seattle",
+              159
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "London",
+              "Moscow",
+              245
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "Cairo",
+              "London",
+              323
+            ]
+          },
+          {
+            "action": "tolak_siklus",
+            "edge": [
+              "Cairo",
+              "Moscow",
+              329
+            ]
+          },
+          {
+            "action": "tambahkan",
+            "edge": [
+              "London",
+              "Seattle",
+              370
+            ]
+          }
+        ],
+        "exhaustive_crosscheck": {
+          "minimum_tree_count": 1,
+          "minimum_weight": 1097,
+          "spanning_tree_count_checked": 125
+        },
+        "rejected_before_completion": [
+          [
+            "Cairo",
+            "Moscow",
+            329
+          ]
+        ],
+        "total_weight": 1097
+      },
+      "method": "kruskal_and_exhaustive_certificate",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "MST Harga Tiket Pesawat"
+    },
+    "14.skill.2": {
+      "book_label": null,
+      "certificate": {
+        "edge_count": 7,
+        "handshake_sum": 14,
+        "rubric_status": "image_dependent_multigraph",
+        "vertex_count": 4
+      },
+      "method": "image_dependent_multigraph_rubric",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Graf Tujuh Jembatan"
+    },
+    "14.skill.3": {
+      "book_label": null,
+      "certificate": {
+        "complete_graph_verified": true,
+        "edge_count": 10,
+        "graph_type": "K5_berbobot",
+        "vertex_count": 5
+      },
+      "method": "weighted_graph_construction",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Graf Waktu Berkendara Dallas"
+    },
+    "14.skill.4": {
+      "book_label": null,
+      "certificate": {
+        "complete_graph_verified": true,
+        "edge_count": 10,
+        "graph_type": "K5_berbobot",
+        "vertex_count": 5
+      },
+      "method": "weighted_graph_construction",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Graf Harga Tiket Pesawat"
+    },
+    "14.skill.5": {
+      "book_label": null,
+      "certificate": {
+        "degrees": {
+          "A": 1,
+          "B": 4,
+          "C": 2,
+          "D": 3,
+          "E": 2
+        },
+        "edge_count": 6,
+        "handshake_sum": 12,
+        "handshake_verified": true
+      },
+      "method": "degree_and_handshake_certificate",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Derajat pada Graf Pertama"
+    },
+    "14.skill.6": {
+      "book_label": null,
+      "certificate": {
+        "degrees": {
+          "A": 2,
+          "B": 3,
+          "C": 3,
+          "D": 1,
+          "E": 1
+        },
+        "edge_count": 5,
+        "handshake_sum": 10,
+        "handshake_verified": true
+      },
+      "method": "degree_and_handshake_certificate",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Derajat pada Graf Kedua"
+    },
+    "14.skill.7": {
+      "book_label": null,
+      "certificate": {
+        "component_counts": [
+          1,
+          2,
+          1
+        ],
+        "components": [
+          [
+            [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e"
+            ]
+          ],
+          [
+            [
+              "a",
+              "c"
+            ],
+            [
+              "b",
+              "d",
+              "e"
+            ]
+          ],
+          [
+            [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e"
+            ]
+          ]
+        ],
+        "connected_graphs": [
+          1,
+          3
+        ]
+      },
+      "method": "connected_components",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Keterhubungan Graf Lima Simpul"
+    },
+    "14.skill.8": {
+      "book_label": null,
+      "certificate": {
+        "component_counts": [
+          3,
+          1,
+          2
+        ],
+        "components": [
+          [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "d",
+              "e"
+            ],
+            [
+              "f",
+              "g",
+              "h"
+            ]
+          ],
+          [
+            [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e",
+              "f",
+              "g",
+              "h"
+            ]
+          ],
+          [
+            [
+              "a",
+              "b",
+              "d",
+              "e",
+              "f"
+            ],
+            [
+              "c",
+              "g",
+              "h"
+            ]
+          ]
+        ],
+        "connected_graphs": [
+          2
+        ]
+      },
+      "method": "connected_components",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Keterhubungan Graf Delapan Simpul"
+    },
+    "14.skill.9": {
+      "book_label": "ex:dijkstra-eurail",
+      "certificate": {
+        "bellman_ford_crosscheck": true,
+        "distance_minutes": 770,
+        "path": [
+          "Bern",
+          "Frankfurt",
+          "München",
+          "Berlin"
+        ],
+        "settled_order": [
+          [
+            "Bern",
+            0
+          ],
+          [
+            "Lyon",
+            230
+          ],
+          [
+            "Frankfurt",
+            235
+          ],
+          [
+            "Paris",
+            345
+          ],
+          [
+            "München",
+            425
+          ],
+          [
+            "Amsterdam",
+            430
+          ],
+          [
+            "Berlin",
+            770
+          ]
+        ]
+      },
+      "method": "dijkstra_and_bellman_ford_crosscheck",
+      "plot": {
+        "status": "not_required"
+      },
+      "status": "verified",
+      "title": "Eurail: Bern ke Berlin"
+    }
+  },
+  "lab_id": "o018.ch14.graph-algorithms",
+  "learning_checkpoint": {
+    "connected": true,
+    "degree_LA": 4,
+    "edge_count": 10,
+    "graph_type": "K5",
+    "path_example": [
+      "Seattle",
+      "Dallas",
+      "Atlanta"
+    ],
+    "vertex_count": 5
+  },
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 153603,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex",
+        "role": "authority_chapter",
+        "sha256": "3dd0d46fdebb5794dd3597b387fd116cd5c12bcc1320453f0b053c8a3875b2bf"
+      },
+      {
+        "bytes": 20192,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch14.tex",
+        "role": "authority_manual",
+        "sha256": "6b16c6ca1aac795f83c74fa5f128926b1edbac94b7dc086dc81067df5f6945e8"
+      },
+      {
+        "bytes": 160224,
+        "path": "source/Intro-Math-Programming/baseText/book/part2-discrete-algorithms/ch10-graph-theory/graphtheory-dor1.tex",
+        "role": "translated_chapter",
+        "sha256": "4353255f2fe5ddc304a57e9f38be20d54de2b1d2f365fbb78166a5d33e74482a"
+      },
+      {
+        "bytes": 22169,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch14.tex",
+        "role": "translated_manual",
+        "sha256": "ce143e1c44694c9d47d00870fc31d1e63c70c1fe9d679e32593bc5eef9b7689a"
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "source_notes": [
+    {
+      "id": "NOTE-CH14-BERN-TIME",
+      "status": "corrected_in_id_source",
+      "text": "Saksi hulu menampilkan Bern--Frankfurt sebagai 3.55; edisi id-ID memakai 3:55 sesuai solusi terpilih."
+    },
+    {
+      "id": "NOTE-CH14-LOWRES-EXERCISES",
+      "status": "preserved_with_rubric",
+      "text": "Keterampilan 1--2 bergantung pada raster beresolusi rendah; rincian konstruksi tidak dipaksakan melampaui yang terlihat."
+    },
+    {
+      "id": "NOTE-CH14-PRIM-FLOAT",
+      "status": "preserved_and_disambiguated",
+      "text": "Gambar Prim tujuh simpul setelah Latihan 14.3 bukan graf latihan enam simpul; lab memakai data latihan yang eksplisit."
+    },
+    {
+      "id": "NOTE-CH14-HARDCODED-REFS",
+      "status": "recorded",
+      "text": "Keterampilan 11 dan 14 merujuk nomor soal secara manual, sehingga rentan terhadap penyisipan atau pengurutan ulang."
+    }
+  ],
+  "summary": {
+    "algorithm_check_count": 23,
+    "exercise_count": 23,
+    "method_counts": {
+      "all_unweighted_shortest_paths_and_rubric": 1,
+      "connected_components": 2,
+      "degree_and_handshake_certificate": 2,
+      "dijkstra_and_bellman_ford_crosscheck": 4,
+      "exchange_argument_and_negative_edge_check": 1,
+      "handshake_lemma_certificate": 1,
+      "image_dependent_multigraph_rubric": 1,
+      "image_dependent_rubric": 1,
+      "kruskal_and_exhaustive_certificate": 4,
+      "levenshtein_graph_weighted_example_and_rubric": 1,
+      "negative_counterexample_and_bellman_ford": 1,
+      "prim_and_kruskal_crosscheck": 1,
+      "stdlib_replacement_for_networkx": 1,
+      "weighted_graph_construction": 2
+    },
+    "o018_math_correction_count": 0,
+    "plot_count": 2,
+    "source_note_count": 4,
+    "unresolved_count": 0,
+    "verified_count": 23
+  },
+  "unresolved_exercises": []
+}

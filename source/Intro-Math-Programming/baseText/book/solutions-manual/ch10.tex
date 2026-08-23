@@ -1,0 +1,260 @@
+% ============================================================================
+% CHAPTER 10: SENSITIVITY ANALYSIS
+% Solutions synced to book/part1-linear-programming/ch07-sensitivity/sensitivity-LP.tex
+% All numeric answers verified with scipy.optimize.linprog (HiGHS), including
+% both endpoints of every allowable range and the duals just outside them.
+% ============================================================================
+\section{Bab 10: Analisis Sensitivitas}
+
+Bab ini memiliki 12 latihan. Dua soal pemanasan (10.1, 10.2) meminta pembaca memperoleh harga bayangan dan rentang ruas kanan langsung dari kamus akhir yang diberikan. Soal inti (10.3 sampai 10.7) membahas rentang biaya, analisis sensitivitas lengkap, rentang koefisien basis dibandingkan dengan nonbasis, rentang dari invers basis, dan pembacaan laporan sensitivitas solver. Soal konsep (10.8 sampai 10.11) menafsirkan harga bayangan, menjelaskan mengapa kendala berslack berharga nol, mengapa rentang yang diizinkan ada, serta pengaruh degenerasi terhadap harga bayangan. Soal tantangan (10.12) menyusun contoh ketika prediksi harga bayangan gagal di luar rentangnya. Latihan 10.4, 10.6, 10.8, dan 10.12 memiliki Solusi Terpilih dalam buku; solusi tersebut disajikan kembali dan diperluas di sini. Setiap rentang di bawah telah diverifikasi secara numerik pada kedua titik ujung dan tepat di luarnya.
+
+% ----------------------------------------------------------------------------
+\exsol{10.1}{Harga Bayangan dari Kamus Akhir}{1}
+
+Kamus akhir contoh utama ($\max 2x + 3y$, kendala jam $x+y \le 9$, tepung $2x+y \le 16$, gula $x + 2y \le 14$) adalah
+\[
+z = 23 - s_1 - s_3, \qquad
+x = 4 - 2s_1 + s_3, \qquad
+y = 5 + s_1 - s_3, \qquad
+s_2 = 3 + 3s_1 - s_3 .
+\]
+
+\begin{enumerate}
+\item Harga bayangan kendala $i$ adalah negatif dari koefisien $s_i$ pada baris objektif (menaikkan $b_i$ sebesar $\Delta$ ekuivalen dengan menetapkan $s_i = -\Delta$). Dari $z = 23 - s_1 - 0\cdot s_2 - s_3$:
+\[
+y_1^* = 1 \ (\text{jam}), \qquad y_2^* = 0 \ (\text{tepung}), \qquad y_3^* = 1 \ (\text{gula}).
+\]
+\item Tepung tidak mengikat. Dalam kamus, hal ini tampak dalam dua cara yang ekuivalen: slack $s_2$ bersifat \emph{basis dan positif} ($s_2 = 3$ pada optimum, sehingga tiga unit tepung tidak digunakan), dan $s_2$ tidak muncul pada baris objektif, sehingga harga bayangannya $0$. Sumber daya yang tersisa tidak bernilai pada margin.
+\item Harga bayangan gula adalah $\$1$ per unit, sehingga satu unit gula tambahan menaikkan laba sebesar $\$1 > \$0.75$: terima tawaran tersebut dan peroleh laba bersih $\$0.25$. Harga tertinggi yang patut dibayar toko roti adalah $\$1$ per unit, dan (berdasarkan rentang dalam bab, $11 \le b_3 \le 18$) harga tersebut berlaku hingga $4$ unit gula tambahan.
+\end{enumerate}
+
+\emph{Verifikasi.} \texttt{linprog} menghasilkan $z^* = 23$ dengan variabel dual $(1, 0, 1)$; ketika $b_3 = 15$, nilai optimalnya adalah $24$.
+
+% ----------------------------------------------------------------------------
+\exsol{10.2}{Rentang Sensitivitas Ruas Kanan}{1}
+
+PL-nya adalah $\max 4x_1 + 3x_2$ dengan kendala $x_1 + x_2 \le 10$, $2x_1 + x_2 \le 16$, $x_1, x_2 \ge 0$, serta kamus akhir
+\[
+z = 36 - 2s_1 - s_2, \qquad x_1 = 6 + s_1 - s_2, \qquad x_2 = 4 - 2s_1 + s_2 .
+\]
+
+Usik $b_1 = 10 + \Delta$. Slack kendala 1 menyerap perubahan: jika slack baru dinyatakan sebagai $s_1'$, hubungan dengan koordinat slack lama adalah $s_1 = s_1' - \Delta$. Karena itu, kita menyubstitusikan $s_1 = s_1' - \Delta$ ke dalam kamus:
+\[
+\begin{aligned}
+z   &= 36 - 2(s_1' - \Delta) - s_2 = (36 + 2\Delta) - 2s_1' - s_2, \\
+x_1 &= 6 + (s_1' - \Delta) - s_2 = (6 - \Delta) + s_1' - s_2, \\
+x_2 &= 4 - 2(s_1' - \Delta) + s_2 = (4 + 2\Delta) - 2s_1' + s_2 .
+\end{aligned}
+\]
+Kelayakan solusi basis ($s_1' = s_2 = 0$) mensyaratkan
+\[
+x_1 = 6 - \Delta \ge 0 \ \Rightarrow\ \Delta \le 6,
+\qquad
+x_2 = 4 + 2\Delta \ge 0 \ \Rightarrow\ \Delta \ge -2 .
+\]
+Dengan demikian,
+\[
+-2 \le \Delta \le 6
+\qquad\Longleftrightarrow\qquad
+\boxed{8 \le b_1 \le 16},
+\]
+dan di dalam rentang tersebut $z = 36 + 2\Delta$ (harga bayangan kendala 1 adalah $2$, sesuai dengan koefisien $s_1$ pada baris objektif).
+
+Rentang yang sama diperoleh dari invers basis: dengan basis $B = \{x_1, x_2\}$, $A_B = \begin{bmatrix} 1 & 1 \\ 2 & 1 \end{bmatrix}$, $A_B^{-1} = \begin{bmatrix} -1 & 1 \\ 2 & -1 \end{bmatrix}$, dan
+\[
+\x_B(b_1) = A_B^{-1}\begin{bmatrix} b_1 \\ 16 \end{bmatrix} = \begin{bmatrix} 16 - b_1 \\ 2b_1 - 16 \end{bmatrix} \ge \mathbf{0}
+\quad\Longleftrightarrow\quad 8 \le b_1 \le 16 .
+\]
+
+\emph{Verifikasi.} Pada $b_1 = 8$: optimum $(8, 0)$, $z = 32 = 36 + 2(-2)$. Pada $b_1 = 16$: optimum $(0, 16)$, $z = 48 = 36 + 2(6)$. Pada $b_1 = 7.9$, variabel dual meloncat ke $(4, 0)$ dan pada $b_1 = 16.1$ ke $(0, 3)$, yang menegaskan perubahan basis pada kedua titik ujung.
+
+% ----------------------------------------------------------------------------
+\exsol{10.3}{Sensitivitas Koefisien Objektif}{2}
+
+Gunakan PL dan kamus yang sama seperti pada Latihan 10.2. Misalkan $c_1 = 4 + \delta$. Karena $x_1$ bersifat basis, nyatakan $\delta\, x_1$ melalui baris kamus $x_1$ dan tambahkan ke baris objektif:
+\[
+z = 36 - 2s_1 - s_2 + \delta\,(6 + s_1 - s_2)
+  = (36 + 6\delta) + (-2 + \delta)\,s_1 + (-1 - \delta)\,s_2 .
+\]
+Keoptimalan (semua biaya tereduksi $\le 0$ dalam maksimisasi) mensyaratkan
+\[
+-2 + \delta \le 0 \ \Rightarrow\ \delta \le 2,
+\qquad
+-1 - \delta \le 0 \ \Rightarrow\ \delta \ge -1 .
+\]
+Dengan demikian,
+\[
+-1 \le \delta \le 2
+\qquad\Longleftrightarrow\qquad
+\boxed{3 \le c_1 \le 6}.
+\]
+Di dalam rentang, solusi optimal tetap $(x_1, x_2) = (6, 4)$ dan nilai objektif berubah secara linier:
+\[
+z^* = 36 + 6\delta = 12 + 6 c_1
+\]
+(kemiringannya adalah $x_1^* = 6$, yaitu nilai variabel yang koefisiennya berubah).
+
+\emph{Verifikasi.} Pada $c_1 = 3$: $z^* = 30$ (dicapai oleh $(6,4)$ maupun $(0,10)$, sehingga terdapat optimum alternatif pada titik ujung). Pada $c_1 = 6$: $z^* = 48$ di $(6,4)$. Pada $c_1 = 2.99$, optimum meloncat ke $(0, 10)$ dan pada $c_1 = 6.01$ ke $(8, 0)$.
+
+% ----------------------------------------------------------------------------
+\exsol{10.4}{Analisis Sensitivitas Lengkap}{2}
+
+PL: $\max 5x_1 + 6x_2$ dengan kendala $x_1 + 2x_2 \le 16$ (perakitan), $3x_1 + 2x_2 \le 24$ (mesin), $x_1, x_2 \ge 0$. Latihan ini memiliki Solusi Terpilih dalam buku; solusi tersebut disajikan kembali dan diberi anotasi di sini.
+
+\begin{enumerate}
+\item Kedua kendala mengikat pada optimum: penyelesaian $x_1 + 2x_2 = 16$ dan $3x_1 + 2x_2 = 24$ menghasilkan $(x_1, x_2) = (4, 6)$, $z^* = 5(4) + 6(6) = 56$. Hasil ini diverifikasi dengan \texttt{linprog}.
+\item Basis $B = \{x_1, x_2\}$,
+\[
+A_B = \begin{bmatrix} 1 & 2 \\ 3 & 2 \end{bmatrix}, \qquad
+A_B^{-1} = \begin{bmatrix} -\tfrac12 & \tfrac12 \\ \tfrac34 & -\tfrac14 \end{bmatrix},
+\qquad
+\y^\top = [5,6]\,A_B^{-1} = [2, 1].
+\]
+Satu jam perakitan bernilai \$2 pada margin, sedangkan satu jam mesin bernilai \$1.
+\item Rentang ruas kanan: dengan $\b = (b_1, 24)$, $\x_B = (-\tfrac{b_1}{2} + 12,\ \tfrac{3b_1}{4} - 6) \ge \mathbf{0}$ memberikan $8 \le b_1 \le 24$ dan $z = 56 + 2(b_1 - 16)$; dengan $\b = (16, b_2)$, $\x_B = (\tfrac{b_2}{2} - 8,\ 12 - \tfrac{b_2}{4}) \ge \mathbf{0}$ memberikan $16 \le b_2 \le 48$ dan $z = 56 + (b_2 - 24)$.
+\item Rentang biaya: $\c_B = (c_1, 6)$ memberikan variabel dual $(-\tfrac{c_1}{2} + \tfrac92,\ \tfrac{c_1}{2} - \tfrac32) \ge \mathbf{0}$, sehingga $3 \le c_1 \le 9$; $\c_B = (5, c_2)$ memberikan $(\tfrac{3c_2}{4} - \tfrac52,\ \tfrac52 - \tfrac{c_2}{4}) \ge \mathbf{0}$, sehingga $\tfrac{10}{3} \le c_2 \le 10$.
+\item Pemeriksaan titik ujung dengan \texttt{linprog}: $b_1 = 8$ menghasilkan $(8,0)$, $z = 40$; $b_1 = 24$ menghasilkan $(0,12)$, $z = 72$; keduanya sesuai dengan rumus linier, dan variabel dual berubah tepat di luar rentang.
+\end{enumerate}
+
+\exsol{10.5}{Menentukan Rentang Koefisien Basis dan Nonbasis}{2}
+
+PL: $\max 5x_1 + 2x_2$ dengan kendala $2x_1 + x_2 \le 10$, $x_1 + 3x_2 \le 15$, $x_1, x_2 \ge 0$, dengan optimum $(5, 0)$, $z^* = 25$, dan basis $B = \{x_1, s_2\}$.
+
+\begin{enumerate}
+\item Matriks basis (kolom $x_1$ dan $s_2$) beserta inversnya adalah
+\[
+A_B = \begin{bmatrix} 2 & 0 \\ 1 & 1 \end{bmatrix}, \qquad
+A_B^{-1} = \begin{bmatrix} \tfrac12 & 0 \\ -\tfrac12 & 1 \end{bmatrix},
+\qquad
+\y^\top = \c_B^\top A_B^{-1} = [5, 0]\,A_B^{-1} = \left[\tfrac52,\, 0\right].
+\]
+Biaya tereduksi variabel nonbasis:
+\[
+\bar{c}_{x_2} = 2 - \y^\top \begin{bmatrix} 1 \\ 3 \end{bmatrix} = 2 - \tfrac52 = -\tfrac12 \le 0,
+\qquad
+\bar{c}_{s_1} = 0 - y_1 = -\tfrac52 \le 0 .
+\]
+Keduanya nonpositif, sehingga $(5,0)$ optimal (baris objektifnya adalah $z = 25 - \tfrac12 x_2 - \tfrac52 s_1$). Sebagai pemeriksaan, $\x_B = A_B^{-1}\b = (5, 10)$, sehingga $x_1 = 5$, $s_2 = 10 \ge 0$.
+\item $x_2$ bersifat nonbasis, sehingga $c_2$ hanya muncul dalam biaya tereduksinya sendiri: $\bar{c}_{x_2}(c_2) = c_2 - \tfrac52 \le 0$ jika dan hanya jika
+\[
+\boxed{c_2 \le \tfrac52} \qquad (\text{rentang yang diizinkan } -\infty < c_2 \le \tfrac52).
+\]
+Di dalam rentang ini, solusi dan nilainya tidak berubah sama sekali: $z^* = 25$. Pada $c_2 = \tfrac52$, titik sudut $(3,4)$ menjadi optimum alternatif, dan untuk $c_2 > \tfrac52$ optimum meloncat ke sana.
+\item $x_1$ bersifat basis, sehingga $c_1$ masuk ke $\c_B$ dan menggeser \emph{setiap} biaya tereduksi. Dengan $\c_B = (c_1, 0)$, $\y(c_1)^\top = [c_1, 0]\,A_B^{-1} = \left[\tfrac{c_1}{2}, 0\right]$, sehingga
+\[
+\bar{c}_{x_2} = 2 - \tfrac{c_1}{2} \le 0 \ \Rightarrow\ c_1 \ge 4,
+\qquad
+\bar{c}_{s_1} = -\tfrac{c_1}{2} \le 0 \ \Rightarrow\ c_1 \ge 0 .
+\]
+Dengan mengambil irisannya,
+\[
+\boxed{c_1 \ge 4} \qquad (\text{rentang yang diizinkan } 4 \le c_1 < \infty),
+\]
+dan di dalamnya $z^* = 5\,c_1$ (kemiringan $x_1^* = 5$), sehingga $z^* = 25 + 5\delta$ untuk $c_1 = 5 + \delta$, $\delta \ge -1$.
+\item Koefisien nonbasis hanya menyentuh biaya tereduksinya sendiri, sehingga rentangnya berasal dari satu pertidaksamaan dan hanya berbatas pada satu sisi: menurunkan laba produk yang tidak Anda buat tidak mungkin membuat Anda mulai memproduksinya, sehingga tidak ada titik ujung bawah yang berhingga. Koefisien basis berada di dalam $\c_B$, sehingga juga di dalam $\y^\top = \c_B^\top A_B^{-1}$, dan akibatnya menggeser biaya tereduksi \emph{setiap} variabel nonbasis sekaligus; setiap variabel nonbasis menyumbangkan satu pertidaksamaan, dan rentangnya merupakan irisan semuanya.
+\end{enumerate}
+
+\emph{Verifikasi.} Pada $c_2 = 2.49$, optimum adalah $(5,0)$; pada $c_2 = 2.51$, optimum adalah $(3,4)$ dengan $z = 25.04$. Pada $c_1 = 4.01$, optimum adalah $(5,0)$ dengan $z = 20.05$; pada $c_1 = 3.99$, optimum adalah $(3,4)$; pada $c_1 = 4$, kedua titik sudut memberikan $z = 20$.
+
+% ----------------------------------------------------------------------------
+\exsol{10.6}{Sensitivitas dari Invers Basis}{2}
+
+PL: $\max 5x_1 + 4x_2$ dengan kendala $x_1 + x_2 + s_1 = 6$, $3x_1 + 2x_2 + s_2 = 15$, semua variabel $\ge 0$, dan basis $B = \{x_1, x_2\}$,
+\[
+A_B = \begin{bmatrix} 1 & 1 \\ 3 & 2 \end{bmatrix}, \qquad
+A_B^{-1} = \begin{bmatrix} -2 & 1 \\ 3 & -1 \end{bmatrix}.
+\]
+Latihan ini memiliki Solusi Terpilih dalam buku; solusi tersebut disajikan kembali di sini.
+
+\begin{enumerate}
+\item
+\[
+\x_B = A_B^{-1}\b = \begin{bmatrix} -2 & 1 \\ 3 & -1 \end{bmatrix}\begin{bmatrix} 6 \\ 15 \end{bmatrix} = \begin{bmatrix} 3 \\ 3 \end{bmatrix},
+\]
+sehingga $(x_1, x_2) = (3, 3) \geq \mathbf{0}$ merupakan solusi basis layak dengan nilai objektif $z = 5(3) + 4(3) = 27$.
+\item Dengan mengganti $b_1$ dengan suatu nilai variabel,
+\[
+\x_B(b_1) = A_B^{-1}\begin{bmatrix} b_1 \\ 15 \end{bmatrix} = \begin{bmatrix} -2b_1 + 15 \\ 3b_1 - 15 \end{bmatrix} \geq \mathbf{0}
+\quad\Longleftrightarrow\quad \boxed{5 \le b_1 \le 7.5}.
+\]
+Di dalam rentang, $z = \c_B^\top \x_B(b_1) = 5(15 - 2b_1) + 4(3b_1 - 15) = 15 + 2b_1$, sehingga harga bayangan kendala 1 adalah $2$.
+\item Harga dualnya adalah $\y^\top = \c_B^\top A_B^{-1} = [5, 4]\, A_B^{-1} = [2, 1]$, sehingga biaya tereduksi slack nonbasis adalah $\bar{c}_{s_1} = -y_1 = -2$ dan $\bar{c}_{s_2} = -y_2 = -1$; keduanya nonpositif, yang menegaskan keoptimalan (secara ekuivalen, $z = 27 - 2s_1 - s_2$). Dengan $c_1$ bervariasi, $\y(c_1)^\top = [c_1, 4]\, A_B^{-1} = [-2c_1 + 12,\ c_1 - 4]$, dan basis tetap optimal selama kedua komponennya nonnegatif:
+\[
+-2c_1 + 12 \ge 0 \ \text{ dan } \ c_1 - 4 \ge 0
+\quad\Longleftrightarrow\quad \boxed{4 \le c_1 \le 6}.
+\]
+\end{enumerate}
+
+\emph{Verifikasi.} Variabel dual $(2,1)$ ditegaskan oleh \texttt{linprog}; pada $b_1 = 5$: $(5,0)$, $z = 25$; pada $b_1 = 7.5$: $(0, 7.5)$, $z = 30$; pada $b_1 = 4.99$, variabel dual meloncat ke $(5,0)$ dan pada $7.51$ ke $(0,2)$. Pada $c_1 = 3.99$, optimum bergeser ke $(0,6)$ dan pada $6.01$ ke $(5,0)$.
+
+% ----------------------------------------------------------------------------
+\exsol{10.7}{Membaca Laporan Sensitivitas}{2}
+
+\begin{enumerate}
+\item Nilai optimal dibaca dari tabel variabel:
+\[
+z^* = 6(8) + 5(4) = 48 + 20 = 68 .
+\]
+\item Perubahannya adalah $\Delta c_1 = 7.5 - 6 = 1.5$, yang masih berada dalam kenaikan yang diizinkan sebesar $2$. \emph{Basis} optimal (dan solusi $(8,4)$) tidak berubah; hanya nilai objektif yang bergerak menjadi $z = 7.5(8) + 5(4) = 80$.
+\item Kendala 2 tidak mengikat. Ada dua penanda yang saling bebas dalam laporan: harga bayangannya $0$, dan kenaikan yang diizinkan adalah $\infty$ (menambahkan sumber daya yang belum digunakan sepenuhnya tidak mengubah apa pun, sebanyak apa pun penambahannya). Penurunan yang diizinkan sebesar $5$ tepat sama dengan slack saat ini.
+\item Kenaikan sebesar $2$ berada dalam kenaikan yang diizinkan sebesar $4$ untuk kendala 1, sehingga harga bayangan $2.5$ berlaku untuk seluruh perubahan:
+\[
+z_{\text{new}} \approx 68 + 2 \times 2.5 = 73 .
+\]
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{10.8}{Penafsiran Harga Bayangan}{2}
+
+PL: $\max 50x_1 + 30x_2$ dengan kendala $4x_1 + 2x_2 \le 40$ (kayu), $2x_1 + 3x_2 \le 30$ (tenaga kerja), $x_1, x_2 \ge 0$; optimum $(7.5, 5)$, $z^* = 525$, variabel dual $(11.25, 2.50)$. Latihan ini memiliki Solusi Terpilih dalam buku; solusi tersebut disajikan kembali di sini.
+
+Pada solusi optimal $(x_1, x_2) = (7.5, 5)$, kedua kendala mengikat: $4(7.5) + 2(5) = 40$ dan $2(7.5) + 3(5) = 30$.
+
+\begin{enumerate}
+\item Harga bayangan kayu adalah $y_1 = 11.25$: satu board-foot kayu tambahan meningkatkan laba optimal sebesar $\$11.25$ (selama basis tidak berubah). Harga bayangan tenaga kerja adalah $y_2 = 2.50$: satu jam tenaga kerja tambahan bernilai $\$2.50$ pada margin.
+\item Dua board-foot tambahan meningkatkan laba sekitar $2 \times 11.25 = \$22.50$, dari $\$525$ menjadi $\$547.50$. (Nilai ini eksak dalam kasus ini: ruas kanan kayu dapat berkisar dari $20$ hingga $60$ sebelum basis berubah, dan $42$ berada jauh di dalam rentang tersebut.)
+\item Kayu lebih bernilai pada margin karena $11.25 > 2.50$: satu unit kayu menghasilkan tambahan laba yang lebih besar daripada satu unit tenaga kerja.
+\end{enumerate}
+
+\emph{Verifikasi.} \texttt{linprog} memberikan variabel dual $(11.25, 2.5)$ dan tepat $z^*(b_1 = 42) = 547.5$. Rentang kayu $[20, 60]$ terverifikasi: pada $b_1 = 19.9$, variabel dual menjadi $(15, 0)$ dan pada $b_1 = 60.1$ menjadi $(0, 25)$.
+
+% ----------------------------------------------------------------------------
+\exsol{10.9}{Mengapa Kendala Berslack Berharga Nol}{2}
+
+\begin{enumerate}
+\item \emph{Argumen geometris dan ekonomis.} Jika kendala $i$ tidak mengikat, titik optimal berada secara ketat di dalam setengah ruang kendala tersebut; batas kendala tidak menyentuh titik sudut optimal. Sedikit menaikkan $b_i$ menggeser batas itu makin jauh dari optimum, sehingga daerah layak di sekitar optimum, dan akibatnya solusi serta nilai optimal, tidak berubah sama sekali. Secara ekonomis: masih ada sisa sumber daya $i$. Tambahan dari sesuatu yang sudah tersisa tidak bernilai apa pun, sehingga harga tertinggi untuk satu unit tambahan---yang diukur oleh harga bayangan---adalah $0$.
+\item \emph{Argumen kamus.} Jika kendala $i$ memiliki slack, variabel slack $s_i$ bersifat basis dengan $s_i > 0$ dalam kamus akhir, sehingga $s_i$ tidak muncul pada baris objektif (baris objektif hanya memuat variabel nonbasis). Ketika $b_i$ diusik menjadi $b_i + \Delta$, jika slack lama dilambangkan $s_i$ dan slack baru $s_i'$, maka $s_i' = s_i + \Delta$. Akibatnya, pengusikan itu hanya mengubah konstanta pada baris slack: konstanta tersebut menjadi $s_i' = (\text{nilai lama} + \Delta) + \dots$, dan untuk $|\Delta|$ kecil nilainya tetap nonnegatif sehingga kelayakan bertahan. Baris objektif tidak tersentuh, sehingga $z^*$ tidak berubah: harga bayangan $0$. Inilah tepatnya pengusikan $b_2$ yang dikerjakan dalam buku, ketika $s_2 = 3 + \Delta \ge 0$ berlaku untuk semua $\Delta \ge -3$ dan $z = 23$ di seluruh rentang.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{10.10}{Mengapa Rentang Itu Ada}{2}
+
+\begin{enumerate}
+\item Objek yang tetap adalah \emph{basis} optimal $B$ (secara ekuivalen, matriks $A_B^{-1}$, yaitu struktur kamus akhir). Agar basis tetap menjadi jawaban, basis harus terus memenuhi dua kelompok syarat: \emph{kelayakan}, $\x_B = A_B^{-1}\b \ge \mathbf{0}$, yang dapat dilanggar oleh perubahan ruas kanan, dan \emph{keoptimalan}, semua biaya tereduksi $\c_N^\top - \c_B^\top A_B^{-1} A_N \le \mathbf{0}$ (untuk masalah maks), yang dapat dilanggar oleh perubahan biaya. Setiap syarat merupakan pertidaksamaan linier dalam pengusikan, dan rentang yang diizinkan merupakan irisan pertidaksamaan-pertidaksamaan tersebut: suatu interval tertutup (yang mungkin tak berbatas pada satu sisi).
+\item Selama basis tetap, nilai optimal memiliki bentuk tertutup $z^* = \c_B^\top A_B^{-1} \b$. Rumus ini linier terhadap setiap $b_i$ (dengan kemiringan $y_i = (\c_B^\top A_B^{-1})_i$, yaitu harga bayangan) dan linier terhadap setiap $c_i$ untuk $i \in B$ (dengan kemiringan $x_i^*$, yaitu nilai variabel saat ini). Linieritas rumus terhadap data ketika basis tetap merupakan inti persoalannya.
+\item Pada titik ujung rentang, salah satu pertidaksamaan menjadi ketat: variabel basis mencapai $0$ (rentang ruas kanan) atau biaya tereduksi mencapai $0$ (rentang biaya). Satu langkah di luarnya, kamus menjadi tak layak atau tidak lagi optimal, dan metode simpleks harus melakukan pivot ke basis lain (pivot simpleks dual pada kasus pertama, pivot primal pada kasus kedua). Setelah pivot, $z^*$ tetap linier-sepotong terhadap parameter, tetapi dengan kemiringan baru; semua angka dalam laporan sensitivitas hanya menggambarkan potongan saat ini.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{10.11}{Ketika Prediksi Harga Bayangan Gagal}{2}
+
+PL: $\max x_1 + x_2$ dengan kendala $x_1 \le 1$, $x_2 \le 1$, $x_1 + x_2 \le b_3$ dan $b_3 = 2$, $x_1, x_2 \ge 0$. Optimum $(1,1)$ bersifat degenerat: ketiga kendala sama-sama ketat, tetapi hanya dua yang diperlukan untuk menentukan titik sudut.
+
+\begin{enumerate}
+\item \emph{Naikkan} $b_3$ menjadi $3$: kendala $x_1 \le 1$ dan $x_2 \le 1$ saja sudah memaksa $z = x_1 + x_2 \le 2$, dan $(1,1)$ tetap layak ($1 + 1 = 2 \le 3$), sehingga $z^* = 2$: tidak ada perubahan. \emph{Turunkan} $b_3$ menjadi $1$: sekarang $z = x_1 + x_2 \le b_3 = 1$, dan $z = 1$ dapat dicapai (misalnya di $(1,0)$), sehingga $z^* = 1$: penurunan tepat sebesar $1$. Diverifikasi dengan \texttt{linprog}: $z^*(3) = 2$, $z^*(1) = 1$.
+\item Fungsi nilai $z^*(b_3)$ memiliki \emph{tekukan} pada $b_3 = 2$: turunan kanannya $0$ dan turunan kirinya $1$. Harga bayangan seharusnya merupakan turunan $dz^*/db_3$, sedangkan pada tekukan turunan itu tidak ada. Di balik tekukan tersebut terdapat degenerasi dual: masalah dual, $\min\, y_1 + y_2 + 2y_3$ dengan kendala $y_1 + y_3 \ge 1$, $y_2 + y_3 \ge 1$, $\y \ge \mathbf{0}$, memiliki seluruh ruas solusi optimal
+\[
+\y(t) = (1 - t,\ 1 - t,\ t), \qquad t \in [0, 1],
+\]
+yang semuanya bernilai $2$. Setiap $y_3 \in [0,1]$ merupakan ``harga bayangan'' kendala 3 yang sah; turunan kanan $z^*$ adalah nilai minimum $y_3$ pada himpunan dual optimal ($0$), sedangkan turunan kirinya adalah nilai maksimum ($1$). Tidak ada satu angka yang menggambarkan kedua arah.
+\item Solver melaporkan solusi dual pada titik sudut dual optimal tempat algoritmanya kebetulan berhenti (HiGHS melaporkan $\y = (1,1,0)$ di sini, yaitu harga $0$ untuk kendala 3; solver atau aturan pivot lain dapat melaporkan $(0,0,1)$). Pada optimum degenerat, harga bayangan yang dilaporkan mungkin hanya berlaku untuk kenaikan, hanya untuk penurunan, atau memiliki rentang yang diizinkan sebesar $0$ pada salah satu arah. Karena itu, nilainya harus diperiksa dengan menyelesaikan kembali masalah menggunakan ruas kanan terusik sebelum keputusan keuangan dibuat.
+\end{enumerate}
+
+% ----------------------------------------------------------------------------
+\exsol{10.12}{Melampaui Rentang}{3}
+
+Latihan ini memiliki Solusi Terpilih dalam buku; solusi tersebut disajikan kembali di sini dengan verifikasi yang dijabarkan.
+
+Contoh utama bab ini memenuhi permintaan tersebut. Kendala jamnya $x + y \le 9$ memiliki harga bayangan $p = 1$, yang berlaku untuk $7 \le b_1 \le 10$ (kenaikan yang diizinkan sebesar $1$). Menaikkan $b_1$ sebesar $1$ menjadi $10$ meningkatkan nilai optimal dari $23$ menjadi $24$, tepat sebesar $p$. Menaikkan $b_1$ sebesar $5$ menjadi $14$ hanya meningkatkannya menjadi $24$, bukan menjadi $23 + 5 = 28$: penyelesaian PL dengan $b_1 = 14$ memberikan optimum $(x, y) = (6, 4)$ yang ditentukan oleh kendala tepung dan gula, dengan $z^* = 2(6) + 3(4) = 24$. Pada batas rentang $b_1 = 10$, variabel basis $s_2$ mencapai $0$ dan basis berubah; di luar batas itu, kendala jam tidak lagi mengikat, sehingga harga bayangannya turun menjadi $0$ dan penambahan $b_1$ selanjutnya tidak memberikan manfaat. Secara umum, nilai optimal merupakan fungsi konkaf linier-sepotong dari $b_1$, dan harga bayangan hanyalah kemiringannya pada potongan saat ini.
+
+\emph{Verifikasi.} \texttt{linprog} memberikan $z^*(b_1 = 9) = 23$ di $(4,5)$, $z^*(b_1 = 10) = 24$ di $(6,4)$, dan $z^*(b_1 = 14) = 24$ di $(6,4)$, sehingga prediksi satu unit bersifat eksak sedangkan prediksi lima unit melebihkan hasil sebesar $4$.

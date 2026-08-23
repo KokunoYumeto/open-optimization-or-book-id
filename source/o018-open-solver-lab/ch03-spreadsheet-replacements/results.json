@@ -1,0 +1,287 @@
+{
+  "exercises": {
+    "3.1": {
+      "execution": {
+        "maximum_violation": 0.0,
+        "solver": "appsi_highs",
+        "status": "ok",
+        "termination_condition": "optimal"
+      },
+      "objective": 160.0,
+      "route_flow": {
+        "W1-S1": 15.0,
+        "W1-S2": 5.0,
+        "W2-S1": 10.0,
+        "W2-S2": 20.0
+      },
+      "saturated_routes": [
+        "W1-S1",
+        "W2-S2"
+      ]
+    },
+    "3.2": {
+      "ending_inventory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "execution": {
+        "maximum_violation": 0.0,
+        "solver": "appsi_highs",
+        "status": "ok",
+        "termination_condition": "optimal"
+      },
+      "objective": 1252.0,
+      "production": [
+        1.0,
+        9.0,
+        7.0,
+        8.0,
+        5.0,
+        10.0,
+        7.0,
+        6.0,
+        8.0,
+        4.0
+      ]
+    },
+    "3.3": {
+      "active_minimums": [
+        "calories",
+        "fat",
+        "protein"
+      ],
+      "amount": {
+        "almond_butter": 0.0,
+        "black_beans": 1.0579497536,
+        "brown_rice": 4.713408898,
+        "oatmeal": 0.0,
+        "whole_milk": 6.3204636507
+      },
+      "exact_objective_fraction": "2407651/760055",
+      "execution": {
+        "maximum_violation": 0.0,
+        "solver": "appsi_highs",
+        "status": "ok",
+        "termination_condition": "optimal"
+      },
+      "nutrient_total": {
+        "calories": 2200.0,
+        "carbohydrates": 331.3249041188,
+        "fat": 60.0,
+        "protein": 90.0
+      },
+      "objective": 3.1677325983
+    },
+    "3.4": {
+      "baseline": {
+        "execution": {
+          "maximum_violation": 0.0,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal"
+        },
+        "objective": 173.3333333333,
+        "production": {
+          "gadget": 6.6666666667,
+          "widget": 16.6666666667
+        },
+        "reduced_cost": {
+          "gadget": 0.0,
+          "widget": 0.0
+        },
+        "resource_dual": {
+          "machine": 3.3333333333,
+          "material": 1.3333333333
+        }
+      },
+      "widget_profit_9": {
+        "execution": {
+          "maximum_violation": 0.0,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal"
+        },
+        "objective": 190.0,
+        "production": {
+          "gadget": 6.6666666667,
+          "widget": 16.6666666667
+        }
+      },
+      "widget_profit_allowable_range": [
+        3.0,
+        12.0
+      ]
+    },
+    "3.5": {
+      "execution": {
+        "maximum_violation": 0.0,
+        "solver": "appsi_highs",
+        "status": "ok",
+        "termination_condition": "optimal"
+      },
+      "objective": 300.0,
+      "route_flow": {
+        "W1-S1": 20.0,
+        "W1-S2": 0.0,
+        "W1-S3": 40.0,
+        "W2-S1": 10.0,
+        "W2-S2": 40.0,
+        "W2-S3": 0.0
+      }
+    },
+    "3.6": {
+      "baseline": {
+        "desk_reduced_cost": -15.0,
+        "execution": {
+          "maximum_violation": 0.0,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal"
+        },
+        "objective": 4100.0,
+        "production": {
+          "chair": 40.0,
+          "desk": 0.0,
+          "table": 30.0
+        },
+        "resource_dual": {
+          "carpentry": 15.0,
+          "finishing": 5.0,
+          "wood": 0.0
+        }
+      },
+      "desk_profit_100": {
+        "execution": {
+          "maximum_violation": 0.0,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal"
+        },
+        "objective": 4100.0,
+        "production": {
+          "chair": 40.0,
+          "desk": 0.0,
+          "table": 30.0
+        }
+      },
+      "desk_profit_110": {
+        "execution": {
+          "maximum_violation": 0.0,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal"
+        },
+        "objective": 4200.0,
+        "production": {
+          "chair": 40.0,
+          "desk": 20.0,
+          "table": 0.0
+        }
+      },
+      "finishing_plus_20": {
+        "execution": {
+          "maximum_violation": 0.0,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal"
+        },
+        "objective": 4200.0,
+        "production": {
+          "chair": 0.0,
+          "desk": 0.0,
+          "table": 60.0
+        }
+      },
+      "shadow_price_scope": "Interpretasi 5 dolar per jam berlaku hanya sampai kenaikan RHS 20 jam yang diuji."
+    },
+    "3.7": {
+      "city_total": {
+        "C1": 50.0,
+        "C2": 60.0,
+        "C3": 40.0
+      },
+      "execution": {
+        "maximum_violation": 0.0,
+        "solver": "appsi_highs",
+        "status": "ok",
+        "termination_condition": "optimal"
+      },
+      "objective": 560.0,
+      "route_flows_omitted_due_to_degeneracy": true,
+      "supply_dual": {
+        "P1": 0.0,
+        "P2": -2.0,
+        "P3": 0.0
+      },
+      "total_unused_capacity": 10.0
+    },
+    "3.8": {
+      "comparison": [
+        {
+          "global_guarantee": "Ya, untuk LP yang layak dan berbatas.",
+          "method": "Simplex LP",
+          "model_class": "Objektif dan kendala linear kontinu.",
+          "sensitivity": "Dual, reduced cost, dan rentang sensitivitas basis LP tersedia."
+        },
+        {
+          "global_guarantee": "Tidak secara umum; dapat berhenti di optimum lokal dan bergantung pada titik awal.",
+          "method": "GRG Nonlinear",
+          "model_class": "Model nonlinear halus pada domainnya.",
+          "sensitivity": "Tidak memberikan rentang allowable LP yang setara."
+        },
+        {
+          "global_guarantee": "Tidak; hasil bersifat heuristik.",
+          "method": "Evolutionary",
+          "model_class": "Model nonsmooth atau diskret yang sulit ditangani metode gradien.",
+          "sensitivity": "Tidak memberikan laporan sensitivitas LP klasik."
+        }
+      ],
+      "formula_case": "Rumus B2*B3 bersifat nonlinear bila kedua sel adalah variabel keputusan; Simplex LP harus menolaknya atau model harus direformulasi.",
+      "smooth_example": "sqrt(x1)+sqrt(x2) halus hanya pada domain x1 >= epsilon dan x2 >= epsilon untuk epsilon > 0."
+    },
+    "3.9": {
+      "nonnegative_checkbox_off": {
+        "execution": {
+          "maximum_violation": 0.0,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal"
+        },
+        "holdings": {
+          "A": -40.0,
+          "B": 140.0
+        },
+        "objective": 14.8
+      },
+      "nonnegative_checkbox_on": {
+        "execution": {
+          "maximum_violation": 0.0,
+          "solver": "appsi_highs",
+          "status": "ok",
+          "termination_condition": "optimal"
+        },
+        "holdings": {
+          "A": 0.0,
+          "B": 100.0
+        },
+        "objective": 12.0
+      }
+    }
+  },
+  "lab_id": "o018.ch03.spreadsheet-replacements",
+  "runtime": {
+    "highspy": "1.15.1",
+    "numpy": "2.5.2",
+    "pyomo": "6.10.1",
+    "solver_interface": "appsi_highs"
+  },
+  "schema_version": "1.0.0"
+}

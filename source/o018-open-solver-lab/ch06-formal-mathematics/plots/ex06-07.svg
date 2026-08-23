@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="720" height="520" viewBox="0 0 720 520"
+  role="img" aria-labelledby="ex06-07-title ex06-07-desc" lang="id"
+  xml:lang="id-ID" focusable="false">
+  <title id="ex06-07-title">Latihan 6.7 — Setengah ruang x₁ + 2x₂ ≤ 4</title>
+  <desc id="ex06-07-desc">Garis batas melalui (4,0) dan (0,2). Daerah layak berada pada sisi yang memuat titik asal. (2,1) berada pada batas, (1,2) di luar, dan titik tengah (1,1/2) berada di dalam. Tepi jendela bukan kendala model.</desc>
+  <metadata>Adaptasi latihan O018 Bab 6; CC BY-SA 4.0.</metadata>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+      orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 z" fill="#1c2430"/>
+    </marker>
+    <style><![CDATA[
+      .background { fill: #ffffff; }
+      .frame { fill: none; stroke: #697386; stroke-width: 1; }
+      .axis { stroke: #1c2430; stroke-width: 1.5; }
+      .tick { stroke: #1c2430; stroke-width: 1; }
+      .tick-label { fill: #1c2430; font: 13px sans-serif; text-anchor: middle; }
+      .tick-label.y { text-anchor: end; }
+      .axis-label { fill: #1c2430; font: 16px sans-serif; font-weight: 700; }
+      .region { fill: #dcecff; stroke: #174a7e; stroke-width: 2.5; }
+      .boundary { fill: none; stroke: #174a7e; stroke-width: 3; }
+      .secondary { fill: none; stroke: #8a3f00; stroke-width: 2.5; stroke-dasharray: 8 5; }
+      .point { fill: #ffffff; stroke: #111111; stroke-width: 2.5; }
+      .point-filled { fill: #111111; stroke: #ffffff; stroke-width: 1.5; }
+      .point-alert { fill: #ffffff; stroke: #a32020; stroke-width: 3; }
+      .point-label { fill: #111111; font: 14px sans-serif; font-weight: 600; }
+      .annotation { fill: #111111; font: 14px sans-serif; }
+      .annotation-strong { fill: #111111; font: 14px sans-serif; font-weight: 700; }
+      .optimal { stroke: #111111; stroke-width: 4; }
+      .guide { stroke: #697386; stroke-width: 1.5; stroke-dasharray: 4 4; }
+    ]]></style>
+  </defs>
+  <rect class="background" x="0" y="0" width="720" height="520"/>
+  <rect class="frame" x="70" y="38.333333" width="620" height="413.333333"/>
+<polygon class="region" points="70,451.666667 690,451.666667 690,400 70,90"/>
+<line class="boundary" x1="70" y1="90" x2="690" y2="400"/>
+<line class="axis" x1="70" y1="348.333333" x2="690" y2="348.333333" marker-end="url(#arrow)"/>
+<line class="axis" x1="173.333333" y1="451.666667" x2="173.333333" y2="38.333333" marker-end="url(#arrow)"/>
+<line class="tick" x1="70" y1="344.333333" x2="70" y2="352.333333"/>
+<text class="tick-label" x="70" y="368.333333">-1</text>
+<line class="tick" x1="276.666667" y1="344.333333" x2="276.666667" y2="352.333333"/>
+<text class="tick-label" x="276.666667" y="368.333333">1</text>
+<line class="tick" x1="380" y1="344.333333" x2="380" y2="352.333333"/>
+<text class="tick-label" x="380" y="368.333333">2</text>
+<line class="tick" x1="483.333333" y1="344.333333" x2="483.333333" y2="352.333333"/>
+<text class="tick-label" x="483.333333" y="368.333333">3</text>
+<line class="tick" x1="586.666667" y1="344.333333" x2="586.666667" y2="352.333333"/>
+<text class="tick-label" x="586.666667" y="368.333333">4</text>
+<line class="tick" x1="690" y1="344.333333" x2="690" y2="352.333333"/>
+<text class="tick-label" x="690" y="368.333333">5</text>
+<line class="tick" x1="169.333333" y1="451.666667" x2="177.333333" y2="451.666667"/>
+<text class="tick-label y" x="163.333333" y="455.666667">-1</text>
+<line class="tick" x1="169.333333" y1="245" x2="177.333333" y2="245"/>
+<text class="tick-label y" x="163.333333" y="249">1</text>
+<line class="tick" x1="169.333333" y1="141.666667" x2="177.333333" y2="141.666667"/>
+<text class="tick-label y" x="163.333333" y="145.666667">2</text>
+<line class="tick" x1="169.333333" y1="38.333333" x2="177.333333" y2="38.333333"/>
+<text class="tick-label y" x="163.333333" y="42.333333">3</text>
+<text class="axis-label" x="694" y="470.666667">x₁</text>
+<text class="axis-label" x="50" y="33.333333">x₂</text>
+<circle class="point-filled" cx="380" cy="245" r="6"/><text class="point-label" x="389" y="236">(2,1), batas</text>
+<circle class="point-alert" cx="276.666667" cy="141.666667" r="6"/><text class="point-label" x="285.666667" y="132.666667">(1,2), luar</text>
+<circle class="point" cx="276.666667" cy="296.666667" r="6"/><text class="point-label" x="285.666667" y="287.666667">(1,1/2), titik tengah</text>
+<text class="annotation-strong" x="452.333333" y="198.5">x₁ + 2x₂ = 4</text>
+</svg>

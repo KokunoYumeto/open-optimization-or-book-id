@@ -1,0 +1,263 @@
+\subsection{Hasil Kali Titik}
+
+Terdapat dua cara mengalikan vektor yang sangat penting dalam
+penerapan. Cara pertama disebut \textbf{hasil kali titik}. Ketika kita mengambil hasil kali titik vektor, hasilnya
+adalah sebuah skalar. Karena alasan ini, hasil kali titik juga
+disebut \textbf{hasil kali skalar} dan terkadang \textbf{hasil kali dalam}. Definisinya adalah sebagai berikut.
+\index{hasil kali titik}
+\index{hasil kali skalar}
+\index{hasil kali dalam}
+
+\begin{definition}{Hasil Kali Titik}\label{def:dotproductdefn}
+Misalkan $\vect{u},\vect{v}$ adalah dua vektor dalam $\mathbb{R}^{n}$. Maka kita
+mendefinisikan \textbf{hasil kali titik} $\vect{u}\dotprod \vect{v}$ sebagai
+\begin{equation*}
+\vect{u}\dotprod \vect{v} = \sum_{k=1}^{n}u_{k}v_{k}
+\end{equation*}
+\end{definition}
+
+Hasil kali titik $\vect{u}\dotprod \vect{v}$ terkadang dinyatakan sebagai $(\vect{u},\vect{v})$, dengan koma menggantikan $\dotprod $. Hasil kali ini juga dapat ditulis
+sebagai $\left\langle \vect{u},\vect{v}\right\rangle $. Jika kita menulis vektor sebagai matriks kolom atau baris, hasil kali tersebut
+sama dengan hasil kali matriks $\vect{v}\vect{w}^{T}$.
+
+Perhatikan contoh berikut.
+
+\begin{example}{Menghitung Hasil Kali Titik}\label{exa:dotproduct}
+Tentukan $\vect{u} \dotprod \vect{v}$ untuk
+\begin{equation*}
+\vect{u}
+=
+\begin{bmatrix}
+1 \\
+2 \\
+0 \\
+-1
+\end{bmatrix},
+\vect{v}
+=
+\begin{bmatrix}
+0 \\
+1 \\
+2 \\
+3
+\end{bmatrix}
+\end{equation*}
+\end{example}
+
+\begin{solution}
+Berdasarkan Definisi \ref{def:dotproductdefn}, kita harus menghitung
+\begin{equation*}
+\vect{u}\dotprod \vect{v} = \sum_{k=1}^{4}u_{k}v_{k}
+\end{equation*}
+
+Hasilnya diberikan oleh
+\begin{eqnarray*}
+\vect{u} \dotprod \vect{v}
+&=&
+(1)(0) + (2)(1) + (0)(2) + (-1)(3) \\
+&=&
+0 + 2 + 0 + -3 \\
+&=&
+-1
+\end{eqnarray*}
+\end{solution}
+
+Berdasarkan definisi ini, terdapat beberapa sifat penting yang dipenuhi
+oleh hasil kali titik.
+\index{hasil kali titik!sifat-sifat}
+
+\begin{proposition}{Sifat-Sifat Hasil Kali Titik}\label{prop:propertiesdotproduct}
+Misalkan $k $ dan $p $ menyatakan skalar, serta $\vect{u},\vect{v},\vect{w}$ menyatakan vektor.
+Maka hasil kali titik $\vect{u} \dotprod \vect{v}$ memenuhi sifat-sifat berikut.
+\begin{itemize}
+\item
+$\vect{u}\dotprod \vect{v}= \vect{v}\dotprod \vect{u} $
+\item
+$\vect{u}\dotprod \vect{u}\geq 0 \text{ dan sama dengan nol jika dan hanya jika }\vect{u}=\vect{0}$
+\item
+$\left( k\vect{u}+p\vect{v}\right) \dotprod \vect{w}=k\left( \vect{u}\dotprod \vect{w}\right) +p\left( \vect{v}\dotprod \vect{w}\right)$
+\item
+$\vect{u}\dotprod\left( k\vect{v}+p\vect{w}\right) =k\left(
+\vect{u}\dotprod \vect{v}\right) +p\left( \vect{u}\dotprod \vect{w}\right)$
+\item
+$\vectlength \vect{u}\vectlength ^{2}=\vect{u}\dotprod \vect{u} $
+\end{itemize}
+\end{proposition}
+
+Buktinya diserahkan sebagai latihan. Proposisi ini memberi tahu kita bahwa kita juga dapat menggunakan hasil kali titik untuk mencari panjang suatu vektor.
+
+\begin{example}{Panjang Vektor}\label{exa:dotproductlength}
+Tentukan panjang
+\begin{equation*}
+\vect{u}
+=
+\leftB
+\begin{array}{r}
+2 \\
+1 \\
+4 \\
+2
+\end{array}
+\rightB
+\end{equation*}
+Dengan kata lain, tentukan $\vectlength \vect{u} \vectlength .$ 
+\end{example}
+
+\begin{solution}
+Berdasarkan Proposisi \ref{prop:propertiesdotproduct}, $\vectlength \vect{u} \vectlength ^{2} = \vect{u} \dotprod \vect{u}$.
+Oleh karena itu, $\vectlength \vect{u} \vectlength = \sqrt {\vect{u} \dotprod \vect{u}}$.
+Pertama, hitung $\vect{u} \dotprod \vect{u}$.
+
+Hasilnya diberikan oleh
+\begin{eqnarray*}
+\vect{u} \dotprod \vect{u}
+&=&
+(2)(2) + (1)(1) + (4)(4) + (2)(2) \\
+&=&
+4 + 1 + 16 + 4 \\
+&=&
+25
+\end{eqnarray*}
+
+Kemudian,
+\begin{eqnarray*}
+\vectlength \vect{u} \vectlength
+&=& \sqrt {\vect{u} \dotprod \vect{u}} \\
+&=& \sqrt{25} \\
+&=& 5
+\end{eqnarray*}
+\end{solution}
+
+Anda mungkin ingin membandingkannya dengan definisi panjang kita sebelumnya,
+yang diberikan dalam Definisi \ref{def:lengthofvector}.
+
+\textbf{Ketaksamaan Cauchy--Schwarz} adalah ketaksamaan mendasar yang dipenuhi oleh hasil kali titik.
+\index{ketaksamaan Cauchy--Schwarz} Ketaksamaan ini diberikan dalam teorema berikut.
+
+\begin{theorem}{Ketaksamaan Cauchy--Schwarz}\label{thm:cauchyschwarzinequality}
+Hasil kali titik memenuhi ketaksamaan
+\begin{equation}
+\left\vert \vect{u}\dotprod \vect{v}\right\vert \leq \vectlength \vect{u}\vectlength \vectlength \vect{v}\vectlength   \label{cauchy}
+\end{equation}
+Lebih lanjut, kesamaan diperoleh jika dan hanya jika salah satu dari $\vect{u}$ atau $\vect{v}$ merupakan kelipatan skalar dari yang lain.
+\end{theorem}
+
+\ifdefined\showproofs
+\begin{proof}
+Pertama, perhatikan bahwa jika $\vect{v}=\vect{0}$, kedua ruas \ref{cauchy}
+sama dengan nol sehingga ketaksamaan berlaku dalam kasus ini. Oleh karena itu, dalam pembahasan berikut
+kita akan mengasumsikan bahwa $\vect{v}\neq \vect{0}$.
+
+Definisikan sebuah fungsi dari $t\in \mathbb{R}$ dengan
+\begin{equation*}
+f\left( t\right) =\left( \vect{u}+t\vect{v}\right) \dotprod \left( \vect{u}+
+t\vect{v}\right)
+\end{equation*}
+Maka, berdasarkan Proposisi \ref{prop:propertiesdotproduct}, $f\left( t\right) \geq 0$ untuk semua $t\in \mathbb{R}$.
+Juga dari Proposisi \ref{prop:propertiesdotproduct},
+\begin{eqnarray*}
+f\left( t\right) &=&\vect{u}\dotprod \left( \vect{u}+t\vect{v}\right) +
+t\vect{v}\dotprod \left( \vect{u}+t\vect{v}\right) \\
+&=&\vect{u}\dotprod \vect{u}+t\left( \vect{u}\dotprod \vect{v}\right) + t \vect{v}\dotprod \vect{u}+
+t^{2}\vect{v}\dotprod \vect{v} \\
+&=&\vectlength \vect{u}\vectlength ^{2}+2t\left( \vect{u}\dotprod \vect{v}\right) +\vectlength
+\vect{v}\vectlength ^{2}t^{2}
+\end{eqnarray*}
+
+Ini berarti grafik $y=f\left( t\right) $ adalah parabola yang membuka
+ke atas dan titik puncaknya menyentuh sumbu $t$, atau seluruh grafik berada
+di atas sumbu $t$. Dalam kasus pertama, terdapat suatu $t$ sehingga $f\left(
+t\right) =0$, dan hal ini mengharuskan $\vect{u}+t\vect{v}=\vect{0}$ sehingga satu vektor merupakan
+kelipatan vektor lainnya. Maka jelas bahwa kesamaan berlaku dalam \ref{cauchy}. Dalam
+kasus ketika $\vect{v}$ bukan kelipatan $\vect{u}$, diperoleh
+$f\left( t\right) >0$ untuk semua $t$, yang berarti $f\left( t\right) $ tidak memiliki akar
+real sehingga, dari rumus kuadrat,
+\begin{equation*}
+\left( 2\left( \vect{u}\dotprod \vect{v}\right) \right) ^{2}-4\vectlength \vect{u}
+\vectlength ^{2}\vectlength \vect{v}\vectlength ^{2}<0
+\end{equation*}
+yang setara dengan $\left\vert \vect{u}\dotprod \vect{v} \right\vert
+<\vectlength \vect{u}\vectlength \vectlength \vect{v}\vectlength $.
+\end{proof}
+\fi
+Perhatikan bahwa bukti ini hanya didasarkan pada sifat-sifat
+hasil kali titik yang tercantum dalam Proposisi \ref{prop:propertiesdotproduct}. Ini berarti bahwa
+setiap kali suatu operasi memenuhi sifat-sifat tersebut, ketaksamaan Cauchy--Schwarz
+berlaku. Terdapat banyak contoh lain yang memenuhi sifat-sifat ini selain vektor dalam
+$\mathbb{R}^{n}$.
+
+Ketaksamaan Cauchy--Schwarz memberikan bukti lain untuk \textbf{ketaksamaan
+segitiga} bagi
+\index{ketaksamaan segitiga}jarak dalam $\mathbb{R}^{n}$.
+
+\begin{theorem}{Ketaksamaan Segitiga}\label{thm:triangleinequalitydotproduct}
+Untuk $\vect{u},\vect{v}\in \mathbb{R}^{n}$,
+\begin{equation}
+\vectlength \vect{u}+\vect{v}\vectlength \leq \vectlength \vect{u}\vectlength +\vectlength \vect{v}
+\vectlength  \label{triangleineq1}
+\end{equation}
+dan kesamaan berlaku jika dan hanya jika salah satu vektor merupakan kelipatan skalar tak negatif dari vektor lainnya.
+
+Selain itu,
+\begin{equation}
+| \vectlength \vect{u}\vectlength -\vectlength \vect{v}\vectlength | \leq
+\vectlength \vect{u}-\vect{v}\vectlength  \label{triangleineq2}
+\end{equation}
+\end{theorem}
+
+\ifdefined\showproofs
+\begin{proof} Berdasarkan sifat-sifat hasil kali titik dan ketaksamaan Cauchy--Schwarz,
+\begin{eqnarray*}
+\vectlength \vect{u}+\vect{v}\vectlength ^{2} &=& \left( \vect{u}+\vect{v}\right) \dotprod \left( \vect{u}+\vect{v}\right) \\
+& =&\left( \vect{u}\dotprod \vect{u}\right) +\left( \vect{u}\dotprod \vect{v}\right) +\left(\vect{v}\dotprod \vect{u}\right) +\left( \vect{v}\dotprod \vect{v}\right) \\
+&=&\vectlength \vect{u}\vectlength ^{2}+2\left( \vect{u}\dotprod \vect{v}\right)+\vectlength \vect{v}\vectlength ^{2} \\
+&\leq& \vectlength \vect{u}\vectlength ^{2}+2\left\vert \vect{u}\dotprod \vect{v}\right\vert +\vectlength \vect{v}\vectlength ^{2} \\
+&\leq& \vectlength \vect{u}\vectlength ^{2}+2\vectlength \vect{u}\vectlength \vectlength \vect{v}\vectlength +\vectlength \vect{v}\vectlength ^{2} =\left( \vectlength \vect{u}\vectlength +\vectlength \vect{v}\vectlength\right) ^{2}
+\end{eqnarray*}
+Jadi,
+\begin{equation*}
+\vectlength \vect{u}+\vect{v}\vectlength ^{2} \leq \left( \vectlength \vect{u}\vectlength +\vectlength \vect{v}\vectlength
+\right) ^{2}
+\end{equation*}
+Dengan mengambil akar kuadrat kedua ruas, Anda memperoleh \ref{triangleineq1}.
+
+Masih perlu dipertimbangkan kapan kesamaan terjadi. Misalkan $\vect{u} = \vect{0}$.
+Maka $\vect{u} = 0 \vect{v}$ dan klaim mengenai kapan
+kesamaan terjadi telah terverifikasi. Argumen yang sama berlaku jika $\vect{v} = \vect{0}$.
+Oleh karena itu, dapat diasumsikan bahwa kedua vektor
+tidak nol. Untuk memperoleh kesamaan dalam \ref{triangleineq1} di atas, Teorema \ref{thm:cauchyschwarzinequality}
+menyiratkan bahwa salah satu vektor harus merupakan kelipatan
+vektor lainnya. Misalkan $\vect{v}= k \vect{u}$. Jika $k <0$, maka kesamaan
+tidak dapat terjadi dalam \ref{triangleineq1} karena dalam kasus ini
+\begin{equation*}
+\vect{u}\dotprod \vect{v} =k \vectlength \vect{u}\vectlength
+^{2}<0<\left| k \right| \vectlength \vect{u}\vectlength ^{2}=\left| \vect{u}\dotprod \vect{v}\right|
+\end{equation*}
+Oleh karena itu, $k \geq 0.$
+
+Untuk memperoleh bentuk lain ketaksamaan segitiga, tuliskan
+\begin{equation*}
+\vect{u}=\vect{u}-\vect{v}+\vect{v}
+\end{equation*}
+sehingga
+\begin{align*}
+\vectlength \vect{u}\vectlength & =\vectlength \vect{u}-\vect{v}+\vect{v}\vectlength \\
+& \leq \vectlength \vect{u}-\vect{v}\vectlength +\vectlength \vect{v}\vectlength
+\end{align*}
+Oleh karena itu,
+\begin{equation}
+\vectlength \vect{u}\vectlength -\vectlength \vect{v}\vectlength \leq \vectlength \vect{u}-\vect{v}
+\vectlength  \label{triangleineq3}
+\end{equation}
+Demikian pula,
+\begin{equation}
+\vectlength \vect{v}\vectlength -\vectlength \vect{u}\vectlength \leq \vectlength \vect{v}-\vect{u}
+\vectlength =\vectlength \vect{u}-\vect{v}\vectlength  \label{triangleineq4}
+\end{equation}
+Dari \ref{triangleineq3} dan \ref{triangleineq4}, diperoleh bahwa \ref{triangleineq2} berlaku. Hal ini
+karena $\left| \vectlength \vect{u}\vectlength -\vectlength \vect{v}\vectlength
+\right| $ sama dengan ruas kiri dari \ref{triangleineq3} atau \ref{triangleineq4}, dan
+dalam kedua keadaan, $\left| \vectlength \vect{u}\vectlength -\vectlength \vect{v}\vectlength
+\right| \leq \vectlength \vect{u}-\vect{v}\vectlength $.
+\end{proof}
+\fi

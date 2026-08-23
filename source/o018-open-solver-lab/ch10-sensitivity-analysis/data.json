@@ -1,0 +1,229 @@
+{
+  "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+  "cases": {
+    "basis_nonbasis": {
+      "A": [[2, 1], [1, 3]],
+      "b": [10, 15],
+      "c": [5, 2],
+      "sense": "max",
+      "variables": ["x1", "x2"]
+    },
+    "complete": {
+      "A": [[1, 2], [3, 2]],
+      "b": [16, 24],
+      "c": [5, 6],
+      "sense": "max",
+      "variables": ["x1", "x2"]
+    },
+    "degenerate": {
+      "A": [[1, 0], [0, 1], [1, 1]],
+      "b": [1, 1, 2],
+      "c": [1, 1],
+      "sense": "max",
+      "variables": ["x1", "x2"]
+    },
+    "furniture": {
+      "A": [[4, 2], [2, 3]],
+      "b": [40, 30],
+      "c": [50, 30],
+      "sense": "max",
+      "variables": ["x1", "x2"]
+    },
+    "inverse_basis": {
+      "A": [[1, 1], [3, 2]],
+      "b": [6, 15],
+      "c": [5, 4],
+      "sense": "max",
+      "variables": ["x1", "x2"]
+    },
+    "main": {
+      "A": [[1, 1], [2, 1], [1, 2]],
+      "b": [9, 16, 14],
+      "c": [2, 3],
+      "sense": "max",
+      "variables": ["x", "y"]
+    },
+    "rhs_cost": {
+      "A": [[1, 1], [2, 1]],
+      "b": [10, 16],
+      "c": [4, 3],
+      "sense": "max",
+      "variables": ["x1", "x2"]
+    }
+  },
+  "code_license": "MIT",
+  "content_license": "CC-BY-SA-4.0",
+  "corrections": [
+    {
+      "certificate": "Dengan slack baru s1' pada Ax+s1'=b1+Delta, slack lama memenuhi s1=s1'-Delta; substitusi ini menghasilkan x=4+2Delta, y=5-Delta, s2=3-3Delta.",
+      "id": "CORR-CH10-RHS-B1-SLACK",
+      "source_location": "authority chapter lines 214-215",
+      "target_location": "translated chapter line 218",
+      "type": "source_math_correction"
+    },
+    {
+      "certificate": "Dengan slack baru s3' pada Ax+s3'=b3+Delta, slack lama memenuhi s3=s3'-Delta; substitusi ini menghasilkan x=4-Delta, y=5+Delta, s2=3+Delta.",
+      "id": "CORR-CH10-RHS-B3-SLACK",
+      "source_location": "authority chapter line 283",
+      "target_location": "translated chapter line 286",
+      "type": "source_math_correction"
+    },
+    {
+      "certificate": "Untuk basis [x,y,s2], A_B^{-1}A_N=[[2,-1],[-1,1],[-3,1]], sehingga x_B=b'-A_N'x_N tepat mereproduksi kamus akhir.",
+      "id": "CORR-CH10-MATRIX-AN-SIGNS",
+      "source_location": "authority chapter lines 509-515",
+      "target_location": "translated chapter lines 501-522",
+      "type": "source_math_correction"
+    }
+  ],
+  "exercise_order": [
+    "10.1",
+    "10.2",
+    "10.3",
+    "10.4",
+    "10.5",
+    "10.6",
+    "10.7",
+    "10.8",
+    "10.9",
+    "10.10",
+    "10.11",
+    "10.12"
+  ],
+  "exercises": {
+    "10.1": {
+      "case": "main",
+      "correction_refs": [
+        "CORR-CH10-RHS-B3-SLACK",
+        "CORR-CH10-MATRIX-AN-SIGNS"
+      ],
+      "difficulty": 1,
+      "method": "exact_dictionary_matrix_dual_and_highs",
+      "offer": {"constraint": 3, "price": "3/4", "quantity": 1},
+      "title": "Harga Bayangan dari Kamus Akhir"
+    },
+    "10.2": {
+      "case": "rhs_cost",
+      "difficulty": 1,
+      "method": "exact_rhs_range_and_highs",
+      "parameter": {"constraint": 1, "nominal": 10},
+      "title": "Rentang Sensitivitas Ruas Kanan"
+    },
+    "10.3": {
+      "case": "rhs_cost",
+      "difficulty": 2,
+      "method": "exact_cost_range_and_highs",
+      "parameter": {"nominal": 4, "variable": "x1"},
+      "title": "Sensitivitas Koefisien Objektif"
+    },
+    "10.4": {
+      "case": "complete",
+      "difficulty": 2,
+      "method": "complete_exact_sensitivity_and_highs",
+      "resources": ["perakitan", "mesin"],
+      "title": "Analisis Sensitivitas Lengkap"
+    },
+    "10.5": {
+      "basis": ["x1", "s2"],
+      "case": "basis_nonbasis",
+      "difficulty": 2,
+      "method": "exact_basic_nonbasic_cost_ranges_and_highs",
+      "title": "Menentukan Rentang Koefisien Basis dan Nonbasis"
+    },
+    "10.6": {
+      "basis": ["x1", "x2"],
+      "case": "inverse_basis",
+      "difficulty": 2,
+      "method": "exact_basis_inverse_ranges_and_highs",
+      "title": "Sensitivitas dari Invers Basis"
+    },
+    "10.7": {
+      "difficulty": 2,
+      "method": "fail_closed_report_arithmetic",
+      "missing_for_solver": [
+        "constraint_coefficient_matrix",
+        "constraint_senses",
+        "complete_primal_model"
+      ],
+      "report": {
+        "constraints": [
+          {"allowable_decrease": 6, "allowable_increase": 4, "id": 1, "rhs": 20, "shadow_price": "5/2"},
+          {"allowable_decrease": 5, "allowable_increase": "infinity", "id": 2, "rhs": 30, "shadow_price": 0},
+          {"allowable_decrease": 2, "allowable_increase": 3, "id": 3, "rhs": 12, "shadow_price": 1}
+        ],
+        "variables": [
+          {"allowable_decrease": 3, "allowable_increase": 2, "coefficient": 6, "name": "x1", "value": 8},
+          {"allowable_decrease": 1, "allowable_increase": 4, "coefficient": 5, "name": "x2", "value": 4}
+        ]
+      },
+      "title": "Membaca Laporan Sensitivitas"
+    },
+    "10.8": {
+      "case": "furniture",
+      "difficulty": 2,
+      "method": "exact_shadow_price_interpretation_and_highs",
+      "resources": ["kayu", "tenaga kerja"],
+      "title": "Penafsiran Harga Bayangan"
+    },
+    "10.9": {
+      "case": "main",
+      "difficulty": 2,
+      "method": "general_nonbinding_shadow_price_proof",
+      "title": "Mengapa Kendala Berslack Berharga Nol"
+    },
+    "10.10": {
+      "difficulty": 2,
+      "method": "general_basis_range_certificate",
+      "title": "Mengapa Rentang Itu Ada"
+    },
+    "10.11": {
+      "case": "degenerate",
+      "difficulty": 2,
+      "method": "exact_degeneracy_dual_family_and_highs",
+      "title": "Ketika Prediksi Harga Bayangan Gagal"
+    },
+    "10.12": {
+      "case": "main",
+      "correction_refs": ["CORR-CH10-RHS-B1-SLACK"],
+      "difficulty": 3,
+      "method": "exact_piecewise_value_and_highs",
+      "title": "Melampaui Rentang"
+    }
+  },
+  "lab_id": "o018.ch10.sensitivity-analysis",
+  "provenance": {
+    "source_files": [
+      {
+        "bytes": 49842,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/part1-linear-programming/ch07-sensitivity/sensitivity-LP.tex",
+        "role": "authority_chapter",
+        "sha256": "5a112881cdab43e0509ef39ea48656f45f7228488ef8af9ce1fdba2f3d8fbfc5"
+      },
+      {
+        "bytes": 20937,
+        "path": "authority/upstream/open-optimization-or-book-1745df89b608899f66983834fa4ec8c8910d18ff/Intro-Math-Programming/baseText/book/solutions-manual/ch10.tex",
+        "role": "authority_manual",
+        "sha256": "b0c7bbfca422954e1593b71ec4b55cbed40c918fc4a3d4058cbe24fdf9561597"
+      },
+      {
+        "bytes": 52340,
+        "path": "source/Intro-Math-Programming/baseText/book/part1-linear-programming/ch07-sensitivity/sensitivity-LP.tex",
+        "role": "translated_chapter",
+        "sha256": "27125508e85609361382af200e24d33d5f979cb68f78c5eee94c06acd6a9c64c"
+      },
+      {
+        "bytes": 22264,
+        "path": "source/Intro-Math-Programming/baseText/book/solutions-manual/ch10.tex",
+        "role": "translated_manual",
+        "sha256": "6abe9524a7052068e1d5931356d43f24ec5fde441af4080a347124e1088b6ca5"
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "underdetermined_exercises": [
+    {
+      "exercise_id": "10.7",
+      "reason": "Laporan sensitivitas tidak memuat matriks koefisien atau model primal lengkap; hanya aritmetika dan implikasi lokal laporan yang dapat diverifikasi."
+    }
+  ]
+}

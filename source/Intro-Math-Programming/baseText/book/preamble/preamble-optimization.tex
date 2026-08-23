@@ -1,0 +1,235 @@
+\usepackage{algorithm}%,algpseudocode}
+\usepackage{mdframed}
+\usepackage{longtable}
+
+%\cellcolor{red} % removed: cannot use \cellcolor outside a table in the preamble
+
+% \cr is a TeX primitive used in tables - DO NOT redefine it!
+% Use \mm{} (defined in packages-and-commands.tex) or \mathbf{} instead.
+%\newcommand{\crbold}[1]{\mathbf{#1}} % available if needed
+
+\newcommand{\rc}{\cellcolor{red}} % change cell color red in table
+\newcommand{\hi}{\cellcolor{red}} % change cell color red in table
+
+% Theorem environments are defined in LyryxLinAlgStyle.sty with tcolorbox styling
+% Do not redefine them here to avoid "already defined" errors
+%\newtheorem{example}{Example}%[section]
+\newtheorem{ICE}{ICE}%[section]
+%\newtheorem{problem}{Problem}%[section]  % defined in LyryxLinAlgStyle.sty
+%\newtheorem{solution}{Solution}%[section]  % solutionbox defined in LyryxLinAlgStyle.sty
+
+% Removed conflicting \input@path definitions - these are set in packages-and-commands.tex
+%\def\input@path{{/figures/}}
+%\def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+
+\newcounter{algsubstate}
+\renewcommand{\thealgsubstate}{\alph{algsubstate}}
+\newenvironment{algsubstates}
+  {\setcounter{algsubstate}{0}%
+   \renewcommand{\State}{%
+     \stepcounter{algsubstate}%
+     \Statex {\footnotesize\thealgsubstate:}\space}}
+  {}
+
+\numberwithin{equation}{section}
+
+\graphicspath{{figures/}{optimization/figures/figures-static/}}
+\usepackage{wasysym}
+\newsavebox\CBox
+\newcommand\hcancel[2][0.5pt]{%
+  \ifmmode\sbox\CBox{$#2$}\else\sbox\CBox{#2}\fi%
+  \makebox[0pt][l]{\usebox\CBox}%
+  \rule[0.5\ht\CBox-#1/2]{\wd\CBox}{#1}}
+
+\usepackage[cc]{titlepic}
+\usepackage{xcolor}
+\colorlet{notgreen}{blue!50!yellow}
+\newcommand{\tblue}[1]{{\color{blue} #1}}
+\newcommand{\tred}[1]{{\color{red} #1}}
+\newcommand{\tgreen}[1]{{\color{notgreen} #1}}
+
+\newcommand{\code}[1]{\texttt{ #1}}
+\newcommand{\complexity}[1]{{\color{red} \textit{#1}}}
+\newcommand{\nphard}{\complexity{NP-sukar}}
+\newcommand{\npcomplete}{\complexity{NP-lengkap}}
+\newcommand{\polynomial}{{\color{ansi-green} \textit{Waktu polinomial (P)}}}
+\newcommand{\true}{\tgreen{\texttt{ true }}}
+\newcommand{\false}{\tred{\texttt{ false }}}
+
+\usepackage{scalerel}
+\newcommand{\julia}{\raisebox{-.2\height}{\altincludegraphics[scale = 0.07]{julia-logo}{Julia programming language logo: three colored dots (red, green, purple) arranged in a triangle.}}  }
+\newcommand{\jupyter}{\raisebox{-.2\height}{\altincludegraphics[scale = 0.09]{jupyter-logo}{Jupyter project logo: stylized orange planet circled by three gray orbital rings.}}  }
+\newcommand{\jump}{\raisebox{-.2\height}{\altincludegraphics[scale = 0.08]{jump-logo}{JuMP modeling language logo: the letters 'JuMP' rendered in a bold serif typeface.}}  }
+\newcommand{\gurobi}{\raisebox{-.2\height}{\altincludegraphics[scale = 0.06]{gurobi-logo}{Gurobi Optimization logo: stylized red sun-rays emblem next to the Gurobi wordmark.}}Gurobi  }
+\newcommand{\coin}{\raisebox{-.2\height}{\altincludegraphics[scale = 0.2]{coin-or-logo}{COIN-OR Foundation logo: blue circular coin emblem alongside the 'COIN-OR' wordmark.}}  }
+\newcommand{\ipopt}{\raisebox{-.2\height}{\texttt{Ipopt}}}
+
+\usepackage{subcaption}
+
+\def \PP{ {\mathcal{P}}}
+\def \NN{ {\mathcal{N}}}
+\def \II{ {\mathcal{I}}}
+\def \ZZ{ {\mathcal{Z}}}
+\def \SS{ {\mathcal{S}}}
+\def \FF{ {\mathcal{F}}}
+\def \CC{ {\mathcal{C}}}
+\def \nn{ {\mathbb{N}}}
+\def \R{ {\mathbb{R}}}
+\def \Z{ {\mathbb{Z}}}
+\def \Q{ {\mathbb{Q}}}
+\def \cc{ {\mathbb{C}}}
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\intr}{intr}
+
+\def \rank{\textup{rank}}
+\def \size{\textup{size}}
+%\def \dist{\textup{dist}} % defined in LyryxLinAlgStyle.sty
+\def \sign{\textup{sign}}
+\def \deg{\textup{deg}}
+\def \conv{\textup{conv}}
+\def \cone{ {\textup{cone}}}
+\def \supp{\textup{supp}}
+\newcommand{\interior}{ {\textup{int}}} % renamed from \int to avoid overriding the integral sign
+\def \rc{\textup{rec.cone}}
+\def \ri{\textup{rel.int}}
+\def \rb{ {\textup{rel.bd}}}
+\def \bd{ {\textup{bd}}}
+\def \ls{\textup{lin.space}}
+\def \tq{{\,:\,}}
+\def \aff{{\textup{aff}}}
+\def \one{\mathbb{1}}
+\def \st{\text{dengan syarat}\quad}
+
+\def \BQP{\mathrm{BQP}}
+\def \xLP{x^{\mathrm{LP}}}
+\providecommand{\argmin}{}% ensure \argmin exists before \renewcommand
+\renewcommand    \argmin         {\operatorname*{arg\,min}}
+\renewcommand    \argmax         {\operatorname*{arg\,max}}
+
+% Removed duplicate \newcounter{example} - already created by \newtheorem{example} above
+%\newcounter{example}
+\newcounter{general}
+
+  % Test Environment
+ \newcounter{exo}[chapter] % Reset 'exo' counter at every new section
+\renewcommand{\theexo}{\thechapter.\arabic{exo}} % Format as SectionNumber.ExerciseNumber
+
+\makeatletter
+\newenvironment{exo}[1]%
+{\refstepcounter{exo}%
+  \protected@edef\@currentlabelname{Latihan \theexo: #1}% addition here
+ \vspace{0.5cm}\noindent
+ {\large\bfseries{Latihan \theexo~: #1} \par}
+ {\par\vspace{0.5cm}}}
+\makeatother
+
+\newcounter{codeCell}
+\makeatletter
+\newenvironment{codeCell}%
+{\refstepcounter{codeCell}%
+ \protected@edef\@currentlabelname{Kode}% addition here
+{}
+%{\large\bfseries{Exercise \theexo~: #1} \par}
+{}}
+\makeatother
+
+% General environment
+\newenvironment{general}[2]
+  {\par\medskip
+   \refstepcounter{exo}%
+  \protected@edef\@currentlabelname{#1}
+   \begin{framed}
+   \begingroup\color{black}%
+   \textbf{#1: }\ignorespaces
+   \par #2
+   \par}
+ {\endgroup\end{framed}
+  \medskip}
+
+
+% Example Environment
+\newenvironment{optexample}
+{\par\medskip
+ \refstepcounter{exo}% Increment shared counter
+ \protected@edef\@currentlabelname{Contoh \theexo}% Update label for referencing
+ \begin{framed}
+ \begingroup\color{blue}%
+ \textbf{Contoh \theexo: }\ignorespaces}
+{\endgroup\end{framed}
+ \medskip}
+
+% Example with code Environment
+\newenvironment{examplewithcode}[2]
+{\par\medskip
+ \refstepcounter{exo}% Increment the shared counter and set reference anchor
+ \protected@edef\@currentlabelname{Contoh \theexo}% Update label for referencing
+ \begingroup
+ \begin{center}
+ \rule{\textwidth}{0.4pt}\\
+ \vspace{-0.2cm}
+ \rule{\textwidth}{0.4pt}
+ \end{center}
+ \color{black}%
+ \textbf{Contoh \theexo: #1} % Include example number
+ \hfill \protect{#2}% Code link
+ \ignorespaces
+ \par}
+{\endgroup
+ \begin{center}
+ \rule{\textwidth}{1.8pt}
+ \end{center}
+ \medskip}
+
+ % Define a tcolorbox-based exercise environment reusing the exo counter
+% Define tcolorbox-based exercise environment
+
+
+% Removed duplicate examplewithcode environment definition (was causing LaTeX error)
+
+% Example with all code Environment
+\newenvironment{examplewithallcode}[4]
+{\par\medskip
+ \refstepcounter{exo}% Increment shared counter
+ \protected@edef\@currentlabelname{Contoh \theexo}% Update label for referencing
+ \begin{framed}
+ \begingroup\color{black}%
+ \textbf{Contoh \theexo: #1} % Include example number
+ \hfill
+ \ifstrempty{#2}{}{\protect\href{#2}{\ Excel \ }}%
+ \ifstrempty{#3}{}{\protect\href{#3}{\ PuLP \ }}%
+ \ifstrempty{#4}{}{\protect\href{#4}{\ Gurobipy \ }}% Code links
+ \ignorespaces
+ \par}
+{\endgroup
+ \end{framed}
+ \medskip}
+
+% Example without code Environment
+\newenvironment{examplewithoutcode}[2]
+{\par\medskip
+ \refstepcounter{exo}% Increment shared counter
+ \protected@edef\@currentlabelname{Contoh \theexo}% Update label for referencing
+ \begin{framed}
+ \begingroup\color{black}%
+ \textbf{Contoh \theexo: #1} % Include example number
+ \ignorespaces
+ \par}
+{\endgroup
+ \end{framed}
+ \medskip}
+
+
+
+
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+\newcommand{\mathup}[1]{#1}
+\newcommand{\NP}{\text{NP}}
+\newcommand{\coNP}{\text{coNP}}
+
+\newcommand{\lift}{\mathrm{lift}}
+\newcommand{\ub}{\mathrm{ubbest}}
+\newcommand{\F}{{\mathcal F}}

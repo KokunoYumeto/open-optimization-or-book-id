@@ -1,0 +1,121 @@
+\subsection{Sifat-Sifat Perkalian Matriks}
+
+Seperti telah dinyatakan di atas, kadang-kadang matriks dapat
+dikalikan dalam satu urutan,
+tetapi tidak dalam urutan lainnya. Namun, bahkan jika $AB$ dan $BA$ keduanya terdefinisi,
+keduanya belum tentu sama. 
+
+\begin{example}{Perkalian Matriks Tidak Komutatif}\label{exa:noncommutativemultiplication}
+Bandingkan hasil kali $AB$ dan $BA$ untuk matriks $ A = \leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 4
+\end{array}
+\rightB, B= \leftB
+\begin{array}{rr}
+0 & 1 \\
+1 & 0
+\end{array}
+\rightB $ 
+\end{example}
+
+\begin{solution} 
+Pertama, perhatikan bahwa $A$ dan $B$ sama-sama berukuran $2 \times 2$. Oleh karena itu, kedua
+hasil kali $AB$ dan $BA$ terdefinisi.
+Hasil kali pertama, yaitu $AB$, adalah
+\begin{equation*}
+AB = \leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 4
+\end{array}
+\rightB \leftB
+\begin{array}{rr}
+0 & 1 \\
+1 & 0
+\end{array}
+\rightB = \leftB
+\begin{array}{rr}
+2 & 1 \\
+4 & 3
+\end{array}
+\rightB 
+\end{equation*}
+Hasil kali kedua, yaitu $BA$, adalah
+\begin{equation*}
+\leftB
+\begin{array}{rr}
+0 & 1 \\
+1 & 0
+\end{array}
+\rightB \leftB
+\begin{array}{rr}
+1 & 2 \\
+3 & 4
+\end{array}
+\rightB = \leftB
+\begin{array}{rr}
+3 & 4 \\
+1 & 2
+\end{array}
+\rightB 
+\end{equation*}
+Oleh karena itu, $AB \neq BA$. 
+\end{solution}
+
+Contoh ini menunjukkan bahwa Anda tidak dapat mengasumsikan $AB=BA$ meskipun
+perkalian terdefinisi dalam kedua urutan. Jika untuk suatu matriks $A$ dan
+$B$ berlaku $AB=BA$, kita mengatakan bahwa $A$ dan $B$ \textbf{berkomutasi}\index{matriks!komutatif}. Ini merupakan salah satu
+sifat penting perkalian matriks.
+
+Berikut adalah sifat-sifat penting lainnya dari perkalian matriks.
+Perhatikan bahwa sifat-sifat ini hanya berlaku ketika ukuran matriks-matriks sedemikian rupa sehingga hasil kalinya terdefinisi. 
+
+\begin{proposition}{Sifat-Sifat Perkalian Matriks}\label{prop:propertiesofmatrixmultiplication}
+Hal-hal berikut berlaku \index{perkalian matriks!sifat} untuk matriks $A,B,$ dan $C$, serta untuk skalar $r$ dan $s$,
+
+\begin{equation}
+A\left( rB+sC\right) =r\left( AB\right) +s\left( AC\right)  \label{matrixproperties1}
+\end{equation}
+
+\begin{equation}
+\left( B+C\right) A=BA+CA  \label{matrixproperties2}
+\end{equation}
+
+\begin{equation}
+A\left( BC\right) =\left( AB\right) C  \label{matrixproperties3}
+\end{equation}
+\end{proposition}
+
+\ifdefined\showproofs
+\begin{proof}
+ Pertama, kita akan membuktikan \ref{matrixproperties1}. Kita akan menggunakan Definisi \ref{def:ijentryofproduct}
+dan membuktikan pernyataan ini menggunakan entri pada posisi $(i,j)$ dari suatu matriks.
+Oleh karena itu,
+\begin{equation*}
+\left( A\left( rB+sC\right) \right) _{ij}=\sum_{k}a_{ik}\left( rB+sC\right)
+_{kj}=\sum_{k}a_{ik}\left( rb_{kj}+sc_{kj}\right)
+\end{equation*}
+\begin{equation*}
+=r\sum_{k}a_{ik}b_{kj}+s\sum_{k}a_{ik}c_{kj}=r\left( AB\right) _{ij}+s\left(
+AC\right) _{ij}
+\end{equation*}
+\begin{equation*}
+=\left( r\left( AB\right) +s\left( AC\right) \right) _{ij}
+\end{equation*}
+Jadi, $A\left( rB+sC\right) =r(AB)+s(AC)$ seperti yang dinyatakan. 
+
+Bukti \ref{matrixproperties2} mengikuti pola yang sama dan diserahkan sebagai latihan. 
+
+Pernyataan \ref{matrixproperties3} adalah hukum asosiatif perkalian. Dengan menggunakan
+Definisi \ref{def:ijentryofproduct},
+\begin{equation*}
+\left( A\left( BC\right) \right) _{ij}=\sum_{k}a_{ik}\left( BC\right)
+_{kj}=\sum_{k}a_{ik}\sum_{l}b_{kl}c_{lj}
+\end{equation*}
+\begin{equation*}
+=\sum_{l}\left( AB\right) _{il}c_{lj}=\left( \left( AB\right) C\right) _{ij}.
+\end{equation*}
+Ini membuktikan \ref{matrixproperties3}.
+\end{proof}
+\fi

@@ -1,0 +1,842 @@
+\chapter{Pemodelan dengan Notasi Ringkas}
+
+\begin{outcome}
+\begin{itemize}
+\item Meninjau kembali notasi penjumlahan
+\item Menggunakan himpunan, parameter, variabel, dan model
+\item Menulis formulasi ringkas untuk program linear
+\end{itemize}
+\end{outcome}
+
+\begin{quote}
+\itshape Model-model pada bab sebelumnya dapat dituliskan pada selembar kartu indeks: dua atau tiga variabel, beberapa kendala, dan setiap koefisien ditulis satu per satu. Sekarang bayangkan klien Anda adalah jaringan toko swalayan dengan 40{,}000 produk, 200 toko, dan permintaan selama 52 minggu. Betapapun sabarnya seseorang, tidak mungkin ia menulis fungsi tujuan itu suku demi suku. Ketika data tahun berikutnya tiba, tidak seorang pun ingin mengetik ulang model tersebut. Notasi dalam bab ini (himpunan, parameter, dan penjumlahan) memungkinkan satu halaman matematika menggambarkan model dengan sejuta variabel, sekaligus menggambarkan model yang sama lagi pada tahun berikutnya ketika semua angkanya telah berubah.
+\end{quote}
+
+\section*{Tinjauan Singkat Notasi Penjumlahan dan Kaitannya dengan Perkalian Vektor}
+
+Notasi penjumlahan adalah cara ringkas untuk menyatakan penjumlahan serangkaian suku. Notasi ini lazim ditulis sebagai
+\[
+\sum_{i=m}^{n} \text{ekspresi yang melibatkan } i,
+\]
+dengan \(i\) sebagai indeks penjumlahan, \(m\) sebagai indeks awal, dan \(n\) sebagai indeks akhir.
+
+\underline{1. Jumlah \(x_i\):}
+\[
+\sum_{i=1}^{n} x_i = x_1 + x_2 + \cdots + x_n.
+\]
+Dalam istilah vektor, misalkan \(\mathbf{x}\) adalah vektor berdimensi \(n\),
+\[
+\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix},
+\]
+maka \(\sum_{i=1}^{n} x_i\) menyatakan jumlah semua komponen \(\mathbf{x}\).
+
+\underline{2. Jumlah \(a_i x_i\):}
+\[
+\sum_{i=1}^{n} a_i x_i = a_1x_1 + a_2x_2 + \cdots + a_nx_n.
+\]
+Ekspresi ini merupakan hasil kali titik (atau hasil kali dalam) dua vektor berdimensi \(n\), yaitu \(\mathbf{a}\) dan \(\mathbf{x}\), dengan
+\[
+\mathbf{a} = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{pmatrix}.
+\]
+Dalam notasi vektor, hasil kali titik ditulis sebagai
+\[
+\mathbf{a}^\top \mathbf{x} = \mathbf{a} \cdot \mathbf{x} = \sum_{i=1}^{n} a_i x_i.
+\]
+Perkalian ini menghasilkan suatu skalar yang menggabungkan komponen-komponen yang bersesuaian dari kedua vektor.
+
+\section*{Catatan tentang Himpunan, Indeks, dan Penjumlahan}
+
+Dalam pemodelan dengan notasi ringkas, \emph{himpunan} membantu menata masalah dan menunjukkan dengan jelas indeks mana yang muncul dalam penjumlahan dan kendala.
+
+Himpunan biasanya dilambangkan dengan huruf kapital, sedangkan huruf kecil yang bersesuaian digunakan sebagai indeks.  
+
+\begin{example}{Menjumlahkan atas suatu himpunan}{}
+Misalkan \( I \) adalah himpunan bulan dalam satu tahun:
+\[
+I = \{1, 2, 3, \dots, 12\}.
+\]
+Penjumlahan atas semua bulan dapat ditulis dengan dua cara yang setara:
+\[
+\sum_{i \in I} a_i x_i \quad\text{atau}\quad \sum_{i=1}^{12} a_i x_i.
+\]
+\end{example}
+
+\medskip
+\noindent
+\textbf{Beberapa Himpunan dan Beberapa Indeks.}  
+Adakalanya suatu variabel diindeks atas \emph{dua himpunan atau lebih}.  
+Sebagai contoh, misalkan
+\[
+J = \{\text{'merah'}, \text{'hijau'}, \text{'biru'}\}
+\]
+dan terdapat variabel \( y_{ij} \) yang diindeks oleh \( i \in I \) (bulan) dan \( j \in J \) (warna).
+
+Jika, untuk setiap warna \(j\), jumlah \(y_{ij}\) atas semua bulan harus sama dengan 1, kita menulis
+\[
+\sum_{i \in I} y_{ij} = 1 \quad \forall j \in J.
+\]
+Satu ekspresi ringkas ini sebenarnya mewakili \emph{tiga} kendala—satu untuk setiap warna—dan pada setiap kendala tersebut, 12 variabel bulanan dijumlahkan agar sama dengan 1.
+
+\medskip
+\noindent
+\textbf{Aturan Penting: Setiap Indeks Harus Didefinisikan.}  
+Dalam setiap ekspresi matematika, \emph{setiap indeks harus muncul pada salah satu}:
+\begin{enumerate}
+    \item penjumlahan, atau  
+    \item kuantor ``untuk semua'' (\(\forall\)).
+\end{enumerate}
+
+Pada contoh di atas, \( y_{ij} \) menggunakan indeks \(i\) dan \(j\).  
+\begin{itemize}
+    \item Penjumlahan \(\sum_{i \in I}\) mendefinisikan \(i\).  
+    \item Pernyataan ``untuk semua'' \(\forall j \in J\) mendefinisikan \(j\).
+\end{itemize}
+Tanpa definisi tersebut, makna matematis ekspresi itu tidak lengkap atau ambigu.
+
+\begin{learningcheckpoint}[label={lc:missing-index}]
+Perhatikan formulasi yang keliru berikut:
+\[
+\sum_{i \in I} y_{ij} = 1
+\]
+Tuliskan apa yang kurang agar pernyataan ini lengkap secara matematis. Indeks mana yang belum didefinisikan, dan bagaimana indeks tersebut seharusnya diperkenalkan?
+\end{learningcheckpoint}
+
+\section{Model Perencanaan Produksi}
+\label{sec:production-planning}
+
+\subsection*{Model Perencanaan Produksi (untuk \(T\) Periode)}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=2cm, 
+    thick, 
+    >=stealth',
+    every node/.style={font=\small},
+    main/.style={circle, draw, fill=gray!20, minimum size=1cm, font=\normalsize}
+]
+
+% Nodes
+\node[main] (1) {1};
+\node[main, right of=1] (2) {2};
+\node[right of=2, node distance=1.5cm] (dots) {\dots};
+\node[main, right of=dots, node distance=1.5cm] (T1) {\tiny \(T-1\)};
+\node[main, right of=T1] (T) {\(T\)};
+
+% Arrows for Production
+\foreach \i in {1,2,T}
+    \draw[->] (\i) ++(0,1) -- node[left] {$x_\i$} (\i.north);
+\foreach \i in {T1}
+    \draw[->] (\i) ++(0,1) -- node[left] {$x_{T-1}$} (\i.north);
+% Arrows for Inventory
+\draw[<-] (1.west) -- ++(-1,0) node[midway, above] {$s_0$};
+\draw[->] (1.east) -- node[midway, above] {$s_1$} (2.west);
+\draw[->] (2.east) -- node[midway, above] {} (dots.west);
+\draw[->] (dots.east) -- node[midway, above] {} (T1.west);
+\draw[->] (T1.east) -- node[midway, above] {$s_{T-1}$} (T.west);
+\draw[->] (T.east) -- ++(1,0) node[midway, above] {$s_T$};
+
+% Arrows for Demand (using variables d_i)
+\foreach \i in {1,2,T}
+    \draw[->] (\i.south) -- ++(0,-1) node[midway, right] {$d_\i$};
+
+\foreach \i in {T1}
+    \draw[->] (\i.south) -- ++(0,-1) node[midway, right] {$d_{T-1}$};
+% Labels
+\node at (-4,1.2) {Produksi};
+\node at (-4,0) {Persediaan};
+\node at (-4,-1.2) {Permintaan};
+
+\end{tikzpicture}\par\captionof{figure}{Skema jaringan produksi multi-periode: lingkaran abu-abu berlabel 1, 2, ..., T-1, dan T.}\label{fig:modeling-sums-tikz01}% fig-num-auto
+
+\end{center}
+
+\modelhead{Himpunan}
+\begin{itemize}
+    \item \(t \in \{1,2,\dots,T\}\): Periode-periode dalam cakrawala perencanaan.
+\end{itemize}
+
+\modelhead{Parameter}
+\begin{itemize}
+    \item \(c^{prod}_t\): Biaya produksi per unit pada periode \(t\) (untuk \(t=1,\dots,T\)).
+    \item \(c^{inv}\): Biaya penyimpanan persediaan per unit yang dibawa dari satu periode ke periode berikutnya.
+    \item \(d_t\): Permintaan pada periode \(t\).
+    \item \(s_0\): Persediaan awal yang tersedia pada awal periode 1.
+\end{itemize}
+
+\modelhead{Variabel}
+\begin{itemize}
+    \item \(x_t\): Jumlah unit yang diproduksi pada periode \(t\).
+    \item \(s_t\): Tingkat persediaan pada akhir periode \(t\).
+\end{itemize}
+
+\modelhead{Model}
+\begin{align*}
+\min_{x,s} \quad & z = \sum_{t=1}^{T} \Big( c^{prod}_t\, x_t + c^{inv}\, s_t \Big)   \tag{Biaya total} \\
+\st        & s_0 + x_1 = d_1 + s_1   \tag{Keseimbangan periode 1} \\
+                 & s_{t-1} + x_t = d_t + s_t &&\quad \text{untuk semua } t=2,\dots,T   \tag{Keseimbangan persediaan} \\
+                 & x_t \geq 0,\quad s_t \geq 0 &&\quad \text{untuk semua } t=1,\dots,T.
+\end{align*}
+
+\begin{examplewithallcode}{Perencanaan Produksi dengan 10 Periode (\(T = 10\))}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production-10period-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production_10period_gurobi.ipynb}
+\label{ex:production-10period}
+
+\underline{Persediaan Awal:}
+\[
+s_0 = 5 \quad \text{unit}
+\]
+
+\modelhead{Data}
+\href{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production-planning-data.xlsx}{(Unduh data)}
+\begin{center}
+\begin{tabular}{@{}c*{10}{c}@{}}
+\toprule
+\textbf{Parameter}               & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 \\ \midrule
+Biaya Produksi (\$ per unit)     & 10 & 12 & 14 & 16 & 18 & 20 & 22 & 24 & 26 & 28 \\
+Permintaan (unit)                & 8  & 6  & 9  & 7  & 10 & 5  & 8  & 6  & 4  & 7  \\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Data perencanaan produksi untuk cakrawala sepuluh hari.}\label{tab:modeling-sums-tab01}% tab-num-auto
+
+\end{center}
+
+\underline{Biaya Penyimpanan Persediaan:}
+\[
+c^{inv} = 5 \quad \text{per unit}
+\]
+
+\modelhead{Variabel}
+\begin{itemize}
+    \item \(x_t\): Jumlah unit yang diproduksi pada periode \(t\).
+    \item \(s_t\): Tingkat persediaan pada akhir periode \(t\).
+\end{itemize}
+
+\modelhead{Model}
+\begin{align*}
+\min_{x,s} \quad & z = 10x_1 + 12x_2 + 14x_3 + 16x_4 + 18x_5 + 20x_6 + 22x_7 + 24x_8 + 26x_9 + 28x_{10} \\
+                 & \quad + 5\,(s_1+s_2+s_3+s_4+s_5+s_6+s_7+s_8+s_9+s_{10})   \tag{Biaya total} \\
+\st        & 5 + x_1 = 8 + s_1   \tag{Periode 1} \\
+                 & s_1 + x_2 = 6 + s_2   \tag{Periode 2} \\
+                 & s_2 + x_3 = 9 + s_3   \tag{Periode 3} \\
+                 & s_3 + x_4 = 7 + s_4   \tag{Periode 4} \\
+                 & s_4 + x_5 = 10 + s_5   \tag{Periode 5} \\
+                 & s_5 + x_6 = 5 + s_6   \tag{Periode 6} \\
+                 & s_6 + x_7 = 8 + s_7   \tag{Periode 7} \\
+                 & s_7 + x_8 = 6 + s_8   \tag{Periode 8} \\
+                 & s_8 + x_9 = 4 + s_9   \tag{Periode 9} \\
+                 & s_9 + x_{10} = 7 + s_{10}   \tag{Periode 10} \\
+                 & x_t \geq 0,\ s_t \geq 0 \text{ untuk semua } t=1,\dots,10.
+\end{align*}
+\end{examplewithallcode}
+
+\section*{Perencanaan Produksi dengan Lembur}
+
+Sebuah perusahaan manufaktur ingin mengoptimalkan jadwal produksinya selama cakrawala perencanaan \(T\) hari untuk memenuhi permintaan harian sekaligus meminimalkan biaya. Perusahaan memulai dengan persediaan awal sebanyak \(s_0\) unit. Produksi dapat dilakukan pada waktu kerja reguler maupun melalui lembur. Biaya-biayanya adalah sebagai berikut:
+\begin{itemize}
+    \item \textbf{Biaya produksi reguler:} \(c^{prod}_t\) dolar per unit pada hari \(t\).
+    \item \textbf{Biaya produksi lembur:} \(c^{over}_{t}\) dolar per unit pada hari \(t\).
+    \item \textbf{Biaya persediaan:} \(c^{inv}\) dolar per unit yang dibawa dari satu hari ke hari berikutnya.
+\end{itemize}
+
+Tujuannya adalah menentukan jumlah unit yang diproduksi pada waktu reguler dan lembur setiap hari, serta tingkat persediaannya, agar biaya total minimum dengan tetap memenuhi permintaan harian.
+
+\bigskip
+
+\modelhead{Himpunan}
+\begin{itemize}
+    \item Hari produksi \( = \{1, 2, \dots, T\}\).
+\end{itemize}
+
+\modelhead{Parameter}
+\begin{itemize}
+    \item \(c^{prod}_t\): Biaya produksi reguler per unit pada hari \(t\) (untuk \(t=1,\dots,T\)).
+    \item \(c^{over}_{t}\): Biaya produksi lembur per unit pada hari \(t\) (untuk \(t=1,\dots,T\)).
+    \item \(c^{inv}\): Biaya penyimpanan persediaan per unit yang dibawa ke hari berikutnya.
+    \item \(d_t\): Permintaan pada hari \(t\).
+    \item \(s_0\): Persediaan awal pada awal hari 1.
+\end{itemize}
+
+\modelhead{Variabel}
+\begin{itemize}
+    \item \(x_t\): Jumlah unit yang diproduksi pada waktu reguler pada hari \(t\).
+    \item \(y_t\): Jumlah unit yang diproduksi pada waktu lembur pada hari \(t\).
+    \item \(s_t\): Persediaan pada akhir hari \(t\).
+\end{itemize}
+
+\modelhead{Model}
+\begin{align*}
+\min \quad & \sum_{t=1}^{T} \Big( c^{prod}_t x_t + c^{over}_{t} y_t + c^{inv} s_t \Big)   \tag{Biaya total} \\
+\st        & s_0 + x_1 + y_1 = d_1 + s_1   \tag{Keseimbangan hari 1} \\
+             & s_{t-1} + x_t + y_t = d_t + s_t &&\quad \text{untuk semua } t = 2,\dots,T   \tag{Keseimbangan persediaan} \\
+             & x_t,\, y_t,\, s_t \ge 0 &&\quad \text{untuk semua } t = 1,\dots,T.
+\end{align*}
+
+\newpage
+
+\begin{examplewithallcode}{Perencanaan Produksi dengan Lembur (\(T = 10\))}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production-overtime-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production_overtime_gurobi.ipynb}
+
+Perhatikan cakrawala perencanaan 10 hari (\(T=10\)) dengan data berikut:
+
+\modelhead{Data}
+
+\begin{center}
+\begin{tabular}{@{}c*{10}{c}@{}}
+\toprule
+\textbf{Parameter}                & 1   & 2   & 3   & 4   & 5   & 6   & 7   & 8   & 9   & 10 \\
+\midrule
+Biaya Produksi Reguler (\$)       & 10  & 12  & 14  & 16  & 18  & 20  & 22  & 24  & 26  & 28 \\
+Biaya Produksi Lembur (\$)        & 16  & 18  & 20  & 22  & 24  & 26  & 28  & 30  & 32  & 34 \\
+Permintaan (unit)                 & 8   & 6   & 9   & 7   & 10  & 5   & 8   & 6   & 4   & 7 \\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Data perencanaan produksi dengan lembur untuk cakrawala sepuluh hari.}\label{tab:modeling-sums-tab02}% tab-num-auto
+\href{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/production_costs.xlsx}{Unduh Data}
+\end{center}
+
+Asumsikan parameter tambahan berikut:
+\begin{itemize}
+    \item Biaya persediaan: \( c^{inv} = 5 \) dolar per unit.
+    \item Persediaan awal: \( s_0 = 0 \) unit.
+\end{itemize}
+
+\modelhead{Variabel}
+\begin{itemize}
+    \item \( x_t \): Produksi reguler pada hari \(t\).
+    \item \( y_t \): Produksi lembur pada hari \(t\).
+    \item \( s_t \): Persediaan pada akhir hari \(t\).
+\end{itemize}
+
+\modelhead{Model}
+\begin{align*}
+\min \quad & 10x_1 + 16y_1 + 5s_1   \tag{Biaya total} \\
+             & \quad + 12x_2 + 18y_2 + 5s_2 \\
+             & \quad + 14x_3 + 20y_3 + 5s_3 \\
+             & \quad + 16x_4 + 22y_4 + 5s_4 \\
+             & \quad + 18x_5 + 24y_5 + 5s_5 \\
+             & \quad + 20x_6 + 26y_6 + 5s_6 \\
+             & \quad + 22x_7 + 28y_7 + 5s_7 \\
+             & \quad + 24x_8 + 30y_8 + 5s_8 \\
+             & \quad + 26x_9 + 32y_9 + 5s_9 \\
+             & \quad + 28x_{10} + 34y_{10} + 5s_{10} \\[1mm]
+\st        & s_0 + x_1 + y_1 = 8 + s_1   \tag{Keseimbangan hari 1} \\
+             & s_1 + x_2 + y_2 = 6 + s_2   \tag{Keseimbangan hari 2} \\
+             & s_2 + x_3 + y_3 = 9 + s_3   \tag{Keseimbangan hari 3} \\
+             & s_3 + x_4 + y_4 = 7 + s_4   \tag{Keseimbangan hari 4} \\
+             & s_4 + x_5 + y_5 = 10 + s_5   \tag{Keseimbangan hari 5} \\
+             & s_5 + x_6 + y_6 = 5 + s_6   \tag{Keseimbangan hari 6} \\
+             & s_6 + x_7 + y_7 = 8 + s_7   \tag{Keseimbangan hari 7} \\
+             & s_7 + x_8 + y_8 = 6 + s_8   \tag{Keseimbangan hari 8} \\
+             & s_8 + x_9 + y_9 = 4 + s_9   \tag{Keseimbangan hari 9} \\
+             & s_9 + x_{10} + y_{10} = 7 + s_{10}   \tag{Keseimbangan hari 10} \\[1mm]
+             & x_t,\, y_t,\, s_t \ge 0 &&\quad \text{untuk semua } t = 1,\dots,10.
+\end{align*}
+
+Dalam contoh 10 hari ini, keputusan yang harus dibuat adalah berapa unit yang diproduksi pada waktu reguler (\(x_t\)) dan lembur (\(y_t\)) setiap hari, serta berapa tingkat persediaan pada akhir setiap hari (\(s_t\)), sehingga permintaan harian terpenuhi dengan biaya total minimum.
+
+\end{examplewithallcode}
+
+\section{Masalah Penugasan}
+\label{sec:assignment-problem}
+\textbf{Masalah penugasan} adalah masalah optimisasi mendasar dalam optimisasi kombinatorial. Masalah ini menugaskan sekumpulan \( n \) agen (atau pekerja) ke \( n \) tugas (atau pekerjaan), sedemikian rupa sehingga setiap agen memperoleh tepat satu tugas dan setiap tugas diberikan kepada tepat satu agen. Tujuannya adalah meminimalkan biaya penugasan total.
+
+\begin{tikzpicture}[
+    every node/.style={font=\footnotesize},
+    person/.style={circle, draw=blue!50, fill=blue!20, thick, minimum size=1.2cm},
+    task/.style={rectangle, draw=red!50, fill=red!20, thick, minimum width=1.2cm, minimum height=1cm}
+]
+
+% Nodes for people (drawn stick figures)
+\node[person] (P1) at (0, 2) {
+    \begin{tikzpicture}
+        \draw[thick] (0,0.2) circle (0.15); % Head
+        \draw[thick] (0,0.05) -- (0,-0.2);  % Body
+        \draw[thick] (-0.1,-0.3) -- (0,-0.2) -- (0.1,-0.3); % Legs
+        \draw[thick] (-0.1,0) -- (0.1,0);   % Arms
+    \end{tikzpicture}
+    \\ $P_1$
+};
+
+\node[person] (P2) at (0, 0) {
+    \begin{tikzpicture}
+        \draw[thick] (0,0.2) circle (0.15);
+        \draw[thick] (0,0.05) -- (0,-0.2);
+        \draw[thick] (-0.1,-0.3) -- (0,-0.2) -- (0.1,-0.3);
+        \draw[thick] (-0.1,0) -- (0.1,0);
+    \end{tikzpicture}
+    \\ $P_2$
+};
+
+\node[person] (P3) at (0, -2) {
+    \begin{tikzpicture}
+        \draw[thick] (0,0.2) circle (0.15);
+        \draw[thick] (0,0.05) -- (0,-0.2);
+        \draw[thick] (-0.1,-0.3) -- (0,-0.2) -- (0.1,-0.3);
+        \draw[thick] (-0.1,0) -- (0.1,0);
+    \end{tikzpicture}
+    \\ $P_3$
+};
+
+% Nodes for tasks (drawn clipboard-like symbols)
+\node[task] (T1) at (4, 2) {
+    \begin{tikzpicture}
+        \draw[thick] (-0.2,0.4) rectangle (0.2,-0.4); % Task shape
+        \draw[thick] (-0.15,0.3) -- (0.15,0.3); % Line inside
+        \draw[thick] (-0.15,0.15) -- (0.15,0.15);
+    \end{tikzpicture}
+    \\ $T_1$
+};
+
+\node[task] (T2) at (4, 0) {
+    \begin{tikzpicture}
+        \draw[thick] (-0.2,0.4) rectangle (0.2,-0.4);
+        \draw[thick] (-0.15,0.3) -- (0.15,0.3);
+        \draw[thick] (-0.15,0.15) -- (0.15,0.15);
+    \end{tikzpicture}
+    \\ $T_2$
+};
+
+\node[task] (T3) at (4, -2) {
+    \begin{tikzpicture}
+        \draw[thick] (-0.2,0.4) rectangle (0.2,-0.4);
+        \draw[thick] (-0.15,0.3) -- (0.15,0.3);
+        \draw[thick] (-0.15,0.15) -- (0.15,0.15);
+    \end{tikzpicture}
+    \\ $T_3$
+};
+
+% Edges (Complete bipartite graph)
+\foreach \i in {1,2,3} {
+    \foreach \j in {1,2,3} {
+        \draw[thick] (P\i) -- (T\j);
+    }
+}
+
+\end{tikzpicture}\par\captionof{figure}{Diagram penugasan bipartit: tiga orang P1, P2, P3 digambar sebagai ikon manusia dalam lingkaran biru; tiga tugas T1, T2, T3 digambar sebagai papan tugas merah; dan setiap orang dihubungkan ke setiap tugas.}\label{fig:modeling-sums-tikz02}% fig-num-auto
+
+
+\medskip
+\modelhead{Himpunan}
+\begin{itemize}
+    \item \( I \) – Himpunan agen (atau pekerja), diindeks oleh \( i \).
+    \item \( J \) – Himpunan tugas (atau pekerjaan), diindeks oleh \( j \).
+\end{itemize}
+
+\medskip
+\modelhead{Parameter}
+\begin{itemize}
+    \item \( c_{ij} \) – Biaya yang terkait dengan penugasan agen \( i \in I\) ke tugas \( j \in J\).
+\end{itemize}
+
+\medskip
+\modelhead{Variabel}
+\begin{itemize}
+    \item \( x_{ij} \) – Variabel keputusan biner, dengan
+          \[
+          x_{ij} =
+          \begin{cases}
+          1, & \text{jika agen } i \text{ ditugaskan ke tugas } j, \\
+          0, & \text{jika tidak}.
+          \end{cases}
+          \]
+\end{itemize}
+
+\medskip
+\modelhead{Model}
+
+\begin{align*}
+\min \quad & \sum_{i \in I} \sum_{j \in J} c_{ij} x_{ij}   \tag{Biaya total}\label{eq:assignment_objective} \\
+\st        & \sum_{j \in J} x_{ij} = 1 &&\quad \text{untuk semua } i \in I   \tag{Setiap agen satu tugas}\label{eq:assignment_agent_constraint} \\
+             & \sum_{i \in I} x_{ij} = 1 &&\quad \text{untuk semua } j \in J   \tag{Setiap tugas satu agen}\label{eq:assignment_task_constraint} \\
+             & x_{ij} \in \{0,1\} &&\quad \text{untuk semua } i \in I,\, j \in J.   \tag{Biner}\label{eq:assignment_binary_constraint}
+\end{align*}
+
+\medskip
+\underline{\textbf{Penjelasan}}:
+\begin{itemize}
+    \item \textbf{Fungsi tujuan} \eqref{eq:assignment_objective}: Meminimalkan biaya penugasan total berdasarkan biaya \( c_{ij} \) yang diberikan.
+    \item \textbf{Kendala} \eqref{eq:assignment_agent_constraint}: Setiap agen ditugaskan tepat ke satu tugas.
+    \item \textbf{Kendala} \eqref{eq:assignment_task_constraint}: Setiap tugas diberikan tepat kepada satu agen.
+    \item \textbf{Kendala biner} \eqref{eq:assignment_binary_constraint}: Memastikan setiap penugasan dilakukan (\( x_{ij} = 1 \)) atau tidak dilakukan (\( x_{ij} = 0 \)).
+\end{itemize}
+
+%This problem can be efficiently solved using algorithms such as the \textbf{Hungarian method} for the classical case or integer programming solvers like \textbf{branch and bound} for larger instances.
+
+%The \emph{assignment problem} (machine/person to job/task assignment) seeks to assign tasks to machines in a way that is most efficient.   This problem can be thought of as having a set of machines that can complete various tasks (textile machines that can make t-shirts, pants, socks, etc) that require different amounts of time to complete each task, and given a demand, you need to decide how to alloacte your machines to tasks.
+%
+%Alternatively, you could be an employer with a set of jobs to complete and a list of employees to assign to these jobs.  Each employee has various abilities, and hence, can complete jobs in differing amounts of time.  And each employee's time might cost a different amout.  How should you assign your employees to jobs in order to minimize your total costs?
+
+\begin{general}{Masalah Penugasan}{}{}
+Diberikan $m$ mesin dan $n$ pekerjaan, carilah penugasan pekerjaan ke mesin dengan biaya terendah. Biaya penugasan pekerjaan $j$ ke mesin $i$ adalah $c_{ij}$.
+\end{general}
+%
+
+\begin{examplewithallcode}{Penugasan Mesin}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/machine-assignment-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/machine_assignment_gurobi.ipynb}
+\label{ex:machine-assignment}
+
+Sebuah bengkel manufaktur kecil memiliki empat mesin khusus dan empat pekerjaan yang harus diselesaikan hari ini.  
+Setiap mesin dapat mengerjakan pekerjaan mana pun, tetapi biaya waktu dan energi berbeda-beda menurut kombinasi pekerjaan–mesin.  
+Sebagai contoh, Mesin 0 mungkin mengerjakan Pekerjaan 2 dengan sangat efisien, sedangkan Pekerjaan 1 memerlukan waktu jauh lebih lama dan biaya lebih besar.  
+Manajemen ingin menugaskan tepat satu pekerjaan ke setiap mesin dan tepat satu mesin ke setiap pekerjaan agar \emph{biaya operasi total} minimum.  
+Matriks biaya \(c_{ij}\) menyatakan perkiraan biaya operasi (dalam dolar) untuk menugaskan Mesin \(i\) ke Pekerjaan \(j\). Pada contoh ini, biayanya adalah
+\[
+c = \begin{bmatrix} 9 & 2 & 7 & 8 \\ 6 & 4 & 3 & 7 \\ 5 & 8 & 1 & 8 \\ 7 & 6 & 9 & 4 \end{bmatrix},
+\]
+dan penugasan optimal (mesin $0 \to$ pekerjaan $1$, $1 \to 0$, $2 \to 2$, $3 \to 3$) memiliki biaya total $13$.
+
+
+\modelhead{Himpunan}
+\begin{itemize}
+\item Misalkan $I = \{0,1,2,3\}$ adalah himpunan mesin.
+\item Misalkan $J = \{0,1, 2,3\}$ adalah himpunan pekerjaan.
+\end{itemize}
+
+\modelhead{Parameter}
+\begin{itemize}
+\item $c_{ij}$ - biaya penugasan mesin $i$ ke pekerjaan $j$.
+\end{itemize}
+
+\modelhead{Variabel}
+\begin{itemize}
+\item Misalkan
+\begin{equation*}
+x_{ij} = \begin{cases}
+1 & \text{jika mesin $i$ ditugaskan ke pekerjaan $j$}\\
+0 & \text{jika tidak.}
+\end{cases}
+\end{equation*}
+\end{itemize}
+
+\modelhead{Model}
+\begin{align*}
+\min \quad & \sum_{i \in I,\, j \in J} c_{ij} x_{ij}   \tag{Biaya total} \\
+\st        & \sum_{i \in I} x_{ij} = 1 &&\quad \text{untuk semua } j \in J   \tag{Setiap pekerjaan ditugaskan ke satu mesin} \\
+             & \sum_{j \in J} x_{ij} = 1 &&\quad \text{untuk semua } i \in I   \tag{Setiap mesin memperoleh satu pekerjaan} \\
+             & x_{ij} \in \{0,1\} &&\quad \text{untuk semua } i \in I,\, j \in J.
+\end{align*}
+\end{examplewithallcode}
+
+\begin{examplewithallcode}{Masalah Penentuan Rute Bus Sekolah}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/school-bus-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/school_bus_gurobi.ipynb}
+
+Sebuah distrik sekolah memiliki himpunan sekolah \( I \) dan armada bus sekolah \( J \). Setiap pagi, setiap bus harus ditugaskan ke suatu sekolah untuk menjemput siswa. Biaya \( c_{ij} \) menyatakan biaya bahan bakar bagi bus \( j \) untuk mencapai sekolah \( i \) dan menyelesaikan rutenya. Distrik tersebut ingin meminimalkan biaya bahan bakar total dengan memastikan bahwa setiap sekolah dilayani tepat oleh satu bus dan setiap bus ditugaskan tepat ke satu sekolah.
+
+Biaya bahan bakar tercantum dalam tabel berikut. Data ini juga tersedia dalam format berkas CSV \href{https://github.com/open-optimization/open-optimization-or-examples/blob/master/integer-programming/school_bus_data.csv}{di sini}.
+\begin{tabular}{l|ccccc}
+\toprule
+Bus/Sekolah & Sekolah A & Sekolah B & Sekolah C & Sekolah D & Sekolah E \\
+\midrule
+Bus 1 & 50 & 80 & 60 & 90 & 100 \\
+Bus 2 & 60 & 85 & 55 & 70 & 110 \\
+Bus 3 & 75 & 65 & 50 & 85 & 90 \\
+Bus 4 & 70 & 90 & 55 & 80 & 95 \\
+Bus 5 & 80 & 70 & 60 & 75 & 85 \\
+\bottomrule
+\end{tabular}
+\par\captionof{table}{Biaya penugasan setiap bus ke setiap sekolah.}\label{tab:modeling-sums-tab03}% tab-num-auto
+
+
+Kita dapat memodelkannya sebagai berikut:
+
+\modelhead{Himpunan}
+\begin{itemize}
+    \item \(i \) - Indeks sekolah, \(i \in I\)
+    \item \(j \) - Indeks bus, \(j \in J\)
+\end{itemize}
+
+\modelhead{Parameter}
+\begin{itemize}
+    \item \(c_{ij} \) - Biaya bahan bakar bagi bus \(j\) untuk melayani sekolah \(i\).
+\end{itemize}
+
+\modelhead{Variabel}
+\begin{itemize}
+    \item \(x_{ij} \) - Bernilai 1 jika bus \(j\) ditugaskan ke sekolah \(i\), dan 0 jika tidak.
+\end{itemize}
+
+\modelhead{Model}
+\begin{align*}
+\min \quad & \sum_{i \in I,\, j \in J} c_{ij} x_{ij}   \tag{Biaya bahan bakar total} \\
+\st        & \sum_{i \in I} x_{ij} = 1 &&\quad \text{untuk semua } j \in J   \tag{Setiap bus melayani satu sekolah} \\
+             & \sum_{j \in J} x_{ij} = 1 &&\quad \text{untuk semua } i \in I   \tag{Setiap sekolah dilayani satu bus} \\
+             & x_{ij} \in \{0,1\} &&\quad \text{untuk semua } i \in I,\, j \in J.
+\end{align*}
+\end{examplewithallcode}
+
+\begin{examplewithallcode}{Merekrut Orang untuk Tugas}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment-problem-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/assignment_problem_gurobi.ipynb}
+Ingat kembali Contoh~\ref{example:hiring-for-tasks}.  
+Kita mendefinisikan himpunan, parameter, dan variabel berikut untuk menyusun model matematis.
+
+\modelhead{Himpunan}
+\begin{itemize}
+    \item $I = \{1, 2, 3\}$, himpunan orang.
+    \item $J = \{1, 2, 3\}$, himpunan tugas.
+\end{itemize}
+
+\modelhead{Parameter}
+\begin{itemize}
+    \item $C_{ij}$, biaya penugasan orang $i \in I$ ke tugas $j \in J$. Biayanya diberikan dalam tabel berikut:
+    \begin{align*}
+        C = \begin{bmatrix}
+            45 & 38 & 60 \\
+            52 & 41 & 33 \\
+            27 & 49 & 56 \\
+        \end{bmatrix}
+    \end{align*}
+\end{itemize}
+
+\modelhead{Variabel}
+\begin{itemize}
+    \item $x_{ij} = 
+    \begin{cases} 
+    1 & \text{jika orang } i \text{ ditugaskan ke tugas } j \\
+    0 & \text{jika tidak}
+    \end{cases}$ untuk semua $i \in I, j \in J$.
+\end{itemize}
+
+\modelhead{Model}
+
+Model lengkapnya adalah
+\begin{align*}
+\min \quad & \sum_{i \in I} \sum_{j \in J} C_{ij} x_{ij}   \tag{Biaya total} \\
+\st        & \sum_{j \in J} x_{ij} = 1 &&\quad \text{untuk semua } i \in I   \tag{Setiap orang satu tugas} \\
+             & \sum_{i \in I} x_{ij} = 1 &&\quad \text{untuk semua } j \in J   \tag{Setiap tugas satu orang} \\
+             & x_{ij} \in \{0,1\} &&\quad \text{untuk semua } i \in I,\, j \in J.
+\end{align*}
+
+Model ini menugaskan setiap orang tepat ke satu tugas dan setiap tugas tepat kepada satu orang dengan biaya total minimum.
+
+\end{examplewithallcode}
+
+Masalah penugasan memiliki sifat integralitas: jika pembatasan biner pada variabel $x$ dihapus (sehingga variabel tersebut hanya nonnegatif, yaitu $x_{ij} \ge 0$), kita tetap memperoleh penugasan biner walaupun modelnya sekarang berupa program linear. Sifat ini sangat menarik dan bermanfaat. 
+
+Tentu saja, fungsi tujuan semula belum tentu sesuai dengan tujuan kita; kita mungkin ingin memastikan bahwa tim dengan penugasan terburuk memperoleh hasil sebaik mungkin (suatu kriteria keadilan). Konvensi nilai harus dinyatakan secara eksplisit. Jika nilai C menyatakan skor dan nilai yang lebih tinggi berarti lebih baik, kita menggunakan tujuan max–min berikut untuk memperbesar skor terendah di antara semua tim. Jika nilai C menyatakan peringkat atau biaya dan nilai yang lebih rendah berarti lebih baik, kita menggunakan formulasi min–max setelahnya untuk memperkecil peringkat atau biaya terburuk.
+
+\medskip \textbf{Formulasi Serupa Penugasan Max–Min} \\
+Di sini $z$ adalah batas bawah bagi skor total $\sum_{j \in J} C_{ij} x_{ij}$ setiap tim $i$. Memaksimalkan $z$ membuat skor tim yang paling buruk menjadi sebesar mungkin.
+\begin{align*}
+\max \quad & z  \nonumber \\
+\st        & z \leq \sum_{j \in J} C_{i j} x_{i j},~~ &&\quad \text{untuk semua } i \in I \\
+   & \sum_{i \in I} x_{i j} = 1,~~ &&\quad \text{untuk semua } j \in J \\
+         & \sum_{j \in J} x_{i j} = 1,~~ &&\quad \text{untuk semua } i \in I \\
+         & x_{i j} \ge 0,~~ &&\quad \text{untuk semua } i \in I, \; j \in J
+\end{align*}
+
+\medskip \textbf{Formulasi Serupa Penugasan Min–Max} \\
+Dalam formulasi ini, nilai C menyatakan peringkat atau biaya; nilai yang lebih rendah berarti lebih baik. Variabel z menjadi batas atas bagi nilai total setiap agen, sehingga meminimalkan z memperkecil nilai terburuk di antara para agen.
+\begin{align*}
+\min \quad & z  \nonumber \\
+\st        & z \geq \sum_{j \in J} C_{i j} x_{i j},~~ &&\quad \text{untuk semua } i \in I \\
+   & \sum_{i \in I} x_{i j} = 1,~~ &&\quad \text{untuk semua } j \in J \\
+         & \sum_{j \in J} x_{i j} = 1,~~ &&\quad \text{untuk semua } i \in I \\
+         & x_{i j} \ge 0,~~ &&\quad \text{untuk semua } i \in I, \; j \in J
+\end{align*}
+
+\medskip \textbf{Apakah formulasi ini memiliki sifat integralitas?}  
+(Formulasi ini bukan masalah penugasan biasa.)
+
+Perhatikan contoh sederhana dengan dua tim yang akan ditugaskan ke dua proyek. Kedua tim memberikan peringkat berikut (peringkat lebih rendah berarti lebih baik):
+
+\begin{table}[h!] 
+\begin{center} 
+\begin{tabular} {|c||c|c|}
+\hline           & Proyek~1 & Proyek~2 \\ \hline \hline
+Tim 1    & 2  & 1  \\
+Tim 2    & 2  & 1 \\ \hline
+\end{tabular} 
+\end{center} 
+\caption{Peringkat yang diberikan kedua tim untuk kedua proyek (lebih rendah lebih baik).}\label{tab:modeling-sums-tab04}% tab-num-auto
+\end{table}
+
+Kedua tim lebih menyukai Proyek 2.
+
+Jika pembatasan biner pada variabel \(x\) dihapus, nilainya dapat berada di antara 0 dan 1.  
+Untuk masalah penugasan semula, solusi optimal memiliki \(z=2\), dan nilai \(x\) pecahan tidak memperbaiki \(z\).  
+
+Namun, hal itu tidak berlaku pada masalah penugasan min–max. Solusi optimal memiliki \(z=1.5\), yang terjadi ketika setiap tim menerima separuh dari setiap proyek (yaitu, untuk Tim 1, \(x_{11} = 0.5\) dan \(x_{12} = 0.5\)). Dengan memecah penugasan menjadi pecahan, peringkat proyek terburuk dapat diminimalkan.
+
+\begin{casestudybox}{Penugasan Hunian Berbasis Preferensi pada Koperasi di Uruguay}
+\label{case:housing-uruguay}
+
+Koperasi perumahan di Uruguay berperan penting dalam menyediakan hunian terjangkau bagi anggotanya. Secara tradisional, setelah bangunan koperasi baru selesai dibangun, unit hunian individual dibagikan melalui undian acak. Walaupun sederhana, metode ini mengabaikan preferensi individual seperti arah datangnya sinar matahari, tingkat lantai, dan kedekatan dengan fasilitas bersama. Karena melihat peluang untuk meningkatkan kepuasan anggota, para peneliti mengembangkan metode penugasan alternatif yang didasarkan pada \textbf{pemrograman bilangan bulat campuran (MIP)}.
+
+\subsection*{Tantangan}
+Dalam koperasi perumahan Uruguay, setiap anggota berhak memperoleh satu unit hunian. Karena proses penugasan hanya berlangsung sekali untuk setiap bangunan, keadilan harus terjamin sambil memaksimalkan kepuasan keseluruhan. Sistem undian yang ada tidak memperhitungkan preferensi anggota, sehingga kadang menimbulkan ketidakpuasan dan pertukaran unit secara informal setelah penugasan. Tantangannya adalah mengembangkan proses penugasan baru yang:
+\begin{itemize}
+    \item Menjamin keadilan bagi semua anggota,
+    \item Memasukkan preferensi individual,
+    \item Mudah dijelaskan dan diterapkan,
+    \item Dapat dijalankan secara waktu nyata dalam rapat koperasi.
+\end{itemize}
+
+\subsection*{Solusi: Model Optimisasi Dua Tahap}
+Sebuah tim peneliti mengusulkan \textbf{model pemrograman bilangan bulat campuran (MIP) dua tahap} untuk menangani persoalan tersebut. Masalah penugasan dirumuskan dengan struktur berikut:
+
+\textbf{Tahap 1 – Menjamin Keadilan:} Model memaksimalkan kepuasan anggota yang paling tidak puas. Dengan demikian, tidak ada orang yang memperoleh unit yang sangat tidak diinginkan.
+
+\textbf{Tahap 2 – Mengoptimalkan Kepuasan Global:} Dengan kendala keadilan dari Tahap 1, model kemudian mengoptimalkan kepuasan total seluruh anggota koperasi.
+
+Proses penugasan diterapkan dengan perangkat lunak bernama \textbf{MTAV (Mejor Tecnología de Asignación de Viviendas – Teknologi yang Lebih Baik untuk Penugasan Hunian)}, yang dirancang agar transparan dan mudah digunakan.
+
+\subsection*{Penerapan dan Hasil}
+Uji dunia nyata pertama terhadap model ini berlangsung pada \textbf{2016} di \textbf{koperasi perumahan Virazón}, yang beranggotakan \textbf{50 orang}. Sebelum diterapkan, para anggota koperasi meninjau dan melakukan pemungutan suara untuk menyetujui metode baru tersebut. Preferensi hunian tiap anggota dikumpulkan dan dimasukkan ke dalam sistem.
+
+Pada hari penugasan:
+\begin{itemize}
+    \item Alokasi hunian dilakukan secara \textbf{waktu nyata} dalam rapat koperasi.
+    \item Hasilnya ditampilkan pada layar besar demi transparansi.
+    \item Seorang notaris hadir untuk mengesahkan keadilan proses tersebut.
+    \item Model optimisasi hanya memerlukan beberapa \textbf{detik} untuk menghitung penugasan.
+\end{itemize}
+
+Hasilnya mencolok:
+\begin{itemize}
+    \item \textbf{Apartemen empat kamar tidur:} Kedua anggota memperoleh unit pilihan pertama mereka.
+    \item \textbf{Apartemen tiga kamar tidur:} Lebih dari 37\% anggota memperoleh unit pilihan pertama, dan peringkat kepuasan rata-rata jauh lebih baik daripada penugasan acak.
+    \item \textbf{Apartemen dua kamar tidur:} Lebih dari \textbf{separuh} anggota memperoleh salah satu dari empat pilihan teratas mereka, dan semua penugasan jauh lebih baik daripada yang diperkirakan dalam undian acak.
+\end{itemize}
+
+Para anggota koperasi sangat mendukung sistem baru ini dan melaporkan tingkat kepuasan yang lebih tinggi dibandingkan metode penugasan sebelumnya.
+
+\subsection*{Dampak yang Lebih Luas}
+Sejak penerapan yang berhasil di Virazón, \textbf{lebih dari 30 koperasi perumahan} di Uruguay telah mengadopsi model tersebut. Pengembangan selanjutnya mencakup:
+\begin{itemize}
+    \item Pengenalan \textbf{antarmuka pengguna grafis} agar masukan data lebih intuitif.
+    \item Dukungan untuk \textbf{preferensi urutan parsial}, yang memungkinkan anggota menyatakan bahwa mereka tidak memiliki preferensi kuat di antara unit tertentu.
+    \item Penelaahan kriteria keadilan tambahan serta kompromi antara kepuasan individual dan kolektif.
+\end{itemize}
+
+Di luar pencapaian teknisnya, studi kasus ini menunjukkan bagaimana \textbf{teknik riset operasi} dapat diterapkan untuk menyelesaikan tantangan sosial dunia nyata. Dengan memadukan optimisasi matematis dan pengambilan keputusan partisipatif, proyek ini telah memperbaiki secara nyata cara hunian dibagikan dalam komunitas koperasi dan menjadi preseden bagi penerapan mendatang dalam kebijakan perumahan maupun bidang lainnya.
+
+\subsection*{Model optimisasi}
+
+Model optimisasi memerlukan parameter masukan dan variabel berikut:
+
+\modelhead{Himpunan}
+\begin{itemize}
+    \item $I$: Himpunan anggota koperasi yang memerlukan penugasan hunian.
+    \item $J$: Himpunan unit hunian yang tersedia.
+\end{itemize}
+
+\modelhead{Parameter}
+\begin{itemize}
+    \item $p_{ij}$: Skor preferensi anggota $i$ terhadap unit hunian $j$, dengan nilai yang lebih rendah menunjukkan preferensi yang lebih tinggi (misalnya, $1$ = paling disukai).
+    \item Beberapa versi model mendukung \textbf{preferensi urutan parsial}, sehingga anggota dapat menyatakan preferensi yang sama untuk beberapa unit.
+\end{itemize}
+
+\modelhead{Variabel}
+\begin{itemize}
+    \item $x_{ij} \in \{0,1\}$: Variabel biner yang menunjukkan apakah anggota $i$ ditugaskan ke unit $j$:
+    \[
+    x_{ij} =
+    \begin{cases} 
+        1, & \text{jika anggota } i \text{ ditugaskan ke unit } j \\ 
+        0, & \text{jika tidak} 
+    \end{cases}
+    \]
+\end{itemize}
+
+\subsection*{Pendekatan Optimisasi Dua Tahap}
+
+\textbf{Tahap 1: Menjamin Keadilan}
+
+\begin{itemize}
+    \item Definisikan $S$ sebagai peringkat preferensi terburuk yang diterima seorang anggota:
+    \[ S = \max_{i \in I} \sum_{j \in J} p_{ij} x_{ij} \]
+    \item Pastikan setiap anggota memperoleh tepat satu unit dan setiap unit diberikan tepat kepada satu anggota.
+\end{itemize}
+Hal ini dicapai oleh model
+\begin{align*}
+    S = \min \; & z \\
+\st        & z \geq \sum_{j \in J} p_{i j} x_{i j} &&\quad \text{untuk semua } i \in I \\
+                 & \sum_{j \in J} x_{i j} = 1 &&\quad \text{untuk semua } i \in I \\
+                 & \sum_{i \in I} x_{i j} = 1 &&\quad \text{untuk semua } j \in J \\
+                 & x_{i j} \in \{0,1\} &&\quad \text{untuk semua } i \in I, \; j \in J \\
+                 & z \in \mathbb{R}
+\end{align*}
+
+\textbf{Tahap 2: Mengoptimalkan Kepuasan Global}
+
+\begin{itemize}
+    \item Dengan ambang keadilan $S$ dari Tahap 1, minimalkan jumlah peringkat preferensi total:
+    \[ \min \sum_{i \in I} \sum_{j \in J} p_{ij} x_{ij} \]
+    \item Dengan kendala keadilan:
+    \[ \sum_{j \in J} p_{ij} x_{ij} \leq S, \quad \forall i \in I \]
+    \item Kendala ini memastikan bahwa tidak ada anggota yang memperoleh unit yang kurang disukai daripada hasil terburuk yang diizinkan oleh Tahap 1.
+\end{itemize}
+Hal ini dicapai oleh model
+\begin{align*}
+\min \quad & \sum_{i \in I} \sum_{j \in J} p_{i j} x_{i j} \\
+\st        & \sum_{j \in J} x_{i j} = 1 &&\quad \text{untuk semua } i \in I \\
+                 & \sum_{i \in I} x_{i j} = 1 &&\quad \text{untuk semua } j \in J \\
+                 & \sum_{j \in J} p_{i j} x_{i j} \leq S &&\quad \text{untuk semua } i \in I \\
+                 & x_{i j} \in \{0,1\} &&\quad \text{untuk semua } i \in I, \; j \in J
+\end{align*}
+
+\subsection*{Catatan Penerapan}
+
+\begin{itemize}
+    \item Model dirumuskan sebagai \textbf{model pemrograman bilangan bulat campuran (MIP)}.
+    \item Penugasan dihitung secara \textbf{waktu nyata} dalam rapat koperasi.
+    \item Perangkat lunak \textbf{MTAV} digunakan untuk mengumpulkan preferensi pengguna dan menghitung penugasan secara efisien.
+    \item Sistem menjamin transparansi dengan memungkinkan anggota koperasi memeriksa preferensi mereka sebelum optimisasi akhir.
+\end{itemize}
+
+\subsection*{Referensi}
+\begin{itemize}
+\item \href{https://ifors.org/newsletter/ifors-news-dec-2024.pdf}{Buletin IFORS Desember 2024 - Bagian 4: Dampak Riset Operasi}
+\item M. Prino, E. Sánchez, H. Cancela. “Optimal distribution of habitational units in a cooperative: A mathematical application to optimize satisfaction” (teks dalam bahasa Spanyol). Prosiding CLEI 2016 (Conferencia Latinoamericana de Informática), 2016. \url{https://doi.org/10.1109/CLEI.2016.7833357}
+\end{itemize}
+
+\end{casestudybox}
+
+\section{Kiat Pemodelan}
+
+\subsection{Memaksimalkan suatu minimum}
+Jika kendalanya dapat bersifat umum, kita menulis $x \in X$ untuk mendefinisikan kendala umum. Misalnya, kita dapat memiliki $X = \{ x \in \R^n : Ax \leq b\}$ atau $X  = \{ x \in \R^n : Ax \leq b, x \in \Z^n\}$, maupun banyak kemungkinan lainnya.  
+
+Perhatikan masalah berikut:
+
+\begin{align*}
+\max   \quad & \min \{x_1, \dots, x_n\}\\
+\text{ dengan syarat } \quad &  x \in X
+\end{align*}
+Adanya minimum di bagian dalam menyulitkan penanganan. Untuk menghilangkannya, kita cukup mendefinisikan variabel baru $y$ dan memberlakukan $y \leq x_i$, lalu memaksimalkan $y$. Karena $y$ dimaksimalkan, nilainya akan sama dengan $x_i$ yang terkecil. Dengan demikian, masalah tersebut dapat dirumuskan ulang sebagai
+
+\begin{align*}
+\max\quad    & y\\
+\text{ dengan syarat } \quad  & y \leq x_i \ \text{ untuk }\  i=1, \dots, n \\
+&  x \in X
+\end{align*}
+
+\begin{examplewithallcode}{Meminimalkan Nilai Mutlak}
+{https://github.com/open-optimization/open-optimization-or-book/blob/master/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute-value-excel.xlsx}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_pulp.ipynb}
+{https://github.com/open-optimization/open-optimization-or-book/tree/master/Intro-Math-Programming/baseText/optimization/optimization-examples/absolute_value_gurobi.ipynb}
+Perhatikan bahwa
+$$
+|t| = \max(t, -t),
+$$
+sehingga untuk meminimalkan $|t|$, kita dapat menulis
+
+\begin{align*}
+\min \quad & z\\
+\st        & t \leq z\\
+           & -t \leq z.
+\end{align*}
+
+Kode pendamping menerapkan kiat ini untuk mencari titik yang meminimalkan jumlah
+jarak mutlak terhadap beberapa titik yang diberikan (dengan median sebagai optimumnya).
+\end{examplewithallcode}

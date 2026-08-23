@@ -1,0 +1,73 @@
+% Lampiran: Sumber Daya Perangkat Lunak Optimisasi
+% Lampiran ini menyajikan daftar lengkap perangkat lunak optimisasi.
+
+\chapter{Sumber Daya Perangkat Lunak Optimisasi}
+\label{app:software}
+
+Lampiran ini menyajikan daftar lengkap paket perangkat lunak optimisasi yang dikelompokkan berdasarkan jenis masalah. Banyak pemecah komersial menawarkan lisensi akademik gratis sehingga dapat digunakan untuk pendidikan dan penelitian.
+
+\section{Perangkat Lunak Berdasarkan Jenis Masalah}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{3.2cm}p{5.4cm}p{4.6cm}}
+\hline
+\textbf{Kelas masalah} & \textbf{Pemecah sumber terbuka} & \textbf{Pemecah komersial}\textsuperscript{1} \\ \hline
+Pemrograman linier & HiGHS, CLP, GLPK, SoPlex & Gurobi, CPLEX, Xpress, COPT, MOSEK \\[0.4em]
+Pemrograman linier bilangan bulat campuran & HiGHS, CBC, SCIP\textsuperscript{2} & Gurobi, CPLEX, Xpress, COPT, MOSEK \\[0.4em]
+Pemrograman kuadratik & OSQP, HiGHS, Clarabel & Gurobi, CPLEX, MOSEK, KNITRO \\[0.4em]
+Pemrograman nonlinier umum & IPOPT, Bonmin (bilangan bulat campuran), NLopt & KNITRO, BARON (global), SNOPT \\ \hline
+\end{tabular}
+\caption{Perangkat Lunak Optimisasi dan Lisensinya}
+\label{tab:optimization_software_appendix}
+\end{table}
+\footnotetext[1]{Sebagian besar pemecah komersial menawarkan lisensi akademik gratis; periksa ketentuan terkini setiap penyedia.}
+\footnotetext[2]{SCIP gratis untuk penggunaan akademik dan kode sumbernya tersedia; lisensinya telah berubah dari waktu ke waktu, jadi periksa lisensi terkini.}
+
+Ekosistem pemecah berubah dengan cepat. Untuk daftar pemecah lengkap yang dipelihara secara aktif, lihat \href{https://yalmip.github.io/allsolvers/}{halaman pemecah YALMIP} yang dikelola oleh Johan L\"ofberg dan \href{https://www.coin-or.org/}{proyek COIN-OR}.
+
+
+\section{Pemecah yang Direkomendasikan untuk Buku Ini}
+
+Untuk contoh-contoh dalam buku ini, kita terutama menggunakan:
+
+\begin{description}
+\item[Gurobi:] Pemecah komersial berkinerja tinggi dengan dukungan sangat baik untuk masalah LP, MIP, dan QP. Gratis untuk penggunaan akademik setelah mendaftar di \url{https://www.gurobi.com/academia/academic-program-and-licenses/}.
+
+\item[GLPK (GNU Linear Programming Kit):] Pemecah gratis dan sumber terbuka untuk masalah LP dan MIP. Tersedia di \url{https://www.gnu.org/software/glpk/}.
+
+\item[CBC (COIN-OR Branch and Cut):] Pemecah MIP gratis dan sumber terbuka. Merupakan bagian dari proyek COIN-OR di \url{https://github.com/coin-or/Cbc}.
+
+\item[SCIP:] Salah satu pemecah nonkomersial tercepat untuk MIP. Gratis untuk penggunaan akademik di \url{https://www.scipopt.org/}.
+\end{description}
+
+\section{Bahasa dan Antarmuka Pemodelan}
+
+Selain pemecah, Anda memerlukan sarana untuk merumuskan masalah optimisasi. Kita menggunakan:
+
+\begin{description}
+\item[Python dengan PuLP:] Pustaka gratis dan sumber terbuka untuk merumuskan masalah LP dan MIP dalam Python. Instal dengan \texttt{pip install pulp}.
+
+\item[Python dengan Gurobipy:] Antarmuka Python asli Gurobi yang memberi akses langsung ke seluruh fitur Gurobi. Disertakan dalam instalasi Gurobi.
+
+\item[Excel Solver:] Fitur bawaan Microsoft Excel yang sesuai untuk masalah kecil dan keperluan pendidikan.
+
+\item[AMPL:] Bahasa pemodelan aljabar yang banyak digunakan. \emph{The AMPL Book} dapat diunduh gratis di \url{https://ampl.com/resources/the-ampl-book/chapter-downloads/}.
+
+\item[AIMMS:] Sistem pemodelan komersial dengan lisensi akademik gratis. Sumber daya pemodelan optimisasi tersedia di \url{https://www.aimms.com/english/developers/resources/manuals/optimization-modeling/}.
+\end{description}
+
+\section{Tutorial dan Sumber Daya Gurobi}
+
+Gurobi menyediakan banyak materi pendidikan gratis:
+
+\begin{itemize}
+\item Berkas contoh dan kode: \url{https://github.com/Gurobi}
+\item \href{https://www.gurobi.com/resource/mathematical-programming-tutorial-linear-programming/}{Tutorial Pemrograman Linier}
+\item \href{https://www.gurobi.com/resource/tutorial-mixed-integer-linear-programming/}{Tutorial Pemrograman Linier Bilangan Bulat Campuran}
+\item \href{https://www.gurobi.com/resource/python-i-webinar/}{Python I: Pemodelan dengan Gurobi dalam Python}
+\item \href{https://www.gurobi.com/resource/python-ii-webinar/}{Python II: Pemodelan Aljabar Lanjutan}
+\item \href{https://www.gurobi.com/resource/python-iii-webinar/}{Python III: Optimisasi dan Heuristik}
+\item \href{https://www.gurobi.com/resources/?category-filter=tutorials}{Semua Tutorial Gurobi}
+\end{itemize}

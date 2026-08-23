@@ -1,0 +1,100 @@
+\subsection{Perkalian Skalar pada Matriks}
+
+Ingat bahwa kita menggunakan istilah {\em skalar \em} untuk menyebut bilangan. Oleh karena itu, {\em perkalian skalar pada matriks \em} adalah perkalian suatu matriks dengan sebuah bilangan.  
+Untuk mengilustrasikan konsep ini, perhatikan contoh berikut, di mana sebuah
+matriks dikalikan dengan skalar $3$.
+\begin{equation*}
+3\leftB
+\begin{array}{rrrr}
+1 & 2 & 3 & 4 \\
+5 & 2 & 8 & 7 \\
+6 & -9 & 1 & 2
+\end{array}
+\rightB = \leftB
+\begin{array}{rrrr}
+3 & 6 & 9 & 12 \\
+15 & 6 & 24 & 21 \\
+18 & -27 & 3 & 6
+\end{array}
+\rightB 
+\end{equation*}
+
+Matriks baru diperoleh dengan mengalikan setiap entri matriks semula
+dengan skalar yang diberikan. 
+
+Definisi formal perkalian skalar adalah sebagai berikut.
+
+\begin{definition}{Perkalian Skalar pada Matriks}\label{def:scalarmultofmatrices}
+Jika $A=\leftB a_{ij}\rightB $ dan $k$ adalah sebuah skalar,
+maka $kA=\leftB ka_{ij}\rightB .$ \index{matriks!perkalian skalar}
+\end{definition}
+
+Perhatikan contoh berikut.
+
+\begin{example}{Pengaruh Perkalian dengan Skalar}\label{exa:effectofscalarmult}
+Tentukan hasil perkalian matriks $A$ berikut dengan $7$.
+\begin{equation*}
+A=\leftB
+\begin{array}{rr}
+2 & 0 \\
+1 & -4
+\end{array}
+\rightB
+\end{equation*}
+\end{example}
+
+\begin{solution}
+Berdasarkan Definisi \ref{def:scalarmultofmatrices}, kita mengalikan setiap elemen $A$ dengan $7$.
+Oleh karena itu,
+\begin{equation*}
+7A = 
+7\leftB
+\begin{array}{rr}
+2 & 0 \\
+1 & -4
+\end{array}
+\rightB =
+\leftB
+\begin{array}{rr}
+7(2) & 7(0) \\
+7(1) & 7(-4)
+\end{array}
+\rightB =
+\leftB
+\begin{array}{rr}
+14 & 0 \\
+7 & -28
+\end{array}
+\rightB
+\end{equation*}
+\end{solution}
+
+Seperti halnya penjumlahan matriks, ada beberapa sifat perkalian skalar yang berlaku.
+
+\begin{proposition}{Sifat-Sifat Perkalian Skalar}\label{prop:propertiesscalarmult}
+Misalkan $A, B$ adalah matriks, dan $k, p$ adalah skalar. Maka sifat-sifat berikut \index{matriks!sifat perkalian skalar} berlaku.
+\begin{itemize}
+\item Hukum Distributif terhadap Penjumlahan Matriks
+\begin{equation*}
+k \left( A+B\right) =k A+ kB  
+\end{equation*}
+
+\item Hukum Distributif terhadap Penjumlahan Skalar
+\begin{equation*}
+\left( k +p \right) A= k A+p A
+\end{equation*}
+
+\item Hukum Asosiatif untuk Perkalian Skalar
+\begin{equation*}
+k \left( p A\right) = \left( k p \right) A 
+\end{equation*}
+
+\item Aturan Perkalian dengan $1$
+\begin{equation*}
+1A=A  
+\end{equation*}
+\end{itemize}
+
+\end{proposition}
+
+Bukti proposisi ini serupa dengan bukti Proposisi \ref{prop:propertiesofaddition} dan diserahkan sebagai latihan kepada pembaca.

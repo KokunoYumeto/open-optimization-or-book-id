@@ -1,0 +1,138 @@
+{
+  "case_coverage": {
+    "additional_printed_witnesses": [
+      "min_cost_flow_unstructured"
+    ],
+    "design_unresolved": [
+      "investment_multi_period"
+    ],
+    "executable_linked_families": [
+      "production_10period",
+      "assignment_machine",
+      "assignment_school_bus",
+      "assignment_generic",
+      "absolute_deviation",
+      "min_cost_flow_warehouses",
+      "airline_max_flow",
+      "multicommodity_integer",
+      "multicommodity_fractional"
+    ],
+    "linked_model_families": 11,
+    "parameter_required": [
+      "production_overtime"
+    ],
+    "solver_executions": 10,
+    "total_case_records": 12
+  },
+  "component_rights": {
+    "adapted_prose_and_data": "CC-BY-SA-4.0",
+    "generated_machine_results": "factual-output-no-additional-creative-claim",
+    "new_python_code": "MIT",
+    "runtime_components": "third-party-licenses-preserved"
+  },
+  "divergence_records": {
+    "count": 6,
+    "deduplicated": true,
+    "statuses": {
+      "corrected": 4,
+      "unresolved_upstream": 2
+    }
+  },
+  "files": [
+    {
+      "bytes": 3561,
+      "path": "ATTRIBUTION.md",
+      "sha256": "808933db5bdac1066f5efbdb2e0f5da8d1c70a1fbd73c544c2f7a27c9ff34852"
+    },
+    {
+      "bytes": 23875,
+      "path": "data.json",
+      "sha256": "27f8838f6ac9a3bf90d9f19a0dfa446c01087ff748cb64b64df482c39f32c541"
+    },
+    {
+      "bytes": 3111,
+      "path": "expected-results.json",
+      "sha256": "a2f65c61b5fa88c4c7ac497ea80bd4ee508b75a32b62c9378943ceab4e5c8dde"
+    },
+    {
+      "bytes": 1091,
+      "path": "LICENSE-CODE.txt",
+      "sha256": "3af65c07da546f32647333f84eb682f040ed45cabfa14ce5e1650f6a67f00ceb"
+    },
+    {
+      "bytes": 24825,
+      "path": "model.py",
+      "sha256": "8892395d82826c2f3d6065d042b7fafc92c7aff13f8c544649527d939cce4aab"
+    },
+    {
+      "bytes": 5967,
+      "path": "README.md",
+      "sha256": "3c9ec808ffb99edc83f87288fbd2ddb04935a789dc2ee17e03ee443163e2c369"
+    },
+    {
+      "bytes": 5492,
+      "path": "results.json",
+      "sha256": "6e7eb96529ba2d7a3f66f89cda8ca34305b52c542cd5e2c0f0cc3564cf817954"
+    },
+    {
+      "bytes": 1733,
+      "path": "run_lab.py",
+      "sha256": "df1b34247ddf6904f555ef210b1a7eac9ecf7515d65adb165865ee54e5bd291c"
+    },
+    {
+      "bytes": 14157,
+      "path": "test_models.py",
+      "sha256": "c86e7818053c5f1b35c7ce7b3414b98e3d61e0ffb19f854576b628e070c0e4ac"
+    },
+    {
+      "bytes": 1537,
+      "path": "verification.log",
+      "sha256": "a958ae6bc854fe0976854b1593e10d655966c9d02c23da5fcbfa8e765b39e708"
+    }
+  ],
+  "known_limitations": [
+    "Produksi lembur tidak dijalankan karena sumber tidak memberi kapasitas produksi reguler atau lembur.",
+    "Investasi multiperiodik tidak dijalankan karena domain variabel, perlakuan kas menganggur, pengulangan peluang, dan waktu pembayaran belum diselesaikan oleh sumber.",
+    "Vektor busur aliran maksimum bersifat degenerat; kontrak menguji nilai tujuan, aliran sumber/tujuan, kelayakan, dan cut pembukti.",
+    "Pemisahan per komoditas pada rumusan pecahan bersifat degenerat; keluaran menyimpan aliran agregat yang relevan."
+  ],
+  "lab_id": "o018.ch04.compact-modeling-replacements",
+  "observed_at": "2026-08-21T18:13:38+02:00",
+  "proprietary_runtime_dependencies": [],
+  "runtime": {
+    "highspy": "1.15.1",
+    "network_required": false,
+    "numpy": "2.5.2",
+    "offline_hash_locked_install": true,
+    "platform": "Windows-11-AMD64",
+    "pyomo": "6.10.1",
+    "python": "3.12.13",
+    "solver_interface": "appsi_highs"
+  },
+  "schema_version": "1.0.0",
+  "source_closure": {
+    "authority_commit": "1745df89b608899f66983834fa4ec8c8910d18ff",
+    "authority_tree": "209d5de696ebac4e5921b73d6b6b2f539fc23d1c",
+    "csv": 1,
+    "external_school_bus_commit": "b924d2fe61ee0ba925903aba615db4f46e65b4be",
+    "ipynb": 22,
+    "source_files": 36,
+    "tex": 2,
+    "xlsx": 11
+  },
+  "verification": {
+    "check_exit": 0,
+    "maximum_constraint_or_bound_violation": 0.0,
+    "not_run_cases": 2,
+    "results_bytes": 5492,
+    "results_sha256": "6e7eb96529ba2d7a3f66f89cda8ca34305b52c542cd5e2c0f0cc3564cf817954",
+    "run_exit": 0,
+    "second_replay_byte_identical": true,
+    "second_unittest_replay_passed": true,
+    "solved_cases": 10,
+    "tests_errors": 0,
+    "tests_failed": 0,
+    "tests_passed": 19,
+    "unittest_exit": 0
+  }
+}
