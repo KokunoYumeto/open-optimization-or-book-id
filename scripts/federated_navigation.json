@@ -1,0 +1,15 @@
+{
+  "schema": "program-matematika.federated-navigation.config.v1",
+  "repository": "open-optimization-or-book-id",
+  "course_id": "C130",
+  "content_language": "id",
+  "surface_url": "https://kokunoyumeto.github.io/open-optimization-or-book-id/",
+  "published_roots": ["docs"],
+  "central_links": [
+    {"locale": "id", "label": "Program (Bahasa Indonesia)", "url": "https://kokunoyumeto.github.io/program-matematika-indonesia/id/#course-C130"},
+    {"locale": "en", "label": "Program (English)", "url": "https://kokunoyumeto.github.io/program-matematika-indonesia/en/#course-C130"}
+  ],
+  "authoritative_originals": [
+    {"label": "Sumber asli / Authoritative original", "url": "https://open-optimization.github.io/open-optimization-or-book/html/"}
+  ]
+}

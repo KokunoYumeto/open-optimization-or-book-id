@@ -1,0 +1,43 @@
+{
+  "after_manifest_sha256": "a3ca3ff78fe6501aa652f9eaa4fa9349a12967493d146097bda89bf9ccd9e439",
+  "authoritative_originals": [
+    {
+      "label": "Sumber asli / Authoritative original",
+      "url": "https://open-optimization.github.io/open-optimization-or-book/html/"
+    }
+  ],
+  "before_manifest_sha256": "67997b45b1854ad71ba7a6945fecd2862e5582e494f7e2037f3db207356c544c",
+  "central_links": [
+    {
+      "label": "Program (Bahasa Indonesia)",
+      "locale": "id",
+      "url": "https://kokunoyumeto.github.io/program-matematika-indonesia/id/#course-C130"
+    },
+    {
+      "label": "Program (English)",
+      "locale": "en",
+      "url": "https://kokunoyumeto.github.io/program-matematika-indonesia/en/#course-C130"
+    }
+  ],
+  "checks": {
+    "all_central_and_original_links_present_once_per_document": true,
+    "exactly_one_navigation_landmark_per_document": true,
+    "exactly_one_stylesheet_reference_per_document": true,
+    "idempotent_transform": true,
+    "roundtrip_content_preservation": true
+  },
+  "content_language": "id",
+  "course_id": "C130",
+  "documents_with_navigation": 1,
+  "generated_by": "scripts/apply_federated_navigation.py",
+  "html_bytes_after": 9286,
+  "html_documents": 1,
+  "published_roots": [
+    "docs"
+  ],
+  "repository": "open-optimization-or-book-id",
+  "schema": "program-matematika.federated-navigation.local-receipt.v1",
+  "status": "passed",
+  "stylesheet_sha256": "3c88e12efe746142c009e55762f12619c45a1c384718b990507502fcfd78f5bb",
+  "surface_url": "https://kokunoyumeto.github.io/open-optimization-or-book-id/"
+}
