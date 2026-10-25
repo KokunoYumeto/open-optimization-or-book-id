@@ -126,7 +126,7 @@ menjalankan pemeriksaan backend tertutup-gagal, menolak symlink dan artefak
 cache, memvalidasi semua tautan lokal di laman pembaca, lalu menulis receipt
 ke `qa/release-package-report.json`.
 
-## Lisensi, atribusi, dan bantuan AI
+## Lisensi, atribusi, dan terjemahan AI
 
 Teks, terjemahan, dan aset buku yang dapat diadaptasi didistribusikan menurut
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Kode sumber
@@ -137,8 +137,8 @@ masing-masing. Lihat [peta hak komponen](LICENSES/README.md),
 [pemberitahuan edisi](NOTICE/EDITION.md), dan atribusi terperinci di dalam
 buku.
 
-Terjemahan dan lapisan produksi edisi ini disiapkan dengan bantuan
-OpenAI Codex gpt-5.6-sol, Ultra atas permintaan pengguna. AI tidak dicantumkan
+Terjemahan Bahasa Indonesia ini dibuat oleh AI (OpenAI Codex gpt-5.6-sol, Ultra); koreksi dan
+produksinya juga dikerjakan oleh AI. Penerbit tidak menerjemahkan teks. AI tidak dicantumkan
 sebagai pengarang; Robert
 Hildebrand tetap diatribusikan sebagai pengarang buku sumber. Perubahan
 semantik dilarang, dan hasil diperiksa melalui bangun deterministik, pemeriksa

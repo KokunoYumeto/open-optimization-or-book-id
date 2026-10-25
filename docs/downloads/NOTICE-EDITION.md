@@ -16,10 +16,10 @@ indeks mesin yang tidak mengubah isi matematis. O018 menambahkan laboratorium
 Pyomo+HiGHS yang diatribusikan secara terpisah sebagai jalur praktik bebas dan
 terbuka; ia bukan pengganti atau perluasan diam-diam atas isi Buku 1.
 
-## Bantuan AI
+## Terjemahan AI
 
-Terjemahan dan pekerjaan produksi edisi ini disiapkan dengan bantuan
-OpenAI Codex gpt-5.6-sol, Ultra atas permintaan pengguna. AI tidak dicantumkan
+Terjemahan Bahasa Indonesia ini dibuat oleh AI (OpenAI Codex gpt-5.6-sol, Ultra); koreksi dan
+produksinya juga dikerjakan oleh AI. Penerbit tidak menerjemahkan teks. AI tidak dicantumkan
 sebagai pengarang. Robert
 Hildebrand tetap diatribusikan sebagai pengarang buku sumber. Pemeriksaan
 mencakup bangun deterministik, paritas struktur, validasi rujukan dan font,

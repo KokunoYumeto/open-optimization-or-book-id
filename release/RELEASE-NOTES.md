@@ -44,8 +44,8 @@ baru memiliki lisensi MIT terpisah; komponen runtime mempertahankan lisensinya
 sendiri. Edisi ini independen dan tidak menyiratkan dukungan dari Robert
 Hildebrand, Virginia Tech, atau Open Optimization.
 
-Terjemahan dan lapisan produksi disiapkan dengan bantuan
-OpenAI Codex gpt-5.6-sol, Ultra atas permintaan pengguna. AI tidak dicantumkan
+Terjemahan Bahasa Indonesia ini dibuat oleh AI (OpenAI Codex gpt-5.6-sol, Ultra); koreksi dan
+produksinya juga dikerjakan oleh AI. Penerbit tidak menerjemahkan teks. AI tidak dicantumkan
 sebagai pengarang.
 
 Verifikasi byte unduhan terhadap `SHA256SUMS.txt` atau
